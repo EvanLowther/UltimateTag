@@ -1,6 +1,6 @@
 # Ultimate Tag
 
-A simple, classic-looking Roblox tag game. The code lives in files here and syncs into Roblox Studio with [Rojo](https://rojo.space).
+A simple, classic-looking Roblox tag game. One player is It. Tag someone to pass it on, and don't be It when the timer runs out! The code lives in files here and syncs into Roblox Studio with [Rojo](https://rojo.space).
 
 ## First-time setup
 1. Install [Rokit](https://github.com/rojo-rbx/rokit).

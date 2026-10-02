@@ -36,7 +36,22 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 - GitHub: https://github.com/EvanLowther/UltimateTag (private). The `.rbxlx` file is built by Rojo and git ignores it.
 
 ## Features
-- (none yet: just the map)
+**Core tag loop (0.2.0).** Rounds go Waiting -> Intermission -> Playing -> RoundOver. One random player is It and gets a short head-start freeze. It tags a Runner by getting within `Config.Tag.Range`. The tagged player becomes It and is frozen briefly, which also stops instant tag-backs. Whoever is It when time runs out loses, and every Runner gets +1 Win.
+
+| Module | Side | Job |
+| --- | --- | --- |
+| `shared/Config.luau` | both | All tunables: round times, tag range, speeds, colors, font |
+| `shared/GameState.luau` | both | Round `Phase`, `TimeLeft` and `Status` as ReplicatedStorage attributes. Server writes, clients read and listen. |
+| `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
+| `server/TagService.luau` | server | Heartbeat distance check from It to Runners. Performs the tag. |
+| `server/RoundService.luau` | server | The round state machine, spawn scatter, and win awarding |
+| `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list |
+| `client/Hud.luau` | client | Status, timer, and the "YOU ARE IT!" / "RUN!" banner |
+
+Rules of thumb:
+- Server owns all game state. Clients only read attributes (no RemoteEvents yet; add a `Remotes` setup in `init.server.luau` when one is needed).
+- In Studio, a round starts with 1 player (`Config.Round.StudioMinPlayers`). Live servers need `MinPlayers`.
 
 ## Changelog
+- 0.2.0: Core tag loop: rounds, It/Runner roles, distance tagging, freeze on tag, Wins/Tags leaderstats, HUD.
 - 0.1.0: Project setup (Rojo, rokit, StyLua, Selene, Lune). Green studded baseplate and spawn pad.
