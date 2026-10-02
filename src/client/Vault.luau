@@ -1,7 +1,6 @@
 --!strict
 -- Press jump while sprinting at a low obstacle (Config.Vault heights) to hop over it without
 -- losing speed. The body follows an arc that clears the top, then you keep running.
-local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -39,14 +38,10 @@ local function getAnimation(): Animation
 	return animation :: Animation
 end
 
-local function flat(v: Vector3): Vector3
-	return Vector3.new(v.X, 0, v.Z)
-end
-
 -- Looks for a vaultable obstacle ahead. Returns how to clear it, or nil.
 local function findVault(character: Model, hum: Humanoid, root: BasePart): Plan?
 	local settings = Config.Vault
-	local velocity = flat(root.AssemblyLinearVelocity)
+	local velocity = MoveState.flat(root.AssemblyLinearVelocity)
 	if velocity.Magnitude < 1 then
 		return nil
 	end
@@ -86,12 +81,14 @@ local function findVault(character: Model, hum: Humanoid, root: BasePart): Plan?
 	local backOrigin = Vector3.new(wall.Position.X, topY - 0.3, wall.Position.Z)
 		+ dir * (settings.MaxDepth + 0.5)
 	local back = workspace:Raycast(backOrigin, -dir * (settings.MaxDepth + 0.5), params)
-	local depth = if back then flat(back.Position - wall.Position).Magnitude else settings.MaxDepth
+	local depth = if back
+		then MoveState.flat(back.Position - wall.Position).Magnitude
+		else settings.MaxDepth
 
 	-- 4. Room for the body above it (no low ceiling).
 	local tuckedHip = Crouch.standingHip(hum) * settings.HipHeightFactor
 	local clearY = topY + settings.Clearance + root.Size.Y / 2 + tuckedHip
-	local wallDistance = flat(wall.Position - root.Position).Magnitude
+	local wallDistance = MoveState.flat(wall.Position - root.Position).Magnitude
 	local total = wallDistance + depth + settings.Landing
 	local headOrigin = Vector3.new(root.Position.X, clearY + root.Size.Y, root.Position.Z)
 	if workspace:Raycast(headOrigin, dir * total, params) then
@@ -118,7 +115,6 @@ local function findVault(character: Model, hum: Humanoid, root: BasePart): Plan?
 end
 
 function Vault.start()
-	local player = Players.LocalPlayer
 	local trackHumanoid: Humanoid? = nil
 	local track: AnimationTrack? = nil
 
@@ -163,16 +159,15 @@ function Vault.start()
 	end
 
 	UserInputService.JumpRequest:Connect(function()
-		local character = player.Character
-		local hum = character and character:FindFirstChildOfClass("Humanoid")
-		local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
-		if MoveState.busy or not character or not hum or not root or hum.Health <= 0 then
+		local parts = MoveState.parts()
+		if MoveState.busy or not parts then
 			return
 		end
-		if not Sprint.isSprinting() or hum.FloorMaterial == Enum.Material.Air then
+		local hum, root = parts.humanoid, parts.root
+		if not Sprint.isSprinting() or not MoveState.isGrounded(hum) then
 			return
 		end
-		local plan = findVault(character, hum, root)
+		local plan = findVault(parts.character, hum, root)
 		if plan then
 			vault(hum, root, plan)
 		end

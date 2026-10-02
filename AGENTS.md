@@ -21,6 +21,7 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 - `src/map/SlideBar.model.json`: red bar on two yellow posts at X=30, Z=-20 (underside at Y=4.2). Too low to walk under, so you have to slide. The posts are 22 studs apart; run at it from +Z. An invisible `StandBlocker` part fills the space under the bar (attribute `SlideBlocker`), because a character's collision box doesn't reach its head. Sliding characters pass through it.
 - `src/map/VaultWall.model.json`: orange wall 3 tall, 2 thick, 20 wide at X=-30, Z=-20. Sprint at it from +Z and press jump to vault.
 - `src/map/MantleLedge.model.json`: purple block 9 tall at X=-30, Z=-55. Too high to jump onto, so jump at it to mantle.
+- `src/map/BounceWalls.model.json`: two teal walls 30 tall, 12 studs apart (X=54 and X=66, Z=-50). Jump at one and press jump on contact to bounce between them.
 - Any part with the `SlideBlocker` attribute blocks standing players but not sliding ones. Use it for every slide-under obstacle.
 - To add a map piece, add another `*.model.json` in `src/map/`. Use the same studded plastic style.
 
@@ -54,11 +55,13 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `server/CollisionGroups.luau` | server | Registers the `SlideBlocker` / `Sliding` collision groups and puts `SlideBlocker` parts in their group |
 | `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
 | `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
-| `client/Slide.luau` | client | Press `Config.Slide.Key` (C) while sprinting on the ground to slide. Keeps momentum, fades to walk speed, lowers the character, can't stand up under a low ceiling, jump out keeps speed. |
+| `client/Slide.luau` | client | Press `Config.Slide.Key` (C) while sprinting on the ground to slide. Keeps momentum, fades to walk speed, no boost if within `DeadSlideTime` of the last slide (dead slide), lowers the character, can't stand up under a low ceiling, jump out keeps speed. |
 | `client/SlidePose.luau` | client | The slide animation: builds keyframed animations from `Config.Slide.Poses` (Drop, Slide, Lunge, Crouch, from the reference frames) and plays them through the Animator. Also the hip sink and camera dip. Registered on the client only, so other players don't see it yet; replace with an uploaded Animation before multiplayer. |
 | `client/Vault.luau` | client | Press jump while sprinting at an obstacle `Config.Vault.MinHeight`-`MaxHeight` tall and at most `MaxDepth` thick: hop over it in an arc and keep your speed. |
 | `client/Mantle.luau` | client | Automatic: in the air, moving toward a ledge within reach, once the jump has nearly peaked (`MaxRiseSpeed`) or while falling: pull up (`UpTime`) then over the edge (`OverTime`). You stop at the top. |
-| `client/MoveState.luau` | client | Shared by moves: `busy` (only one move at a time) and `drive()` (a LinearVelocity that takes over the character's velocity). |
+| `client/AirStrafe.luau` | client | In the air with no move running, owns sideways velocity: steering (camera-relative) turns your path without losing speed, steering backwards brakes. Keeps slide/vault/bounce speed through the air. |
+| `client/WallBounce.luau` | client | Touch a wall in the air, press jump within `Window`: pushed out along the wall normal and up. Blocked while a move (like mantle) runs. |
+| `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `parts()`, `isGrounded()`, `flat()`, `drive()`. New moves read these instead of re-checking. |
 | `client/Crouch.luau` | client | The only code that changes HipHeight and CameraOffset. Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. Client-only registration. |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
@@ -68,6 +71,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.8.0: Apex-style additions: dead slide (no boost if sliding again within 1.75s), AirStrafe (keep speed and steer in the air), WallBounce (jump off walls mid-air), BounceWalls test map. MoveState is now the shared source for parts, grounded and air velocity.
 - 0.7.2: Mantle is automatic when you jump at a ledge (no holding jump); it needs you to be moving toward the ledge.
 - 0.7.1: Mantle only grabs near the top of a jump or while falling, so tapping jump and vaulting no longer turn into mantles.
 - 0.7.0: Vault (jump while sprinting at a low obstacle, keeps speed) and Mantle (hold jump at a ledge, stops at the top), with VaultWall and MantleLedge test obstacles. Shared move code split out: MoveState, Crouch, AnimationBuilder.

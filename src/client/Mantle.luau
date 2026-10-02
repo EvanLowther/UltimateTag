@@ -3,7 +3,6 @@
 -- Only grabs near the top of a jump or while falling, and only while you're moving toward the
 -- ledge, so normal jumps are untouched.
 -- Slower than a vault: you stop at the top, which is the price for the extra height.
-local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
@@ -87,7 +86,6 @@ local function findLedge(character: Model, hum: Humanoid, root: BasePart): Vecto
 end
 
 function Mantle.start()
-	local player = Players.LocalPlayer
 	local settings = Config.Mantle
 	local lastEnd = -math.huge
 	local trackHumanoid: Humanoid? = nil
@@ -139,21 +137,17 @@ function Mantle.start()
 		if MoveState.busy or os.clock() - lastEnd < settings.Cooldown then
 			return
 		end
-		local character = player.Character
-		local hum = character and character:FindFirstChildOfClass("Humanoid")
-		local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
-		if not character or not hum or not root or hum.Health <= 0 then
+		local parts = MoveState.parts()
+		if not parts or MoveState.isGrounded(parts.humanoid) then
 			return
 		end
-		if hum.FloorMaterial ~= Enum.Material.Air then
-			return
-		end
+		local hum, root = parts.humanoid, parts.root
 		-- Wait until the jump has nearly peaked, so a normal jump onto or over something still
 		-- works, and tapping jump never mantles.
 		if root.AssemblyLinearVelocity.Y > settings.MaxRiseSpeed then
 			return
 		end
-		local goal = findLedge(character, hum, root)
+		local goal = findLedge(parts.character, hum, root)
 		if goal then
 			mantle(hum, root, goal)
 		end

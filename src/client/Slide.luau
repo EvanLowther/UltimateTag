@@ -1,7 +1,7 @@
 --!strict
 -- Press Config.Slide.Key while sprinting on the ground to slide. You keep your momentum, then
 -- it fades to walk speed. You can't stand up under a low ceiling, and jumping out keeps speed.
-local Players = game:GetService("Players")
+-- Sliding again within Config.Slide.DeadSlideTime is a "dead slide": no speed boost.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -14,7 +14,6 @@ local Sprint = require(script.Parent.Sprint)
 local Slide = {}
 
 function Slide.start()
-	local player = Players.LocalPlayer
 	local settings = Config.Slide
 
 	local sliding = false
@@ -35,20 +34,15 @@ function Slide.start()
 	end
 
 	local function begin()
-		local character = player.Character
-		local hum = character and character:FindFirstChildOfClass("Humanoid")
-		local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
-		if MoveState.busy or not character or not hum or not root or hum.Health <= 0 then
+		local parts = MoveState.parts()
+		if MoveState.busy or not parts then
 			return
 		end
-		if not Sprint.isSprinting() or hum.FloorMaterial == Enum.Material.Air then
+		local character, hum, root = parts.character, parts.humanoid, parts.root
+		if not Sprint.isSprinting() or not MoveState.isGrounded(hum) then
 			return
 		end
-		if os.clock() - lastEnd < settings.Cooldown then
-			return
-		end
-		local velocity = root.AssemblyLinearVelocity
-		local flat = Vector3.new(velocity.X, 0, velocity.Z)
+		local flat = MoveState.flat(root.AssemblyLinearVelocity)
 		-- You have to be actually running to start a slide.
 		if flat.Magnitude < hum.WalkSpeed * 0.5 then
 			return
@@ -57,7 +51,9 @@ function Slide.start()
 		sliding = true
 		MoveState.busy = "Slide"
 		local dir = flat.Unit
-		local startSpeed = flat.Magnitude * settings.StartMultiplier
+		-- Dead slide: sliding again too soon still slides, but without the speed boost.
+		local dead = os.clock() - lastEnd < settings.DeadSlideTime
+		local startSpeed = flat.Magnitude * (if dead then 1 else settings.StartMultiplier)
 		local endSpeed = hum.WalkSpeed / Config.Sprint.Multiplier
 		-- One pose per character, made while standing so it remembers the normal hip height.
 		if poseCharacter ~= character or not pose then
@@ -129,7 +125,7 @@ function Slide.start()
 			end
 			drive.PlaneVelocity = Vector2.new(dir.X * speed, dir.Z * speed)
 
-			airTime = if hum.FloorMaterial == Enum.Material.Air then airTime + dt else 0
+			airTime = if MoveState.isGrounded(hum) then 0 else airTime + dt
 			local v = root.AssemblyLinearVelocity
 			local hitWall = elapsed > 0.15 and Vector3.new(v.X, 0, v.Z).Magnitude < speed * 0.3
 			local timeUp = (alpha >= 1 or not keyHeld) and not blockedAbove()

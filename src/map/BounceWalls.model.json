@@ -1,0 +1,55 @@
+{
+  "className": "Model",
+  "children": [
+    {
+      "name": "WallLeft",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          30,
+          30
+        ],
+        "Position": [
+          54,
+          15,
+          -50
+        ],
+        "Color": [
+          0.0,
+          0.56,
+          0.61
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "WallRight",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          30,
+          30
+        ],
+        "Position": [
+          66,
+          15,
+          -50
+        ],
+        "Color": [
+          0.0,
+          0.56,
+          0.61
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    }
+  ]
+}

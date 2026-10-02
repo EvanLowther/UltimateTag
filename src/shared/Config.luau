@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.7.2",
+	Version = "0.8.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -20,7 +20,7 @@ local Config = {
 		Key = Enum.KeyCode.C, -- press while sprinting on the ground
 		StartMultiplier = 1.25, -- slide starts at your current speed x this
 		Duration = 0.9, -- seconds for the slide to fade back to walk speed
-		Cooldown = 1, -- seconds before you can slide again
+		DeadSlideTime = 1.75, -- sliding again within this many seconds gives no speed boost
 		Steer = 2, -- how much you can turn while sliding (higher = more control)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
@@ -82,6 +82,24 @@ local Config = {
 		RecoverLungeTime = 0.1, -- seconds into the recovery when the lunge pose is reached
 		RecoverCrouchTime = 0.2, -- ... the crouch pose
 		RecoverStandTime = 0.3, -- ... standing (frame 8)
+	},
+
+	AirStrafe = {
+		-- In the air, your movement keys (camera-relative) bend your path without losing speed.
+		TurnRate = 140, -- degrees per second your air path can turn toward where you steer
+		BrakeRate = 20, -- studs/s per second you slow down when steering backwards
+		AirControl = 40, -- studs/s per second you can speed up while slower than walk speed
+		WallStop = 0.5, -- if a wall cuts your speed below this fraction, carry the slower speed
+	},
+
+	WallBounce = {
+		-- Touch a wall in the air and press jump right away to push off it.
+		Reach = 2, -- studs from your body that counts as touching a wall
+		Window = 0.2, -- seconds after touching a wall that a jump still bounces
+		OutSpeed = 26, -- studs/s pushed away from the wall
+		UpSpeed = 38, -- studs/s upward
+		KeepAlong = 0.8, -- fraction of your speed along the wall that you keep
+		Cooldown = 0.25, -- seconds between bounces
 	},
 
 	Vault = {
