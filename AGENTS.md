@@ -48,6 +48,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
 | `server/TagService.luau` | server | Heartbeat distance check from It to Runners. Performs the tag. |
 | `server/Sandbox.luau` | server | Free-play setup: players join as Runners, keeps one player as It |
+| `server/Avatar.luau` | server | Forces R15: makes a blank R15 rig the `StarterCharacter`, then dresses each character in the player's own avatar |
 | `server/CollisionGroups.luau` | server | Registers the `SlideBlocker` / `Sliding` collision groups and puts `SlideBlocker` parts in their group |
 | `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
 | `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
@@ -60,6 +61,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.5.2: Force R15 bodies for everyone (needed for the slide pose).
 - 0.5.1: Slide animation (code-driven R15 pose, no clipping into the ground). Slide bar now blocks standing players with an invisible blocker that sliders pass through.
 - 0.5.0: Slide (C while sprinting) and a SlideBar test obstacle.
 - 0.4.0: Movement work: Sprint (hold Shift) and a TestCourse map for jump tests.

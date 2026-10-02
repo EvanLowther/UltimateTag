@@ -4,12 +4,14 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 
+local Avatar = require(script.Avatar)
 local CollisionGroups = require(script.CollisionGroups)
 local Leaderstats = require(script.Leaderstats)
 local Roles = require(script.Roles)
 local Sandbox = require(script.Sandbox)
 local TagService = require(script.TagService)
 
+Avatar.start()
 CollisionGroups.start()
 Leaderstats.start()
 Roles.start()
