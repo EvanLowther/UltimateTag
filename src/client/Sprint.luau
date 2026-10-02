@@ -9,12 +9,17 @@ local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Co
 
 local Sprint = {}
 
+local sprinting = false
+
+function Sprint.isSprinting(): boolean
+	return sprinting
+end
+
 function Sprint.start()
 	local player = Players.LocalPlayer
 	local camera = workspace.CurrentCamera
 	local baseFov = camera.FieldOfView
 
-	local sprinting = false
 	local baseSpeed = 0
 
 	local function easeFov(target: number)

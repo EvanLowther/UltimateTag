@@ -1,0 +1,80 @@
+{
+  "className": "Model",
+  "children": [
+    {
+      "name": "Bar",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          24,
+          1,
+          8
+        ],
+        "Position": [
+          30,
+          4.7,
+          -20
+        ],
+        "Color": [
+          0.77,
+          0.16,
+          0.11
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "PostLeft",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.2,
+          2
+        ],
+        "Position": [
+          19,
+          2.1,
+          -20
+        ],
+        "Color": [
+          1,
+          0.84,
+          0.1
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "PostRight",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.2,
+          2
+        ],
+        "Position": [
+          41,
+          2.1,
+          -20
+        ],
+        "Color": [
+          1,
+          0.84,
+          0.1
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    }
+  ]
+}
