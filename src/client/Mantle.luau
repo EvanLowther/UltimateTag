@@ -1,6 +1,7 @@
 --!strict
 -- Hold jump while in the air next to a ledge (Config.Mantle reach) to grab it and pull yourself
--- up. Only grabs near the top of a jump or while falling, so normal jumps are untouched. Slower than a vault: you stop at the top, which is the price for the extra height.
+-- up. Only grabs near the top of a jump or while falling, so normal jumps are untouched.
+-- Slower than a vault: you stop at the top, which is the price for the extra height.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
