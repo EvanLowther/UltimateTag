@@ -53,7 +53,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
 | `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
 | `client/Slide.luau` | client | Press `Config.Slide.Key` (C) while sprinting on the ground to slide. Keeps momentum, fades to walk speed, lowers the character, can't stand up under a low ceiling, jump out keeps speed. |
-| `client/SlidePose.luau` | client | The slide animation: rotates R15 joints to the pose in `Config.Slide.Pose`, blended over the run animation, plus hip sink and camera dip. Client-only, so other players don't see it yet. |
+| `client/SlidePose.luau` | client | The slide animation: builds keyframed animations from `Config.Slide.Poses` (Drop, Slide, Lunge, Crouch, from the reference frames) and plays them through the Animator. Also the hip sink and camera dip. Registered on the client only, so other players don't see it yet; replace with an uploaded Animation before multiplayer. |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
@@ -61,6 +61,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.6.0: Slide animation rebuilt as real keyframed animations played through the Animator (the old joint-rotation approach was overwritten every frame). Stages: drop, slide hold, lunge, crouch, stand.
 - 0.5.3: Everyone is the classic 2012 block avatar while testing (`Config.Avatar.UseOwnAvatar = false`).
 - 0.5.2: Force R15 bodies for everyone (needed for the slide pose).
 - 0.5.1: Slide animation (code-driven R15 pose, no clipping into the ground). Slide bar now blocks standing players with an invisible blocker that sliders pass through.

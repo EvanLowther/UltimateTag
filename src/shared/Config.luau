@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.5.3",
+	Version = "0.6.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -24,28 +24,64 @@ local Config = {
 		Steer = 2, -- how much you can turn while sliding (higher = more control)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
-		DropTime = 0.15, -- seconds to blend from running into the slide pose
-		RiseTime = 0.3, -- seconds to blend from the slide pose back to standing
+		DropTime = 0.15, -- seconds from the drop pose into the full slide pose
+		RiseTime = 0.3, -- seconds for the hips and camera to come back up
 		HeadClearance = 2.5, -- studs from the body center to the top of the head when standing
 		BlockerGroup = "SlideBlocker", -- collision group for invisible parts only sliders can pass
 		SlidingGroup = "Sliding", -- collision group the character uses while sliding
 
-		-- Slide pose: degrees of rotation (X = tip forward/back, Y = twist, Z = sideways) for
-		-- each R15 joint. Positive X on Root leans the body back. Positive X on a hip or
-		-- shoulder swings that limb forward. Negative X on a knee bends it.
-		Pose = {
-			Root = Vector3.new(55, 0, 0), -- lean the whole body back
-			Waist = Vector3.new(-15, 0, 0), -- curl the chest forward a little
-			Neck = Vector3.new(-30, 0, 0), -- keep looking ahead
-			RightHip = Vector3.new(38, 0, 0), -- lead leg straight out in front
-			RightKnee = Vector3.new(-5, 0, 0),
-			LeftHip = Vector3.new(70, 0, -10), -- back leg bent with the knee up
-			LeftKnee = Vector3.new(-100, 0, 0),
-			RightShoulder = Vector3.new(120, 0, 15), -- right arm raised for balance
-			RightElbow = Vector3.new(-30, 0, 0),
-			LeftShoulder = Vector3.new(-45, 0, -40), -- left hand reaching back to the ground
-			LeftElbow = Vector3.new(-15, 0, 0),
+		-- Slide animation, built from the reference frames. Each pose is degrees of rotation per
+		-- body part (X = tip forward/back, Y = twist, Z = sideways), relative to standing.
+		-- Positive X on LowerTorso leans the body back. Positive X on an upper leg or upper arm
+		-- swings it forward. Negative X on a lower leg bends the knee.
+		Poses = {
+			Drop = { -- frame 2: dropping into the slide
+				LowerTorso = Vector3.new(20, 0, 0),
+				UpperTorso = Vector3.new(-10, 0, 0),
+				RightUpperLeg = Vector3.new(45, 0, 0),
+				RightLowerLeg = Vector3.new(-30, 0, 0),
+				LeftUpperLeg = Vector3.new(-5, 0, 0),
+				LeftLowerLeg = Vector3.new(-60, 0, 0),
+				RightUpperArm = Vector3.new(50, 0, 10),
+				LeftUpperArm = Vector3.new(-30, 0, -10),
+			},
+			Slide = { -- frames 3 to 5: leaning back, lead leg out front, arm up
+				LowerTorso = Vector3.new(55, 0, 0),
+				UpperTorso = Vector3.new(-15, 0, 0),
+				Head = Vector3.new(-30, 0, 0),
+				RightUpperLeg = Vector3.new(38, 0, 0),
+				RightLowerLeg = Vector3.new(-5, 0, 0),
+				LeftUpperLeg = Vector3.new(70, 0, -10),
+				LeftLowerLeg = Vector3.new(-100, 0, 0),
+				RightUpperArm = Vector3.new(120, 0, 15),
+				RightLowerArm = Vector3.new(-30, 0, 0),
+				LeftUpperArm = Vector3.new(-45, 0, -40),
+				LeftLowerArm = Vector3.new(-15, 0, 0),
+			},
+			Lunge = { -- frame 6: pushing back up, one leg forward
+				LowerTorso = Vector3.new(-10, 0, 0),
+				UpperTorso = Vector3.new(-10, 0, 0),
+				RightUpperLeg = Vector3.new(60, 0, 0),
+				RightLowerLeg = Vector3.new(-70, 0, 0),
+				LeftUpperLeg = Vector3.new(-30, 0, 0),
+				LeftLowerLeg = Vector3.new(-40, 0, 0),
+				RightUpperArm = Vector3.new(40, 0, 0),
+				LeftUpperArm = Vector3.new(-30, 0, 0),
+			},
+			Crouch = { -- frame 7: rising through a crouch
+				LowerTorso = Vector3.new(-10, 0, 0),
+				UpperTorso = Vector3.new(-10, 0, 0),
+				RightUpperLeg = Vector3.new(50, 0, 0),
+				RightLowerLeg = Vector3.new(-80, 0, 0),
+				LeftUpperLeg = Vector3.new(50, 0, 0),
+				LeftLowerLeg = Vector3.new(-80, 0, 0),
+				RightUpperArm = Vector3.new(20, 0, 10),
+				LeftUpperArm = Vector3.new(20, 0, -10),
+			},
 		},
+		RecoverLungeTime = 0.1, -- seconds into the recovery when the lunge pose is reached
+		RecoverCrouchTime = 0.2, -- ... the crouch pose
+		RecoverStandTime = 0.3, -- ... standing (frame 8)
 	},
 
 	Avatar = {

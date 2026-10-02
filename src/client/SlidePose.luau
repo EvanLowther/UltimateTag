@@ -1,8 +1,11 @@
 --!strict
--- The slide pose: leans the body back and kicks the legs out front by rotating the R15
--- joints, blended smoothly over the normal animations. Also sinks the hips and dips the
--- camera on the same blend. Angles live in Config.Slide.Pose.
--- Runs on the client only, so other players don't see the pose yet.
+-- The slide animation. Builds two keyframed animations from Config.Slide.Poses and plays them
+-- through the character's Animator, the same way Roblox plays the run animation:
+--   Slide:   drop (frame 2) -> slide pose (frames 3 to 5), then holds until the slide ends.
+--   Recover: slide pose -> lunge (frame 6) -> crouch (frame 7) -> standing (frame 8).
+-- Also sinks the hips (so you fit under low bars) and dips the camera on a smooth blend.
+-- The animations are registered on this client only, so other players don't see them yet.
+local AnimationClipProvider = game:GetService("AnimationClipProvider")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
@@ -15,30 +18,107 @@ export type Pose = {
 	slideHip: number,
 }
 
+type Angles = { [string]: Vector3 }
+type Tree = { [string]: Tree }
+
 local SlidePose = {}
 
-local function toCFrame(degrees: Vector3): CFrame
-	return CFrame.Angles(math.rad(degrees.X), math.rad(degrees.Y), math.rad(degrees.Z))
+local HOLD_MARKER = "Hold" -- keyframe name where the slide animation freezes
+local FADE = 0.05 -- seconds to cross-fade between animations
+
+-- R15 body parts, nested the way their joints connect.
+local R15: Tree = {
+	HumanoidRootPart = {
+		LowerTorso = {
+			UpperTorso = {
+				Head = {},
+				RightUpperArm = { RightLowerArm = { RightHand = {} } },
+				LeftUpperArm = { LeftLowerArm = { LeftHand = {} } },
+			},
+			RightUpperLeg = { RightLowerLeg = { RightFoot = {} } },
+			LeftUpperLeg = { LeftLowerLeg = { LeftFoot = {} } },
+		},
+	},
+}
+
+local function addPoses(parent: Instance, tree: Tree, angles: Angles)
+	for name, children in tree do
+		local degrees = angles[name] or Vector3.zero
+		local pose = Instance.new("Pose")
+		pose.Name = name
+		pose.CFrame = CFrame.Angles(math.rad(degrees.X), math.rad(degrees.Y), math.rad(degrees.Z))
+		pose.EasingStyle = Enum.PoseEasingStyle.Cubic
+		pose.EasingDirection = Enum.PoseEasingDirection.InOut
+		pose.Parent = parent
+		addPoses(pose, children, angles)
+	end
 end
 
-function SlidePose.attach(character: Model, humanoid: Humanoid): Pose
-	local settings = Config.Slide
-	local pose = settings.Pose :: { [string]: Vector3 }
-
-	local joints: { { motor: Motor6D, target: CFrame } } = {}
-	for _, item in character:GetDescendants() do
-		if item:IsA("Motor6D") and pose[item.Name] then
-			table.insert(joints, { motor = item, target = toCFrame(pose[item.Name]) })
-		end
+-- Turns a list of { time, pose, name? } into a registered animation the Animator can play.
+local function makeAnimation(keys: { { time: number, angles: Angles, name: string? } }): Animation
+	local sequence = Instance.new("KeyframeSequence")
+	sequence.Loop = false
+	sequence.Priority = Enum.AnimationPriority.Action4
+	for _, key in keys do
+		local keyframe = Instance.new("Keyframe")
+		keyframe.Time = key.time
+		keyframe.Name = key.name or "Keyframe"
+		addPoses(keyframe, R15, key.angles)
+		keyframe.Parent = sequence
 	end
+	local animation = Instance.new("Animation")
+	animation.AnimationId = AnimationClipProvider:RegisterAnimationClip(sequence)
+	return animation
+end
+
+local slideAnimation: Animation? = nil
+local recoverAnimation: Animation? = nil
+
+-- Builds both animations once and reuses them for every character.
+local function animations(): (Animation, Animation)
+	if not slideAnimation or not recoverAnimation then
+		local settings = Config.Slide
+		local poses = settings.Poses :: { [string]: Angles }
+		slideAnimation = makeAnimation({
+			{ time = 0, angles = poses.Drop },
+			{ time = settings.DropTime, angles = poses.Slide, name = HOLD_MARKER },
+			{ time = settings.DropTime + 0.1, angles = poses.Slide },
+		})
+		recoverAnimation = makeAnimation({
+			{ time = 0, angles = poses.Slide },
+			{ time = settings.RecoverLungeTime, angles = poses.Lunge },
+			{ time = settings.RecoverCrouchTime, angles = poses.Crouch },
+			{ time = settings.RecoverStandTime, angles = {} },
+		})
+	end
+	return slideAnimation :: Animation, recoverAnimation :: Animation
+end
+
+function SlidePose.attach(_character: Model, humanoid: Humanoid): Pose
+	local settings = Config.Slide
+	local animator = humanoid:FindFirstChildOfClass("Animator")
+	if not animator then
+		animator = Instance.new("Animator")
+		animator.Parent = humanoid
+	end
+	local slide, recover = animations()
+	local slideTrack = (animator :: Animator):LoadAnimation(slide)
+	local recoverTrack = (animator :: Animator):LoadAnimation(recover)
+
+	-- Freeze on the slide pose until the slide ends.
+	slideTrack.KeyframeReached:Connect(function(name)
+		if name == HOLD_MARKER then
+			slideTrack:AdjustSpeed(0)
+		end
+	end)
 
 	local standingHip = humanoid.HipHeight
 	local slideHip = standingHip * settings.HipHeightFactor
-	local weight = 0 -- 0 = normal animations, 1 = full slide pose
+	local weight = 0 -- 0 = standing height, 1 = full slide height
 	local goal = 0
 	local connection: RBXScriptConnection? = nil
 
-	-- Runs after the Animator each frame, so the pose blends on top of the run animation.
+	-- Eases the hips and camera between standing and sliding height.
 	local function step(dt: number)
 		if not humanoid.Parent then
 			if connection then
@@ -53,10 +133,6 @@ function SlidePose.attach(character: Model, humanoid: Humanoid): Pose
 			weight = math.max(weight - dt / settings.RiseTime, 0)
 		end
 		local w = weight * weight * (3 - 2 * weight) -- smoothstep, so it eases in and out
-
-		for _, joint in joints do
-			joint.motor.Transform = joint.motor.Transform:Lerp(joint.target, w)
-		end
 		humanoid.HipHeight = standingHip + (slideHip - standingHip) * w
 		humanoid.CameraOffset = Vector3.new(0, -settings.CameraDip * w, 0)
 
@@ -75,9 +151,14 @@ function SlidePose.attach(character: Model, humanoid: Humanoid): Pose
 
 	return {
 		play = function()
+			recoverTrack:Stop(FADE)
+			slideTrack:Play(FADE)
+			slideTrack:AdjustSpeed(1)
 			blendTo(1)
 		end,
 		stop = function()
+			slideTrack:Stop(FADE)
+			recoverTrack:Play(FADE)
 			blendTo(0)
 		end,
 		standingHip = standingHip,
