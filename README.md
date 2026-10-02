@@ -8,7 +8,7 @@ A simple, classic-looking Roblox tag game. One player is It. Tag someone to pass
 
 ## Every day
 1. Double-click `scripts/start.command`. It opens VS Code and Studio and starts `rojo serve`.
-2. In Studio, open **Plugins > Rojo**, set the port to **34872**, and click **Connect**.
+2. In Studio, open **Plugins > Rojo**, set the port to **34874**, and click **Connect**.
 3. Edit files in `src/` and they update live in Studio. Press Play to test.
 
 See `AGENTS.md` for the project layout and conventions.

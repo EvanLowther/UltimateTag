@@ -7,5 +7,5 @@ export PATH="$HOME/.rokit/bin:$PATH"
 open UltimateTag.code-workspace
 open UltimateTag.rbxlx
 
-echo "In Studio: Plugins > Rojo > set port to 34872 > Connect.   Stop the server with Ctrl+C."
+echo "In Studio: Plugins > Rojo > set port to 34874 > Connect.   Stop the server with Ctrl+C."
 rojo serve

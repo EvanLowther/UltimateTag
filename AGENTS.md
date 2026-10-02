@@ -53,5 +53,6 @@ Rules of thumb:
 - In Studio, a round starts with 1 player (`Config.Round.StudioMinPlayers`). Live servers need `MinPlayers`.
 
 ## Changelog
+- 0.2.1: Rojo serve port changed to 34874 (34872 was clashing with another project).
 - 0.2.0: Core tag loop: rounds, It/Runner roles, distance tagging, freeze on tag, Wins/Tags leaderstats, HUD.
 - 0.1.0: Project setup (Rojo, rokit, StyLua, Selene, Lune). Green studded baseplate and spawn pad.
