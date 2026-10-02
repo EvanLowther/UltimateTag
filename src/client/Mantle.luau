@@ -1,6 +1,6 @@
 --!strict
 -- Hold jump while in the air next to a ledge (Config.Mantle reach) to grab it and pull yourself
--- up. Slower than a vault: you stop at the top, which is the price for the extra height.
+-- up. Only grabs near the top of a jump or while falling, so normal jumps are untouched. Slower than a vault: you stop at the top, which is the price for the extra height.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -147,6 +147,11 @@ function Mantle.start()
 			return
 		end
 		if hum.FloorMaterial ~= Enum.Material.Air then
+			return
+		end
+		-- Wait until the jump has nearly peaked, so a normal jump onto or over something still
+		-- works, and tapping jump never mantles.
+		if root.AssemblyLinearVelocity.Y > settings.MaxRiseSpeed then
 			return
 		end
 		local goal = findLedge(character, hum, root)

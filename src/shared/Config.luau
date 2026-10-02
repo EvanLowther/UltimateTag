@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.7.0",
+	Version = "0.7.1",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -117,6 +117,7 @@ local Config = {
 		UpTime = 0.35, -- seconds to pull up
 		OverTime = 0.2, -- seconds to climb over the edge
 		Cooldown = 0.4, -- seconds before you can mantle again
+		MaxRiseSpeed = 8, -- only grab once your jump has nearly peaked (rising slower than this)
 		Poses = {
 			Hang = { -- arms up holding the edge
 				RightUpperArm = Vector3.new(170, 0, 10),

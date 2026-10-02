@@ -57,7 +57,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/Slide.luau` | client | Press `Config.Slide.Key` (C) while sprinting on the ground to slide. Keeps momentum, fades to walk speed, lowers the character, can't stand up under a low ceiling, jump out keeps speed. |
 | `client/SlidePose.luau` | client | The slide animation: builds keyframed animations from `Config.Slide.Poses` (Drop, Slide, Lunge, Crouch, from the reference frames) and plays them through the Animator. Also the hip sink and camera dip. Registered on the client only, so other players don't see it yet; replace with an uploaded Animation before multiplayer. |
 | `client/Vault.luau` | client | Press jump while sprinting at an obstacle `Config.Vault.MinHeight`-`MaxHeight` tall and at most `MaxDepth` thick: hop over it in an arc and keep your speed. |
-| `client/Mantle.luau` | client | Hold jump in the air facing a ledge within reach: pull up (`UpTime`) then over the edge (`OverTime`). You stop at the top. |
+| `client/Mantle.luau` | client | Hold jump in the air facing a ledge within reach, once the jump has nearly peaked (`MaxRiseSpeed`) or while falling: pull up (`UpTime`) then over the edge (`OverTime`). You stop at the top. |
 | `client/MoveState.luau` | client | Shared by moves: `busy` (only one move at a time) and `drive()` (a LinearVelocity that takes over the character's velocity). |
 | `client/Crouch.luau` | client | The only code that changes HipHeight and CameraOffset. Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. Client-only registration. |
@@ -68,6 +68,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.7.1: Mantle only grabs near the top of a jump or while falling, so tapping jump and vaulting no longer turn into mantles.
 - 0.7.0: Vault (jump while sprinting at a low obstacle, keeps speed) and Mantle (hold jump at a ledge, stops at the top), with VaultWall and MantleLedge test obstacles. Shared move code split out: MoveState, Crouch, AnimationBuilder.
 - 0.6.0: Slide animation rebuilt as real keyframed animations played through the Animator (the old joint-rotation approach was overwritten every frame). Stages: drop, slide hold, lunge, crouch, stand.
 - 0.5.3: Everyone is the classic 2012 block avatar while testing (`Config.Avatar.UseOwnAvatar = false`).
