@@ -2,17 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.2.0",
-
-	Round = {
-		IntermissionTime = 15, -- seconds between rounds
-		RoundTime = 120, -- seconds per round
-		EndTime = 5, -- seconds the results stay on screen
-		MinPlayers = 2, -- players needed to start a round
-		StudioMinPlayers = 1, -- lets you test alone in Studio
-		ItHeadStart = 3, -- seconds It is frozen at the start so runners can scatter
-		SpawnRadius = 40, -- runners spawn at random spots within this many studs of the center
-	},
+	Version = "0.3.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag

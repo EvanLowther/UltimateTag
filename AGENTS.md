@@ -36,23 +36,24 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 - GitHub: https://github.com/EvanLowther/UltimateTag (private). The `.rbxlx` file is built by Rojo and git ignores it.
 
 ## Features
-**Core tag loop (0.2.0).** Rounds go Waiting -> Intermission -> Playing -> RoundOver. One random player is It and gets a short head-start freeze. It tags a Runner by getting within `Config.Tag.Range`. The tagged player becomes It and is frozen briefly, which also stops instant tag-backs. Whoever is It when time runs out loses, and every Runner gets +1 Win.
+**Sandbox (0.3.0).** No rounds, timer or wins yet. This is a free-play test mode for building mechanics. Everyone is a Runner and one player is always It. It tags a Runner by getting within `Config.Tag.Range`. The tagged player becomes It and is frozen briefly, which also stops instant tag-backs. If It leaves, someone else becomes It. Test with two or more players (Studio: Test tab > Clients and Servers > Local Server).
 
 | Module | Side | Job |
 | --- | --- | --- |
-| `shared/Config.luau` | both | All tunables: round times, tag range, speeds, colors, font |
-| `shared/GameState.luau` | both | Round `Phase`, `TimeLeft` and `Status` as ReplicatedStorage attributes. Server writes, clients read and listen. |
+| `shared/Config.luau` | both | All tunables: tag range, freeze time, speeds, colors, font |
+| `shared/GameState.luau` | both | Status text as a ReplicatedStorage attribute. Server writes, clients read and listen. |
 | `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
 | `server/TagService.luau` | server | Heartbeat distance check from It to Runners. Performs the tag. |
-| `server/RoundService.luau` | server | The round state machine, spawn scatter, and win awarding |
-| `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list |
-| `client/Hud.luau` | client | Status, timer, and the "YOU ARE IT!" / "RUN!" banner |
+| `server/Sandbox.luau` | server | Free-play setup: players join as Runners, keeps one player as It |
+| `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
+| `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
 - Server owns all game state. Clients only read attributes (no RemoteEvents yet; add a `Remotes` setup in `init.server.luau` when one is needed).
-- In Studio, a round starts with 1 player (`Config.Round.StudioMinPlayers`). Live servers need `MinPlayers`.
+- Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.3.0: Removed rounds, timer and spawn scatter. Added Sandbox free-play mode for testing mechanics.
 - 0.2.1: Rojo serve port changed to 34874 (34872 was clashing with another project).
 - 0.2.0: Core tag loop: rounds, It/Runner roles, distance tagging, freeze on tag, Wins/Tags leaderstats, HUD.
 - 0.1.0: Project setup (Rojo, rokit, StyLua, Selene, Lune). Green studded baseplate and spawn pad.

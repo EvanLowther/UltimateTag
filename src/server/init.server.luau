@@ -6,12 +6,12 @@ local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Co
 
 local Leaderstats = require(script.Leaderstats)
 local Roles = require(script.Roles)
-local RoundService = require(script.RoundService)
+local Sandbox = require(script.Sandbox)
 local TagService = require(script.TagService)
 
 Leaderstats.start()
 Roles.start()
 TagService.start()
-RoundService.start()
+Sandbox.start()
 
 print(`[{Config.GameName}] server started (v{Config.Version})`)

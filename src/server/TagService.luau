@@ -1,5 +1,5 @@
 --!strict
--- Detects tags: while a round is playing, It tags any Runner who gets within Config.Tag.Range.
+-- Detects tags: It tags any Runner who gets within Config.Tag.Range.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -31,9 +31,6 @@ local function tag(tagger: Player, tagged: Player)
 end
 
 local function step()
-	if GameState.getPhase() ~= "Playing" then
-		return
-	end
 	local it = Roles.getIt()
 	if not it or Roles.isFrozen(it) then
 		return
