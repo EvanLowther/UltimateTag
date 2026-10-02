@@ -75,6 +75,30 @@
         "TopSurface": "Studs",
         "BottomSurface": "Inlet"
       }
+    },
+    {
+      "name": "StandBlocker",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          20,
+          4.2,
+          8
+        ],
+        "Position": [
+          30,
+          2.1,
+          -20
+        ],
+        "Transparency": 1,
+        "CanTouch": false,
+        "CastShadow": false,
+        "Material": "Plastic"
+      },
+      "attributes": {
+        "SlideBlocker": true
+      }
     }
   ]
 }

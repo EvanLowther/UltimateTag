@@ -4,10 +4,10 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
-local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+local SlidePose = require(script.Parent.SlidePose)
 local Sprint = require(script.Parent.Sprint)
 
 local Slide = {}
@@ -21,10 +21,16 @@ function Slide.start()
 	local lastEnd = -math.huge
 	local finish: ((jumped: boolean) -> ())? = nil
 	local isBlocked: (() -> boolean)? = nil
+	local pose: SlidePose.Pose? = nil
+	local poseCharacter: Model? = nil
 
-	local function ease(instance: Instance, goal: { [string]: any })
-		local info = TweenInfo.new(settings.BlendTime, Enum.EasingStyle.Quad)
-		TweenService:Create(instance, info, goal):Play()
+	-- Moves every part of the character into a collision group.
+	local function setGroup(character: Model, group: string)
+		for _, part in character:GetDescendants() do
+			if part:IsA("BasePart") then
+				part.CollisionGroup = group
+			end
+		end
 	end
 
 	local function begin()
@@ -51,8 +57,14 @@ function Slide.start()
 		local dir = flat.Unit
 		local startSpeed = flat.Magnitude * settings.StartMultiplier
 		local endSpeed = hum.WalkSpeed / Config.Sprint.Multiplier
-		local standingHip = hum.HipHeight
-		local slideHip = standingHip * settings.HipHeightFactor
+		-- One pose per character, made while standing so it remembers the normal hip height.
+		if poseCharacter ~= character or not pose then
+			pose = SlidePose.attach(character, hum)
+			poseCharacter = character
+		end
+		local activePose = pose :: SlidePose.Pose
+		local standingHip = activePose.standingHip
+		local slideHip = activePose.slideHip
 		local elapsed = 0
 		local airTime = 0
 		local speed = startSpeed
@@ -72,11 +84,13 @@ function Slide.start()
 		drive.Parent = root
 
 		hum.AutoRotate = false
-		ease(hum, { HipHeight = slideHip, CameraOffset = Vector3.new(0, -settings.CameraDip, 0) })
+		activePose.play()
+		setGroup(character, settings.SlidingGroup)
 
 		local rayParams = RaycastParams.new()
 		rayParams.FilterDescendantsInstances = { character }
 		rayParams.FilterType = Enum.RaycastFilterType.Exclude
+		rayParams.CollisionGroup = settings.SlidingGroup -- ignore the invisible stand blockers
 
 		-- True if standing up now would put your head inside something.
 		local function blockedAbove(): boolean
@@ -93,9 +107,10 @@ function Slide.start()
 			lastEnd = os.clock()
 			drive:Destroy()
 			attachment:Destroy()
+			activePose.stop()
 			if hum.Parent then
 				hum.AutoRotate = true
-				ease(hum, { HipHeight = standingHip, CameraOffset = Vector3.zero })
+				setGroup(character, "Default")
 				if jumped then
 					local v = root.AssemblyLinearVelocity
 					root.AssemblyLinearVelocity = Vector3.new(dir.X * speed, v.Y, dir.Z * speed)
