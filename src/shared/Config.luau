@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.5.2",
+	Version = "0.5.3",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -46,6 +46,15 @@ local Config = {
 			LeftShoulder = Vector3.new(-45, 0, -40), -- left hand reaching back to the ground
 			LeftElbow = Vector3.new(-15, 0, 0),
 		},
+	},
+
+	Avatar = {
+		UseOwnAvatar = false, -- false = everyone is the classic block avatar (easier to see animations)
+		-- Classic 2012 colors, used when UseOwnAvatar is false.
+		HeadColor = Color3.fromRGB(245, 205, 48), -- Bright yellow
+		TorsoColor = Color3.fromRGB(13, 105, 172), -- Bright blue
+		ArmColor = Color3.fromRGB(245, 205, 48), -- Bright yellow
+		LegColor = Color3.fromRGB(164, 189, 71), -- Br. yellowish green
 	},
 
 	Speed = {

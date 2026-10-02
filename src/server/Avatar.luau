@@ -1,9 +1,13 @@
 --!strict
--- Forces every player onto an R15 body (the slide pose needs R15 joints). A blank R15 rig
--- becomes StarterPlayer.StarterCharacter, then each character is dressed in the player's
--- own avatar. Test players with no real account (Studio's Local Server) keep the blank look.
+-- Forces every player onto an R15 body (the slide pose needs R15 joints). A plain R15 block
+-- rig becomes StarterPlayer.StarterCharacter. If Config.Avatar.UseOwnAvatar is on, each
+-- character is then dressed in the player's own avatar. Otherwise everyone stays the classic
+-- block avatar, which makes animations easy to see.
 local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPlayer = game:GetService("StarterPlayer")
+
+local Config = require(ReplicatedStorage.Shared.Config)
 
 local Avatar = {}
 
@@ -36,7 +40,24 @@ local function check(player: Player, character: Model)
 		end
 		return
 	end
-	dress(player, character)
+	if Config.Avatar.UseOwnAvatar then
+		dress(player, character)
+	end
+end
+
+-- The classic block look: no clothes or accessories, blocky proportions, 2012 colors.
+local function classicDescription(): HumanoidDescription
+	local colors = Config.Avatar
+	local description = Instance.new("HumanoidDescription")
+	description.BodyTypeScale = 0
+	description.ProportionScale = 0
+	description.HeadColor = colors.HeadColor
+	description.TorsoColor = colors.TorsoColor
+	description.LeftArmColor = colors.ArmColor
+	description.RightArmColor = colors.ArmColor
+	description.LeftLegColor = colors.LegColor
+	description.RightLegColor = colors.LegColor
+	return description
 end
 
 local function watch(player: Player)
@@ -49,10 +70,8 @@ local function watch(player: Player)
 end
 
 function Avatar.start()
-	local rig = Players:CreateHumanoidModelFromDescription(
-		Instance.new("HumanoidDescription"),
-		Enum.HumanoidRigType.R15
-	)
+	local rig =
+		Players:CreateHumanoidModelFromDescription(classicDescription(), Enum.HumanoidRigType.R15)
 	rig.Name = "StarterCharacter"
 	rig.Parent = StarterPlayer
 
