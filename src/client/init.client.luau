@@ -5,7 +5,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 
 local Hud = require(script.Hud)
+local Sprint = require(script.Sprint)
 
 Hud.start()
+Sprint.start()
 
 print(`[{Config.GameName}] client started (v{Config.Version})`)

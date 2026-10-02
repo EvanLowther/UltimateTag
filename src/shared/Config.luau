@@ -2,11 +2,18 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.3.0",
+	Version = "0.4.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
 		FreezeTime = 2, -- seconds the newly tagged player is frozen (also stops instant tag-backs)
+	},
+
+	Sprint = {
+		Key = Enum.KeyCode.LeftShift, -- hold to sprint
+		Multiplier = 1.6, -- sprint speed = current walk speed x this
+		FovBoost = 8, -- degrees of extra field of view while sprinting (0 turns it off)
+		FovTime = 0.2, -- seconds to ease the field of view in and out
 	},
 
 	Speed = {

@@ -17,6 +17,7 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 ## Map
 - `src/map/Baseplate.model.json`: 512x4x512 green (75,151,75) studded plastic baseplate, top at Y=0.
 - `src/map/SpawnLocation.model.json`: white studded 8x8 spawn pad at the center, no forcefield.
+- `src/map/TestCourse.model.json`: movement test course heading -Z from spawn. Five yellow steps up to three raised platforms (blue, red, green; top at Y=10). The gap after the blue one is 6 studs (walk jump), the gap after the red one is 11 studs (needs a sprint jump).
 - To add a map piece, add another `*.model.json` in `src/map/`. Use the same studded plastic style.
 
 ## Conventions
@@ -46,6 +47,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `server/TagService.luau` | server | Heartbeat distance check from It to Runners. Performs the tag. |
 | `server/Sandbox.luau` | server | Free-play setup: players join as Runners, keeps one player as It |
 | `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
+| `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
@@ -53,6 +55,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.4.0: Movement work: Sprint (hold Shift) and a TestCourse map for jump tests.
 - 0.3.0: Removed rounds, timer and spawn scatter. Added Sandbox free-play mode for testing mechanics.
 - 0.2.1: Rojo serve port changed to 34874 (34872 was clashing with another project).
 - 0.2.0: Core tag loop: rounds, It/Runner roles, distance tagging, freeze on tag, Wins/Tags leaderstats, HUD.

@@ -1,0 +1,205 @@
+{
+  "className": "Model",
+  "children": [
+    {
+      "name": "Step1",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          2,
+          4
+        ],
+        "Position": [
+          0,
+          1,
+          -32
+        ],
+        "Color": [
+          1,
+          0.84,
+          0.1
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "Step2",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          4,
+          4
+        ],
+        "Position": [
+          0,
+          2,
+          -36
+        ],
+        "Color": [
+          1,
+          0.84,
+          0.1
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "Step3",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          6,
+          4
+        ],
+        "Position": [
+          0,
+          3,
+          -40
+        ],
+        "Color": [
+          1,
+          0.84,
+          0.1
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "Step4",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          8,
+          4
+        ],
+        "Position": [
+          0,
+          4,
+          -44
+        ],
+        "Color": [
+          1,
+          0.84,
+          0.1
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "Step5",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          10,
+          4
+        ],
+        "Position": [
+          0,
+          5,
+          -48
+        ],
+        "Color": [
+          1,
+          0.84,
+          0.1
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "PlatformA",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          16,
+          2,
+          16
+        ],
+        "Position": [
+          0,
+          9,
+          -58.0
+        ],
+        "Color": [
+          0.05,
+          0.41,
+          0.67
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "PlatformB",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          16,
+          2,
+          14
+        ],
+        "Position": [
+          0,
+          9,
+          -79.0
+        ],
+        "Color": [
+          0.77,
+          0.16,
+          0.11
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    },
+    {
+      "name": "PlatformC",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          16,
+          2,
+          16
+        ],
+        "Position": [
+          0,
+          9,
+          -105.0
+        ],
+        "Color": [
+          0.2,
+          0.75,
+          0.3
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    }
+  ]
+}
