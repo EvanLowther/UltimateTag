@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.6.0",
+	Version = "0.7.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -82,6 +82,60 @@ local Config = {
 		RecoverLungeTime = 0.1, -- seconds into the recovery when the lunge pose is reached
 		RecoverCrouchTime = 0.2, -- ... the crouch pose
 		RecoverStandTime = 0.3, -- ... standing (frame 8)
+	},
+
+	Vault = {
+		-- Press jump while sprinting at a low obstacle to hop over it without losing speed.
+		MinHeight = 1.5, -- studs above your feet: lower than this, just run or jump
+		MaxHeight = 4.2, -- studs above your feet: taller than this, mantle instead
+		MaxDepth = 4, -- obstacles thicker than this are platforms, not vaults
+		Reach = 5, -- how far ahead (studs) an obstacle can be when you press jump
+		Landing = 1.5, -- studs past the far side where the vault ends
+		Clearance = 0.3, -- extra studs the body clears the top by
+		MinTime = 0.3, -- shortest a vault can take, in seconds
+		HipHeightFactor = 0.4, -- legs tuck up to this fraction of normal hip height
+		Poses = {
+			Vault = { -- hands down on the top, legs tucked up
+				LowerTorso = Vector3.new(-20, 0, 0),
+				Head = Vector3.new(15, 0, 0),
+				RightUpperArm = Vector3.new(70, 0, 10),
+				LeftUpperArm = Vector3.new(70, 0, -10),
+				RightUpperLeg = Vector3.new(80, 0, 0),
+				RightLowerLeg = Vector3.new(-100, 0, 0),
+				LeftUpperLeg = Vector3.new(80, 0, 0),
+				LeftLowerLeg = Vector3.new(-100, 0, 0),
+			},
+		},
+	},
+
+	Mantle = {
+		-- Hold jump in the air next to a ledge to grab it and pull yourself up. You stop at the top.
+		Reach = 2.5, -- how far ahead (studs) the ledge face can be
+		MinAbove = 1.6, -- ledge top must be at least this far above your feet
+		MaxAbove = 3.5, -- and at most this far above the middle of your body (hands up)
+		Forward = 1.5, -- studs past the edge where you end up standing
+		UpTime = 0.35, -- seconds to pull up
+		OverTime = 0.2, -- seconds to climb over the edge
+		Cooldown = 0.4, -- seconds before you can mantle again
+		Poses = {
+			Hang = { -- arms up holding the edge
+				RightUpperArm = Vector3.new(170, 0, 10),
+				LeftUpperArm = Vector3.new(170, 0, -10),
+				RightUpperLeg = Vector3.new(10, 0, 0),
+				RightLowerLeg = Vector3.new(-20, 0, 0),
+				LeftUpperLeg = Vector3.new(10, 0, 0),
+				LeftLowerLeg = Vector3.new(-20, 0, 0),
+			},
+			PullUp = { -- pushing down on the edge, one knee up onto it
+				LowerTorso = Vector3.new(-25, 0, 0),
+				RightUpperArm = Vector3.new(30, 0, 15),
+				RightLowerArm = Vector3.new(-90, 0, 0),
+				LeftUpperArm = Vector3.new(30, 0, -15),
+				LeftLowerArm = Vector3.new(-90, 0, 0),
+				RightUpperLeg = Vector3.new(80, 0, 0),
+				RightLowerLeg = Vector3.new(-100, 0, 0),
+			},
+		},
 	},
 
 	Avatar = {

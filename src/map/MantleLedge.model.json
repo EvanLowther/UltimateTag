@@ -1,0 +1,30 @@
+{
+  "className": "Model",
+  "children": [
+    {
+      "name": "Ledge",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [
+          20,
+          9,
+          8
+        ],
+        "Position": [
+          -30,
+          4.5,
+          -55
+        ],
+        "Color": [
+          0.42,
+          0.2,
+          0.6
+        ],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet"
+      }
+    }
+  ]
+}

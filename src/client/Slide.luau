@@ -7,6 +7,7 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+local MoveState = require(script.Parent.MoveState)
 local SlidePose = require(script.Parent.SlidePose)
 local Sprint = require(script.Parent.Sprint)
 
@@ -37,7 +38,7 @@ function Slide.start()
 		local character = player.Character
 		local hum = character and character:FindFirstChildOfClass("Humanoid")
 		local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
-		if sliding or not character or not hum or not root or hum.Health <= 0 then
+		if MoveState.busy or not character or not hum or not root or hum.Health <= 0 then
 			return
 		end
 		if not Sprint.isSprinting() or hum.FloorMaterial == Enum.Material.Air then
@@ -54,6 +55,7 @@ function Slide.start()
 		end
 
 		sliding = true
+		MoveState.busy = "Slide"
 		local dir = flat.Unit
 		local startSpeed = flat.Magnitude * settings.StartMultiplier
 		local endSpeed = hum.WalkSpeed / Config.Sprint.Multiplier
@@ -69,17 +71,7 @@ function Slide.start()
 		local airTime = 0
 		local speed = startSpeed
 
-		local attachment = Instance.new("Attachment")
-		attachment.Name = "SlideAttachment"
-		attachment.Parent = root
-		local drive = Instance.new("LinearVelocity")
-		drive.Name = "SlideDrive"
-		drive.Attachment0 = attachment
-		drive.VelocityConstraintMode = Enum.VelocityConstraintMode.Plane
-		drive.PrimaryTangentAxis = Vector3.xAxis
-		drive.SecondaryTangentAxis = Vector3.zAxis
-		drive.RelativeTo = Enum.ActuatorRelativeTo.World
-		drive.MaxForce = 1e6
+		local drive, release = MoveState.drive(root, true)
 		drive.PlaneVelocity = Vector2.new(dir.X * speed, dir.Z * speed)
 		drive.Parent = root
 
@@ -104,9 +96,9 @@ function Slide.start()
 			finish = nil
 			isBlocked = nil
 			sliding = false
+			MoveState.busy = nil
 			lastEnd = os.clock()
-			drive:Destroy()
-			attachment:Destroy()
+			release()
 			activePose.stop()
 			if hum.Parent then
 				hum.AutoRotate = true
