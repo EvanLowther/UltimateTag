@@ -1,11 +1,11 @@
 --!strict
--- Hold jump while in the air next to a ledge (Config.Mantle reach) to grab it and pull yourself
--- up. Only grabs near the top of a jump or while falling, so normal jumps are untouched.
+-- Jump at a ledge (Config.Mantle reach) and you grab it and pull yourself up automatically.
+-- Only grabs near the top of a jump or while falling, and only while you're moving toward the
+-- ledge, so normal jumps are untouched.
 -- Slower than a vault: you stop at the top, which is the price for the extra height.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
@@ -36,8 +36,9 @@ end
 -- Looks for a ledge in front you can grab. Returns where your body should end up, or nil.
 local function findLedge(character: Model, hum: Humanoid, root: BasePart): Vector3?
 	local settings = Config.Mantle
-	local look = root.CFrame.LookVector
-	local dir = Vector3.new(look.X, 0, look.Z)
+	-- Look the way you're steering. No input means you're not jumping at anything.
+	local move = hum.MoveDirection
+	local dir = Vector3.new(move.X, 0, move.Z)
 	if dir.Magnitude < 0.1 then
 		return nil
 	end
@@ -136,9 +137,6 @@ function Mantle.start()
 
 	RunService.Heartbeat:Connect(function()
 		if MoveState.busy or os.clock() - lastEnd < settings.Cooldown then
-			return
-		end
-		if not UserInputService:IsKeyDown(Enum.KeyCode.Space) then
 			return
 		end
 		local character = player.Character

@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.7.1",
+	Version = "0.7.2",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -109,7 +109,7 @@ local Config = {
 	},
 
 	Mantle = {
-		-- Hold jump in the air next to a ledge to grab it and pull yourself up. You stop at the top.
+		-- Jump at a ledge and you grab it and pull yourself up automatically. You stop at the top.
 		Reach = 2.5, -- how far ahead (studs) the ledge face can be
 		MinAbove = 1.6, -- ledge top must be at least this far above your feet
 		MaxAbove = 3.5, -- and at most this far above the middle of your body (hands up)
