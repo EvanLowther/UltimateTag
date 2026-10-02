@@ -7,6 +7,9 @@ local StarterPlayer = game:GetService("StarterPlayer")
 
 local Avatar = {}
 
+local MAX_RESPAWNS = 3 -- stop trying after this many, so a failure can't loop forever
+local respawns: { [Player]: number } = {}
+
 local function dress(player: Player, character: Model)
 	local humanoid = character:WaitForChild("Humanoid") :: Humanoid
 	if not character.Parent then
@@ -20,10 +23,29 @@ local function dress(player: Player, character: Model)
 	end
 end
 
+-- Respawns a character that isn't R15 (for example one that loaded before the rig was ready).
+local function check(player: Player, character: Model)
+	local humanoid = character:WaitForChild("Humanoid") :: Humanoid
+	if humanoid.RigType ~= Enum.HumanoidRigType.R15 then
+		local tries = (respawns[player] or 0) + 1
+		respawns[player] = tries
+		if tries <= MAX_RESPAWNS then
+			task.defer(player.LoadCharacter, player)
+		else
+			warn(`[Avatar] {player.Name} is still not R15 after {MAX_RESPAWNS} respawns`)
+		end
+		return
+	end
+	dress(player, character)
+end
+
 local function watch(player: Player)
 	player.CharacterAdded:Connect(function(character)
-		dress(player, character)
+		check(player, character)
 	end)
+	if player.Character then
+		task.spawn(check, player, player.Character)
+	end
 end
 
 function Avatar.start()
@@ -35,12 +57,11 @@ function Avatar.start()
 	rig.Parent = StarterPlayer
 
 	Players.PlayerAdded:Connect(watch)
+	Players.PlayerRemoving:Connect(function(player)
+		respawns[player] = nil
+	end)
 	for _, player in Players:GetPlayers() do
 		watch(player)
-		-- Anyone who spawned before the rig existed gets respawned on it.
-		if player.Character then
-			player:LoadCharacter()
-		end
 	end
 end
 
