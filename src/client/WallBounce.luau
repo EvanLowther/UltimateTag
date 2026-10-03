@@ -58,6 +58,10 @@ function WallBounce.start()
 		if not parts or MoveState.busy or MoveState.isGrounded(parts.humanoid) then
 			return
 		end
+		-- The jump that just launched you off a mantle isn't a bounce off that wall.
+		if now - MoveState.launchTime < settings.Cooldown then
+			return
+		end
 		local root = parts.root
 		local normal = wallNormal :: Vector3
 		local velocity = MoveState.flat(root.AssemblyLinearVelocity)

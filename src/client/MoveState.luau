@@ -6,6 +6,7 @@
 --   parts():     the local character's model, humanoid and root part, if alive.
 --   isGrounded(), flat(): the standard checks, so no module re-implements them.
 --   drive():     a LinearVelocity that takes over the character's velocity during a move.
+--   launch():    throws the character up and out (vault and mantle launches).
 -- Moves keep their own small Heartbeat that only runs while they need it (no central loop).
 local Players = game:GetService("Players")
 
@@ -20,6 +21,7 @@ local MoveState = {
 	-- landing keep your air speed before ground friction eats it.
 	landVelocity = nil :: Vector3?,
 	landTime = -math.huge,
+	launchTime = -math.huge, -- when the last launch (vault or mantle) happened
 }
 
 -- The local character's parts, or nil if there's no living character.
@@ -41,6 +43,15 @@ end
 
 function MoveState.isGrounded(humanoid: Humanoid): boolean
 	return humanoid.FloorMaterial ~= Enum.Material.Air
+end
+
+-- Throws the character along the flat direction `dir` at `forward` studs/s and upward at `up`
+-- studs/s. Air strafing carries the sideways speed from there. Used by vault and mantle.
+function MoveState.launch(root: BasePart, dir: Vector3, forward: number, up: number)
+	local out = dir * forward
+	root.AssemblyLinearVelocity = Vector3.new(out.X, up, out.Z)
+	MoveState.airVelocity = out
+	MoveState.launchTime = os.clock()
 end
 
 -- The sideways part of a vector (Y set to 0).

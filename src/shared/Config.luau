@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.9.0",
+	Version = "0.10.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -105,17 +105,16 @@ local Config = {
 	},
 
 	Vault = {
-		-- Press jump while sprinting at a low obstacle to hop over it without losing speed.
+		-- Press jump while sprinting at a low obstacle: hands on the top, then launched up and out.
 		MinHeight = 1.5, -- studs above your feet: lower than this, just run or jump
 		MaxHeight = 4.2, -- studs above your feet: taller than this, mantle instead
 		MaxDepth = 4, -- obstacles thicker than this are platforms, not vaults
 		Reach = 5, -- how far ahead (studs) an obstacle can be when you press jump
-		Landing = 2.5, -- studs past the far side where the launch happens
 		Clearance = 0.3, -- extra studs the body clears the top by
-		MinTime = 0.2, -- shortest a vault can take, in seconds
-		ExitBoost = 1.3, -- launch speed off the far side = the speed you came in with x this
-		ExitHop = 14, -- studs/s upward at the launch, so you fly instead of landing straight away
-		MaxExitSpeed = 55, -- launch speed cap, so chained vaults can't stack forever
+		PlantTime = 0.15, -- longest it takes to get your hands onto the top before the launch
+		LaunchForward = 50, -- studs/s forward at launch (about 25 to 30 studs of flight)
+		LaunchUp = 50, -- studs/s upward at launch (equal to forward = about a 45 degree arc)
+		MaxLaunchSpeed = 60, -- coming in faster than LaunchForward launches faster, up to this
 		HipHeightFactor = 0.4, -- legs tuck up to this fraction of normal hip height
 		Poses = {
 			Vault = { -- hands down on the top, legs tucked up
@@ -141,6 +140,7 @@ local Config = {
 		OverTime = 0.2, -- seconds to climb over the edge
 		Cooldown = 0.4, -- seconds before you can mantle again
 		MaxRiseSpeed = 8, -- only grab once your jump has nearly peaked (rising slower than this)
+		LaunchFrom = 0.6, -- jump during the climb launches you once this much of UpTime has passed
 		Poses = {
 			Hang = { -- arms up holding the edge
 				RightUpperArm = Vector3.new(170, 0, 10),

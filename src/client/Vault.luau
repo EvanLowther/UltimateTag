@@ -1,7 +1,8 @@
 --!strict
--- Press jump while sprinting at a low obstacle (Config.Vault heights) to hop over it. The body
--- follows an arc that clears the top, then launches off the far side faster than you came in
--- (like an Apex super glide). Slide as you land to keep the speed going.
+-- Launch vault: press jump while sprinting at a low obstacle (Config.Vault heights). You plant
+-- your hands on the top for a split second, then get thrown up and out in the direction you're
+-- running, about 25 to 30 studs. From there it's normal physics plus air strafing, and holding
+-- slide as you land keeps the speed going. Mantle has the same launch near the top of a climb.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -15,31 +16,31 @@ local Sprint = require(script.Parent.Sprint)
 local Vault = {}
 
 local FADE = 0.05 -- seconds to cross-fade into the vault animation
+local HOLD = 0.4 -- the animation holds the vault pose for this part of its 1 second
 
 type Plan = {
 	dir: Vector3, -- flat direction of travel
-	speed: number, -- sideways speed during the vault
-	exitSpeed: number, -- sideways speed when you land (the speed you came in with)
-	duration: number,
-	peak: number, -- studs the body rises at the top of the arc
+	entrySpeed: number, -- sideways speed you came in with
+	plantPoint: Vector3, -- where your body is when your hands are on the top
+	plantTime: number, -- seconds to get there
 }
 
 local animation: Animation? = nil
 
--- One second long, so playing it at speed 1 / duration fits any vault.
+-- One second long: holds the vault pose, then eases back to standing in the air.
 local function getAnimation(): Animation
 	if not animation then
 		local poses = Config.Vault.Poses :: { [string]: AnimationBuilder.Angles }
 		animation = AnimationBuilder.make({
 			{ time = 0, angles = poses.Vault },
-			{ time = 0.7, angles = poses.Vault },
+			{ time = HOLD, angles = poses.Vault },
 			{ time = 1, angles = {} },
 		})
 	end
 	return animation :: Animation
 end
 
--- Looks for a vaultable obstacle ahead. Returns how to clear it, or nil.
+-- Looks for a vaultable obstacle ahead. Returns how to launch off it, or nil.
 local function findVault(character: Model, hum: Humanoid, root: BasePart): Plan?
 	local settings = Config.Vault
 	local velocity = MoveState.flat(root.AssemblyLinearVelocity)
@@ -73,49 +74,33 @@ local function findVault(character: Model, hum: Humanoid, root: BasePart): Plan?
 		return nil
 	end
 
-	-- 3. Thin enough to hop over. If the top carries on past MaxDepth, it's a platform.
+	-- 3. Thin enough to vault. If the top carries on past MaxDepth, it's a platform.
 	local farTop = Vector3.new(wall.Position.X, topY + 0.5, wall.Position.Z)
 		+ dir * (settings.MaxDepth + 0.5)
 	if workspace:Raycast(farTop, Vector3.new(0, -1, 0), params) then
 		return nil
 	end
-	local backOrigin = Vector3.new(wall.Position.X, topY - 0.3, wall.Position.Z)
-		+ dir * (settings.MaxDepth + 0.5)
-	local back = workspace:Raycast(backOrigin, -dir * (settings.MaxDepth + 0.5), params)
-	local depth = if back
-		then MoveState.flat(back.Position - wall.Position).Magnitude
-		else settings.MaxDepth
 
-	-- 4. Room for the body above it (no low ceiling).
+	-- 4. Where your body goes when your hands are on the top, with room above it.
 	local tuckedHip = Crouch.standingHip(hum) * settings.HipHeightFactor
-	local clearY = topY + settings.Clearance + root.Size.Y / 2 + tuckedHip
-	local wallDistance = MoveState.flat(wall.Position - root.Position).Magnitude
-	local total = wallDistance + depth + settings.Landing
-	local headOrigin = Vector3.new(root.Position.X, clearY + root.Size.Y, root.Position.Z)
-	if workspace:Raycast(headOrigin, dir * total, params) then
+	local plantY = topY + settings.Clearance + root.Size.Y / 2 + tuckedHip
+	local plantPoint = Vector3.new(wall.Position.X, plantY, wall.Position.Z) + dir * 0.5
+	if workspace:Raycast(plantPoint, Vector3.new(0, root.Size.Y + 2, 0), params) then
 		return nil
 	end
 
-	-- The arc: high enough to be above the top over the whole obstacle.
-	local exitSpeed = math.max(velocity.Magnitude, hum.WalkSpeed)
-	local duration = math.max(total / exitSpeed, settings.MinTime)
-	local rise = math.max(clearY - root.Position.Y, 0.3)
-	local peak = rise
-	for _, distance in { wallDistance, wallDistance + depth } do
-		local f = math.clamp(distance / total, 0.15, 0.85)
-		peak = math.max(peak, rise / (4 * f * (1 - f)))
-	end
-
+	local entrySpeed = math.max(velocity.Magnitude, hum.WalkSpeed)
+	local distance = (plantPoint - root.Position).Magnitude
 	return {
 		dir = dir,
-		speed = total / duration,
-		exitSpeed = exitSpeed,
-		duration = duration,
-		peak = math.min(peak, rise * 3),
+		entrySpeed = entrySpeed,
+		plantPoint = plantPoint,
+		plantTime = math.clamp(distance / entrySpeed, 0.06, settings.PlantTime),
 	}
 end
 
 function Vault.start()
+	local settings = Config.Vault
 	local trackHumanoid: Humanoid? = nil
 	local track: AnimationTrack? = nil
 
@@ -124,7 +109,7 @@ function Vault.start()
 		hum.AutoRotate = false
 		hum.Jump = false
 		local drive, release = MoveState.drive(root, false)
-		Crouch.set(hum, Config.Vault.HipHeightFactor, 0.08, 0)
+		Crouch.set(hum, settings.HipHeightFactor, 0.08, 0)
 
 		if trackHumanoid ~= hum or not track then
 			track = AnimationBuilder.load(hum, getAnimation())
@@ -132,34 +117,35 @@ function Vault.start()
 		end
 		local activeTrack = track :: AnimationTrack
 		activeTrack:Play(FADE)
-		activeTrack:AdjustSpeed(1 / plan.duration)
+		-- Hold the vault pose through the plant, then ease out over the start of the flight.
+		activeTrack:AdjustSpeed(HOLD / plan.plantTime)
 
 		local elapsed = 0
 		local connection: RBXScriptConnection
 		connection = RunService.Heartbeat:Connect(function(dt)
 			elapsed += dt
-			if not hum.Parent or hum.Health <= 0 or elapsed >= plan.duration then
+			if not hum.Parent or hum.Health <= 0 then
 				connection:Disconnect()
 				release()
 				MoveState.busy = nil
-				if hum.Parent then
-					hum.AutoRotate = true
-					Crouch.set(hum, 1, 0.15, 0)
-					-- Launch off the far side, faster than you came in. AirStrafe carries the
-					-- speed through the air, and a slide on landing keeps it.
-					local settings = Config.Vault
-					local speed =
-						math.min(plan.exitSpeed * settings.ExitBoost, settings.MaxExitSpeed)
-					local out = plan.dir * speed
-					root.AssemblyLinearVelocity = Vector3.new(out.X, settings.ExitHop, out.Z)
-					MoveState.airVelocity = out
-				end
 				return
 			end
-			-- Follow the arc: sideways at a steady speed, up then down.
-			local f = elapsed / plan.duration
-			local upSpeed = plan.peak * 4 * (1 - 2 * f) / plan.duration
-			drive.VectorVelocity = plan.dir * plan.speed + Vector3.new(0, upSpeed, 0)
+			local timeLeft = plan.plantTime - elapsed
+			if timeLeft > 0 then
+				-- Plant: move your body onto the near edge of the top.
+				drive.VectorVelocity = (plan.plantPoint - root.Position) / math.max(timeLeft, dt)
+				return
+			end
+
+			-- Launch: up and out the way you were running.
+			connection:Disconnect()
+			release()
+			MoveState.busy = nil
+			hum.AutoRotate = true
+			Crouch.set(hum, 1, 0.3, 0)
+			local forward =
+				math.clamp(plan.entrySpeed, settings.LaunchForward, settings.MaxLaunchSpeed)
+			MoveState.launch(root, plan.dir, forward, settings.LaunchUp)
 		end)
 	end
 
