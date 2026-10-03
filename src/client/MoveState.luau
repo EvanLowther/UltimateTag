@@ -24,7 +24,7 @@ local MoveState = {
 	landTime = -math.huge,
 	launchTime = -math.huge, -- when the last launch (vault or mantle) happened
 	bounceTime = -math.huge, -- when the last wall bounce happened
-	bounceHand = "Right", -- which hand pushed off the wall ("Left" or "Right")
+	bounceHand = "Right", -- which hand(s) pushed off the wall: "Left", "Right" or "Both"
 }
 
 -- The local character's parts, or nil if there's no living character.

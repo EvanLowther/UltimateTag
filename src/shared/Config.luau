@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.16.0",
+	Version = "0.16.1",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -122,17 +122,50 @@ local Config = {
 		KickTime = 0.35, -- seconds for the camera to settle
 		HitSound = "rbxasset://sounds/action_jump_land.mp3", -- touching the wall
 		PushSound = "rbxasset://sounds/action_jump.mp3", -- pushing off
+		-- Third-person poses. Only the limbs listed move; the rest keep falling naturally.
+		-- Each wall side has a Contact pose (limbs bent, taking the hit) and a Push pose (limbs
+		-- extending). Side poses are written for a wall on your LEFT and mirrored for the right.
 		Poses = {
-			Kick = { -- third person: driving a knee up, arms thrown out
-				LowerTorso = Vector3.new(-10, 0, 0),
-				RightUpperLeg = Vector3.new(75, 0, 0),
-				RightLowerLeg = Vector3.new(-95, 0, 0),
-				LeftUpperLeg = Vector3.new(-20, 0, 0),
-				LeftLowerLeg = Vector3.new(-35, 0, 0),
-				RightUpperArm = Vector3.new(40, 0, 70),
-				LeftUpperArm = Vector3.new(40, 0, -70),
+			SideContact = {
+				LeftUpperArm = Vector3.new(15, 0, -75), -- hand reaching out to the wall
+				LeftLowerArm = Vector3.new(-45, 0, 0),
+				LeftUpperLeg = Vector3.new(15, 0, -40), -- foot planting on the wall
+				LeftLowerLeg = Vector3.new(-60, 0, 0),
+			},
+			SidePush = {
+				LeftUpperArm = Vector3.new(10, 0, -85),
+				LeftLowerArm = Vector3.new(-5, 0, 0),
+				LeftUpperLeg = Vector3.new(5, 0, -30),
+				LeftLowerLeg = Vector3.new(-5, 0, 0),
+			},
+			FrontContact = {
+				RightUpperArm = Vector3.new(80, 0, 10), -- both hands on the wall
+				RightLowerArm = Vector3.new(-50, 0, 0),
+				LeftUpperArm = Vector3.new(80, 0, -10),
+				LeftLowerArm = Vector3.new(-50, 0, 0),
+				RightUpperLeg = Vector3.new(60, 0, 0), -- foot up against the wall
+				RightLowerLeg = Vector3.new(-80, 0, 0),
+			},
+			FrontPush = {
+				RightUpperArm = Vector3.new(85, 0, 10),
+				RightLowerArm = Vector3.new(-10, 0, 0),
+				LeftUpperArm = Vector3.new(85, 0, -10),
+				LeftLowerArm = Vector3.new(-10, 0, 0),
+				RightUpperLeg = Vector3.new(30, 0, 0),
+				RightLowerLeg = Vector3.new(-15, 0, 0),
+			},
+			BackContact = {
+				RightUpperLeg = Vector3.new(-35, 0, 0), -- foot back against the wall
+				RightLowerLeg = Vector3.new(-70, 0, 0),
+			},
+			BackPush = {
+				RightUpperLeg = Vector3.new(-30, 0, 0),
+				RightLowerLeg = Vector3.new(-5, 0, 0),
 			},
 		},
+		ContactTime = 0.08, -- seconds in the contact pose before pushing
+		HoldTime = 0.25, -- seconds the push pose holds before fading back out
+		FadeTime = 0.2, -- seconds to fade back to the normal animation
 	},
 
 	Vault = {

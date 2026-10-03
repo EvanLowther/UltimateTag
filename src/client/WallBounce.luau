@@ -16,18 +16,37 @@ local MoveState = require(script.Parent.MoveState)
 
 local WallBounce = {}
 
-local animation: Animation? = nil
+-- One partial animation per wall side, built on first use.
+local animations: { [string]: Animation } = {}
 
-local function getAnimation(): Animation
-	if not animation then
-		local poses = Config.WallBounce.Poses :: { [string]: AnimationBuilder.Angles }
-		animation = AnimationBuilder.make({
-			{ time = 0, angles = poses.Kick },
-			{ time = 0.12, angles = poses.Kick },
-			{ time = 0.4, angles = {} },
-		})
+-- "Left", "Right", "Front" or "Back": where the wall is relative to your body.
+local function getAnimation(side: string): Animation
+	local cached = animations[side]
+	if cached then
+		return cached
 	end
-	return animation :: Animation
+	local settings = Config.WallBounce
+	local poses = settings.Poses :: { [string]: AnimationBuilder.Angles }
+	local contact, push
+	if side == "Left" then
+		contact, push = poses.SideContact, poses.SidePush
+	elseif side == "Right" then
+		contact, push =
+			AnimationBuilder.mirror(poses.SideContact), AnimationBuilder.mirror(poses.SidePush)
+	elseif side == "Front" then
+		contact, push = poses.FrontContact, poses.FrontPush
+	else
+		contact, push = poses.BackContact, poses.BackPush
+	end
+	local pushAt = settings.ContactTime
+	local animation = AnimationBuilder.make({
+		{ time = 0, angles = contact },
+		{ time = pushAt, angles = push },
+		-- Held well past HoldTime; the track is faded out before it ends.
+		{ time = pushAt + settings.HoldTime + 1, angles = push },
+	}, true)
+	animations[side] = animation
+	return animation
 end
 
 local function playSound(parent: Instance, id: string, speed: number)
@@ -44,8 +63,8 @@ function WallBounce.start()
 	local wallNormal: Vector3? = nil -- the last wall touched in the air
 	local wallTime = -math.huge
 	local lastBounce = -math.huge
+	local tracks: { [string]: AnimationTrack } = {}
 	local trackHumanoid: Humanoid? = nil
-	local track: AnimationTrack? = nil
 	local params = RaycastParams.new()
 	params.FilterType = Enum.RaycastFilterType.Exclude
 
@@ -103,10 +122,19 @@ function WallBounce.start()
 		lastBounce = now
 		wallNormal = nil
 
-		-- Which side the wall is on: the hand on that side pushes, the camera rolls away from it.
-		local wallOnLeft = workspace.CurrentCamera.CFrame.RightVector:Dot(normal) > 0
+		-- Where the wall is relative to your body decides which limbs touch it.
+		local toWall = root.CFrame:VectorToObjectSpace(-normal)
+		local side = if math.abs(toWall.X) > math.abs(toWall.Z)
+			then (if toWall.X < 0 then "Left" else "Right")
+			elseif toWall.Z < 0 then "Front"
+			else "Back"
 		MoveState.bounceTime = now
-		MoveState.bounceHand = if wallOnLeft then "Left" else "Right"
+		MoveState.bounceHand = if side == "Front"
+			then "Both"
+			elseif side == "Back" then "None"
+			else side
+		-- The camera rolls away from the wall.
+		local wallOnLeft = workspace.CurrentCamera.CFrame.RightVector:Dot(normal) > 0
 		CameraKick.kick(
 			if wallOnLeft then -settings.KickRoll else settings.KickRoll,
 			settings.KickPitch,
@@ -114,11 +142,20 @@ function WallBounce.start()
 		)
 
 		local hum = parts.humanoid
-		if trackHumanoid ~= hum or not track then
-			track = AnimationBuilder.load(hum, getAnimation())
+		if trackHumanoid ~= hum then
+			table.clear(tracks)
 			trackHumanoid = hum
 		end
-		(track :: AnimationTrack):Play(0.05)
+		local track = tracks[side]
+		if not track then
+			track = AnimationBuilder.load(hum, getAnimation(side))
+			tracks[side] = track
+		end
+		local active = track :: AnimationTrack
+		active:Play(0.04)
+		task.delay(settings.ContactTime + settings.HoldTime, function()
+			active:Stop(settings.FadeTime)
+		end)
 
 		playSound(root, settings.HitSound, 1.15)
 		playSound(root, settings.PushSound, 1.05)

@@ -91,13 +91,18 @@ function Viewmodel.start()
 		local targetRight, targetLeft
 		local sinceBounce = now - MoveState.bounceTime
 		if sinceBounce < settings.WallPushTime then
-			-- Wall bounce: the hand on the wall's side plants on it, the other stays in the air pose.
+			-- Wall bounce: the hand(s) touching the wall plant on it, the rest stay in the air pose.
 			local pushRight, pushLeft = sides(poses.WallPush)
 			local airRight, airLeft = sides(poses.Air)
-			if MoveState.bounceHand == "Right" then
+			local hand = MoveState.bounceHand
+			if hand == "Both" then
+				targetRight, targetLeft = sides(poses.WallPushFront)
+			elseif hand == "Right" then
 				targetRight, targetLeft = pushRight, airLeft
-			else
+			elseif hand == "Left" then
 				targetRight, targetLeft = airRight, pushLeft
+			else
+				targetRight, targetLeft = airRight, airLeft -- wall behind you: feet only
 			end
 		elseif busy == "Mantle" then
 			-- Hands reach up to the ledge, then push down on it as you climb.
