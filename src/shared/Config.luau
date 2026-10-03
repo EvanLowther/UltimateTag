@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.22.0",
+	Version = "0.22.1",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -117,8 +117,9 @@ local Config = {
 		-- anything else (beside or glancing) = wall run, unless you're moving away from the wall
 		MinEntrySpeed = 18, -- studs/s sideways you need to start one (sprinting always counts)
 		Cooldown = 0.4, -- seconds before you can grab the same wall again
-		HopSpeed = 34, -- studs/s up the wall at the start of each hop (slows to 0 over HopTime)
-		HopTime = 0.28, -- seconds per hop (about 5 studs of height)
+		HopSpeed = 75, -- studs/s up the wall at the start of each hop (slows to 0 over HopTime)
+		HopTime = 0.32, -- seconds per hop. Height per hop = HopSpeed x HopTime / 2 (about 12 studs,
+		-- measured from the reference video: each hop is roughly 2.5 body heights)
 		MaxHops = 3, -- hops up one wall: the first one plus jumps while clinging
 		ClingTime = 1.1, -- seconds you can hold on to the wall face between hops
 		ClingSlide = 1.5, -- studs/s you slide down while clinging

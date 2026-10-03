@@ -214,6 +214,16 @@ function WallRun.start()
 			local chest = wallAt(parts, normal, 0.5)
 			local head = wallAt(parts, normal, 2)
 			if not chest then
+				-- Fast hops can rise past the top edge between frames: if the wall is still
+				-- there just below you, you're over the top, so take the ledge.
+				if wallAt(parts, normal, -1.5) then
+					connection:Disconnect()
+					release()
+					track:Stop(0.1)
+					MoveState.busy = nil
+					hang(parts, normal)
+					return
+				end
 				letGo()
 				return
 			end

@@ -85,6 +85,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.22.1: Wall-climb hops about 12 studs each (measured from the reference video), and rising past the top edge in one frame still catches the ledge.
 - 0.22.0: Wall climb is now jump-up-and-hold like the reference video: hop up the wall, cling to it, jump to hop higher (3 hops), hang at the top and climb over.
 - 0.21.2: Wall run animation: body tilts away from the wall so the feet run on it, arms pump instead of reaching into the wall, and you're held `RunGap` studs from the wall.
 - 0.21.1: Wall run starts much more reliably: walls are detected ahead, beside and diagonally (`Reach` 2.2), no dead zone between climb and run, `MinEntrySpeed` 18.
