@@ -23,6 +23,8 @@ local MoveState = {
 	landVelocity = nil :: Vector3?,
 	landTime = -math.huge,
 	launchTime = -math.huge, -- when the last launch (vault or mantle) happened
+	bounceTime = -math.huge, -- when the last wall bounce happened
+	bounceHand = "Right", -- which hand pushed off the wall ("Left" or "Right")
 }
 
 -- The local character's parts, or nil if there's no living character.

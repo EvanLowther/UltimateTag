@@ -89,7 +89,17 @@ function Viewmodel.start()
 		end
 
 		local targetRight, targetLeft
-		if busy == "Mantle" then
+		local sinceBounce = now - MoveState.bounceTime
+		if sinceBounce < settings.WallPushTime then
+			-- Wall bounce: the hand on the wall's side plants on it, the other stays in the air pose.
+			local pushRight, pushLeft = sides(poses.WallPush)
+			local airRight, airLeft = sides(poses.Air)
+			if MoveState.bounceHand == "Right" then
+				targetRight, targetLeft = pushRight, airLeft
+			else
+				targetRight, targetLeft = airRight, pushLeft
+			end
+		elseif busy == "Mantle" then
 			-- Hands reach up to the ledge, then push down on it as you climb.
 			local mantle = Config.Mantle
 			local progress = math.clamp((now - busySince) / (mantle.UpTime + mantle.OverTime), 0, 1)

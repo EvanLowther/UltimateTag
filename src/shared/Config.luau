@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.15.0",
+	Version = "0.16.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -117,6 +117,22 @@ local Config = {
 		UpSpeed = 38, -- studs/s upward
 		KeepAlong = 0.8, -- fraction of your speed along the wall that you keep
 		Cooldown = 0.25, -- seconds between bounces
+		KickRoll = 9, -- degrees the camera rolls away from the wall
+		KickPitch = 4, -- degrees the camera tips up
+		KickTime = 0.35, -- seconds for the camera to settle
+		HitSound = "rbxasset://sounds/action_jump_land.mp3", -- touching the wall
+		PushSound = "rbxasset://sounds/action_jump.mp3", -- pushing off
+		Poses = {
+			Kick = { -- third person: driving a knee up, arms thrown out
+				LowerTorso = Vector3.new(-10, 0, 0),
+				RightUpperLeg = Vector3.new(75, 0, 0),
+				RightLowerLeg = Vector3.new(-95, 0, 0),
+				LeftUpperLeg = Vector3.new(-20, 0, 0),
+				LeftLowerLeg = Vector3.new(-35, 0, 0),
+				RightUpperArm = Vector3.new(40, 0, 70),
+				LeftUpperArm = Vector3.new(40, 0, -70),
+			},
+		},
 	},
 
 	Vault = {
@@ -201,6 +217,7 @@ local Config = {
 		BobAmount = 0.04, -- studs of arm swing while running
 		SprintBob = 2, -- swing multiplier while sprinting
 		BobRate = 9, -- swing speed at walk speed
+		WallPushTime = 0.3, -- seconds the wall-bounce hand stays out
 		Poses = {
 			Idle = {
 				Right = {
@@ -240,6 +257,14 @@ local Config = {
 				Right = {
 					Position = Vector3.new(0.48, 0.25, -1.35),
 					Rotation = Vector3.new(35, 6, 0),
+				},
+			},
+			-- Wall bounce: the hand on the wall's side shoots out and plants on the wall.
+			-- Written for the right hand; mirrored when the wall is on your left.
+			WallPush = {
+				Right = {
+					Position = Vector3.new(0.85, -0.25, -0.95),
+					Rotation = Vector3.new(10, -65, -20),
 				},
 			},
 			MantlePush = {
