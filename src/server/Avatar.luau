@@ -84,6 +84,12 @@ function Avatar.start()
 		classic:Destroy()
 	end
 	rig.Name = "StarterCharacter"
+	-- Stops Roblox's Animate script from speeding up the run animation whenever a move lowers
+	-- the hips (it reads hip height as leg length while this is on). See client/Upright.
+	local rigHumanoid = rig:FindFirstChildOfClass("Humanoid")
+	if rigHumanoid then
+		rigHumanoid.AutomaticScalingEnabled = false
+	end
 	rig.Parent = StarterPlayer
 
 	Players.PlayerAdded:Connect(watch)
