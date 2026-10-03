@@ -7,6 +7,7 @@
 --   isGrounded(), flat(): the standard checks, so no module re-implements them.
 --   drive():     a LinearVelocity that takes over the character's velocity during a move.
 --   launch():    throws the character up and out (vault and mantle launches).
+--   cameraYaw(), yawChange(), turnFlat(): look coupling (momentum turns with your view).
 -- Moves keep their own small Heartbeat that only runs while they need it (no central loop).
 local Players = game:GetService("Players")
 
@@ -52,6 +53,23 @@ function MoveState.launch(root: BasePart, dir: Vector3, forward: number, up: num
 	root.AssemblyLinearVelocity = Vector3.new(out.X, up, out.Z)
 	MoveState.airVelocity = out
 	MoveState.launchTime = os.clock()
+end
+
+-- Which way the camera faces, as an angle around the vertical axis (radians, left is positive).
+function MoveState.cameraYaw(): number
+	local look = workspace.CurrentCamera.CFrame.LookVector
+	return math.atan2(-look.X, -look.Z)
+end
+
+-- How far the camera turned since `lastYaw`, wrapped to -pi..pi. Moves use this to bend your
+-- momentum with your view ("look coupling"), so turning your view redirects you, like Apex.
+function MoveState.yawChange(lastYaw: number): number
+	return (MoveState.cameraYaw() - lastYaw + math.pi) % (2 * math.pi) - math.pi
+end
+
+-- Turns a sideways vector around the vertical axis by `angle` radians (left is positive).
+function MoveState.turnFlat(v: Vector3, angle: number): Vector3
+	return CFrame.Angles(0, angle, 0):VectorToWorldSpace(v)
 end
 
 -- The sideways part of a vector (Y set to 0).

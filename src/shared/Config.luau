@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.14.1",
+	Version = "0.15.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -25,7 +25,8 @@ local Config = {
 		MaxSpeed = 60, -- a slide never starts faster than this
 		CrouchSpeed = 8, -- walk speed while crouched
 		CrouchHipFactor = 0.35, -- crouched hips sit at this fraction of normal height (fits under slide bars)
-		Steer = 2, -- how much you can turn while sliding (higher = more control)
+		Steer = 2, -- how much your movement keys turn a slide (higher = more control)
+		LookCoupling = 0.4, -- how much a slide turns with your view (1 = follows your view fully)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
 		DropTime = 0.15, -- seconds from the drop pose into the full slide pose
@@ -101,6 +102,7 @@ local Config = {
 
 	AirStrafe = {
 		-- In the air, your movement keys (camera-relative) bend your path without losing speed.
+		LookCoupling = 0.85, -- holding a movement key: your air momentum turns this much with your view (1 = fully)
 		TurnRate = 140, -- degrees per second your air path can turn toward where you steer
 		BrakeRate = 20, -- studs/s per second you slow down when steering backwards
 		AirControl = 40, -- studs/s per second you can speed up while slower than walk speed

@@ -1,7 +1,8 @@
 --!strict
 -- Light Source-style air strafing. While you're in the air and no move is running, this owns
--- your sideways velocity: your movement keys (which follow the camera) turn your path toward
--- where you steer without losing speed, and steering backwards brakes. Below walk speed you get
+-- your sideways velocity: holding a movement key couples your momentum to your view (turn the
+-- camera and your path turns with it), your keys (which follow the camera) turn your path
+-- toward where you steer without losing speed, and steering backwards brakes. Below walk speed you get
 -- normal air control. Without this, Roblox's own air control drags you back to walk speed,
 -- which would eat the speed from slide-jumps, vaults and wall bounces.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -29,6 +30,7 @@ end
 
 function AirStrafe.start()
 	local settings = Config.AirStrafe
+	local lastYaw: number? = nil -- camera direction last frame, for look coupling
 
 	RunService.Heartbeat:Connect(function(dt)
 		local parts = MoveState.parts()
@@ -39,6 +41,7 @@ function AirStrafe.start()
 				MoveState.landTime = os.clock()
 			end
 			MoveState.airVelocity = nil
+			lastYaw = nil
 			return
 		end
 		local hum, root = parts.humanoid, parts.root
@@ -52,6 +55,16 @@ function AirStrafe.start()
 
 		local wish = MoveState.flat(hum.MoveDirection)
 		local walk = hum.WalkSpeed
+
+		-- Look coupling: while you hold a movement key, your momentum turns with your view.
+		-- Flicking the camera while tapping a key redirects you instantly (tap-strafe).
+		-- Let go of the keys and you keep your line wherever you look.
+		if lastYaw and wish.Magnitude > 0.1 then
+			current =
+				MoveState.turnFlat(current, MoveState.yawChange(lastYaw) * settings.LookCoupling)
+		end
+		lastYaw = MoveState.cameraYaw()
+
 		if wish.Magnitude > 0.1 then
 			wish = wish.Unit
 			if current.Magnitude < walk then

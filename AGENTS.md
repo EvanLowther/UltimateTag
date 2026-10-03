@@ -61,9 +61,9 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/SlidePose.luau` | client | The slide and crouch animations: builds keyframed animations from `Config.Slide.Poses` (Drop, Slide, Lunge, Crouch from the reference frames, plus CrouchWalk) and plays them through the Animator. Also the hip sink and camera dip. Registered on the client only, so other players don't see it yet; replace with an uploaded Animation before multiplayer. |
 | `client/Vault.luau` | client | Launch vault: press jump while sprinting at an obstacle `MinHeight`-`MaxHeight` tall (at most `MaxDepth` thick). Hands plant on the top (`PlantTime`), then `MoveState.launch` throws you up and out (`LaunchForward`/`LaunchUp`, about 25-30 studs). |
 | `client/Mantle.luau` | client | Automatic: in the air, moving toward a ledge within reach, once the jump has nearly peaked (`MaxRiseSpeed`) or while falling: pull up (`UpTime`) then over the edge (`OverTime`), stopping at the top. Mantle Boost: a fresh jump press inside `BoostWindowStart`-`BoostWindowEnd` (seconds into the climb) launches you up and over (`BoostForward`/`BoostUp`); pressing early uses up the try. |
-| `client/AirStrafe.luau` | client | In the air with no move running, owns sideways velocity: steering (camera-relative) turns your path without losing speed, steering backwards brakes. Keeps slide/vault/bounce speed through the air. |
+| `client/AirStrafe.luau` | client | In the air with no move running, owns sideways velocity: while a movement key is held your momentum turns with your view (`LookCoupling`, tap-strafe), steering (camera-relative) turns your path without losing speed, steering backwards brakes. Keeps slide/vault/bounce speed through the air. |
 | `client/WallBounce.luau` | client | Touch a wall in the air, press jump within `Window`: pushed out along the wall normal and up. Blocked while a move (like mantle) runs and right after a launch. |
-| `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `landVelocity`/`landTime` (speed you last landed with), `parts()`, `isGrounded()`, `flat()`, `drive()`, `launch()` (shared vault/mantle throw, sets `launchTime`). New moves read these instead of re-checking. |
+| `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `landVelocity`/`landTime` (speed you last landed with), `parts()`, `isGrounded()`, `flat()`, `drive()`, `launch()` (shared vault/mantle throw, sets `launchTime`), `cameraYaw()`/`yawChange()`/`turnFlat()` (look coupling). New moves read these instead of re-checking. |
 | `client/Crouch.luau` | client | The only code that changes HipHeight (and CameraOffset in third person; FirstPersonBody owns it in first person). Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. Client-only registration. |
 | `client/Upright.luau` | client | Turns off the FallingDown and Ragdoll humanoid states so vaults and slides don't make you topple. |
@@ -79,6 +79,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.15.0: Look coupling: air momentum turns with your view while a movement key is held (tap-strafe style), and slides curve with your view.
 - 0.14.1: Body always faces where you look (FaceCamera), including third person and during slide, vault and mantle.
 - 0.14.0: New character body (BodyRig): slim, realistic proportions in smooth blocks, faceless head, boots, everyone sees it. First-person arms use the same forearm and hand.
 - 0.13.1: First person shows legs only, hides your own It highlight locally, smaller viewmodel arms with hands.
