@@ -1,6 +1,7 @@
 --!strict
--- Press jump while sprinting at a low obstacle (Config.Vault heights) to hop over it without
--- losing speed. The body follows an arc that clears the top, then you keep running.
+-- Press jump while sprinting at a low obstacle (Config.Vault heights) to hop over it. The body
+-- follows an arc that clears the top, then launches off the far side faster than you came in
+-- (like an Apex super glide). Slide as you land to keep the speed going.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -144,10 +145,14 @@ function Vault.start()
 				if hum.Parent then
 					hum.AutoRotate = true
 					Crouch.set(hum, 1, 0.15, 0)
-					-- Land running at the speed you came in with.
-					local v = root.AssemblyLinearVelocity
-					local out = plan.dir * plan.exitSpeed
-					root.AssemblyLinearVelocity = Vector3.new(out.X, math.min(v.Y, 0), out.Z)
+					-- Launch off the far side, faster than you came in. AirStrafe carries the
+					-- speed through the air, and a slide on landing keeps it.
+					local settings = Config.Vault
+					local speed =
+						math.min(plan.exitSpeed * settings.ExitBoost, settings.MaxExitSpeed)
+					local out = plan.dir * speed
+					root.AssemblyLinearVelocity = Vector3.new(out.X, settings.ExitHop, out.Z)
+					MoveState.airVelocity = out
 				end
 				return
 			end

@@ -2,6 +2,7 @@
 -- The one source of movement state on this client, shared by every move module:
 --   busy:        the move in progress ("Slide", "Vault", "Mantle"), or nil. One at a time.
 --   airVelocity: the sideways speed being carried through the air (owned by AirStrafe).
+--   landVelocity / landTime: the air speed you landed with (set by AirStrafe).
 --   parts():     the local character's model, humanoid and root part, if alive.
 --   isGrounded(), flat(): the standard checks, so no module re-implements them.
 --   drive():     a LinearVelocity that takes over the character's velocity during a move.
@@ -15,6 +16,10 @@ local MoveState = {
 	-- Sideways velocity AirStrafe carries through the air. A move that changes your velocity
 	-- mid-air (like a wall bounce) sets this so air strafing continues from the new speed.
 	airVelocity = nil :: Vector3?,
+	-- Your sideways velocity the moment you last landed, and when. Lets a slide right after
+	-- landing keep your air speed before ground friction eats it.
+	landVelocity = nil :: Vector3?,
+	landTime = -math.huge,
 }
 
 -- The local character's parts, or nil if there's no living character.

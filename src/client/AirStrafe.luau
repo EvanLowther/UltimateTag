@@ -33,6 +33,11 @@ function AirStrafe.start()
 	RunService.Heartbeat:Connect(function(dt)
 		local parts = MoveState.parts()
 		if not parts or MoveState.busy or MoveState.isGrounded(parts.humanoid) then
+			-- Just landed: remember the speed you landed with.
+			if parts and MoveState.airVelocity and MoveState.isGrounded(parts.humanoid) then
+				MoveState.landVelocity = MoveState.airVelocity
+				MoveState.landTime = os.clock()
+			end
 			MoveState.airVelocity = nil
 			return
 		end

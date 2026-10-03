@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.8.1",
+	Version = "0.9.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -21,6 +21,8 @@ local Config = {
 		StartMultiplier = 1.25, -- slide starts at your current speed x this
 		Duration = 0.9, -- seconds for the slide to fade back to walk speed
 		DeadSlideTime = 1.75, -- sliding again within this many seconds gives no speed boost
+		LandingGrace = 0.3, -- seconds after landing that a slide still gets your air speed
+		MaxSpeed = 60, -- a slide never starts faster than this
 		Steer = 2, -- how much you can turn while sliding (higher = more control)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
@@ -108,9 +110,12 @@ local Config = {
 		MaxHeight = 4.2, -- studs above your feet: taller than this, mantle instead
 		MaxDepth = 4, -- obstacles thicker than this are platforms, not vaults
 		Reach = 5, -- how far ahead (studs) an obstacle can be when you press jump
-		Landing = 1.5, -- studs past the far side where the vault ends
+		Landing = 2.5, -- studs past the far side where the launch happens
 		Clearance = 0.3, -- extra studs the body clears the top by
-		MinTime = 0.3, -- shortest a vault can take, in seconds
+		MinTime = 0.2, -- shortest a vault can take, in seconds
+		ExitBoost = 1.3, -- launch speed off the far side = the speed you came in with x this
+		ExitHop = 14, -- studs/s upward at the launch, so you fly instead of landing straight away
+		MaxExitSpeed = 55, -- launch speed cap, so chained vaults can't stack forever
 		HipHeightFactor = 0.4, -- legs tuck up to this fraction of normal hip height
 		Poses = {
 			Vault = { -- hands down on the top, legs tucked up

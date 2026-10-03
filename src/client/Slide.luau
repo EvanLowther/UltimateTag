@@ -2,6 +2,7 @@
 -- Press Config.Slide.Key while sprinting on the ground to slide. You keep your momentum, then
 -- it fades to walk speed. You can't stand up under a low ceiling, and jumping out keeps speed.
 -- Sliding again within Config.Slide.DeadSlideTime is a "dead slide": no speed boost.
+-- Holding the key as you land slides on touchdown, keeping the speed you landed with.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -43,6 +44,15 @@ function Slide.start()
 			return
 		end
 		local flat = MoveState.flat(root.AssemblyLinearVelocity)
+		-- Just landed? Use the speed you landed with, before ground friction slowed you.
+		local landed = MoveState.landVelocity
+		if
+			landed
+			and os.clock() - MoveState.landTime < settings.LandingGrace
+			and landed.Magnitude > flat.Magnitude
+		then
+			flat = landed
+		end
 		-- You have to be actually running to start a slide.
 		if flat.Magnitude < hum.WalkSpeed * 0.5 then
 			return
@@ -50,10 +60,12 @@ function Slide.start()
 
 		sliding = true
 		MoveState.busy = "Slide"
+		MoveState.landVelocity = nil
 		local dir = flat.Unit
 		-- Dead slide: sliding again too soon still slides, but without the speed boost.
 		local dead = os.clock() - lastEnd < settings.DeadSlideTime
-		local startSpeed = flat.Magnitude * (if dead then 1 else settings.StartMultiplier)
+		local boost = if dead then 1 else settings.StartMultiplier
+		local startSpeed = math.min(flat.Magnitude * boost, settings.MaxSpeed)
 		local endSpeed = hum.WalkSpeed / Config.Sprint.Multiplier
 		-- One pose per character, made while standing so it remembers the normal hip height.
 		if poseCharacter ~= character or not pose then
@@ -145,6 +157,16 @@ function Slide.start()
 		if input.KeyCode == settings.Key then
 			keyHeld = false
 		end
+	end)
+	-- Holding the slide key as you land starts the slide the moment you touch down.
+	local wasGrounded = true
+	RunService.Heartbeat:Connect(function()
+		local parts = MoveState.parts()
+		local grounded = parts ~= nil and MoveState.isGrounded(parts.humanoid)
+		if grounded and not wasGrounded and keyHeld and not sliding then
+			begin()
+		end
+		wasGrounded = grounded
 	end)
 	UserInputService.JumpRequest:Connect(function()
 		-- Jump out of a slide, unless a ceiling is in the way.
