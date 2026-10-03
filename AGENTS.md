@@ -71,6 +71,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `landVelocity`/`landTime` (speed you last landed with), `parts()`, `isGrounded()`, `flat()`, `drive()`, `launch()` (shared vault/mantle throw, sets `launchTime`), `cameraYaw()`/`yawChange()`/`turnFlat()` (look coupling). New moves read these instead of re-checking. |
 | `client/Crouch.luau` | client | The only code that changes HipHeight (and CameraOffset in third person; FirstPersonBody owns it in first person). Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. `make(keys, partial)`: each key can set `ease` ("In", "Out", "InOut"); with `partial`, unlisted parts get weight 0 so the animation underneath keeps moving them. `mirror()` flips a pose left/right. Client-only registration. |
+| `client/RunPace.luau` | client | Every frame sets Roblox's WalkAnim/RunAnim pace from your ground speed, clamped (`Config.RunPace`), so mantles, boost landings or crouches can't leave the run animation stuck too fast. |
 | `client/Upright.luau` | client | Turns off the FallingDown and Ragdoll humanoid states (no toppling) and `AutomaticScalingEnabled` (otherwise Animate speeds up the run animation whenever a move lowers the hips). The server also sets it on the StarterCharacter. |
 | `client/MantleBoostUI.luau` | client | The Mantle Boost timing indicator: brackets close on a center ring and a marker drops in; cyan when the window is open, check on success, grey on an early press. |
 | `client/FaceCamera.luau` | client | Facing. Third person: Roblox turns you toward your running (`AutoRotate`). First person: face the camera. A move can set `MoveState.faceDirection` and the body turns smoothly to it (`Config.Camera.TurnRate`). |
@@ -85,6 +86,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.23.3: RunPace: the walk and run animations' pace follows your ground speed every frame (clamped), fixing the sped-up run after mantles and boost landings.
 - 0.23.2: Fix: the run animation played too fast after crouching or sliding (Animate read the lowered hip height as short legs). AutomaticScalingEnabled is now off.
 - 0.23.1: Crouch cuts you to crouch speed at once, the crouch-walk plays at a steady pace, and standing up restores your speed from your role and sprint (`Sprint.targetSpeed()`) instead of a saved value.
 - 0.23.0: Crouch has a real idle pose and a crouch-walk cycle, and its height comes from the leg lengths and knee angles so the feet stay on the floor (no more clipping). Replaces `CrouchHipFactor`.

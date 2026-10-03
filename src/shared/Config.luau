@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.23.2",
+	Version = "0.23.3",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -115,6 +115,14 @@ local Config = {
 		RecoverLungeTime = 0.1, -- seconds into the recovery when the lunge pose is reached
 		RecoverCrouchTime = 0.2, -- ... the crouch pose
 		RecoverStandTime = 0.3, -- ... standing (frame 8)
+	},
+
+	RunPace = {
+		-- Roblox's walk and run animations play at (ground speed / NormalSpeed), kept between
+		-- MinPace and MaxPace, so no move can leave them stuck playing too fast.
+		NormalSpeed = 18, -- studs/s at which the animations play at normal speed
+		MinPace = 0.6,
+		MaxPace = 1.45,
 	},
 
 	AirMomentum = {
