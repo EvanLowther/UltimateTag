@@ -6,7 +6,9 @@
 local AnimationClipProvider = game:GetService("AnimationClipProvider")
 
 export type Angles = { [string]: Vector3 }
-export type Key = { time: number, angles: Angles, name: string? }
+-- `ease` shapes the motion from this key to the next: "Out" slows into the next pose (absorbing),
+-- "In" speeds up into it (exploding), "InOut" (the default) does both. Always cubic.
+export type Key = { time: number, angles: Angles, name: string?, ease: string? }
 
 type Tree = { [string]: Tree }
 
@@ -29,19 +31,31 @@ local R15: Tree = {
 
 -- `only`: if given, just these parts are animated (weight 1); every other part has weight 0,
 -- so whatever animation is playing underneath (running, falling) still moves it.
-local function addPoses(parent: Instance, tree: Tree, angles: Angles, only: { [string]: boolean }?)
+local EASE: { [string]: Enum.PoseEasingDirection } = {
+	In = Enum.PoseEasingDirection.In,
+	Out = Enum.PoseEasingDirection.Out,
+	InOut = Enum.PoseEasingDirection.InOut,
+}
+
+local function addPoses(
+	parent: Instance,
+	tree: Tree,
+	angles: Angles,
+	only: { [string]: boolean }?,
+	ease: Enum.PoseEasingDirection
+)
 	for name, children in tree do
 		local degrees = angles[name] or Vector3.zero
 		local pose = Instance.new("Pose")
 		pose.Name = name
 		pose.CFrame = CFrame.Angles(math.rad(degrees.X), math.rad(degrees.Y), math.rad(degrees.Z))
 		pose.EasingStyle = Enum.PoseEasingStyle.Cubic
-		pose.EasingDirection = Enum.PoseEasingDirection.InOut
+		pose.EasingDirection = ease
 		if only and not only[name] then
 			pose.Weight = 0
 		end
 		pose.Parent = parent
-		addPoses(pose, children, angles, only)
+		addPoses(pose, children, angles, only, ease)
 	end
 end
 
@@ -80,7 +94,7 @@ function AnimationBuilder.make(keys: { Key }, partial: boolean?): Animation
 		local keyframe = Instance.new("Keyframe")
 		keyframe.Time = key.time
 		keyframe.Name = key.name or "Keyframe"
-		addPoses(keyframe, R15, key.angles, only)
+		addPoses(keyframe, R15, key.angles, only, EASE[key.ease or "InOut"])
 		keyframe.Parent = sequence
 	end
 	local animation = Instance.new("Animation")

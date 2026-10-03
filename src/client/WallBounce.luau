@@ -2,8 +2,10 @@
 -- Touch a wall in the air and press jump within Config.WallBounce.Window to push off it: out
 -- along the wall's normal and up, keeping some of your speed along the wall. Ledges you can
 -- reach still mantle automatically; a running mantle blocks a bounce.
--- The push-off is sold with a camera kick (roll away from the wall, tip up), a kick-off body
--- animation, a hit and push sound, and the first-person hand planting on the wall (Viewmodel).
+-- A bounce has a short plant (you stick to the wall, sliding along it, while your limbs absorb
+-- the hit), then the push. It's sold with a four-beat body animation (reach, absorb, push,
+-- follow-through) that only moves the limbs touching the wall plus balance, a camera kick on
+-- the push, hit and push sounds, and the first-person hand planting on the wall (Viewmodel).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local Debris = game:GetService("Debris")
@@ -27,23 +29,18 @@ local function getAnimation(side: string): Animation
 	end
 	local settings = Config.WallBounce
 	local poses = settings.Poses :: { [string]: AnimationBuilder.Angles }
-	local contact, push
-	if side == "Left" then
-		contact, push = poses.SideContact, poses.SidePush
-	elseif side == "Right" then
-		contact, push =
-			AnimationBuilder.mirror(poses.SideContact), AnimationBuilder.mirror(poses.SidePush)
-	elseif side == "Front" then
-		contact, push = poses.FrontContact, poses.FrontPush
-	else
-		contact, push = poses.BackContact, poses.BackPush
+	local base = if side == "Left" or side == "Right" then "Side" else side
+	local function beat(name: string): AnimationBuilder.Angles
+		local angles = poses[base .. name]
+		return if side == "Right" then AnimationBuilder.mirror(angles) else angles
 	end
-	local pushAt = settings.ContactTime
 	local animation = AnimationBuilder.make({
-		{ time = 0, angles = contact },
-		{ time = pushAt, angles = push },
-		-- Held well past HoldTime; the track is faded out before it ends.
-		{ time = pushAt + settings.HoldTime + 1, angles = push },
+		{ time = 0, angles = beat("Reach"), ease = "Out" }, -- slow into the wall
+		{ time = settings.AbsorbAt, angles = beat("Absorb"), ease = "In" }, -- explode out
+		{ time = settings.PushAt, angles = beat("Push"), ease = "Out" }, -- settle
+		{ time = settings.FollowAt, angles = beat("Follow") },
+		-- Held long after Follow; the track fades out before it ends.
+		{ time = settings.FollowAt + 2, angles = beat("Follow") },
 	}, true)
 	animations[side] = animation
 	return animation
@@ -111,14 +108,8 @@ function WallBounce.start()
 		if now - MoveState.launchTime < settings.Cooldown then
 			return
 		end
-		local root = parts.root
+		local root, hum = parts.root, parts.humanoid
 		local normal = wallNormal :: Vector3
-		local velocity = MoveState.flat(root.AssemblyLinearVelocity)
-		local along = velocity - normal * velocity:Dot(normal)
-		local out = normal * settings.OutSpeed + along * settings.KeepAlong
-
-		root.AssemblyLinearVelocity = Vector3.new(out.X, settings.UpSpeed, out.Z)
-		MoveState.airVelocity = out -- air strafing carries on from the bounce speed
 		lastBounce = now
 		wallNormal = nil
 
@@ -133,15 +124,7 @@ function WallBounce.start()
 			then "Both"
 			elseif side == "Back" then "None"
 			else side
-		-- The camera rolls away from the wall.
-		local wallOnLeft = workspace.CurrentCamera.CFrame.RightVector:Dot(normal) > 0
-		CameraKick.kick(
-			if wallOnLeft then -settings.KickRoll else settings.KickRoll,
-			settings.KickPitch,
-			settings.KickTime
-		)
 
-		local hum = parts.humanoid
 		if trackHumanoid ~= hum then
 			table.clear(tracks)
 			trackHumanoid = hum
@@ -152,13 +135,47 @@ function WallBounce.start()
 			tracks[side] = track
 		end
 		local active = track :: AnimationTrack
-		active:Play(0.04)
-		task.delay(settings.ContactTime + settings.HoldTime, function()
+		active:Play(0.03)
+		task.delay(settings.FollowAt + 0.05, function()
 			active:Stop(settings.FadeTime)
 		end)
-
 		playSound(root, settings.HitSound, 1.15)
-		playSound(root, settings.PushSound, 1.05)
+
+		-- Plant: stick to the wall for a moment, sliding along it, while the limbs absorb.
+		MoveState.busy = "WallBounce"
+		local velocity = MoveState.flat(root.AssemblyLinearVelocity)
+		local along = velocity - normal * velocity:Dot(normal)
+		local fall = math.max(root.AssemblyLinearVelocity.Y, -6)
+		local elapsed = 0
+		local connection: RBXScriptConnection
+		connection = RunService.Heartbeat:Connect(function(dt)
+			elapsed += dt
+			if not hum.Parent or hum.Health <= 0 then
+				connection:Disconnect()
+				MoveState.busy = nil
+				return
+			end
+			if elapsed < settings.PlantTime then
+				local slide = along * settings.KeepAlong
+				root.AssemblyLinearVelocity = Vector3.new(slide.X, fall * 0.5, slide.Z)
+				return
+			end
+
+			-- Push: out along the wall's normal and up, keeping some speed along the wall.
+			connection:Disconnect()
+			MoveState.busy = nil
+			local out = normal * settings.OutSpeed + along * settings.KeepAlong
+			root.AssemblyLinearVelocity = Vector3.new(out.X, settings.UpSpeed, out.Z)
+			MoveState.airVelocity = out -- air strafing carries on from the bounce speed
+			-- The camera rolls away from the wall.
+			local wallOnLeft = workspace.CurrentCamera.CFrame.RightVector:Dot(normal) > 0
+			CameraKick.kick(
+				if wallOnLeft then -settings.KickRoll else settings.KickRoll,
+				settings.KickPitch,
+				settings.KickTime
+			)
+			playSound(root, settings.PushSound, 1.05)
+		end)
 	end)
 end
 

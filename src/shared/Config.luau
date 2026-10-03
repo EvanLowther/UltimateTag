@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.16.2",
+	Version = "0.17.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -122,50 +122,134 @@ local Config = {
 		KickTime = 0.35, -- seconds for the camera to settle
 		HitSound = "rbxasset://sounds/action_jump_land.mp3", -- touching the wall
 		PushSound = "rbxasset://sounds/action_jump.mp3", -- pushing off
-		-- Third-person poses. Only the limbs listed move; the rest keep falling naturally.
-		-- Each wall side has a Contact pose (limbs bent, taking the hit) and a Push pose (limbs
-		-- extending). Side poses are written for a wall on your LEFT and mirrored for the right.
+		PlantTime = 0.07, -- seconds you stick to the wall (sliding along it) before the push fires
+		-- Third-person animation in four beats. Only the limbs listed move; the rest keep falling.
+		--   Reach:  limbs extend toward the wall just before contact.
+		--   Absorb: elbow and knee fold as you take the hit, chest leans in.
+		--   Push:   everything snaps straight (a bit past) as you explode off, chest leans away.
+		--   Follow: limbs relax and trail back into the fall.
+		-- Side poses are written for a wall on your LEFT and mirrored for the right. The arm and
+		-- leg away from the wall swing the other way to balance.
+		AbsorbAt = 0.05, -- seconds into the bounce for each beat
+		PushAt = 0.12,
+		FollowAt = 0.3,
+		FadeTime = 0.25, -- seconds to fade back to the normal animation after Follow
 		Poses = {
-			SideContact = {
-				LeftUpperArm = Vector3.new(15, 0, -75), -- hand reaching out to the wall
-				LeftLowerArm = Vector3.new(-45, 0, 0),
-				LeftUpperLeg = Vector3.new(15, 0, -40), -- foot planting on the wall
-				LeftLowerLeg = Vector3.new(-60, 0, 0),
+			SideReach = {
+				UpperTorso = Vector3.new(0, 0, 6),
+				LeftUpperArm = Vector3.new(20, 0, -80),
+				LeftLowerArm = Vector3.new(-10, 0, 0),
+				LeftUpperLeg = Vector3.new(20, 0, -25),
+				LeftLowerLeg = Vector3.new(-40, 0, 0),
+				RightUpperArm = Vector3.new(10, 0, 10),
+				RightUpperLeg = Vector3.new(10, 0, 0),
+				RightLowerLeg = Vector3.new(-20, 0, 0),
+			},
+			SideAbsorb = {
+				UpperTorso = Vector3.new(0, 0, 12),
+				LeftUpperArm = Vector3.new(15, 0, -70),
+				LeftLowerArm = Vector3.new(-75, 0, 0),
+				LeftUpperLeg = Vector3.new(25, 0, -45),
+				LeftLowerLeg = Vector3.new(-90, 0, 0),
+				RightUpperArm = Vector3.new(20, 0, 25),
+				RightUpperLeg = Vector3.new(15, 0, 0),
+				RightLowerLeg = Vector3.new(-35, 0, 0),
 			},
 			SidePush = {
-				LeftUpperArm = Vector3.new(10, 0, -85),
-				LeftLowerArm = Vector3.new(-5, 0, 0),
-				LeftUpperLeg = Vector3.new(5, 0, -30),
-				LeftLowerLeg = Vector3.new(-5, 0, 0),
+				UpperTorso = Vector3.new(0, 0, -10),
+				Head = Vector3.new(0, 0, -8),
+				LeftUpperArm = Vector3.new(5, 0, -95),
+				LeftLowerArm = Vector3.new(0, 0, 0),
+				LeftUpperLeg = Vector3.new(0, 0, -35),
+				LeftLowerLeg = Vector3.new(0, 0, 0),
+				RightUpperArm = Vector3.new(30, 0, 45),
+				RightUpperLeg = Vector3.new(30, 0, 10),
+				RightLowerLeg = Vector3.new(-50, 0, 0),
 			},
-			FrontContact = {
-				RightUpperArm = Vector3.new(80, 0, 10), -- both hands on the wall
-				RightLowerArm = Vector3.new(-50, 0, 0),
+			SideFollow = {
+				UpperTorso = Vector3.new(0, 0, -5),
+				Head = Vector3.new(0, 0, -4),
+				LeftUpperArm = Vector3.new(-10, 0, -50),
+				LeftLowerArm = Vector3.new(-30, 0, 0),
+				LeftUpperLeg = Vector3.new(-10, 0, -15),
+				LeftLowerLeg = Vector3.new(-40, 0, 0),
+				RightUpperArm = Vector3.new(20, 0, 25),
+				RightUpperLeg = Vector3.new(20, 0, 5),
+				RightLowerLeg = Vector3.new(-40, 0, 0),
+			},
+			FrontReach = {
+				UpperTorso = Vector3.new(-5, 0, 0),
+				RightUpperArm = Vector3.new(85, 0, 8),
+				RightLowerArm = Vector3.new(-15, 0, 0),
+				LeftUpperArm = Vector3.new(85, 0, -8),
+				LeftLowerArm = Vector3.new(-15, 0, 0),
+				RightUpperLeg = Vector3.new(40, 0, 0),
+				RightLowerLeg = Vector3.new(-50, 0, 0),
+			},
+			FrontAbsorb = {
+				UpperTorso = Vector3.new(-12, 0, 0),
+				Head = Vector3.new(10, 0, 0),
+				RightUpperArm = Vector3.new(80, 0, 10),
+				RightLowerArm = Vector3.new(-80, 0, 0),
 				LeftUpperArm = Vector3.new(80, 0, -10),
-				LeftLowerArm = Vector3.new(-50, 0, 0),
-				RightUpperLeg = Vector3.new(60, 0, 0), -- foot up against the wall
-				RightLowerLeg = Vector3.new(-80, 0, 0),
+				LeftLowerArm = Vector3.new(-80, 0, 0),
+				RightUpperLeg = Vector3.new(75, 0, 0),
+				RightLowerLeg = Vector3.new(-100, 0, 0),
 			},
 			FrontPush = {
-				RightUpperArm = Vector3.new(85, 0, 10),
-				RightLowerArm = Vector3.new(-10, 0, 0),
-				LeftUpperArm = Vector3.new(85, 0, -10),
-				LeftLowerArm = Vector3.new(-10, 0, 0),
-				RightUpperLeg = Vector3.new(30, 0, 0),
-				RightLowerLeg = Vector3.new(-15, 0, 0),
+				UpperTorso = Vector3.new(10, 0, 0),
+				RightUpperArm = Vector3.new(70, 0, 10),
+				RightLowerArm = Vector3.new(0, 0, 0),
+				LeftUpperArm = Vector3.new(70, 0, -10),
+				LeftLowerArm = Vector3.new(0, 0, 0),
+				RightUpperLeg = Vector3.new(20, 0, 0),
+				RightLowerLeg = Vector3.new(-5, 0, 0),
+				LeftUpperLeg = Vector3.new(-15, 0, 0),
+				LeftLowerLeg = Vector3.new(-20, 0, 0),
 			},
-			BackContact = {
-				RightUpperLeg = Vector3.new(-35, 0, 0), -- foot back against the wall
-				RightLowerLeg = Vector3.new(-70, 0, 0),
+			FrontFollow = {
+				UpperTorso = Vector3.new(5, 0, 0),
+				RightUpperArm = Vector3.new(40, 0, 10),
+				RightLowerArm = Vector3.new(-30, 0, 0),
+				LeftUpperArm = Vector3.new(40, 0, -10),
+				LeftLowerArm = Vector3.new(-30, 0, 0),
+				RightUpperLeg = Vector3.new(15, 0, 0),
+				RightLowerLeg = Vector3.new(-40, 0, 0),
+				LeftUpperLeg = Vector3.new(10, 0, 0),
+				LeftLowerLeg = Vector3.new(-40, 0, 0),
+			},
+			BackReach = {
+				UpperTorso = Vector3.new(-5, 0, 0),
+				RightUpperLeg = Vector3.new(-25, 0, 0),
+				RightLowerLeg = Vector3.new(-40, 0, 0),
+			},
+			BackAbsorb = {
+				UpperTorso = Vector3.new(-15, 0, 0),
+				RightUpperLeg = Vector3.new(-40, 0, 0),
+				RightLowerLeg = Vector3.new(-95, 0, 0),
+				LeftUpperLeg = Vector3.new(10, 0, 0),
+				LeftLowerLeg = Vector3.new(-40, 0, 0),
+				RightUpperArm = Vector3.new(30, 0, 10),
+				LeftUpperArm = Vector3.new(30, 0, -10),
 			},
 			BackPush = {
-				RightUpperLeg = Vector3.new(-30, 0, 0),
+				UpperTorso = Vector3.new(-5, 0, 0),
+				RightUpperLeg = Vector3.new(-35, 0, 0),
 				RightLowerLeg = Vector3.new(-5, 0, 0),
+				LeftUpperLeg = Vector3.new(20, 0, 0),
+				LeftLowerLeg = Vector3.new(-30, 0, 0),
+				RightUpperArm = Vector3.new(50, 0, 15),
+				LeftUpperArm = Vector3.new(50, 0, -15),
+			},
+			BackFollow = {
+				RightUpperLeg = Vector3.new(-10, 0, 0),
+				RightLowerLeg = Vector3.new(-40, 0, 0),
+				LeftUpperLeg = Vector3.new(15, 0, 0),
+				LeftLowerLeg = Vector3.new(-35, 0, 0),
+				RightUpperArm = Vector3.new(25, 0, 10),
+				LeftUpperArm = Vector3.new(25, 0, -10),
 			},
 		},
-		ContactTime = 0.08, -- seconds in the contact pose before pushing
-		HoldTime = 0.25, -- seconds the push pose holds before fading back out
-		FadeTime = 0.2, -- seconds to fade back to the normal animation
 	},
 
 	Vault = {
