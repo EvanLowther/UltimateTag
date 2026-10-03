@@ -58,10 +58,14 @@ function Viewmodel.start()
 
 	-- The body's forearm (a sleeve cylinder with its stripe) and ball hand, laid along the
 	-- camera's forward axis (-Z) and scaled down.
+	-- With the classic avatar (Config.Body.Enabled off) the arms are plain blocks in its arm color.
+	local classic = not Config.Body.Enabled
 	local sizes = Config.Body.Sizes
-	local length = sizes.LowerArm.Y * settings.Scale
-	local thickness = sizes.LowerArm.X * settings.Scale
-	local handSize = sizes.Hand.X * settings.Scale
+	local length = if classic then settings.ClassicArm.Z else sizes.LowerArm.Y * settings.Scale
+	local thickness = if classic then settings.ClassicArm.X else sizes.LowerArm.X * settings.Scale
+	local handSize = if classic then settings.ClassicHand else sizes.Hand.X * settings.Scale
+	local armColor = if classic then Config.Avatar.ArmColor else BodyRig.colorOf("LowerArm")
+	local handColor = if classic then Config.Avatar.ArmColor else BodyRig.colorOf("Hand")
 	local function makePart(
 		name: string,
 		size: Vector3,
@@ -82,17 +86,19 @@ function Viewmodel.start()
 		return {
 			sleeve = makePart(
 				"Viewmodel" .. side,
-				Vector3.new(length, thickness, thickness),
-				BodyRig.colorOf("LowerArm"),
-				Enum.PartType.Cylinder
+				if classic
+					then Vector3.new(thickness, thickness, length)
+					else Vector3.new(length, thickness, thickness),
+				armColor,
+				if classic then nil else Enum.PartType.Cylinder
 			),
 			hand = makePart(
 				"Viewmodel" .. side .. "Hand",
 				Vector3.one * handSize,
-				BodyRig.colorOf("Hand"),
-				Enum.PartType.Ball
+				handColor,
+				if classic then nil else Enum.PartType.Ball
 			),
-			stripe = if Config.Body.Stripes
+			stripe = if Config.Body.Stripes and not classic
 				then makePart(
 					"Viewmodel" .. side .. "Stripe",
 					Vector3.new(0.04, 0.07, length * 0.92),
@@ -103,7 +109,8 @@ function Viewmodel.start()
 		}
 	end
 	local arms = { Right = makeArm("Right"), Left = makeArm("Left") }
-	local ALONG = CFrame.Angles(0, math.pi / 2, 0) -- cylinders lie along X; turn them to point forward
+	-- Cylinders lie along X; turn them to point forward. Classic blocks are already long along Z.
+	local ALONG = if classic then CFrame.identity else CFrame.Angles(0, math.pi / 2, 0)
 	local handOffset = CFrame.new(0, 0, -(length / 2 + handSize * 0.35))
 	local function allParts(): { BasePart }
 		local list = {}

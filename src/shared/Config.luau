@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.18.0",
+	Version = "0.19.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -330,6 +330,8 @@ local Config = {
 		-- the arm up, positive Y turns it left, Z rolls it). Left mirrors Right unless given.
 		Enabled = true,
 		Scale = 0.7, -- arms are the body's forearm and hand (Config.Body), scaled by this
+		ClassicArm = Vector3.new(0.26, 0.26, 1.3), -- classic avatar: forearm block (long along Z)
+		ClassicHand = 0.32, -- classic avatar: hand block
 		Smooth = 16, -- how quickly arms move to a new pose (higher = snappier)
 		BobAmount = 0.04, -- studs of arm swing while running
 		SprintBob = 2, -- swing multiplier while sprinting
@@ -405,7 +407,7 @@ local Config = {
 		-- Roblox's round shapes: cylinder limbs, ball joints, ball head and hands, a face made of
 		-- shapes. Everyone uses it, and the first-person arms copy its forearm and hand.
 		-- A custom mesh can replace it later; the R15 joints stay the same.
-		Enabled = true, -- false = the classic 2012 block avatar (Config.Avatar) instead
+		Enabled = false, -- true = this rounded body; false = the classic 2012 block avatar (Config.Avatar)
 		Sizes = { -- studs. Limbs: X = thickness, Y = length. Head and Hand are balls (X used).
 			Head = Vector3.new(1, 1, 1),
 			UpperTorso = Vector3.new(1.4, 1.35, 0.78),

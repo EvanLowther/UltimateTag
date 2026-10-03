@@ -6,7 +6,7 @@
 #   blender --background --python tools/blender/make_character.py -- <out_dir> [preview_dir]
 # Writes:
 #   <out_dir>/Character.fbx          meshes to import in Studio (Avatar > Import 3D)
-#   src/shared/BodyLayout.luau       part sizes, centers and joint positions for BodyRig
+#   src/shared/BodyLayout.luau       part sizes, centers and joint positions (not used by the game yet)
 #   [preview_dir]/front.png etc.     preview renders
 #
 # Units are studs. Blender is Z-up and the character faces -Y (Blender's front view).

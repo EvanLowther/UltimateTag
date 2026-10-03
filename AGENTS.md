@@ -53,7 +53,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
 | `server/TagService.luau` | server | Heartbeat distance check from It to Runners. Performs the tag. |
 | `server/Sandbox.luau` | server | Free-play setup: players join as Runners, keeps one player as It |
-| `server/Avatar.luau` | server | Makes the `StarterCharacter`: the BodyRig (with Roblox's standard Animate script borrowed from a classic rig), or the classic 2012 block rig if `Config.Body.Enabled` is off. Respawns any non-R15 character. |
+| `server/Avatar.luau` | server | Makes the `StarterCharacter` (currently the classic 2012 block R15 rig, `Config.Body.Enabled = false`): the BodyRig (with Roblox's standard Animate script borrowed from a classic rig), or the classic 2012 block rig if `Config.Body.Enabled` is off. Respawns any non-R15 character. |
 | `server/CollisionGroups.luau` | server | Registers the `SlideBlocker` / `Sliding` collision groups and puts `SlideBlocker` parts in their group |
 | `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
 | `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
@@ -72,7 +72,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/CameraKick.luau` | client | Short camera jolts (roll and pitch that snap in and settle) layered on the normal camera each frame. `CameraKick.kick(roll, pitch, duration)`. |
 | `client/ViewMode.luau` | client | First or third person. Starts in first person (`Config.Camera.StartFirstPerson`); V toggles for testing (`AllowToggle`). |
 | `client/FirstPersonBody.luau` | client | First person: shows your legs (and their details) only, keeps face, hair and other details hidden (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
-| `client/Viewmodel.luau` | client | First-person arms: the body's forearm and hand scaled by `Config.Viewmodel.Scale`, attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
+| `client/Viewmodel.luau` | client | First-person arms: classic yellow blocks (`ClassicArm`/`ClassicHand`) with the classic avatar, or the rounded body's forearm and hand scaled by `Config.Viewmodel.Scale`, attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
@@ -80,6 +80,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.19.0: Back to the classic 2012 R15 block avatar (`Config.Body.Enabled = false`); first-person arms are classic yellow blocks again. The rounded BodyRig and the Blender tools (`tools/blender`, `assets_src`) are kept but unused.
 - 0.18.0: New character look (Crab Game style): rounded body from cylinders and balls, cartoon face and hair, orange tracksuit with white stripes, joggers, sneakers. First-person arms match (sleeve, stripe, ball hand).
 - 0.17.0: Wall bounce feels physical: a short plant on the wall, then the push; four-beat eased animation (reach, absorb, push, follow-through) with balancing limbs.
 - 0.16.2: Fix: bouncing off a wall in front errored (missing `WallPushFront` arm pose). Viewmodel now falls back to Idle with one warning if a pose is missing.
