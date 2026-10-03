@@ -40,6 +40,20 @@ function Viewmodel.start()
 		return
 	end
 	local poses = settings.Poses :: { [string]: Pose }
+	local warned: { [string]: boolean } = {}
+	-- A pose by name. A missing one falls back to Idle with a single warning, instead of
+	-- erroring every frame.
+	local function pose(name: string): Pose
+		local found = poses[name]
+		if found then
+			return found
+		end
+		if not warned[name] then
+			warned[name] = true
+			warn(`[Viewmodel] Config.Viewmodel.Poses.{name} is missing, using Idle`)
+		end
+		return poses.Idle
+	end
 	local camera = workspace.CurrentCamera
 
 	-- The body's forearm and hand, laid along the camera's forward axis (-Z) and scaled down.
@@ -66,7 +80,7 @@ function Viewmodel.start()
 		makeBlock("ViewmodelLeftHand", handSize, "Hand")
 	-- The hand sits on the far (forward) end of the forearm.
 	local handOffset = CFrame.new(0, 0, -(armSize.Z + handSize.Z) / 2)
-	local rightPose, leftPose = sides(poses.Idle)
+	local rightPose, leftPose = sides(pose("Idle"))
 	local lastBusy: string? = nil
 	local busySince = 0
 
@@ -92,11 +106,11 @@ function Viewmodel.start()
 		local sinceBounce = now - MoveState.bounceTime
 		if sinceBounce < settings.WallPushTime then
 			-- Wall bounce: the hand(s) touching the wall plant on it, the rest stay in the air pose.
-			local pushRight, pushLeft = sides(poses.WallPush)
-			local airRight, airLeft = sides(poses.Air)
+			local pushRight, pushLeft = sides(pose("WallPush"))
+			local airRight, airLeft = sides(pose("Air"))
 			local hand = MoveState.bounceHand
 			if hand == "Both" then
-				targetRight, targetLeft = sides(poses.WallPushFront)
+				targetRight, targetLeft = sides(pose("WallPushFront"))
 			elseif hand == "Right" then
 				targetRight, targetLeft = pushRight, airLeft
 			elseif hand == "Left" then
@@ -108,20 +122,20 @@ function Viewmodel.start()
 			-- Hands reach up to the ledge, then push down on it as you climb.
 			local mantle = Config.Mantle
 			local progress = math.clamp((now - busySince) / (mantle.UpTime + mantle.OverTime), 0, 1)
-			local grabRight, grabLeft = sides(poses.MantleGrab)
-			local pushRight, pushLeft = sides(poses.MantlePush)
+			local grabRight, grabLeft = sides(pose("MantleGrab"))
+			local pushRight, pushLeft = sides(pose("MantlePush"))
 			targetRight, targetLeft =
 				grabRight:Lerp(pushRight, progress), grabLeft:Lerp(pushLeft, progress)
 		elseif busy == "Vault" then
-			targetRight, targetLeft = sides(poses.Vault)
+			targetRight, targetLeft = sides(pose("Vault"))
 		elseif busy == "Slide" then
-			targetRight, targetLeft = sides(poses.Slide)
+			targetRight, targetLeft = sides(pose("Slide"))
 		elseif busy == "Crouch" then
-			targetRight, targetLeft = sides(poses.Crouch)
+			targetRight, targetLeft = sides(pose("Crouch"))
 		elseif not MoveState.isGrounded(parts.humanoid) then
-			targetRight, targetLeft = sides(poses.Air)
+			targetRight, targetLeft = sides(pose("Air"))
 		else
-			targetRight, targetLeft = sides(poses.Idle)
+			targetRight, targetLeft = sides(pose("Idle"))
 			-- Swing the arms while running, harder when sprinting.
 			local speed = MoveState.flat(parts.root.AssemblyLinearVelocity).Magnitude
 			if speed > 1 then

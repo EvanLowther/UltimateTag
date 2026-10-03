@@ -80,6 +80,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.16.2: Fix: bouncing off a wall in front errored (missing `WallPushFront` arm pose). Viewmodel now falls back to Idle with one warning if a pose is missing.
 - 0.16.1: Wall bounce animation only moves the limbs touching the wall (by wall side), the rest keep falling naturally. No more T-pose. AnimationBuilder gains partial animations and mirroring.
 - 0.16.0: Wall bounce feedback: camera kick, kick-off animation, hit/push sounds, first-person hand planting on the wall. New CameraKick module.
 - 0.15.0: Look coupling: air momentum turns with your view while a movement key is held (tap-strafe style), and slides curve with your view.

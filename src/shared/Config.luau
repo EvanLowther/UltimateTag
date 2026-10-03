@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.16.1",
+	Version = "0.16.2",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -298,6 +298,13 @@ local Config = {
 				Right = {
 					Position = Vector3.new(0.85, -0.25, -0.95),
 					Rotation = Vector3.new(10, -65, -20),
+				},
+			},
+			-- Wall in front: both hands push on it.
+			WallPushFront = {
+				Right = {
+					Position = Vector3.new(0.45, -0.3, -1.3),
+					Rotation = Vector3.new(8, 8, 0),
 				},
 			},
 			MantlePush = {
