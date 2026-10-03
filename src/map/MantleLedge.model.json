@@ -11,11 +11,6 @@
           9,
           8
         ],
-        "Position": [
-          -30,
-          4.5,
-          -55
-        ],
         "Color": [
           0.42,
           0.2,
@@ -23,7 +18,33 @@
         ],
         "Material": "Plastic",
         "TopSurface": "Studs",
-        "BottomSurface": "Inlet"
+        "BottomSurface": "Inlet",
+        "CFrame": {
+          "CFrame": {
+            "position": [
+              -30,
+              4.5,
+              -55
+            ],
+            "orientation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ]
+          }
+        }
       }
     }
   ]

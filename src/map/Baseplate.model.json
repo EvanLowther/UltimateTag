@@ -3,11 +3,44 @@
   "properties": {
     "Anchored": true,
     "Locked": true,
-    "Size": [512, 4, 512],
-    "Position": [0, -2, 0],
-    "Color": [0.294, 0.592, 0.294],
+    "Size": [
+      512,
+      4,
+      512
+    ],
+    "Color": [
+      0.294,
+      0.592,
+      0.294
+    ],
     "Material": "Plastic",
     "TopSurface": "Studs",
-    "BottomSurface": "Inlet"
+    "BottomSurface": "Inlet",
+    "CFrame": {
+      "CFrame": {
+        "position": [
+          0,
+          -2,
+          0
+        ],
+        "orientation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    }
   }
 }

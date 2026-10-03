@@ -24,6 +24,7 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 - `src/map/BounceWalls.model.json`: two teal walls 30 tall, 12 studs apart (X=54 and X=66, Z=-50). Jump at one and press jump on contact to bounce between them.
 - Any part with the `SlideBlocker` attribute blocks standing players but not sliding ones. Use it for every slide-under obstacle.
 - To add a map piece, add another `*.model.json` in `src/map/`. Use the same studded plastic style.
+- Place parts with `CFrame`, never `Position`: `"CFrame": { "CFrame": { "position": [x, y, z], "orientation": [[1,0,0],[0,1,0],[0,0,1]] } }`. `Position` only works during live sync and is lost in the built `.rbxlx`, so everything loads at the origin.
 
 ## Conventions
 - Every tunable number or name goes in `src/shared/Config.luau`. Never hard-code it in a service.
@@ -71,6 +72,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.8.1: Map pieces use `CFrame` instead of `Position`, so they keep their places in the built place file (they were all loading at spawn).
 - 0.8.0: Apex-style additions: dead slide (no boost if sliding again within 1.75s), AirStrafe (keep speed and steer in the air), WallBounce (jump off walls mid-air), BounceWalls test map. MoveState is now the shared source for parts, grounded and air velocity.
 - 0.7.2: Mantle is automatic when you jump at a ledge (no holding jump); it needs you to be moving toward the ledge.
 - 0.7.1: Mantle only grabs near the top of a jump or while falling, so tapping jump and vaulting no longer turn into mantles.

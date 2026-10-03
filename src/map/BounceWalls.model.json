@@ -11,11 +11,6 @@
           30,
           30
         ],
-        "Position": [
-          54,
-          15,
-          -50
-        ],
         "Color": [
           0.0,
           0.56,
@@ -23,7 +18,33 @@
         ],
         "Material": "Plastic",
         "TopSurface": "Studs",
-        "BottomSurface": "Inlet"
+        "BottomSurface": "Inlet",
+        "CFrame": {
+          "CFrame": {
+            "position": [
+              54,
+              15,
+              -50
+            ],
+            "orientation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ]
+          }
+        }
       }
     },
     {
@@ -36,11 +57,6 @@
           30,
           30
         ],
-        "Position": [
-          66,
-          15,
-          -50
-        ],
         "Color": [
           0.0,
           0.56,
@@ -48,7 +64,33 @@
         ],
         "Material": "Plastic",
         "TopSurface": "Studs",
-        "BottomSurface": "Inlet"
+        "BottomSurface": "Inlet",
+        "CFrame": {
+          "CFrame": {
+            "position": [
+              66,
+              15,
+              -50
+            ],
+            "orientation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ]
+          }
+        }
       }
     }
   ]
