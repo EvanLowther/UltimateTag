@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.21.1",
+	Version = "0.21.2",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -129,6 +129,7 @@ local Config = {
 		JumpUp = 40, -- kicking off the wall: studs/s up
 		KeepAlong = 0.9, -- kicking off a wall run: fraction of your run speed you keep
 		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
+		RunGap = 1.3, -- studs from your body's center to the wall during a wall run (feet on the wall)
 		-- Third-person poses. Wall-run poses are written for a wall on your LEFT (mirrored for the right).
 		Poses = {
 			ClimbA = { -- right hand reaching up, left knee up
@@ -161,27 +162,32 @@ local Config = {
 				LeftUpperLeg = Vector3.new(-5, 0, 0),
 				LeftLowerLeg = Vector3.new(-25, 0, 0),
 			},
-			RunA = { -- wall on the left: left hand trails on the wall, body leans away
-				UpperTorso = Vector3.new(0, 0, -12),
-				LeftUpperArm = Vector3.new(15, 0, -70),
-				LeftLowerArm = Vector3.new(-20, 0, 0),
-				RightUpperArm = Vector3.new(-30, 0, 20),
-				RightLowerArm = Vector3.new(-40, 0, 0),
-				RightUpperLeg = Vector3.new(60, 0, 0),
-				RightLowerLeg = Vector3.new(-40, 0, 0),
-				LeftUpperLeg = Vector3.new(-30, 0, 0),
-				LeftLowerLeg = Vector3.new(-70, 0, 0),
+			-- Wall run, wall on the LEFT (mirrored for the right). The whole body tilts away from
+			-- the wall (LowerTorso roll) so the feet run on it; the head tilts back toward level.
+			-- Both arms pump like a sprint; the wall-side arm stays close to the body.
+			RunA = { -- right leg forward
+				LowerTorso = Vector3.new(5, 0, -28),
+				Head = Vector3.new(0, 0, 14),
+				LeftUpperArm = Vector3.new(-25, 0, -12),
+				LeftLowerArm = Vector3.new(-30, 0, 0),
+				RightUpperArm = Vector3.new(45, 0, 12),
+				RightLowerArm = Vector3.new(-60, 0, 0),
+				RightUpperLeg = Vector3.new(65, 0, 0),
+				RightLowerLeg = Vector3.new(-50, 0, 0),
+				LeftUpperLeg = Vector3.new(-25, 0, 0),
+				LeftLowerLeg = Vector3.new(-75, 0, 0),
 			},
-			RunB = {
-				UpperTorso = Vector3.new(0, 0, -12),
-				LeftUpperArm = Vector3.new(15, 0, -70),
-				LeftLowerArm = Vector3.new(-20, 0, 0),
-				RightUpperArm = Vector3.new(40, 0, 20),
-				RightLowerArm = Vector3.new(-40, 0, 0),
-				LeftUpperLeg = Vector3.new(60, 0, 0),
-				LeftLowerLeg = Vector3.new(-40, 0, 0),
-				RightUpperLeg = Vector3.new(-30, 0, 0),
-				RightLowerLeg = Vector3.new(-70, 0, 0),
+			RunB = { -- left leg forward
+				LowerTorso = Vector3.new(5, 0, -28),
+				Head = Vector3.new(0, 0, 14),
+				LeftUpperArm = Vector3.new(45, 0, -12),
+				LeftLowerArm = Vector3.new(-60, 0, 0),
+				RightUpperArm = Vector3.new(-25, 0, 12),
+				RightLowerArm = Vector3.new(-30, 0, 0),
+				LeftUpperLeg = Vector3.new(65, 0, 0),
+				LeftLowerLeg = Vector3.new(-50, 0, 0),
+				RightUpperLeg = Vector3.new(-25, 0, 0),
+				RightLowerLeg = Vector3.new(-75, 0, 0),
 			},
 		},
 		StepTime = 0.14, -- seconds per climbing or running step in the animations

@@ -85,6 +85,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.21.2: Wall run animation: body tilts away from the wall so the feet run on it, arms pump instead of reaching into the wall, and you're held `RunGap` studs from the wall.
 - 0.21.1: Wall run starts much more reliably: walls are detected ahead, beside and diagonally (`Reach` 2.2), no dead zone between climb and run, `MinEntrySpeed` 18.
 - 0.21.0: Movement rebuild toward the parkour reference video. Removed: air strafing/look coupling, wall bounce (wall-run kick-off replaces it), the super-glide vault launch. Added: AirMomentum (keeps air speed), automatic hop vault and step-up. Third person by default, body turns toward your running. Bar swing fixed (forgiving grab zone, bars at Y=22). Faster sprint (about 30), mantle, wall run and climb.
 - 0.20.0: Moves from the parkour reference video: wall climb with ledge hang and climb-over, wall run with camera lean, bar swing, landing roll, speed trails, and a ParkourCourse to chain them. AnimationBuilder gains looping; Mantle exposes `climbToward`.

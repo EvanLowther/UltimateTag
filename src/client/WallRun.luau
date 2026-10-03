@@ -244,6 +244,7 @@ function WallRun.start()
 				return
 			end
 			local wallEnds = not wallAt(parts, normal, 0, along * 1.5)
+			local beside = wallAt(parts, normal, 0)
 			local steerAway = hum.MoveDirection:Dot(normal) > 0.5
 			if
 				elapsed >= settings.RunTime
@@ -254,10 +255,13 @@ function WallRun.start()
 				finish()
 				return
 			end
-			-- Along the wall, rising a little at first and sinking by the end, pressed into it.
+			-- Along the wall, rising a little at first and sinking by the end, held RunGap
+			-- studs from the wall so the tilted body's feet run on it.
 			local f = elapsed / settings.RunTime
 			local vertical = settings.RunLift + (-settings.RunSink - settings.RunLift) * f
-			drive.VectorVelocity = along * speed + Vector3.new(0, vertical, 0) - normal * 1.5
+			local gap = if beside then beside.Distance else settings.RunGap
+			local inward = math.clamp((gap - settings.RunGap) * 12, -6, 20)
+			drive.VectorVelocity = along * speed + Vector3.new(0, vertical, 0) - normal * inward
 		end)
 	end
 
