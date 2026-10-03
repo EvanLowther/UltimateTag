@@ -106,7 +106,6 @@ function Vault.start()
 
 	local function vault(hum: Humanoid, root: BasePart, plan: Plan)
 		MoveState.busy = "Vault"
-		hum.AutoRotate = false
 		hum.Jump = false
 		local drive, release = MoveState.drive(root, false)
 		Crouch.set(hum, settings.HipHeightFactor, 0.08, 0)
@@ -141,7 +140,6 @@ function Vault.start()
 			connection:Disconnect()
 			release()
 			MoveState.busy = nil
-			hum.AutoRotate = true
 			Crouch.set(hum, 1, 0.3, 0)
 			local forward =
 				math.clamp(plan.entrySpeed, settings.LaunchForward, settings.MaxLaunchSpeed)

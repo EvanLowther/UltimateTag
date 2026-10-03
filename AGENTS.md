@@ -68,6 +68,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. Client-only registration. |
 | `client/Upright.luau` | client | Turns off the FallingDown and Ragdoll humanoid states so vaults and slides don't make you topple. |
 | `client/MantleBoostUI.luau` | client | The Mantle Boost timing indicator: brackets close on a center ring and a marker drops in; cyan when the window is open, check on success, grey on an early press. |
+| `client/FaceCamera.luau` | client | Your body always faces the camera's look direction (yaw only), in both views and during every move. `Humanoid.AutoRotate` stays off; moves must not turn it back on. |
 | `client/ViewMode.luau` | client | First or third person. Starts in first person (`Config.Camera.StartFirstPerson`); V toggles for testing (`AllowToggle`). |
 | `client/FirstPersonBody.luau` | client | First person: shows your legs only (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
 | `client/Viewmodel.luau` | client | First-person arms: the body's forearm and hand scaled by `Config.Viewmodel.Scale`, attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
@@ -78,6 +79,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.14.1: Body always faces where you look (FaceCamera), including third person and during slide, vault and mantle.
 - 0.14.0: New character body (BodyRig): slim, realistic proportions in smooth blocks, faceless head, boots, everyone sees it. First-person arms use the same forearm and hand.
 - 0.13.1: First person shows legs only, hides your own It highlight locally, smaller viewmodel arms with hands.
 - 0.13.0: First person by default (V toggles third person for testing). You can see your torso and legs, the camera follows your head, and block viewmodel arms are posed for each move.

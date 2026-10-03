@@ -130,7 +130,6 @@ function Slide.start()
 
 		local drive, release = MoveState.drive(root, true)
 		drive.PlaneVelocity = Vector2.new(dir.X * speed, dir.Z * speed)
-		hum.AutoRotate = false
 		activePose.play()
 		setGroup(character, settings.SlidingGroup)
 		local blockedAbove = ceilingCheck(parts, activePose.standingHip, activePose.slideHip)
@@ -146,7 +145,6 @@ function Slide.start()
 			if not hum.Parent then
 				return
 			end
-			hum.AutoRotate = true
 			if intoCrouch then
 				crouch(parts)
 				return

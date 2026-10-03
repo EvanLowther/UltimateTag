@@ -102,7 +102,6 @@ function Mantle.start()
 		MoveState.busy = "Mantle"
 		local tried = false -- one boost attempt per climb
 		local boosted = false
-		hum.AutoRotate = false
 		local drive, release = MoveState.drive(root, false)
 
 		if trackHumanoid ~= hum or not track then
@@ -140,7 +139,6 @@ function Mantle.start()
 				MantleBoostUI.hide()
 				lastEnd = os.clock()
 				if hum.Parent then
-					hum.AutoRotate = true
 					-- You stop at the top.
 					root.AssemblyLinearVelocity = Vector3.zero
 				end
@@ -154,7 +152,6 @@ function Mantle.start()
 				onJumpPressed = nil
 				MantleBoostUI.success()
 				lastEnd = os.clock()
-				hum.AutoRotate = true
 				MoveState.launch(root, dir, settings.BoostForward, settings.BoostUp)
 				return
 			end
