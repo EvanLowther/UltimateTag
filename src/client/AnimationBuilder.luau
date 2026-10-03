@@ -75,10 +75,11 @@ end
 
 -- Turns a list of keys into a registered animation. A key with a name fires KeyframeReached.
 -- With `partial`, only the parts named in the keys are animated; the rest keep whatever
--- animation is playing underneath.
-function AnimationBuilder.make(keys: { Key }, partial: boolean?): Animation
+-- animation is playing underneath. With `looped`, it repeats until stopped (make the last key
+-- match the first so the loop is seamless).
+function AnimationBuilder.make(keys: { Key }, partial: boolean?, looped: boolean?): Animation
 	local sequence = Instance.new("KeyframeSequence")
-	sequence.Loop = false
+	sequence.Loop = looped == true
 	sequence.Priority = Enum.AnimationPriority.Action4
 	local only: { [string]: boolean }? = nil
 	if partial then

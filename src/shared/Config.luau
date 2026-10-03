@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.19.0",
+	Version = "0.20.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -250,6 +250,84 @@ local Config = {
 				LeftUpperArm = Vector3.new(25, 0, -10),
 			},
 		},
+	},
+
+	WallRun = {
+		-- Jump at a wall while sprinting (or moving fast). Heading straight at it: you run up it
+		-- (climb), hang at the top and climb over. Running alongside it: you run along it.
+		-- Jump during either to kick off the wall.
+		Reach = 1.6, -- studs from your body that counts as touching the wall
+		ClimbAngle = 40, -- heading within this many degrees of straight at the wall = climb
+		RunAngle = 50, -- heading at least this many degrees from straight at the wall = wall run
+		Cooldown = 0.4, -- seconds before you can grab the same wall again
+		ClimbSpeed = 24, -- studs/s up the wall at the start of a climb (slows to 0 over ClimbTime)
+		ClimbTime = 0.8,
+		HangTime = 4, -- seconds you can hang at the top before dropping
+		HangMin = 0.15, -- seconds you hang before a held forward key climbs you over
+		RunSpeed = 26, -- slowest wall run (studs/s); faster entries keep their speed
+		RunTime = 1.3, -- longest wall run in seconds
+		RunLift = 8, -- studs/s upward at the start of a wall run
+		RunSink = 7, -- studs/s downward by the end of a wall run
+		JumpOut = 24, -- kicking off the wall: studs/s away from it
+		JumpUp = 36, -- kicking off the wall: studs/s up
+		KeepAlong = 0.9, -- kicking off a wall run: fraction of your run speed you keep
+		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
+		-- Third-person poses. Wall-run poses are written for a wall on your LEFT (mirrored for the right).
+		Poses = {
+			ClimbA = { -- right hand reaching up, left knee up
+				RightUpperArm = Vector3.new(170, 0, 10),
+				RightLowerArm = Vector3.new(-10, 0, 0),
+				LeftUpperArm = Vector3.new(110, 0, -10),
+				LeftLowerArm = Vector3.new(-60, 0, 0),
+				LeftUpperLeg = Vector3.new(70, 0, 0),
+				LeftLowerLeg = Vector3.new(-80, 0, 0),
+				RightUpperLeg = Vector3.new(5, 0, 0),
+				RightLowerLeg = Vector3.new(-20, 0, 0),
+			},
+			ClimbB = { -- the mirror step: left hand up, right knee up
+				LeftUpperArm = Vector3.new(170, 0, -10),
+				LeftLowerArm = Vector3.new(-10, 0, 0),
+				RightUpperArm = Vector3.new(110, 0, 10),
+				RightLowerArm = Vector3.new(-60, 0, 0),
+				RightUpperLeg = Vector3.new(70, 0, 0),
+				RightLowerLeg = Vector3.new(-80, 0, 0),
+				LeftUpperLeg = Vector3.new(5, 0, 0),
+				LeftLowerLeg = Vector3.new(-20, 0, 0),
+			},
+			Hang = { -- both hands on the ledge, legs hanging
+				RightUpperArm = Vector3.new(175, 0, 12),
+				RightLowerArm = Vector3.new(-10, 0, 0),
+				LeftUpperArm = Vector3.new(175, 0, -12),
+				LeftLowerArm = Vector3.new(-10, 0, 0),
+				RightUpperLeg = Vector3.new(10, 0, 0),
+				RightLowerLeg = Vector3.new(-15, 0, 0),
+				LeftUpperLeg = Vector3.new(-5, 0, 0),
+				LeftLowerLeg = Vector3.new(-25, 0, 0),
+			},
+			RunA = { -- wall on the left: left hand trails on the wall, body leans away
+				UpperTorso = Vector3.new(0, 0, -12),
+				LeftUpperArm = Vector3.new(15, 0, -70),
+				LeftLowerArm = Vector3.new(-20, 0, 0),
+				RightUpperArm = Vector3.new(-30, 0, 20),
+				RightLowerArm = Vector3.new(-40, 0, 0),
+				RightUpperLeg = Vector3.new(60, 0, 0),
+				RightLowerLeg = Vector3.new(-40, 0, 0),
+				LeftUpperLeg = Vector3.new(-30, 0, 0),
+				LeftLowerLeg = Vector3.new(-70, 0, 0),
+			},
+			RunB = {
+				UpperTorso = Vector3.new(0, 0, -12),
+				LeftUpperArm = Vector3.new(15, 0, -70),
+				LeftLowerArm = Vector3.new(-20, 0, 0),
+				RightUpperArm = Vector3.new(40, 0, 20),
+				RightLowerArm = Vector3.new(-40, 0, 0),
+				LeftUpperLeg = Vector3.new(60, 0, 0),
+				LeftLowerLeg = Vector3.new(-40, 0, 0),
+				RightUpperLeg = Vector3.new(-30, 0, 0),
+				RightLowerLeg = Vector3.new(-70, 0, 0),
+			},
+		},
+		StepTime = 0.18, -- seconds per climbing or running step in the animations
 	},
 
 	Vault = {

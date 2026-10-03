@@ -17,6 +17,11 @@ local MoveState = require(script.Parent.MoveState)
 
 local Mantle = {}
 
+-- Set by Mantle.start(). Starts a climb-up toward a direction; false if there's no ledge.
+Mantle.climbToward = function(_toward: Vector3): boolean
+	return false
+end
+
 local FADE = 0.05 -- seconds to cross-fade into the mantle animation
 
 local animation: Animation? = nil
@@ -37,11 +42,17 @@ local function getAnimation(): Animation
 end
 
 -- Looks for a ledge in front you can grab. Returns where your body should end up (or nil),
--- and the flat direction you were heading.
-local function findLedge(character: Model, hum: Humanoid, root: BasePart): (Vector3?, Vector3)
+-- and the flat direction you were heading. `toward` overrides the direction (used when another
+-- move, like a wall climb, hands over to a climb-up).
+local function findLedge(
+	character: Model,
+	hum: Humanoid,
+	root: BasePart,
+	toward: Vector3?
+): (Vector3?, Vector3)
 	local settings = Config.Mantle
 	-- Look the way you're steering. No input means you're not jumping at anything.
-	local move = hum.MoveDirection
+	local move = toward or hum.MoveDirection
 	local dir = Vector3.new(move.X, 0, move.Z)
 	if dir.Magnitude < 0.1 then
 		return nil, dir
@@ -184,6 +195,21 @@ function Mantle.start()
 			mantle(hum, root, goal, dir)
 		end
 	end)
+
+	-- Lets another move (a wall climb or ledge hang) start a climb-up toward `toward`.
+	-- Returns false if there's no ledge to climb onto there.
+	Mantle.climbToward = function(toward: Vector3): boolean
+		local parts = MoveState.parts()
+		if not parts or MoveState.busy then
+			return false
+		end
+		local goal, dir = findLedge(parts.character, parts.humanoid, parts.root, toward)
+		if not goal then
+			return false
+		end
+		mantle(parts.humanoid, parts.root, goal, dir)
+		return true
+	end
 
 	-- A fresh jump press during a climb is the boost attempt. (Not JumpRequest: that keeps
 	-- firing while jump is held, which would count as an instant early press.)

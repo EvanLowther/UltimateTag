@@ -3,6 +3,7 @@
 -- third person, standing, running and during every move. Roblox's own turning
 -- (Humanoid.AutoRotate) is switched off for good, and this sets the facing every frame.
 -- Movement keys already follow the camera, so moving and looking always line up.
+-- A move can point the body elsewhere through MoveState.faceDirection (wall climb, wall run).
 local RunService = game:GetService("RunService")
 
 local MoveState = require(script.Parent.MoveState)
@@ -18,7 +19,7 @@ function FaceCamera.start()
 			return
 		end
 		parts.humanoid.AutoRotate = false
-		local look = camera.CFrame.LookVector
+		local look = MoveState.faceDirection or camera.CFrame.LookVector
 		local flat = Vector3.new(look.X, 0, look.Z)
 		if flat.Magnitude < 1e-3 then
 			return

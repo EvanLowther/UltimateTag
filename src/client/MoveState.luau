@@ -1,6 +1,7 @@
 --!strict
 -- The one source of movement state on this client, shared by every move module:
---   busy:        the move in progress ("Slide", "Vault", "Mantle"), or nil. One at a time.
+--   busy:        the move in progress ("Slide", "Crouch", "Vault", "Mantle", "WallBounce",
+--                "Climb", "Hang", "WallRun", "BarSwing", "Roll"), or nil. One at a time.
 --   airVelocity: the sideways speed being carried through the air (owned by AirStrafe).
 --   landVelocity / landTime: the air speed you landed with (set by AirStrafe).
 --   parts():     the local character's model, humanoid and root part, if alive.
@@ -25,6 +26,10 @@ local MoveState = {
 	launchTime = -math.huge, -- when the last launch (vault or mantle) happened
 	bounceTime = -math.huge, -- when the last wall bounce happened
 	bounceHand = "Right", -- which hand(s) pushed off the wall: "Left", "Right" or "Both"
+	wallSide = "Left", -- during a wall run: which side of your body the wall is on
+	-- A move can set this to point the body somewhere other than the camera (FaceCamera uses
+	-- it): at the wall while climbing, along the wall while wall running. nil = face the camera.
+	faceDirection = nil :: Vector3?,
 }
 
 -- The local character's parts, or nil if there's no living character.
