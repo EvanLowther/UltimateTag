@@ -56,15 +56,16 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `server/CollisionGroups.luau` | server | Registers the `SlideBlocker` / `Sliding` collision groups and puts `SlideBlocker` parts in their group |
 | `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
 | `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
-| `client/Slide.luau` | client | Press `Config.Slide.Key` (C) while sprinting on the ground to slide. Keeps momentum, fades to walk speed, no boost if within `DeadSlideTime` of the last slide (dead slide), lowers the character, can't stand up under a low ceiling, jump out keeps speed. |
+| `client/Slide.luau` | client | Press `Config.Slide.Key` (C) while sprinting on the ground to slide. Keeps momentum, fades to walk speed, no boost if within `DeadSlideTime` of the last slide (dead slide). Within `LandingGrace` of landing it uses the speed you landed with (no Shift needed if that's faster than walking), and holding C as you land slides on touchdown, lowers the character, can't stand up under a low ceiling, jump out keeps speed. |
 | `client/SlidePose.luau` | client | The slide animation: builds keyframed animations from `Config.Slide.Poses` (Drop, Slide, Lunge, Crouch, from the reference frames) and plays them through the Animator. Also the hip sink and camera dip. Registered on the client only, so other players don't see it yet; replace with an uploaded Animation before multiplayer. |
-| `client/Vault.luau` | client | Press jump while sprinting at an obstacle `Config.Vault.MinHeight`-`MaxHeight` tall and at most `MaxDepth` thick: hop over it in an arc and keep your speed. |
+| `client/Vault.luau` | client | Press jump while sprinting at an obstacle `Config.Vault.MinHeight`-`MaxHeight` tall and at most `MaxDepth` thick: arc over it, then launch off the far side at `ExitBoost` x your speed (capped at `MaxExitSpeed`) with a small hop, like an Apex super glide. |
 | `client/Mantle.luau` | client | Automatic: in the air, moving toward a ledge within reach, once the jump has nearly peaked (`MaxRiseSpeed`) or while falling: pull up (`UpTime`) then over the edge (`OverTime`). You stop at the top. |
 | `client/AirStrafe.luau` | client | In the air with no move running, owns sideways velocity: steering (camera-relative) turns your path without losing speed, steering backwards brakes. Keeps slide/vault/bounce speed through the air. |
 | `client/WallBounce.luau` | client | Touch a wall in the air, press jump within `Window`: pushed out along the wall normal and up. Blocked while a move (like mantle) runs. |
-| `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `parts()`, `isGrounded()`, `flat()`, `drive()`. New moves read these instead of re-checking. |
+| `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `landVelocity`/`landTime` (speed you last landed with), `parts()`, `isGrounded()`, `flat()`, `drive()`. New moves read these instead of re-checking. |
 | `client/Crouch.luau` | client | The only code that changes HipHeight and CameraOffset. Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. Client-only registration. |
+| `client/Upright.luau` | client | Turns off the FallingDown and Ragdoll humanoid states so vaults and slides don't make you topple. |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
@@ -72,6 +73,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.9.0: Vault launches you off the far side with a speed boost and hop (super glide style). Slides right after landing keep your air speed, and holding C as you land slides on touchdown. FallingDown/Ragdoll turned off so you stop toppling.
 - 0.8.1: Map pieces use `CFrame` instead of `Position`, so they keep their places in the built place file (they were all loading at spawn).
 - 0.8.0: Apex-style additions: dead slide (no boost if sliding again within 1.75s), AirStrafe (keep speed and steer in the air), WallBounce (jump off walls mid-air), BounceWalls test map. MoveState is now the shared source for parts, grounded and air velocity.
 - 0.7.2: Mantle is automatic when you jump at a ledge (no holding jump); it needs you to be moving toward the ledge.

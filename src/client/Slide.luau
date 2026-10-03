@@ -40,18 +40,24 @@ function Slide.start()
 			return
 		end
 		local character, hum, root = parts.character, parts.humanoid, parts.root
-		if not Sprint.isSprinting() or not MoveState.isGrounded(hum) then
+		if not MoveState.isGrounded(hum) then
 			return
 		end
 		local flat = MoveState.flat(root.AssemblyLinearVelocity)
 		-- Just landed? Use the speed you landed with, before ground friction slowed you.
+		-- Landing faster than walking counts as sprinting, so a vault launch can slide.
 		local landed = MoveState.landVelocity
+		local carried = false
 		if
 			landed
 			and os.clock() - MoveState.landTime < settings.LandingGrace
 			and landed.Magnitude > flat.Magnitude
 		then
 			flat = landed
+			carried = flat.Magnitude > hum.WalkSpeed
+		end
+		if not Sprint.isSprinting() and not carried then
+			return
 		end
 		-- You have to be actually running to start a slide.
 		if flat.Magnitude < hum.WalkSpeed * 0.5 then
