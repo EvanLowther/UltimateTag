@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.11.0",
+	Version = "0.12.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -17,12 +17,14 @@ local Config = {
 	},
 
 	Slide = {
-		Key = Enum.KeyCode.C, -- press while sprinting on the ground
+		Key = Enum.KeyCode.C, -- sprinting (or moving fast in the air): slide. Otherwise: crouch.
 		StartMultiplier = 1.25, -- slide starts at your current speed x this
 		Duration = 0.9, -- seconds for the slide to fade back to walk speed
 		DeadSlideTime = 1.75, -- sliding again within this many seconds gives no speed boost
 		LandingGrace = 0.3, -- seconds after landing that a slide still gets your air speed
 		MaxSpeed = 60, -- a slide never starts faster than this
+		CrouchSpeed = 8, -- walk speed while crouched
+		CrouchHipFactor = 0.35, -- crouched hips sit at this fraction of normal height (fits under slide bars)
 		Steer = 2, -- how much you can turn while sliding (higher = more control)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
@@ -69,6 +71,17 @@ local Config = {
 				LeftLowerLeg = Vector3.new(-40, 0, 0),
 				RightUpperArm = Vector3.new(40, 0, 0),
 				LeftUpperArm = Vector3.new(-30, 0, 0),
+			},
+			CrouchWalk = { -- holding C without sprinting: low crouch to get under things
+				LowerTorso = Vector3.new(-15, 0, 0),
+				UpperTorso = Vector3.new(-10, 0, 0),
+				Head = Vector3.new(20, 0, 0),
+				RightUpperLeg = Vector3.new(75, 0, 0),
+				RightLowerLeg = Vector3.new(-120, 0, 0),
+				LeftUpperLeg = Vector3.new(75, 0, 0),
+				LeftLowerLeg = Vector3.new(-120, 0, 0),
+				RightUpperArm = Vector3.new(25, 0, 10),
+				LeftUpperArm = Vector3.new(25, 0, -10),
 			},
 			Crouch = { -- frame 7: rising through a crouch
 				LowerTorso = Vector3.new(-10, 0, 0),
@@ -144,8 +157,8 @@ local Config = {
 		-- up and over. Too early and you just climb. An on-screen indicator shows the timing.
 		BoostWindowStart = 0.22,
 		BoostWindowEnd = 0.4,
-		BoostForward = 50, -- studs/s forward at the boost
-		BoostUp = 45, -- studs/s upward at the boost
+		BoostForward = 68, -- studs/s forward at the boost (about 38 studs of flight)
+		BoostUp = 55, -- studs/s upward at the boost
 		Poses = {
 			Hang = { -- arms up holding the edge
 				RightUpperArm = Vector3.new(170, 0, 10),

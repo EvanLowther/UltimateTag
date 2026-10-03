@@ -6,6 +6,7 @@ local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+local MoveState = require(script.Parent.MoveState)
 
 local Sprint = {}
 
@@ -46,8 +47,8 @@ function Sprint.start()
 
 	local function begin()
 		local hum = humanoid()
-		-- Frozen players (WalkSpeed 0) can't sprint.
-		if sprinting or not hum or hum.WalkSpeed <= 0 then
+		-- Frozen players (WalkSpeed 0) can't sprint, and neither can crouched ones.
+		if sprinting or not hum or hum.WalkSpeed <= 0 or MoveState.busy == "Crouch" then
 			return
 		end
 		sprinting = true
