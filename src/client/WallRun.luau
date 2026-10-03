@@ -1,9 +1,10 @@
 --!strict
 -- Wall running, automatic like the parkour reference: jump at a wall while sprinting (or moving
 -- fast) and the angle you hit it at picks the move.
---   Climb:   heading straight at a tall wall. You run up it, slowing as you go. If you reach
---            the top you hang there (Hang), then climb over (Mantle) by pressing jump or
---            holding forward. Run out of climb before the top and you slide off.
+--   Climb:   heading straight at a tall wall. You hop up its face and cling to it (Cling);
+--            jump while clinging to hop higher, up to MaxHops. Reaching the top you hang on the
+--            ledge (Hang), then climb over (Mantle) by pressing jump or holding forward. Hold
+--            back or run out of grip to let go.
 --   WallRun: running alongside a wall. You run along it, rising a little then sinking, with
 --            the camera leaning away from the wall. Ends when the wall does or time runs out.
 -- Jump during a climb or wall run to kick off the wall. Short walls are left to Mantle.
@@ -160,22 +161,50 @@ function WallRun.start()
 		end)
 	end
 
+	-- Jump-up-and-hold climbing, like the reference video: a hop up the wall face, then you
+	-- cling to it. Jump while clinging to hop higher (up to MaxHops per wall). Reaching the top
+	-- turns into a ledge hang. Steer away and jump to kick off; hold back (or wait too long)
+	-- to let go.
 	local function climb(parts: Parts, normal: Vector3)
 		MoveState.busy = "Climb"
 		MoveState.faceDirection = -normal
+		local hum = parts.humanoid
 		local drive, release = MoveState.drive(parts.root, false)
-		local track = play(parts.humanoid, "Climb")
-		local elapsed = 0
+		local track = play(hum, "Climb")
+		local hopsLeft = settings.MaxHops - 1
+		local clinging = false
+		local phaseTime = 0
 		local connection: RBXScriptConnection
-		onJump = function()
+
+		-- Hop (reaching up the wall) or cling (holding on with both hands).
+		local function setPhase(cling: boolean)
+			clinging = cling
+			phaseTime = 0
+			track:Stop(0.08)
+			track = play(hum, if cling then "Hang" else "Climb")
+			MoveState.busy = if cling then "Cling" else "Climb"
+		end
+
+		local function letGo()
 			connection:Disconnect()
 			leave(normal, release, track)
-			kickOff(parts, normal, Vector3.zero)
+			parts.root.AssemblyLinearVelocity = normal * 3
+		end
+
+		onJump = function()
+			if hum.MoveDirection:Dot(normal) > 0.5 then
+				-- Steering away from the wall: kick off it.
+				connection:Disconnect()
+				leave(normal, release, track)
+				kickOff(parts, normal, Vector3.zero)
+			elseif clinging and hopsLeft > 0 then
+				hopsLeft -= 1
+				setPhase(false) -- hop higher
+			end
 		end
 
 		connection = RunService.Heartbeat:Connect(function(dt)
-			elapsed += dt
-			local hum = parts.humanoid
+			phaseTime += dt
 			if not hum.Parent or hum.Health <= 0 then
 				connection:Disconnect()
 				leave(normal, release, track)
@@ -185,8 +214,7 @@ function WallRun.start()
 			local chest = wallAt(parts, normal, 0.5)
 			local head = wallAt(parts, normal, 2)
 			if not chest then
-				connection:Disconnect()
-				leave(normal, release, track)
+				letGo()
 				return
 			end
 			if not head then
@@ -197,16 +225,23 @@ function WallRun.start()
 				hang(parts, normal)
 				return
 			end
-			if elapsed >= settings.ClimbTime then
-				-- Out of climb: slide off the wall.
-				connection:Disconnect()
-				leave(normal, release, track)
-				parts.root.AssemblyLinearVelocity = normal * 4
-				return
+
+			local up = 0
+			if clinging then
+				-- Holding on, sliding slowly. Hold back or run out of grip to let go.
+				if phaseTime >= settings.ClingTime or hum.MoveDirection:Dot(normal) > 0.5 then
+					letGo()
+					return
+				end
+				up = -settings.ClingSlide
+			elseif phaseTime >= settings.HopTime then
+				setPhase(true) -- top of the hop: grab on
+			else
+				up = settings.HopSpeed * (1 - phaseTime / settings.HopTime)
 			end
-			-- Up the wall, slowing as you go, pressed lightly into it.
-			local up = settings.ClimbSpeed * (1 - elapsed / settings.ClimbTime)
-			drive.VectorVelocity = Vector3.new(0, up, 0) - normal * 2
+			-- Stay ClingGap studs from the wall, hands on it.
+			local inward = math.clamp((chest.Distance - settings.ClingGap) * 12, -6, 20)
+			drive.VectorVelocity = Vector3.new(0, up, 0) - normal * inward
 		end)
 	end
 

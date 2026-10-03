@@ -168,7 +168,7 @@ function Viewmodel.start()
 			local reach = math.sin(now * settings.ClimbRate) * settings.ClimbSwing
 			targetRight = CFrame.new(0, reach, 0) * targetRight
 			targetLeft = CFrame.new(0, -reach, 0) * targetLeft
-		elseif busy == "Hang" or busy == "BarSwing" then
+		elseif busy == "Hang" or busy == "Cling" or busy == "BarSwing" then
 			targetRight, targetLeft = sides(pose("Hang"))
 		elseif busy == "WallRun" then
 			-- The wall-side hand trails on the wall; the other is in the air pose.

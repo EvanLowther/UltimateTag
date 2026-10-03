@@ -1,6 +1,6 @@
 --!strict
 -- The one source of movement state on this client, shared by every move module:
---   busy:        the move in progress ("Slide", "Crouch", "Vault", "Mantle", "Climb", "Hang",
+--   busy:        the move in progress ("Slide", "Crouch", "Vault", "Mantle", "Climb", "Cling", "Hang",
 --                "WallRun", "BarSwing", "Roll"), or nil. One at a time.
 --   airVelocity: the sideways speed being carried through the air (owned by AirMomentum).
 --   landVelocity / landTime: the air speed you landed with (set by AirMomentum).

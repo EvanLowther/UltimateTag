@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.21.2",
+	Version = "0.22.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -109,16 +109,20 @@ local Config = {
 	},
 
 	WallRun = {
-		-- Jump at a wall while sprinting (or moving fast). Heading straight at it: you run up it
-		-- (climb), hang at the top and climb over. Running alongside it: you run along it.
+		-- Jump at a wall while sprinting (or moving fast). Heading straight at it: you hop up it
+		-- and cling, jump to hop higher, hang at the top and climb over. Running alongside it: you run along it.
 		-- Jump during either to kick off the wall.
 		Reach = 2.2, -- studs from your body (ahead, beside or diagonally) that counts as touching a wall
 		ClimbAngle = 35, -- heading within this many degrees of straight at the wall = climb;
 		-- anything else (beside or glancing) = wall run, unless you're moving away from the wall
 		MinEntrySpeed = 18, -- studs/s sideways you need to start one (sprinting always counts)
 		Cooldown = 0.4, -- seconds before you can grab the same wall again
-		ClimbSpeed = 30, -- studs/s up the wall at the start of a climb (slows to 0 over ClimbTime)
-		ClimbTime = 0.8,
+		HopSpeed = 34, -- studs/s up the wall at the start of each hop (slows to 0 over HopTime)
+		HopTime = 0.28, -- seconds per hop (about 5 studs of height)
+		MaxHops = 3, -- hops up one wall: the first one plus jumps while clinging
+		ClingTime = 1.1, -- seconds you can hold on to the wall face between hops
+		ClingSlide = 1.5, -- studs/s you slide down while clinging
+		ClingGap = 1.2, -- studs from your body's center to the wall while climbing or clinging
 		HangTime = 4, -- seconds you can hang at the top before dropping
 		HangMin = 0.15, -- seconds you hang before a held forward key climbs you over
 		RunSpeed = 30, -- slowest wall run (studs/s); faster entries keep their speed
