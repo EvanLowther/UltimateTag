@@ -68,8 +68,8 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/Upright.luau` | client | Turns off the FallingDown and Ragdoll humanoid states so vaults and slides don't make you topple. |
 | `client/MantleBoostUI.luau` | client | The Mantle Boost timing indicator: brackets close on a center ring and a marker drops in; cyan when the window is open, check on success, grey on an early press. |
 | `client/ViewMode.luau` | client | First or third person. Starts in first person (`Config.Camera.StartFirstPerson`); V toggles for testing (`AllowToggle`). |
-| `client/FirstPersonBody.luau` | client | First person: shows your torso and legs (head hidden, arms replaced by the viewmodel), and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead of the chest. |
-| `client/Viewmodel.luau` | client | First-person block arms attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
+| `client/FirstPersonBody.luau` | client | First person: shows your legs only (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
+| `client/Viewmodel.luau` | client | First-person block arms (forearm plus hand block) attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
@@ -77,6 +77,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.13.1: First person shows legs only, hides your own It highlight locally, smaller viewmodel arms with hands.
 - 0.13.0: First person by default (V toggles third person for testing). You can see your torso and legs, the camera follows your head, and block viewmodel arms are posed for each move.
 - 0.12.0: Mantle Boost goes about 15 studs further. Air slide (C while moving fast in the air). Crouch (C without sprinting) to get under things slowly; slides that run out with C held become crouches.
 - 0.11.0: Mantle Boost (Apex style): a timing window during the climb with an on-screen indicator. Jump in the window to launch up and over; too early and you just climb.

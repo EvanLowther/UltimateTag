@@ -40,21 +40,39 @@ function Viewmodel.start()
 	local poses = settings.Poses :: { [string]: Pose }
 	local camera = workspace.CurrentCamera
 
-	local function makeArm(name: string): Part
-		local arm = Instance.new("Part")
-		arm.Name = name
-		arm.Size = settings.ArmSize
-		arm.Anchored = true
-		arm.CanCollide = false
-		arm.CanQuery = false
-		arm.CanTouch = false
-		arm.CastShadow = false
-		arm.Material = Enum.Material.Plastic
-		arm.Color = Config.Avatar.ArmColor
-		arm.Parent = camera
-		return arm
+	local function makeBlock(name: string, size: Vector3): Part
+		local block = Instance.new("Part")
+		block.Name = name
+		block.Size = size
+		block.Anchored = true
+		block.CanCollide = false
+		block.CanQuery = false
+		block.CanTouch = false
+		block.CastShadow = false
+		block.Material = Enum.Material.Plastic
+		block.Color = Config.Avatar.ArmColor
+		for _, face in
+			{
+				"TopSurface",
+				"BottomSurface",
+				"FrontSurface",
+				"BackSurface",
+				"LeftSurface",
+				"RightSurface",
+			}
+		do
+			(block :: any)[face] = Enum.SurfaceType.Smooth
+		end
+		block.Parent = camera
+		return block
 	end
-	local right, left = makeArm("ViewmodelRight"), makeArm("ViewmodelLeft")
+	local hand = Vector3.one * settings.HandSize
+	local right, left =
+		makeBlock("ViewmodelRight", settings.ArmSize), makeBlock("ViewmodelLeft", settings.ArmSize)
+	local rightHand, leftHand =
+		makeBlock("ViewmodelRightHand", hand), makeBlock("ViewmodelLeftHand", hand)
+	-- The hand sits on the far (forward) end of the forearm.
+	local handOffset = CFrame.new(0, 0, -(settings.ArmSize.Z + settings.HandSize) / 2 + 0.05)
 	local rightPose, leftPose = sides(poses.Idle)
 	local lastBusy: string? = nil
 	local busySince = 0
@@ -62,8 +80,10 @@ function Viewmodel.start()
 	RunService:BindToRenderStep("Viewmodel", Enum.RenderPriority.Camera.Value + 2, function(dt)
 		local parts = MoveState.parts()
 		local show = ViewMode.isFirstPerson() and parts ~= nil
-		right.Transparency = if show then 0 else 1
-		left.Transparency = right.Transparency
+		local transparency = if show then 0 else 1
+		for _, block in { right, left, rightHand, leftHand } do
+			block.Transparency = transparency
+		end
 		if not parts or not show then
 			return
 		end
@@ -71,8 +91,9 @@ function Viewmodel.start()
 		-- Match the character's arm color.
 		local bodyArm = parts.character:FindFirstChild("RightUpperArm")
 		if bodyArm and bodyArm:IsA("BasePart") then
-			right.Color = bodyArm.Color
-			left.Color = bodyArm.Color
+			for _, block in { right, left, rightHand, leftHand } do
+				block.Color = bodyArm.Color
+			end
 		end
 
 		local busy = MoveState.busy
@@ -118,6 +139,8 @@ function Viewmodel.start()
 		leftPose = leftPose:Lerp(targetLeft, blend)
 		right.CFrame = camera.CFrame * rightPose
 		left.CFrame = camera.CFrame * leftPose
+		rightHand.CFrame = right.CFrame * handOffset
+		leftHand.CFrame = left.CFrame * handOffset
 	end)
 end
 

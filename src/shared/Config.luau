@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.13.0",
+	Version = "0.13.1",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -185,7 +185,7 @@ local Config = {
 		AllowToggle = true, -- testing: ToggleKey switches to third person and back
 		ToggleKey = Enum.KeyCode.V,
 		ThirdPersonDistance = 12, -- studs the camera pulls back when switching to third person
-		BodyForward = 0.6, -- first person: studs the camera sits ahead of the chest (no seeing inside)
+		BodyForward = 0.4, -- first person: studs the camera sits ahead of the body
 		HeadFollow = 14, -- first person: how quickly the camera follows your head (higher = tighter)
 	},
 
@@ -194,51 +194,58 @@ local Config = {
 		-- (X right, Y up, -Z forward) of the arm's middle, Rotation in degrees (positive X tips
 		-- the arm up, positive Y turns it left, Z rolls it). Left mirrors Right unless given.
 		Enabled = true,
-		ArmSize = Vector3.new(0.4, 0.4, 1.8),
+		ArmSize = Vector3.new(0.26, 0.26, 1.3), -- forearm block
+		HandSize = 0.32, -- hand block on the end of each arm
 		Smooth = 16, -- how quickly arms move to a new pose (higher = snappier)
-		BobAmount = 0.06, -- studs of arm swing while running
+		BobAmount = 0.04, -- studs of arm swing while running
 		SprintBob = 2, -- swing multiplier while sprinting
 		BobRate = 9, -- swing speed at walk speed
 		Poses = {
 			Idle = {
-				Right = { Position = Vector3.new(0.8, -1, -1.4), Rotation = Vector3.new(8, 8, 0) },
+				Right = {
+					Position = Vector3.new(0.62, -0.72, -1.15),
+					Rotation = Vector3.new(10, 10, 0),
+				},
 			},
 			Air = {
 				Right = {
-					Position = Vector3.new(0.95, -0.75, -1.4),
-					Rotation = Vector3.new(25, 5, -15),
+					Position = Vector3.new(0.72, -0.55, -1.15),
+					Rotation = Vector3.new(25, 6, -15),
 				},
 			},
 			Crouch = {
 				Right = {
-					Position = Vector3.new(0.7, -0.95, -1.3),
-					Rotation = Vector3.new(0, 10, 0),
+					Position = Vector3.new(0.55, -0.7, -1.1),
+					Rotation = Vector3.new(4, 12, 0),
 				},
 			},
 			Slide = { -- right arm up for balance, left hand trailing low (like the slide reference)
 				Right = {
-					Position = Vector3.new(0.9, 0.1, -1.5),
-					Rotation = Vector3.new(70, 10, -10),
+					Position = Vector3.new(0.7, 0.05, -1.25),
+					Rotation = Vector3.new(65, 10, -10),
 				},
 				Left = {
-					Position = Vector3.new(-1, -1.05, -1.1),
-					Rotation = Vector3.new(-25, -20, 20),
+					Position = Vector3.new(-0.78, -0.8, -0.95),
+					Rotation = Vector3.new(-20, -20, 20),
 				},
 			},
 			Vault = {
 				Right = {
-					Position = Vector3.new(0.55, -0.85, -1.7),
-					Rotation = Vector3.new(-40, 5, 0),
+					Position = Vector3.new(0.45, -0.62, -1.35),
+					Rotation = Vector3.new(-40, 6, 0),
 				},
 			},
 			MantleGrab = {
 				Right = {
-					Position = Vector3.new(0.6, 0.35, -1.7),
-					Rotation = Vector3.new(35, 5, 0),
+					Position = Vector3.new(0.48, 0.25, -1.35),
+					Rotation = Vector3.new(35, 6, 0),
 				},
 			},
 			MantlePush = {
-				Right = { Position = Vector3.new(0.6, -1, -1.4), Rotation = Vector3.new(-50, 5, 0) },
+				Right = {
+					Position = Vector3.new(0.48, -0.72, -1.15),
+					Rotation = Vector3.new(-50, 6, 0),
+				},
 			},
 		},
 	},

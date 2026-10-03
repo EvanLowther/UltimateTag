@@ -1,7 +1,8 @@
 --!strict
--- Lets you see your own body in first person. Roblox hides the whole character when the camera
--- is zoomed in; this shows the torso and legs again (the head stays hidden, and the arms are
--- replaced by the Viewmodel arms). The camera also follows your head as the animations move it,
+-- Lets you see your own legs in first person. Roblox hides the whole character when the camera
+-- is zoomed in; this shows the legs again (the head and torso stay hidden: seen from above, the
+-- blocky torso just fills the screen; the arms are replaced by the Viewmodel arms). Your own
+-- highlight (the red "It" glow) is turned off on your screen only, so it doesn't tint your view. The camera also follows your head as the animations move it,
 -- so a slide, crouch or climb moves your view naturally, and it sits a little ahead of the
 -- chest (Config.Camera.BodyForward) so you never look out from inside your body.
 local Players = game:GetService("Players")
@@ -15,8 +16,6 @@ local ViewMode = require(script.Parent.ViewMode)
 local FirstPersonBody = {}
 
 local VISIBLE = {
-	LowerTorso = true,
-	UpperTorso = true,
 	LeftUpperLeg = true,
 	LeftLowerLeg = true,
 	LeftFoot = true,
@@ -36,7 +35,16 @@ function FirstPersonBody.start()
 	local function setup(character: Model)
 		table.clear(visibleParts)
 		restHead = nil
-		for _, name in { "LowerTorso", "UpperTorso", "LeftUpperLeg", "LeftLowerLeg", "LeftFoot" } do
+		for _, name in
+			{
+				"LeftUpperLeg",
+				"LeftLowerLeg",
+				"LeftFoot",
+				"RightUpperLeg",
+				"RightLowerLeg",
+				"RightFoot",
+			}
+		do
 			character:WaitForChild(name)
 		end
 		for _, part in character:GetChildren() do
@@ -88,9 +96,15 @@ function FirstPersonBody.start()
 		end
 	)
 
-	-- After the camera updates (it hides the whole character in first person): show the body.
+	-- After the camera updates (it hides the whole character in first person): show the legs.
 	RunService:BindToRenderStep("FirstPersonBody", Enum.RenderPriority.Camera.Value + 1, function()
-		if not ViewMode.isFirstPerson() then
+		local firstPerson = ViewMode.isFirstPerson()
+		local character = player.Character
+		local highlight = character and character:FindFirstChildOfClass("Highlight")
+		if highlight then
+			highlight.Enabled = not firstPerson
+		end
+		if not firstPerson then
 			return
 		end
 		for _, part in visibleParts do
