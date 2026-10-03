@@ -272,7 +272,7 @@ function WallRun.start()
 		end
 		local hum, root = parts.humanoid, parts.root
 		local flat = MoveState.flat(root.AssemblyLinearVelocity)
-		local fast = Sprint.isSprinting() or flat.Magnitude > hum.WalkSpeed
+		local fast = Sprint.isSprinting() or flat.Magnitude >= settings.MinEntrySpeed
 		if not fast then
 			return
 		end
@@ -284,10 +284,24 @@ function WallRun.start()
 			return
 		end
 		heading = heading.Unit
+
+		-- Look ahead, to both sides and both diagonals, and take the nearest wall. (A wall run
+		-- starts with the wall beside you, which a single ray straight ahead would miss.)
 		params.FilterDescendantsInstances = { parts.character }
-		local hit =
-			workspace:Raycast(root.Position, heading * (root.Size.X / 2 + settings.Reach), params)
-		if not hit or math.abs(hit.Normal.Y) > 0.3 then
+		local reach = root.Size.X / 2 + settings.Reach
+		local side = heading:Cross(Vector3.yAxis)
+		local hit: RaycastResult? = nil
+		for _, direction in { heading, side, -side, (heading + side).Unit, (heading - side).Unit } do
+			local result = workspace:Raycast(root.Position, direction * reach, params)
+			if
+				result
+				and math.abs(result.Normal.Y) < 0.3
+				and (not hit or result.Distance < hit.Distance)
+			then
+				hit = result
+			end
+		end
+		if not hit then
 			return
 		end
 		local normal = MoveState.flat(hit.Normal).Unit
@@ -305,13 +319,14 @@ function WallRun.start()
 
 		local facing = heading:Dot(-normal)
 		if facing >= math.cos(math.rad(settings.ClimbAngle)) then
-			-- Only tall walls: if the top is within a mantle's reach, Mantle handles it.
+			-- Heading into the wall: climb it. Only tall walls; short ones are Mantle's.
 			if wallAt(parts, normal, Config.Mantle.MaxAbove + 0.5) then
 				climb(parts, normal)
 			end
-		elseif facing <= math.cos(math.rad(settings.RunAngle)) then
+		elseif facing > -0.3 then
+			-- Beside it or glancing into it (not moving away): run along it.
 			local along = heading - normal * heading:Dot(normal)
-			if along.Magnitude > 0.1 then
+			if along.Magnitude > 0.2 then
 				wallRun(parts, normal, along.Unit, math.max(flat.Magnitude, settings.RunSpeed))
 			end
 		end
