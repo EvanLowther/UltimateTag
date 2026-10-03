@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.22.1",
+	Version = "0.23.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -24,7 +24,7 @@ local Config = {
 		LandingGrace = 0.3, -- seconds after landing that a slide still gets your air speed
 		MaxSpeed = 60, -- a slide never starts faster than this
 		CrouchSpeed = 8, -- walk speed while crouched
-		CrouchHipFactor = 0.35, -- crouched hips sit at this fraction of normal height (fits under slide bars)
+		CrouchStepTime = 0.3, -- seconds per crouch-walk step at CrouchSpeed (faster when moving faster)
 		Steer = 2, -- how much your movement keys turn a slide (higher = more control)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
@@ -72,16 +72,34 @@ local Config = {
 				RightUpperArm = Vector3.new(40, 0, 0),
 				LeftUpperArm = Vector3.new(-30, 0, 0),
 			},
-			CrouchWalk = { -- holding C without sprinting: low crouch to get under things
-				LowerTorso = Vector3.new(-15, 0, 0),
-				UpperTorso = Vector3.new(-10, 0, 0),
+			-- Crouching (C without sprinting). The lean is in the chest (UpperTorso), not the hips,
+			-- so the legs stay where the knee angles put them; the crouch height is worked out
+			-- from these leg angles so the feet sit exactly on the floor.
+			CrouchIdle = {
+				UpperTorso = Vector3.new(-25, 0, 0),
 				Head = Vector3.new(20, 0, 0),
-				RightUpperLeg = Vector3.new(75, 0, 0),
-				RightLowerLeg = Vector3.new(-120, 0, 0),
-				LeftUpperLeg = Vector3.new(75, 0, 0),
-				LeftLowerLeg = Vector3.new(-120, 0, 0),
+				RightUpperLeg = Vector3.new(80, 0, 0),
+				RightLowerLeg = Vector3.new(-130, 0, 0),
+				LeftUpperLeg = Vector3.new(80, 0, 0),
+				LeftLowerLeg = Vector3.new(-130, 0, 0),
 				RightUpperArm = Vector3.new(25, 0, 10),
+				RightLowerArm = Vector3.new(-40, 0, 0),
 				LeftUpperArm = Vector3.new(25, 0, -10),
+				LeftLowerArm = Vector3.new(-40, 0, 0),
+			},
+			-- One step of the crouch walk (right leg forward); the other step is its mirror.
+			-- Each leg's height matches the idle pose's, so the feet stay on the floor.
+			CrouchStep = {
+				UpperTorso = Vector3.new(-25, 0, 0),
+				Head = Vector3.new(20, 0, 0),
+				RightUpperLeg = Vector3.new(95, 0, 0),
+				RightLowerLeg = Vector3.new(-125, 0, 0),
+				LeftUpperLeg = Vector3.new(65, 0, 0),
+				LeftLowerLeg = Vector3.new(-130, 0, 0),
+				RightUpperArm = Vector3.new(5, 0, 10),
+				RightLowerArm = Vector3.new(-40, 0, 0),
+				LeftUpperArm = Vector3.new(45, 0, -10),
+				LeftLowerArm = Vector3.new(-40, 0, 0),
 			},
 			Crouch = { -- frame 7: rising through a crouch
 				LowerTorso = Vector3.new(-10, 0, 0),

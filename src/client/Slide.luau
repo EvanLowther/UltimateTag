@@ -106,6 +106,7 @@ function Slide.start()
 			if hum.WalkSpeed > 0 then
 				hum.WalkSpeed = settings.CrouchSpeed
 			end
+			activePose.crouchMove(MoveState.flat(parts.root.AssemblyLinearVelocity).Magnitude)
 			if not keyHeld and not blockedAbove() then
 				stop(false)
 			end
