@@ -94,6 +94,10 @@ function FirstPersonBody.start()
 			if not head or not head:IsA("BasePart") then
 				return
 			end
+			-- During a roll the head circles the waist; hold the camera still instead of looping.
+			if MoveState.busy == "Roll" then
+				return
+			end
 			local headLocal = parts.root.CFrame:PointToObjectSpace(head.Position)
 			-- Learn the resting head position the first time you're standing still on the ground.
 			if not restHead then

@@ -177,6 +177,25 @@ function Viewmodel.start()
 			local pushRight, pushLeft = sides(pose("MantlePush"))
 			targetRight, targetLeft =
 				grabRight:Lerp(pushRight, progress), grabLeft:Lerp(pushLeft, progress)
+		elseif busy == "Climb" then
+			-- Hands reach up the wall one after the other.
+			targetRight, targetLeft = sides(pose("Climb"))
+			local reach = math.sin(now * settings.ClimbRate) * settings.ClimbSwing
+			targetRight = CFrame.new(0, reach, 0) * targetRight
+			targetLeft = CFrame.new(0, -reach, 0) * targetLeft
+		elseif busy == "Hang" or busy == "BarSwing" then
+			targetRight, targetLeft = sides(pose("Hang"))
+		elseif busy == "WallRun" then
+			-- The wall-side hand trails on the wall; the other is in the air pose.
+			local handRight, handLeft = sides(pose("WallRunHand"))
+			local airRight, airLeft = sides(pose("Air"))
+			if MoveState.wallSide == "Right" then
+				targetRight, targetLeft = handRight, airLeft
+			else
+				targetRight, targetLeft = airRight, handLeft
+			end
+		elseif busy == "Roll" then
+			targetRight, targetLeft = sides(pose("Roll"))
 		elseif busy == "Vault" then
 			targetRight, targetLeft = sides(pose("Vault"))
 		elseif busy == "Slide" then

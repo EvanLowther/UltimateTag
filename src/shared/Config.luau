@@ -330,6 +330,58 @@ local Config = {
 		StepTime = 0.18, -- seconds per climbing or running step in the animations
 	},
 
+	BarSwing = {
+		-- Jump up to a bar (any part with the "SwingBar" attribute, a cylinder lying along its X
+		-- axis) to grab it. You swing like a pendulum; hold forward to pump higher, press jump to
+		-- let go with the swing's momentum, press the slide key to drop.
+		GrabReach = 1.6, -- studs between your raised hands and the bar that counts as a grab
+		HandHeight = 2.3, -- studs above your body center where your hands are, reaching up
+		Radius = 2.6, -- hanging: your body center sits this far below the bar
+		PumpAccel = 3, -- swing speed (radians/s per second) added while holding forward
+		Damping = 0.12, -- fraction of swing speed lost per second
+		MaxAngle = 100, -- degrees: the swing never goes higher than this either way
+		ReleaseBoost = 1.15, -- letting go: your swing speed x this
+		ReleaseUp = 14, -- letting go: extra studs/s upward
+		Cooldown = 0.5, -- seconds before you can grab the same bar again
+		Poses = {
+			Hang = { -- both hands on the bar, legs together
+				RightUpperArm = Vector3.new(178, 0, 6),
+				RightLowerArm = Vector3.new(0, 0, 0),
+				LeftUpperArm = Vector3.new(178, 0, -6),
+				LeftLowerArm = Vector3.new(0, 0, 0),
+				RightUpperLeg = Vector3.new(15, 0, 0),
+				RightLowerLeg = Vector3.new(-20, 0, 0),
+				LeftUpperLeg = Vector3.new(15, 0, 0),
+				LeftLowerLeg = Vector3.new(-20, 0, 0),
+			},
+		},
+	},
+
+	LandingRoll = {
+		-- Land from a big drop while moving and you roll forward, keeping your speed, instead
+		-- of a hard landing. Holding the slide key as you land slides instead.
+		MinFallSpeed = 55, -- studs/s downward at landing that counts as a big drop (about 8 studs)
+		MinMoveSpeed = 6, -- studs/s sideways you need to be moving to roll
+		Time = 0.5, -- seconds the roll takes
+		KeepSpeed = 0.95, -- fraction of your landing speed kept through the roll
+		MinSpeed = 18, -- a roll always carries you at least this fast
+		CameraDip = -22, -- first person: degrees the view tips down during the roll
+		Poses = {
+			Tuck = { -- curled up: knees to chest, arms wrapped forward
+				UpperTorso = Vector3.new(-30, 0, 0),
+				Head = Vector3.new(-25, 0, 0),
+				RightUpperArm = Vector3.new(70, 0, 10),
+				RightLowerArm = Vector3.new(-90, 0, 0),
+				LeftUpperArm = Vector3.new(70, 0, -10),
+				LeftLowerArm = Vector3.new(-90, 0, 0),
+				RightUpperLeg = Vector3.new(100, 0, 0),
+				RightLowerLeg = Vector3.new(-130, 0, 0),
+				LeftUpperLeg = Vector3.new(100, 0, 0),
+				LeftLowerLeg = Vector3.new(-130, 0, 0),
+			},
+		},
+	},
+
 	Vault = {
 		-- Press jump while sprinting at a low obstacle: hands on the top, then launched up and out.
 		MinHeight = 1.5, -- studs above your feet: lower than this, just run or jump
@@ -415,6 +467,8 @@ local Config = {
 		SprintBob = 2, -- swing multiplier while sprinting
 		BobRate = 9, -- swing speed at walk speed
 		WallPushTime = 0.3, -- seconds the wall-bounce hand stays out
+		ClimbSwing = 0.35, -- studs the climbing hands move up and down
+		ClimbRate = 17, -- how fast the climbing hands alternate
 		Poses = {
 			Idle = {
 				Right = {
@@ -469,6 +523,34 @@ local Config = {
 				Right = {
 					Position = Vector3.new(0.45, -0.3, -1.3),
 					Rotation = Vector3.new(8, 8, 0),
+				},
+			},
+			-- Wall climb: hands reach up the wall one after the other (ClimbSwing studs apart).
+			Climb = {
+				Right = {
+					Position = Vector3.new(0.45, 0.2, -1.15),
+					Rotation = Vector3.new(70, 6, 0),
+				},
+			},
+			-- Hanging at the top of a wall or on a bar: both hands up gripping.
+			Hang = {
+				Right = {
+					Position = Vector3.new(0.4, 0.55, -1.05),
+					Rotation = Vector3.new(80, 8, 0),
+				},
+			},
+			-- Wall run: the wall-side hand trails on the wall (written for a wall on the right).
+			WallRunHand = {
+				Right = {
+					Position = Vector3.new(0.9, -0.3, -1),
+					Rotation = Vector3.new(5, -60, -15),
+				},
+			},
+			-- Landing roll: arms tucked in.
+			Roll = {
+				Right = {
+					Position = Vector3.new(0.35, -0.8, -0.95),
+					Rotation = Vector3.new(30, 25, 0),
 				},
 			},
 			MantlePush = {
