@@ -1,31 +1,46 @@
 --!strict
--- Your body always faces where you're looking (left and right only), like Apex: in first and
--- third person, standing, running and during every move. Roblox's own turning
--- (Humanoid.AutoRotate) is switched off for good, and this sets the facing every frame.
--- Movement keys already follow the camera, so moving and looking always line up.
--- A move can point the body elsewhere through MoveState.faceDirection (wall climb, wall run).
+-- Which way your body faces.
+--   Third person (the default, like the reference video): your body turns toward the way you
+--   run, using Roblox's own smooth turning (Humanoid.AutoRotate).
+--   First person: your body faces where you look.
+--   During a move that sets MoveState.faceDirection (climb faces the wall, wall run and swing
+--   face along their path, vault faces the hop), the body turns smoothly to that instead.
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local MoveState = require(script.Parent.MoveState)
+local ViewMode = require(script.Parent.ViewMode)
 
 local FaceCamera = {}
 
 function FaceCamera.start()
 	local camera = workspace.CurrentCamera
+	local turnRate = Config.Camera.TurnRate
 	-- After the camera updates, so the body matches this frame's view.
-	RunService:BindToRenderStep("FaceCamera", Enum.RenderPriority.Camera.Value + 1, function()
+	RunService:BindToRenderStep("FaceCamera", Enum.RenderPriority.Camera.Value + 1, function(dt)
 		local parts = MoveState.parts()
 		if not parts then
 			return
 		end
-		parts.humanoid.AutoRotate = false
-		local look = MoveState.faceDirection or camera.CFrame.LookVector
-		local flat = Vector3.new(look.X, 0, look.Z)
+		local hum, root = parts.humanoid, parts.root
+		local direction = MoveState.faceDirection
+		if not direction and ViewMode.isFirstPerson() then
+			direction = camera.CFrame.LookVector
+		end
+		if not direction then
+			hum.AutoRotate = true -- third person, no move: Roblox turns you toward your running
+			return
+		end
+		hum.AutoRotate = false
+		local flat = Vector3.new(direction.X, 0, direction.Z)
 		if flat.Magnitude < 1e-3 then
 			return
 		end
-		local root = parts.root
-		root.CFrame = CFrame.lookAt(root.Position, root.Position + flat)
+		-- Turn smoothly (instantly in first person, where the body is hidden anyway).
+		local target = CFrame.lookAt(root.Position, root.Position + flat)
+		local blend = if ViewMode.isFirstPerson() then 1 else 1 - math.exp(-turnRate * dt)
+		root.CFrame = root.CFrame:Lerp(target, blend)
 	end)
 end
 

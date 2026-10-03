@@ -1,17 +1,17 @@
 --!strict
--- Light Source-style air strafing. While you're in the air and no move is running, this owns
--- your sideways velocity: holding a movement key couples your momentum to your view (turn the
--- camera and your path turns with it), your keys (which follow the camera) turn your path
--- toward where you steer without losing speed, and steering backwards brakes. Below walk speed you get
--- normal air control. Without this, Roblox's own air control drags you back to walk speed,
--- which would eat the speed from slide-jumps, vaults and wall bounces.
+-- Keeps your speed in the air. Roblox's own air control drags you back to walk speed, which
+-- would kill the momentum from wall runs, swings, slides and vaults. While you're in the air and
+-- no move is running, this owns your sideways velocity: you keep your speed, your movement keys
+-- turn your path toward where you steer (Config.AirMomentum.TurnRate), and steering backwards
+-- brakes. Below walk speed you get normal air control. It also remembers the speed you land
+-- with, so a slide right after landing can keep it.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local MoveState = require(script.Parent.MoveState)
 
-local AirStrafe = {}
+local AirMomentum = {}
 
 -- Turns `v` toward the unit direction `target` by at most `maxAngle` radians, keeping its length.
 local function turnToward(v: Vector3, target: Vector3, maxAngle: number): Vector3
@@ -28,9 +28,8 @@ local function turnToward(v: Vector3, target: Vector3, maxAngle: number): Vector
 	return CFrame.fromAxisAngle(axis.Unit, maxAngle):VectorToWorldSpace(from) * speed
 end
 
-function AirStrafe.start()
-	local settings = Config.AirStrafe
-	local lastYaw: number? = nil -- camera direction last frame, for look coupling
+function AirMomentum.start()
+	local settings = Config.AirMomentum
 
 	RunService.Heartbeat:Connect(function(dt)
 		local parts = MoveState.parts()
@@ -41,7 +40,6 @@ function AirStrafe.start()
 				MoveState.landTime = os.clock()
 			end
 			MoveState.airVelocity = nil
-			lastYaw = nil
 			return
 		end
 		local hum, root = parts.humanoid, parts.root
@@ -55,16 +53,6 @@ function AirStrafe.start()
 
 		local wish = MoveState.flat(hum.MoveDirection)
 		local walk = hum.WalkSpeed
-
-		-- Look coupling: while you hold a movement key, your momentum turns with your view.
-		-- Flicking the camera while tapping a key redirects you instantly (tap-strafe).
-		-- Let go of the keys and you keep your line wherever you look.
-		if lastYaw and wish.Magnitude > 0.1 then
-			current =
-				MoveState.turnFlat(current, MoveState.yawChange(lastYaw) * settings.LookCoupling)
-		end
-		lastYaw = MoveState.cameraYaw()
-
 		if wish.Magnitude > 0.1 then
 			wish = wish.Unit
 			if current.Magnitude < walk then
@@ -89,4 +77,4 @@ function AirStrafe.start()
 	end)
 end
 
-return AirStrafe
+return AirMomentum

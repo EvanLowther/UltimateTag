@@ -152,6 +152,9 @@ function BarSwing.start()
 		if not parts or MoveState.isGrounded(parts.humanoid) then
 			return
 		end
+		-- Anywhere along your upper body, from just below your chest to your raised hands, can
+		-- catch a bar.
+		local chest = parts.root.Position - Vector3.new(0, 1, 0)
 		local hands = parts.root.Position + Vector3.new(0, settings.HandHeight, 0)
 		for _, bar in bars do
 			if
@@ -160,10 +163,8 @@ function BarSwing.start()
 				continue
 			end
 			local grip = closestOnBar(bar, hands)
-			if
-				(hands - grip).Magnitude <= settings.GrabReach
-				and grip.Y > parts.root.Position.Y
-			then
+			local nearest = Vector3.new(chest.X, math.clamp(grip.Y, chest.Y, hands.Y), chest.Z)
+			if (nearest - grip).Magnitude <= settings.GrabReach and grip.Y > chest.Y then
 				swing(parts, bar, grip)
 				return
 			end

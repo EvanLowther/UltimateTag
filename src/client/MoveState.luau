@@ -1,14 +1,13 @@
 --!strict
 -- The one source of movement state on this client, shared by every move module:
---   busy:        the move in progress ("Slide", "Crouch", "Vault", "Mantle", "WallBounce",
---                "Climb", "Hang", "WallRun", "BarSwing", "Roll"), or nil. One at a time.
---   airVelocity: the sideways speed being carried through the air (owned by AirStrafe).
---   landVelocity / landTime: the air speed you landed with (set by AirStrafe).
+--   busy:        the move in progress ("Slide", "Crouch", "Vault", "Mantle", "Climb", "Hang",
+--                "WallRun", "BarSwing", "Roll"), or nil. One at a time.
+--   airVelocity: the sideways speed being carried through the air (owned by AirMomentum).
+--   landVelocity / landTime: the air speed you landed with (set by AirMomentum).
 --   parts():     the local character's model, humanoid and root part, if alive.
 --   isGrounded(), flat(): the standard checks, so no module re-implements them.
 --   drive():     a LinearVelocity that takes over the character's velocity during a move.
 --   launch():    throws the character up and out (vault and mantle launches).
---   cameraYaw(), yawChange(), turnFlat(): look coupling (momentum turns with your view).
 -- Moves keep their own small Heartbeat that only runs while they need it (no central loop).
 local Players = game:GetService("Players")
 
@@ -16,16 +15,14 @@ export type Parts = { character: Model, humanoid: Humanoid, root: BasePart }
 
 local MoveState = {
 	busy = nil :: string?, -- name of the move in progress, or nil
-	-- Sideways velocity AirStrafe carries through the air. A move that changes your velocity
-	-- mid-air (like a wall bounce) sets this so air strafing continues from the new speed.
+	-- Sideways velocity AirMomentum carries through the air. A move that changes your velocity
+	-- mid-air (a wall kick, a swing release) sets this so the air carries on from the new speed.
 	airVelocity = nil :: Vector3?,
 	-- Your sideways velocity the moment you last landed, and when. Lets a slide right after
 	-- landing keep your air speed before ground friction eats it.
 	landVelocity = nil :: Vector3?,
 	landTime = -math.huge,
 	launchTime = -math.huge, -- when the last launch (vault or mantle) happened
-	bounceTime = -math.huge, -- when the last wall bounce happened
-	bounceHand = "Right", -- which hand(s) pushed off the wall: "Left", "Right" or "Both"
 	wallSide = "Left", -- during a wall run: which side of your body the wall is on
 	-- A move can set this to point the body somewhere other than the camera (FaceCamera uses
 	-- it): at the wall while climbing, along the wall while wall running. nil = face the camera.
@@ -60,23 +57,6 @@ function MoveState.launch(root: BasePart, dir: Vector3, forward: number, up: num
 	root.AssemblyLinearVelocity = Vector3.new(out.X, up, out.Z)
 	MoveState.airVelocity = out
 	MoveState.launchTime = os.clock()
-end
-
--- Which way the camera faces, as an angle around the vertical axis (radians, left is positive).
-function MoveState.cameraYaw(): number
-	local look = workspace.CurrentCamera.CFrame.LookVector
-	return math.atan2(-look.X, -look.Z)
-end
-
--- How far the camera turned since `lastYaw`, wrapped to -pi..pi. Moves use this to bend your
--- momentum with your view ("look coupling"), so turning your view redirects you, like Apex.
-function MoveState.yawChange(lastYaw: number): number
-	return (MoveState.cameraYaw() - lastYaw + math.pi) % (2 * math.pi) - math.pi
-end
-
--- Turns a sideways vector around the vertical axis by `angle` radians (left is positive).
-function MoveState.turnFlat(v: Vector3, angle: number): Vector3
-	return CFrame.Angles(0, angle, 0):VectorToWorldSpace(v)
 end
 
 -- The sideways part of a vector (Y set to 0).

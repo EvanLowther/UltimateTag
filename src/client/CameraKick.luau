@@ -1,7 +1,7 @@
 --!strict
 -- Camera feel layered on top of the normal camera each frame (the camera rebuilds its own
 -- position every frame, so nothing piles up):
---   kick(): a short jolt, a roll and a pitch that snap in fast and settle back (wall bounce).
+--   kick(): a short jolt, a roll and a pitch that snap in fast and settle back (landing roll).
 --   lean(): a held roll that eases toward a target and stays there (wall running).
 local RunService = game:GetService("RunService")
 

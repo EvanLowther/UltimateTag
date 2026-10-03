@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.20.0",
+	Version = "0.21.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -11,7 +11,7 @@ local Config = {
 
 	Sprint = {
 		Key = Enum.KeyCode.LeftShift, -- hold to sprint
-		Multiplier = 1.6, -- sprint speed = current walk speed x this
+		Multiplier = 1.7, -- sprint speed = current walk speed x this (about 30 studs/s)
 		FovBoost = 8, -- degrees of extra field of view while sprinting (0 turns it off)
 		FovTime = 0.2, -- seconds to ease the field of view in and out
 	},
@@ -26,7 +26,6 @@ local Config = {
 		CrouchSpeed = 8, -- walk speed while crouched
 		CrouchHipFactor = 0.35, -- crouched hips sit at this fraction of normal height (fits under slide bars)
 		Steer = 2, -- how much your movement keys turn a slide (higher = more control)
-		LookCoupling = 0.4, -- how much a slide turns with your view (1 = follows your view fully)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
 		DropTime = 0.15, -- seconds from the drop pose into the full slide pose
@@ -100,156 +99,13 @@ local Config = {
 		RecoverStandTime = 0.3, -- ... standing (frame 8)
 	},
 
-	AirStrafe = {
-		-- In the air, your movement keys (camera-relative) bend your path without losing speed.
-		LookCoupling = 0.85, -- holding a movement key: your air momentum turns this much with your view (1 = fully)
-		TurnRate = 140, -- degrees per second your air path can turn toward where you steer
-		BrakeRate = 20, -- studs/s per second you slow down when steering backwards
-		AirControl = 40, -- studs/s per second you can speed up while slower than walk speed
+	AirMomentum = {
+		-- In the air, you keep your speed (Roblox's own air control would drag you back to walk
+		-- speed and kill the momentum from wall runs, swings and slides). Your keys steer it.
+		TurnRate = 160, -- degrees per second your air path can turn toward where you steer
+		BrakeRate = 25, -- studs/s per second you slow down when steering backwards
+		AirControl = 45, -- studs/s per second you can speed up while slower than walk speed
 		WallStop = 0.5, -- if a wall cuts your speed below this fraction, carry the slower speed
-	},
-
-	WallBounce = {
-		-- Touch a wall in the air and press jump right away to push off it.
-		Reach = 2, -- studs from your body that counts as touching a wall
-		Window = 0.2, -- seconds after touching a wall that a jump still bounces
-		OutSpeed = 26, -- studs/s pushed away from the wall
-		UpSpeed = 38, -- studs/s upward
-		KeepAlong = 0.8, -- fraction of your speed along the wall that you keep
-		Cooldown = 0.25, -- seconds between bounces
-		KickRoll = 9, -- degrees the camera rolls away from the wall
-		KickPitch = 4, -- degrees the camera tips up
-		KickTime = 0.35, -- seconds for the camera to settle
-		HitSound = "rbxasset://sounds/action_jump_land.mp3", -- touching the wall
-		PushSound = "rbxasset://sounds/action_jump.mp3", -- pushing off
-		PlantTime = 0.07, -- seconds you stick to the wall (sliding along it) before the push fires
-		-- Third-person animation in four beats. Only the limbs listed move; the rest keep falling.
-		--   Reach:  limbs extend toward the wall just before contact.
-		--   Absorb: elbow and knee fold as you take the hit, chest leans in.
-		--   Push:   everything snaps straight (a bit past) as you explode off, chest leans away.
-		--   Follow: limbs relax and trail back into the fall.
-		-- Side poses are written for a wall on your LEFT and mirrored for the right. The arm and
-		-- leg away from the wall swing the other way to balance.
-		AbsorbAt = 0.05, -- seconds into the bounce for each beat
-		PushAt = 0.12,
-		FollowAt = 0.3,
-		FadeTime = 0.25, -- seconds to fade back to the normal animation after Follow
-		Poses = {
-			SideReach = {
-				UpperTorso = Vector3.new(0, 0, 6),
-				LeftUpperArm = Vector3.new(20, 0, -80),
-				LeftLowerArm = Vector3.new(-10, 0, 0),
-				LeftUpperLeg = Vector3.new(20, 0, -25),
-				LeftLowerLeg = Vector3.new(-40, 0, 0),
-				RightUpperArm = Vector3.new(10, 0, 10),
-				RightUpperLeg = Vector3.new(10, 0, 0),
-				RightLowerLeg = Vector3.new(-20, 0, 0),
-			},
-			SideAbsorb = {
-				UpperTorso = Vector3.new(0, 0, 12),
-				LeftUpperArm = Vector3.new(15, 0, -70),
-				LeftLowerArm = Vector3.new(-75, 0, 0),
-				LeftUpperLeg = Vector3.new(25, 0, -45),
-				LeftLowerLeg = Vector3.new(-90, 0, 0),
-				RightUpperArm = Vector3.new(20, 0, 25),
-				RightUpperLeg = Vector3.new(15, 0, 0),
-				RightLowerLeg = Vector3.new(-35, 0, 0),
-			},
-			SidePush = {
-				UpperTorso = Vector3.new(0, 0, -10),
-				Head = Vector3.new(0, 0, -8),
-				LeftUpperArm = Vector3.new(5, 0, -95),
-				LeftLowerArm = Vector3.new(0, 0, 0),
-				LeftUpperLeg = Vector3.new(0, 0, -35),
-				LeftLowerLeg = Vector3.new(0, 0, 0),
-				RightUpperArm = Vector3.new(30, 0, 45),
-				RightUpperLeg = Vector3.new(30, 0, 10),
-				RightLowerLeg = Vector3.new(-50, 0, 0),
-			},
-			SideFollow = {
-				UpperTorso = Vector3.new(0, 0, -5),
-				Head = Vector3.new(0, 0, -4),
-				LeftUpperArm = Vector3.new(-10, 0, -50),
-				LeftLowerArm = Vector3.new(-30, 0, 0),
-				LeftUpperLeg = Vector3.new(-10, 0, -15),
-				LeftLowerLeg = Vector3.new(-40, 0, 0),
-				RightUpperArm = Vector3.new(20, 0, 25),
-				RightUpperLeg = Vector3.new(20, 0, 5),
-				RightLowerLeg = Vector3.new(-40, 0, 0),
-			},
-			FrontReach = {
-				UpperTorso = Vector3.new(-5, 0, 0),
-				RightUpperArm = Vector3.new(85, 0, 8),
-				RightLowerArm = Vector3.new(-15, 0, 0),
-				LeftUpperArm = Vector3.new(85, 0, -8),
-				LeftLowerArm = Vector3.new(-15, 0, 0),
-				RightUpperLeg = Vector3.new(40, 0, 0),
-				RightLowerLeg = Vector3.new(-50, 0, 0),
-			},
-			FrontAbsorb = {
-				UpperTorso = Vector3.new(-12, 0, 0),
-				Head = Vector3.new(10, 0, 0),
-				RightUpperArm = Vector3.new(80, 0, 10),
-				RightLowerArm = Vector3.new(-80, 0, 0),
-				LeftUpperArm = Vector3.new(80, 0, -10),
-				LeftLowerArm = Vector3.new(-80, 0, 0),
-				RightUpperLeg = Vector3.new(75, 0, 0),
-				RightLowerLeg = Vector3.new(-100, 0, 0),
-			},
-			FrontPush = {
-				UpperTorso = Vector3.new(10, 0, 0),
-				RightUpperArm = Vector3.new(70, 0, 10),
-				RightLowerArm = Vector3.new(0, 0, 0),
-				LeftUpperArm = Vector3.new(70, 0, -10),
-				LeftLowerArm = Vector3.new(0, 0, 0),
-				RightUpperLeg = Vector3.new(20, 0, 0),
-				RightLowerLeg = Vector3.new(-5, 0, 0),
-				LeftUpperLeg = Vector3.new(-15, 0, 0),
-				LeftLowerLeg = Vector3.new(-20, 0, 0),
-			},
-			FrontFollow = {
-				UpperTorso = Vector3.new(5, 0, 0),
-				RightUpperArm = Vector3.new(40, 0, 10),
-				RightLowerArm = Vector3.new(-30, 0, 0),
-				LeftUpperArm = Vector3.new(40, 0, -10),
-				LeftLowerArm = Vector3.new(-30, 0, 0),
-				RightUpperLeg = Vector3.new(15, 0, 0),
-				RightLowerLeg = Vector3.new(-40, 0, 0),
-				LeftUpperLeg = Vector3.new(10, 0, 0),
-				LeftLowerLeg = Vector3.new(-40, 0, 0),
-			},
-			BackReach = {
-				UpperTorso = Vector3.new(-5, 0, 0),
-				RightUpperLeg = Vector3.new(-25, 0, 0),
-				RightLowerLeg = Vector3.new(-40, 0, 0),
-			},
-			BackAbsorb = {
-				UpperTorso = Vector3.new(-15, 0, 0),
-				RightUpperLeg = Vector3.new(-40, 0, 0),
-				RightLowerLeg = Vector3.new(-95, 0, 0),
-				LeftUpperLeg = Vector3.new(10, 0, 0),
-				LeftLowerLeg = Vector3.new(-40, 0, 0),
-				RightUpperArm = Vector3.new(30, 0, 10),
-				LeftUpperArm = Vector3.new(30, 0, -10),
-			},
-			BackPush = {
-				UpperTorso = Vector3.new(-5, 0, 0),
-				RightUpperLeg = Vector3.new(-35, 0, 0),
-				RightLowerLeg = Vector3.new(-5, 0, 0),
-				LeftUpperLeg = Vector3.new(20, 0, 0),
-				LeftLowerLeg = Vector3.new(-30, 0, 0),
-				RightUpperArm = Vector3.new(50, 0, 15),
-				LeftUpperArm = Vector3.new(50, 0, -15),
-			},
-			BackFollow = {
-				RightUpperLeg = Vector3.new(-10, 0, 0),
-				RightLowerLeg = Vector3.new(-40, 0, 0),
-				LeftUpperLeg = Vector3.new(15, 0, 0),
-				LeftLowerLeg = Vector3.new(-35, 0, 0),
-				RightUpperArm = Vector3.new(25, 0, 10),
-				LeftUpperArm = Vector3.new(25, 0, -10),
-			},
-		},
 	},
 
 	WallRun = {
@@ -260,16 +116,16 @@ local Config = {
 		ClimbAngle = 40, -- heading within this many degrees of straight at the wall = climb
 		RunAngle = 50, -- heading at least this many degrees from straight at the wall = wall run
 		Cooldown = 0.4, -- seconds before you can grab the same wall again
-		ClimbSpeed = 24, -- studs/s up the wall at the start of a climb (slows to 0 over ClimbTime)
+		ClimbSpeed = 30, -- studs/s up the wall at the start of a climb (slows to 0 over ClimbTime)
 		ClimbTime = 0.8,
 		HangTime = 4, -- seconds you can hang at the top before dropping
 		HangMin = 0.15, -- seconds you hang before a held forward key climbs you over
-		RunSpeed = 26, -- slowest wall run (studs/s); faster entries keep their speed
-		RunTime = 1.3, -- longest wall run in seconds
+		RunSpeed = 30, -- slowest wall run (studs/s); faster entries keep their speed
+		RunTime = 1.6, -- longest wall run in seconds
 		RunLift = 8, -- studs/s upward at the start of a wall run
-		RunSink = 7, -- studs/s downward by the end of a wall run
-		JumpOut = 24, -- kicking off the wall: studs/s away from it
-		JumpUp = 36, -- kicking off the wall: studs/s up
+		RunSink = 6, -- studs/s downward by the end of a wall run
+		JumpOut = 28, -- kicking off the wall: studs/s away from it
+		JumpUp = 40, -- kicking off the wall: studs/s up
 		KeepAlong = 0.9, -- kicking off a wall run: fraction of your run speed you keep
 		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
 		-- Third-person poses. Wall-run poses are written for a wall on your LEFT (mirrored for the right).
@@ -327,14 +183,14 @@ local Config = {
 				RightLowerLeg = Vector3.new(-70, 0, 0),
 			},
 		},
-		StepTime = 0.18, -- seconds per climbing or running step in the animations
+		StepTime = 0.14, -- seconds per climbing or running step in the animations
 	},
 
 	BarSwing = {
 		-- Jump up to a bar (any part with the "SwingBar" attribute, a cylinder lying along its X
 		-- axis) to grab it. You swing like a pendulum; hold forward to pump higher, press jump to
 		-- let go with the swing's momentum, press the slide key to drop.
-		GrabReach = 1.6, -- studs between your raised hands and the bar that counts as a grab
+		GrabReach = 2.2, -- studs from the bar to anywhere between just below your chest and your raised hands
 		HandHeight = 2.3, -- studs above your body center where your hands are, reaching up
 		Radius = 2.6, -- hanging: your body center sits this far below the bar
 		PumpAccel = 3, -- swing speed (radians/s per second) added while holding forward
@@ -389,30 +245,29 @@ local Config = {
 		Lifetime = 0.22, -- seconds a streak lasts
 		Width = 0.18, -- studs
 		Color = Color3.fromRGB(255, 255, 255),
-		Moves = { "Slide", "Vault", "Climb", "WallRun", "WallBounce", "BarSwing", "Roll" }, -- always show during these
+		Moves = { "Slide", "Vault", "Climb", "WallRun", "BarSwing", "Roll" }, -- always show during these
 	},
 
 	Vault = {
-		-- Press jump while sprinting at a low obstacle: hands on the top, then launched up and out.
-		MinHeight = 1.5, -- studs above your feet: lower than this, just run or jump
-		MaxHeight = 4.2, -- studs above your feet: taller than this, mantle instead
-		MaxDepth = 4, -- obstacles thicker than this are platforms, not vaults
-		Reach = 5, -- how far ahead (studs) an obstacle can be when you press jump
-		Clearance = 0.3, -- extra studs the body clears the top by
-		PlantTime = 0.15, -- longest it takes to get your hands onto the top before the launch
-		LaunchForward = 50, -- studs/s forward at launch (about 25 to 30 studs of flight)
-		LaunchUp = 50, -- studs/s upward at launch (equal to forward = about a 45 degree arc)
-		MaxLaunchSpeed = 60, -- coming in faster than LaunchForward launches faster, up to this
-		HipHeightFactor = 0.4, -- legs tuck up to this fraction of normal hip height
+		-- Automatic, like the reference video: run into a low obstacle while sprinting and you hop
+		-- over it at full speed (thin obstacles) or step up onto it (deep ones). No key, no pause.
+		MinHeight = 1.2, -- studs above your feet: lower than this, you just run over it
+		MaxHeight = 4.5, -- studs above your feet: taller than this is a climb or mantle
+		MaxDepth = 4, -- obstacles thinner than this are hopped over; deeper ones are stepped onto
+		LookAhead = 0.12, -- seconds ahead (at your speed) to spot an obstacle, plus 1.5 studs
+		Clearance = 0.4, -- extra studs the body clears the top by
+		MinTime = 0.18, -- shortest a hop can take, in seconds
+		Landing = 2, -- studs past the far side (or onto the top) where the hop lands
+		HipHeightFactor = 0.5, -- legs tuck up to this fraction of normal hip height
 		Poses = {
-			Vault = { -- hands down on the top, legs tucked up
-				LowerTorso = Vector3.new(-20, 0, 0),
-				Head = Vector3.new(15, 0, 0),
-				RightUpperArm = Vector3.new(70, 0, 10),
-				LeftUpperArm = Vector3.new(70, 0, -10),
-				RightUpperLeg = Vector3.new(80, 0, 0),
-				RightLowerLeg = Vector3.new(-100, 0, 0),
-				LeftUpperLeg = Vector3.new(80, 0, 0),
+			Vault = { -- one hand planting on the top, legs tucked to the side
+				LowerTorso = Vector3.new(-15, 0, 10),
+				RightUpperArm = Vector3.new(60, 0, 15),
+				RightLowerArm = Vector3.new(-10, 0, 0),
+				LeftUpperArm = Vector3.new(20, 0, -40),
+				RightUpperLeg = Vector3.new(70, 0, -25),
+				RightLowerLeg = Vector3.new(-90, 0, 0),
+				LeftUpperLeg = Vector3.new(60, 0, -20),
 				LeftLowerLeg = Vector3.new(-100, 0, 0),
 			},
 		},
@@ -424,14 +279,14 @@ local Config = {
 		MinAbove = 1.6, -- ledge top must be at least this far above your feet
 		MaxAbove = 3.5, -- and at most this far above the middle of your body (hands up)
 		Forward = 1.5, -- studs past the edge where you end up standing
-		UpTime = 0.35, -- seconds to pull up
-		OverTime = 0.2, -- seconds to climb over the edge
-		Cooldown = 0.4, -- seconds before you can mantle again
+		UpTime = 0.25, -- seconds to pull up
+		OverTime = 0.15, -- seconds to climb over the edge
+		Cooldown = 0.25, -- seconds before you can mantle again
 		MaxRiseSpeed = 8, -- only grab once your jump has nearly peaked (rising slower than this)
 		-- Mantle Boost: press jump inside this window (seconds after the climb starts) to launch
 		-- up and over. Too early and you just climb. An on-screen indicator shows the timing.
-		BoostWindowStart = 0.22,
-		BoostWindowEnd = 0.4,
+		BoostWindowStart = 0.14,
+		BoostWindowEnd = 0.3,
 		BoostForward = 68, -- studs/s forward at the boost (about 38 studs of flight)
 		BoostUp = 55, -- studs/s upward at the boost
 		Poses = {
@@ -456,9 +311,10 @@ local Config = {
 	},
 
 	Camera = {
-		StartFirstPerson = true, -- the real game is first person
+		StartFirstPerson = false, -- third person like the reference video (V toggles first person)
 		AllowToggle = true, -- testing: ToggleKey switches to third person and back
 		ToggleKey = Enum.KeyCode.V,
+		TurnRate = 18, -- third person: how quickly your body turns to face a move's direction
 		ThirdPersonDistance = 12, -- studs the camera pulls back when switching to third person
 		BodyForward = 0.4, -- first person: studs the camera sits ahead of the body
 		HeadFollow = 14, -- first person: how quickly the camera follows your head (higher = tighter)
@@ -476,7 +332,6 @@ local Config = {
 		BobAmount = 0.04, -- studs of arm swing while running
 		SprintBob = 2, -- swing multiplier while sprinting
 		BobRate = 9, -- swing speed at walk speed
-		WallPushTime = 0.3, -- seconds the wall-bounce hand stays out
 		ClimbSwing = 0.35, -- studs the climbing hands move up and down
 		ClimbRate = 17, -- how fast the climbing hands alternate
 		Poses = {
@@ -518,21 +373,6 @@ local Config = {
 				Right = {
 					Position = Vector3.new(0.48, 0.25, -1.35),
 					Rotation = Vector3.new(35, 6, 0),
-				},
-			},
-			-- Wall bounce: the hand on the wall's side shoots out and plants on the wall.
-			-- Written for the right hand; mirrored when the wall is on your left.
-			WallPush = {
-				Right = {
-					Position = Vector3.new(0.85, -0.25, -0.95),
-					Rotation = Vector3.new(10, -65, -20),
-				},
-			},
-			-- Wall in front: both hands push on it.
-			WallPushFront = {
-				Right = {
-					Position = Vector3.new(0.45, -0.3, -1.3),
-					Rotation = Vector3.new(8, 8, 0),
 				},
 			},
 			-- Wall climb: hands reach up the wall one after the other (ClimbSwing studs apart).
@@ -614,8 +454,8 @@ local Config = {
 	},
 
 	Speed = {
-		Runner = 16,
-		It = 18, -- a little faster so It can catch people
+		Runner = 18,
+		It = 20, -- a little faster so It can catch people
 	},
 
 	Colors = {

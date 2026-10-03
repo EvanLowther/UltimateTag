@@ -126,7 +126,6 @@ function Slide.start()
 		local endSpeed = hum.WalkSpeed
 			/ (if Sprint.isSprinting() then Config.Sprint.Multiplier else 1)
 		local elapsed = 0 -- only counts while on the ground, so air slides keep their speed
-		local lastYaw = MoveState.cameraYaw()
 		local speed = startSpeed
 
 		local drive, release = MoveState.drive(root, true)
@@ -175,9 +174,7 @@ function Slide.start()
 			local alpha = math.min(elapsed / settings.Duration, 1)
 			speed = endSpeed + (startSpeed - endSpeed) * (1 - alpha) ^ 2
 
-			-- Steering: the slide curves with your view (look coupling), and your keys nudge it.
-			dir = MoveState.turnFlat(dir, MoveState.yawChange(lastYaw) * settings.LookCoupling)
-			lastYaw = MoveState.cameraYaw()
+			-- Steering: your keys nudge the slide direction.
 			local move = hum.MoveDirection
 			if move.Magnitude > 0 then
 				dir = (dir + move * settings.Steer * dt).Unit
@@ -220,7 +217,7 @@ function Slide.start()
 				fast = flat.Magnitude > hum.WalkSpeed
 			end
 		else
-			-- In the air, AirStrafe holds the speed you're actually carrying.
+			-- In the air, AirMomentum holds the speed you're actually carrying.
 			local air = MoveState.airVelocity
 			if air and air.Magnitude > flat.Magnitude then
 				flat = air
