@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.10.0",
+	Version = "0.11.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -140,7 +140,12 @@ local Config = {
 		OverTime = 0.2, -- seconds to climb over the edge
 		Cooldown = 0.4, -- seconds before you can mantle again
 		MaxRiseSpeed = 8, -- only grab once your jump has nearly peaked (rising slower than this)
-		LaunchFrom = 0.6, -- jump during the climb launches you once this much of UpTime has passed
+		-- Mantle Boost: press jump inside this window (seconds after the climb starts) to launch
+		-- up and over. Too early and you just climb. An on-screen indicator shows the timing.
+		BoostWindowStart = 0.22,
+		BoostWindowEnd = 0.4,
+		BoostForward = 50, -- studs/s forward at the boost
+		BoostUp = 45, -- studs/s upward at the boost
 		Poses = {
 			Hang = { -- arms up holding the edge
 				RightUpperArm = Vector3.new(170, 0, 10),
@@ -181,6 +186,8 @@ local Config = {
 		Runner = Color3.fromRGB(75, 151, 75),
 		HudBackground = Color3.fromRGB(20, 20, 20),
 		Text = Color3.fromRGB(255, 255, 255),
+		BoostReady = Color3.fromRGB(40, 210, 210), -- mantle boost window open (cyan)
+		BoostMissed = Color3.fromRGB(120, 120, 120), -- mantle boost missed
 	},
 
 	Ui = {
