@@ -67,11 +67,15 @@ function Slide.start()
 		local character, hum = parts.character, parts.humanoid
 		local activePose = getPose(character, hum)
 		MoveState.busy = "Crouch"
-		-- Your normal speed, to put back when you stand (without the sprint bonus).
-		local normalSpeed = if Sprint.isSprinting()
-			then hum.WalkSpeed / Config.Sprint.Multiplier
-			else hum.WalkSpeed
 		activePose.crouch()
+		-- Crouching cuts you straight to crouch speed (no gliding in carrying your old speed).
+		local root = parts.root
+		local flat = MoveState.flat(root.AssemblyLinearVelocity)
+		if flat.Magnitude > settings.CrouchSpeed then
+			local capped = flat.Unit * settings.CrouchSpeed
+			root.AssemblyLinearVelocity =
+				Vector3.new(capped.X, root.AssemblyLinearVelocity.Y, capped.Z)
+		end
 		setGroup(character, settings.SlidingGroup)
 		hum:SetStateEnabled(Enum.HumanoidStateType.Jumping, false)
 		local blockedAbove = ceilingCheck(parts, activePose.standingHip, activePose.crouchHip)
@@ -86,9 +90,10 @@ function Slide.start()
 			if hum.Parent then
 				setGroup(character, "Default")
 				hum:SetStateEnabled(Enum.HumanoidStateType.Jumping, true)
-				hum.WalkSpeed = if Sprint.isSprinting()
-					then normalSpeed * Config.Sprint.Multiplier
-					else normalSpeed
+				-- Back to the speed you should have now (frozen players stay frozen).
+				if hum.WalkSpeed > 0 then
+					hum.WalkSpeed = Sprint.targetSpeed()
+				end
 				if jumped then
 					hum.Jump = true
 				end

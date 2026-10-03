@@ -139,8 +139,8 @@ function SlidePose.attach(character: Model, humanoid: Humanoid): Pose
 					crouchTrack:Stop(0.15)
 					walkTrack:Play(0.15)
 				end
-				-- Step faster when moving faster.
-				walkTrack:AdjustSpeed(speed / settings.CrouchSpeed)
+				-- A steady step pace, only a little faster or slower with your speed.
+				walkTrack:AdjustSpeed(math.clamp(speed / settings.CrouchSpeed, 0.7, 1.2))
 			elseif walkTrack.IsPlaying then
 				walkTrack:Stop(0.15)
 				crouchTrack:Play(0.15)

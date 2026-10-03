@@ -16,6 +16,14 @@ function Sprint.isSprinting(): boolean
 	return sprinting
 end
 
+-- The walk speed you should have right now: your role's speed (Config.Speed), times the sprint
+-- bonus while sprinting. Moves that change your speed (like crouch) put this back when done.
+function Sprint.targetSpeed(): number
+	local role = Players.LocalPlayer:GetAttribute("Role")
+	local base = if role == "It" then Config.Speed.It else Config.Speed.Runner
+	return if sprinting then base * Config.Sprint.Multiplier else base
+end
+
 function Sprint.start()
 	local player = Players.LocalPlayer
 	local camera = workspace.CurrentCamera

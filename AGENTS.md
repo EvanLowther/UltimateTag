@@ -85,6 +85,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.23.1: Crouch cuts you to crouch speed at once, the crouch-walk plays at a steady pace, and standing up restores your speed from your role and sprint (`Sprint.targetSpeed()`) instead of a saved value.
 - 0.23.0: Crouch has a real idle pose and a crouch-walk cycle, and its height comes from the leg lengths and knee angles so the feet stay on the floor (no more clipping). Replaces `CrouchHipFactor`.
 - 0.22.1: Wall-climb hops about 12 studs each (measured from the reference video), and rising past the top edge in one frame still catches the ledge.
 - 0.22.0: Wall climb is now jump-up-and-hold like the reference video: hop up the wall, cling to it, jump to hop higher (3 hops), hang at the top and climb over.
