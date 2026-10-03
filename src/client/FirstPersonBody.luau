@@ -28,12 +28,14 @@ function FirstPersonBody.start()
 	local player = Players.LocalPlayer
 	local settings = Config.Camera
 	local visibleParts: { BasePart } = {}
+	local hiddenDetails: { BasePart } = {} -- face, hair, shoulder balls etc. (never in your view)
 	local restHead: Vector3? = nil -- where the head sits relative to the root when standing still
 	local offset = Vector3.zero
 	local wasFirstPerson = ViewMode.isFirstPerson()
 
 	local function setup(character: Model)
 		table.clear(visibleParts)
+		table.clear(hiddenDetails)
 		restHead = nil
 		for _, name in
 			{
@@ -50,6 +52,18 @@ function FirstPersonBody.start()
 		for _, part in character:GetChildren() do
 			if part:IsA("BasePart") and VISIBLE[part.Name] then
 				table.insert(visibleParts, part)
+				-- Details welded onto the leg (knee ball, stripe, sole).
+				for _, detail in part:GetDescendants() do
+					if detail:IsA("BasePart") then
+						table.insert(visibleParts, detail)
+					end
+				end
+			elseif part:IsA("BasePart") then
+				for _, detail in part:GetDescendants() do
+					if detail:IsA("BasePart") then
+						table.insert(hiddenDetails, detail)
+					end
+				end
 			end
 		end
 	end
@@ -109,6 +123,9 @@ function FirstPersonBody.start()
 		end
 		for _, part in visibleParts do
 			part.LocalTransparencyModifier = 0
+		end
+		for _, part in hiddenDetails do
+			part.LocalTransparencyModifier = 1
 		end
 	end)
 end

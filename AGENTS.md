@@ -48,7 +48,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | Module | Side | Job |
 | --- | --- | --- |
 | `shared/Config.luau` | both | All tunables: tag range, freeze time, speeds, colors, font |
-| `shared/BodyRig.luau` | both | Builds the character body: slim realistic-proportion R15 rig of smooth blocks, sizes and colors from `Config.Body`, joints worked out from the sizes. Also `block()`/`colorOf()` for the viewmodel. |
+| `shared/BodyRig.luau` | both | Builds the character body: a smooth rounded cartoon person (Crab Game style) from round shapes. Cylinder limbs turned upright through their attachments (joint frames keep standard axes), ball joints, ball head and hands, face (eyes, pupils, mouth), hair, tracksuit stripes, zipper and soles welded on as details. Sizes and colors in `Config.Body`. |
 | `shared/GameState.luau` | both | Status text as a ReplicatedStorage attribute. Server writes, clients read and listen. |
 | `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
 | `server/TagService.luau` | server | Heartbeat distance check from It to Runners. Performs the tag. |
@@ -71,7 +71,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/FaceCamera.luau` | client | Your body always faces the camera's look direction (yaw only), in both views and during every move. `Humanoid.AutoRotate` stays off; moves must not turn it back on. |
 | `client/CameraKick.luau` | client | Short camera jolts (roll and pitch that snap in and settle) layered on the normal camera each frame. `CameraKick.kick(roll, pitch, duration)`. |
 | `client/ViewMode.luau` | client | First or third person. Starts in first person (`Config.Camera.StartFirstPerson`); V toggles for testing (`AllowToggle`). |
-| `client/FirstPersonBody.luau` | client | First person: shows your legs only (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
+| `client/FirstPersonBody.luau` | client | First person: shows your legs (and their details) only, keeps face, hair and other details hidden (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
 | `client/Viewmodel.luau` | client | First-person arms: the body's forearm and hand scaled by `Config.Viewmodel.Scale`, attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
@@ -80,6 +80,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.18.0: New character look (Crab Game style): rounded body from cylinders and balls, cartoon face and hair, orange tracksuit with white stripes, joggers, sneakers. First-person arms match (sleeve, stripe, ball hand).
 - 0.17.0: Wall bounce feels physical: a short plant on the wall, then the push; four-beat eased animation (reach, absorb, push, follow-through) with balancing limbs.
 - 0.16.2: Fix: bouncing off a wall in front errored (missing `WallPushFront` arm pose). Viewmodel now falls back to Idle with one warning if a pose is missing.
 - 0.16.1: Wall bounce animation only moves the limbs touching the wall (by wall side), the rest keep falling naturally. No more T-pose. AnimationBuilder gains partial animations and mirroring.

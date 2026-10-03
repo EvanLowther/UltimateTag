@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.17.0",
+	Version = "0.18.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -401,26 +401,35 @@ local Config = {
 	},
 
 	Body = {
-		-- The game's character: slim, realistic proportions built from plain blocks (low-poly
-		-- style). Everyone uses it, and the first-person arms copy its forearm and hand.
+		-- The game's character: a smooth, rounded cartoon person (Crab Game style) built from
+		-- Roblox's round shapes: cylinder limbs, ball joints, ball head and hands, a face made of
+		-- shapes. Everyone uses it, and the first-person arms copy its forearm and hand.
+		-- A custom mesh can replace it later; the R15 joints stay the same.
 		Enabled = true, -- false = the classic 2012 block avatar (Config.Avatar) instead
-		Sizes = { -- studs: width, height, depth
-			Head = Vector3.new(0.85, 0.95, 0.9),
-			UpperTorso = Vector3.new(1.5, 1.4, 0.8),
-			LowerTorso = Vector3.new(1.3, 0.55, 0.72),
-			UpperArm = Vector3.new(0.42, 1.1, 0.46),
-			LowerArm = Vector3.new(0.38, 1, 0.42),
-			Hand = Vector3.new(0.34, 0.45, 0.38),
-			UpperLeg = Vector3.new(0.6, 1.2, 0.66),
-			LowerLeg = Vector3.new(0.52, 1.2, 0.56),
-			Foot = Vector3.new(0.55, 0.3, 1),
+		Sizes = { -- studs. Limbs: X = thickness, Y = length. Head and Hand are balls (X used).
+			Head = Vector3.new(1, 1, 1),
+			UpperTorso = Vector3.new(1.4, 1.35, 0.78),
+			LowerTorso = Vector3.new(1.25, 0.55, 0.72),
+			UpperArm = Vector3.new(0.44, 1.1, 0.44),
+			LowerArm = Vector3.new(0.4, 1, 0.4),
+			Hand = Vector3.new(0.42, 0.42, 0.42),
+			UpperLeg = Vector3.new(0.6, 1.2, 0.6),
+			LowerLeg = Vector3.new(0.52, 1.2, 0.52),
+			Foot = Vector3.new(0.52, 0.32, 1),
 		},
 		Colors = {
-			Skin = Color3.fromRGB(234, 214, 188),
-			Shirt = Color3.fromRGB(13, 105, 172),
-			Pants = Color3.fromRGB(52, 58, 72),
-			Boots = Color3.fromRGB(38, 38, 42),
+			Skin = Color3.fromRGB(232, 190, 150),
+			Jacket = Color3.fromRGB(232, 108, 44), -- tracksuit top
+			Pants = Color3.fromRGB(52, 56, 66), -- joggers
+			Stripe = Color3.fromRGB(245, 245, 245), -- side stripes on sleeves and legs
+			Shoes = Color3.fromRGB(240, 240, 240),
+			Sole = Color3.fromRGB(120, 120, 128),
+			Hair = Color3.fromRGB(86, 58, 38),
+			Eye = Color3.fromRGB(250, 250, 250),
+			Pupil = Color3.fromRGB(20, 20, 20),
+			Mouth = Color3.fromRGB(90, 40, 35),
 		},
+		Stripes = true, -- white side stripes on the tracksuit
 	},
 
 	Avatar = {

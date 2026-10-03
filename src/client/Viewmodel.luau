@@ -1,6 +1,6 @@
 --!strict
--- First-person arms: the body's forearm and hand (BodyRig, Config.Body), scaled by
--- Config.Viewmodel.Scale and attached to the camera, posed for what you're
+-- First-person arms: the body's forearm (sleeve with stripe) and ball hand (BodyRig,
+-- Config.Body), scaled by Config.Viewmodel.Scale and attached to the camera, posed for what you're
 -- doing (idle, running swing, air, slide, crouch, vault plant, mantle grab and push). Only shown
 -- in first person. Poses live in Config.Viewmodel.Poses.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -56,30 +56,74 @@ function Viewmodel.start()
 	end
 	local camera = workspace.CurrentCamera
 
-	-- The body's forearm and hand, laid along the camera's forward axis (-Z) and scaled down.
-	local function swap(size: Vector3): Vector3
-		return Vector3.new(size.X, size.Z, size.Y) * settings.Scale
-	end
+	-- The body's forearm (a sleeve cylinder with its stripe) and ball hand, laid along the
+	-- camera's forward axis (-Z) and scaled down.
 	local sizes = Config.Body.Sizes
-	local armSize, handSize = swap(sizes.LowerArm), swap(sizes.Hand)
-	local function makeBlock(name: string, size: Vector3, kind: string): Part
-		local block = BodyRig.block(name, size, BodyRig.colorOf(kind))
-		block.Anchored = true
-		block.CanCollide = false
-		block.CanQuery = false
-		block.CanTouch = false
-		block.CastShadow = false
-		block.Parent = camera
-		return block
+	local length = sizes.LowerArm.Y * settings.Scale
+	local thickness = sizes.LowerArm.X * settings.Scale
+	local handSize = sizes.Hand.X * settings.Scale
+	local function makePart(
+		name: string,
+		size: Vector3,
+		partColor: Color3,
+		shape: Enum.PartType?
+	): Part
+		local part = BodyRig.block(name, size, partColor, shape)
+		part.Anchored = true
+		part.CanCollide = false
+		part.CanQuery = false
+		part.CanTouch = false
+		part.CastShadow = false
+		part.Parent = camera
+		return part
 	end
-	local right, left =
-		makeBlock("ViewmodelRight", armSize, "LowerArm"),
-		makeBlock("ViewmodelLeft", armSize, "LowerArm")
-	local rightHand, leftHand =
-		makeBlock("ViewmodelRightHand", handSize, "Hand"),
-		makeBlock("ViewmodelLeftHand", handSize, "Hand")
-	-- The hand sits on the far (forward) end of the forearm.
-	local handOffset = CFrame.new(0, 0, -(armSize.Z + handSize.Z) / 2)
+	local function makeArm(side: string)
+		local outward = if side == "Right" then 1 else -1
+		return {
+			sleeve = makePart(
+				"Viewmodel" .. side,
+				Vector3.new(length, thickness, thickness),
+				BodyRig.colorOf("LowerArm"),
+				Enum.PartType.Cylinder
+			),
+			hand = makePart(
+				"Viewmodel" .. side .. "Hand",
+				Vector3.one * handSize,
+				BodyRig.colorOf("Hand"),
+				Enum.PartType.Ball
+			),
+			stripe = if Config.Body.Stripes
+				then makePart(
+					"Viewmodel" .. side .. "Stripe",
+					Vector3.new(0.04, 0.07, length * 0.92),
+					Config.Body.Colors.Stripe
+				)
+				else nil,
+			stripeOffset = CFrame.new(thickness / 2 * outward, 0, 0),
+		}
+	end
+	local arms = { Right = makeArm("Right"), Left = makeArm("Left") }
+	local ALONG = CFrame.Angles(0, math.pi / 2, 0) -- cylinders lie along X; turn them to point forward
+	local handOffset = CFrame.new(0, 0, -(length / 2 + handSize * 0.35))
+	local function allParts(): { BasePart }
+		local list = {}
+		for _, arm in arms do
+			table.insert(list, arm.sleeve)
+			table.insert(list, arm.hand)
+			if arm.stripe then
+				table.insert(list, arm.stripe)
+			end
+		end
+		return list
+	end
+	-- Places one arm at `frame` (the middle of the forearm, pointing forward).
+	local function place(arm: typeof(arms.Right), frame: CFrame)
+		arm.sleeve.CFrame = frame * ALONG
+		arm.hand.CFrame = frame * handOffset
+		if arm.stripe then
+			arm.stripe.CFrame = frame * arm.stripeOffset
+		end
+	end
 	local rightPose, leftPose = sides(pose("Idle"))
 	local lastBusy: string? = nil
 	local busySince = 0
@@ -88,7 +132,7 @@ function Viewmodel.start()
 		local parts = MoveState.parts()
 		local show = ViewMode.isFirstPerson() and parts ~= nil
 		local transparency = if show then 0 else 1
-		for _, block in { right, left, rightHand, leftHand } do
+		for _, block in allParts() do
 			block.Transparency = transparency
 		end
 		if not parts or not show then
@@ -151,10 +195,8 @@ function Viewmodel.start()
 		local blend = 1 - math.exp(-settings.Smooth * dt)
 		rightPose = rightPose:Lerp(targetRight, blend)
 		leftPose = leftPose:Lerp(targetLeft, blend)
-		right.CFrame = camera.CFrame * rightPose
-		left.CFrame = camera.CFrame * leftPose
-		rightHand.CFrame = right.CFrame * handOffset
-		leftHand.CFrame = left.CFrame * handOffset
+		place(arms.Right, camera.CFrame * rightPose)
+		place(arms.Left, camera.CFrame * leftPose)
 	end)
 end
 
