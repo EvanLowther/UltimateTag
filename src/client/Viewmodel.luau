@@ -1,10 +1,12 @@
 --!strict
--- First-person arms: two classic block arms attached to the camera, posed for what you're
+-- First-person arms: the body's forearm and hand (BodyRig, Config.Body), scaled by
+-- Config.Viewmodel.Scale and attached to the camera, posed for what you're
 -- doing (idle, running swing, air, slide, crouch, vault plant, mantle grab and push). Only shown
 -- in first person. Poses live in Config.Viewmodel.Poses.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local BodyRig = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("BodyRig"))
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local MoveState = require(script.Parent.MoveState)
 local Sprint = require(script.Parent.Sprint)
@@ -40,39 +42,30 @@ function Viewmodel.start()
 	local poses = settings.Poses :: { [string]: Pose }
 	local camera = workspace.CurrentCamera
 
-	local function makeBlock(name: string, size: Vector3): Part
-		local block = Instance.new("Part")
-		block.Name = name
-		block.Size = size
+	-- The body's forearm and hand, laid along the camera's forward axis (-Z) and scaled down.
+	local function swap(size: Vector3): Vector3
+		return Vector3.new(size.X, size.Z, size.Y) * settings.Scale
+	end
+	local sizes = Config.Body.Sizes
+	local armSize, handSize = swap(sizes.LowerArm), swap(sizes.Hand)
+	local function makeBlock(name: string, size: Vector3, kind: string): Part
+		local block = BodyRig.block(name, size, BodyRig.colorOf(kind))
 		block.Anchored = true
 		block.CanCollide = false
 		block.CanQuery = false
 		block.CanTouch = false
 		block.CastShadow = false
-		block.Material = Enum.Material.Plastic
-		block.Color = Config.Avatar.ArmColor
-		for _, face in
-			{
-				"TopSurface",
-				"BottomSurface",
-				"FrontSurface",
-				"BackSurface",
-				"LeftSurface",
-				"RightSurface",
-			}
-		do
-			(block :: any)[face] = Enum.SurfaceType.Smooth
-		end
 		block.Parent = camera
 		return block
 	end
-	local hand = Vector3.one * settings.HandSize
 	local right, left =
-		makeBlock("ViewmodelRight", settings.ArmSize), makeBlock("ViewmodelLeft", settings.ArmSize)
+		makeBlock("ViewmodelRight", armSize, "LowerArm"),
+		makeBlock("ViewmodelLeft", armSize, "LowerArm")
 	local rightHand, leftHand =
-		makeBlock("ViewmodelRightHand", hand), makeBlock("ViewmodelLeftHand", hand)
+		makeBlock("ViewmodelRightHand", handSize, "Hand"),
+		makeBlock("ViewmodelLeftHand", handSize, "Hand")
 	-- The hand sits on the far (forward) end of the forearm.
-	local handOffset = CFrame.new(0, 0, -(settings.ArmSize.Z + settings.HandSize) / 2 + 0.05)
+	local handOffset = CFrame.new(0, 0, -(armSize.Z + handSize.Z) / 2)
 	local rightPose, leftPose = sides(poses.Idle)
 	local lastBusy: string? = nil
 	local busySince = 0
@@ -86,14 +79,6 @@ function Viewmodel.start()
 		end
 		if not parts or not show then
 			return
-		end
-
-		-- Match the character's arm color.
-		local bodyArm = parts.character:FindFirstChild("RightUpperArm")
-		if bodyArm and bodyArm:IsA("BasePart") then
-			for _, block in { right, left, rightHand, leftHand } do
-				block.Color = bodyArm.Color
-			end
 		end
 
 		local busy = MoveState.busy

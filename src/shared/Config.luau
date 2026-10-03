@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.13.1",
+	Version = "0.14.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -194,8 +194,7 @@ local Config = {
 		-- (X right, Y up, -Z forward) of the arm's middle, Rotation in degrees (positive X tips
 		-- the arm up, positive Y turns it left, Z rolls it). Left mirrors Right unless given.
 		Enabled = true,
-		ArmSize = Vector3.new(0.26, 0.26, 1.3), -- forearm block
-		HandSize = 0.32, -- hand block on the end of each arm
+		Scale = 0.7, -- arms are the body's forearm and hand (Config.Body), scaled by this
 		Smooth = 16, -- how quickly arms move to a new pose (higher = snappier)
 		BobAmount = 0.04, -- studs of arm swing while running
 		SprintBob = 2, -- swing multiplier while sprinting
@@ -247,6 +246,29 @@ local Config = {
 					Rotation = Vector3.new(-50, 6, 0),
 				},
 			},
+		},
+	},
+
+	Body = {
+		-- The game's character: slim, realistic proportions built from plain blocks (low-poly
+		-- style). Everyone uses it, and the first-person arms copy its forearm and hand.
+		Enabled = true, -- false = the classic 2012 block avatar (Config.Avatar) instead
+		Sizes = { -- studs: width, height, depth
+			Head = Vector3.new(0.85, 0.95, 0.9),
+			UpperTorso = Vector3.new(1.5, 1.4, 0.8),
+			LowerTorso = Vector3.new(1.3, 0.55, 0.72),
+			UpperArm = Vector3.new(0.42, 1.1, 0.46),
+			LowerArm = Vector3.new(0.38, 1, 0.42),
+			Hand = Vector3.new(0.34, 0.45, 0.38),
+			UpperLeg = Vector3.new(0.6, 1.2, 0.66),
+			LowerLeg = Vector3.new(0.52, 1.2, 0.56),
+			Foot = Vector3.new(0.55, 0.3, 1),
+		},
+		Colors = {
+			Skin = Color3.fromRGB(234, 214, 188),
+			Shirt = Color3.fromRGB(13, 105, 172),
+			Pants = Color3.fromRGB(52, 58, 72),
+			Boots = Color3.fromRGB(38, 38, 42),
 		},
 	},
 

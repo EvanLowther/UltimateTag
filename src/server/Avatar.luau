@@ -1,12 +1,13 @@
 --!strict
--- Forces every player onto an R15 body (the slide pose needs R15 joints). A plain R15 block
--- rig becomes StarterPlayer.StarterCharacter. If Config.Avatar.UseOwnAvatar is on, each
--- character is then dressed in the player's own avatar. Otherwise everyone stays the classic
--- block avatar, which makes animations easy to see.
+-- Gives every player the game's body as StarterPlayer.StarterCharacter. Normally that's the
+-- BodyRig (Config.Body). With Config.Body.Enabled off it's a classic R15 block rig instead, and
+-- if Config.Avatar.UseOwnAvatar is on, those are dressed in the player's own avatar.
+-- Any character that spawns without R15 joints is respawned (the moves need them).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPlayer = game:GetService("StarterPlayer")
 
+local BodyRig = require(ReplicatedStorage.Shared.BodyRig)
 local Config = require(ReplicatedStorage.Shared.Config)
 
 local Avatar = {}
@@ -40,7 +41,7 @@ local function check(player: Player, character: Model)
 		end
 		return
 	end
-	if Config.Avatar.UseOwnAvatar then
+	if Config.Avatar.UseOwnAvatar and not Config.Body.Enabled then
 		dress(player, character)
 	end
 end
@@ -70,8 +71,18 @@ local function watch(player: Player)
 end
 
 function Avatar.start()
-	local rig =
+	local classic =
 		Players:CreateHumanoidModelFromDescription(classicDescription(), Enum.HumanoidRigType.R15)
+	local rig = classic
+	if Config.Body.Enabled then
+		rig = BodyRig.build()
+		-- Borrow Roblox's standard Animate script (run, jump, fall animations) from the classic rig.
+		local animate = classic:FindFirstChild("Animate")
+		if animate then
+			animate.Parent = rig
+		end
+		classic:Destroy()
+	end
 	rig.Name = "StarterCharacter"
 	rig.Parent = StarterPlayer
 
