@@ -3,7 +3,7 @@
 A simple Roblox tag game with a classic studded look. Code lives in files and syncs into Studio with Rojo.
 
 ## Style rules
-- **Studded, simple, classic.** Plastic material, bright solid colors, `TopSurface = Studs` / `BottomSurface = Inlet`. No realistic materials, no post-processing, no fancy effects.
+- **Studded, simple, classic.** Plastic material, bright solid colors, `TopSurface = Studs` / `BottomSurface = Inlet`. No realistic materials, no post-processing, no fancy effects (simple white speed trails are the one exception).
 - Keep it simple. Prefer one small module per feature over big scripts.
 
 ## Layout (Rojo: `default.project.json`)
@@ -22,6 +22,8 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 - `src/map/VaultWall.model.json`: orange wall 3 tall, 2 thick, 20 wide at X=-30, Z=-20. Sprint at it from +Z and press jump to vault.
 - `src/map/MantleLedge.model.json`: purple block 9 tall at X=-30, Z=-55. Too high to jump onto, so jump at it to mantle.
 - `src/map/BounceWalls.model.json`: two teal walls 30 tall, 12 studs apart (X=54 and X=66, Z=-50). Jump at one and press jump on contact to bounce between them.
+- `src/map/ParkourCourse.model.json`: course built from the parkour reference video, at X=120 heading -Z. Blue climb tower (14 tall) -> two red wall-run walls (22 tall, 16 apart, 14-stud drop between) -> yellow landing platform (top Y=12) -> three swing bars at Y=17 -> orange platform (top Y=10) -> drop -> white steps (2 to 8 tall).
+- Any part with the `SwingBar` attribute (a cylinder along its X axis) is a bar you can swing on.
 - Any part with the `SlideBlocker` attribute blocks standing players but not sliding ones. Use it for every slide-under obstacle.
 - To add a map piece, add another `*.model.json` in `src/map/`. Use the same studded plastic style.
 - Place parts with `CFrame`, never `Position`: `"CFrame": { "CFrame": { "position": [x, y, z], "orientation": [[1,0,0],[0,1,0],[0,0,1]] } }`. `Position` only works during live sync and is lost in the built `.rbxlx`, so everything loads at the origin.
@@ -63,13 +65,17 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/Mantle.luau` | client | Automatic: in the air, moving toward a ledge within reach, once the jump has nearly peaked (`MaxRiseSpeed`) or while falling: pull up (`UpTime`) then over the edge (`OverTime`), stopping at the top. Mantle Boost: a fresh jump press inside `BoostWindowStart`-`BoostWindowEnd` (seconds into the climb) launches you up and over (`BoostForward`/`BoostUp`); pressing early uses up the try. |
 | `client/AirStrafe.luau` | client | In the air with no move running, owns sideways velocity: while a movement key is held your momentum turns with your view (`LookCoupling`, tap-strafe), steering (camera-relative) turns your path without losing speed, steering backwards brakes. Keeps slide/vault/bounce speed through the air. |
 | `client/WallBounce.luau` | client | Touch a wall in the air, press jump within `Window`: pushed out along the wall normal and up. Blocked while a move (like mantle) runs and right after a launch. Feedback: camera kick (`KickRoll`/`KickPitch`), a `PlantTime` contact moment (stick and slide along the wall) before the push, a four-beat partial body animation (Reach, Absorb, Push, Follow with easing; only the limbs touching the wall plus balance move; side, front or back wall), hit and push sounds, first-person hand plant (`bounceTime`/`bounceHand` in MoveState). |
+| `client/WallRun.luau` | client | Automatic when airborne and fast at a wall: heading straight at a tall wall = Climb (run up it, slowing over `ClimbTime`), reaching the top = Hang (forward or jump climbs over through `Mantle.climbToward`, back drops); alongside a wall = WallRun (along it, rise then sink, camera leans away). Jump kicks off the wall. Short walls are left to Mantle. |
+| `client/BarSwing.luau` | client | Jump up to a `SwingBar` part to grab it; pendulum swing (hold forward to pump), jump releases with momentum (`ReleaseBoost`), slide key drops. |
+| `client/LandingRoll.luau` | client | Landing from a big drop (`MinFallSpeed`) while moving: a forward roll that keeps your speed. First person dips the camera instead of spinning. Holding slide on landing slides instead. |
+| `client/SpeedTrails.luau` | client | White trails on hands and feet when fast (`MinSpeed`) or during a move (`Moves`); feet only in first person. Client-only. |
 | `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `landVelocity`/`landTime` (speed you last landed with), `parts()`, `isGrounded()`, `flat()`, `drive()`, `launch()` (shared vault/mantle throw, sets `launchTime`), `cameraYaw()`/`yawChange()`/`turnFlat()` (look coupling). New moves read these instead of re-checking. |
 | `client/Crouch.luau` | client | The only code that changes HipHeight (and CameraOffset in third person; FirstPersonBody owns it in first person). Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. `make(keys, partial)`: each key can set `ease` ("In", "Out", "InOut"); with `partial`, unlisted parts get weight 0 so the animation underneath keeps moving them. `mirror()` flips a pose left/right. Client-only registration. |
 | `client/Upright.luau` | client | Turns off the FallingDown and Ragdoll humanoid states so vaults and slides don't make you topple. |
 | `client/MantleBoostUI.luau` | client | The Mantle Boost timing indicator: brackets close on a center ring and a marker drops in; cyan when the window is open, check on success, grey on an early press. |
-| `client/FaceCamera.luau` | client | Your body always faces the camera's look direction (yaw only), in both views and during every move. `Humanoid.AutoRotate` stays off; moves must not turn it back on. |
-| `client/CameraKick.luau` | client | Short camera jolts (roll and pitch that snap in and settle) layered on the normal camera each frame. `CameraKick.kick(roll, pitch, duration)`. |
+| `client/FaceCamera.luau` | client | Your body always faces the camera's look direction (yaw only), unless a move sets `MoveState.faceDirection` (wall climb faces the wall, wall run faces along it). `Humanoid.AutoRotate` stays off; moves must not turn it back on. |
+| `client/CameraKick.luau` | client | Camera feel layered on the normal camera each frame: `kick(roll, pitch, duration)` short jolts, `lean(roll)` a held roll (wall running). |
 | `client/ViewMode.luau` | client | First or third person. Starts in first person (`Config.Camera.StartFirstPerson`); V toggles for testing (`AllowToggle`). |
 | `client/FirstPersonBody.luau` | client | First person: shows your legs (and their details) only, keeps face, hair and other details hidden (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
 | `client/Viewmodel.luau` | client | First-person arms: classic yellow blocks (`ClassicArm`/`ClassicHand`) with the classic avatar, or the rounded body's forearm and hand scaled by `Config.Viewmodel.Scale`, attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
@@ -80,6 +86,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.20.0: Moves from the parkour reference video: wall climb with ledge hang and climb-over, wall run with camera lean, bar swing, landing roll, speed trails, and a ParkourCourse to chain them. AnimationBuilder gains looping; Mantle exposes `climbToward`.
 - 0.19.0: Back to the classic 2012 R15 block avatar (`Config.Body.Enabled = false`); first-person arms are classic yellow blocks again. The rounded BodyRig and the Blender tools (`tools/blender`, `assets_src`) are kept but unused.
 - 0.18.0: New character look (Crab Game style): rounded body from cylinders and balls, cartoon face and hair, orange tracksuit with white stripes, joggers, sneakers. First-person arms match (sleeve, stripe, ball hand).
 - 0.17.0: Wall bounce feels physical: a short plant on the wall, then the push; four-beat eased animation (reach, absorb, push, follow-through) with balancing limbs.

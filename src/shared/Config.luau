@@ -382,6 +382,16 @@ local Config = {
 		},
 	},
 
+	SpeedTrails = {
+		-- Thin white streaks off the hands and feet while you're fast or doing a move.
+		Enabled = true,
+		MinSpeed = 30, -- studs/s: faster than this always shows trails
+		Lifetime = 0.22, -- seconds a streak lasts
+		Width = 0.18, -- studs
+		Color = Color3.fromRGB(255, 255, 255),
+		Moves = { "Slide", "Vault", "Climb", "WallRun", "WallBounce", "BarSwing", "Roll" }, -- always show during these
+	},
+
 	Vault = {
 		-- Press jump while sprinting at a low obstacle: hands on the top, then launched up and out.
 		MinHeight = 1.5, -- studs above your feet: lower than this, just run or jump
