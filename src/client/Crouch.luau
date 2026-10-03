@@ -1,7 +1,11 @@
 --!strict
--- The one place that changes Humanoid.HipHeight and CameraOffset, so moves (slide, vault) can
--- lower the body without fighting each other. Heights are a fraction of normal standing height.
+-- The one place that changes Humanoid.HipHeight, so moves (slide, vault, crouch) can lower the
+-- body without fighting each other. Heights are a fraction of normal standing height. In third
+-- person it also dips the camera (CameraOffset); in first person FirstPersonBody owns the camera
+-- offset instead, following your head.
 local RunService = game:GetService("RunService")
+
+local ViewMode = require(script.Parent.ViewMode)
 
 local Crouch = {}
 
@@ -45,7 +49,9 @@ local function step(dt: number)
 		state.factor = approach(state.factor, state.factorTarget, state.factorRate, dt)
 		state.dip = approach(state.dip, state.dipTarget, state.dipRate, dt)
 		humanoid.HipHeight = Crouch.standingHip(humanoid) * state.factor
-		humanoid.CameraOffset = Vector3.new(0, -state.dip, 0)
+		if not ViewMode.isFirstPerson() then
+			humanoid.CameraOffset = Vector3.new(0, -state.dip, 0)
+		end
 		-- Back to normal: stop updating this character.
 		if
 			state.factor == 1
@@ -72,7 +78,7 @@ function Crouch.set(humanoid: Humanoid, factor: number, seconds: number, cameraD
 			factor = humanoid.HipHeight / standing,
 			factorTarget = 1,
 			factorRate = 0,
-			dip = -humanoid.CameraOffset.Y,
+			dip = 0,
 			dipTarget = 0,
 			dipRate = 0,
 		}

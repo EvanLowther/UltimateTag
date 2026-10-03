@@ -63,10 +63,13 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/AirStrafe.luau` | client | In the air with no move running, owns sideways velocity: steering (camera-relative) turns your path without losing speed, steering backwards brakes. Keeps slide/vault/bounce speed through the air. |
 | `client/WallBounce.luau` | client | Touch a wall in the air, press jump within `Window`: pushed out along the wall normal and up. Blocked while a move (like mantle) runs and right after a launch. |
 | `client/MoveState.luau` | client | The one source of movement state: `busy` (one move at a time), `airVelocity` (speed carried through the air), `landVelocity`/`landTime` (speed you last landed with), `parts()`, `isGrounded()`, `flat()`, `drive()`, `launch()` (shared vault/mantle throw, sets `launchTime`). New moves read these instead of re-checking. |
-| `client/Crouch.luau` | client | The only code that changes HipHeight and CameraOffset. Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
+| `client/Crouch.luau` | client | The only code that changes HipHeight (and CameraOffset in third person; FirstPersonBody owns it in first person). Moves call `Crouch.set(humanoid, factor, seconds, cameraDip)`. |
 | `client/AnimationBuilder.luau` | client | Builds keyframed animations from pose tables (degrees per R15 body part) and loads them on the Animator. Client-only registration. |
 | `client/Upright.luau` | client | Turns off the FallingDown and Ragdoll humanoid states so vaults and slides don't make you topple. |
 | `client/MantleBoostUI.luau` | client | The Mantle Boost timing indicator: brackets close on a center ring and a marker drops in; cyan when the window is open, check on success, grey on an early press. |
+| `client/ViewMode.luau` | client | First or third person. Starts in first person (`Config.Camera.StartFirstPerson`); V toggles for testing (`AllowToggle`). |
+| `client/FirstPersonBody.luau` | client | First person: shows your torso and legs (head hidden, arms replaced by the viewmodel), and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead of the chest. |
+| `client/Viewmodel.luau` | client | First-person block arms attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
@@ -74,6 +77,7 @@ Rules of thumb:
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.13.0: First person by default (V toggles third person for testing). You can see your torso and legs, the camera follows your head, and block viewmodel arms are posed for each move.
 - 0.12.0: Mantle Boost goes about 15 studs further. Air slide (C while moving fast in the air). Crouch (C without sprinting) to get under things slowly; slides that run out with C held become crouches.
 - 0.11.0: Mantle Boost (Apex style): a timing window during the climb with an on-screen indicator. Jump in the window to launch up and over; too early and you just climb.
 - 0.10.0: Vault is now a launch: hands on the top, then thrown up and out about 25-30 studs. Jumping during a mantle launches you over the top the same way (super glide). Shared `MoveState.launch`.
