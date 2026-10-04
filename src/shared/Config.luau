@@ -577,6 +577,26 @@ local Config = {
 		Radius = 500,
 		FadeTime = 1.2, -- seconds to blend between lightings
 		Presets = {
+			-- Inside buildings (the School): the outdoor sun settings and bloom wash an enclosed,
+			-- lamp-lit space out to white, so turn exposure, bloom and ambient down.
+			Indoor = {
+				Lighting = {
+					Brightness = 1,
+					Ambient = Color3.fromRGB(70, 70, 78),
+					OutdoorAmbient = Color3.fromRGB(80, 80, 88),
+					ExposureCompensation = -0.45,
+					EnvironmentDiffuseScale = 0.15,
+					EnvironmentSpecularScale = 0.15,
+				},
+				Atmosphere = { Density = 0, Haze = 0, Glare = 0 },
+				Bloom = { Intensity = 0.12, Size = 16, Threshold = 2.2 },
+				ColorCorrection = {
+					Saturation = 0.12,
+					Contrast = 0.12,
+					Brightness = -0.02,
+					TintColor = Color3.fromRGB(255, 250, 240),
+				},
+			},
 			Night = {
 				Lighting = {
 					ClockTime = 0.4,

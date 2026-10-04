@@ -55,13 +55,13 @@ PLATFORM_Y = -12  # top of the incline / bottom of the grate shaft
 PIPE_TOP_Z = 30  # where the incline reaches the platform
 
 COLORS = {
-    "floor": (196, 200, 206), "wall": (236, 226, 200), "trim": (120, 160, 210),
-    "ceiling": (225, 228, 232), "room_floor": (190, 150, 105), "desk": (160, 110, 70),
+    "floor": (140, 146, 156), "wall": (178, 168, 146), "trim": (80, 115, 165),
+    "ceiling": (110, 112, 120), "room_floor": (135, 100, 70), "desk": (160, 110, 70),
     "desk_top": (205, 170, 120), "board": (40, 80, 60), "locker_a": (60, 110, 200),
     "locker_b": (45, 90, 170), "table": (230, 120, 60), "puddle": (90, 170, 230),
     "concrete": (110, 112, 118), "concrete_dark": (80, 82, 88), "pipe": (180, 70, 50),
     "pad": (255, 140, 40), "grate": (60, 60, 64), "hazard": (250, 200, 40),
-    "light": (250, 250, 235), "light_warm": (255, 180, 100), "door": (150, 100, 60),
+    "light": (235, 235, 220), "light_warm": (240, 170, 100), "door": (150, 100, 60),
 }
 
 IDENTITY = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
@@ -160,7 +160,7 @@ class Map:
             else:
                 self.block(group, name, fixed[0], fixed[1], lo, hi, a, b, color)
 
-    def light(self, group, x, y, z, size=(8, 0.4, 3), warm=False, brightness=1.4, reach=30):
+    def light(self, group, x, y, z, size=(8, 0.2, 1), warm=False, brightness=0.5, reach=22):
         self.part(group, "Light", size, (x, y, z), "light_warm" if warm else "light",
                   Material="Neon", CanCollide=False, CanQuery=False, CastShadow=False,
                   children=[{"name": "Glow", "className": "PointLight",
@@ -221,7 +221,7 @@ def main_floor(m):
                 "locker_a" if i % 2 == 0 else "locker_b")
     # North: a puddle across the whole hallway (slip).
     m.block(h, "Puddle", -14, 14, 0, 0.12, -IN_Z, -ROOM_Z, "puddle", Material="Glass",
-            Transparency=0.35, Reflectance=0.25, attributes={"Slip": 1.6})
+            Transparency=0.4, Reflectance=0.1, attributes={"Slip": 1.6})
     # East: the tipped lunch table, rising north to the hole's south edge (4 high), next to the
     # east wall so the jump turns into a wall run along it.
     hx0, hx1, hz0, hz1 = HOLE
@@ -251,14 +251,14 @@ def main_floor(m):
 
     # Lights.
     for z in range(-56, 57, 16):
-        m.light("Lights", -36, HEIGHT - 0.3, z, size=(3, 0.4, 8))
-        m.light("Lights", 36, HEIGHT - 0.3, z, size=(3, 0.4, 8))
+        m.light("Lights", -36, HEIGHT - 0.2, z, size=(1, 0.2, 8))
+        m.light("Lights", 36, HEIGHT - 0.2, z, size=(1, 0.2, 8))
     for x in (-18, 0, 18):
-        m.light("Lights", x, HEIGHT - 0.3, -58)
-        m.light("Lights", x, HEIGHT - 0.3, 58)
+        m.light("Lights", x, HEIGHT - 0.2, -58)
+        m.light("Lights", x, HEIGHT - 0.2, 58)
     for x in (-13, 13):
         for z in (-30, 0, 30):
-            m.light("Lights", x, HEIGHT - 0.3, z, size=(8, 0.4, 4), reach=34)
+            m.light("Lights", x, HEIGHT - 0.2, z, size=(8, 0.2, 1), reach=26)
 
 
 def basement(m):
@@ -282,8 +282,8 @@ def basement(m):
            attributes={"LaunchVelocity": {"Vector3": [0, 105, -40]}})
     m.block(g, "PadRing", pad_x - 5, pad_x + 5, B_FLOOR, B_FLOOR + 0.6, pad_z - 5, pad_z + 5,
             "grate")
-    m.light(g, 30, SLAB - 0.5, -30, warm=True, brightness=1.2)
-    m.light(g, 40, SLAB - 0.5, -2, warm=True, brightness=1.2)
+    m.light(g, 30, SLAB - 0.5, -30, warm=True, brightness=0.6)
+    m.light(g, 40, SLAB - 0.5, -2, warm=True, brightness=0.6)
 
     # East tunnel leg (south from the chamber).
     ex0, ex1, ez0, ez1 = TUNNEL_EAST
@@ -301,8 +301,8 @@ def basement(m):
     m.block(g, "TunnelCeiling", px1, ex1 + WALL, TUNNEL_TOP, TUNNEL_TOP + 1, sz0 - WALL,
             sz1 + WALL, "concrete")
     for x in (-10, 20):
-        m.light(g, x, TUNNEL_TOP - 0.5, (sz0 + sz1) / 2, warm=True, brightness=1, reach=24)
-    m.light(g, (ex0 + ex1) / 2, TUNNEL_TOP - 0.5, 24, warm=True, brightness=1, reach=24)
+        m.light(g, x, TUNNEL_TOP - 0.5, (sz0 + sz1) / 2, warm=True, brightness=0.45, reach=20)
+    m.light(g, (ex0 + ex1) / 2, TUNNEL_TOP - 0.5, 24, warm=True, brightness=0.45, reach=20)
     # Pipes along the tunnel wall (decoration).
     m.block(g, "Pipe", sx0, ex0 - WALL, TUNNEL_TOP - 2.5, TUNNEL_TOP - 1, sz1 - 1.5, sz1, "pipe",
             CanCollide=False, CanQuery=False)
@@ -321,7 +321,7 @@ def basement(m):
            rot_x(angle))
     m.block(g, "GratePlatform", px0, px1, PLATFORM_Y - 1, PLATFORM_Y, pz0, PIPE_TOP_Z, "concrete")
     m.block(g, "PlatformFill", px0, px1, B_FLOOR, PLATFORM_Y - 1, pz0, PIPE_TOP_Z, "concrete_dark")
-    m.light(g, (px0 + px1) / 2, SLAB - 0.5, 38, warm=True, brightness=1, reach=24)
+    m.light(g, (px0 + px1) / 2, SLAB - 0.5, 38, warm=True, brightness=0.45, reach=20)
 
 
 def build():
@@ -359,7 +359,8 @@ def write(m):
             f.write("\n")
 
     dump("init.meta.json", {"className": "Model", "attributes": {
-        "DisplayName": "School", "MinPlayers": 2, "MaxPlayers": 8, "InRotation": True}})
+        "DisplayName": "School", "MinPlayers": 2, "MaxPlayers": 8, "InRotation": True,
+        "Lighting": "Indoor"}})
     for group, children in m.groups.items():
         dump(f"{group}.model.json", {"className": "Folder", "children": children})
     spawns = []
