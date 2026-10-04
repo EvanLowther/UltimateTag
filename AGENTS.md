@@ -12,20 +12,28 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 | `src/shared/` | `ReplicatedStorage.Shared` | `Config.luau` (all tunables) and modules used by both sides |
 | `src/server/` | `ServerScriptService.Server` | `init.server.luau` entry point plus one ModuleScript per service |
 | `src/client/` | `StarterPlayerScripts.Client` | `init.client.luau` entry point plus one ModuleScript per UI or feature |
-| `src/map/` | `Workspace.Map` | map pieces as `*.model.json` files (one file per part or model) |
+| `src/lobby/` | `Workspace.Lobby` | the lobby at X=2000: floor, walls and the game's only `SpawnLocation` |
+| `src/maps/` | `ServerStorage.Maps` | round maps, one folder per map (see Maps below); loaded into `Workspace.ActiveMap` one at a time |
 
-## Map
-- `src/map/Baseplate.model.json`: 512x4x512 green (75,151,75) studded plastic baseplate, top at Y=0.
-- `src/map/SpawnLocation.model.json`: white studded 8x8 spawn pad at the center, no forcefield.
-- `src/map/TestCourse.model.json`: movement test course heading -Z from spawn. Five yellow steps up to three raised platforms (blue, red, green; top at Y=10). The gap after the blue one is 6 studs (walk jump), the gap after the red one is 11 studs (needs a sprint jump).
-- `src/map/SlideBar.model.json`: red bar on two yellow posts at X=30, Z=-20 (underside at Y=4.2). Too low to walk under, so you have to slide. The posts are 22 studs apart; run at it from +Z. An invisible `StandBlocker` part fills the space under the bar (attribute `SlideBlocker`), because a character's collision box doesn't reach its head. Sliding characters pass through it.
-- `src/map/VaultWall.model.json`: orange wall 3 tall, 2 thick, 20 wide at X=-30, Z=-20. Sprint into it from +Z and you hop it automatically.
-- `src/map/MantleLedge.model.json`: purple block 9 tall at X=-30, Z=-55. Too high to jump onto, so jump at it to mantle.
-- `src/map/BounceWalls.model.json`: two teal walls 30 tall, 12 studs apart (X=54 and X=66, Z=-50). Wall run along them or climb them; jump to kick off.
-- `src/map/ParkourCourse.model.json`: course built from the parkour reference video, at X=120 heading -Z. Blue climb tower (14 tall) -> two red wall-run walls (22 tall, 16 apart, 14-stud drop between) -> yellow landing platform (top Y=12) -> three white stepping stones (tops Y=12, 11, 10) -> orange platform (top Y=10) -> drop -> white steps (2 to 8 tall).
-- Any part with the `SlideBlocker` attribute blocks standing players but not sliding ones. Use it for every slide-under obstacle.
-- To add a map piece, add another `*.model.json` in `src/map/`. Use the same studded plastic style.
+## Maps
+Each map is a folder in `src/maps/<MapName>/`:
+- `init.meta.json` makes it a `Model` with attributes `DisplayName`, `MinPlayers`, `MaxPlayers` (the player counts it suits: its size tier) and `InRotation` (false keeps it out of games).
+- Pieces are `*.model.json` files, one per part or model, in the studded plastic style. Don't put a `name` field in a top-level model file (the file name is the name).
+- A `Spawns/` folder of invisible, non-colliding, anchored parts: where players are placed at the start of a round. Have at least as many as the map's `MaxPlayers` if you can (they're reused if not).
+- Maps are built around the origin (the lobby is far away at X=2000).
 - Place parts with `CFrame`, never `Position`: `"CFrame": { "CFrame": { "position": [x, y, z], "orientation": [[1,0,0],[0,1,0],[0,0,1]] } }`. `Position` only works during live sync and is lost in the built `.rbxlx`, so everything loads at the origin.
+- To add a map, copy a placeholder folder, change its attributes and pieces. MapService picks it up automatically.
+
+Current maps:
+- `SmallBox` (2-6 players, 60x60), `MediumBox` (5-14, 120x120), `LargeBox` (12-50, 220x220): placeholder arenas, a studded floor with four walls and a ring of spawn points. Real maps come later.
+- `TestGround` (`InRotation` false): the movement test map, loaded in Sandbox mode. Its pieces:
+  - `Baseplate.model.json`: 512x4x512 green studded baseplate, top at Y=0. `SpawnLocation.model.json`: white spawn pad at the center.
+  - `TestCourse.model.json`: five yellow steps up to three raised platforms (gaps of 6 and 11 studs).
+  - `SlideBar.model.json`: red bar at X=30, Z=-20 (underside Y=4.2) with an invisible `StandBlocker` (attribute `SlideBlocker`) under it: you have to slide or crouch under.
+  - `VaultWall.model.json`: orange wall 3 tall at X=-30, Z=-20 (auto vault). `MantleLedge.model.json`: purple block 9 tall at X=-30, Z=-55 (mantle).
+  - `BounceWalls.model.json`: two teal walls 30 tall at X=54 and X=66, Z=-50 (wall run, wall climb).
+  - `ParkourCourse.model.json`: from the reference video, at X=120 heading -Z: climb tower, wall-run corridor, landing platform, three stepping stones, platform, drop, steps.
+- Any part with the `SlideBlocker` attribute blocks standing players but not sliding or crouching ones (CollisionGroups also handles maps loaded later).
 
 ## Conventions
 - Every tunable number or name goes in `src/shared/Config.luau`. Never hard-code it in a service.
@@ -44,19 +52,26 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 - GitHub: https://github.com/EvanLowther/UltimateTag (private). The `.rbxlx` file is built by Rojo and git ignores it.
 
 ## Features
-**Sandbox (0.3.0).** No rounds, timer or wins yet. This is a free-play test mode for building mechanics. Everyone is a Runner and one player is always It. It tags a Runner by left-clicking (a swipe) within `Config.Tag.Range`. The tagged player becomes It and is frozen briefly, which also stops instant tag-backs. If It leaves, someone else becomes It. Test with two or more players (Studio: Test tab > Clients and Servers > Local Server).
+**Game flow (0.26.0).** `Config.Game.Mode = "Elimination"`: players wait in the lobby; with `MinPlayers` (Studio: `StudioMinPlayers`) a `LobbyCountdown` starts, then a game. Each round MapService picks a map for the number of players still in, everyone is placed on its spawn points, the game mode assigns roles, everyone is frozen for `IntroTime` (Its for `ItHeadStart` longer), then the `RoundTime` timer runs. When it ends the mode decides who is eliminated; they go back to the lobby and spectate (Q/E to switch). Rounds continue on new maps until one player is left: they win (+1 Win) and everyone returns to the lobby. Only It can tag, by left-clicking (a swipe) within `Config.Tag.Range`, and only while a round is Playing. Test with 2+ players in Studio (Test > Clients and Servers > Local Server).
+- Game modes live in `src/server/Modes/`. Each has `Name`, `setup(players) -> status text` and `finish(players) -> eliminated`. The first is **Hot Potato** (`Modes/HotPotato.luau`): `EliminateFraction` (about 45%) of players start as It, tagging passes It, whoever is It when time runs out is eliminated. To add a mode, add a module with that shape and point `GameLoop`'s `mode` at it.
+- `Config.Game.Mode = "Sandbox"`: the old free-play test mode on TestGround (one It, nothing ends) for movement testing.
 
 | Module | Side | Job |
 | --- | --- | --- |
 | `shared/Config.luau` | both | All tunables: tag range, freeze time, speeds, colors, font |
 | `shared/BodyRig.luau` | both | Builds the character body: a smooth rounded cartoon person (Crab Game style) from round shapes. Cylinder limbs turned upright through their attachments (joint frames keep standard axes), ball joints, ball head and hands, face (eyes, pupils, mouth), hair, tracksuit stripes, zipper and soles welded on as details. Sizes and colors in `Config.Body`. |
 | `shared/Remotes.luau` | both | The RemoteEvents in `ReplicatedStorage.Remotes`: `setup()` on the server, `get(name)` anywhere. `TagSwing` (client to server), `TagSwingPlayed` (server to all clients). |
-| `shared/GameState.luau` | both | Status text as a ReplicatedStorage attribute. Server writes, clients read and listen. |
+| `shared/GameState.luau` | both | `Phase`, `TimeLeft`, `Round`, `AliveCount`, `Status` as ReplicatedStorage attributes (plus `Winner` during Victory). Server writes, clients read and listen. |
 | `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
 | `server/TagService.luau` | server | Handles the `TagSwing` remote: checks the sender is It, not frozen and off `Config.Tag.Cooldown`, tells all clients to play the swipe (`TagSwingPlayed`), and tags the nearest Runner within `Config.Tag.Range`. |
-| `server/Sandbox.luau` | server | Free-play setup: players join as Runners, keeps one player as It |
+| `server/Sandbox.luau` | server | Sandbox mode only: players join as Runners, keeps one player as It |
 | `server/Avatar.luau` | server | Makes the `StarterCharacter` (currently the classic 2012 block R15 rig, `Config.Body.Enabled = false`): the BodyRig (with Roblox's standard Animate script borrowed from a classic rig), or the classic 2012 block rig if `Config.Body.Enabled` is off. Respawns any non-R15 character. |
 | `server/CollisionGroups.luau` | server | Registers the `SlideBlocker` / `Sliding` collision groups and puts `SlideBlocker` parts in their group |
+| `server/GameLoop.luau` | server | The game state machine: Lobby, Countdown, rounds (Intro, Playing, Results), Victory. Or the Sandbox in Sandbox mode. |
+| `server/Participants.luau` | server | Who is in the game: `InGame` / `Alive` player attributes, keeps `AliveCount` updated. |
+| `server/MapService.luau` | server | Map catalog from `ServerStorage.Maps`: `choose(playerCount, lastMap)` by size tier, `load`/`unload` as `Workspace.ActiveMap`, `spawnPoints`. |
+| `server/Modes/HotPotato.luau` | server | The Hot Potato game mode (see Game flow). |
+| `client/Spectate.luau` | client | While a game is on and you're not in it, the camera follows a living player; Q/E or arrows switch. |
 | `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
 | `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
 | `client/Slide.luau` | client | The C key. Sprinting on the ground: slide (boost unless within `DeadSlideTime` = dead slide; uses your landing speed within `LandingGrace`). Moving fast in the air: air slide (no boost, slow-down starts on landing). Otherwise: crouch at `CrouchSpeed` (idle pose, crouch-walk cycle while moving; height worked out from leg lengths so feet stay on the floor), low enough for slide bars, no jumping under a ceiling. A slide that runs out with C held becomes a crouch. Can't stand up under a ceiling; jumping out of a slide keeps its speed. |
@@ -79,13 +94,13 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/FirstPersonBody.luau` | client | First person: shows your legs (and their details) only, keeps face, hair and other details hidden (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
 | `client/Viewmodel.luau` | client | First-person arms: classic yellow blocks (`ClassicArm`/`ClassicHand`) with the classic avatar, or the rounded body's forearm and hand scaled by `Config.Viewmodel.Scale`, attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
 | `client/TagSwing.luau` | client | Left click (or R2) while It: plays the swipe at once, jabs the first-person arm, fires `TagSwing`. Plays other players' swipes when `TagSwingPlayed` arrives, so everyone sees them. |
-| `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
+| `client/Hud.luau` | client | Status line, timer / round / players left, and banners: YOU ARE IT!, RUN!, ELIMINATED, YOU WIN!, "<name> wins!". |
 
 Rules of thumb:
 - Server owns all game state. Clients read attributes and ask the server through RemoteEvents in `shared/Remotes.luau` (add new names to its list).
-- Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.26.0: Game flow: lobby (X=2000) with auto countdown, elimination rounds on maps picked by player count (ServerStorage.Maps; SmallBox, MediumBox, LargeBox placeholders), Hot Potato mode (about 45% start as It, Its at the timer are eliminated), spectating with Q/E, last player standing wins. HUD shows timer, round, players left and banners. Sandbox mode kept on TestGround. Tagging only during a round.
 - 0.25.0: Tagging is a left-click swipe for It (server checks range, cooldown and freeze), with a swipe animation everyone sees and a first-person arm jab. Replaces automatic touch tagging. First RemoteEvents (`shared/Remotes.luau`).
 - 0.24.0: Slide looks like the reference video: feet first with straight legs, body leaned back about 60 degrees, one arm up, quicker drop and recovery. Bar swinging removed entirely; the course bars became stepping stones.
 - 0.23.4: Only the auto vault handles low obstacles: Mantle skips ledges within vault height of the floor (that pull-up looked like the old space vault), and the auto vault also works mid-jump.
