@@ -197,9 +197,13 @@ function WallRun.start()
 				connection:Disconnect()
 				leave(normal, release, track)
 				kickOff(parts, normal, Vector3.zero)
-			elseif clinging and hopsLeft > 0 then
+			elseif
+				clinging
+				and hopsLeft > 0
+				and MoveState.headroom(parts, 1) > 1 -- not when your head is already at a ceiling
+			then
 				hopsLeft -= 1
-				setPhase(false) -- hop higher
+				setPhase(false) -- hop higher (not when your head is already at a ceiling)
 			end
 		end
 
@@ -248,6 +252,15 @@ function WallRun.start()
 				setPhase(true) -- top of the hop: grab on
 			else
 				up = settings.HopSpeed * (1 - phaseTime / settings.HopTime)
+				-- A wall that runs up to a ceiling: stop at the ceiling and hold on there,
+				-- instead of driving your head into (and through) the roof.
+				if
+					MoveState.headroom(parts, settings.CeilingStop + up * dt)
+					<= settings.CeilingStop + up * dt
+				then
+					up = 0
+					setPhase(true)
+				end
 			end
 			-- Stay ClingGap studs from the wall, hands on it.
 			local inward = math.clamp((chest.Distance - settings.ClingGap) * 12, -6, 20)
@@ -304,6 +317,13 @@ function WallRun.start()
 			-- studs from the wall so the tilted body's feet run on it.
 			local f = elapsed / settings.RunTime
 			local vertical = settings.RunLift + (-settings.RunSink - settings.RunLift) * f
+			if
+				vertical > 0
+				and MoveState.headroom(parts, settings.CeilingStop + vertical * dt)
+					<= settings.CeilingStop + vertical * dt
+			then
+				vertical = 0 -- don't rise into a ceiling
+			end
 			local gap = if beside then beside.Distance else settings.RunGap
 			local inward = math.clamp((gap - settings.RunGap) * 12, -6, 20)
 			drive.VectorVelocity = along * speed + Vector3.new(0, vertical, 0) - normal * inward

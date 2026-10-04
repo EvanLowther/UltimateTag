@@ -6,10 +6,15 @@
 --   landVelocity / landTime: the air speed you landed with (set by AirMomentum).
 --   parts():     the local character's model, humanoid and root part, if alive.
 --   isGrounded(), flat(): the standard checks, so no module re-implements them.
+--   headroom():  studs between the top of your head and whatever is above it (ceilings), so
+--                moves that drive you upward stop instead of pushing you into the roof.
 --   drive():     a LinearVelocity that takes over the character's velocity during a move.
 --   launch():    throws the character up and out (vault and mantle launches).
 -- Moves keep their own small Heartbeat that only runs while they need it (no central loop).
 local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 
 export type Parts = { character: Model, humanoid: Humanoid, root: BasePart }
 
@@ -49,6 +54,18 @@ end
 
 function MoveState.isGrounded(humanoid: Humanoid): boolean
 	return humanoid.FloorMaterial ~= Enum.Material.Air
+end
+
+-- Studs of free space above your head, looking up to `reach` studs (math.huge if clear).
+-- Only solid parts count (CanCollide), so decoration doesn't stop you.
+function MoveState.headroom(parts: Parts, reach: number): number
+	local head = Config.Slide.HeadClearance -- body center to the top of the head
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Exclude
+	params.FilterDescendantsInstances = { parts.character }
+	params.RespectCanCollide = true
+	local hit = workspace:Raycast(parts.root.Position, Vector3.new(0, head + reach, 0), params)
+	return if hit then math.max(hit.Distance - head, 0) else math.huge
 end
 
 -- Throws the character along the flat direction `dir` at `forward` studs/s and upward at `up`

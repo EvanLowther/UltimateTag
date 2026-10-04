@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.31.2",
+	Version = "0.32.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -225,6 +225,7 @@ local Config = {
 		KeepAlong = 0.9, -- kicking off a wall run: fraction of your run speed you keep
 		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
 		RunGap = 1.3, -- studs from your body's center to the wall during a wall run (feet on the wall)
+		CeilingStop = 0.4, -- studs below a ceiling where climb hops and wall-run lift stop
 		-- Third-person poses. Wall-run poses are written for a wall on your LEFT (mirrored for the right).
 		Poses = {
 			ClimbA = { -- right hand reaching up, left knee up
@@ -393,6 +394,11 @@ local Config = {
 		ThirdPersonDistance = 12, -- studs the camera pulls back when switching to third person
 		BodyForward = 0.4, -- first person: studs the camera sits ahead of the body
 		HeadFollow = 14, -- first person: how quickly the camera follows your head (higher = tighter)
+		-- Third-person follow cam (client/FollowCam).
+		Follow = true, -- Roblox's Follow mode: the camera swings round behind you as you run
+		CollisionRadius = 0.6, -- studs: the camera keeps this far from walls and ceilings
+		ZoomOutRate = 10, -- studs/s the camera eases back out once a wall stops blocking it
+		FadeDistance = 3, -- your character fades when the camera is pushed closer than this
 	},
 
 	Viewmodel = {

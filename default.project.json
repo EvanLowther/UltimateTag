@@ -18,6 +18,10 @@
         "Client": {
           "$path": "src/client"
         }
+      },
+      "$properties": {
+        "DevComputerCameraMovementMode": "Follow",
+        "DevTouchCameraMovementMode": "Follow"
       }
     },
     "Workspace": {

@@ -187,7 +187,8 @@ def main_floor(m):
     g = "Building"
     # Floor slab with the hole and the grate cut out; ceiling.
     m.slab(g, "Floor", (-IN_X, IN_X, -IN_Z, IN_Z), SLAB, 0, [HOLE, GRATE], "floor")
-    m.block(g, "Ceiling", -IN_X - WALL, IN_X + WALL, HEIGHT, HEIGHT + 1, -IN_Z - WALL, IN_Z + WALL,
+    # Thick, so nothing gets pushed through it.
+    m.block(g, "Ceiling", -IN_X - WALL, IN_X + WALL, HEIGHT, HEIGHT + 4, -IN_Z - WALL, IN_Z + WALL,
             "ceiling")
     # Outer walls.
     m.wall(g, "Z", (IN_X, IN_X + WALL), (-IN_Z - WALL, IN_Z + WALL), SLAB, HEIGHT, "wall")
@@ -268,7 +269,8 @@ def main_floor(m):
 
 
 DUCT_X = 9  # the catwalk runs north-south east of the column
-DUCT_TOP = 12  # walk on top: out of reach of a tag from the floor, 6 below the ceiling
+DUCT_TOP = 11  # walk on top: out of reach of a tag from the floor, 7 below the ceiling (room
+# to stand, and the mantle's headroom check passes)
 DUCT_W = 4
 DUCT_Z = 42  # catwalk from -DUCT_Z to DUCT_Z, with a riser down to the floor at each end
 
