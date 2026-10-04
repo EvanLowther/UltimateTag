@@ -1,0 +1,413 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Spawn1",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -118,
+       0.5,
+       -40
+      ],
+      "orientation": [
+       [
+        -0.321,
+        0,
+        -0.947
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.947,
+        0,
+        -0.321
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Spawn2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40,
+       0.5,
+       -118
+      ],
+      "orientation": [
+       [
+        -0.947,
+        0,
+        -0.321
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.321,
+        0,
+        -0.947
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Spawn3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42,
+       0.5,
+       -118
+      ],
+      "orientation": [
+       [
+        -0.942,
+        0,
+        0.335
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.335,
+        0,
+        -0.942
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Spawn4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       118,
+       0.5,
+       -42
+      ],
+      "orientation": [
+       [
+        -0.335,
+        0,
+        0.942
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.942,
+        0,
+        -0.335
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Spawn5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       118,
+       0.5,
+       44
+      ],
+      "orientation": [
+       [
+        0.349,
+        0,
+        0.937
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.937,
+        0,
+        0.349
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Spawn6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       40,
+       0.5,
+       118
+      ],
+      "orientation": [
+       [
+        0.947,
+        0,
+        0.321
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.321,
+        0,
+        0.947
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Spawn7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -42,
+       0.5,
+       118
+      ],
+      "orientation": [
+       [
+        0.942,
+        0,
+        -0.335
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.335,
+        0,
+        0.942
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Spawn8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -118,
+       0.5,
+       42
+      ],
+      "orientation": [
+       [
+        0.335,
+        0,
+        -0.942
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.942,
+        0,
+        0.335
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Ground",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     250,
+     4.0,
+     250
+    ],
+    "Color": [
+     0.871,
+     0.8,
+     0.627
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       -2.0,
+       0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

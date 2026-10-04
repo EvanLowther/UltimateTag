@@ -1,0 +1,143 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Gantry_01_Leg1",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3,
+     26.0,
+     3
+    ],
+    "Color": [
+     1.0,
+     0.804,
+     0.235
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       13.0,
+       58
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Gantry_01_Leg2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3,
+     26.0,
+     3
+    ],
+    "Color": [
+     1.0,
+     0.804,
+     0.235
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       13.0,
+       110
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Gantry_01_Beam",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3,
+     3,
+     55
+    ],
+    "Color": [
+     1.0,
+     0.804,
+     0.235
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       27.5,
+       84.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  }
+ ]
+}
