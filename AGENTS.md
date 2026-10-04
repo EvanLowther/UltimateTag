@@ -3,7 +3,9 @@
 A simple Roblox tag game with a classic studded look. Code lives in files and syncs into Studio with Rojo.
 
 ## Style rules
-- **Studded, simple, classic.** Plastic material, bright solid colors, `TopSurface = Studs` / `BottomSurface = Inlet`. No realistic materials, no post-processing, no fancy effects (simple white speed trails are the one exception).
+- **Studded, simple, classic** for gameplay maps: Plastic material, bright solid colors, `TopSurface = Studs` / `BottomSurface = Inlet`. No realistic materials.
+- **The lobby** is vibrant, flat-shaded low-poly (meshes from Blender with one palette texture), matching the reference art.
+- **Lighting** (in `default.project.json`, Rojo-managed) is bright and saturated: ShadowMap, a ColorCorrection boost, soft Bloom, light Atmosphere. Simple white speed trails are the only other effect.
 - Keep it simple. Prefer one small module per feature over big scripts.
 
 ## Layout (Rojo: `default.project.json`)
@@ -12,7 +14,8 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 | `src/shared/` | `ReplicatedStorage.Shared` | `Config.luau` (all tunables) and modules used by both sides |
 | `src/server/` | `ServerScriptService.Server` | `init.server.luau` entry point plus one ModuleScript per service |
 | `src/client/` | `StarterPlayerScripts.Client` | `init.client.luau` entry point plus one ModuleScript per UI or feature |
-| `src/lobby/` | `Workspace.Lobby` | the lobby at X=2000: floor, walls and the game's only `SpawnLocation` |
+| `src/tools/` | `ServerStorage.Tools` | Studio-only tools: `SetupLobby` (sets up an imported lobby) and its generated `LobbyData` |
+| (none) | `Workspace.Lobby` | the lobby island. **Not managed by Rojo**: it lives only in the place file (see Lobby below) |
 | `src/maps/` | `ServerStorage.Maps` | round maps, one folder per map (see Maps below); loaded into `Workspace.ActiveMap` one at a time |
 
 ## Maps
@@ -35,9 +38,15 @@ Current maps:
   - `ParkourCourse.model.json`: from the reference video, at X=120 heading -Z: climb tower, wall-run corridor, landing platform, three stepping stones, platform, drop, steps.
 - Any part with the `SlideBlocker` attribute blocks standing players but not sliding or crouching ones (CollisionGroups also handles maps loaded later).
 
+## Lobby
+The lobby is a low-poly tropical island made in Blender (`tools/blender/make_lobby.py`) and imported into Studio once. After that, **Studio owns it**: it lives in the place file (save the place, and publish to keep it safe), you edit it freely in Studio, and Rojo never touches `Workspace.Lobby`.
+- Layout: `Workspace.Lobby/<Category>/<Object>` Models (Island, Water, Horizon, Nature, Props, Landmarks, Lounge_Zone, UI_Assets, Shop_Structure, Lighthouse), each with its pivot at its base, plus `LobbySpawn` and an invisible `Boundary` ring. One mesh per object (palette texture), `*_Glow` parts are Neon, decorations don't collide, palms have invisible trunk colliders.
+- Setting up (or redoing) the lobby: run the generator from the repo root (writes `assets_src/lobby/UltimateTagLobby.fbx` and `src/tools/LobbyData.luau`; run `stylua src` afterwards), then in Studio **Import 3D** the FBX and run `require(game.ServerStorage.Tools.SetupLobby)()` in the command bar, then save. SetupLobby fixes the import's scale/rotation/position with four marker cubes (island center goes to `Config.Lobby.Position`), organizes it, sets collision, and adds sign text (SurfaceGuis), Seats, prompts, the leaderboard screen and the wheel's spin data. Re-running on a new import replaces the old lobby (manual Studio edits are lost then).
+- Working parts find their pieces by CollectionService tag, so they keep working when moved: `LobbyLeaderboard` (screen part), `RewardWheel` (wheel part, with `SpinAxis`/`SpinCenter`/`Segments`/`Angle` attributes in its own space), `RewardWheelPrompt`, `AvatarShopPrompt` (shows its `Message` attribute).
+
 ## Art pipeline (Blender)
 Blender 5 is installed (`blender` on the PATH). Generator scripts in `tools/blender/` build models in code; run them with `blender --background --python <script> -- <out_dir> [preview_dir]`.
-- `make_lobby.py`: the lobby island (gazebo, firepit lounge, leaderboard, reward wheel, avatar shop, lighthouse, gamepass board, docks, palms, hedges, rocks, benches, crates, lamps, flower boxes, 8 idle characters). Every piece is a separate named object; multi-part assets have a named Empty as their root; origins at the base; studs, Z up, front faces -Y. Writes `assets_src/lobby/UltimateTagLobby.blend` (open and rearrange), `.fbx` (for Studio's 3D Importer) and previews in `assets_src/lobby/previews/`. Not in the game yet: the game still uses the simple `src/lobby/`.
+- `make_lobby.py`: the lobby island (see Lobby). 118 objects, one mesh each (about 36k triangles total), colored by a one-row palette texture (`LobbyPalette.png`, flip-proof); each object has its own mesh named after it (so imported pieces are named predictably); glow pieces separate; sign text is data, not mesh. Studs, Z up, front faces -Y. Writes `assets_src/lobby/UltimateTagLobby.blend`/`.fbx`, `src/tools/LobbyData.luau`, and with a preview dir, renders (`assets_src/lobby/previews/`). Also runs from Blender's Text Editor.
 - `make_character.py`, `smooth_body.py`: earlier character experiments (unused).
 
 ## Conventions
@@ -48,8 +57,9 @@ Blender 5 is installed (`blender` on the PATH). Generator scripts in `tools/blen
 ## Checks (run before every commit)
 ```
 export PATH="$HOME/.rokit/bin:$PATH"
-stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o UltimateTag.rbxlx
+stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o build/check.rbxlx
 ```
+**Never build to `UltimateTag.rbxlx`**: the lobby exists only in that place file, so rebuilding it from the project would delete the lobby. `build/` is git-ignored.
 
 ## Workflow
 - After each change: update this file (layout, map, features, changelog) and the README if needed, run the checks, commit, then `git push`.
@@ -65,7 +75,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | --- | --- | --- |
 | `shared/Config.luau` | both | All tunables: tag range, freeze time, speeds, colors, font |
 | `shared/BodyRig.luau` | both | Builds the character body: a smooth rounded cartoon person (Crab Game style) from round shapes. Cylinder limbs turned upright through their attachments (joint frames keep standard axes), ball joints, ball head and hands, face (eyes, pupils, mouth), hair, tracksuit stripes, zipper and soles welded on as details. Sizes and colors in `Config.Body`. |
-| `shared/Remotes.luau` | both | The RemoteEvents in `ReplicatedStorage.Remotes`: `setup()` on the server, `get(name)` anywhere. `TagSwing` (client to server), `TagSwingPlayed` (server to all clients). |
+| `shared/Remotes.luau` | both | The RemoteEvents in `ReplicatedStorage.Remotes`: `setup()` on the server, `get(name)` anywhere. `TagSwing` (client to server), `TagSwingPlayed` (server to all clients), `Notify` (server to one client). |
 | `shared/GameState.luau` | both | `Phase`, `TimeLeft`, `Round`, `AliveCount`, `Status` as ReplicatedStorage attributes (plus `Winner` during Victory). Server writes, clients read and listen. |
 | `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
 | `server/TagService.luau` | server | Handles the `TagSwing` remote: checks the sender is It, not frozen and off `Config.Tag.Cooldown`, tells all clients to play the swipe (`TagSwingPlayed`), and tags the nearest Runner within `Config.Tag.Range`. |
@@ -77,7 +87,11 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `server/MapService.luau` | server | Map catalog from `ServerStorage.Maps`: `choose(playerCount, lastMap)` by size tier, `load`/`unload` as `Workspace.ActiveMap`, `spawnPoints`. |
 | `server/Modes/HotPotato.luau` | server | The Hot Potato game mode (see Game flow). |
 | `client/Spectate.luau` | client | While a game is on and you're not in it, the camera follows a living player; Q/E or arrows switch. |
-| `server/Leaderstats.luau` | server | `Wins` / `Tags` columns in the player list (Wins unused until rounds return) |
+| `server/WinsStore.luau` | server | Lifetime wins: loads them into the Wins column, `addWin` saves (DataStore `Wins_v1`) and updates the top list (OrderedDataStore `TotalWins_v1`), `top(n)` for the leaderboard. Without data store access it keeps working for the session. |
+| `server/LobbyLeaderboard.luau` | server | Fills the `LobbyLeaderboard` screen with `WinsStore.top` every `Config.Lobby.LeaderboardRefresh` seconds. |
+| `server/RewardWheel.luau` | server | The `RewardWheelPrompt` spins the `RewardWheel` part for everyone, lands on a random prize (`Config.Lobby.WheelPrizes`), tells the player; one spin per `WheelCooldownHours`, saved when possible. |
+| `client/Notify.luau` | client | Short on-screen messages from the `Notify` remote, and from ProximityPrompts with a `Message` attribute. |
+| `server/Leaderstats.luau` | server | `Wins` (lifetime, from WinsStore) / `Tags` columns in the player list. `add` and `set`. |
 | `client/Sprint.luau` | client | Hold `Config.Sprint.Key` (Left Shift) to run `Config.Sprint.Multiplier` times faster, with a small field-of-view boost. Client-side for instant feel. |
 | `client/Slide.luau` | client | The C key. Sprinting on the ground: slide (boost unless within `DeadSlideTime` = dead slide; uses your landing speed within `LandingGrace`). Moving fast in the air: air slide (no boost, slow-down starts on landing). Otherwise: crouch at `CrouchSpeed` (idle pose, crouch-walk cycle while moving; height worked out from leg lengths so feet stay on the floor), low enough for slide bars, no jumping under a ceiling. A slide that runs out with C held becomes a crouch. Can't stand up under a ceiling; jumping out of a slide keeps its speed. |
 | `client/SlidePose.luau` | client | The slide and crouch animations: builds keyframed animations from `Config.Slide.Poses` (Drop, Slide, Lunge, Crouch from the reference frames, plus CrouchWalk) and plays them through the Animator. Also the hip sink and camera dip. Registered on the client only, so other players don't see it yet; replace with an uploaded Animation before multiplayer. |
@@ -105,6 +119,7 @@ Rules of thumb:
 - Server owns all game state. Clients read attributes and ask the server through RemoteEvents in `shared/Remotes.luau` (add new names to its list).
 
 ## Changelog
+- 0.27.0: New lobby island to match the reference art (Blender, one mesh per object, palette texture, faceted see-through ocean, distant islands, no figures), imported once and owned by Studio, set up by `ServerStorage.Tools.SetupLobby`. Working parts: live all-time leaderboard (saved lifetime wins), spinning daily reward wheel, shop prompt, bench seats. Vibrant lighting (ColorCorrection, Bloom, Atmosphere). Checks now build to `build/check.rbxlx`.
 - 0.26.1: Lobby island model generated in Blender (`tools/blender/make_lobby.py`, 865 named pieces), not yet imported into the game.
 - 0.26.0: Game flow: lobby (X=2000) with auto countdown, elimination rounds on maps picked by player count (ServerStorage.Maps; SmallBox, MediumBox, LargeBox placeholders), Hot Potato mode (about 45% start as It, Its at the timer are eliminated), spectating with Q/E, last player standing wins. HUD shows timer, round, players left and banners. Sandbox mode kept on TestGround. Tagging only during a round.
 - 0.25.0: Tagging is a left-click swipe for It (server checks range, cooldown and freeze), with a swipe animation everyone sees and a first-person arm jab. Replaces automatic touch tagging. First RemoteEvents (`shared/Remotes.luau`).

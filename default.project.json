@@ -21,21 +21,83 @@
       }
     },
     "Workspace": {
-      "Lobby": {
-        "$path": "src/lobby"
-      }
+      "$properties": {}
     },
     "Lighting": {
       "$properties": {
         "Technology": "ShadowMap",
         "ClockTime": 14,
-        "Brightness": 2,
-        "GlobalShadows": true
+        "Brightness": 3,
+        "GlobalShadows": true,
+        "Ambient": [
+          0.45,
+          0.45,
+          0.5
+        ],
+        "OutdoorAmbient": [
+          0.55,
+          0.55,
+          0.6
+        ],
+        "EnvironmentDiffuseScale": 0.5,
+        "EnvironmentSpecularScale": 0.3,
+        "ShadowSoftness": 0.25,
+        "ExposureCompensation": 0.15,
+        "GeographicLatitude": 25
+      },
+      "ColorCorrection": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Saturation": 0.25,
+          "Contrast": 0.08,
+          "Brightness": 0.02,
+          "TintColor": [
+            1,
+            0.98,
+            0.95
+          ]
+        }
+      },
+      "Bloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Intensity": 0.35,
+          "Size": 24,
+          "Threshold": 1.6
+        }
+      },
+      "Atmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.22,
+          "Offset": 0.1,
+          "Color": [
+            0.78,
+            0.88,
+            1
+          ],
+          "Decay": [
+            0.55,
+            0.7,
+            0.9
+          ],
+          "Glare": 0.1,
+          "Haze": 0.6
+        }
+      },
+      "Sky": {
+        "$className": "Sky",
+        "$properties": {
+          "CelestialBodiesShown": true
+        }
       }
     },
     "ServerStorage": {
       "Maps": {
         "$path": "src/maps"
+      },
+      "Tools": {
+        "$path": "src/tools"
       }
     }
   }

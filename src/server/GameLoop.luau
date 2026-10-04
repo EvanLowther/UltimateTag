@@ -14,11 +14,11 @@ local RunService = game:GetService("RunService")
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
-local Leaderstats = require(script.Parent.Leaderstats)
 local MapService = require(script.Parent.MapService)
 local Participants = require(script.Parent.Participants)
 local Roles = require(script.Parent.Roles)
 local Sandbox = require(script.Parent.Sandbox)
+local WinsStore = require(script.Parent.WinsStore)
 local HotPotato = require(script.Parent.Modes.HotPotato)
 
 local GameLoop = {}
@@ -146,7 +146,7 @@ local function playGame(players: { Player })
 	local alive = Participants.alive()
 	local winner = alive[1]
 	if winner then
-		Leaderstats.add(winner, "Wins", 1)
+		WinsStore.addWin(winner)
 		GameState.setStatus(`{winner.DisplayName} wins!`)
 		ReplicatedStorage:SetAttribute("Winner", winner.Name)
 	else

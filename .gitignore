@@ -12,3 +12,6 @@ ServerPackages/
 
 # Blender backups
 *.blend1
+
+# Check builds (never overwrite UltimateTag.rbxlx: the lobby lives only in the place file)
+build/

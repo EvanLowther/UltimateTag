@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.26.0",
+	Version = "0.27.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -17,6 +17,30 @@ local Config = {
 		ResultsTime = 5, -- seconds to show who was eliminated
 		VictoryTime = 8, -- seconds to show the winner before going back to the lobby
 		EliminateFraction = 0.45, -- share of the players still in who start a round as It (and lose it)
+	},
+
+	Lobby = {
+		-- The lobby island is imported once into Studio and set up with tools/SetupLobby (see
+		-- AGENTS.md). It then lives in the place file; these settings drive its working parts.
+		Position = Vector3.new(2000, 0, 0), -- where the setup tool puts the island's center (water level)
+		LeaderboardRows = 8, -- names on the lobby leaderboard
+		LeaderboardRefresh = 45, -- seconds between leaderboard updates
+		WheelCooldownHours = 24, -- the reward wheel: one spin per player per this many hours
+		WheelSpinTime = 4.5, -- seconds a spin takes
+		WheelTurns = 4, -- full turns before it settles
+		-- One prize per wheel segment, in segment order: red, orange, yellow, green, cyan, blue,
+		-- purple, pink. Placeholders until coins and trails exist.
+		WheelPrizes = {
+			"10 Coins",
+			"25 Coins",
+			"50 Coins",
+			"100 Coins",
+			"Speed Trail (1 day)",
+			"5 Coins",
+			"VIP Trial (1 day)",
+			"Mystery Box",
+		},
+		ShopMessage = "The Avatar Shop opens soon!",
 	},
 
 	Tag = {

@@ -12,4 +12,13 @@ A simple, classic-looking Roblox tag game. Each round some players are It: left-
 3. Edit files in `src/` and they update live in Studio.
 4. To play a real game you need at least 2 players: **Test > Clients and Servers**, 2 or more players, **Start**. For movement testing alone, set `Config.Game.Mode = "Sandbox"` in `src/shared/Config.luau` and press Play.
 
+## Setting up the lobby (once)
+The lobby island isn't in the code files: it lives in your place file, so you can move things around in Studio.
+1. In Studio: **Home > Import 3D**, pick `assets_src/lobby/UltimateTagLobby.fbx`, click **Import**.
+2. Open **View > Command Bar** and run: `require(game.ServerStorage.Tools.SetupLobby)()`
+3. Save the place (**Ctrl+S**), and publish it to Roblox to keep it safe.
+After that, click any tree, bench or building in `Workspace > Lobby` to move, rotate or duplicate it. Save the place when you're done.
+
+For saved wins and the global leaderboard, publish the place and turn on **Game Settings > Security > Enable Studio Access to API Services**.
+
 See `AGENTS.md` for the project layout and conventions.

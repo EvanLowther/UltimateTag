@@ -4,12 +4,13 @@
 --   TagSwing:       client -> server. "I swung to tag." The server decides if it hit.
 --   TagSwingPlayed: server -> clients. "This player swung." Every client plays the swipe on
 --                   that character, so everyone sees it.
+--   Notify:         server -> one client. A short message to show on screen.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
 
 local FOLDER = "Remotes"
-local NAMES = { "TagSwing", "TagSwingPlayed" }
+local NAMES = { "TagSwing", "TagSwingPlayed", "Notify" }
 
 -- Server only: creates the folder and every RemoteEvent.
 function Remotes.setup()

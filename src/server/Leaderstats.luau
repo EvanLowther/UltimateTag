@@ -1,5 +1,6 @@
 --!strict
--- The leaderboard columns (Wins, Tags) shown in the player list.
+-- The leaderboard columns (Wins, Tags) shown in the player list. Wins are lifetime wins,
+-- loaded and saved by WinsStore.
 local Players = game:GetService("Players")
 
 local STATS = { "Wins", "Tags" }
@@ -22,6 +23,14 @@ function Leaderstats.add(player: Player, stat: string, amount: number)
 	local value = folder and folder:FindFirstChild(stat)
 	if value and value:IsA("IntValue") then
 		value.Value += amount
+	end
+end
+
+function Leaderstats.set(player: Player, stat: string, amount: number)
+	local folder = player:WaitForChild("leaderstats", 10)
+	local value = folder and folder:FindFirstChild(stat)
+	if value and value:IsA("IntValue") then
+		value.Value = amount
 	end
 end
 
