@@ -35,6 +35,11 @@ Current maps:
   - `ParkourCourse.model.json`: from the reference video, at X=120 heading -Z: climb tower, wall-run corridor, landing platform, three stepping stones, platform, drop, steps.
 - Any part with the `SlideBlocker` attribute blocks standing players but not sliding or crouching ones (CollisionGroups also handles maps loaded later).
 
+## Art pipeline (Blender)
+Blender 5 is installed (`blender` on the PATH). Generator scripts in `tools/blender/` build models in code; run them with `blender --background --python <script> -- <out_dir> [preview_dir]`.
+- `make_lobby.py`: the lobby island (gazebo, firepit lounge, leaderboard, reward wheel, avatar shop, lighthouse, gamepass board, docks, palms, hedges, rocks, benches, crates, lamps, flower boxes, 8 idle characters). Every piece is a separate named object; multi-part assets have a named Empty as their root; origins at the base; studs, Z up, front faces -Y. Writes `assets_src/lobby/UltimateTagLobby.blend` (open and rearrange), `.fbx` (for Studio's 3D Importer) and previews in `assets_src/lobby/previews/`. Not in the game yet: the game still uses the simple `src/lobby/`.
+- `make_character.py`, `smooth_body.py`: earlier character experiments (unused).
+
 ## Conventions
 - Every tunable number or name goes in `src/shared/Config.luau`. Never hard-code it in a service.
 - A new feature means a new module, required and started from the matching `init.*.luau`.
@@ -100,6 +105,7 @@ Rules of thumb:
 - Server owns all game state. Clients read attributes and ask the server through RemoteEvents in `shared/Remotes.luau` (add new names to its list).
 
 ## Changelog
+- 0.26.1: Lobby island model generated in Blender (`tools/blender/make_lobby.py`, 865 named pieces), not yet imported into the game.
 - 0.26.0: Game flow: lobby (X=2000) with auto countdown, elimination rounds on maps picked by player count (ServerStorage.Maps; SmallBox, MediumBox, LargeBox placeholders), Hot Potato mode (about 45% start as It, Its at the timer are eliminated), spectating with Q/E, last player standing wins. HUD shows timer, round, players left and banners. Sandbox mode kept on TestGround. Tagging only during a round.
 - 0.25.0: Tagging is a left-click swipe for It (server checks range, cooldown and freeze), with a swipe animation everyone sees and a first-person arm jab. Replaces automatic touch tagging. First RemoteEvents (`shared/Remotes.luau`).
 - 0.24.0: Slide looks like the reference video: feet first with straight legs, body leaned back about 60 degrees, one arm up, quicker drop and recovery. Bar swinging removed entirely; the course bars became stepping stones.
