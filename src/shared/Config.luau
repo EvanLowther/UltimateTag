@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.27.0",
+	Version = "0.28.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -550,6 +550,58 @@ local Config = {
 
 	Ui = {
 		Font = Enum.Font.SourceSansBold,
+	},
+
+	-- The developer panel (client/DevPanel, server/DevCommands): game flow, maps, movement tuning
+	-- and debug tools in one window. Always available in Studio playtests; in live servers only
+	-- for the UserIds listed here. Players never see it.
+	DevPanel = {
+		Enabled = true,
+		Key = Enum.KeyCode.Backquote, -- opens and closes the panel (the ` key)
+		UserIds = {} :: { number }, -- extra people allowed in live servers (Studio always is)
+		TeleportKey = Enum.KeyCode.T, -- with "Teleport key" on: jump to where the mouse points
+		FlySpeed = 60, -- studs/s while flying (WASD, E up, Q down)
+		FlyBoost = 3, -- hold Shift while flying to go this many times faster
+		-- The Movement tab's sliders: { Section, Key, Min, Max, Step }. Changes apply at once
+		-- (on your client, and on the server for values it uses) and last until the playtest ends;
+		-- "Copy changes" lists them for pasting into this file.
+		Tunables = {
+			{ "Speed", "Runner", 8, 40, 1 },
+			{ "Speed", "It", 8, 40, 1 },
+			{ "Sprint", "Multiplier", 1, 3, 0.05 },
+			{ "Slide", "StartMultiplier", 1, 2.5, 0.05 },
+			{ "Slide", "Duration", 0.2, 3, 0.05 },
+			{ "Slide", "MaxSpeed", 20, 120, 1 },
+			{ "Slide", "Steer", 0, 8, 0.1 },
+			{ "Slide", "DeadSlideTime", 0, 5, 0.05 },
+			{ "Slide", "CrouchSpeed", 2, 20, 0.5 },
+			{ "AirMomentum", "TurnRate", 0, 720, 5 },
+			{ "AirMomentum", "BrakeRate", 0, 100, 1 },
+			{ "AirMomentum", "AirControl", 0, 150, 1 },
+			{ "WallRun", "MinEntrySpeed", 0, 40, 1 },
+			{ "WallRun", "HopSpeed", 20, 150, 1 },
+			{ "WallRun", "HopTime", 0.1, 1, 0.01 },
+			{ "WallRun", "MaxHops", 1, 6, 1 },
+			{ "WallRun", "ClingTime", 0.2, 4, 0.05 },
+			{ "WallRun", "RunSpeed", 10, 60, 1 },
+			{ "WallRun", "RunTime", 0.3, 4, 0.05 },
+			{ "WallRun", "RunLift", 0, 30, 0.5 },
+			{ "WallRun", "JumpOut", 0, 80, 1 },
+			{ "WallRun", "JumpUp", 0, 80, 1 },
+			{ "Vault", "MinHeight", 0.2, 4, 0.1 },
+			{ "Vault", "MaxHeight", 2, 8, 0.1 },
+			{ "Vault", "MaxDepth", 1, 10, 0.1 },
+			{ "Mantle", "Reach", 1, 5, 0.1 },
+			{ "Mantle", "UpTime", 0.05, 1, 0.01 },
+			{ "Mantle", "BoostWindowStart", 0, 0.6, 0.01 },
+			{ "Mantle", "BoostWindowEnd", 0.05, 0.8, 0.01 },
+			{ "Mantle", "BoostForward", 0, 150, 1 },
+			{ "Mantle", "BoostUp", 0, 120, 1 },
+			{ "LandingRoll", "MinFallSpeed", 20, 120, 1 },
+			{ "LandingRoll", "KeepSpeed", 0.5, 1.2, 0.01 },
+			{ "Tag", "Range", 2, 20, 0.5 },
+			{ "Tag", "Cooldown", 0, 2, 0.05 },
+		} :: { { any } },
 	},
 }
 

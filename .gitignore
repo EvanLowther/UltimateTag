@@ -10,8 +10,9 @@ sourcemap.json
 Packages/
 ServerPackages/
 
-# Blender backups
+# Blender backups, and the texture folder Studio's importer unpacks next to an FBX
 *.blend1
+*.fbm/
 
 # Check builds (never overwrite UltimateTag.rbxlx: the lobby lives only in the place file)
 build/

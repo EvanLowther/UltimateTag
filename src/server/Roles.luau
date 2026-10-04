@@ -93,6 +93,18 @@ function Roles.freeze(player: Player, seconds: number)
 	end)
 end
 
+function Roles.unfreeze(player: Player)
+	frozenUntil[player] = nil
+	apply(player)
+end
+
+-- Re-applies everyone's role (after Config.Speed changes, from the dev panel).
+function Roles.refreshAll()
+	for _, player in Players:GetPlayers() do
+		apply(player)
+	end
+end
+
 function Roles.clearAll()
 	for _, player in Players:GetPlayers() do
 		frozenUntil[player] = nil

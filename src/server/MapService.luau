@@ -12,6 +12,8 @@ local MapService = {}
 
 local ACTIVE = "ActiveMap"
 
+local nextMap: string? = nil -- set from the dev panel: used for the next round, once
+
 local function maps(): { Model }
 	local list = {}
 	for _, item in ServerStorage:WaitForChild("Maps"):GetChildren() do
@@ -30,6 +32,11 @@ end
 -- Picks a map for `playerCount` players: a random one whose size range fits, avoiding
 -- `lastMap` when there's another choice. If none fits, the one whose range is closest.
 function MapService.choose(playerCount: number, lastMap: string?): string?
+	if nextMap then
+		local forced = nextMap
+		nextMap = nil
+		return forced
+	end
 	local fits, others = {}, {}
 	for _, map in maps() do
 		if map:GetAttribute("InRotation") == false then
@@ -62,6 +69,58 @@ function MapService.choose(playerCount: number, lastMap: string?): string?
 		end
 	end
 	return if best then best.Name else nil
+end
+
+-- Makes the next round use `name` (or clears that with nil). Dev panel only.
+function MapService.setNext(name: string?)
+	nextMap = name
+end
+
+function MapService.getNext(): string?
+	return nextMap
+end
+
+function MapService.exists(name: string): boolean
+	local map = ServerStorage:WaitForChild("Maps"):FindFirstChild(name)
+	return map ~= nil and map:IsA("Model")
+end
+
+export type MapInfo = {
+	Name: string,
+	DisplayName: string,
+	MinPlayers: number,
+	MaxPlayers: number,
+	InRotation: boolean,
+	Spawns: number,
+}
+
+-- Every map in the catalog, sorted by size tier (for the dev panel's map list).
+function MapService.catalog(): { MapInfo }
+	local list: { MapInfo } = {}
+	for _, map in maps() do
+		local low, high = range(map)
+		table.insert(list, {
+			Name = map.Name,
+			DisplayName = (map:GetAttribute("DisplayName") or map.Name) :: string,
+			MinPlayers = low,
+			MaxPlayers = high,
+			InRotation = map:GetAttribute("InRotation") ~= false,
+			Spawns = #MapService.spawnPoints(map),
+		})
+	end
+	table.sort(list, function(a, b)
+		if a.MinPlayers ~= b.MinPlayers then
+			return a.MinPlayers < b.MinPlayers
+		end
+		return a.Name < b.Name
+	end)
+	return list
+end
+
+-- The loaded map (Workspace.ActiveMap), if any.
+function MapService.active(): Model?
+	local current = workspace:FindFirstChild(ACTIVE)
+	return if current and current:IsA("Model") then current else nil
 end
 
 -- The display name of a map in the catalog.

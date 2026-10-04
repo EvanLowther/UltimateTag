@@ -7,6 +7,8 @@
 -- says lost. Eliminated players go back to the lobby and spectate (client/Spectate). Rounds
 -- continue until one player is left; they win.
 -- With Config.Game.Mode = "Sandbox" this runs the free-play test mode instead (server/Sandbox).
+-- The dev panel (server/DevCommands) can switch modes, skip the current timer, change the time
+-- left and start a game early.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -23,29 +25,45 @@ local HotPotato = require(script.Parent.Modes.HotPotato)
 
 local GameLoop = {}
 
+export type Mode = "Elimination" | "Sandbox"
+
 local mode = HotPotato -- the active game mode (more modes can be added later)
+
+local loopThread: thread? = nil -- the running Elimination loop (nil in Sandbox)
+local counting = false -- a phase timer is running
+local remaining = 0 -- seconds left on it
+local skipping = false -- end the current timer now (dev panel)
+local forceStart = false -- start a game now, without the lobby countdown (dev panel)
 
 local function minPlayers(): number
 	return if RunService:IsStudio() then Config.Game.StudioMinPlayers else Config.Game.MinPlayers
 end
 
 -- Counts down `seconds` in `phase`. Stops early and returns false if `keepGoing` returns false.
+-- A dev panel skip ends it early but counts as finished.
 local function countdown(
 	phase: GameState.Phase,
 	seconds: number,
 	keepGoing: (() -> boolean)?
 ): boolean
 	GameState.setPhase(phase)
-	for timeLeft = seconds, 1, -1 do
-		GameState.setTimeLeft(timeLeft)
+	remaining = seconds
+	skipping = false
+	counting = true
+	local finished = true
+	while remaining > 0 and not skipping do
+		GameState.setTimeLeft(remaining)
 		task.wait(1)
+		remaining -= 1
 		if keepGoing and not keepGoing() then
-			GameState.setTimeLeft(0)
-			return false
+			finished = false
+			break
 		end
 	end
+	counting = false
+	skipping = false
 	GameState.setTimeLeft(0)
-	return true
+	return finished
 end
 
 local function names(players: { Player }): string
@@ -60,6 +78,15 @@ end
 local function sendToLobby(player: Player)
 	if player.Parent then
 		player:LoadCharacter()
+	end
+end
+
+-- The lobby's SpawnLocation is turned off in Sandbox so players spawn on the test map.
+local function setLobbySpawn(enabled: boolean)
+	local lobby = workspace:FindFirstChild("Lobby")
+	local spawn = lobby and lobby:FindFirstChildOfClass("SpawnLocation")
+	if spawn then
+		spawn.Enabled = enabled
 	end
 end
 
@@ -166,7 +193,10 @@ end
 local function runElimination()
 	while true do
 		local players = Players:GetPlayers()
-		if #players < minPlayers() then
+		if forceStart then
+			forceStart = false
+			playGame(players)
+		elseif #players < minPlayers() then
 			GameState.setPhase("Lobby")
 			GameState.setTimeLeft(0)
 			GameState.setStatus(`Waiting for players ({#players}/{minPlayers()})`)
@@ -187,24 +217,95 @@ end
 local function runSandbox()
 	GameState.setPhase("Sandbox")
 	MapService.load("TestGround")
-	local lobbySpawn = workspace:FindFirstChild("Lobby")
-	local spawn = lobbySpawn and lobbySpawn:FindFirstChildOfClass("SpawnLocation")
-	if spawn then
-		spawn.Enabled = false
-	end
+	setLobbySpawn(false)
 	for _, player in Players:GetPlayers() do
 		task.spawn(sendToLobby, player) -- respawns them on the test map's SpawnLocation
 	end
 	Sandbox.start()
 end
 
-function GameLoop.start()
-	Participants.start()
-	if Config.Game.Mode == "Sandbox" then
+-- Stops whatever is running and clears all game state (roles, map, participants).
+local function stopAll()
+	if loopThread then
+		task.cancel(loopThread)
+		loopThread = nil
+	end
+	Sandbox.stop()
+	counting, skipping, forceStart = false, false, false
+	ReplicatedStorage:SetAttribute("Winner", nil)
+	Roles.clearAll()
+	MapService.unload()
+	Participants.endGame()
+	GameState.setRound(0)
+	GameState.setTimeLeft(0)
+	setLobbySpawn(true)
+end
+
+local function run(newMode: Mode)
+	Config.Game.Mode = newMode
+	GameState.setMode(newMode)
+	if newMode == "Sandbox" then
 		runSandbox()
 	else
-		task.spawn(runElimination)
+		loopThread = task.spawn(runElimination)
 	end
+end
+
+-- Dev panel: switch between Elimination and Sandbox right now. Everyone respawns.
+function GameLoop.setMode(newMode: Mode)
+	stopAll()
+	run(newMode)
+	if newMode == "Elimination" then
+		for _, player in Players:GetPlayers() do
+			task.spawn(sendToLobby, player)
+		end
+	end
+end
+
+-- Dev panel: ends the running timer now (lobby countdown, intro, round, results or victory).
+-- Returns false if no timer is running.
+function GameLoop.skip(): boolean
+	if not counting then
+		return false
+	end
+	skipping = true
+	return true
+end
+
+-- Dev panel: sets the seconds left on the running timer. Returns false if none is running.
+function GameLoop.setTimeLeft(seconds: number): boolean
+	if not counting then
+		return false
+	end
+	remaining = math.max(1, math.floor(seconds))
+	GameState.setTimeLeft(remaining)
+	return true
+end
+
+-- Dev panel: starts a game now with everyone, skipping the lobby countdown (needs 2 players).
+-- Returns a reason if it can't.
+function GameLoop.startNow(): string?
+	if Config.Game.Mode ~= "Elimination" then
+		return "Switch to Elimination first"
+	end
+	local phase = GameState.getPhase()
+	if phase ~= "Lobby" and phase ~= "Countdown" then
+		return "A game is already running"
+	end
+	if #Players:GetPlayers() < 2 then
+		return "A game needs 2 players (Test > Clients and Servers)"
+	end
+	if phase == "Countdown" then
+		skipping = true
+	else
+		forceStart = true
+	end
+	return nil
+end
+
+function GameLoop.start()
+	Participants.start()
+	run(if Config.Game.Mode == "Sandbox" then "Sandbox" else "Elimination")
 end
 
 return GameLoop

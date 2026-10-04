@@ -6,6 +6,8 @@
 --   Round:      round number in the current game (0 in the lobby).
 --   AliveCount: players still in the game.
 --   Status:     a line of text for the HUD.
+--   Mode:       how the server runs: "Elimination" or "Sandbox" (Config.Game.Mode, switchable
+--               from the dev panel).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 export type Phase =
@@ -19,7 +21,8 @@ export type Phase =
 
 local GameState = {}
 
-local FIELDS = { Phase = true, TimeLeft = true, Round = true, AliveCount = true, Status = true }
+local FIELDS =
+	{ Phase = true, TimeLeft = true, Round = true, AliveCount = true, Status = true, Mode = true }
 
 function GameState.getPhase(): Phase
 	return (ReplicatedStorage:GetAttribute("Phase") or "Lobby") :: Phase
@@ -39,6 +42,14 @@ end
 
 function GameState.getStatus(): string
 	return (ReplicatedStorage:GetAttribute("Status") or "") :: string
+end
+
+function GameState.getMode(): string
+	return (ReplicatedStorage:GetAttribute("Mode") or "Elimination") :: string
+end
+
+function GameState.setMode(mode: string)
+	ReplicatedStorage:SetAttribute("Mode", mode)
 end
 
 function GameState.setPhase(phase: Phase)

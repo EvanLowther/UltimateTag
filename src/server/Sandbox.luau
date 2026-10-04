@@ -10,6 +10,8 @@ local Roles = require(script.Parent.Roles)
 
 local Sandbox = {}
 
+local connections: { RBXScriptConnection } = {}
+
 local function ensureIt()
 	if Roles.getIt() then
 		return
@@ -26,18 +28,32 @@ end
 function Sandbox.start()
 	GameState.setStatus("Sandbox: tag to pass It on")
 
-	Players.PlayerAdded:Connect(function(player)
-		Roles.set(player, "Runner")
-		ensureIt()
-	end)
-	Players.PlayerRemoving:Connect(function()
-		-- The leaving player is still listed until the next frame.
-		task.defer(ensureIt)
-	end)
+	table.insert(
+		connections,
+		Players.PlayerAdded:Connect(function(player)
+			Roles.set(player, "Runner")
+			ensureIt()
+		end)
+	)
+	table.insert(
+		connections,
+		Players.PlayerRemoving:Connect(function()
+			-- The leaving player is still listed until the next frame.
+			task.defer(ensureIt)
+		end)
+	)
 	for _, player in Players:GetPlayers() do
 		Roles.set(player, "Runner")
 	end
 	ensureIt()
+end
+
+-- Stops keeping an It (when the dev panel switches modes).
+function Sandbox.stop()
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
 end
 
 return Sandbox
