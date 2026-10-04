@@ -29,6 +29,11 @@ local function apply()
 	end
 end
 
+-- Re-applies the camera mode (after something else, like spectating, changed it).
+function ViewMode.apply()
+	apply()
+end
+
 function ViewMode.start()
 	apply()
 	if not Config.Camera.AllowToggle then
