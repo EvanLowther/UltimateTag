@@ -11,8 +11,8 @@ MAIN FLOOR: a long rectangle (north-south longer). A classroom in the middle wit
     is one basement opening.
   - North hallway: a puddle across the whole width: walk or run in and you slip and fall (Slip);
     slide across to get through.
-  - East hallway: a tipped lunch table ramps up toward a hole in the floor. Off the ramp and a
-    wall run along the east wall gets you across (south to north only). Miss and you fall into
+  - East hallway: a tipped lunch table in the middle of the hall ramps up toward a hole in the
+    floor. Off the ramp, steer to either wall and wall-run across (south to north only). Miss and you fall into
     the basement.
   - South hallway: plain, closed off.
   - Classroom: doors on the west (north end) and east (south end), rows of desks to vault.
@@ -222,16 +222,17 @@ def main_floor(m):
     # North: a puddle across the whole hallway (slip).
     m.block(h, "Puddle", -14, 14, 0, 0.12, -IN_Z, -ROOM_Z, "puddle", Material="Glass",
             Transparency=0.4, Reflectance=0.1, attributes={"Slip": 1.6})
-    # East: the tipped lunch table, rising north to the hole's south edge (4 high), next to the
-    # east wall so the jump turns into a wall run along it.
+    # East: the tipped lunch table in the middle of the hallway, rising north to the hole's south
+    # edge (4 high). Off the end, steer toward either wall to wall-run across.
     hx0, hx1, hz0, hz1 = HOLE
+    table_x = (ROOM_X + IN_X) / 2
     length, rise = 12, 4
     angle = math.degrees(math.atan2(rise, length))
     slope_len = math.hypot(length, rise)
-    m.part(h, "LunchTable", (7, 0.6, slope_len), (IN_X - 3.5, rise / 2 + 0.1, hz1 + length / 2),
+    m.part(h, "LunchTable", (7, 0.6, slope_len), (table_x, rise / 2 + 0.1, hz1 + length / 2),
            "table", rot_x(angle))
     for dz in (3, 9):  # legs sticking out (decoration)
-        m.block(h, "TableLeg", IN_X - 6.5, IN_X - 0.5, 0, 0.6, hz1 + dz - 0.3, hz1 + dz + 0.3,
+        m.block(h, "TableLeg", table_x - 3, table_x + 3, 0, 0.6, hz1 + dz - 0.3, hz1 + dz + 0.3,
                 "grate", CanCollide=False, CanQuery=False)
     # Hazard stripes around the hole and the grate, a grate grid (decoration).
     for x0, x1, z0, z1 in ((hx0, hx1, hz0 - 1, hz0), (hx0, hx1, hz1, hz1 + 1)):
