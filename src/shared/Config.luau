@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.23.3",
+	Version = "0.23.4",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag

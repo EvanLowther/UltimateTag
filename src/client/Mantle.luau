@@ -78,6 +78,13 @@ local function findLedge(
 	if not top or top.Normal.Y < 0.7 then
 		return nil, dir
 	end
+	-- Low obstacles (vault height from the floor in front of them) belong to the auto vault,
+	-- not Mantle: otherwise jumping at one turns into a slow pull-up.
+	local base = Vector3.new(wall.Position.X, top.Position.Y, wall.Position.Z) - dir * 0.6
+	local floor = workspace:Raycast(base, Vector3.new(0, -60, 0), params)
+	if floor and top.Position.Y - floor.Position.Y <= Config.Vault.MaxHeight then
+		return nil, dir
+	end
 
 	-- 3. Somewhere to stand past the edge, with headroom.
 	local standPoint = Vector3.new(wall.Position.X, top.Position.Y, wall.Position.Z)

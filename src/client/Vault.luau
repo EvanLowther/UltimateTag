@@ -1,6 +1,7 @@
 --!strict
 -- Automatic vault, like the reference video: run into a low obstacle (Config.Vault heights)
--- while sprinting or moving fast and you hop it at full speed, no key and no pause.
+-- while sprinting or moving fast and you hop it at full speed, no key and no pause. Works
+-- mid-jump too. It's the only vault: Mantle leaves anything this low alone.
 --   Thin obstacle: an arc over it, landing just past the far side.
 --   Deep obstacle (a step or block): an arc up onto its top.
 -- You keep your speed the whole way. Taller things are for Mantle and wall climbing.
@@ -170,16 +171,20 @@ function Vault.start()
 		end)
 	end
 
-	-- Automatic: checked every frame while running on the ground.
+	-- Automatic: checked every frame while running, and during a jump too (so pressing jump just
+	-- before an obstacle still hops it). Not while falling fast.
 	RunService.Heartbeat:Connect(function()
 		if MoveState.busy then
 			return
 		end
 		local parts = MoveState.parts()
-		if not parts or not MoveState.isGrounded(parts.humanoid) then
+		if not parts then
 			return
 		end
 		local hum, root = parts.humanoid, parts.root
+		if not MoveState.isGrounded(hum) and root.AssemblyLinearVelocity.Y < -15 then
+			return
+		end
 		local fast = Sprint.isSprinting()
 			or MoveState.flat(root.AssemblyLinearVelocity).Magnitude > hum.WalkSpeed
 		if not fast then
