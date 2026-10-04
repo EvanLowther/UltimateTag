@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.30.0",
+	Version = "0.31.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -559,10 +559,15 @@ local Config = {
 	-- Map gadgets (client/MapGadgets), set up by attributes on map parts:
 	--   LaunchVelocity (Vector3): stepping on the part throws you with that velocity (studs/s).
 	--   SpeedBoost (number): jumping or running off the part sends you at least this fast.
+	--   Slip (number): walking or running onto the part knocks you onto your back for that many
+	--                  seconds (a wet floor). Sliding across it doesn't.
 	Gadgets = {
 		LaunchCooldown = 0.8, -- seconds before the same player can be launched again
 		LaunchDriveTime = 0.08, -- seconds the launch velocity is forced (beats ground friction)
 		BoostWindow = 0.3, -- seconds after leaving a SpeedBoost part that the boost still applies
+		SlipMinSpeed = 4, -- studs/s you must be moving to slip
+		SlipSpin = 7, -- how hard the slip tips you backwards (radians/s)
+		SlipCooldown = 1.5, -- seconds after getting up before you can slip again
 	},
 
 	-- Per-map lighting (client/MapLighting): a map with a Lighting attribute (a preset name here)

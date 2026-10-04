@@ -3,6 +3,8 @@
 --   LaunchVelocity (Vector3): standing on the part throws you with that velocity (a launch pad).
 --   SpeedBoost (number):      jumping or running off the part sends you at least this fast in
 --                             the direction you're moving (solar panel slides before a gap).
+--   Slip (number):            moving onto the part knocks you onto your back for that many
+--                             seconds (a wet floor). Sliding across it is safe (a move is busy).
 -- Runs on the client like the other moves; the flight keeps its speed through AirMomentum.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -46,12 +48,35 @@ local function launch(parts: MoveState.Parts, velocity: Vector3)
 	end)
 end
 
+-- Feet out from under you: fall onto your back, lie there, get up.
+local function slip(parts: MoveState.Parts, seconds: number, onDone: () -> ())
+	local settings = Config.Gadgets
+	local hum, root = parts.humanoid, parts.root
+	MoveState.busy = "Slip"
+	hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true)
+	hum:ChangeState(Enum.HumanoidStateType.FallingDown)
+	-- Tip backwards (feet forward) and keep a little forward slide.
+	root.AssemblyAngularVelocity = root.CFrame.RightVector * settings.SlipSpin
+	root.AssemblyLinearVelocity += Vector3.new(0, 8, 0)
+	task.delay(seconds, function()
+		if hum.Parent and hum.Health > 0 then
+			hum:ChangeState(Enum.HumanoidStateType.GettingUp)
+			hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
+		end
+		if MoveState.busy == "Slip" then
+			MoveState.busy = nil
+		end
+		onDone()
+	end)
+end
+
 function MapGadgets.start()
 	local settings = Config.Gadgets
 	local lastLaunch = -math.huge
 	local boostSpeed: number? = nil -- SpeedBoost of the last part you stood on
 	local boostLeft = -math.huge -- when you left it
 	local wasGrounded = true
+	local slipReady = 0 -- os.clock() after which you can slip again
 
 	RunService.Heartbeat:Connect(function()
 		local parts = MoveState.parts()
@@ -75,6 +100,20 @@ function MapGadgets.start()
 				boostSpeed = nil
 				launch(parts, velocity)
 				wasGrounded = false
+				return
+			end
+			local slipTime = floor and floor:GetAttribute("Slip")
+			if
+				type(slipTime) == "number"
+				and not MoveState.busy
+				and now >= slipReady
+				and MoveState.flat(root.AssemblyLinearVelocity).Magnitude
+					>= settings.SlipMinSpeed
+			then
+				slipReady = math.huge -- until you're back up
+				slip(parts, slipTime, function()
+					slipReady = os.clock() + settings.SlipCooldown
+				end)
 				return
 			end
 			local boost = floor and floor:GetAttribute("SpeedBoost")
