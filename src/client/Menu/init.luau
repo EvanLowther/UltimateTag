@@ -2,7 +2,9 @@
 -- The game's menu (for players, unlike the dev panel). On the left side of the screen: your
 -- coins, your level with an XP bar, and buttons that open the menu window's tabs (Shop,
 -- Inventory, Quests, Rewards). Reward popups come in through the Reward remote (Popups).
--- Tabs are modules in this folder with build(page, api) -> refresh function; see TABS.
+-- Tabs are modules in this folder with build(page, api) -> refresh function, and optionally
+-- badge(profile) -> boolean (a red "!" on the button: something to claim); see TABS.
+-- When today's login streak reward is waiting, the Rewards tab opens by itself on joining.
 local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local ProximityPromptService = game:GetService("ProximityPromptService")
@@ -16,6 +18,8 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local Profile = require(script.Parent.Profile)
 local InventoryTab = require(script.InventoryTab)
 local Popups = require(script.Popups)
+local QuestsTab = require(script.QuestsTab)
+local RewardsTab = require(script.RewardsTab)
 local ShopTab = require(script.ShopTab)
 local Ui = require(script.Ui)
 
@@ -26,6 +30,8 @@ type Tab = { name: string, color: Color3, module: any }
 local TABS: { Tab } = {
 	{ name = "Shop", color = Color3.fromRGB(255, 170, 40), module = ShopTab },
 	{ name = "Inventory", color = Color3.fromRGB(150, 90, 230), module = InventoryTab },
+	{ name = "Quests", color = Color3.fromRGB(70, 170, 255), module = QuestsTab },
+	{ name = "Rewards", color = Color3.fromRGB(80, 200, 110), module = RewardsTab },
 }
 
 local WINDOW_W, WINDOW_H = 620, 440
@@ -176,6 +182,19 @@ function Menu.start()
 		end)
 		button.Size = UDim2.fromOffset(130, 42)
 		button.LayoutOrder = 10 + i
+		if tab.module.badge then
+			local dot = Ui.frame(button, Ui.Colors.Bad, 12)
+			dot.AnchorPoint = Vector2.new(0.5, 0.5)
+			dot.Position = UDim2.new(1, -4, 0, 4)
+			dot.Size = UDim2.fromOffset(22, 22)
+			dot.Visible = false
+			Ui.stroke(dot, Color3.new(1, 1, 1), 2)
+			local mark = Ui.label(dot, "!", 16, Ui.Colors.Text, Ui.BigFont)
+			mark.Size = UDim2.fromScale(1, 1)
+			Profile.onChanged(function(profile)
+				dot.Visible = tab.module.badge(profile)
+			end)
+		end
 	end
 	Profile.onChanged(function()
 		if current and refreshers[current] then
@@ -212,6 +231,21 @@ function Menu.start()
 	end)
 
 	Remotes.get("Reward").OnClientEvent:Connect(Popups.show)
+
+	-- Today's streak reward waiting: open the Rewards tab once, shortly after joining.
+	local greeted = false
+	Profile.onChanged(function(profile)
+		if not greeted then
+			greeted = true
+			if RewardsTab.canClaim(profile) then
+				task.delay(2, function()
+					if not current then
+						show("Rewards")
+					end
+				end)
+			end
+		end
+	end)
 
 	-- The lobby's Avatar Shop prompt opens the Shop.
 	ProximityPromptService.PromptTriggered:Connect(function(prompt)

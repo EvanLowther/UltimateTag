@@ -18,6 +18,8 @@
 --   Victory:        server -> clients: (winner) play the winner's victory pose and effect.
 --   ShopBuy:        client -> server: buy today's shop item (its id).
 --   OpenCrate:      client -> server: open a crate (a free one if you have one, else paid).
+--   ClaimStreak:    client -> server: claim today's login streak reward.
+--   ClaimQuest:     client -> server: ("Daily" | "Weekly", slot) claim a finished quest.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
@@ -36,6 +38,8 @@ local NAMES = {
 	"Victory",
 	"ShopBuy",
 	"OpenCrate",
+	"ClaimStreak",
+	"ClaimQuest",
 }
 
 -- Server only: creates the folder and every RemoteEvent.

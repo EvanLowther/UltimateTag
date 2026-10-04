@@ -556,6 +556,7 @@ local Config = {
 			Slide = { Stat = "Slides" },
 			Vault = { Stat = "Vaults" },
 			Climb = { Stat = "Climbs" },
+			StreakDay = {}, -- a login streak claim (for achievements)
 		},
 		FirstWinMultiplier = 2, -- the day's first win pays this many times the coins
 		StreakBonus = 25, -- extra coins per win in a row after the first (2nd win in a row +25, 3rd +50...)
@@ -577,6 +578,213 @@ local Config = {
 			[50] = { Items = { "trail_prismatic" } },
 		} :: { [number]: { [string]: any } },
 	},
+
+	-- The daily login streak (server/DailyStreak): claim once per UTC day; days in a row grow the
+	-- streak, a missed day starts it over. Rewards repeat every 7 days.
+	Streak = {
+		Rewards = {
+			{ Coins = 25 },
+			{ Coins = 50 },
+			{ Coins = 75 },
+			{ Coins = 100 },
+			{ Coins = 150 },
+			{ Coins = 200 },
+			{ Coins = 300, Crates = 1 },
+		} :: { { [string]: any } },
+		-- Extra one-time rewards for long streaks.
+		Milestones = {
+			[14] = { Items = { "title_attendance" } },
+			[30] = { Items = { "trail_perfect" } },
+		} :: { [number]: { [string]: any } },
+	},
+
+	-- Quests (server/Quests): Count daily and weekly quests per player, picked from these pools
+	-- (the same ones all day / week). Event: what counts (Progression.record events), Goal: how
+	-- many. Daily ones reset at 00:00 UTC, weekly ones on Monday.
+	Quests = {
+		Count = 3,
+		Daily = {
+			{
+				Id = "d_games",
+				Text = "Play 3 games",
+				Event = "GamePlayed",
+				Goal = 3,
+				Coins = 75,
+				XP = 60,
+			},
+			{
+				Id = "d_survive",
+				Text = "Survive 5 rounds",
+				Event = "RoundSurvived",
+				Goal = 5,
+				Coins = 100,
+				XP = 80,
+			},
+			{ Id = "d_tags", Text = "Tag 5 players", Event = "Tag", Goal = 5, Coins = 75, XP = 60 },
+			{
+				Id = "d_wallrun",
+				Text = "Wall run 15 times",
+				Event = "WallRun",
+				Goal = 15,
+				Coins = 60,
+				XP = 50,
+			},
+			{
+				Id = "d_slide",
+				Text = "Slide 25 times",
+				Event = "Slide",
+				Goal = 25,
+				Coins = 60,
+				XP = 50,
+			},
+			{
+				Id = "d_vault",
+				Text = "Vault 20 times",
+				Event = "Vault",
+				Goal = 20,
+				Coins = 60,
+				XP = 50,
+			},
+			{
+				Id = "d_climb",
+				Text = "Climb 10 walls",
+				Event = "Climb",
+				Goal = 10,
+				Coins = 60,
+				XP = 50,
+			},
+			{ Id = "d_win", Text = "Win a game", Event = "Win", Goal = 1, Coins = 150, XP = 120 },
+			{
+				Id = "d_minutes",
+				Text = "Play for 15 minutes",
+				Event = "PlayMinute",
+				Goal = 15,
+				Coins = 75,
+				XP = 60,
+			},
+		} :: { { [string]: any } },
+		Weekly = {
+			{ Id = "w_wins", Text = "Win 5 games", Event = "Win", Goal = 5, Coins = 600, XP = 500 },
+			{
+				Id = "w_survive",
+				Text = "Survive 40 rounds",
+				Event = "RoundSurvived",
+				Goal = 40,
+				Coins = 450,
+				XP = 400,
+			},
+			{
+				Id = "w_tags",
+				Text = "Tag 50 players",
+				Event = "Tag",
+				Goal = 50,
+				Coins = 450,
+				XP = 400,
+			},
+			{
+				Id = "w_wallrun",
+				Text = "Wall run 150 times",
+				Event = "WallRun",
+				Goal = 150,
+				Coins = 350,
+				XP = 300,
+			},
+			{
+				Id = "w_games",
+				Text = "Play 25 games",
+				Event = "GamePlayed",
+				Goal = 25,
+				Coins = 400,
+				XP = 350,
+			},
+			{
+				Id = "w_slide",
+				Text = "Slide 200 times",
+				Event = "Slide",
+				Goal = 200,
+				Coins = 350,
+				XP = 300,
+			},
+		} :: { { [string]: any } },
+	},
+
+	-- Achievements (server/Achievements): reach Goal in Stat (a profile stat, or "Level" or
+	-- "Streak") for a one-time reward. BadgeId: a Roblox badge to award too (nil = none yet).
+	Achievements = {
+		{ Id = "win_1", Text = "First victory", Stat = "Wins", Goal = 1, Coins = 100 },
+		{ Id = "win_10", Text = "Win 10 games", Stat = "Wins", Goal = 10, Coins = 300 },
+		{ Id = "win_50", Text = "Win 50 games", Stat = "Wins", Goal = 50, Coins = 1000 },
+		{
+			Id = "win_100",
+			Text = "Win 100 games",
+			Stat = "Wins",
+			Goal = 100,
+			Items = { "title_champion" },
+		},
+		{
+			Id = "win_500",
+			Text = "Win 500 games",
+			Stat = "Wins",
+			Goal = 500,
+			Items = { "title_legend" },
+		},
+		{ Id = "tag_10", Text = "Tag 10 players", Stat = "Tags", Goal = 10, Coins = 100 },
+		{ Id = "tag_100", Text = "Tag 100 players", Stat = "Tags", Goal = 100, Coins = 400 },
+		{
+			Id = "tag_1000",
+			Text = "Tag 1,000 players",
+			Stat = "Tags",
+			Goal = 1000,
+			Items = { "title_hunter" },
+		},
+		{
+			Id = "survive_50",
+			Text = "Survive 50 rounds",
+			Stat = "RoundsSurvived",
+			Goal = 50,
+			Coins = 300,
+		},
+		{
+			Id = "survive_500",
+			Text = "Survive 500 rounds",
+			Stat = "RoundsSurvived",
+			Goal = 500,
+			Items = { "title_survivor" },
+		},
+		{
+			Id = "wallrun_100",
+			Text = "Wall run 100 times",
+			Stat = "WallRuns",
+			Goal = 100,
+			Coins = 200,
+		},
+		{
+			Id = "wallrun_1000",
+			Text = "Wall run 1,000 times",
+			Stat = "WallRuns",
+			Goal = 1000,
+			Items = { "title_parkour" },
+		},
+		{ Id = "games_10", Text = "Play 10 games", Stat = "GamesPlayed", Goal = 10, Coins = 150 },
+		{
+			Id = "games_100",
+			Text = "Play 100 games",
+			Stat = "GamesPlayed",
+			Goal = 100,
+			Items = { "title_veteran" },
+		},
+		{ Id = "level_10", Text = "Reach level 10", Stat = "Level", Goal = 10, Coins = 500 },
+		{ Id = "level_25", Text = "Reach level 25", Stat = "Level", Goal = 25, Coins = 1500 },
+		{ Id = "level_50", Text = "Reach level 50", Stat = "Level", Goal = 50, Coins = 5000 },
+		{ Id = "streak_7", Text = "7-day login streak", Stat = "Streak", Goal = 7, Coins = 300 },
+		{
+			Id = "streak_30",
+			Text = "30-day login streak",
+			Stat = "Streak",
+			Goal = 30,
+			Coins = 2000,
+		},
+	} :: { { [string]: any } },
 
 	-- The daily shop and crates (server/Shop, shared/ShopRotation).
 	Shop = {

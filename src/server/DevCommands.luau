@@ -5,7 +5,7 @@
 --              Respawn
 --   Maps:      ListMaps (replies "Maps"), PlayMap, NextMap, UnloadMap
 --   Movement:  SetTunable (only the values listed in Config.DevPanel.Tunables)
---   Progress:  GiveCoins, GiveXP, GiveCrate, UnlockAll, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
+--   Progress:  GiveCoins, GiveXP, GiveCrate, UnlockAll, CompleteQuests, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
 --              ResetTime
 -- Results and refusals are shown to the developer with the Notify remote.
 local Players = game:GetService("Players")
@@ -21,6 +21,7 @@ local GameLoop = require(script.Parent.GameLoop)
 local MapService = require(script.Parent.MapService)
 local PlayerData = require(script.Parent.PlayerData)
 local Progression = require(script.Parent.Progression)
+local Quests = require(script.Parent.Quests)
 local Roles = require(script.Parent.Roles)
 
 local DevCommands = {}
@@ -208,6 +209,11 @@ handlers.GiveCrate = function(player)
 		profile.Crates += 1
 	end)
 	tell(player, "Free crate +1")
+end
+
+handlers.CompleteQuests = function(player)
+	Quests.completeAll(player)
+	tell(player, "Quests finished: claim them in the Quests tab")
 end
 
 handlers.UnlockAll = function(player)
