@@ -21,6 +21,12 @@ In any Studio playtest, press the **`** key (left of 1) to open the dev panel. P
 
 To use it in a live server, add your UserId to `Config.DevPanel.UserIds`.
 
+## Building the Tag Island Port map (grey-box)
+1. With Rojo connected, open **Window > Script > Command Bar** and run: `require(game.ServerStorage.Tools.BuildPortGreybox)()`
+2. Save the place (**Cmd+S**). The map lives in the place file, in `ServerStorage > Maps > TagIslandPort`.
+3. Press Play, open the dev panel (**`**), go to **Maps**, and press **Play** next to Tag Island Port.
+Running the command again rebuilds it from `tools/port_layout.py` and replaces hand edits.
+
 ## Setting up the lobby (once)
 The lobby island isn't in the code files: it lives in your place file, so you can move things around in Studio.
 1. In Studio: **Home > Import 3D**, pick `assets_src/lobby/UltimateTagLobby.fbx`, click **Import**.

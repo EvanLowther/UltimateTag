@@ -94,7 +94,8 @@
     },
     "ServerStorage": {
       "Maps": {
-        "$path": "src/maps"
+        "$path": "src/maps",
+        "$ignoreUnknownInstances": true
       },
       "Tools": {
         "$path": "src/tools"

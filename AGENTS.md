@@ -14,7 +14,7 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 | `src/shared/` | `ReplicatedStorage.Shared` | `Config.luau` (all tunables) and modules used by both sides |
 | `src/server/` | `ServerScriptService.Server` | `init.server.luau` entry point plus one ModuleScript per service |
 | `src/client/` | `StarterPlayerScripts.Client` | `init.client.luau` entry point plus one ModuleScript per UI or feature |
-| `src/tools/` | `ServerStorage.Tools` | Studio-only tools: `SetupLobby` (sets up an imported lobby) and its generated `LobbyData` |
+| `src/tools/` | `ServerStorage.Tools` | Studio-only tools: `SetupLobby` (sets up an imported lobby) and its generated `LobbyData`; `BuildPortGreybox` (builds the Tag Island Port grey-box) and its generated `PortData` |
 | (none) | `Workspace.Lobby` | the lobby island. **Not managed by Rojo**: it lives only in the place file (see Lobby below) |
 | `src/maps/` | `ServerStorage.Maps` | round maps, one folder per map (see Maps below); loaded into `Workspace.ActiveMap` one at a time |
 
@@ -27,7 +27,10 @@ Each map is a folder in `src/maps/<MapName>/`:
 - Place parts with `CFrame`, never `Position`: `"CFrame": { "CFrame": { "position": [x, y, z], "orientation": [[1,0,0],[0,1,0],[0,0,1]] } }`. `Position` only works during live sync and is lost in the built `.rbxlx`, so everything loads at the origin.
 - To add a map, copy a placeholder folder, change its attributes and pieces. MapService picks it up automatically.
 
+Studio-owned maps: real maps are built in Studio and live only in the place file, next to the Rojo ones in `ServerStorage.Maps` (the project sets `$ignoreUnknownInstances` there so Rojo leaves them alone). Same contract: a Model with the attributes above and a `Spawns` folder. To edit one by hand, drag it into Workspace, change it, and drag it back.
+
 Current maps:
+- `TagIslandPort` (Studio-owned, 2-8 players, 100x100): the first real map, a container yard inspired by CoD Shipment but with no endless loop: stacks 1-3 high (8 studs each) with wall-run lanes, a walk-through tunnel container, a container on crates to slide under (`SlideBlocker`), vault props (crates, sandbags, barrels at 2.5-3.5), a crane gantry, light poles, invisible edge walls, ocean around it. Grey-box stage: the layout is code in `tools/port_layout.py` (run `python3 tools/port_layout.py` from the repo root: it checks overlaps, lanes under 3 studs and spawn spacing, prints a top-down view, and writes `src/tools/PortData.luau`; then `stylua src`), and `require(game.ServerStorage.Tools.BuildPortGreybox)()` in the Command Bar builds or rebuilds it (replacing hand edits). Plan: test size and routes, then dress it in the lobby island style with Blender meshes.
 - `SmallBox` (2-6 players, 60x60), `MediumBox` (5-14, 120x120), `LargeBox` (12-50, 220x220): placeholder arenas, a studded floor with four walls and a ring of spawn points. Real maps come later.
 - `TestGround` (`InRotation` false): the movement test map, loaded in Sandbox mode. Its pieces:
   - `Baseplate.model.json`: 512x4x512 green studded baseplate, top at Y=0. `SpawnLocation.model.json`: white spawn pad at the center.
@@ -123,6 +126,7 @@ Rules of thumb:
 - Server owns all game state. Clients read attributes and ask the server through RemoteEvents in `shared/Remotes.luau` (add new names to its list).
 
 ## Changelog
+- 0.29.0: Tag Island Port grey-box: first real map (container yard, 2-8 players, 100x100), laid out in `tools/port_layout.py` and built in Studio by `ServerStorage.Tools.BuildPortGreybox`. Rojo now leaves Studio-made maps in `ServerStorage.Maps` alone.
 - 0.28.0: Dev panel (` key, Studio only): switch Elimination/Sandbox live, start now, skip or set timers, set your role, freeze; load any map or pick the next round's; live movement sliders with a copyable change list; movement readout, fly + noclip, teleport key, spawn points. GameLoop can switch modes and skip timers; MapService has a catalog and a next-map override; GameState has `Mode`.
 - 0.27.0: New lobby island to match the reference art (Blender, one mesh per object, palette texture, faceted see-through ocean, distant islands, no figures), imported once and owned by Studio, set up by `ServerStorage.Tools.SetupLobby`. Working parts: live all-time leaderboard (saved lifetime wins), spinning daily reward wheel, shop prompt, bench seats. Vibrant lighting (ColorCorrection, Bloom, Atmosphere). Checks now build to `build/check.rbxlx`.
 - 0.26.1: Lobby island model generated in Blender (`tools/blender/make_lobby.py`, 865 named pieces), not yet imported into the game.
