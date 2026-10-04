@@ -518,6 +518,8 @@ local Config = {
 		Runner = Color3.fromRGB(75, 151, 75),
 		HudBackground = Color3.fromRGB(20, 20, 20),
 		Text = Color3.fromRGB(255, 255, 255),
+		Winner = Color3.fromRGB(230, 180, 30), -- YOU WIN! banner (gold)
+		Eliminated = Color3.fromRGB(90, 90, 96), -- ELIMINATED banner (gray)
 		BoostReady = Color3.fromRGB(40, 210, 210), -- mantle boost window open (cyan)
 		BoostMissed = Color3.fromRGB(120, 120, 120), -- mantle boost missed
 	},
