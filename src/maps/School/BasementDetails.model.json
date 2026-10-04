@@ -1,0 +1,1125 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Boiler",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     7,
+     7
+    ],
+    "Color": [
+     0.549,
+     0.235,
+     0.176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       41.5,
+       -15,
+       -35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "BoilerBand",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     7.3,
+     7.3
+    ],
+    "Color": [
+     0.235,
+     0.235,
+     0.251
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       41.5,
+       -19,
+       -35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BoilerBand2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     7.3,
+     7.3
+    ],
+    "Color": [
+     0.235,
+     0.235,
+     0.251
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       41.5,
+       -11,
+       -35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BoilerPipe",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     1.2,
+     1.2
+    ],
+    "Color": [
+     0.706,
+     0.275,
+     0.196
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       41.5,
+       -5,
+       -35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Gauge",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     1.2,
+     1.2
+    ],
+    "Color": [
+     0.941,
+     0.941,
+     0.922
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       37.9,
+       -14,
+       -35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Crate",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.0,
+     4,
+     4.0
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.5,
+       -20.0,
+       -37.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Crate2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3,
+     3,
+     3
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.5,
+       -16.5,
+       -37.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Crate3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3,
+     3,
+     3.0
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30.5,
+       -20.5,
+       -38.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "HazardStripe",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.62,
+     1.0
+    ],
+    "Color": [
+     0.98,
+     0.784,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       36.0,
+       -21.69,
+       -18.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "HazardStripe2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.62,
+     1.0
+    ],
+    "Color": [
+     0.98,
+     0.784,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       36.0,
+       -21.69,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "HazardStripe3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.62,
+     12
+    ],
+    "Color": [
+     0.98,
+     0.784,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30.0,
+       -21.69,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "HazardStripe4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.62,
+     12
+    ],
+    "Color": [
+     0.98,
+     0.784,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       -21.69,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42.0,
+     1.2,
+     1.2
+    ],
+    "Color": [
+     0.275,
+     0.431,
+     0.275
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.6,
+       -6.0,
+       -19.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42.0,
+     0.8,
+     0.8
+    ],
+    "Color": [
+     0.706,
+     0.275,
+     0.196
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.6,
+       -8.0,
+       -19.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42.0,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.275,
+     0.353,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       43.4,
+       -13.6,
+       25.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     62.0,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.275,
+     0.431,
+     0.275
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1.0,
+       -13.6,
+       46.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     20.0,
+     1.2,
+     1.2
+    ],
+    "Color": [
+     0.706,
+     0.275,
+     0.196
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -41.3,
+       -12.0,
+       40.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Valve",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.6,
+     1.6
+    ],
+    "Color": [
+     0.784,
+     0.157,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.4,
+       -6,
+       -20
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Valve2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.6,
+     1.6
+    ],
+    "Color": [
+     0.784,
+     0.157,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.6,
+       -13.6,
+       24
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Valve3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.6,
+     1.6
+    ],
+    "Color": [
+     0.784,
+     0.157,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       -13.6,
+       47.6
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Drip",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     0.3,
+     0.4
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     0.51
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -36.0,
+       -2.25,
+       41.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Drips",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 3,
+      "Lifetime": {
+       "NumberRange": [
+        0.6,
+        0.8
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        2,
+        4
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.12,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 0.12,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 0.4,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.627,
+           0.784,
+           0.902
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.627,
+           0.784,
+           0.902
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/sparkles_main.dds",
+      "EmissionDirection": "Bottom",
+      "SpreadAngle": {
+       "Vector2": [
+        0,
+        0
+       ]
+      },
+      "Acceleration": [
+       0,
+       -60,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  }
+ ]
+}

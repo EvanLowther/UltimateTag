@@ -16,7 +16,7 @@
      0.439,
      0.463
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Concrete",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -62,7 +62,7 @@
      0.439,
      0.463
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Concrete",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -108,7 +108,7 @@
      0.439,
      0.463
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Concrete",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -154,7 +154,7 @@
      0.439,
      0.463
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Concrete",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -186,7 +186,7 @@
    }
   },
   {
-   "name": "Wall13",
+   "name": "Wall43",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -200,7 +200,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -232,7 +232,7 @@
    }
   },
   {
-   "name": "Wall14",
+   "name": "Wall44",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -246,7 +246,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -278,7 +278,7 @@
    }
   },
   {
-   "name": "Wall15",
+   "name": "Wall45",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -292,7 +292,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -324,7 +324,7 @@
    }
   },
   {
-   "name": "Wall16",
+   "name": "Wall46",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -338,7 +338,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -370,7 +370,7 @@
    }
   },
   {
-   "name": "Wall17",
+   "name": "Wall47",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -384,7 +384,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -416,7 +416,7 @@
    }
   },
   {
-   "name": "Wall18",
+   "name": "Wall48",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -430,7 +430,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -514,7 +514,107 @@
       -40
      ]
     }
-   }
+   },
+   "children": [
+    {
+     "name": "Steam",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 28,
+      "Lifetime": {
+       "NumberRange": [
+        1.4,
+        2.2
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        10,
+        18
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.5,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 4.5,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.5,
+          "envelope": 0
+         },
+         {
+          "time": 0.6,
+          "value": 0.75,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.922,
+           0.922,
+           0.941
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.922,
+           0.922,
+           0.941
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Top",
+      "SpreadAngle": {
+       "Vector2": [
+        12,
+        12
+       ]
+      },
+      "Acceleration": [
+       0,
+       0,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
   },
   {
    "name": "PadRing",
@@ -531,7 +631,7 @@
      0.235,
      0.251
     ],
-    "Material": "SmoothPlastic",
+    "Material": "DiamondPlate",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -693,7 +793,7 @@
    ]
   },
   {
-   "name": "Wall19",
+   "name": "Wall49",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -707,7 +807,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -739,7 +839,7 @@
    }
   },
   {
-   "name": "Wall20",
+   "name": "Wall50",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -753,7 +853,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -799,7 +899,7 @@
      0.439,
      0.463
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Concrete",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -831,7 +931,7 @@
    }
   },
   {
-   "name": "Wall21",
+   "name": "Wall51",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -845,7 +945,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -877,7 +977,7 @@
    }
   },
   {
-   "name": "Wall22",
+   "name": "Wall52",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -891,7 +991,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -923,7 +1023,7 @@
    }
   },
   {
-   "name": "Wall23",
+   "name": "Wall53",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -937,7 +1037,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -983,7 +1083,7 @@
      0.439,
      0.463
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Concrete",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1061,6 +1161,9 @@
     "CanCollide": false,
     "CanQuery": false,
     "CastShadow": false
+   },
+   "attributes": {
+    "Flicker": true
    },
    "children": [
     {
@@ -1224,7 +1327,7 @@
      0.275,
      0.196
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Metal",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1258,7 +1361,7 @@
    }
   },
   {
-   "name": "Wall24",
+   "name": "Wall54",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1272,7 +1375,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1304,7 +1407,7 @@
    }
   },
   {
-   "name": "Wall25",
+   "name": "Wall55",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1318,7 +1421,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1350,7 +1453,7 @@
    }
   },
   {
-   "name": "Wall26",
+   "name": "Wall56",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1364,7 +1467,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1410,7 +1513,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1456,7 +1559,7 @@
      0.275,
      0.196
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Metal",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1502,7 +1605,7 @@
      0.439,
      0.463
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Concrete",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1548,7 +1651,7 @@
      0.322,
      0.345
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Brick",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
