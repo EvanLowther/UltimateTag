@@ -9,12 +9,13 @@ Axes: X east, Z south, Y up, the tower's center on the origin.
   around it, or climb it (two hops) and pull up onto the gallery.
   FLOOR 2: the gallery, a ring (radius 28 to 40) at 24 high, under the tower's outer wall (also
   curved, also wall-runnable), with the big clock face, glowing gears, hanging weights.
-  GEARS: four brass gear platforms spinning slowly (you ride them), climbing in a spiral
-  5 -> 10 -> 15 -> 20 from floor 1 to the gallery: jump and mantle from one to the next.
-  PENDULUM: hangs from the top through the middle and swings; its bob (8.5 to 15.5 high at the
-  bottom of its swing) knocks back anyone it hits (jumping across the middle, on a gear).
+  GEARS: three brass gear platforms spinning slowly (you ride them), climbing in a spiral
+  5 -> 10 -> 15 from floor 1; from the top one mantle up onto the gallery.
+  PENDULUM: a wide round platform hanging on a long chain from the top, staying level as it
+  swings across the middle. At each end of its swing it pauses just below the gallery's edge,
+  on opposite sides: step on, ride it across the pit, step off on the far side. Time it.
 Moving parts are animated on each client from the server clock (client/MapAmbience: Spin,
-SpinCarry, Swing, Knockback attributes).
+SpinCarry, Swing, SwingLevel, Carry attributes).
 """
 import math
 import sys
@@ -31,15 +32,21 @@ TOP = 58  # ceiling
 WALL = 2
 
 PIVOT = (0, TOP - 2, 0)
-BOB_Y = 12  # bob center at the bottom of the swing
-BOB = 7
 SWING_DIR = 65  # degrees: the pendulum swings along this line (between the gears)
-SWING_AMPLITUDE = 18
-SWING_PERIOD = 5.2
+SWING_PERIOD = 5.6  # seconds for a full there-and-back
+PLATFORM_R = 6  # the pendulum's platform (12 across)
+PLATFORM_T = 1.5
+END_REACH = PIT_R - PLATFORM_R - 0.5  # platform center this far out at the end of a swing
+END_TOP = FLOOR2 - 0.6  # platform top at the end of a swing: just below the gallery floor
+# The chain length and swing angle that put the platform there.
+_END_CENTER_Y = END_TOP - PLATFORM_T / 2
+CHAIN = math.hypot(END_REACH, PIVOT[1] - _END_CENTER_Y)
+SWING_AMPLITUDE = math.degrees(math.atan2(END_REACH, PIVOT[1] - _END_CENTER_Y))
+LOW_CENTER_Y = PIVOT[1] - CHAIN  # platform center at the bottom of the swing
 
 GEAR_R = 7
 GEAR_RING = 18.5  # gear centers this far from the middle
-GEARS = ((20, 5, 22), (110, 10, -22), (200, 15, 22), (290, 20, -22))  # angle, top, spin
+GEARS = ((20, 5, 22), (110, 10, -22), (200, 15, 22))  # angle, top, spin
 
 COLORS = {
     "stone": (204, 206, 214), "stone_dark": (150, 153, 164), "floor": (172, 174, 184),
@@ -107,26 +114,32 @@ def gear(m, angle, top, spin):
 
 
 def pendulum(m):
-    """The pendulum: a chain from the top and a heavy bob, swinging through the middle."""
+    """The pendulum: a long chain from the top and a wide round platform that stays level as it
+    swings across the middle (stand on it and ride it from one side of the gallery to the
+    other)."""
     g = "Pendulum"
     sx, sz = polar(1, SWING_DIR)
     axis = (-sz, 0, sx)  # horizontal, square to the swing
     swing = {"SwingPivot": vec(*PIVOT), "SwingAxis": vec(*axis),
-             "SwingAmplitude": SWING_AMPLITUDE, "SwingPeriod": SWING_PERIOD}
-    bob_top = BOB_Y + BOB / 2
-    links = int((PIVOT[1] - bob_top) // 2.2)
+             "SwingAmplitude": round(SWING_AMPLITUDE, 3), "SwingPeriod": SWING_PERIOD}
+    level = dict(swing)
+    level["SwingLevel"] = True
+    ride = dict(level)
+    ride["Carry"] = True
+    top = LOW_CENTER_Y + PLATFORM_T / 2
+    links = int((PIVOT[1] - top - 1) // 2.2)
     for i in range(links):
-        y = bob_top + 1.1 + i * 2.2
+        y = top + 1.4 + i * 2.2
         m.part(g, "ChainLink", (0.5, 2.5, 1.3), (0, y, 0), "iron", rot_y(90 * (i % 2)),
                attributes=swing, **NO_HIT)
-    bob = dict(swing)
-    bob["Knockback"] = 75
-    m.part(g, "Bob", (BOB, BOB, BOB), (0, BOB_Y, 0), "stone_dark", rot_y(SWING_DIR),
-           attributes=bob)
-    m.part(g, "BobBand", (BOB + 0.3, 1, BOB + 0.3), (0, BOB_Y + 1.5, 0), "brass",
-           rot_y(SWING_DIR), attributes=swing, **NO_HIT)
-    m.part(g, "BobRing", (1.2, 1.6, 1.6), (0, bob_top + 0.6, 0), "iron", rot_y(SWING_DIR),
-           attributes=swing, **NO_HIT)
+    m.cylinder(g, "Platform", PLATFORM_T, 2 * PLATFORM_R, (0, LOW_CENTER_Y, 0), "brass",
+               attributes=ride)
+    m.cylinder(g, "PlatformRim", 0.3, 2 * PLATFORM_R + 0.6, (0, top - 0.1, 0), "glow",
+               Material="Neon", attributes=level, **NO_HIT)
+    m.cylinder(g, "PlatformTop", 0.1, 2 * PLATFORM_R - 2, (0, top + 0.03, 0), "brass_dark",
+               attributes=level, **NO_HIT)
+    m.block(g, "Shackle", -0.8, 0.8, top, top + 1.2, -0.8, 0.8, "iron", attributes=level,
+            **NO_HIT)
     # The housing it hangs from.
     m.block(g, "Housing", -3, 3, TOP - 3, TOP, -3, 3, "iron")
 
@@ -246,33 +259,42 @@ def build():
 
 
 def check(m):
-    """Clearances that matter: the pendulum's bob must miss the gears at the end of its swing,
-    gears must be jumpable to each other, the top gear must reach the gallery."""
+    """Clearances that matter: the pendulum's platform must miss every gear along its whole
+    swing, stop close below the gallery's edge at both ends, and the gears must be jumpable to
+    each other and to the gallery."""
     problems = []
-    reach = (PIVOT[1] - BOB_Y) * math.sin(math.radians(SWING_AMPLITUDE))
+    tooth_r = GEAR_R + 1.1  # gear plus teeth
     sx, sz = polar(1, SWING_DIR)
-    for sign in (1, -1):
-        bx, bz = sx * reach * sign, sz * reach * sign
-        for angle, top, _ in GEARS:
-            gx, gz = polar(GEAR_RING, angle)
-            gap = math.hypot(bx - gx, bz - gz) - (GEAR_R + 0.6) - BOB * math.sqrt(2) / 2
-            bob_bottom = PIVOT[1] - (PIVOT[1] - BOB_Y) * math.cos(math.radians(SWING_AMPLITUDE)) - BOB / 2
-            if gap < 0.5 and bob_bottom < top + 1:
-                problems.append(f"pendulum hits the gear at {angle} degrees")
+    steps = 60
+    for k in range(-steps, steps + 1):
+        angle = math.radians(SWING_AMPLITUDE) * k / steps
+        along = CHAIN * math.sin(angle)
+        cy = PIVOT[1] - CHAIN * math.cos(angle)
+        px, pz = sx * along, sz * along
+        for gear_angle, top, _ in GEARS:
+            gx, gz = polar(GEAR_RING, gear_angle)
+            apart = math.hypot(px - gx, pz - gz) - tooth_r - PLATFORM_R
+            overlaps_height = cy - PLATFORM_T / 2 < top + 1 and cy + PLATFORM_T / 2 > top - 1.5
+            if apart < 0.3 and overlaps_height:
+                problems.append(f"the pendulum platform hits the gear at {gear_angle} degrees")
+                break
+    end_y = PIVOT[1] - CHAIN * math.cos(math.radians(SWING_AMPLITUDE)) + PLATFORM_T / 2
+    end_gap = PIT_R - (CHAIN * math.sin(math.radians(SWING_AMPLITUDE)) + PLATFORM_R)
+    if not (0 < FLOOR2 - end_y < 1.5 and 0 < end_gap < 1.5):
+        problems.append(f"swing end: {FLOOR2 - end_y:.2f} below the gallery, {end_gap:.2f} from its edge")
     for (a1, t1, _), (a2, t2, _) in zip(GEARS, GEARS[1:]):
         x1, z1 = polar(GEAR_RING, a1)
         x2, z2 = polar(GEAR_RING, a2)
-        gap = math.hypot(x1 - x2, z1 - z2) - 2 * (GEAR_R + 0.6)
+        gap = math.hypot(x1 - x2, z1 - z2) - 2 * tooth_r
         if gap > 11 or t2 - t1 > 7:
             problems.append(f"gear {a1} -> {a2}: gap {gap:.1f}, rise {t2 - t1}")
     last = GEARS[-1]
-    edge_gap = PIT_R - (GEAR_RING + GEAR_R + 0.6)
-    if edge_gap > 6 or FLOOR2 - last[1] > 7:
+    edge_gap = PIT_R - (GEAR_RING + tooth_r)
+    if edge_gap > 6 or FLOOR2 - last[1] > 10 or edge_gap < 0.5:
         problems.append(f"top gear to gallery: gap {edge_gap:.1f}, rise {FLOOR2 - last[1]}")
-    if PIT_R > GEAR_RING + GEAR_R + 0.6 + 0.5:
-        pass
-    else:
-        problems.append("gears touch the pit wall")
+    print(f"pendulum: chain {CHAIN:.1f}, swing +/-{SWING_AMPLITUDE:.1f} degrees, platform top "
+          f"{LOW_CENTER_Y + PLATFORM_T / 2:.1f} at the bottom and {end_y:.1f} at the ends "
+          f"({end_gap:.2f} from the gallery edge)")
     return problems
 
 

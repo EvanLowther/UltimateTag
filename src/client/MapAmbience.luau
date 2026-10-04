@@ -10,6 +10,10 @@
 --   SpinCarry (true): standing on this spinning part turns you with it (rotating platforms).
 --   Swing: SwingPivot (Vector3, world), SwingAxis (Vector3), SwingAmplitude (degrees),
 --     SwingPeriod (seconds): swings back and forth around the pivot (a pendulum).
+--     SwingLevel (true): the part follows the swing's arc but stays level (a hanging gondola
+--     platform you can stand on).
+--   Carry (true, or SpinCarry): standing on this moving part takes you with it (a spinning
+--     platform turns you; a swinging one carries you along).
 --   Knockback (number, studs/s): touching the part shoves you away from it.
 local RunService = game:GetService("RunService")
 
@@ -28,6 +32,7 @@ type Mover = {
 	amplitude: number,
 	period: number,
 	carry: boolean,
+	level: boolean,
 	knockback: number?,
 }
 
@@ -92,7 +97,9 @@ local function scan(map: Instance)
 				axis = if typeof(axis) == "Vector3" then axis.Unit else Vector3.xAxis,
 				amplitude = (item:GetAttribute("SwingAmplitude") or 0) :: number,
 				period = (item:GetAttribute("SwingPeriod") or 4) :: number,
-				carry = item:GetAttribute("SpinCarry") == true,
+				carry = item:GetAttribute("SpinCarry") == true
+					or item:GetAttribute("Carry") == true,
+				level = item:GetAttribute("SwingLevel") == true,
 				knockback = if type(knockback) == "number" then knockback else nil,
 			})
 		end
@@ -110,7 +117,12 @@ local function placeAt(mover: Mover, t: number): CFrame
 	if mover.pivot and mover.axis then
 		local angle = math.rad(mover.amplitude) * math.sin(2 * math.pi * t / mover.period)
 		local p = mover.pivot
-		cframe = CFrame.new(p) * CFrame.fromAxisAngle(mover.axis, angle) * CFrame.new(-p) * cframe
+		local swung = CFrame.new(p)
+			* CFrame.fromAxisAngle(mover.axis, angle)
+			* CFrame.new(-p)
+			* cframe
+		-- A level part keeps its orientation and only follows the arc.
+		cframe = if mover.level then cframe.Rotation + swung.Position else swung
 	end
 	return cframe
 end
@@ -170,12 +182,17 @@ function MapAmbience.start()
 			if mover.spin or mover.pivot then
 				part.CFrame = after
 			end
-			-- Ride along on a spinning platform you're standing on (once per frame).
+			-- Ride along on a moving platform you're standing on (once per frame): a spinning one
+			-- turns you with it, a swinging one carries you without tilting you.
 			if mover.carry and not carried and parts and standingOn == part then
 				carried = true
-				local delta = after * before:Inverse()
 				local root = parts.root
-				root.CFrame = delta * root.CFrame
+				if mover.spin then
+					root.CFrame = (after * before:Inverse()) * root.CFrame
+				else
+					local moved = after:PointToWorldSpace(before:PointToObjectSpace(root.Position))
+					root.CFrame += moved - root.Position
+				end
 			end
 			-- Knocked back by a moving hazard.
 			if mover.knockback and parts and os.clock() - lastKnock > KNOCK_COOLDOWN then
