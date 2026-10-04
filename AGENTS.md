@@ -44,15 +44,16 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 - GitHub: https://github.com/EvanLowther/UltimateTag (private). The `.rbxlx` file is built by Rojo and git ignores it.
 
 ## Features
-**Sandbox (0.3.0).** No rounds, timer or wins yet. This is a free-play test mode for building mechanics. Everyone is a Runner and one player is always It. It tags a Runner by getting within `Config.Tag.Range`. The tagged player becomes It and is frozen briefly, which also stops instant tag-backs. If It leaves, someone else becomes It. Test with two or more players (Studio: Test tab > Clients and Servers > Local Server).
+**Sandbox (0.3.0).** No rounds, timer or wins yet. This is a free-play test mode for building mechanics. Everyone is a Runner and one player is always It. It tags a Runner by left-clicking (a swipe) within `Config.Tag.Range`. The tagged player becomes It and is frozen briefly, which also stops instant tag-backs. If It leaves, someone else becomes It. Test with two or more players (Studio: Test tab > Clients and Servers > Local Server).
 
 | Module | Side | Job |
 | --- | --- | --- |
 | `shared/Config.luau` | both | All tunables: tag range, freeze time, speeds, colors, font |
 | `shared/BodyRig.luau` | both | Builds the character body: a smooth rounded cartoon person (Crab Game style) from round shapes. Cylinder limbs turned upright through their attachments (joint frames keep standard axes), ball joints, ball head and hands, face (eyes, pupils, mouth), hair, tracksuit stripes, zipper and soles welded on as details. Sizes and colors in `Config.Body`. |
+| `shared/Remotes.luau` | both | The RemoteEvents in `ReplicatedStorage.Remotes`: `setup()` on the server, `get(name)` anywhere. `TagSwing` (client to server), `TagSwingPlayed` (server to all clients). |
 | `shared/GameState.luau` | both | Status text as a ReplicatedStorage attribute. Server writes, clients read and listen. |
 | `server/Roles.luau` | server | `Role` attribute on each Player (`"It"` / `"Runner"` / nil). Applies speed, freeze and the red It highlight, again on respawn. |
-| `server/TagService.luau` | server | Heartbeat distance check from It to Runners. Performs the tag. |
+| `server/TagService.luau` | server | Handles the `TagSwing` remote: checks the sender is It, not frozen and off `Config.Tag.Cooldown`, tells all clients to play the swipe (`TagSwingPlayed`), and tags the nearest Runner within `Config.Tag.Range`. |
 | `server/Sandbox.luau` | server | Free-play setup: players join as Runners, keeps one player as It |
 | `server/Avatar.luau` | server | Makes the `StarterCharacter` (currently the classic 2012 block R15 rig, `Config.Body.Enabled = false`): the BodyRig (with Roblox's standard Animate script borrowed from a classic rig), or the classic 2012 block rig if `Config.Body.Enabled` is off. Respawns any non-R15 character. |
 | `server/CollisionGroups.luau` | server | Registers the `SlideBlocker` / `Sliding` collision groups and puts `SlideBlocker` parts in their group |
@@ -77,13 +78,15 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o Ul
 | `client/ViewMode.luau` | client | First or third person. Starts in third person like the reference video (`Config.Camera.StartFirstPerson = false`); V toggles first person for testing (`AllowToggle`). |
 | `client/FirstPersonBody.luau` | client | First person: shows your legs (and their details) only, keeps face, hair and other details hidden (head and torso hidden; the blocky torso fills the screen from above), hides your own highlight on your screen, and moves the camera with your head via `CameraOffset`, `BodyForward` studs ahead. |
 | `client/Viewmodel.luau` | client | First-person arms: classic yellow blocks (`ClassicArm`/`ClassicHand`) with the classic avatar, or the rounded body's forearm and hand scaled by `Config.Viewmodel.Scale`, attached to the camera, posed per move from `Config.Viewmodel.Poses` (Idle with run swing, Air, Slide, Crouch, Vault, MantleGrab to MantlePush). |
+| `client/TagSwing.luau` | client | Left click (or R2) while It: plays the swipe at once, jabs the first-person arm, fires `TagSwing`. Plays other players' swipes when `TagSwingPlayed` arrives, so everyone sees them. |
 | `client/Hud.luau` | client | Status text and the "YOU ARE IT!" / "RUN!" banner |
 
 Rules of thumb:
-- Server owns all game state. Clients only read attributes (no RemoteEvents yet; add a `Remotes` setup in `init.server.luau` when one is needed).
+- Server owns all game state. Clients read attributes and ask the server through RemoteEvents in `shared/Remotes.luau` (add new names to its list).
 - Rounds were removed in 0.3.0 (see git history, `RoundService.luau` in 0.2.0) and will come back once the mechanics are settled.
 
 ## Changelog
+- 0.25.0: Tagging is a left-click swipe for It (server checks range, cooldown and freeze), with a swipe animation everyone sees and a first-person arm jab. Replaces automatic touch tagging. First RemoteEvents (`shared/Remotes.luau`).
 - 0.24.0: Slide looks like the reference video: feet first with straight legs, body leaned back about 60 degrees, one arm up, quicker drop and recovery. Bar swinging removed entirely; the course bars became stepping stones.
 - 0.23.4: Only the auto vault handles low obstacles: Mantle skips ledges within vault height of the floor (that pull-up looked like the old space vault), and the auto vault also works mid-jump.
 - 0.23.3: RunPace: the walk and run animations' pace follows your ground speed every frame (clamped), fixing the sped-up run after mantles and boost landings.

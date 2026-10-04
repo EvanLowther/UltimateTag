@@ -154,7 +154,13 @@ function Viewmodel.start()
 		end
 
 		local targetRight, targetLeft
-		if busy == "Mantle" then
+		if now - MoveState.tagTime < settings.TagJabTime then
+			-- Tag swing: the right hand jabs forward; the left keeps its usual pose.
+			local jabRight = sides(pose("TagJab"))
+			local _, idleLeft =
+				sides(pose(if MoveState.isGrounded(parts.humanoid) then "Idle" else "Air"))
+			targetRight, targetLeft = jabRight, idleLeft
+		elseif busy == "Mantle" then
 			-- Hands reach up to the ledge, then push down on it as you climb.
 			local mantle = Config.Mantle
 			local progress = math.clamp((now - busySince) / (mantle.UpTime + mantle.OverTime), 0, 1)

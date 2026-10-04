@@ -2,11 +2,28 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.24.0",
+	Version = "0.25.0",
 
 	Tag = {
-		Range = 5, -- studs between two characters that counts as a tag
+		-- It left-clicks to swing; a swing tags the nearest Runner within Range.
+		Range = 7, -- studs between the two characters' centers that a swing reaches
+		Cooldown = 0.45, -- seconds between swings
 		FreezeTime = 2, -- seconds the newly tagged player is frozen (also stops instant tag-backs)
+		SwingTime = 0.35, -- seconds the swipe animation lasts
+		-- The swipe: wind the right arm back, then reach forward. Only these parts move; the
+		-- rest keep running.
+		Poses = {
+			WindUp = {
+				UpperTorso = Vector3.new(0, -20, 0),
+				RightUpperArm = Vector3.new(60, 0, 35),
+				RightLowerArm = Vector3.new(-70, 0, 0),
+			},
+			Reach = {
+				UpperTorso = Vector3.new(0, 18, 0),
+				RightUpperArm = Vector3.new(92, 0, 5),
+				RightLowerArm = Vector3.new(-5, 0, 0),
+			},
+		},
 	},
 
 	Sprint = {
@@ -347,6 +364,7 @@ local Config = {
 		BobAmount = 0.04, -- studs of arm swing while running
 		SprintBob = 2, -- swing multiplier while sprinting
 		BobRate = 9, -- swing speed at walk speed
+		TagJabTime = 0.2, -- seconds the first-person arm stays jabbed out after a tag swing
 		ClimbSwing = 0.35, -- studs the climbing hands move up and down
 		ClimbRate = 17, -- how fast the climbing hands alternate
 		Poses = {
@@ -409,6 +427,13 @@ local Config = {
 				Right = {
 					Position = Vector3.new(0.9, -0.3, -1),
 					Rotation = Vector3.new(5, -60, -15),
+				},
+			},
+			-- Tag swing: the right hand jabs forward into the middle of the view.
+			TagJab = {
+				Right = {
+					Position = Vector3.new(0.3, -0.35, -1.6),
+					Rotation = Vector3.new(5, 15, 0),
 				},
 			},
 			-- Landing roll: arms tucked in.
