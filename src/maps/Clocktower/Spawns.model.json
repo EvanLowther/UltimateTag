@@ -1,0 +1,177 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Spawn1",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Transparency": 1,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -8.157,
+       0.5,
+       3.804
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Spawn2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Transparency": 1,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.157,
+       0.5,
+       -3.804
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Spawn3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Transparency": 1,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.369,
+       24.5,
+       30.814
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Spawn4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Transparency": 1,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.369,
+       24.5,
+       -30.814
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

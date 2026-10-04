@@ -6,7 +6,8 @@
 --            ledge (Hang), then climb over (Mantle) by pressing jump or holding forward. Hold
 --            back or run out of grip to let go.
 --   WallRun: running alongside a wall. You run along it, rising a little then sinking, with
---            the camera leaning away from the wall. Ends when the wall does or time runs out.
+--            the camera leaning away from the wall, following the wall as it curves (round
+--            towers). Ends when the wall does or time runs out.
 -- Jump during a wall run to drop off it early, keeping your speed (no kick off the wall).
 -- Short walls are left to Mantle.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -289,8 +290,21 @@ function WallRun.start()
 				finish()
 				return
 			end
-			local wallEnds = not wallAt(parts, normal, 0, along * 1.5)
+			-- Follow the wall's surface: on a curved wall (a round tower) the wall turns as you
+			-- run, so turn the run with it, keeping parallel to the surface beside you.
 			local beside = wallAt(parts, normal, 0)
+			if beside then
+				local surface = Vector3.new(beside.Normal.X, 0, beside.Normal.Z)
+				if surface.Magnitude > 0.5 then
+					normal = surface.Unit
+					local flat = along - normal * along:Dot(normal)
+					if flat.Magnitude > 0.1 then
+						along = flat.Unit
+						MoveState.faceDirection = along
+					end
+				end
+			end
+			local wallEnds = not wallAt(parts, normal, 0, along * 1.5)
 			local steerAway = hum.MoveDirection:Dot(normal) > 0.5
 			if
 				elapsed >= settings.RunTime

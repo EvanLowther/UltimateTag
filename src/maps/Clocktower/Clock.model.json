@@ -1,0 +1,794 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "ClockFace",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     24,
+     24
+    ],
+    "Color": [
+     0.965,
+     0.961,
+     0.933
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -0.0,
+       41,
+       -39.7
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.0,
+        1,
+        0.0
+       ],
+       [
+        -1.0,
+        0.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ClockRim",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     25.6,
+     25.6
+    ],
+    "Color": [
+     0.588,
+     0.6,
+     0.643
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -0.0,
+       41,
+       -39.8
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.0,
+        1,
+        0.0
+       ],
+       [
+        -1.0,
+        0.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ClockPlate",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     24,
+     0.1
+    ],
+    "Color": [
+     0.965,
+     0.961,
+     0.933
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -0.0,
+       41,
+       -39.45
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Face",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 20
+     },
+     "children": [
+      {
+       "name": "N0",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.5,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "XII",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N1",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.7,
+           0
+          ],
+          [
+           0.154,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "I",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N2",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.846,
+           0
+          ],
+          [
+           0.3,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "II",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N3",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.9,
+           0
+          ],
+          [
+           0.5,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "III",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N4",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.846,
+           0
+          ],
+          [
+           0.7,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "IIII",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N5",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.7,
+           0
+          ],
+          [
+           0.846,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "V",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N6",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.5,
+           0
+          ],
+          [
+           0.9,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "VI",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N7",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.3,
+           0
+          ],
+          [
+           0.846,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "VII",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N8",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.154,
+           0
+          ],
+          [
+           0.7,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "VIII",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N9",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.1,
+           0
+          ],
+          [
+           0.5,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "IX",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N10",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.154,
+           0
+          ],
+          [
+           0.3,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "X",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "N11",
+       "className": "TextLabel",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          0.5
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.3,
+           0
+          ],
+          [
+           0.154,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.14,
+           0
+          ],
+          [
+           0.1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "XI",
+        "TextScaled": true,
+        "Font": "Garamond",
+        "TextColor3": [
+         0.157,
+         0.157,
+         0.188
+        ]
+       }
+      },
+      {
+       "name": "Hour",
+       "className": "Frame",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          1
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.5,
+           0
+          ],
+          [
+           0.5,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.035,
+           0
+          ],
+          [
+           0.26,
+           0
+          ]
+         ]
+        },
+        "Rotation": 150,
+        "BackgroundColor3": [
+         0.157,
+         0.157,
+         0.188
+        ],
+        "BorderSizePixel": 0
+       }
+      },
+      {
+       "name": "Minute",
+       "className": "Frame",
+       "properties": {
+        "AnchorPoint": {
+         "Vector2": [
+          0.5,
+          1
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.5,
+           0
+          ],
+          [
+           0.5,
+           0
+          ]
+         ]
+        },
+        "Size": {
+         "UDim2": [
+          [
+           0.022,
+           0
+          ],
+          [
+           0.38,
+           0
+          ]
+         ]
+        },
+        "Rotation": 290,
+        "BackgroundColor3": [
+         0.157,
+         0.157,
+         0.188
+        ],
+        "BorderSizePixel": 0
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
