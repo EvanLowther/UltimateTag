@@ -51,15 +51,13 @@ local function itemLines(ids: { string }?): { string }
 	return lines
 end
 
--- Small text that floats up from under the coin counter and fades.
+-- Outlined text that floats up from just above the money pill and fades.
 local function float(text: string)
-	local label = Ui.label(floatAnchor, text, 20)
-	Ui.outlined(label)
-	label.Size = UDim2.new(1, 0, 0, 26)
-	label.TextXAlignment = Enum.TextXAlignment.Left
+	local label = Ui.text(floatAnchor, text, 22, nil, Ui.Font)
+	label.Size = UDim2.new(1, 0, 0, 28)
 	label.Position = UDim2.fromOffset(0, 0)
 	local info = TweenInfo.new(2.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, 46), TextTransparency = 1 })
+	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, -60), TextTransparency = 1 })
 		:Play()
 	local stroke = label:FindFirstChildOfClass("UIStroke")
 	if stroke then
@@ -85,59 +83,55 @@ local function enqueue(show: () -> ())
 	end)
 end
 
--- A centered card: title, lines, held for `seconds`. Yields while it shows.
+-- A small window: a colored header with the title, lines underneath, held for `seconds`, then
+-- shrinks away. Yields while it shows.
 local function card(title: string, lines: { string }, color: Color3, seconds: number)
-	local frame = Ui.frame(gui, Ui.Colors.Panel, 18)
-	Ui.stroke(frame, color, 4)
-	frame.AnchorPoint = Vector2.new(0.5, 0.5)
-	frame.Position = UDim2.fromScale(0.5, 0.38)
-	frame.Size = UDim2.fromOffset(380, 0)
-	frame.AutomaticSize = Enum.AutomaticSize.Y
-	Ui.padding(frame, 16)
+	local window, body, close = Ui.window(gui, title, color)
+	close.Visible = false
+	window.AnchorPoint = Vector2.new(0.5, 0.5)
+	window.Position = UDim2.fromScale(0.5, 0.38)
+	window.Size = UDim2.fromOffset(400, 86 + #lines * 32)
 	local layout = Instance.new("UIListLayout")
 	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	layout.Padding = UDim.new(0, 6)
+	layout.VerticalAlignment = Enum.VerticalAlignment.Center
+	layout.Padding = UDim.new(0, 4)
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
-	layout.Parent = frame
-	local heading = Ui.label(frame, title, 38, color, Ui.BigFont)
-	heading.Size = UDim2.new(1, 0, 0, 44)
-	Ui.outlined(heading, 3)
+	layout.Parent = body
 	for i, line in lines do
-		local l = Ui.label(frame, line, 20)
+		local l = Ui.text(body, line, 22, nil, Ui.Font)
 		l.LayoutOrder = i
-		l.Size = UDim2.new(1, 0, 0, 24)
+		l.Size = UDim2.new(1, 0, 0, 28)
 		l.TextWrapped = true
 	end
-	Ui.popIn(frame)
+	Ui.popIn(window)
 	task.wait(seconds)
-	local fade = TweenInfo.new(0.25)
-	for _, child in frame:GetDescendants() do
-		if child:IsA("TextLabel") then
-			TweenService:Create(child, fade, { TextTransparency = 1 }):Play()
-		elseif child:IsA("UIStroke") then
-			TweenService:Create(child, fade, { Transparency = 1 }):Play()
-		end
+	local scale = window:FindFirstChildOfClass("UIScale")
+	if scale then
+		TweenService:Create(
+			scale,
+			TweenInfo.new(0.2, Enum.EasingStyle.Back, Enum.EasingDirection.In),
+			{ Scale = 0 }
+		):Play()
 	end
-	TweenService:Create(frame, fade, { BackgroundTransparency = 1 }):Play()
-	task.wait(0.3)
-	frame:Destroy()
+	task.wait(0.22)
+	window:Destroy()
 end
 
 -- A crate opening: cards scroll past a marker and stop on the prize. Yields while it shows.
 local function crateReel(prize: Catalog.Item, duplicate: boolean, refund: number)
 	local width = ItemCard.Width + 10
 	local count, stopAt = 26, 22
-	local frame = Ui.frame(gui, Ui.Colors.Panel, 18)
-	Ui.stroke(frame, Catalog.Rarities[prize.rarity].color, 4)
+	local frame, body, close = Ui.window(gui, "MYSTERY CRATE", Ui.Colors.Purple)
+	close.Visible = false
 	frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	frame.Position = UDim2.fromScale(0.5, 0.45)
-	frame.Size = UDim2.fromOffset(560, ItemCard.Height + 90)
+	frame.Size = UDim2.fromOffset(584, ItemCard.Height + 150)
 	local window = Instance.new("Frame")
 	window.BackgroundTransparency = 1
 	window.ClipsDescendants = true
-	window.Position = UDim2.fromOffset(10, 14)
-	window.Size = UDim2.new(1, -20, 0, ItemCard.Height + 6)
-	window.Parent = frame
+	window.Position = UDim2.fromOffset(0, 4)
+	window.Size = UDim2.new(1, 0, 0, ItemCard.Height + 8)
+	window.Parent = body
 	local strip = Instance.new("Frame")
 	strip.BackgroundTransparency = 1
 	strip.Size = UDim2.fromOffset(width * count, ItemCard.Height)
@@ -159,18 +153,18 @@ local function crateReel(prize: Catalog.Item, duplicate: boolean, refund: number
 		local reelCard = ItemCard.make(strip, item)
 		reelCard.LayoutOrder = i
 	end
-	local marker = Ui.frame(frame, Ui.Colors.Coin, 2)
+	local marker = Ui.frame(body, Ui.Colors.Coin, 2)
+	Ui.outline(marker, 2)
 	marker.AnchorPoint = Vector2.new(0.5, 0)
-	marker.Position = UDim2.new(0.5, 0, 0, 6)
-	marker.Size = UDim2.fromOffset(4, ItemCard.Height + 22)
+	marker.Position = UDim2.new(0.5, 0, 0, -4)
+	marker.Size = UDim2.fromOffset(6, ItemCard.Height + 24)
 	marker.ZIndex = 5
-	local result = Ui.label(frame, "", 24, Ui.Colors.Text, Ui.BigFont)
-	result.Position = UDim2.new(0, 0, 1, -54)
-	result.Size = UDim2.new(1, 0, 0, 44)
-	Ui.outlined(result, 2)
+	local result = Ui.text(body, "", 26)
+	result.Position = UDim2.new(0, 0, 1, -40)
+	result.Size = UDim2.new(1, 0, 0, 36)
 	Ui.popIn(frame, 0.25)
 	-- Scroll so the prize card ends centred under the marker.
-	local windowWidth = 540
+	local windowWidth = 556
 	local target = -((stopAt - 1) * width + ItemCard.Width / 2 - windowWidth / 2)
 	local spin = TweenInfo.new(3.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
 	TweenService:Create(strip, spin, { Position = UDim2.fromOffset(target, 3) }):Play()

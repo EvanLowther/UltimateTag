@@ -1,6 +1,6 @@
 --!strict
--- Menu, Quests tab: today's and this week's quests (server/Quests) with progress bars, rewards,
--- reset countdowns and a Claim button once finished.
+-- Menu, Quests tab: today's and this week's quests (server/Quests) as bright cards with a
+-- progress bar, the reward, reset countdowns and a Claim button once finished.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -34,19 +34,7 @@ function QuestsTab.badge(profile: { [string]: any }): boolean
 end
 
 function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
-	local scroll = Instance.new("ScrollingFrame")
-	scroll.BackgroundTransparency = 1
-	scroll.BorderSizePixel = 0
-	scroll.Size = UDim2.fromScale(1, 1)
-	scroll.CanvasSize = UDim2.new()
-	scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	scroll.ScrollBarThickness = 6
-	scroll.Parent = page
-	local layout = Instance.new("UIListLayout")
-	layout.Padding = UDim.new(0, 8)
-	layout.SortOrder = Enum.SortOrder.LayoutOrder
-	layout.Parent = scroll
-
+	local scroll = Ui.scroll(page, 10)
 	local order = 0
 	local function nextOrder(): number
 		order += 1
@@ -59,41 +47,36 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			return
 		end
 		local done = quest.Progress >= def.Goal
-		local frame = Ui.frame(scroll, Ui.Colors.Card, 12)
-		frame.Size = UDim2.new(1, -10, 0, 64)
-		frame.LayoutOrder = nextOrder()
-		if done and not quest.Claimed then
-			Ui.stroke(frame, Ui.Colors.Coin, 2.5)
-		end
-		local text = Ui.label(frame, def.Text, 19)
-		text.Position = UDim2.fromOffset(14, 6)
+		local color = if quest.Claimed
+			then Ui.Colors.Locked
+			elseif kind == "Daily" then Ui.Colors.Blue
+			else Ui.Colors.Purple
+		local card = Ui.card(scroll, color, 14)
+		card.Size = UDim2.new(1, -8, 0, 78)
+		card.LayoutOrder = nextOrder()
+		local text = Ui.text(card, def.Text:upper(), 20)
+		text.Position = UDim2.fromOffset(14, 8)
 		text.Size = UDim2.new(1, -170, 0, 24)
 		text.TextXAlignment = Enum.TextXAlignment.Left
-		local reward = Ui.label(
-			frame,
-			`<font color="#FFCD3C">{def.Coins} coins</font>   <font color="#5AC8FF">{def.XP} XP</font>`,
-			14
-		)
-		reward.Position = UDim2.fromOffset(14, 30)
-		reward.Size = UDim2.new(1, -170, 0, 16)
-		reward.TextXAlignment = Enum.TextXAlignment.Left
-		local bar = Ui.frame(frame, Ui.Colors.PanelLight, 6)
-		bar.Position = UDim2.fromOffset(14, 48)
-		bar.Size = UDim2.new(1, -170, 0, 10)
-		local fill = Ui.frame(bar, if done then Ui.Colors.Good else Ui.Colors.XP, 6)
-		fill.Size = UDim2.fromScale(math.clamp(quest.Progress / def.Goal, 0, 1), 1)
-		local count = Ui.label(frame, `{quest.Progress} / {def.Goal}`, 15, Ui.Colors.Dim)
-		count.AnchorPoint = Vector2.new(1, 0)
-		count.Position = UDim2.new(1, -140, 0, 6)
-		count.Size = UDim2.fromOffset(80, 22)
-		count.TextXAlignment = Enum.TextXAlignment.Right
+		local coins = Ui.pricePill(card, def.Coins)
+		coins.Position = UDim2.fromOffset(14, 36)
+		local xp = Ui.pricePill(card, nil, `{def.XP} XP`)
+		xp.Position = UDim2.fromOffset(104, 36)
+		xp.Size = UDim2.fromOffset(74, 26)
+		local bar, set = Ui.bar(card, if done then Ui.Colors.Green else Ui.Colors.Yellow)
+		bar.Position = UDim2.fromOffset(190, 40)
+		bar.Size = UDim2.new(1, -360, 0, 18)
+		set(quest.Progress / def.Goal)
+		local count = Ui.text(bar, `{quest.Progress}/{def.Goal}`, 14)
+		count.Size = UDim2.fromScale(1, 1)
+		count.ZIndex = 3
 		local button = Ui.button(
-			frame,
-			if quest.Claimed then "Claimed" elseif done then "Claim!" else "In progress",
+			card,
+			if quest.Claimed then "CLAIMED" elseif done then "CLAIM!" else "GO!",
 			if quest.Claimed
-				then Ui.Colors.PanelLight
-				elseif done then Ui.Colors.Good
-				else Ui.Colors.PanelLight,
+				then Ui.Colors.Locked
+				elseif done then Ui.Colors.Green
+				else Ui.Colors.Orange,
 			function()
 				if done and not quest.Claimed then
 					api.send("ClaimQuest", kind, slot)
@@ -101,21 +84,21 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			end
 		)
 		button.AnchorPoint = Vector2.new(1, 0.5)
-		button.Position = UDim2.new(1, -10, 0.5, 0)
-		button.Size = UDim2.fromOffset(120, 40)
-		button.TextSize = 17
+		button.Position = UDim2.new(1, -12, 0.5, 0)
+		button.Size = UDim2.fromOffset(130, 50)
+		Ui.setTextSize(button, 20)
 	end
 
-	local function heading(text: string, resets: string)
+	local function heading(text: string, color: Color3, resets: string)
 		local frame = Instance.new("Frame")
 		frame.BackgroundTransparency = 1
-		frame.Size = UDim2.new(1, -10, 0, 30)
+		frame.Size = UDim2.new(1, -8, 0, 32)
 		frame.LayoutOrder = nextOrder()
 		frame.Parent = scroll
-		local title = Ui.label(frame, text, 22, Ui.Colors.Text, Ui.BigFont)
+		local title = Ui.text(frame, text, 26, color)
 		title.Size = UDim2.fromScale(0.5, 1)
 		title.TextXAlignment = Enum.TextXAlignment.Left
-		local timer = Ui.label(frame, resets, 15, Ui.Colors.Dim)
+		local timer = Ui.ink(frame, resets, 16, Ui.Colors.InkDim)
 		timer.AnchorPoint = Vector2.new(1, 0)
 		timer.Position = UDim2.fromScale(1, 0)
 		timer.Size = UDim2.fromScale(0.5, 1)
@@ -133,11 +116,21 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			end
 		end
 		order = 0
-		heading("DAILY", `New quests in {DayClock.format(DayClock.secondsToNextDay())}`)
+		heading(
+			"DAILY",
+			Ui.Colors.Blue,
+			`New quests in {DayClock.format(DayClock.secondsToNextDay())}`
+		)
 		for slot, quest in profile.Quests.Daily do
 			row("Daily", slot, quest)
 		end
-		heading("WEEKLY", `New quests in {DayClock.format(DayClock.secondsToNextWeek())}`)
+		local divider = Ui.divider(scroll)
+		divider.LayoutOrder = nextOrder()
+		heading(
+			"WEEKLY",
+			Ui.Colors.Purple,
+			`New quests in {DayClock.format(DayClock.secondsToNextWeek())}`
+		)
 		for slot, quest in profile.Quests.Weekly do
 			row("Weekly", slot, quest)
 		end

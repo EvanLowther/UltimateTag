@@ -7,6 +7,7 @@ A simple Roblox tag game with a classic studded look. Code lives in files and sy
 - **Real maps** (the School) use Roblox's real materials (CeramicTiles, Plaster, WoodPlanks, Metal, Brick...) and lots of non-colliding detail (posters, signs, pipes) to feel lived in. Detail never collides or blocks raycasts (`CanCollide`/`CanQuery`/`CanTouch` off), so wall runs, vaults and the camera ignore it; only deliberate props are solid.
 - **The lobby** is vibrant, flat-shaded low-poly (meshes from Blender with one palette texture), matching the reference art.
 - **Lighting** (in `default.project.json`, Rojo-managed) is bright and saturated: ShadowMap, a ColorCorrection boost, soft Bloom, light Atmosphere. Simple white speed trails are the only other effect.
+- **UI** (every menu, popup and HUD piece) uses the chunky simulator-shop style in `client/Menu/Ui.luau`: white windows with a colored header bar and a red X, thick dark outlines on everything (`Ui.outline`), bold white text with a dark outline (`Ui.text`, LuckiestGuy / FredokaOne), bright glossy cards (`Ui.card`), white price pills with a coin (`Ui.pricePill`), chunky outlined progress bars, bouncing buttons, a left-side grid of icon buttons and the money pill + level bar at the bottom center. Build new UI from these helpers, not raw instances. (The dev panel keeps its own plain look.)
 - Keep it simple. Prefer one small module per feature over big scripts.
 
 ## Layout (Rojo: `default.project.json`)
@@ -137,7 +138,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && rojo build -o bu
 | `shared/ShopRotation.luau` | both | Today's shop (`Config.Shop.Featured` items + one deal), picked from the day number so server and clients agree. |
 | `shared/DayClock.luau` | both | The UTC day/week calendar for streaks, quests and the shop, plus the dev time offset (`DevTimeOffset` attribute). |
 | `client/Profile.luau` | client | Your profile as last synced (`get`, `onChanged`). |
-| `client/Menu/` | client | The player menu: coins and level/XP bar on the left, buttons with claim badges, the window with Shop (offers, countdown, crate with odds), Inventory (equip, try effects), Quests and Rewards (streak calendar, achievements) tabs; `Popups` (earned coins, level-ups, rewards, the crate reel); `ItemCard`, `Ui` helpers. The lobby Avatar Shop prompt opens the Shop; the Rewards tab opens itself when the day's streak reward is waiting. |
+| `client/Menu/` | client | The player menu, in the `Ui` style: a two-column grid of icon buttons on the left (with claim badges), the green money pill and level/XP bar at the bottom center, the window with Shop (offers, countdown, crate with odds), Inventory (equip, try effects), Quests and Rewards (streak calendar, achievements) tabs; `Popups` (earned coins, level-ups, rewards, the crate reel); `ItemCard`, `Ui` helpers. The lobby Avatar Shop prompt opens the Shop; the Rewards tab opens itself when the day's streak reward is waiting. |
 | `client/CosmeticEffects.luau` | client | Tag effects at the tagged player (`TagHit`) and the winner's victory pose and effect in the lobby (`Victory`), plus `preview` for the Inventory. |
 | `client/MoveReport.luau` | client | Reports each new WallRun, Slide, Vault and Climb to the server (`MoveDone`) for stats and quests. |
 
@@ -150,6 +151,7 @@ Rules of thumb:
 - Server owns all game state. Clients read attributes and ask the server through RemoteEvents in `shared/Remotes.luau` (add new names to its list).
 
 ## Changelog
+- 0.36.0: All player UI restyled like a classic simulator shop (`Menu/Ui`): white windows with colored header bars, thick outlines, outlined white text, bright cards, price pills, icon-button grid on the left, money pill and level bar at the bottom. HUD, toasts, spectate label, popups and the crate reel match. Figma MCP added to the project (needs sign-in with /mcp).
 - 0.35.0: Progression and rewards: saved profiles (PlayerData), coins/XP/levels (Progression), cosmetics everyone sees (trails for all, titles over heads, tag effects, victories in the lobby; Catalog), daily rotating shop and mystery crates, real wheel prizes, daily login streak, daily/weekly quests, achievements, Robux hooks (off). Player menu (coins, level bar, Shop, Inventory, Quests, Rewards, popups, crate reel). Block avatars wear each player's own body colors. Dev panel Progress tab.
 - 0.34.0: School detail pass (real materials, windows, posters, signs, lockers, trophies, fans, flickering lights, particles: steam, dust, sparks, drips; basement boiler, pipes, crates). New MapAmbience (Flicker and Spin attributes).
 - 0.33.0: Movement focuses on wall runs, slides and vaults: Mantle Boost removed (and MantleBoostUI), the wall kick-off removed (jumping off a wall run just drops you with its speed). School: round puddle with a mop bucket and wet-floor sign, classroom bookshelves rebuilt as two rows of standing shelves with vault gaps and duct gaps, duct catwalk 6 wide.

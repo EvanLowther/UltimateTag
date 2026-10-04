@@ -1,7 +1,8 @@
 --!strict
--- The game's menu (for players, unlike the dev panel). On the left side of the screen: your
--- coins, your level with an XP bar, and buttons that open the menu window's tabs (Shop,
--- Inventory, Quests, Rewards). Reward popups come in through the Reward remote (Popups).
+-- The game's menu (for players, unlike the dev panel), in the game's chunky style (Menu/Ui).
+-- Left side: a grid of icon buttons opening the menu window's tabs (Shop, Inventory, Quests,
+-- Rewards). Bottom center: your coins in a big green pill and your level with an XP bar.
+-- Reward popups come in through the Reward remote (Popups).
 -- Tabs are modules in this folder with build(page, api) -> refresh function, and optionally
 -- badge(profile) -> boolean (a red "!" on the button: something to claim); see TABS.
 -- When today's login streak reward is waiting, the Rewards tab opens by itself on joining.
@@ -9,7 +10,6 @@ local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local ProximityPromptService = game:GetService("ProximityPromptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -25,16 +25,16 @@ local Ui = require(script.Ui)
 
 local Menu = {}
 
--- name, button color, module (each module has build(page, api) returning a refresh function)
-type Tab = { name: string, color: Color3, module: any }
+-- name, icon, color (button and window header), module (build(page, api) -> refresh function)
+type Tab = { name: string, icon: string, color: Color3, module: any }
 local TABS: { Tab } = {
-	{ name = "Shop", color = Color3.fromRGB(255, 170, 40), module = ShopTab },
-	{ name = "Inventory", color = Color3.fromRGB(150, 90, 230), module = InventoryTab },
-	{ name = "Quests", color = Color3.fromRGB(70, 170, 255), module = QuestsTab },
-	{ name = "Rewards", color = Color3.fromRGB(80, 200, 110), module = RewardsTab },
+	{ name = "Shop", icon = "🛒", color = Ui.Colors.Red, module = ShopTab },
+	{ name = "Inventory", icon = "🎒", color = Ui.Colors.Purple, module = InventoryTab },
+	{ name = "Quests", icon = "📜", color = Ui.Colors.Blue, module = QuestsTab },
+	{ name = "Rewards", icon = "🎁", color = Ui.Colors.Orange, module = RewardsTab },
 }
 
-local WINDOW_W, WINDOW_H = 620, 440
+local WINDOW_W, WINDOW_H = 640, 460
 
 local openTab: ((string?) -> ())? = nil
 
@@ -58,73 +58,75 @@ function Menu.start()
 	gui.DisplayOrder = 10
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-	-- Left side: coins, level, menu buttons.
+	-- Left side: a two-column grid of icon buttons.
 	local side = Instance.new("Frame")
 	side.BackgroundTransparency = 1
 	side.AnchorPoint = Vector2.new(0, 0.5)
-	side.Position = UDim2.new(0, 12, 0.45, 0)
-	side.Size = UDim2.fromOffset(220, 0)
+	side.Position = UDim2.new(0, 14, 0.45, 0)
+	side.Size = UDim2.fromOffset(150, 0)
 	side.AutomaticSize = Enum.AutomaticSize.Y
-	local list = Instance.new("UIListLayout")
-	list.Padding = UDim.new(0, 8)
-	list.SortOrder = Enum.SortOrder.LayoutOrder
-	list.Parent = side
+	local grid = Instance.new("UIGridLayout")
+	grid.CellSize = UDim2.fromOffset(68, 68)
+	grid.CellPadding = UDim2.fromOffset(10, 10)
+	grid.SortOrder = Enum.SortOrder.LayoutOrder
+	grid.Parent = side
 	side.Parent = gui
 
-	local coinPill = Ui.frame(side, Ui.Colors.Panel, 20)
-	coinPill.Size = UDim2.fromOffset(170, 40)
-	coinPill.LayoutOrder = 1
-	Ui.stroke(coinPill)
-	local coin = Ui.coinIcon(coinPill, 28)
-	coin.Position = UDim2.fromOffset(7, 6)
-	local coinText = Ui.label(coinPill, "0", 24, Ui.Colors.Coin)
-	coinText.Position = UDim2.fromOffset(42, 0)
-	coinText.Size = UDim2.new(1, -50, 1, 0)
-	coinText.TextXAlignment = Enum.TextXAlignment.Left
+	-- Bottom center: the money pill, and the level bar under it.
+	local bottom = Instance.new("Frame")
+	bottom.BackgroundTransparency = 1
+	bottom.AnchorPoint = Vector2.new(0.5, 1)
+	bottom.Position = UDim2.new(0.5, 0, 1, -8)
+	bottom.Size = UDim2.fromOffset(460, 82)
+	bottom.Parent = gui
 
-	local levelPill = Ui.frame(side, Ui.Colors.Panel, 20)
-	levelPill.Size = UDim2.fromOffset(210, 40)
-	levelPill.LayoutOrder = 2
-	Ui.stroke(levelPill)
-	local badge = Ui.frame(levelPill, Ui.Colors.XP, 20)
-	badge.Size = UDim2.fromOffset(32, 32)
-	badge.Position = UDim2.fromOffset(4, 4)
-	local levelText = Ui.label(badge, "1", 20, Ui.Colors.Text, Ui.BigFont)
-	levelText.Size = UDim2.fromScale(1, 1)
-	Ui.outlined(levelText)
-	local bar = Ui.frame(levelPill, Ui.Colors.PanelLight, 8)
-	bar.Position = UDim2.fromOffset(44, 12)
-	bar.Size = UDim2.new(1, -54, 0, 16)
-	local fill = Ui.frame(bar, Ui.Colors.XP, 8)
-	fill.Size = UDim2.fromScale(0, 1)
-	local xpText = Ui.label(bar, "0 / 100", 13)
-	xpText.Size = UDim2.fromScale(1, 1)
-	xpText.ZIndex = 2
-	Ui.outlined(xpText, 1.5)
+	local money = Ui.card(bottom, Ui.Colors.Green, 20)
+	money.AnchorPoint = Vector2.new(0.5, 0)
+	money.Position = UDim2.fromScale(0.5, 0)
+	money.Size = UDim2.fromOffset(190, 44)
+	money.ZIndex = 2
+	local coin = Ui.coinIcon(money, 30)
+	coin.Position = UDim2.fromOffset(10, 7)
+	coin.ZIndex = 3
+	local coinText = Ui.text(money, "0", 30)
+	coinText.Position = UDim2.fromOffset(46, 0)
+	coinText.Size = UDim2.new(1, -56, 1, 0)
+	coinText.ZIndex = 3
 
-	-- Floating "+coins" text appears just under the level bar.
+	local levelText = Ui.text(bottom, "Lvl. 1", 20)
+	levelText.AnchorPoint = Vector2.new(0, 1)
+	levelText.Position = UDim2.new(0, 4, 1, -20)
+	levelText.Size = UDim2.fromOffset(120, 22)
+	levelText.TextXAlignment = Enum.TextXAlignment.Left
+	local xpText = Ui.text(bottom, "0/100", 18)
+	xpText.AnchorPoint = Vector2.new(1, 1)
+	xpText.Position = UDim2.new(1, -4, 1, -20)
+	xpText.Size = UDim2.fromOffset(140, 22)
+	xpText.TextXAlignment = Enum.TextXAlignment.Right
+	local bar, setXP = Ui.bar(bottom, Ui.Colors.XP)
+	bar.AnchorPoint = Vector2.new(0.5, 1)
+	bar.Position = UDim2.new(0.5, 0, 1, -2)
+	bar.Size = UDim2.new(1, 0, 0, 16)
+
+	-- Floating "+coins" text rises from just above the money pill.
 	local floatAnchor = Instance.new("Frame")
 	floatAnchor.BackgroundTransparency = 1
-	floatAnchor.Size = UDim2.fromOffset(320, 30)
-	floatAnchor.LayoutOrder = 3
-	floatAnchor.Parent = side
+	floatAnchor.AnchorPoint = Vector2.new(0.5, 1)
+	floatAnchor.Position = UDim2.new(0.5, 0, 1, -100)
+	floatAnchor.Size = UDim2.fromOffset(420, 30)
+	floatAnchor.Parent = gui
 	Popups.start(gui, floatAnchor)
 
-	-- The menu window and its tab buttons (when there are tabs).
-	local window = Ui.frame(gui, Ui.Colors.Panel, 18)
+	-- The menu window: one window whose header takes the open tab's name and color.
+	local window, body, close, title = Ui.window(gui, "", Ui.Colors.Header)
 	window.Visible = false
 	window.AnchorPoint = Vector2.new(0.5, 0.5)
-	window.Position = UDim2.fromScale(0.5, 0.52)
-	window.Size = UDim2.fromOffset(WINDOW_W, WINDOW_H)
-	Ui.stroke(window, Color3.fromRGB(15, 18, 30), 3)
+	window.Position = UDim2.fromScale(0.5, 0.48)
+	window.Size = UDim2.fromScale(0.9, 0.78)
 	local sizeLimit = Instance.new("UISizeConstraint")
 	sizeLimit.MaxSize = Vector2.new(WINDOW_W, WINDOW_H)
 	sizeLimit.Parent = window
-	local title = Ui.label(window, "", 32, Ui.Colors.Text, Ui.BigFont)
-	title.Position = UDim2.fromOffset(20, 8)
-	title.Size = UDim2.new(1, -80, 0, 40)
-	title.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.outlined(title, 2)
+	local header = window:FindFirstChild("Header") :: Frame
 	local modal = Instance.new("TextButton") -- frees the mouse in first person while open
 	modal.BackgroundTransparency = 1
 	modal.Text = ""
@@ -134,6 +136,7 @@ function Menu.start()
 
 	local pages: { [string]: Frame } = {}
 	local refreshers: { [string]: () -> () } = {}
+	local colors: { [string]: Color3 } = {}
 	local current: string? = nil
 
 	local api = {
@@ -150,6 +153,13 @@ function Menu.start()
 		end
 		if name then
 			title.Text = name:upper()
+			local color = colors[name] or Ui.Colors.Header
+			header.BackgroundColor3 = color
+			for _, child in header:GetChildren() do
+				if child:IsA("Frame") then
+					child.BackgroundColor3 = color
+				end
+			end
 			local refresh = refreshers[name]
 			if refresh then
 				refresh()
@@ -158,39 +168,36 @@ function Menu.start()
 		end
 	end
 	openTab = show
-
-	local close = Ui.button(window, "X", Ui.Colors.Bad, function()
+	close.Activated:Connect(function()
 		show(nil)
 	end)
-	close.AnchorPoint = Vector2.new(1, 0)
-	close.Position = UDim2.new(1, -12, 0, 12)
-	close.Size = UDim2.fromOffset(40, 40)
 
 	for i, tab in TABS do
 		local page = Instance.new("Frame")
 		page.Name = tab.name
 		page.BackgroundTransparency = 1
-		page.Position = UDim2.fromOffset(16, 56)
-		page.Size = UDim2.new(1, -32, 1, -72)
+		page.Size = UDim2.fromScale(1, 1)
 		page.Visible = false
-		page.Parent = window
+		page.Parent = body
 		pages[tab.name] = page
+		colors[tab.name] = tab.color
 		refreshers[tab.name] = tab.module.build(page, api)
 
-		local button = Ui.button(side, tab.name, tab.color, function()
+		local button = Ui.iconButton(side, tab.icon, tab.name, tab.color, function()
 			show(if current == tab.name then nil else tab.name)
 		end)
-		button.Size = UDim2.fromOffset(130, 42)
-		button.LayoutOrder = 10 + i
+		button.LayoutOrder = i
 		if tab.module.badge then
 			local dot = Ui.frame(button, Ui.Colors.Bad, 12)
 			dot.AnchorPoint = Vector2.new(0.5, 0.5)
 			dot.Position = UDim2.new(1, -4, 0, 4)
-			dot.Size = UDim2.fromOffset(22, 22)
+			dot.Size = UDim2.fromOffset(24, 24)
+			dot.ZIndex = 3
 			dot.Visible = false
-			Ui.stroke(dot, Color3.new(1, 1, 1), 2)
-			local mark = Ui.label(dot, "!", 16, Ui.Colors.Text, Ui.BigFont)
+			Ui.outline(dot, 2.5)
+			local mark = Ui.text(dot, "!", 18)
 			mark.Size = UDim2.fromScale(1, 1)
+			mark.ZIndex = 3
 			Profile.onChanged(function(profile)
 				dot.Visible = tab.module.badge(profile)
 			end)
@@ -220,14 +227,10 @@ function Menu.start()
 				end
 			end)
 		end
-		levelText.Text = tostring(profile.Level)
+		levelText.Text = `Lvl. {profile.Level}`
 		local need = xpNeeded(profile.Level)
-		xpText.Text = `{Ui.number(profile.XP)} / {Ui.number(need)} XP`
-		TweenService:Create(
-			fill,
-			TweenInfo.new(0.4),
-			{ Size = UDim2.fromScale(math.clamp(profile.XP / need, 0, 1), 1) }
-		):Play()
+		xpText.Text = `{Ui.number(profile.XP)}/{Ui.number(need)}`
+		setXP(profile.XP / need)
 	end)
 
 	Remotes.get("Reward").OnClientEvent:Connect(Popups.show)

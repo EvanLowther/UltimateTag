@@ -8,8 +8,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
-local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
+local Ui = require(script.Parent.Menu.Ui)
 
 local Notify = {}
 
@@ -26,7 +26,11 @@ function Notify.show(text: string)
 	box.Text = text
 	box.Visible = true
 	box.TextTransparency = 0
-	box.BackgroundTransparency = 0.25
+	box.BackgroundTransparency = 0
+	local stroke = box:FindFirstChildOfClass("UIStroke")
+	if stroke then
+		stroke.Transparency = 0
+	end
 	local stamp = os.clock()
 	shownAt = stamp
 	task.delay(SHOW_TIME, function()
@@ -34,6 +38,10 @@ function Notify.show(text: string)
 			local fade = TweenInfo.new(0.4)
 			TweenService:Create(box, fade, { TextTransparency = 1, BackgroundTransparency = 1 })
 				:Play()
+			local outline = box:FindFirstChildOfClass("UIStroke")
+			if outline then
+				TweenService:Create(outline, fade, { Transparency = 1 }):Play()
+			end
 		end
 	end)
 end
@@ -42,18 +50,27 @@ function Notify.start()
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "Notify"
 	gui.ResetOnSpawn = false
+	-- A white pill with a thick outline, above the money and level bar.
 	local box = Instance.new("TextLabel")
 	box.AnchorPoint = Vector2.new(0.5, 1)
-	box.Position = UDim2.new(0.5, 0, 1, -90)
-	box.Size = UDim2.fromOffset(460, 44)
-	box.BackgroundColor3 = Config.Colors.HudBackground
+	box.Position = UDim2.new(0.5, 0, 1, -138)
+	box.Size = UDim2.fromOffset(0, 44)
+	box.AutomaticSize = Enum.AutomaticSize.X
+	box.BackgroundColor3 = Ui.Colors.Window
 	box.BackgroundTransparency = 1
-	box.Font = Config.Ui.Font
-	box.TextSize = 26
-	box.TextColor3 = Config.Colors.Text
+	box.Font = Ui.Font
+	box.TextSize = 24
+	box.TextColor3 = Ui.Colors.Ink
 	box.TextTransparency = 1
 	box.Visible = false
-	Instance.new("UICorner").Parent = box
+	Ui.corner(box, 22)
+	Ui.padding(box, 0)
+	local pad = box:FindFirstChildOfClass("UIPadding")
+	if pad then
+		pad.PaddingLeft = UDim.new(0, 18)
+		pad.PaddingRight = UDim.new(0, 18)
+	end
+	Ui.outline(box, 3)
 	box.Parent = gui
 	gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 	label = box

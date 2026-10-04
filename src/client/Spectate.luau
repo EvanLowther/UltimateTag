@@ -8,8 +8,8 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
-local Config = require(Shared:WaitForChild("Config"))
 local GameState = require(Shared:WaitForChild("GameState"))
+local Ui = require(script.Parent.Menu.Ui)
 local ViewMode = require(script.Parent.ViewMode)
 
 local Spectate = {}
@@ -46,17 +46,15 @@ function Spectate.start()
 	gui.Name = "Spectate"
 	gui.ResetOnSpawn = false
 	gui.Enabled = false
-	local label = Instance.new("TextLabel")
+	-- A white outlined pill above the money and level bar (Menu/Ui style).
+	local label = Ui.ink(gui, "", 22)
 	label.AnchorPoint = Vector2.new(0.5, 1)
-	label.Position = UDim2.new(0.5, 0, 1, -24)
-	label.Size = UDim2.fromOffset(420, 36)
-	label.BackgroundColor3 = Config.Colors.HudBackground
-	label.BackgroundTransparency = 0.4
-	label.Font = Config.Ui.Font
-	label.TextSize = 22
-	label.TextColor3 = Config.Colors.Text
-	Instance.new("UICorner").Parent = label
-	label.Parent = gui
+	label.Position = UDim2.new(0.5, 0, 1, -190)
+	label.Size = UDim2.fromOffset(420, 40)
+	label.BackgroundTransparency = 0
+	label.BackgroundColor3 = Ui.Colors.Window
+	Ui.corner(label, 20)
+	Ui.outline(label, 3)
 	gui.Parent = player:WaitForChild("PlayerGui")
 
 	local function shouldSpectate(): boolean

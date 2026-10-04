@@ -1,5 +1,5 @@
 --!strict
--- Top-of-screen HUD:
+-- Top-of-screen HUD, in the game's chunky style (Menu/Ui):
 --   Panel:  the status line, and under it the timer, round and players left.
 --   Banner: YOU ARE IT! / RUN! during a round, ELIMINATED once you're out, YOU WIN! or
 --           "<name> wins!" at the end.
@@ -9,20 +9,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local GameState = require(Shared:WaitForChild("GameState"))
+local Ui = require(script.Parent.Menu.Ui)
 
 local Hud = {}
-
-local function makeLabel(parent: Instance, name: string, textSize: number): TextLabel
-	local label = Instance.new("TextLabel")
-	label.Name = name
-	label.BackgroundTransparency = 1
-	label.Font = Config.Ui.Font
-	label.TextSize = textSize
-	label.TextColor3 = Config.Colors.Text
-	label.TextStrokeTransparency = 0.5
-	label.Parent = parent
-	return label
-end
 
 local function formatTime(seconds: number): string
 	return string.format("%d:%02d", seconds // 60, seconds % 60)
@@ -54,36 +43,37 @@ function Hud.start()
 	gui.Name = "Hud"
 	gui.ResetOnSpawn = false
 
-	local panel = Instance.new("Frame")
-	panel.Name = "Panel"
+	-- A white panel with a thick outline: the status line, and the timer / round line under it.
+	local panel = Ui.frame(gui, Ui.Colors.Window, 14)
+	Ui.outline(panel, 3)
 	panel.AnchorPoint = Vector2.new(0.5, 0)
 	panel.Position = UDim2.new(0.5, 0, 0, 8)
-	panel.Size = UDim2.fromOffset(480, 62)
-	panel.BackgroundColor3 = colors.HudBackground
-	panel.BackgroundTransparency = 0.4
-	Instance.new("UICorner").Parent = panel
-	panel.Parent = gui
+	panel.Size = UDim2.fromOffset(480, 66)
 
-	local status = makeLabel(panel, "Status", 22)
+	local status = Ui.ink(panel, "", 22)
 	status.Size = UDim2.new(1, -16, 0, 30)
-	status.Position = UDim2.fromOffset(8, 2)
+	status.Position = UDim2.fromOffset(8, 4)
 	status.TextWrapped = true
 
-	local info = makeLabel(panel, "Info", 20)
+	local info = Ui.text(panel, "", 20, Ui.Colors.Yellow)
 	info.Size = UDim2.new(1, -16, 0, 24)
-	info.Position = UDim2.fromOffset(8, 34)
-	info.TextColor3 = colors.Text
+	info.Position = UDim2.fromOffset(8, 36)
 
-	local banner = makeLabel(gui, "Banner", 32)
+	-- The big banner under it (YOU ARE IT!, RUN!...): a bright outlined card.
+	local banner = Ui.card(gui, colors.It, 14)
 	banner.AnchorPoint = Vector2.new(0.5, 0)
-	banner.Position = UDim2.new(0.5, 0, 0, 78)
-	banner.Size = UDim2.fromOffset(300, 44)
-	banner.BackgroundTransparency = 0.2
-	Instance.new("UICorner").Parent = banner
+	banner.Position = UDim2.new(0.5, 0, 0, 84)
+	banner.Size = UDim2.fromOffset(300, 50)
+	banner.Visible = false
+	local bannerText = Ui.text(banner, "", 32)
+	bannerText.Size = UDim2.fromScale(1, 1)
 
 	local function showBanner(text: string, color: Color3)
+		if not banner.Visible or bannerText.Text ~= text then
+			Ui.popIn(banner, 0.3)
+		end
 		banner.Visible = true
-		banner.Text = text
+		bannerText.Text = text
 		banner.BackgroundColor3 = color
 	end
 
@@ -91,7 +81,7 @@ function Hud.start()
 		status.Text = GameState.getStatus()
 		info.Text = infoLine()
 		info.Visible = info.Text ~= ""
-		panel.Size = UDim2.fromOffset(480, if info.Visible then 62 else 36)
+		panel.Size = UDim2.fromOffset(480, if info.Visible then 66 else 38)
 
 		local phase = GameState.getPhase()
 		local role = player:GetAttribute("Role")

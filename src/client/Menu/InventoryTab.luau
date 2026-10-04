@@ -1,7 +1,7 @@
 --!strict
--- Menu, Inventory tab: every cosmetic by kind (Trails, Tag Effects, Titles, Victories). Owned
--- ones can be equipped (and effects tried out on yourself); ones you don't have are greyed out
--- with how to get them.
+-- Menu, Inventory tab: every cosmetic by kind (Trails, Tag Effects, Titles, Victories) as bright
+-- cards. Owned ones can be equipped (and effects tried on yourself); ones you don't have are
+-- dimmed with how to get them.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Catalog = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Catalog"))
@@ -12,53 +12,68 @@ local Ui = require(script.Parent.Ui)
 
 local InventoryTab = {}
 
+local KIND_COLORS = {
+	Trail = Ui.Colors.Blue,
+	TagEffect = Ui.Colors.Red,
+	Title = Ui.Colors.Orange,
+	Victory = Ui.Colors.Purple,
+}
+
 function InventoryTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local kind = "Trail"
 
 	local kinds = Instance.new("Frame")
 	kinds.BackgroundTransparency = 1
-	kinds.Size = UDim2.new(1, 0, 0, 38)
+	kinds.Size = UDim2.new(1, -150, 0, 40)
 	kinds.Parent = page
 	local kindLayout = Instance.new("UIListLayout")
 	kindLayout.FillDirection = Enum.FillDirection.Horizontal
 	kindLayout.Padding = UDim.new(0, 8)
+	kindLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 	kindLayout.Parent = kinds
 
-	local count = Ui.label(page, "", 16, Ui.Colors.Dim)
+	local count = Ui.ink(page, "", 17, Ui.Colors.InkDim)
 	count.AnchorPoint = Vector2.new(1, 0)
-	count.Position = UDim2.new(1, 0, 0, 8)
-	count.Size = UDim2.fromOffset(120, 22)
+	count.Position = UDim2.new(1, -4, 0, 8)
+	count.Size = UDim2.fromOffset(140, 24)
 	count.TextXAlignment = Enum.TextXAlignment.Right
 
+	local holder = Instance.new("Frame")
+	holder.BackgroundTransparency = 1
+	holder.Position = UDim2.fromOffset(0, 50)
+	holder.Size = UDim2.new(1, 0, 1, -50)
+	holder.Parent = page
 	local scroll = Instance.new("ScrollingFrame")
 	scroll.BackgroundTransparency = 1
 	scroll.BorderSizePixel = 0
-	scroll.Position = UDim2.fromOffset(0, 46)
-	scroll.Size = UDim2.new(1, 0, 1, -46)
+	scroll.Size = UDim2.fromScale(1, 1)
 	scroll.CanvasSize = UDim2.new()
 	scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	scroll.ScrollBarThickness = 6
-	scroll.Parent = page
+	scroll.ScrollBarThickness = 8
+	scroll.ScrollBarImageColor3 = Ui.Colors.Outline
+	scroll.Parent = holder
 	local grid = Instance.new("UIGridLayout")
 	grid.CellSize = UDim2.fromOffset(ItemCard.Width, ItemCard.Height)
-	grid.CellPadding = UDim2.fromOffset(10, 10)
+	grid.CellPadding = UDim2.fromOffset(12, 12)
 	grid.SortOrder = Enum.SortOrder.LayoutOrder
 	grid.Parent = scroll
 	local pad = Instance.new("UIPadding")
-	pad.PaddingTop = UDim.new(0, 4)
-	pad.PaddingLeft = UDim.new(0, 4)
+	pad.PaddingTop = UDim.new(0, 6)
+	pad.PaddingLeft = UDim.new(0, 6)
+	pad.PaddingRight = UDim.new(0, 12)
+	pad.PaddingBottom = UDim.new(0, 6)
 	pad.Parent = scroll
 
 	local refresh: () -> ()
 
 	local kindButtons: { [string]: TextButton } = {}
 	for _, k in Catalog.Kinds do
-		local button = Ui.button(kinds, Catalog.KindNames[k], Ui.Colors.PanelLight, function()
+		local button = Ui.button(kinds, Catalog.KindNames[k], KIND_COLORS[k], function()
 			kind = k
 			refresh()
 		end)
-		button.Size = UDim2.fromOffset(118, 34)
-		button.TextSize = 17
+		button.Size = UDim2.fromOffset(110, 36)
+		Ui.setTextSize(button, 16)
 		kindButtons[k] = button
 	end
 
@@ -68,7 +83,7 @@ function InventoryTab.build(page: Frame, api: { [string]: any }): () -> ()
 			return
 		end
 		for k, button in kindButtons do
-			button.BackgroundColor3 = if k == kind then Ui.Colors.Accent else Ui.Colors.PanelLight
+			button.BackgroundColor3 = if k == kind then KIND_COLORS[k] else Ui.Colors.Locked
 		end
 		for _, child in scroll:GetChildren() do
 			if child:IsA("GuiObject") then
@@ -76,8 +91,7 @@ function InventoryTab.build(page: Frame, api: { [string]: any }): () -> ()
 			end
 		end
 		local items = {}
-		local owned = 0
-		local total = 0
+		local owned, total = 0, 0
 		for _, item in Catalog.Items do
 			if item.kind == kind then
 				table.insert(items, item)
@@ -105,29 +119,29 @@ function InventoryTab.build(page: Frame, api: { [string]: any }): () -> ()
 				local canTry = item.kind == "TagEffect" or item.kind == "Victory"
 				local equip = Ui.button(
 					bottom,
-					if equipped then "Equipped" else "Equip",
-					if equipped then Ui.Colors.Good else Ui.Colors.Accent,
+					if equipped then "ON" else "EQUIP",
+					if equipped then Ui.Colors.Green else Ui.Colors.Yellow,
 					function()
 						if not equipped then
 							api.send("Equip", item.id)
 						end
 					end
 				)
-				equip.Size = UDim2.new(if canTry then 0.62 else 1, 0, 0, 34)
-				equip.TextSize = 16
+				equip.Size = UDim2.new(if canTry then 0.6 else 1, 0, 0, 38)
+				Ui.setTextSize(equip, 17)
 				if canTry then
-					local try = Ui.button(bottom, "Try", Ui.Colors.PanelLight, function()
+					local try = Ui.button(bottom, "TRY", Ui.Colors.Blue, function()
 						CosmeticEffects.preview(item.id)
 					end)
 					try.AnchorPoint = Vector2.new(1, 0)
 					try.Position = UDim2.fromScale(1, 0)
-					try.Size = UDim2.new(0.34, 0, 0, 34)
-					try.TextSize = 15
+					try.Size = UDim2.new(0.36, 0, 0, 38)
+					Ui.setTextSize(try, 15)
 				end
 			else
 				local how = if item.note then item.note else "Shop or crates"
-				local label = Ui.label(bottom, `🔒 {how}`, 13, Ui.Colors.Dim)
-				label.Size = UDim2.new(1, 0, 0, 40)
+				local label = Ui.text(bottom, `🔒 {how}`, 13, nil, Ui.Font)
+				label.Size = UDim2.new(1, 0, 0, 42)
 				label.TextWrapped = true
 				label.ZIndex = 4
 			end

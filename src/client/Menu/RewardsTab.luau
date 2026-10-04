@@ -1,6 +1,7 @@
 --!strict
--- Menu, Rewards tab: the daily login streak (a 7-day calendar of rewards, today's highlighted,
--- with a Claim button; server/DailyStreak) and achievements (server/Achievements).
+-- Menu, Rewards tab: the daily login streak (a 7-day row of reward cards, today's highlighted,
+-- and a big Claim button; server/DailyStreak) and achievements (server/Achievements) as cards
+-- with progress bars.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -27,60 +28,36 @@ local function nextCount(profile: { [string]: any }): number
 end
 
 function RewardsTab.badge(profile: { [string]: any }): boolean
-	if RewardsTab.canClaim(profile) then
-		return true
-	end
-	return false
-end
-
-local function rewardText(reward: { [string]: any }): string
-	local parts = {}
-	if reward.Coins then
-		table.insert(parts, `{reward.Coins} coins`)
-	end
-	if reward.Crates then
-		table.insert(parts, `+{reward.Crates} crate`)
-	end
-	return table.concat(parts, "\n")
+	return RewardsTab.canClaim(profile)
 end
 
 function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
-	local scroll = Instance.new("ScrollingFrame")
-	scroll.BackgroundTransparency = 1
-	scroll.BorderSizePixel = 0
-	scroll.Size = UDim2.fromScale(1, 1)
-	scroll.CanvasSize = UDim2.new()
-	scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	scroll.ScrollBarThickness = 6
-	scroll.Parent = page
-	local layout = Instance.new("UIListLayout")
-	layout.Padding = UDim.new(0, 8)
-	layout.SortOrder = Enum.SortOrder.LayoutOrder
-	layout.Parent = scroll
+	local scroll = Ui.scroll(page, 10)
 
-	-- Streak section.
-	local streakTitle = Ui.label(scroll, "", 22, Ui.Colors.Text, Ui.BigFont)
-	streakTitle.Size = UDim2.new(1, -10, 0, 28)
+	local streakTitle = Ui.text(scroll, "", 26, Ui.Colors.Orange)
+	streakTitle.Size = UDim2.new(1, -8, 0, 32)
 	streakTitle.TextXAlignment = Enum.TextXAlignment.Left
 	streakTitle.LayoutOrder = 1
 	local days = Instance.new("Frame")
 	days.BackgroundTransparency = 1
-	days.Size = UDim2.new(1, -10, 0, 96)
+	days.Size = UDim2.new(1, -8, 0, 104)
 	days.LayoutOrder = 2
 	days.Parent = scroll
 	local dayLayout = Instance.new("UIListLayout")
 	dayLayout.FillDirection = Enum.FillDirection.Horizontal
-	dayLayout.Padding = UDim.new(0, 6)
+	dayLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	dayLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	dayLayout.Padding = UDim.new(0, 8)
 	dayLayout.Parent = days
 	local claimRow = Instance.new("Frame")
 	claimRow.BackgroundTransparency = 1
-	claimRow.Size = UDim2.new(1, -10, 0, 46)
+	claimRow.Size = UDim2.new(1, -8, 0, 56)
 	claimRow.LayoutOrder = 3
 	claimRow.Parent = scroll
-	local claim = Ui.button(claimRow, "", Ui.Colors.Good, function()
+	local claim = Ui.button(claimRow, "", Ui.Colors.Green, function()
 		api.send("ClaimStreak")
 	end)
-	claim.Size = UDim2.fromOffset(240, 42)
+	claim.Size = UDim2.fromOffset(260, 50)
 	local milestones = {}
 	for count, extra in Config.Streak.Milestones do
 		for _, id in extra.Items or {} do
@@ -91,25 +68,26 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 	end
 	local milestoneLabel =
-		Ui.label(claimRow, `Streak extras: {table.concat(milestones, ",  ")}`, 14, Ui.Colors.Dim)
-	milestoneLabel.Position = UDim2.fromOffset(252, 0)
-	milestoneLabel.Size = UDim2.new(1, -252, 1, 0)
+		Ui.ink(claimRow, `Streak extras: {table.concat(milestones, ",  ")}`, 15, Ui.Colors.InkDim)
+	milestoneLabel.Position = UDim2.fromOffset(274, 0)
+	milestoneLabel.Size = UDim2.new(1, -274, 1, 0)
 	milestoneLabel.TextXAlignment = Enum.TextXAlignment.Left
 	milestoneLabel.TextWrapped = true
 
-	-- Achievements section (filled by server/Achievements data in Config).
-	local achievementsTitle = Ui.label(scroll, "ACHIEVEMENTS", 22, Ui.Colors.Text, Ui.BigFont)
-	achievementsTitle.Size = UDim2.new(1, -10, 0, 28)
+	local divider = Ui.divider(scroll)
+	divider.LayoutOrder = 4
+	local achievementsTitle = Ui.text(scroll, "ACHIEVEMENTS", 26, Ui.Colors.Yellow)
+	achievementsTitle.Size = UDim2.new(1, -8, 0, 32)
 	achievementsTitle.TextXAlignment = Enum.TextXAlignment.Left
-	achievementsTitle.LayoutOrder = 4
+	achievementsTitle.LayoutOrder = 5
 	local achievements = Instance.new("Frame")
 	achievements.BackgroundTransparency = 1
-	achievements.Size = UDim2.new(1, -10, 0, 0)
+	achievements.Size = UDim2.new(1, -8, 0, 0)
 	achievements.AutomaticSize = Enum.AutomaticSize.Y
-	achievements.LayoutOrder = 5
+	achievements.LayoutOrder = 6
 	achievements.Parent = scroll
 	local achievementLayout = Instance.new("UIListLayout")
-	achievementLayout.Padding = UDim.new(0, 6)
+	achievementLayout.Padding = UDim.new(0, 8)
 	achievementLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	achievementLayout.Parent = achievements
 
@@ -125,84 +103,92 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			else `DAILY STREAK: {profile.Streak.Count} DAY{if profile.Streak.Count == 1
 				then ""
 				else "S"}`
-		claim.Text = if can
-			then "Claim today's reward!"
-			else `Next in {DayClock.format(DayClock.secondsToNextDay())}`
-		claim.BackgroundColor3 = if can then Ui.Colors.Good else Ui.Colors.PanelLight
+		Ui.setText(
+			claim,
+			if can
+				then "CLAIM!"
+				else `NEXT IN {DayClock.format(DayClock.secondsToNextDay()):upper()}`
+		)
+		claim.BackgroundColor3 = if can then Ui.Colors.Green else Ui.Colors.Locked
 
 		for _, child in days:GetChildren() do
 			if child:IsA("GuiObject") then
 				child:Destroy()
 			end
 		end
-		-- The 7-day cycle the next claim is in; today's box is highlighted.
 		local cycleStart = ((count - 1) // 7) * 7
 		for i = 1, 7 do
 			local day = cycleStart + i
 			local reward = Config.Streak.Rewards[i]
 			local claimed = day < count or (day == count and not can)
 			local isNext = day == count and can
-			local box = Ui.frame(days, if isNext then Ui.Colors.Accent else Ui.Colors.Card, 10)
-			box.Size = UDim2.fromOffset(76, 92)
-			if i == 7 then
-				Ui.stroke(box, Ui.Colors.Coin, 2.5)
-			end
-			local label = Ui.label(box, `Day {day}`, 16)
-			label.Size = UDim2.new(1, 0, 0, 24)
-			local rewardLabel = Ui.label(box, rewardText(reward), 13, Ui.Colors.Coin)
-			rewardLabel.Position = UDim2.fromOffset(0, 26)
-			rewardLabel.Size = UDim2.new(1, 0, 0, 36)
-			rewardLabel.TextWrapped = true
-			local status =
-				Ui.label(box, if claimed then "✅" elseif isNext then "Today!" else "", 16)
-			status.Position = UDim2.fromOffset(0, 64)
-			status.Size = UDim2.new(1, 0, 0, 24)
+			local color = if claimed
+				then Ui.Colors.Locked
+				elseif isNext then Ui.Colors.Orange
+				elseif i == 7 then Ui.Colors.Yellow
+				else Ui.Colors.Teal
+			local box = Ui.card(days, color, 12)
+			box.Size = UDim2.fromOffset(if i == 7 then 88 else 72, if isNext then 100 else 92)
+			local label = Ui.text(box, `DAY {day}`, 15)
+			label.Size = UDim2.new(1, 0, 0, 22)
+			label.Position = UDim2.fromOffset(0, 4)
+			local icon = Instance.new("TextLabel")
+			icon.BackgroundTransparency = 1
+			icon.Text = if claimed then "✅" elseif reward.Crates then "📦" else "🪙"
+			icon.TextScaled = true
+			icon.Position = UDim2.new(0.22, 0, 0, 26)
+			icon.Size = UDim2.new(0.56, 0, 0, 30)
+			icon.Parent = box
+			local amount = Ui.text(
+				box,
+				if reward.Crates then `{reward.Coins}+📦` else tostring(reward.Coins),
+				15
+			)
+			amount.Position = UDim2.new(0, 0, 1, -28)
+			amount.Size = UDim2.new(1, 0, 0, 22)
 		end
 
-		-- Achievements.
 		for _, child in achievements:GetChildren() do
 			if child:IsA("GuiObject") then
 				child:Destroy()
 			end
 		end
-		for i, achievement in Config.Achievements or {} do
+		for i, achievement in Config.Achievements do
 			local done = profile.Achievements[achievement.Id] == true
 			local value = if achievement.Stat == "Level"
 				then profile.Level
 				elseif achievement.Stat == "Streak" then profile.Streak.Count
 				else profile.Stats[achievement.Stat] or 0
-			local row =
-				Ui.frame(achievements, if done then Ui.Colors.Card else Ui.Colors.PanelLight, 10)
-			row.Size = UDim2.new(1, 0, 0, 44)
-			row.LayoutOrder = if done then 1000 + i else i
-			local name = Ui.label(row, `{if done then "🏆" else "🔒"}  {achievement.Text}`, 17)
+			local card =
+				Ui.card(achievements, if done then Ui.Colors.Yellow else Ui.Colors.Locked, 12)
+			card.Size = UDim2.new(1, 0, 0, 52)
+			card.LayoutOrder = if done then 1000 + i else i
+			local name =
+				Ui.text(card, `{if done then "🏆" else "🔒"} {achievement.Text:upper()}`, 17)
 			name.Position = UDim2.fromOffset(12, 0)
-			name.Size = UDim2.fromScale(0.62, 1)
+			name.Size = UDim2.fromScale(0.5, 1)
 			name.TextXAlignment = Enum.TextXAlignment.Left
 			local item = achievement.Items and Catalog.get(achievement.Items[1])
-			local rewardParts = {}
-			if achievement.Coins then
-				table.insert(rewardParts, `{achievement.Coins} coins`)
-			end
-			if item then
-				table.insert(rewardParts, item.name)
-			end
-			local right = Ui.label(
-				row,
-				if done
-					then "Done"
-					else `{math.min(value, achievement.Goal)}/{achievement.Goal}  ·  {table.concat(
-						rewardParts,
-						", "
-					)}`,
-				14,
-				if done then Ui.Colors.Good else Ui.Colors.Dim
+			local reward = if item then item.name else `{achievement.Coins or 0}`
+			local pill = Ui.pricePill(
+				card,
+				if item then nil else achievement.Coins,
+				if item then reward else nil
 			)
-			right.AnchorPoint = Vector2.new(1, 0)
-			right.Position = UDim2.new(1, -12, 0, 0)
-			right.Size = UDim2.fromScale(0.38, 1)
-			right.TextXAlignment = Enum.TextXAlignment.Right
-			right.TextWrapped = true
+			pill.AnchorPoint = Vector2.new(1, 0.5)
+			pill.Position = UDim2.new(1, -12, 0.5, 0)
+			pill.Size = UDim2.fromOffset(if item then 124 else 84, 26)
+			if not done then
+				local bar, set = Ui.bar(card, Ui.Colors.Green)
+				bar.AnchorPoint = Vector2.new(1, 0.5)
+				bar.Position = UDim2.new(1, -150, 0.5, 0)
+				bar.Size = UDim2.new(0.3, 0, 0, 16)
+				set(value / achievement.Goal)
+				local progress =
+					Ui.text(bar, `{math.min(value, achievement.Goal)}/{achievement.Goal}`, 13)
+				progress.Size = UDim2.fromScale(1, 1)
+				progress.ZIndex = 3
+			end
 		end
 	end
 end
