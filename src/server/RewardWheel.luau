@@ -2,69 +2,25 @@
 -- The lobby's daily reward wheel. Its ProximityPrompt (tagged "RewardWheelPrompt") spins the
 -- wheel part (tagged "RewardWheel", both made by tools/SetupLobby) for everyone to see, landing
 -- on a random segment; the player is told their prize (Config.Lobby.WheelPrizes). One spin per
--- player every Config.Lobby.WheelCooldownHours, saved when data stores are available.
+-- player every Config.Lobby.WheelCooldownHours, saved in their profile (server/PlayerData).
 --
 -- The wheel part carries attributes from the setup tool, in its own space so they survive it
 -- being moved: SpinAxis (out of its front), SpinCenter, Segments, and Angle (how far it has
 -- turned). Segment i starts at (i - 1) x 360 / Segments degrees, counterclockwise from the
 -- wheel's right as you face it; the pointer is at the top (90 degrees).
 local CollectionService = game:GetService("CollectionService")
-local DataStoreService = game:GetService("DataStoreService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
+local DayClock = require(Shared.DayClock)
 local Remotes = require(Shared.Remotes)
+local PlayerData = require(script.Parent.PlayerData)
 
 local RewardWheel = {}
 
 local spinning: { [BasePart]: boolean } = {}
-local lastSpin: { [number]: number } = {}
-local spinStore: DataStore? = nil
-local storeOn = true
-
-local function store(): DataStore?
-	if storeOn and not spinStore then
-		local ok, result = pcall(function()
-			return DataStoreService:GetDataStore("WheelSpins_v1")
-		end)
-		if ok then
-			spinStore = result
-		else
-			storeOn = false
-		end
-	end
-	return spinStore
-end
-
-local function lastSpinOf(player: Player): number
-	if lastSpin[player.UserId] then
-		return lastSpin[player.UserId]
-	end
-	local s = store()
-	if s then
-		local ok, value = pcall(function()
-			return s:GetAsync(`Player_{player.UserId}`)
-		end)
-		if ok then
-			lastSpin[player.UserId] = tonumber(value) or 0
-			return lastSpin[player.UserId]
-		end
-		storeOn = false
-	end
-	return 0
-end
-
-local function rememberSpin(player: Player, time: number)
-	lastSpin[player.UserId] = time
-	local s = store()
-	if s then
-		task.spawn(pcall, function()
-			s:SetAsync(`Player_{player.UserId}`, time)
-		end)
-	end
-end
 
 -- Turns the wheel by `degrees` about its own axis.
 local function turn(wheel: BasePart, degrees: number)
@@ -108,14 +64,20 @@ local function onTriggered(prompt: ProximityPrompt, player: Player)
 		return
 	end
 	local notify = Remotes.get("Notify")
-	local cooldown = Config.Lobby.WheelCooldownHours * 3600
-	local now = os.time()
-	local waitLeft = lastSpinOf(player) + cooldown - now
-	if waitLeft > 0 then
-		notify:FireClient(player, `Next spin in {waitLeft // 3600}h {(waitLeft % 3600) // 60}m`)
+	local profile = PlayerData.get(player)
+	if not profile then
 		return
 	end
-	rememberSpin(player, now)
+	local cooldown = Config.Lobby.WheelCooldownHours * 3600
+	local now = DayClock.now()
+	local waitLeft = profile.Wheel.LastSpin + cooldown - now
+	if waitLeft > 0 then
+		notify:FireClient(player, `Next spin in {DayClock.format(waitLeft)}`)
+		return
+	end
+	PlayerData.update(player, function(p)
+		p.Wheel.LastSpin = now
+	end)
 	local prizes = Config.Lobby.WheelPrizes
 	local index = math.random(#prizes)
 	spinning[wheel] = true

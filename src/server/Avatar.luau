@@ -1,7 +1,9 @@
 --!strict
 -- Gives every player the game's body as StarterPlayer.StarterCharacter. Normally that's the
 -- BodyRig (Config.Body). With Config.Body.Enabled off it's a classic R15 block rig instead, and
--- if Config.Avatar.UseOwnAvatar is on, those are dressed in the player's own avatar.
+-- if Config.Avatar.UseOwnAvatar is on, those are dressed in the player's own avatar. With
+-- Config.Avatar.UseOwnColors (and not UseOwnAvatar) the block body keeps its shape but takes the
+-- player's own Roblox body colors.
 -- Any character that spawns without R15 joints is respawned (the moves need them).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -14,6 +16,36 @@ local Avatar = {}
 
 local MAX_RESPAWNS = 3 -- stop trying after this many, so a failure can't loop forever
 local respawns: { [Player]: number } = {}
+local descriptions: { [Player]: HumanoidDescription } = {} -- each player's own avatar, cached
+
+local function ownDescription(player: Player): HumanoidDescription?
+	if descriptions[player] then
+		return descriptions[player]
+	end
+	local ok, description = pcall(function()
+		return Players:GetHumanoidDescriptionFromUserId(player.UserId)
+	end)
+	if ok and description then
+		descriptions[player] = description
+		return description
+	end
+	return nil
+end
+
+-- Paints the block body in the player's own body colors (shape, clothes and accessories stay).
+local function paint(player: Player, character: Model)
+	local description = ownDescription(player)
+	local colors = character:FindFirstChildOfClass("BodyColors")
+	if not description or not colors then
+		return
+	end
+	colors.HeadColor3 = description.HeadColor
+	colors.TorsoColor3 = description.TorsoColor
+	colors.LeftArmColor3 = description.LeftArmColor
+	colors.RightArmColor3 = description.RightArmColor
+	colors.LeftLegColor3 = description.LeftLegColor
+	colors.RightLegColor3 = description.RightLegColor
+end
 
 local function dress(player: Player, character: Model)
 	local humanoid = character:WaitForChild("Humanoid") :: Humanoid
@@ -43,6 +75,8 @@ local function check(player: Player, character: Model)
 	end
 	if Config.Avatar.UseOwnAvatar and not Config.Body.Enabled then
 		dress(player, character)
+	elseif Config.Avatar.UseOwnColors and not Config.Body.Enabled then
+		paint(player, character)
 	end
 end
 
@@ -95,6 +129,7 @@ function Avatar.start()
 	Players.PlayerAdded:Connect(watch)
 	Players.PlayerRemoving:Connect(function(player)
 		respawns[player] = nil
+		descriptions[player] = nil
 	end)
 	for _, player in Players:GetPlayers() do
 		watch(player)

@@ -1,5 +1,5 @@
 --!strict
--- The developer panel: a window with Game, Maps, Movement and Debug tabs, opened and closed with
+-- The developer panel: a window with Game, Maps, Movement, Debug and Progress tabs, opened and closed with
 -- Config.DevPanel.Key (the ` key). Only built for developers (DevAccess: everyone in Studio,
 -- listed UserIds in live servers); the server checks every command again (server/DevCommands).
 -- The window can be dragged by its title bar, and frees the mouse in first person while open.
@@ -16,13 +16,14 @@ local DebugTools = require(script.DebugTools)
 local GameTab = require(script.GameTab)
 local MapsTab = require(script.MapsTab)
 local MovementTab = require(script.MovementTab)
+local ProgressTab = require(script.ProgressTab)
 local Widgets = require(script.Widgets)
 
 local DevPanel = {}
 
 local WIDTH, HEIGHT = 360, 500
 local TITLE_HEIGHT, TAB_HEIGHT = 30, 30
-local TABS = { "Game", "Maps", "Movement", "Debug" }
+local TABS = { "Game", "Maps", "Movement", "Debug", "Progress" }
 
 local function page(parent: Instance, name: string): ScrollingFrame
 	local frame = Instance.new("ScrollingFrame")
@@ -149,6 +150,7 @@ function DevPanel.start()
 	refreshMaps = MapsTab.build(pages.Maps, send)
 	MovementTab.build(pages.Movement, send)
 	DebugTab.build(pages.Debug, gui, send)
+	ProgressTab.build(pages.Progress, send)
 	DebugTools.start()
 	show("Game")
 

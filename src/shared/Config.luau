@@ -524,8 +524,28 @@ local Config = {
 		Stripes = true, -- white side stripes on the tracksuit
 	},
 
+	-- Saved player profiles (server/PlayerData).
+	Data = {
+		AutosaveSeconds = 60,
+		LockStale = 180, -- seconds after which another server's session lock is ignored (it crashed)
+		LoadAttempts = 6, -- tries to load a locked or failing profile before giving up
+		RetryDelay = 4, -- seconds between tries
+	},
+
+	-- Progression: coins, XP, levels, cosmetics (server/Progression and friends).
+	Progression = {
+		-- What a brand new player has equipped (and owns).
+		DefaultEquipped = {
+			Trail = "trail_white",
+			TagEffect = "tag_classic",
+			Title = "title_rookie",
+			Victory = "victory_none",
+		},
+	},
+
 	Avatar = {
 		UseOwnAvatar = false, -- false = everyone is the classic block avatar (easier to see animations)
+		UseOwnColors = true, -- the block avatar wears each player's own Roblox body colors
 		-- Classic 2012 colors, used when UseOwnAvatar is false.
 		HeadColor = Color3.fromRGB(245, 205, 48), -- Bright yellow
 		TorsoColor = Color3.fromRGB(13, 105, 172), -- Bright blue

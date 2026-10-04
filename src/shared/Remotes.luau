@@ -7,12 +7,14 @@
 --   Notify:         server -> one client. A short message to show on screen.
 --   DevCommand:     both ways, developers only (server/DevCommands checks). Client -> server:
 --                   a dev panel command and its arguments. Server -> client: replies (the map list).
+--   ProfileSync:    server -> one client: their saved profile (server/PlayerData). Client ->
+--                   server (no arguments): "send it again".
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
 
 local FOLDER = "Remotes"
-local NAMES = { "TagSwing", "TagSwingPlayed", "Notify", "DevCommand" }
+local NAMES = { "TagSwing", "TagSwingPlayed", "Notify", "DevCommand", "ProfileSync" }
 
 -- Server only: creates the folder and every RemoteEvent.
 function Remotes.setup()

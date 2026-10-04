@@ -1,9 +1,11 @@
 --!strict
--- The leaderboard columns (Wins, Tags) shown in the player list. Wins are lifetime wins,
--- loaded and saved by WinsStore.
+-- The leaderboard columns shown in the player list: Level (from the saved profile), Wins
+-- (lifetime, from WinsStore) and Tags (this session).
 local Players = game:GetService("Players")
 
-local STATS = { "Wins", "Tags" }
+local PlayerData = require(script.Parent.PlayerData)
+
+local STATS = { "Level", "Wins", "Tags" }
 
 local Leaderstats = {}
 
@@ -39,6 +41,11 @@ function Leaderstats.start()
 	for _, player in Players:GetPlayers() do
 		setup(player)
 	end
+	local function showLevel(player: Player, profile: PlayerData.Profile)
+		Leaderstats.set(player, "Level", profile.Level)
+	end
+	PlayerData.onLoaded(showLevel)
+	PlayerData.onChanged(showLevel)
 end
 
 return Leaderstats

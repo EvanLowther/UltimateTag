@@ -5,6 +5,8 @@
 --              Respawn
 --   Maps:      ListMaps (replies "Maps"), PlayMap, NextMap, UnloadMap
 --   Movement:  SetTunable (only the values listed in Config.DevPanel.Tunables)
+--   Progress:  GiveCoins, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
+--              ResetTime
 -- Results and refusals are shown to the developer with the Notify remote.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -16,6 +18,7 @@ local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
 local GameLoop = require(script.Parent.GameLoop)
 local MapService = require(script.Parent.MapService)
+local PlayerData = require(script.Parent.PlayerData)
 local Roles = require(script.Parent.Roles)
 
 local DevCommands = {}
@@ -179,6 +182,36 @@ handlers.SetTunable = function(_player, section, key, value)
 	if section == "Speed" then
 		Roles.refreshAll()
 	end
+end
+
+handlers.GiveCoins = function(player, amount)
+	if type(amount) ~= "number" or amount ~= amount or math.abs(amount) > 1e7 then
+		return
+	end
+	PlayerData.update(player, function(profile)
+		profile.Coins = math.max(0, profile.Coins + math.floor(amount))
+	end)
+	tell(player, `Coins {if amount >= 0 then "+" else ""}{math.floor(amount)}`)
+end
+
+handlers.ResetProfile = function(player)
+	PlayerData.reset(player)
+	tell(player, "Profile reset")
+end
+
+-- Moves the game calendar forward (for testing streaks, daily quests and the shop rotation).
+handlers.AdvanceTime = function(player, seconds)
+	if type(seconds) ~= "number" or seconds <= 0 or seconds > 86400 * 60 then
+		return
+	end
+	local offset = (ReplicatedStorage:GetAttribute("DevTimeOffset") or 0) :: number
+	ReplicatedStorage:SetAttribute("DevTimeOffset", offset + seconds)
+	tell(player, `Time +{seconds // 3600}h (offset {(offset + seconds) // 86400} days)`)
+end
+
+handlers.ResetTime = function(player)
+	ReplicatedStorage:SetAttribute("DevTimeOffset", nil)
+	tell(player, "Time back to real time")
 end
 
 function DevCommands.start()
