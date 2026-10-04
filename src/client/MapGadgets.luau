@@ -3,14 +3,16 @@
 --   LaunchVelocity (Vector3): standing on the part throws you with that velocity (a launch pad).
 --   SpeedBoost (number):      jumping or running off the part sends you at least this fast in
 --                             the direction you're moving (solar panel slides before a gap).
---   Slip (number):            moving onto the part knocks you onto your back for that many
---                             seconds (a wet floor). Sliding across it is safe (a move is busy).
+--   Slip (number):            moving onto the part (running or sliding) makes you slip: you
+--                             fall onto your back and skid on with your momentum, slowing to a
+--                             stop, then get up after that many seconds (a wet floor).
 -- Runs on the client like the other moves; the flight keeps its speed through AirMomentum.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local MoveState = require(script.Parent.MoveState)
+local Slide = require(script.Parent.Slide)
 
 local MapGadgets = {}
 
@@ -48,17 +50,43 @@ local function launch(parts: MoveState.Parts, velocity: Vector3)
 	end)
 end
 
--- Feet out from under you: fall onto your back, lie there, get up.
+-- Feet out from under you: fall onto your back and skid on with your momentum (slowing to a
+-- stop over SlipSkidTime), lie there, get up after `seconds`.
 local function slip(parts: MoveState.Parts, seconds: number, onDone: () -> ())
 	local settings = Config.Gadgets
 	local hum, root = parts.humanoid, parts.root
+	if MoveState.busy == "Slide" or MoveState.busy == "Crouch" then
+		Slide.cancel() -- ends the slide and keeps its speed
+	end
+	local momentum = MoveState.flat(root.AssemblyLinearVelocity) * settings.SlipCarry
 	MoveState.busy = "Slip"
+	MoveState.airVelocity = nil
 	hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true)
 	hum:ChangeState(Enum.HumanoidStateType.FallingDown)
-	-- Tip backwards (feet forward) and keep a little forward slide.
+	-- Tip backwards (feet forward), a little hop so the body leaves the floor cleanly.
 	root.AssemblyAngularVelocity = root.CFrame.RightVector * settings.SlipSpin
-	root.AssemblyLinearVelocity += Vector3.new(0, 8, 0)
+	root.AssemblyLinearVelocity = momentum + Vector3.new(0, 8, 0)
+
+	-- The skid: a flat drive that eases your momentum down to zero.
+	local drive, release = MoveState.drive(root, true)
+	local elapsed = 0
+	local skid: RBXScriptConnection
+	skid = RunService.Heartbeat:Connect(function(dt)
+		elapsed += dt
+		local left = math.max(1 - elapsed / settings.SlipSkidTime, 0)
+		local v = momentum * left * left
+		drive.PlaneVelocity = Vector2.new(v.X, v.Z)
+		if left <= 0 or not hum.Parent then
+			skid:Disconnect()
+			release()
+		end
+	end)
+
 	task.delay(seconds, function()
+		if skid.Connected then
+			skid:Disconnect()
+			release()
+		end
 		if hum.Parent and hum.Health > 0 then
 			hum:ChangeState(Enum.HumanoidStateType.GettingUp)
 			hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
@@ -103,9 +131,10 @@ function MapGadgets.start()
 				return
 			end
 			local slipTime = floor and floor:GetAttribute("Slip")
+			local busy = MoveState.busy
 			if
 				type(slipTime) == "number"
-				and not MoveState.busy
+				and (not busy or busy == "Slide" or busy == "Crouch") -- sliding slips too
 				and now >= slipReady
 				and MoveState.flat(root.AssemblyLinearVelocity).Magnitude
 					>= settings.SlipMinSpeed

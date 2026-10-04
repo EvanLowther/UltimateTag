@@ -9,13 +9,13 @@ MAIN FLOOR: a long rectangle (north-south longer). A classroom in the middle wit
 16-wide hallways around it (the main loop).
   - West hallway: lockers on the outer wall (wall-run surface); a floor grate near the south end
     is one basement opening.
-  - North hallway: a puddle across the whole width: walk or run in and you slip and fall (Slip);
-    slide across to get through.
+  - North hallway: a puddle across the whole width: run or slide in and you slip, skid on with
+    your momentum, and get up (Slip).
   - East hallway: a tipped lunch table in the middle of the hall ramps up toward a hole in the
     floor. Off the ramp, steer to either wall and wall-run across (south to north only). Miss and you fall into
     the basement.
   - South hallway: plain, closed off.
-  - Classroom: doors on the west (north end) and east (south end), rows of desks to vault.
+  - Classroom: doors on the west (north end) and east (south end); an open room.
 BASEMENT: exactly two openings.
   - East chamber under the hole: a steam updraft pad launches you back up through the hole,
     landing north of it.
@@ -205,13 +205,6 @@ def main_floor(m):
     inner_x, inner_z = ROOM_X - WALL, ROOM_Z - WALL  # 26, 48
     m.block(c, "Chalkboard", -16, 16, 5, 12, -inner_z, -inner_z + 0.3, "board",
             CanCollide=False, CanQuery=False)
-    m.block(c, "TeacherDesk", -6, 6, 0, 3.5, -40, -36, "desk")
-    for zi, z in enumerate(range(-28, 42, 10)):
-        for xi, x in enumerate(range(-18, 19, 9)):
-            if (zi + xi) % 5 == 3:  # a few gaps so the rows aren't a perfect grid
-                continue
-            m.block(c, "Desk", x - 2, x + 2, 0, 2.6, z - 1.5, z + 1.5, "desk")
-            m.block(c, "DeskTop", x - 2.2, x + 2.2, 2.6, 3, z - 1.7, z + 1.7, "desk_top")
 
     # Hallway features.
     h = "Hallways"

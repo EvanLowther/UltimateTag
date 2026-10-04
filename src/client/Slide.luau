@@ -19,6 +19,10 @@ local Sprint = require(script.Parent.Sprint)
 
 local Slide = {}
 
+-- Ends the current slide or crouch now (keeping a slide's speed), if one is running. Set up by
+-- Slide.start; used by things that interrupt a slide, like slipping on a wet floor.
+function Slide.cancel() end
+
 function Slide.start()
 	local settings = Config.Slide
 
@@ -28,6 +32,12 @@ function Slide.start()
 	local isBlocked: (() -> boolean)? = nil -- true if standing up would hit a ceiling
 	local pose: SlidePose.Pose? = nil
 	local poseCharacter: Model? = nil
+
+	Slide.cancel = function()
+		if finish then
+			finish(false)
+		end
+	end
 
 	-- Moves every part of the character into a collision group.
 	local function setGroup(character: Model, group: string)
