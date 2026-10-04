@@ -13,7 +13,7 @@ local ServerStorage = game:GetService("ServerStorage")
 local Data = require(script.Parent.PortData) :: any
 
 local WALL_HEIGHT = 60 -- invisible boundary walls
-local OCEAN_SIZE = 600
+local OCEAN_SIZE = 1000
 local OCEAN_COLOR = Color3.fromRGB(40, 170, 210)
 
 local function part(props: { [string]: any }): Part

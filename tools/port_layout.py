@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Layout for the Tag Island Port map (grey-box v1).
+"""Layout for the Tag Island Port map (grey-box v2, 250 x 250).
 
 Edit the layout in `build()`, then run from the repo root:
     python3 tools/port_layout.py            # check + print the top-down view + write PortData
@@ -13,7 +13,7 @@ centered on the origin, ground top at Y = 0. Sizes are in studs and follow the p
 import math
 import sys
 
-HALF = 50  # the map is 100 x 100
+HALF = 125  # the map is 250 x 250
 U = 8.0  # one container's height
 CW = 7.0  # container width
 LIFT = 4.2  # slide-gap underside height (same as the test map's slide bar)
@@ -127,64 +127,140 @@ class Layout:
         self.spawns.append((x, z))
 
 
+def block(L, cx, cz, items, rot=False):
+    """Places a block's items, given as offsets from the block center (cx, cz). With `rot` the
+    block is turned 90 degrees (offsets and directions swapped), so one pattern can be reused."""
+    for item in items:
+        kind, dx, dz = item[0], item[1], item[2]
+        if rot:
+            dx, dz = dz, dx
+        x, z = cx + dx, cz + dz
+        if kind == "S":
+            direction = item[3]
+            if rot:
+                direction = "Z" if direction == "X" else "X"
+            L.stack(x, z, direction, item[4], item[5], item[6] if len(item) > 6 else 0.0)
+        elif kind == "C":
+            L.crate(x, z)
+        elif kind == "Q":
+            direction = item[3] if len(item) > 3 else "X"
+            if rot:
+                direction = "Z" if direction == "X" else "X"
+            L.sandbags(x, z, direction)
+        elif kind == "B":
+            L.barrel(x, z, item[3] if len(item) > 3 else "red")
+        elif kind == "P":
+            L.pole(x, z)
+        elif kind == "G":
+            z0, z1 = item[3], item[4]
+            if rot:
+                raise ValueError("gantry blocks can't be rotated")
+            L.gantry(x, cz + z0, cz + z1)
+
+
+# Block patterns: offsets inside a 58 x 58 block. Rows 7 wide with 8-stud gaps are wall-run
+# corridors (and 8-stud roof jumps); 1-2-3 stacks next to each other are roof staircases.
+RED_WALL = [  # three long rows of tall stacks
+    ("S", -10, -19, "X", 36, ["red", "blue", "orange"]),
+    ("S", 21, -19, "X", 18, ["teal"]),
+    ("S", -10, -4, "X", 36, ["teal", "red"]),
+    ("S", 21, -4, "X", 18, ["yellow", "white"]),
+    ("S", 5, 11, "X", 36, ["orange", "blue", "white"]),
+    ("C", -22, 11),
+    ("S", -18, 25, "X", 18, ["green"]),
+    ("Q", 12, 25, "X"),
+]
+YARD = [  # scattered low boxes with room to weave
+    ("S", -16, -16, "Z", 18, ["white"]),
+    ("S", 8, -20, "X", 18, ["blue", "orange"]),
+    ("S", 19, 4, "Z", 18, ["red"]),
+    ("S", -12, 10, "X", 18, ["yellow", "teal"]),
+    ("S", 6, 23, "X", 18, ["green"]),
+    ("C", -1, -5),
+    ("B", -23, 23, "orange"),
+    ("Q", -25, -2, "Z"),
+    ("B", 25, -12),
+]
+TUNNELS = [  # walk-through containers, a slide-under one, tight lanes
+    ("S", -14, -16, "X", 18, [("red", "Tunnel")]),
+    ("S", 12, -16, "X", 18, [("blue", "Tunnel"), "orange"]),
+    ("S", -14, 0, "X", 18, ["teal", "white"]),
+    ("S", 13, 2, "X", 18, ["yellow"], 4.2),
+    ("S", -3, 17, "Z", 18, ["red", "blue"]),
+    ("S", 20, 20, "Z", 18, [("orange", "Tunnel")]),
+    ("C", -20, 16),
+    ("B", 8, 24, "yellow"),
+]
+TOWER = [  # a 3-high tower with a 1-2-3 roof staircase
+    ("S", 0, 0, "X", 18, ["red", "blue", "yellow"]),
+    ("S", 0, -12, "X", 18, ["white", "teal"]),
+    ("S", 0, -24, "X", 18, ["orange"]),
+    ("S", 0, 12, "X", 18, ["green"]),
+    ("S", -21, 3, "Z", 18, ["blue", "red"]),
+    ("S", 21, -5, "Z", 18, ["yellow"]),
+    ("C", -20, -20),
+    ("Q", 20, 18, "X"),
+    ("B", -16, 22, "teal"),
+]
+CRANE = [  # a crane gantry over a container yard
+    ("G", 0, 0, -26, 26),
+    ("S", -11, -12, "Z", 18, ["red", "blue"]),
+    ("S", 11, -13, "Z", 18, ["white", "yellow", "red"]),
+    ("S", -11, 14, "Z", 18, ["orange"]),
+    ("S", 11, 12, "Z", 18, ["teal"]),
+    ("C", -22, 0),
+    ("B", 22, 1, "blue"),
+    ("Q", 0, 5, "Z"),
+]
+PLAZA = [  # the center: low roofs around a slide-under container
+    ("S", -17, -18, "X", 18, ["blue"]),
+    ("S", 17, -18, "X", 18, ["teal"]),
+    ("S", -17, 18, "X", 18, ["red"]),
+    ("S", 17, 18, "X", 18, ["yellow", "white"]),
+    ("S", 0, 0, "X", 18, ["green"], 4.2),
+    ("C", 0, -11),
+    ("Q", -14, 6, "Z"),
+    ("B", 14, -8),
+    ("B", -3, 10, "orange"),
+]
+
+
 def build():
     L = Layout()
     ground = 4.0
     L.add("Ground", "Ground", 0, -ground / 2, 0, 2 * HALF, ground, 2 * HALF, GROUND, Checked=False)
 
-    # NW "Red Wall": dense 3-high stacks with 7-8 wide wall-run lanes.
-    L.stack(-37, -40, "X", 18, ["red", "blue", "orange"])
-    L.stack(-15, -40, "X", 18, ["orange", "teal"])
-    L.stack(-41, -22, "Z", 18, ["yellow", "red", "white"])
-    L.stack(-24, -26, "X", 18, ["teal", "red"])
-    L.stack(-24, -10, "X", 18, ["blue"])
+    # Nine blocks; centers are offset so the avenues between them (22-28 wide) don't line up into
+    # one big grid, and every block plays differently.
+    block(L, -84, -84, RED_WALL)  # NW "Red Wall"
+    block(L, 0, -86, TUNNELS)  # N "Tarp Alley"
+    block(L, 85, -82, TOWER)  # NE tower
+    block(L, -86, 0, YARD)  # W low yard
+    block(L, 0, 2, PLAZA)  # center "Blue Deck"
+    block(L, 86, -2, RED_WALL, rot=True)  # E rows, turned
+    block(L, -82, 86, TOWER, rot=True)  # SW tower, turned
+    block(L, 2, 85, YARD, rot=True)  # S yard, turned
+    block(L, 84, 84, CRANE)  # SE "Crane Corner"
 
-    # Center "Blue Deck": a low one-high yard of roofs, a slide-under container, vault props.
-    L.stack(-2, -15, "X", 18, ["blue"])
-    L.stack(20, -15, "X", 18, ["teal"])
-    L.stack(1, 4, "Z", 18, ["red"])
-    L.stack(-18, 6, "X", 18, ["white", "orange"])
-    L.stack(14, 2, "Z", 18, ["green"], lift=LIFT)
-    L.crate(-9, -6)
-    L.sandbags(-6, -27)
-    L.barrel(-8, 16)
-    L.crate(26, 10)
+    # The avenues: vault props to hop while sprinting, and two slide-under containers across
+    # the middle of an avenue (go under, or around through a block).
+    L.stack(-43, -44, "Z", 18, ["white"], LIFT)
+    L.stack(44, 42, "X", 18, ["red"], LIFT)
+    for x, z in ((-43, 20), (43, -40), (-20, -43), (24, 43), (-62, 44), (62, -44)):
+        L.crate(x, z)
+    for x, z, d in ((-43, -12, "Z"), (43, 18, "Z"), (10, -43, "X"), (-28, 44, "X")):
+        L.sandbags(x, z, d)
+    for x, z, c in ((44, -14, "blue"), (-44, 50, "orange"), (-6, 44, "yellow"), (58, 47, "teal")):
+        L.barrel(x, z, c)
 
-    # NE "Tarp Alley": narrow lanes and a walk-through tunnel container.
-    L.stack(22, -41, "X", 18, ["teal", "yellow"])
-    L.stack(41, -38, "Z", 18, ["orange", "blue", "white"])
-    L.stack(24, -28, "X", 18, [("red", "Tunnel")])
-    L.stack(41, -16, "Z", 18, ["teal", "white"])
-    L.stack(30, 0, "X", 18, ["yellow"])
-    L.sandbags(6, -30)
-    L.barrel(7, -45)
-
-    # SE "Crane Corner": the gantry, tall stacks, a roof circuit.
-    L.stack(40, 16, "Z", 18, ["red", "blue", "orange"])
-    L.stack(40, 38, "Z", 18, ["white", "teal"])
-    L.stack(23, 20, "X", 18, ["yellow", "red"])
-    L.gantry(26, 30, 44)
-    L.crate(14, 30)
-    L.barrel(17, 37)
-
-    # SW "Low Yard": scattered low boxes, barrels, wide lanes.
-    L.stack(-37, 26, "X", 18, ["white"])
-    L.stack(-20, 32, "Z", 18, ["blue", "orange"])
-    L.stack(-36, 40, "X", 18, ["red"])
-    L.stack(-4, 24, "X", 18, ["teal", "white"])
-    L.crate(-33, 15)
-    L.crate(-10, 42)
-    L.sandbags(-24, 16)
-    L.barrel(-4, 33)
-    L.barrel(3, 40, "orange")
-
-    # Light poles on the perimeter lane (decoration).
-    for x, z in ((-47, -20), (47, 0), (10, 47), (-47, 30), (14, -47)):
+    # Light poles along the avenues and the edge lane.
+    for x, z in ((-43, -60), (43, -66), (-43, 66), (43, 62), (-64, -43), (66, 43), (-118, 0),
+                 (118, 20), (0, -118), (-10, 118)):
         L.pole(x, z)
 
-    # Eight spawns on the ground lanes, spread out.
-    for x, z in ((-47, -47), (0, -47), (34, -47), (47, -12), (47, 20), (0, 47), (-48, 40),
-                 (-48, 10)):
+    # Eight spawns around the edge lane, far apart.
+    for x, z in ((-118, -40), (-40, -118), (42, -118), (118, -42), (118, 44), (40, 118),
+                 (-42, 118), (-118, 42)):
         L.spawn(x, z)
     return L
 
@@ -235,7 +311,8 @@ def check(L):
 
 
 def top_view(L):
-    cols = HALF  # one character = 2 studs
+    cols = 50
+    cell = 2 * HALF / cols  # studs per character
     grid = [["." for _ in range(cols)] for _ in range(cols)]
     for b in L.boxes:
         if b[0] == "Ground" or not b[7]:
@@ -246,14 +323,14 @@ def top_view(L):
             ch = "P"
         for r in range(cols):
             for c in range(cols):
-                x, z = -HALF + 2 * c + 1, -HALF + 2 * r + 1
+                x, z = -HALF + cell * (c + 0.5), -HALF + cell * (r + 0.5)
                 if b[1] <= x <= b[2] and b[5] <= z <= b[6]:
                     cur = grid[r][c]
                     order = ".:1PSG23"
                     if cur == "." or order.index(ch) > order.index(cur) if ch in order and cur in order else True:
                         grid[r][c] = ch
     for x, z in L.spawns:
-        grid[int((z + HALF) // 2)][int((x + HALF) // 2)] = "@"
+        grid[int((z + HALF) // cell)][int((x + HALF) // cell)] = "@"
     return "\n".join("".join(row) for row in grid)
 
 
