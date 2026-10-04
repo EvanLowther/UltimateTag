@@ -29,6 +29,7 @@ local recordListeners: { (Player, string, number) -> () } = {}
 local tagsThisRound: { [Player]: number } = {}
 local lastMove: { [Player]: { [string]: number } } = {}
 local friendInServer: { [Player]: boolean } = {}
+local gameSize = 2 -- players who started the current game (win rewards scale with it)
 
 local function popup(player: Player, payload: { [string]: any })
 	Remotes.get("Reward"):FireClient(player, payload)
@@ -149,6 +150,13 @@ function Progression.record(player: Player, event: string, amount: number?)
 	local coins = (def.Coins or 0) * count
 	local xp = (def.XP or 0) * count
 	local label = event
+	local scale = 1 -- for wins: 0 with 2 players up to 1 with WinFullAt or more
+	if event == "Win" then
+		scale = math.clamp((gameSize - 2) / math.max(settings.WinFullAt - 2, 1), 0, 1)
+		coins = math.floor(def.MinCoins + (def.Coins - def.MinCoins) * scale + 0.5)
+		xp = math.floor(def.MinXP + (def.XP - def.MinXP) * scale + 0.5)
+		label = `Victory! ({gameSize} players)`
+	end
 	if event == "Tag" then
 		local done = tagsThisRound[player] or 0
 		tagsThisRound[player] = done + count
@@ -167,12 +175,12 @@ function Progression.record(player: Player, event: string, amount: number?)
 			if p.FirstWinDay ~= today then
 				p.FirstWinDay = today
 				coins *= settings.FirstWinMultiplier
-				label = "First win of the day"
+				label = `First win of the day! ({gameSize} players)`
 			end
 			p.Stats.WinStreak += 1
 			p.Stats.BestWinStreak = math.max(p.Stats.BestWinStreak, p.Stats.WinStreak)
 			local steps = math.min(p.Stats.WinStreak - 1, settings.StreakBonusCap)
-			coins += settings.StreakBonus * steps
+			coins += math.floor(settings.StreakBonus * steps * math.max(scale, 0.2) + 0.5)
 		elseif event == "GameLost" then
 			p.Stats.WinStreak = 0
 		end
@@ -200,6 +208,11 @@ end
 -- Calls `listener(player, event, amount)` after every record (quests, achievements).
 function Progression.onRecord(listener: (Player, string, number) -> ())
 	table.insert(recordListeners, listener)
+end
+
+-- A game starts with `players` players: wins in it are rewarded for that many.
+function Progression.newGame(players: number)
+	gameSize = math.max(players, 2)
 end
 
 -- A new round: the per-round tag cap starts over.

@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.36.1",
+	Version = "0.36.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -548,8 +548,10 @@ local Config = {
 		Events = {
 			GamePlayed = { Stat = "GamesPlayed", Coins = 10, XP = 25 },
 			RoundSurvived = { Stat = "RoundsSurvived", Coins = 15, XP = 20 },
-			Tag = { Stat = "Tags", Coins = 3, XP = 5, PerRound = 10 }, -- rewards for at most PerRound tags a round
-			Win = { Coins = 100, XP = 150 }, -- the Wins stat is kept by WinsStore
+			Tag = { Stat = "Tags", Coins = 1, XP = 5, PerRound = 10 }, -- rewards for at most PerRound tags a round
+			-- A win scales with how many players started the game (WinScale below): Coins/XP is
+			-- the most (a full game), MinCoins/MinXP the least (2 players). Wins stat: WinsStore.
+			Win = { Coins = 100, XP = 150, MinCoins = 20, MinXP = 30 },
 			GameLost = {}, -- ends your win streak
 			PlayMinute = { Stat = "PlayMinutes", Coins = 1, XP = 2 }, -- each minute in a live game
 			WallRun = { Stat = "WallRuns" },
@@ -559,7 +561,11 @@ local Config = {
 			StreakDay = {}, -- a login streak claim (for achievements)
 		},
 		FirstWinMultiplier = 2, -- the day's first win pays this many times the coins
-		StreakBonus = 25, -- extra coins per win in a row after the first (2nd win in a row +25, 3rd +50...)
+		-- Win rewards grow in a straight line from 2 players (Min) to WinFullAt players (full),
+		-- counting everyone who started the game (not who's left in the last round).
+		WinFullAt = 30,
+		StreakBonus = 25, -- extra coins per win in a row after the first, scaled like the win
+		-- (2nd win in a row +25 in a full game, 3rd +50...)
 		StreakBonusCap = 5, -- ...up to this many steps
 		FriendXPBonus = 0.1, -- +10% XP while a friend is in the server
 		MoveCooldown = 0.4, -- seconds: movement events of one kind count at most this often

@@ -168,6 +168,7 @@ end
 
 local function playGame(players: { Player })
 	Participants.startGame(players)
+	Progression.newGame(#players)
 	for _, player in players do
 		Progression.record(player, "GamePlayed")
 	end
