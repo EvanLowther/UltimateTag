@@ -248,6 +248,14 @@ add(
 	"Wall run 1,000 times"
 )
 add(
+	"title_vip",
+	"Title",
+	"VIP",
+	"Exclusive",
+	{ Text = "VIP", Color = rgb(255, 215, 80), Glow = true },
+	"VIP gamepass"
+)
+add(
 	"title_veteran",
 	"Title",
 	"Veteran",

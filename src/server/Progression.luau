@@ -179,6 +179,13 @@ function Progression.record(player: Player, event: string, amount: number?)
 		if friendInServer[player] then
 			xp = math.floor(xp * (1 + settings.FriendXPBonus) + 0.5)
 		end
+		-- Gamepasses (server/Purchases; off until Config.Monetization has IDs).
+		if player:GetAttribute("VIP") then
+			xp = math.floor(xp * (1 + Config.Monetization.VipXPBonus) + 0.5)
+		end
+		if player:GetAttribute("DoubleCoins") then
+			coins *= 2
+		end
 		reached = addCoinsAndXP(p, coins, xp)
 	end)
 	if coins > 0 or xp > 0 then

@@ -786,6 +786,14 @@ local Config = {
 		},
 	} :: { { [string]: any } },
 
+	-- Robux purchases (server/Purchases): all off until these have IDs from the Roblox website.
+	Monetization = {
+		VipPass = nil :: number?, -- gamepass id: +VipXPBonus XP and the VIP title
+		DoubleCoinsPass = nil :: number?, -- gamepass id: double coins from games
+		CoinPacks = {} :: { [number]: number }, -- developer product id -> coins
+		VipXPBonus = 0.25,
+	},
+
 	-- The daily shop and crates (server/Shop, shared/ShopRotation).
 	Shop = {
 		Featured = 4, -- items at full price each day, plus one deal
