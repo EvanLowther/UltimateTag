@@ -156,6 +156,7 @@ local function playRound(round: number, lastMap: string?): string?
 		for _, player in Participants.alive() do
 			Progression.record(player, "RoundSurvived")
 		end
+		Progression.checkTopFive(Participants.alive())
 	end
 	GameState.setStatus(if #out > 0 then `Eliminated: {names(out)}` else "Nobody was eliminated")
 	countdown("Results", Config.Game.ResultsTime)

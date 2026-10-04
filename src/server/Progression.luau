@@ -30,6 +30,7 @@ local tagsThisRound: { [Player]: number } = {}
 local lastMove: { [Player]: { [string]: number } } = {}
 local friendInServer: { [Player]: boolean } = {}
 local gameSize = 2 -- players who started the current game (win rewards scale with it)
+local topFiveGiven: { [Player]: boolean } = {} -- who got this game's Top 5 bonus
 
 local function popup(player: Player, payload: { [string]: any })
 	Remotes.get("Reward"):FireClient(player, payload)
@@ -149,7 +150,7 @@ function Progression.record(player: Player, event: string, amount: number?)
 
 	local coins = (def.Coins or 0) * count
 	local xp = (def.XP or 0) * count
-	local label = event
+	local label = if event == "TopFive" then `Top {settings.TopFiveCount}!` else event
 	local scale = 1 -- for wins: 0 with 2 players up to 1 with WinFullAt or more
 	if event == "Win" then
 		scale = math.clamp((gameSize - 2) / math.max(settings.WinFullAt - 2, 1), 0, 1)
@@ -213,6 +214,22 @@ end
 -- A game starts with `players` players: wins in it are rewarded for that many.
 function Progression.newGame(players: number)
 	gameSize = math.max(players, 2)
+	table.clear(topFiveGiven)
+end
+
+-- After a round: in a big game (TopFiveMinPlayers+ at the start), everyone still in once
+-- TopFiveCount or fewer are left gets the Top 5 bonus, once per game.
+function Progression.checkTopFive(alive: { Player })
+	local settings = Config.Progression
+	if gameSize < settings.TopFiveMinPlayers or #alive > settings.TopFiveCount then
+		return
+	end
+	for _, player in alive do
+		if not topFiveGiven[player] then
+			topFiveGiven[player] = true
+			Progression.record(player, "TopFive")
+		end
+	end
 end
 
 -- A new round: the per-round tag cap starts over.

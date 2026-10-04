@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.36.2",
+	Version = "0.36.3",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -547,7 +547,8 @@ local Config = {
 		-- Movement events (WallRun, Slide, Vault, Climb) only count during a live round.
 		Events = {
 			GamePlayed = { Stat = "GamesPlayed", Coins = 10, XP = 25 },
-			RoundSurvived = { Stat = "RoundsSurvived", Coins = 15, XP = 20 },
+			RoundSurvived = { Stat = "RoundsSurvived", XP = 20 }, -- XP only, no coins
+			TopFive = { Coins = 15 }, -- still in when a big game gets down to its last few (below)
 			Tag = { Stat = "Tags", Coins = 1, XP = 5, PerRound = 10 }, -- rewards for at most PerRound tags a round
 			-- A win scales with how many players started the game (WinScale below): Coins/XP is
 			-- the most (a full game), MinCoins/MinXP the least (2 players). Wins stat: WinsStore.
@@ -564,6 +565,10 @@ local Config = {
 		-- Win rewards grow in a straight line from 2 players (Min) to WinFullAt players (full),
 		-- counting everyone who started the game (not who's left in the last round).
 		WinFullAt = 30,
+		-- Top 5 bonus: in a game that started with TopFiveMinPlayers or more, everyone still in
+		-- once TopFiveCount or fewer are left gets the TopFive event's coins, once per game.
+		TopFiveMinPlayers = 20,
+		TopFiveCount = 5,
 		StreakBonus = 25, -- extra coins per win in a row after the first, scaled like the win
 		-- (2nd win in a row +25 in a full game, 3rd +50...)
 		StreakBonusCap = 5, -- ...up to this many steps
