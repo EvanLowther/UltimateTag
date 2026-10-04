@@ -1,6 +1,6 @@
 --!strict
--- Menu, Shop tab, in the game's chunky style: a wide banner card for the mystery crate (odds,
--- price or free crates), a divider, then today's offers (shared/ShopRotation: featured items
+-- Menu, Shop tab, in the game's chunky style: a wide banner card for buying mystery crates
+-- (odds, price; bought crates are opened from the Inventory), a divider, then today's offers (shared/ShopRotation: featured items
 -- and one deal) as bright cards with price buttons, and a countdown to tomorrow's shop. Buying
 -- and opening go through the server (server/Shop); results pop up through Menu/Popups.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -44,18 +44,17 @@ function ShopTab.build(page: Frame, api: { [string]: any }): () -> ()
 	oddsLabel.Position = UDim2.fromOffset(116, 44)
 	oddsLabel.Size = UDim2.new(1, -250, 0, 18)
 	oddsLabel.TextXAlignment = Enum.TextXAlignment.Left
-	local dupLabel = Ui.text(
-		banner,
-		`A random cosmetic! Duplicates pay back {math.floor(Config.Shop.DuplicateRefund * 100)}%`,
-		13,
-		nil,
-		Ui.Font
-	)
+	local dupLabel =
+		Ui.text(banner, "A random cosmetic! Duplicates are possible.", 13, nil, Ui.Font)
 	dupLabel.Position = UDim2.fromOffset(116, 64)
 	dupLabel.Size = UDim2.new(1, -250, 0, 18)
 	dupLabel.TextXAlignment = Enum.TextXAlignment.Left
-	local open = Ui.button(banner, "OPEN", Ui.Colors.Yellow, function()
-		api.send("OpenCrate")
+	local cratesOwned = Ui.text(banner, "", 13, Ui.Colors.Yellow, Ui.Font)
+	cratesOwned.Position = UDim2.fromOffset(116, 84)
+	cratesOwned.Size = UDim2.new(1, -250, 0, 18)
+	cratesOwned.TextXAlignment = Enum.TextXAlignment.Left
+	local open = Ui.button(banner, "BUY", Ui.Colors.Yellow, function()
+		api.send("BuyCrate")
 	end)
 	open.AnchorPoint = Vector2.new(1, 0.5)
 	open.Position = UDim2.new(1, -14, 0.5, 0)
@@ -112,15 +111,12 @@ function ShopTab.build(page: Frame, api: { [string]: any }): () -> ()
 			return
 		end
 		tick()
-		local free = profile.Crates > 0
-		Ui.setText(open, if free then "FREE!" else "OPEN")
-		open.BackgroundColor3 = if free then Ui.Colors.Green else Ui.Colors.Yellow
-		local priceLabel = openPrice:FindFirstChild("Label") :: TextLabel?
-		if priceLabel then
-			priceLabel.Text = if free
-				then `x{profile.Crates}`
-				else Ui.number(Config.Shop.CratePrice)
-		end
+		open.BackgroundColor3 = if profile.Coins >= Config.Shop.CratePrice
+			then Ui.Colors.Yellow
+			else Ui.Colors.Locked
+		cratesOwned.Text = if profile.Crates > 0
+			then `You have {profile.Crates}: open them in your Inventory`
+			else ""
 
 		shownDay = DayClock.day()
 		for _, child in offers:GetChildren() do

@@ -1,7 +1,7 @@
 --!strict
 -- The game's menu (for players, unlike the dev panel), in the game's chunky style (Menu/Ui).
--- Left side: a grid of icon buttons opening the menu window's tabs (Shop, Inventory, Quests,
--- Rewards). Bottom center: your coins in a big green pill and your level with an XP bar.
+-- Left side: your coins in a green pill above a grid of icon buttons opening the menu window's
+-- tabs (Shop, Inventory, Quests, Rewards). Bottom center: your level with an XP bar.
 -- Reward popups come in through the Reward remote (Popups).
 -- Tabs are modules in this folder with build(page, api) -> refresh function, and optionally
 -- badge(profile) -> boolean (a red "!" on the button: something to claim); see TABS.
@@ -58,40 +58,47 @@ function Menu.start()
 	gui.DisplayOrder = 10
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-	-- Left side: a two-column grid of icon buttons.
+	-- Left side: your coins in a green pill, and under it a two-column grid of icon buttons.
+	local leftColumn = Instance.new("Frame")
+	leftColumn.BackgroundTransparency = 1
+	leftColumn.AnchorPoint = Vector2.new(0, 0.5)
+	leftColumn.Position = UDim2.new(0, 14, 0.45, 0)
+	leftColumn.Size = UDim2.fromOffset(150, 0)
+	leftColumn.AutomaticSize = Enum.AutomaticSize.Y
+	local column = Instance.new("UIListLayout")
+	column.Padding = UDim.new(0, 10)
+	column.SortOrder = Enum.SortOrder.LayoutOrder
+	column.Parent = leftColumn
+	leftColumn.Parent = gui
+
+	local money = Ui.card(leftColumn, Ui.Colors.Green, 16)
+	money.Size = UDim2.fromOffset(146, 34)
+	money.LayoutOrder = 1
+	local coin = Ui.coinIcon(money, 24)
+	coin.Position = UDim2.fromOffset(6, 5)
+	local coinText = Ui.text(money, "0", 22)
+	coinText.Position = UDim2.fromOffset(34, 0)
+	coinText.Size = UDim2.new(1, -40, 1, 0)
+
 	local side = Instance.new("Frame")
 	side.BackgroundTransparency = 1
-	side.AnchorPoint = Vector2.new(0, 0.5)
-	side.Position = UDim2.new(0, 14, 0.45, 0)
 	side.Size = UDim2.fromOffset(150, 0)
 	side.AutomaticSize = Enum.AutomaticSize.Y
+	side.LayoutOrder = 2
 	local grid = Instance.new("UIGridLayout")
 	grid.CellSize = UDim2.fromOffset(68, 68)
 	grid.CellPadding = UDim2.fromOffset(10, 10)
 	grid.SortOrder = Enum.SortOrder.LayoutOrder
 	grid.Parent = side
-	side.Parent = gui
+	side.Parent = leftColumn
 
-	-- Bottom center: the money pill, and the level bar under it.
+	-- Bottom center: the level bar.
 	local bottom = Instance.new("Frame")
 	bottom.BackgroundTransparency = 1
 	bottom.AnchorPoint = Vector2.new(0.5, 1)
 	bottom.Position = UDim2.new(0.5, 0, 1, -8)
-	bottom.Size = UDim2.fromOffset(460, 82)
+	bottom.Size = UDim2.fromOffset(460, 44)
 	bottom.Parent = gui
-
-	local money = Ui.card(bottom, Ui.Colors.Green, 20)
-	money.AnchorPoint = Vector2.new(0.5, 0)
-	money.Position = UDim2.fromScale(0.5, 0)
-	money.Size = UDim2.fromOffset(190, 44)
-	money.ZIndex = 2
-	local coin = Ui.coinIcon(money, 30)
-	coin.Position = UDim2.fromOffset(10, 7)
-	coin.ZIndex = 3
-	local coinText = Ui.text(money, "0", 30)
-	coinText.Position = UDim2.fromOffset(46, 0)
-	coinText.Size = UDim2.new(1, -56, 1, 0)
-	coinText.ZIndex = 3
 
 	local levelText = Ui.text(bottom, "Lvl. 1", 20)
 	levelText.AnchorPoint = Vector2.new(0, 1)
@@ -108,13 +115,12 @@ function Menu.start()
 	bar.Position = UDim2.new(0.5, 0, 1, -2)
 	bar.Size = UDim2.new(1, 0, 0, 16)
 
-	-- Floating "+coins" text rises from just above the money pill.
+	-- Floating "+coins" text rises from beside the money pill.
 	local floatAnchor = Instance.new("Frame")
 	floatAnchor.BackgroundTransparency = 1
-	floatAnchor.AnchorPoint = Vector2.new(0.5, 1)
-	floatAnchor.Position = UDim2.new(0.5, 0, 1, -100)
-	floatAnchor.Size = UDim2.fromOffset(420, 30)
-	floatAnchor.Parent = gui
+	floatAnchor.Position = UDim2.new(1, 12, 0, 2)
+	floatAnchor.Size = UDim2.fromOffset(380, 30)
+	floatAnchor.Parent = money
 	Popups.start(gui, floatAnchor)
 
 	-- The menu window: one window whose header takes the open tab's name and color.

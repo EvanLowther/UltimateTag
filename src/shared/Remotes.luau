@@ -17,7 +17,8 @@
 --   TagHit:         server -> clients: (tagger, tagged) a tag landed: play the tagger's effect.
 --   Victory:        server -> clients: (winner) play the winner's victory pose and effect.
 --   ShopBuy:        client -> server: buy today's shop item (its id).
---   OpenCrate:      client -> server: open a crate (a free one if you have one, else paid).
+--   BuyCrate:       client -> server: buy a crate (it goes into your crates).
+--   OpenCrate:      client -> server: open one of your crates.
 --   ClaimStreak:    client -> server: claim today's login streak reward.
 --   ClaimQuest:     client -> server: ("Daily" | "Weekly", slot) claim a finished quest.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -37,6 +38,7 @@ local NAMES = {
 	"TagHit",
 	"Victory",
 	"ShopBuy",
+	"BuyCrate",
 	"OpenCrate",
 	"ClaimStreak",
 	"ClaimQuest",

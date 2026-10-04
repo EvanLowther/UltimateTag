@@ -49,7 +49,7 @@ function Spectate.start()
 	-- A white outlined pill above the money and level bar (Menu/Ui style).
 	local label = Ui.ink(gui, "", 22)
 	label.AnchorPoint = Vector2.new(0.5, 1)
-	label.Position = UDim2.new(0.5, 0, 1, -190)
+	label.Position = UDim2.new(0.5, 0, 1, -150)
 	label.Size = UDim2.fromOffset(420, 40)
 	label.BackgroundTransparency = 0
 	label.BackgroundColor3 = Ui.Colors.Window

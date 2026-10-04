@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.36.0",
+	Version = "0.36.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -800,8 +800,8 @@ local Config = {
 		DealDiscount = 0.3, -- the deal is this much off
 		RarityWeights = { Common = 50, Rare = 30, Epic = 15, Legendary = 5 }, -- how often each shows up
 		CratePrice = 300,
-		-- A crate rolls a rarity by Catalog.Rarities weights (odds shown in the shop), then an item.
-		DuplicateRefund = 0.5, -- a duplicate from a crate pays back this share of its price in coins
+		-- Bought crates go to your Inventory. Opening one rolls a rarity by Catalog.Rarities
+		-- weights (odds shown in the shop), then an item. Duplicates are possible.
 	},
 
 	Avatar = {

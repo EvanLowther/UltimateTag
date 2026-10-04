@@ -53,7 +53,7 @@ function Notify.start()
 	-- A white pill with a thick outline, above the money and level bar.
 	local box = Instance.new("TextLabel")
 	box.AnchorPoint = Vector2.new(0.5, 1)
-	box.Position = UDim2.new(0.5, 0, 1, -138)
+	box.Position = UDim2.new(0.5, 0, 1, -96)
 	box.Size = UDim2.fromOffset(0, 44)
 	box.AutomaticSize = Enum.AutomaticSize.X
 	box.BackgroundColor3 = Ui.Colors.Window

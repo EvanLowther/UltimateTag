@@ -284,21 +284,17 @@ function Ui.window(
 	titleLabel.Size = UDim2.new(1, -80, 1, 0)
 	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 	titleLabel.ZIndex = 2
-	local close = Instance.new("TextButton")
-	close.Text = "✕"
-	close.Font = Ui.BigFont
-	close.TextSize = 30
-	close.TextColor3 = Ui.Colors.Text
-	close.BackgroundTransparency = 1
+	-- The close button: a bold X on a dark red square (callers connect close.Activated).
+	local close = Ui.button(header, "X", Color3.fromRGB(190, 30, 42), function() end)
 	close.AnchorPoint = Vector2.new(1, 0.5)
 	close.Position = UDim2.new(1, -10, 0.5, 0)
-	close.Size = UDim2.fromOffset(44, 44)
+	close.Size = UDim2.fromOffset(40, 40)
 	close.ZIndex = 2
-	local closeStroke = Instance.new("UIStroke")
-	closeStroke.Thickness = 3
-	closeStroke.Color = Ui.Colors.Outline
-	closeStroke.Parent = close
-	close.Parent = header
+	Ui.setTextSize(close, 26)
+	local closeLabel = close:FindFirstChild("Label")
+	if closeLabel and closeLabel:IsA("TextLabel") then
+		closeLabel.ZIndex = 2
+	end
 	local body = Instance.new("Frame")
 	body.Name = "Body"
 	body.BackgroundTransparency = 1

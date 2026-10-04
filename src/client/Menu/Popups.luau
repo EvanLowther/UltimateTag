@@ -53,11 +53,12 @@ end
 
 -- Outlined text that floats up from just above the money pill and fades.
 local function float(text: string)
-	local label = Ui.text(floatAnchor, text, 22, nil, Ui.Font)
+	local label = Ui.text(floatAnchor, text, 20, nil, Ui.Font)
 	label.Size = UDim2.new(1, 0, 0, 28)
+	label.TextXAlignment = Enum.TextXAlignment.Left
 	label.Position = UDim2.fromOffset(0, 0)
 	local info = TweenInfo.new(2.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, -60), TextTransparency = 1 })
+	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, -50), TextTransparency = 1 })
 		:Play()
 	local stroke = label:FindFirstChildOfClass("UIStroke")
 	if stroke then
@@ -118,7 +119,7 @@ local function card(title: string, lines: { string }, color: Color3, seconds: nu
 end
 
 -- A crate opening: cards scroll past a marker and stop on the prize. Yields while it shows.
-local function crateReel(prize: Catalog.Item, duplicate: boolean, refund: number)
+local function crateReel(prize: Catalog.Item, duplicate: boolean)
 	local width = ItemCard.Width + 10
 	local count, stopAt = 26, 22
 	local frame, body, close = Ui.window(gui, "MYSTERY CRATE", Ui.Colors.Purple)
@@ -171,7 +172,7 @@ local function crateReel(prize: Catalog.Item, duplicate: boolean, refund: number
 	task.wait(3.3)
 	local color = Catalog.Rarities[prize.rarity].color:ToHex()
 	result.Text = if duplicate
-		then `Duplicate <font color="#{color}">{prize.name}</font>  +{Ui.number(refund)} coins`
+		then `<font color="#{color}">{prize.name}</font> (duplicate)`
 		else `You got <font color="#{color}">{prize.name}</font>!`
 	Ui.popIn(result, 0.3)
 	task.wait(2)
@@ -198,7 +199,7 @@ function Popups.show(payload: { [string]: any })
 		local prize = Catalog.get(payload.Item)
 		if prize then
 			enqueue(function()
-				crateReel(prize :: Catalog.Item, payload.Duplicate == true, payload.Refund or 0)
+				crateReel(prize :: Catalog.Item, payload.Duplicate == true)
 			end)
 		end
 	elseif kind == "Grant" then
