@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.23.4",
+	Version = "0.24.0",
 
 	Tag = {
 		Range = 5, -- studs between two characters that counts as a tag
@@ -28,8 +28,8 @@ local Config = {
 		Steer = 2, -- how much your movement keys turn a slide (higher = more control)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
-		DropTime = 0.15, -- seconds from the drop pose into the full slide pose
-		RiseTime = 0.3, -- seconds for the hips and camera to come back up
+		DropTime = 0.1, -- seconds from the drop pose into the full slide pose
+		RiseTime = 0.24, -- seconds for the hips and camera to come back up
 		HeadClearance = 2.5, -- studs from the body center to the top of the head when standing
 		BlockerGroup = "SlideBlocker", -- collision group for invisible parts only sliders can pass
 		SlidingGroup = "Sliding", -- collision group the character uses while sliding
@@ -39,27 +39,31 @@ local Config = {
 		-- Positive X on LowerTorso leans the body back. Positive X on an upper leg or upper arm
 		-- swings it forward. Negative X on a lower leg bends the knee.
 		Poses = {
-			Drop = { -- frame 2: dropping into the slide
-				LowerTorso = Vector3.new(20, 0, 0),
-				UpperTorso = Vector3.new(-10, 0, 0),
-				RightUpperLeg = Vector3.new(45, 0, 0),
-				RightLowerLeg = Vector3.new(-30, 0, 0),
-				LeftUpperLeg = Vector3.new(-5, 0, 0),
-				LeftLowerLeg = Vector3.new(-60, 0, 0),
-				RightUpperArm = Vector3.new(50, 0, 10),
-				LeftUpperArm = Vector3.new(-30, 0, -10),
-			},
-			Slide = { -- frames 3 to 5: leaning back, lead leg out front, arm up
-				LowerTorso = Vector3.new(55, 0, 0),
-				UpperTorso = Vector3.new(-15, 0, 0),
-				Head = Vector3.new(-30, 0, 0),
-				RightUpperLeg = Vector3.new(38, 0, 0),
-				RightLowerLeg = Vector3.new(-5, 0, 0),
-				LeftUpperLeg = Vector3.new(70, 0, -10),
-				LeftLowerLeg = Vector3.new(-100, 0, 0),
-				RightUpperArm = Vector3.new(120, 0, 15),
+			-- Slide, like the reference video: feet first with both legs out straight, body leaned
+			-- well back (about 60 degrees), head tipped forward to look ahead, one arm up by the
+			-- head and the other trailing low behind.
+			Drop = { -- dropping into it
+				LowerTorso = Vector3.new(30, 0, 0),
+				Head = Vector3.new(-20, 0, 0),
+				RightUpperLeg = Vector3.new(30, 0, 0),
+				RightLowerLeg = Vector3.new(-25, 0, 0),
+				LeftUpperLeg = Vector3.new(20, 0, 0),
+				LeftLowerLeg = Vector3.new(-40, 0, 0),
+				RightUpperArm = Vector3.new(90, 0, 20),
 				RightLowerArm = Vector3.new(-30, 0, 0),
-				LeftUpperArm = Vector3.new(-45, 0, -40),
+				LeftUpperArm = Vector3.new(-20, 0, -20),
+			},
+			Slide = { -- the held slide
+				LowerTorso = Vector3.new(62, 0, 0),
+				UpperTorso = Vector3.new(-8, 0, 0),
+				Head = Vector3.new(-40, 0, 0),
+				RightUpperLeg = Vector3.new(5, 0, 0),
+				RightLowerLeg = Vector3.new(0, 0, 0),
+				LeftUpperLeg = Vector3.new(15, 0, -5),
+				LeftLowerLeg = Vector3.new(-30, 0, 0),
+				RightUpperArm = Vector3.new(150, 0, 25),
+				RightLowerArm = Vector3.new(-20, 0, 0),
+				LeftUpperArm = Vector3.new(-50, 0, -30),
 				LeftLowerArm = Vector3.new(-15, 0, 0),
 			},
 			Lunge = { -- frame 6: pushing back up, one leg forward
@@ -112,9 +116,9 @@ local Config = {
 				LeftUpperArm = Vector3.new(20, 0, -10),
 			},
 		},
-		RecoverLungeTime = 0.1, -- seconds into the recovery when the lunge pose is reached
-		RecoverCrouchTime = 0.2, -- ... the crouch pose
-		RecoverStandTime = 0.3, -- ... standing (frame 8)
+		RecoverLungeTime = 0.08, -- seconds into the recovery when the lunge pose is reached
+		RecoverCrouchTime = 0.16, -- ... the crouch pose
+		RecoverStandTime = 0.24, -- ... standing
 	},
 
 	RunPace = {
@@ -127,7 +131,7 @@ local Config = {
 
 	AirMomentum = {
 		-- In the air, you keep your speed (Roblox's own air control would drag you back to walk
-		-- speed and kill the momentum from wall runs, swings and slides). Your keys steer it.
+		-- speed and kill the momentum from wall runs, slides and vaults). Your keys steer it.
 		TurnRate = 160, -- degrees per second your air path can turn toward where you steer
 		BrakeRate = 25, -- studs/s per second you slow down when steering backwards
 		AirControl = 45, -- studs/s per second you can speed up while slower than walk speed
@@ -224,33 +228,6 @@ local Config = {
 		StepTime = 0.14, -- seconds per climbing or running step in the animations
 	},
 
-	BarSwing = {
-		-- Jump up to a bar (any part with the "SwingBar" attribute, a cylinder lying along its X
-		-- axis) to grab it. You swing like a pendulum; hold forward to pump higher, press jump to
-		-- let go with the swing's momentum, press the slide key to drop.
-		GrabReach = 2.2, -- studs from the bar to anywhere between just below your chest and your raised hands
-		HandHeight = 2.3, -- studs above your body center where your hands are, reaching up
-		Radius = 2.6, -- hanging: your body center sits this far below the bar
-		PumpAccel = 3, -- swing speed (radians/s per second) added while holding forward
-		Damping = 0.12, -- fraction of swing speed lost per second
-		MaxAngle = 100, -- degrees: the swing never goes higher than this either way
-		ReleaseBoost = 1.15, -- letting go: your swing speed x this
-		ReleaseUp = 14, -- letting go: extra studs/s upward
-		Cooldown = 0.5, -- seconds before you can grab the same bar again
-		Poses = {
-			Hang = { -- both hands on the bar, legs together
-				RightUpperArm = Vector3.new(178, 0, 6),
-				RightLowerArm = Vector3.new(0, 0, 0),
-				LeftUpperArm = Vector3.new(178, 0, -6),
-				LeftLowerArm = Vector3.new(0, 0, 0),
-				RightUpperLeg = Vector3.new(15, 0, 0),
-				RightLowerLeg = Vector3.new(-20, 0, 0),
-				LeftUpperLeg = Vector3.new(15, 0, 0),
-				LeftLowerLeg = Vector3.new(-20, 0, 0),
-			},
-		},
-	},
-
 	LandingRoll = {
 		-- Land from a big drop while moving and you roll forward, keeping your speed, instead
 		-- of a hard landing. Holding the slide key as you land slides instead.
@@ -283,7 +260,7 @@ local Config = {
 		Lifetime = 0.22, -- seconds a streak lasts
 		Width = 0.18, -- studs
 		Color = Color3.fromRGB(255, 255, 255),
-		Moves = { "Slide", "Vault", "Climb", "WallRun", "BarSwing", "Roll" }, -- always show during these
+		Moves = { "Slide", "Vault", "Climb", "WallRun", "Roll" }, -- always show during these
 	},
 
 	Vault = {
@@ -420,7 +397,7 @@ local Config = {
 					Rotation = Vector3.new(70, 6, 0),
 				},
 			},
-			-- Hanging at the top of a wall or on a bar: both hands up gripping.
+			-- Hanging at the top of a wall or clinging to it: both hands up gripping.
 			Hang = {
 				Right = {
 					Position = Vector3.new(0.4, 0.55, -1.05),

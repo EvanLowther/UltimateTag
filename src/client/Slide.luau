@@ -136,6 +136,7 @@ function Slide.start()
 
 		local drive, release = MoveState.drive(root, true)
 		drive.PlaneVelocity = Vector2.new(dir.X * speed, dir.Z * speed)
+		MoveState.faceDirection = dir
 		activePose.play()
 		setGroup(character, settings.SlidingGroup)
 		local blockedAbove = ceilingCheck(parts, activePose.standingHip, activePose.slideHip)
@@ -146,6 +147,7 @@ function Slide.start()
 			finish = nil
 			isBlocked = nil
 			MoveState.busy = nil
+			MoveState.faceDirection = nil
 			lastEnd = os.clock()
 			release()
 			if not hum.Parent then
@@ -186,6 +188,7 @@ function Slide.start()
 				dir = (dir + move * settings.Steer * dt).Unit
 			end
 			drive.PlaneVelocity = Vector2.new(dir.X * speed, dir.Z * speed)
+			MoveState.faceDirection = dir -- feet first: the body points along the slide
 
 			local v = root.AssemblyLinearVelocity
 			local hitWall = elapsed > 0.15 and Vector3.new(v.X, 0, v.Z).Magnitude < speed * 0.3

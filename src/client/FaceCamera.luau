@@ -3,8 +3,8 @@
 --   Third person (the default, like the reference video): your body turns toward the way you
 --   run, using Roblox's own smooth turning (Humanoid.AutoRotate).
 --   First person: your body faces where you look.
---   During a move that sets MoveState.faceDirection (climb faces the wall, wall run and swing
---   face along their path, vault faces the hop), the body turns smoothly to that instead.
+--   During a move that sets MoveState.faceDirection (climb faces the wall, wall run faces
+--   along it, vault faces the hop), the body turns smoothly to that instead.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 

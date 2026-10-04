@@ -1,7 +1,7 @@
 --!strict
 -- The one source of movement state on this client, shared by every move module:
 --   busy:        the move in progress ("Slide", "Crouch", "Vault", "Mantle", "Climb", "Cling", "Hang",
---                "WallRun", "BarSwing", "Roll"), or nil. One at a time.
+--                "WallRun", "Roll"), or nil. One at a time.
 --   airVelocity: the sideways speed being carried through the air (owned by AirMomentum).
 --   landVelocity / landTime: the air speed you landed with (set by AirMomentum).
 --   parts():     the local character's model, humanoid and root part, if alive.
@@ -16,7 +16,7 @@ export type Parts = { character: Model, humanoid: Humanoid, root: BasePart }
 local MoveState = {
 	busy = nil :: string?, -- name of the move in progress, or nil
 	-- Sideways velocity AirMomentum carries through the air. A move that changes your velocity
-	-- mid-air (a wall kick, a swing release) sets this so the air carries on from the new speed.
+	-- mid-air (like a wall kick) sets this so the air carries on from the new speed.
 	airVelocity = nil :: Vector3?,
 	-- Your sideways velocity the moment you last landed, and when. Lets a slide right after
 	-- landing keep your air speed before ground friction eats it.

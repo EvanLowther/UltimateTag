@@ -186,29 +186,29 @@
       }
     },
     {
-      "name": "SwingBar1",
+      "name": "Stone1",
       "className": "Part",
       "properties": {
         "Anchored": true,
         "Size": [
-          16,
-          0.6,
-          0.6
+          6,
+          1,
+          6
         ],
         "Color": [
-          0.3,
-          0.3,
-          0.32
+          0.95,
+          0.95,
+          0.95
         ],
         "Material": "Plastic",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet",
         "CFrame": {
           "CFrame": {
             "position": [
               120,
-              22,
-              -108
+              11.5,
+              -110
             ],
             "orientation": [
               [
@@ -228,37 +228,33 @@
               ]
             ]
           }
-        },
-        "Shape": "Cylinder"
-      },
-      "attributes": {
-        "SwingBar": true
+        }
       }
     },
     {
-      "name": "SwingBar2",
+      "name": "Stone2",
       "className": "Part",
       "properties": {
         "Anchored": true,
         "Size": [
-          16,
-          0.6,
-          0.6
+          6,
+          1,
+          6
         ],
         "Color": [
-          0.3,
-          0.3,
-          0.32
+          0.95,
+          0.95,
+          0.95
         ],
         "Material": "Plastic",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet",
         "CFrame": {
           "CFrame": {
             "position": [
               120,
-              22,
-              -120
+              10.5,
+              -122
             ],
             "orientation": [
               [
@@ -278,37 +274,33 @@
               ]
             ]
           }
-        },
-        "Shape": "Cylinder"
-      },
-      "attributes": {
-        "SwingBar": true
+        }
       }
     },
     {
-      "name": "SwingBar3",
+      "name": "Stone3",
       "className": "Part",
       "properties": {
         "Anchored": true,
         "Size": [
-          16,
-          0.6,
-          0.6
+          6,
+          1,
+          6
         ],
         "Color": [
-          0.3,
-          0.3,
-          0.32
+          0.95,
+          0.95,
+          0.95
         ],
         "Material": "Plastic",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet",
         "CFrame": {
           "CFrame": {
             "position": [
               120,
-              22,
-              -132
+              9.5,
+              -134
             ],
             "orientation": [
               [
@@ -328,15 +320,11 @@
               ]
             ]
           }
-        },
-        "Shape": "Cylinder"
-      },
-      "attributes": {
-        "SwingBar": true
+        }
       }
     },
     {
-      "name": "BarPlatform",
+      "name": "OrangePlatform",
       "className": "Part",
       "properties": {
         "Anchored": true,
