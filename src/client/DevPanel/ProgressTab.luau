@@ -53,6 +53,11 @@ function ProgressTab.build(page: Instance, send: (string, ...any) -> ())
 		send("ResetTime")
 	end)
 
+	Widgets.section(page, "Cosmetics")
+	Widgets.button(page, "Unlock every cosmetic", function()
+		send("UnlockAll")
+	end)
+
 	Widgets.section(page, "Danger")
 	Widgets.button(page, "Reset my profile", function()
 		send("ResetProfile")

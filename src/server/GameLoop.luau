@@ -16,6 +16,7 @@ local RunService = game:GetService("RunService")
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
+local Remotes = require(Shared.Remotes)
 local MapService = require(script.Parent.MapService)
 local Participants = require(script.Parent.Participants)
 local Progression = require(script.Parent.Progression)
@@ -188,6 +189,11 @@ local function playGame(players: { Player })
 		Progression.record(winner, "Win")
 		GameState.setStatus(`{winner.DisplayName} wins!`)
 		ReplicatedStorage:SetAttribute("Winner", winner.Name)
+		-- Celebrate in the lobby, where everyone else already is (the last map is gone), with the
+		-- winner's equipped victory (client/CosmeticEffects).
+		sendToLobby(winner)
+		task.wait(0.8)
+		Remotes.get("Victory"):FireAllClients(winner)
 	else
 		GameState.setStatus("Nobody won this time.")
 	end
@@ -198,7 +204,9 @@ local function playGame(players: { Player })
 	Participants.endGame()
 	GameState.setRound(0)
 	for _, player in alive do
-		sendToLobby(player)
+		if player ~= winner then
+			sendToLobby(player)
+		end
 	end
 end
 

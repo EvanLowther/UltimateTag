@@ -317,7 +317,7 @@ local Config = {
 		MinSpeed = 30, -- studs/s: faster than this always shows trails
 		Lifetime = 0.22, -- seconds a streak lasts
 		Width = 0.18, -- studs
-		Color = Color3.fromRGB(255, 255, 255),
+		-- Colors come from each player's equipped trail (shared/Catalog).
 		Moves = { "Slide", "Vault", "Climb", "WallRun", "Roll" }, -- always show during these
 	},
 

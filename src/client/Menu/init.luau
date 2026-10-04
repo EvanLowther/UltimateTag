@@ -12,6 +12,7 @@ local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local Profile = require(script.Parent.Profile)
+local InventoryTab = require(script.InventoryTab)
 local Popups = require(script.Popups)
 local Ui = require(script.Ui)
 
@@ -19,7 +20,9 @@ local Menu = {}
 
 -- name, button color, module (each module has build(page, api) returning a refresh function)
 type Tab = { name: string, color: Color3, module: any }
-local TABS: { Tab } = {}
+local TABS: { Tab } = {
+	{ name = "Inventory", color = Color3.fromRGB(150, 90, 230), module = InventoryTab },
+}
 
 local WINDOW_W, WINDOW_H = 620, 440
 

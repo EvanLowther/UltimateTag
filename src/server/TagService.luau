@@ -33,6 +33,7 @@ local function tag(tagger: Player, tagged: Player)
 	Roles.freeze(tagged, Config.Tag.FreezeTime)
 	Leaderstats.add(tagger, "Tags", 1)
 	Progression.record(tagger, "Tag")
+	Remotes.get("TagHit"):FireAllClients(tagger, tagged) -- the tagger's tag effect
 	GameState.setStatus(`{tagger.DisplayName} tagged {tagged.DisplayName}!`)
 end
 

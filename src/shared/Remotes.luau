@@ -13,6 +13,9 @@
 --                   "LevelUp", "Items"...), for the popups in client/Menu.
 --   MoveDone:       client -> server: a move started ("WallRun", "Slide", "Vault", "Climb"), for
 --                   stats and quests. Only counted during a live round, and throttled.
+--   Equip:          client -> server: equip an owned cosmetic (its id).
+--   TagHit:         server -> clients: (tagger, tagged) a tag landed: play the tagger's effect.
+--   Victory:        server -> clients: (winner) play the winner's victory pose and effect.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
@@ -26,6 +29,9 @@ local NAMES = {
 	"ProfileSync",
 	"Reward",
 	"MoveDone",
+	"Equip",
+	"TagHit",
+	"Victory",
 }
 
 -- Server only: creates the folder and every RemoteEvent.

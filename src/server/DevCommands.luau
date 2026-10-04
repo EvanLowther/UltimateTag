@@ -5,13 +5,14 @@
 --              Respawn
 --   Maps:      ListMaps (replies "Maps"), PlayMap, NextMap, UnloadMap
 --   Movement:  SetTunable (only the values listed in Config.DevPanel.Tunables)
---   Progress:  GiveCoins, GiveXP, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
+--   Progress:  GiveCoins, GiveXP, UnlockAll, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
 --              ResetTime
 -- Results and refusals are shown to the developer with the Notify remote.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage.Shared
+local Catalog = require(Shared.Catalog)
 local Config = require(Shared.Config)
 local DevAccess = require(Shared.DevAccess)
 local GameState = require(Shared.GameState)
@@ -200,6 +201,15 @@ handlers.GiveXP = function(player, amount)
 		return
 	end
 	Progression.grant(player, { XP = math.floor(amount) }, "Dev XP")
+end
+
+handlers.UnlockAll = function(player)
+	PlayerData.update(player, function(profile)
+		for _, item in Catalog.Items do
+			profile.Owned[item.id] = true
+		end
+	end)
+	tell(player, "Every cosmetic unlocked")
 end
 
 handlers.ResetProfile = function(player)
