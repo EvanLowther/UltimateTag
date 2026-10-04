@@ -15,7 +15,9 @@ MAIN FLOOR: a long rectangle (north-south longer). A classroom in the middle wit
     floor. Off the ramp, steer to either wall and wall-run across (south to north only). Miss and you fall into
     the basement.
   - South hallway: plain, closed off.
-  - Classroom: doors on the west (north end) and east (south end); an open room.
+  - Classroom: doors on the west (north end) and east (south end). A support column in the
+    middle, an HVAC duct catwalk at 12 high (climb a riser at either end), and fallen bookshelves
+    to vault across the diagonal between the doors.
 BASEMENT: exactly two openings.
   - East chamber under the hole: a steam updraft pad launches you back up through the hole,
     landing north of it.
@@ -61,7 +63,10 @@ COLORS = {
     "locker_b": (45, 90, 170), "table": (230, 120, 60), "puddle": (90, 170, 230),
     "concrete": (110, 112, 118), "concrete_dark": (80, 82, 88), "pipe": (180, 70, 50),
     "pad": (255, 140, 40), "grate": (60, 60, 64), "hazard": (250, 200, 40),
-    "light": (235, 235, 220), "light_warm": (240, 170, 100), "door": (150, 100, 60),
+    "light": (235, 235, 220), "light_warm": (240, 170, 100),
+    "column": (150, 140, 120), "duct": (165, 172, 182), "duct_dark": (120, 126, 136),
+    "shelf": (120, 80, 50), "books_a": (190, 60, 60), "books_b": (60, 120, 190),
+    "books_c": (220, 180, 60), "door": (150, 100, 60),
 }
 
 IDENTITY = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
@@ -71,6 +76,12 @@ def rot_x(deg):
     """Turns about X: a part's -Z end rises for positive angles."""
     c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
     return [[1, 0, 0], [0, c, -s], [0, s, c]]
+
+
+def rot_y(deg):
+    """Turns about Y (a part lying at an angle on the floor)."""
+    c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
+    return [[c, 0, s], [0, 1, 0], [-s, 0, c]]
 
 
 def r(v):
@@ -205,6 +216,7 @@ def main_floor(m):
     inner_x, inner_z = ROOM_X - WALL, ROOM_Z - WALL  # 26, 48
     m.block(c, "Chalkboard", -16, 16, 5, 12, -inner_z, -inner_z + 0.3, "board",
             CanCollide=False, CanQuery=False)
+    classroom_obstacles(m, c, inner_x, inner_z)
 
     # Hallway features.
     h = "Hallways"
@@ -253,6 +265,51 @@ def main_floor(m):
     for x in (-13, 13):
         for z in (-30, 0, 30):
             m.light("Lights", x, HEIGHT - 0.2, z, size=(8, 0.2, 1), reach=26)
+
+
+DUCT_X = 9  # the catwalk runs north-south east of the column
+DUCT_TOP = 12  # walk on top: out of reach of a tag from the floor, 6 below the ceiling
+DUCT_W = 4
+DUCT_Z = 42  # catwalk from -DUCT_Z to DUCT_Z, with a riser down to the floor at each end
+
+
+def classroom_obstacles(m, g, inner_x, inner_z):
+    """The classroom's obstacles: a support column in the middle (go around), an HVAC duct
+    catwalk at 12 high (climb a riser at either end, drop off anywhere), fallen bookshelves lying
+    across the diagonal between the two doors (sprint to vault them, walk and you stall)."""
+    # Center support column, floor to ceiling.
+    m.block(g, "SupportColumn", -3, 3, 0, HEIGHT, -3, 3, "column")
+    m.block(g, "ColumnBand", -3.2, 3.2, 3, 3.6, -3.2, 3.2, "trim", CanCollide=False, CanQuery=False)
+
+    # Duct catwalk: a 3-tall box hung from the ceiling, its top is the walkway.
+    x0, x1 = DUCT_X - DUCT_W / 2, DUCT_X + DUCT_W / 2
+    m.block(g, "Duct", x0, x1, DUCT_TOP - 3, DUCT_TOP, -DUCT_Z + 4, DUCT_Z - 4, "duct")
+    for z in range(-DUCT_Z + 8, DUCT_Z - 3, 8):  # seams and hanger rods (decoration)
+        m.block(g, "DuctSeam", x0 - 0.15, x1 + 0.15, DUCT_TOP - 3.1, DUCT_TOP + 0.05, z - 0.3,
+                z + 0.3, "duct_dark", CanCollide=False, CanQuery=False)
+    for z in range(-DUCT_Z + 10, DUCT_Z - 5, 16):
+        for x in (x0 + 0.5, x1 - 0.5):
+            m.block(g, "Hanger", x - 0.15, x + 0.15, DUCT_TOP, HEIGHT, z - 0.15, z + 0.15,
+                    "duct_dark", CanCollide=False, CanQuery=False)
+    # Risers: the duct turns down to the floor at each end; climb one (one 12-stud hop) and
+    # pull up onto the catwalk.
+    for z0, z1 in ((-DUCT_Z, -DUCT_Z + 4), (DUCT_Z - 4, DUCT_Z)):
+        m.block(g, "DuctRiser", x0, x1, 0, DUCT_TOP, z0, z1, "duct")
+        m.block(g, "RiserGrille", x0 - 0.1, x1 + 0.1, 3, 6, z0 - 0.1, z1 + 0.1, "duct_dark",
+                CanCollide=False, CanQuery=False)
+
+    # Fallen bookshelves: on their backs, 3.5 tall and 3 deep (a thin vault), broken lines across
+    # the room at angles, with gaps you can walk round.
+    shelves = (  # center x, center z, length, angle
+        (-15, -20, 14, 20), (-4, -14, 10, -15), (-17, 8, 12, -30), (15, -26, 12, 35),
+        (-6, 24, 14, 10), (17, 16, 12, -20), (-1, 35, 10, 40),
+    )
+    books = ("books_a", "books_b", "books_c")
+    for i, (x, z, length, angle) in enumerate(shelves):
+        rows = rot_y(angle)
+        m.part(g, "FallenShelf", (length, 3.5, 3), (x, 1.75, z), "shelf", rows)
+        m.part(g, "Books", (length - 1.5, 0.6, 2), (x, 3.75, z), books[i % 3], rows,
+               CanCollide=False, CanQuery=False)
 
 
 def basement(m):
