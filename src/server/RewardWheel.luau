@@ -1,8 +1,9 @@
 --!strict
 -- The lobby's daily reward wheel. Its ProximityPrompt (tagged "RewardWheelPrompt") spins the
 -- wheel part (tagged "RewardWheel", both made by tools/SetupLobby) for everyone to see, landing
--- on a random segment; the player is told their prize (Config.Lobby.WheelPrizes). One spin per
--- player every Config.Lobby.WheelCooldownHours, saved in their profile (server/PlayerData).
+-- on a segment picked by the prizes' weights, and pays that prize (Config.Lobby.WheelPrizes:
+-- coins, XP or a crate, through server/Progression). One spin per player every
+-- Config.Lobby.WheelCooldownHours, saved in their profile (server/PlayerData).
 --
 -- The wheel part carries attributes from the setup tool, in its own space so they survive it
 -- being moved: SpinAxis (out of its front), SpinCenter, Segments, and Angle (how far it has
@@ -17,6 +18,7 @@ local Config = require(Shared.Config)
 local DayClock = require(Shared.DayClock)
 local Remotes = require(Shared.Remotes)
 local PlayerData = require(script.Parent.PlayerData)
+local Progression = require(script.Parent.Progression)
 
 local RewardWheel = {}
 
@@ -79,13 +81,29 @@ local function onTriggered(prompt: ProximityPrompt, player: Player)
 		p.Wheel.LastSpin = now
 	end)
 	local prizes = Config.Lobby.WheelPrizes
-	local index = math.random(#prizes)
+	local total = 0
+	for _, prize in prizes do
+		total += prize.Weight or 1
+	end
+	local pick = math.random() * total
+	local index = #prizes
+	for i, prize in prizes do
+		pick -= prize.Weight or 1
+		if pick <= 0 then
+			index = i
+			break
+		end
+	end
 	spinning[wheel] = true
 	prompt.Enabled = false
 	spin(wheel, index)
 	spinning[wheel] = nil
 	prompt.Enabled = true
-	notify:FireClient(player, `You won {prizes[index]}!`)
+	local prize = prizes[index]
+	notify:FireClient(player, `You won {prize.Label}!`)
+	if player.Parent then
+		Progression.grant(player, prize, "Daily Wheel")
+	end
 end
 
 function RewardWheel.start()

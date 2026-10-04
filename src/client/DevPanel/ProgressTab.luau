@@ -54,8 +54,12 @@ function ProgressTab.build(page: Instance, send: (string, ...any) -> ())
 	end)
 
 	Widgets.section(page, "Cosmetics")
-	Widgets.button(page, "Unlock every cosmetic", function()
+	local cosmetics = Widgets.row(page)
+	Widgets.button(cosmetics, "Unlock all", function()
 		send("UnlockAll")
+	end)
+	Widgets.button(cosmetics, "+1 free crate", function()
+		send("GiveCrate")
 	end)
 
 	Widgets.section(page, "Danger")

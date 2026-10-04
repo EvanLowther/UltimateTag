@@ -5,7 +5,7 @@
 --              Respawn
 --   Maps:      ListMaps (replies "Maps"), PlayMap, NextMap, UnloadMap
 --   Movement:  SetTunable (only the values listed in Config.DevPanel.Tunables)
---   Progress:  GiveCoins, GiveXP, UnlockAll, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
+--   Progress:  GiveCoins, GiveXP, GiveCrate, UnlockAll, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
 --              ResetTime
 -- Results and refusals are shown to the developer with the Notify remote.
 local Players = game:GetService("Players")
@@ -201,6 +201,13 @@ handlers.GiveXP = function(player, amount)
 		return
 	end
 	Progression.grant(player, { XP = math.floor(amount) }, "Dev XP")
+end
+
+handlers.GiveCrate = function(player)
+	PlayerData.update(player, function(profile)
+		profile.Crates += 1
+	end)
+	tell(player, "Free crate +1")
 end
 
 handlers.UnlockAll = function(player)

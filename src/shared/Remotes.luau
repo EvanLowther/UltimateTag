@@ -16,6 +16,8 @@
 --   Equip:          client -> server: equip an owned cosmetic (its id).
 --   TagHit:         server -> clients: (tagger, tagged) a tag landed: play the tagger's effect.
 --   Victory:        server -> clients: (winner) play the winner's victory pose and effect.
+--   ShopBuy:        client -> server: buy today's shop item (its id).
+--   OpenCrate:      client -> server: open a crate (a free one if you have one, else paid).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
@@ -32,6 +34,8 @@ local NAMES = {
 	"Equip",
 	"TagHit",
 	"Victory",
+	"ShopBuy",
+	"OpenCrate",
 }
 
 -- Server only: creates the folder and every RemoteEvent.

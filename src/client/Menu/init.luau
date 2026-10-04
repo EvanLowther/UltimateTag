@@ -3,7 +3,9 @@
 -- coins, your level with an XP bar, and buttons that open the menu window's tabs (Shop,
 -- Inventory, Quests, Rewards). Reward popups come in through the Reward remote (Popups).
 -- Tabs are modules in this folder with build(page, api) -> refresh function; see TABS.
+local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
+local ProximityPromptService = game:GetService("ProximityPromptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
@@ -14,6 +16,7 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local Profile = require(script.Parent.Profile)
 local InventoryTab = require(script.InventoryTab)
 local Popups = require(script.Popups)
+local ShopTab = require(script.ShopTab)
 local Ui = require(script.Ui)
 
 local Menu = {}
@@ -21,6 +24,7 @@ local Menu = {}
 -- name, button color, module (each module has build(page, api) returning a refresh function)
 type Tab = { name: string, color: Color3, module: any }
 local TABS: { Tab } = {
+	{ name = "Shop", color = Color3.fromRGB(255, 170, 40), module = ShopTab },
 	{ name = "Inventory", color = Color3.fromRGB(150, 90, 230), module = InventoryTab },
 }
 
@@ -208,6 +212,13 @@ function Menu.start()
 	end)
 
 	Remotes.get("Reward").OnClientEvent:Connect(Popups.show)
+
+	-- The lobby's Avatar Shop prompt opens the Shop.
+	ProximityPromptService.PromptTriggered:Connect(function(prompt)
+		if CollectionService:HasTag(prompt, "AvatarShopPrompt") then
+			show("Shop")
+		end
+	end)
 
 	UserInputService.InputBegan:Connect(function(input, processed)
 		if not processed and input.KeyCode == Enum.KeyCode.Escape and current then

@@ -34,17 +34,19 @@ local Config = {
 		WheelTurns = 4, -- full turns before it settles
 		-- One prize per wheel segment, in segment order: red, orange, yellow, green, cyan, blue,
 		-- purple, pink. Placeholders until coins and trails exist.
+		-- One prize per wheel segment, in segment order (red, orange, yellow, green, cyan, blue,
+		-- purple, pink). Weight: how likely it is (the jackpot is rare). Paid by Progression.grant.
 		WheelPrizes = {
-			"10 Coins",
-			"25 Coins",
-			"50 Coins",
-			"100 Coins",
-			"Speed Trail (1 day)",
-			"5 Coins",
-			"VIP Trial (1 day)",
-			"Mystery Box",
-		},
-		ShopMessage = "The Avatar Shop opens soon!",
+			{ Label = "50 Coins", Coins = 50, Weight = 20 },
+			{ Label = "100 Coins", Coins = 100, Weight = 16 },
+			{ Label = "150 XP", XP = 150, Weight = 16 },
+			{ Label = "200 Coins", Coins = 200, Weight = 12 },
+			{ Label = "300 XP", XP = 300, Weight = 12 },
+			{ Label = "A free crate", Crates = 1, Weight = 10 },
+			{ Label = "400 Coins", Coins = 400, Weight = 9 },
+			{ Label = "1,000 Coins!", Coins = 1000, Weight = 5 },
+		} :: { { [string]: any } },
+		ShopMessage = "The Avatar Shop opens soon!", -- (unused now: the prompt opens the Shop)
 	},
 
 	Tag = {
@@ -574,6 +576,16 @@ local Config = {
 			[30] = { Items = { "title_valedictorian" } },
 			[50] = { Items = { "trail_prismatic" } },
 		} :: { [number]: { [string]: any } },
+	},
+
+	-- The daily shop and crates (server/Shop, shared/ShopRotation).
+	Shop = {
+		Featured = 4, -- items at full price each day, plus one deal
+		DealDiscount = 0.3, -- the deal is this much off
+		RarityWeights = { Common = 50, Rare = 30, Epic = 15, Legendary = 5 }, -- how often each shows up
+		CratePrice = 300,
+		-- A crate rolls a rarity by Catalog.Rarities weights (odds shown in the shop), then an item.
+		DuplicateRefund = 0.5, -- a duplicate from a crate pays back this share of its price in coins
 	},
 
 	Avatar = {

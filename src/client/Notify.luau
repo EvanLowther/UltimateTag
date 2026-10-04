@@ -1,6 +1,7 @@
 --!strict
 -- Short on-screen messages ("You won 25 Coins!"). The server sends them with the Notify remote;
 -- ProximityPrompts with a "Message" attribute (like the avatar shop's) show theirs when used.
+local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local ProximityPromptService = game:GetService("ProximityPromptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -62,7 +63,10 @@ function Notify.start()
 	end)
 	ProximityPromptService.PromptTriggered:Connect(function(prompt)
 		local message = prompt:GetAttribute("Message")
-		if typeof(message) == "string" then
+		-- The Avatar Shop prompt opens the shop now (client/Menu), no message.
+		if
+			typeof(message) == "string" and not CollectionService:HasTag(prompt, "AvatarShopPrompt")
+		then
 			Notify.show(message)
 		end
 	end)

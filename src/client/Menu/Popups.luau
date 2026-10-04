@@ -3,11 +3,13 @@
 --   Earned:  "+15 coins  +20 XP  Round survived" floating up by the coin counter.
 --   Grant:   a card listing what a quest, streak, achievement or prize gave you.
 --   LevelUp: a big "LEVEL 5!" banner with what came with it.
+--   Crate:   a crate opening: a reel of items spins and stops on what you got.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
+local ItemCard = require(script.Parent.ItemCard)
 local Ui = require(script.Parent.Ui)
 
 local Popups = {}
@@ -121,6 +123,67 @@ local function card(title: string, lines: { string }, color: Color3, seconds: nu
 	frame:Destroy()
 end
 
+-- A crate opening: cards scroll past a marker and stop on the prize. Yields while it shows.
+local function crateReel(prize: Catalog.Item, duplicate: boolean, refund: number)
+	local width = ItemCard.Width + 10
+	local count, stopAt = 26, 22
+	local frame = Ui.frame(gui, Ui.Colors.Panel, 18)
+	Ui.stroke(frame, Catalog.Rarities[prize.rarity].color, 4)
+	frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	frame.Position = UDim2.fromScale(0.5, 0.45)
+	frame.Size = UDim2.fromOffset(560, ItemCard.Height + 90)
+	local window = Instance.new("Frame")
+	window.BackgroundTransparency = 1
+	window.ClipsDescendants = true
+	window.Position = UDim2.fromOffset(10, 14)
+	window.Size = UDim2.new(1, -20, 0, ItemCard.Height + 6)
+	window.Parent = frame
+	local strip = Instance.new("Frame")
+	strip.BackgroundTransparency = 1
+	strip.Size = UDim2.fromOffset(width * count, ItemCard.Height)
+	strip.Position = UDim2.fromOffset(0, 3)
+	strip.Parent = window
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.Padding = UDim.new(0, 10)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = strip
+	local pool = {}
+	for _, item in Catalog.Items do
+		if item.crate then
+			table.insert(pool, item)
+		end
+	end
+	for i = 1, count do
+		local item = if i == stopAt then prize else pool[math.random(#pool)]
+		local reelCard = ItemCard.make(strip, item)
+		reelCard.LayoutOrder = i
+	end
+	local marker = Ui.frame(frame, Ui.Colors.Coin, 2)
+	marker.AnchorPoint = Vector2.new(0.5, 0)
+	marker.Position = UDim2.new(0.5, 0, 0, 6)
+	marker.Size = UDim2.fromOffset(4, ItemCard.Height + 22)
+	marker.ZIndex = 5
+	local result = Ui.label(frame, "", 24, Ui.Colors.Text, Ui.BigFont)
+	result.Position = UDim2.new(0, 0, 1, -54)
+	result.Size = UDim2.new(1, 0, 0, 44)
+	Ui.outlined(result, 2)
+	Ui.popIn(frame, 0.25)
+	-- Scroll so the prize card ends centred under the marker.
+	local windowWidth = 540
+	local target = -((stopAt - 1) * width + ItemCard.Width / 2 - windowWidth / 2)
+	local spin = TweenInfo.new(3.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+	TweenService:Create(strip, spin, { Position = UDim2.fromOffset(target, 3) }):Play()
+	task.wait(3.3)
+	local color = Catalog.Rarities[prize.rarity].color:ToHex()
+	result.Text = if duplicate
+		then `Duplicate <font color="#{color}">{prize.name}</font>  +{Ui.number(refund)} coins`
+		else `You got <font color="#{color}">{prize.name}</font>!`
+	Ui.popIn(result, 0.3)
+	task.wait(2)
+	frame:Destroy()
+end
+
 function Popups.show(payload: { [string]: any })
 	local kind = payload.Kind
 	if kind == "Earned" then
@@ -137,6 +200,13 @@ function Popups.show(payload: { [string]: any })
 			end
 			card(`LEVEL {payload.Level}!`, lines, Ui.Colors.XP, 2.6)
 		end)
+	elseif kind == "Crate" then
+		local prize = Catalog.get(payload.Item)
+		if prize then
+			enqueue(function()
+				crateReel(prize :: Catalog.Item, payload.Duplicate == true, payload.Refund or 0)
+			end)
+		end
 	elseif kind == "Grant" then
 		enqueue(function()
 			local lines = {}
