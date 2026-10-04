@@ -15,11 +15,16 @@ function CollisionGroups.start()
 	PhysicsService:RegisterCollisionGroup(sliding)
 	PhysicsService:CollisionGroupSetCollidable(blocker, sliding, false)
 
-	for _, part in workspace:GetDescendants() do
+	-- Every SlideBlocker part, including ones in maps loaded later.
+	local function consider(part: Instance)
 		if part:IsA("BasePart") and part:GetAttribute("SlideBlocker") then
 			part.CollisionGroup = blocker
 		end
 	end
+	for _, part in workspace:GetDescendants() do
+		consider(part)
+	end
+	workspace.DescendantAdded:Connect(consider)
 end
 
 return CollisionGroups

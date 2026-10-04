@@ -51,7 +51,12 @@ local function nearestRunner(it: Player, itRoot: BasePart): Player?
 end
 
 local function onSwing(player: Player)
-	-- Only It can swing, not while frozen, and not faster than the cooldown allows.
+	-- Only It can swing, only while a round is on, not while frozen, and not faster than the
+	-- cooldown allows.
+	local phase = GameState.getPhase()
+	if phase ~= "Playing" and phase ~= "Sandbox" then
+		return
+	end
 	if Roles.get(player) ~= "It" or Roles.isFrozen(player) then
 		return
 	end
