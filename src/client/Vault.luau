@@ -63,12 +63,17 @@ local function findVault(character: Model, hum: Humanoid, root: BasePart): Plan?
 	if not wall or math.abs(wall.Normal.Y) > 0.5 then
 		return nil
 	end
+	-- A slide gate (an invisible SlideBlocker under a low bar or slab) is for sliding, not
+	-- vaulting: hopping onto it would put you inside whatever hangs above it.
+	if wall.Instance:GetAttribute("SlideBlocker") then
+		return nil
+	end
 
 	-- 2. Its top is between MinHeight and MaxHeight above your feet.
 	local probe = Vector3.new(wall.Position.X, feetY + settings.MaxHeight + 0.5, wall.Position.Z)
 		+ dir * 0.4
 	local top = workspace:Raycast(probe, Vector3.new(0, -(settings.MaxHeight + 0.5), 0), params)
-	if not top or top.Normal.Y < 0.7 then
+	if not top or top.Normal.Y < 0.7 or top.Instance:GetAttribute("SlideBlocker") then
 		return nil
 	end
 	local topY = top.Position.Y

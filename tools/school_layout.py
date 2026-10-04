@@ -14,7 +14,8 @@ MAIN FLOOR: a long rectangle (north-south longer). A classroom in the middle wit
   - East hallway: a tipped lunch table in the middle of the hall ramps up toward a hole in the
     floor. Off the ramp, steer to either wall and wall-run across (south to north only). Miss and you fall into
     the basement.
-  - South hallway: plain, closed off.
+  - South hallway: a collapsed ceiling: slide under the low slab (or squeeze past by the wall),
+    or mantle on and run up to a section hanging at 10, then drop off; rubble to vault.
   - Classroom: doors on the west (north end) and east (south end). A support column in the
     middle, an HVAC duct catwalk at 12 high (climb a riser at either end), and fallen bookshelves
     to vault across the diagonal between the doors.
@@ -66,7 +67,8 @@ COLORS = {
     "light": (235, 235, 220), "light_warm": (240, 170, 100),
     "column": (150, 140, 120), "duct": (165, 172, 182), "duct_dark": (120, 126, 136),
     "shelf": (120, 80, 50), "books_a": (190, 60, 60), "books_b": (60, 120, 190),
-    "books_c": (220, 180, 60), "door": (150, 100, 60),
+    "books_c": (220, 180, 60), "debris": (128, 128, 134), "rubble": (150, 145, 135),
+    "hole": (25, 25, 30), "chain": (90, 92, 98), "door": (150, 100, 60),
 }
 
 IDENTITY = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
@@ -76,6 +78,12 @@ def rot_x(deg):
     """Turns about X: a part's -Z end rises for positive angles."""
     c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
     return [[1, 0, 0], [0, c, -s], [0, s, c]]
+
+
+def rot_z(deg):
+    """Turns about Z: a part's +X end rises for positive angles."""
+    c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
+    return [[c, -s, 0], [s, c, 0], [0, 0, 1]]
 
 
 def rot_y(deg):
@@ -252,9 +260,8 @@ def main_floor(m):
             CanCollide=False, CanQuery=False)
     m.block(h, "GrateFrame", gx0 - 0.5, gx1 + 0.5, 0, 0.08, gz1, gz1 + 0.5, "hazard",
             CanCollide=False, CanQuery=False)
-    # South: a couple of benches to vault (closed-off plain hallway otherwise).
-    for x in (-12, 14):
-        m.block(h, "Bench", x - 4, x + 4, 0, 2.4, IN_Z - 3, IN_Z - 1, "desk")
+    # South: a collapsed ceiling section.
+    ceiling_collapse(m, "Collapse")
 
     # Lights.
     for z in range(-56, 57, 16):
@@ -266,6 +273,53 @@ def main_floor(m):
     for x in (-13, 13):
         for z in (-30, 0, 30):
             m.light("Lights", x, HEIGHT - 0.2, z, size=(8, 0.2, 1), reach=26)
+
+
+def ceiling_collapse(m, g):
+    """The middle of the south hallway, where the ceiling came down:
+      - a slab hanging at 4.2 high across most of the hall: slide or crouch under it (an
+        invisible SlideBlocker stops standing players, like the test map's slide bar), or squeeze
+        through the 3-wide gap left along the outer wall;
+      - mantle onto it (top 5.2), run up a broken panel to a section hanging on chains at 10,
+        and drop off the far end (landing roll);
+      - rubble at vault height on the west approach."""
+    z0, z1 = ROOM_Z, IN_Z - 3  # 50 to 63: leaves a 3-wide gap by the outer wall
+    gap_y = 4.2
+    # The low slab and the blocker under it.
+    m.block(g, "FallenSlab", -6, 6, gap_y, gap_y + 1, z0, z1, "debris")
+    m.block(g, "StandBlocker", -6, 6, 0, gap_y, z0, z1, (255, 255, 255), Transparency=1,
+            CastShadow=False, attributes={"SlideBlocker": True})
+    # The broken panel rising east from the slab's top to the hanging section.
+    low = (6, gap_y + 1)
+    high_x, high_top = 16, 10
+    run, rise = high_x - low[0], high_top - low[1]
+    angle = math.degrees(math.atan2(rise, run))
+    length = math.hypot(run, rise)
+    a = math.radians(angle)
+    cx = (low[0] + high_x) / 2 + 0.5 * math.sin(a)
+    cy = (low[1] + high_top) / 2 - 0.5 * math.cos(a)
+    m.part(g, "BrokenPanel", (length, 1, z1 - z0 - 2), (cx, cy, (z0 + z1) / 2), "debris", rot_z(angle))
+    # The hanging section at 10, on chains, with a drop off the east end.
+    m.block(g, "HangingSection", high_x, 24, high_top - 1, high_top, z0 + 1, z1 - 1, "debris")
+    for x in (high_x + 1, 23):
+        for z in (z0 + 2, z1 - 2):
+            m.block(g, "Chain", x - 0.15, x + 0.15, high_top, HEIGHT, z - 0.15, z + 0.15, "chain",
+                    CanCollide=False, CanQuery=False)
+    for x in (-5, 5):  # chains holding up the low slab
+        for z in (z0 + 2, z1 - 2):
+            m.block(g, "Chain", x - 0.15, x + 0.15, gap_y + 1, HEIGHT, z - 0.15, z + 0.15, "chain",
+                    CanCollide=False, CanQuery=False)
+    # The break in the ceiling above (dark), and loose tiles hanging from it.
+    m.block(g, "CeilingBreak", -8, 26, HEIGHT - 0.05, HEIGHT, z0, IN_Z - 1, "hole",
+            CanCollide=False, CanQuery=False, CastShadow=False)
+    for x, z, ang in ((-3, 58, 25), (10, 54, -30), (20, 60, 20)):
+        m.part(g, "LooseTile", (4, 0.3, 4), (x, HEIGHT - 2, z), "ceiling", rot_z(ang),
+               CanCollide=False, CanQuery=False)
+    # Rubble on the west approach: vault-height chunks with room between them.
+    for x, z, size in ((-11, 53, (3, 2.6, 3)), (-15, 59, (4, 3.2, 3)), (-20, 54, (3, 2.4, 2.5)),
+                       (-10, 61, (2.5, 2, 2.5))):
+        m.block(g, "Rubble", x - size[0] / 2, x + size[0] / 2, 0, size[1], z - size[2] / 2,
+                z + size[2] / 2, "rubble")
 
 
 DUCT_X = 9  # the catwalk runs north-south east of the column
@@ -382,7 +436,7 @@ def build():
     main_floor(m)
     basement(m)
     # Spawns around the hallways and one in a classroom aisle (none next to the hole or grate).
-    for x, z in ((-26, -58), (36, -58), (-36, -30), (-36, 6), (36, 32), (-16, 58), (16, 58),
+    for x, z in ((-26, -58), (36, -58), (-36, -30), (-36, 6), (36, 32), (-30, 58), (34, 58),
                  (4.5, 7)):
         m.spawn(x, z)
     return m
