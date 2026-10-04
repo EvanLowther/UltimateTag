@@ -1,0 +1,165 @@
+--!strict
+-- Reward popups (from the Reward remote, sent by server/Progression):
+--   Earned:  "+15 coins  +20 XP  Round survived" floating up by the coin counter.
+--   Grant:   a card listing what a quest, streak, achievement or prize gave you.
+--   LevelUp: a big "LEVEL 5!" banner with what came with it.
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+
+local Shared = ReplicatedStorage:WaitForChild("Shared")
+local Catalog = require(Shared:WaitForChild("Catalog"))
+local Ui = require(script.Parent.Ui)
+
+local Popups = {}
+
+local gui: ScreenGui
+local floatAnchor: Frame
+local queue: { () -> () } = {} -- big popups wait their turn
+local showing = false
+
+local REASONS = {
+	GamePlayed = "Game played",
+	RoundSurvived = "Round survived",
+	Tag = "Tag!",
+	Win = "Victory!",
+	PlayMinute = "Playing",
+}
+
+-- "+15 coins  +20 XP" with coloured parts.
+local function amounts(coins: number?, xp: number?): string
+	local parts = {}
+	if coins and coins > 0 then
+		table.insert(parts, `<font color="#FFCD3C">+{Ui.number(coins)} coins</font>`)
+	end
+	if xp and xp > 0 then
+		table.insert(parts, `<font color="#5AC8FF">+{Ui.number(xp)} XP</font>`)
+	end
+	return table.concat(parts, "   ")
+end
+
+local function itemLines(ids: { string }?): { string }
+	local lines = {}
+	for _, id in ids or {} do
+		local item = Catalog.get(id)
+		if item then
+			local color = Catalog.Rarities[item.rarity].color:ToHex()
+			table.insert(lines, `<font color="#{color}">{item.name}</font> ({item.kind})`)
+		end
+	end
+	return lines
+end
+
+-- Small text that floats up from under the coin counter and fades.
+local function float(text: string)
+	local label = Ui.label(floatAnchor, text, 20)
+	Ui.outlined(label)
+	label.Size = UDim2.new(1, 0, 0, 26)
+	label.TextXAlignment = Enum.TextXAlignment.Left
+	label.Position = UDim2.fromOffset(0, 0)
+	local info = TweenInfo.new(2.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, 46), TextTransparency = 1 })
+		:Play()
+	local stroke = label:FindFirstChildOfClass("UIStroke")
+	if stroke then
+		TweenService:Create(stroke, info, { Transparency = 1 }):Play()
+	end
+	task.delay(2.3, function()
+		label:Destroy()
+	end)
+end
+
+-- Big popups one at a time.
+local function enqueue(show: () -> ())
+	table.insert(queue, show)
+	if showing then
+		return
+	end
+	showing = true
+	task.spawn(function()
+		while #queue > 0 do
+			table.remove(queue, 1)()
+		end
+		showing = false
+	end)
+end
+
+-- A centered card: title, lines, held for `seconds`. Yields while it shows.
+local function card(title: string, lines: { string }, color: Color3, seconds: number)
+	local frame = Ui.frame(gui, Ui.Colors.Panel, 18)
+	Ui.stroke(frame, color, 4)
+	frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	frame.Position = UDim2.fromScale(0.5, 0.38)
+	frame.Size = UDim2.fromOffset(380, 0)
+	frame.AutomaticSize = Enum.AutomaticSize.Y
+	Ui.padding(frame, 16)
+	local layout = Instance.new("UIListLayout")
+	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	layout.Padding = UDim.new(0, 6)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = frame
+	local heading = Ui.label(frame, title, 38, color, Ui.BigFont)
+	heading.Size = UDim2.new(1, 0, 0, 44)
+	Ui.outlined(heading, 3)
+	for i, line in lines do
+		local l = Ui.label(frame, line, 20)
+		l.LayoutOrder = i
+		l.Size = UDim2.new(1, 0, 0, 24)
+		l.TextWrapped = true
+	end
+	Ui.popIn(frame)
+	task.wait(seconds)
+	local fade = TweenInfo.new(0.25)
+	for _, child in frame:GetDescendants() do
+		if child:IsA("TextLabel") then
+			TweenService:Create(child, fade, { TextTransparency = 1 }):Play()
+		elseif child:IsA("UIStroke") then
+			TweenService:Create(child, fade, { Transparency = 1 }):Play()
+		end
+	end
+	TweenService:Create(frame, fade, { BackgroundTransparency = 1 }):Play()
+	task.wait(0.3)
+	frame:Destroy()
+end
+
+function Popups.show(payload: { [string]: any })
+	local kind = payload.Kind
+	if kind == "Earned" then
+		local reason = REASONS[payload.Reason] or payload.Reason or ""
+		float(`{amounts(payload.Coins, payload.XP)}  <font color="#DDDDDD">{reason}</font>`)
+	elseif kind == "LevelUp" then
+		enqueue(function()
+			local lines = { amounts(payload.Coins, nil) }
+			if payload.Crates and payload.Crates > 0 then
+				table.insert(lines, `<font color="#FF8C3C">+{payload.Crates} free crate</font>`)
+			end
+			for _, line in itemLines(payload.Items) do
+				table.insert(lines, `Unlocked: {line}`)
+			end
+			card(`LEVEL {payload.Level}!`, lines, Ui.Colors.XP, 2.6)
+		end)
+	elseif kind == "Grant" then
+		enqueue(function()
+			local lines = {}
+			local money = amounts(payload.Coins, payload.XP)
+			if money ~= "" then
+				table.insert(lines, money)
+			end
+			if payload.Crates and payload.Crates > 0 then
+				table.insert(lines, `<font color="#FF8C3C">+{payload.Crates} crate</font>`)
+			end
+			for _, line in itemLines(payload.Items) do
+				table.insert(lines, `New: {line}`)
+			end
+			if #lines > 0 then
+				card(payload.Reason or "Reward!", lines, Ui.Colors.Coin, 2.2)
+			end
+		end)
+	end
+end
+
+function Popups.start(screen: ScreenGui, anchor: Frame)
+	gui = screen
+	floatAnchor = anchor
+end
+
+return Popups

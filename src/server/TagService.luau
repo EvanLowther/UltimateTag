@@ -10,6 +10,7 @@ local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
 local Leaderstats = require(script.Parent.Leaderstats)
+local Progression = require(script.Parent.Progression)
 local Roles = require(script.Parent.Roles)
 
 local TagService = {}
@@ -31,6 +32,7 @@ local function tag(tagger: Player, tagged: Player)
 	Roles.set(tagged, "It")
 	Roles.freeze(tagged, Config.Tag.FreezeTime)
 	Leaderstats.add(tagger, "Tags", 1)
+	Progression.record(tagger, "Tag")
 	GameState.setStatus(`{tagger.DisplayName} tagged {tagged.DisplayName}!`)
 end
 

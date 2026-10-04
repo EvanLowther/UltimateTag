@@ -98,6 +98,7 @@ function PlayerData.defaults(): Profile
 		Quests = { Day = -1, Daily = {}, Week = -1, Weekly = {} },
 		Achievements = {},
 		Wheel = { LastSpin = 0 },
+		Crates = 0, -- free crates waiting to be opened
 		FirstWinDay = -1,
 		Migrated = false,
 	}

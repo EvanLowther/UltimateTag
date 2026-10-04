@@ -29,6 +29,14 @@ function ProgressTab.build(page: Instance, send: (string, ...any) -> ())
 		end
 	end)
 
+	Widgets.section(page, "XP")
+	local xp = Widgets.row(page)
+	for _, amount in { 50, 500, 5000 } do
+		Widgets.button(xp, `+{amount} XP`, function()
+			send("GiveXP", amount)
+		end)
+	end
+
 	Widgets.section(page, "Calendar")
 	local clock = Widgets.label(page, "")
 	local time = Widgets.row(page)

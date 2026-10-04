@@ -534,13 +534,46 @@ local Config = {
 
 	-- Progression: coins, XP, levels, cosmetics (server/Progression and friends).
 	Progression = {
-		-- What a brand new player has equipped (and owns).
+		-- What a brand new player has equipped (and owns). Never sold or found in crates.
 		DefaultEquipped = {
 			Trail = "trail_white",
 			TagEffect = "tag_classic",
 			Title = "title_rookie",
 			Victory = "victory_none",
 		},
+		-- What each event gives (Progression.record). Stat: the profile stat it counts toward.
+		-- Movement events (WallRun, Slide, Vault, Climb) only count during a live round.
+		Events = {
+			GamePlayed = { Stat = "GamesPlayed", Coins = 10, XP = 25 },
+			RoundSurvived = { Stat = "RoundsSurvived", Coins = 15, XP = 20 },
+			Tag = { Stat = "Tags", Coins = 3, XP = 5, PerRound = 10 }, -- rewards for at most PerRound tags a round
+			Win = { Coins = 100, XP = 150 }, -- the Wins stat is kept by WinsStore
+			GameLost = {}, -- ends your win streak
+			PlayMinute = { Stat = "PlayMinutes", Coins = 1, XP = 2 }, -- each minute in a live game
+			WallRun = { Stat = "WallRuns" },
+			Slide = { Stat = "Slides" },
+			Vault = { Stat = "Vaults" },
+			Climb = { Stat = "Climbs" },
+		},
+		FirstWinMultiplier = 2, -- the day's first win pays this many times the coins
+		StreakBonus = 25, -- extra coins per win in a row after the first (2nd win in a row +25, 3rd +50...)
+		StreakBonusCap = 5, -- ...up to this many steps
+		FriendXPBonus = 0.1, -- +10% XP while a friend is in the server
+		MoveCooldown = 0.4, -- seconds: movement events of one kind count at most this often
+		-- Levels: XP needed for the next level = LevelBase + LevelStep x (level - 1).
+		LevelBase = 100,
+		LevelStep = 50,
+		LevelCoins = 25, -- coins on every level up, plus LevelCoinsStep x the new level
+		LevelCoinsStep = 5,
+		CrateEvery = 5, -- a free crate every this many levels
+		-- Extra rewards at certain levels (cosmetics only you can earn).
+		LevelRewards = {
+			[5] = { Items = { "title_hallmonitor" } },
+			[10] = { Items = { "trail_honor" } },
+			[20] = { Items = { "victory_graduation" } },
+			[30] = { Items = { "title_valedictorian" } },
+			[50] = { Items = { "trail_prismatic" } },
+		} :: { [number]: { [string]: any } },
 	},
 
 	Avatar = {

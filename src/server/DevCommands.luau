@@ -5,7 +5,7 @@
 --              Respawn
 --   Maps:      ListMaps (replies "Maps"), PlayMap, NextMap, UnloadMap
 --   Movement:  SetTunable (only the values listed in Config.DevPanel.Tunables)
---   Progress:  GiveCoins, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
+--   Progress:  GiveCoins, GiveXP, ResetProfile, AdvanceTime (moves the game calendar: DayClock),
 --              ResetTime
 -- Results and refusals are shown to the developer with the Notify remote.
 local Players = game:GetService("Players")
@@ -19,6 +19,7 @@ local Remotes = require(Shared.Remotes)
 local GameLoop = require(script.Parent.GameLoop)
 local MapService = require(script.Parent.MapService)
 local PlayerData = require(script.Parent.PlayerData)
+local Progression = require(script.Parent.Progression)
 local Roles = require(script.Parent.Roles)
 
 local DevCommands = {}
@@ -192,6 +193,13 @@ handlers.GiveCoins = function(player, amount)
 		profile.Coins = math.max(0, profile.Coins + math.floor(amount))
 	end)
 	tell(player, `Coins {if amount >= 0 then "+" else ""}{math.floor(amount)}`)
+end
+
+handlers.GiveXP = function(player, amount)
+	if type(amount) ~= "number" or amount <= 0 or amount > 1e7 then
+		return
+	end
+	Progression.grant(player, { XP = math.floor(amount) }, "Dev XP")
 end
 
 handlers.ResetProfile = function(player)

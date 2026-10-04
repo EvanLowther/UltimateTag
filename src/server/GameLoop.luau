@@ -18,6 +18,7 @@ local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
 local MapService = require(script.Parent.MapService)
 local Participants = require(script.Parent.Participants)
+local Progression = require(script.Parent.Progression)
 local Roles = require(script.Parent.Roles)
 local Sandbox = require(script.Parent.Sandbox)
 local WinsStore = require(script.Parent.WinsStore)
@@ -118,6 +119,7 @@ end
 local function playRound(round: number, lastMap: string?): string?
 	local alive = Participants.alive()
 	GameState.setRound(round)
+	Progression.newRound()
 	local mapName = MapService.choose(#alive, lastMap)
 	if not mapName then
 		warn("[GameLoop] no maps to play on")
@@ -147,6 +149,12 @@ local function playRound(round: number, lastMap: string?): string?
 		Participants.eliminate(player)
 		Roles.set(player, nil)
 		sendToLobby(player)
+		Progression.record(player, "GameLost")
+	end
+	if #out > 0 then
+		for _, player in Participants.alive() do
+			Progression.record(player, "RoundSurvived")
+		end
 	end
 	GameState.setStatus(if #out > 0 then `Eliminated: {names(out)}` else "Nobody was eliminated")
 	countdown("Results", Config.Game.ResultsTime)
@@ -159,6 +167,9 @@ end
 
 local function playGame(players: { Player })
 	Participants.startGame(players)
+	for _, player in players do
+		Progression.record(player, "GamePlayed")
+	end
 	local round = 0
 	local lastMap: string? = nil
 	while #Participants.alive() >= 2 do
@@ -174,6 +185,7 @@ local function playGame(players: { Player })
 	local winner = alive[1]
 	if winner then
 		WinsStore.addWin(winner)
+		Progression.record(winner, "Win")
 		GameState.setStatus(`{winner.DisplayName} wins!`)
 		ReplicatedStorage:SetAttribute("Winner", winner.Name)
 	else

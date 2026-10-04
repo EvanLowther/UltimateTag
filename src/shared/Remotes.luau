@@ -9,12 +9,24 @@
 --                   a dev panel command and its arguments. Server -> client: replies (the map list).
 --   ProfileSync:    server -> one client: their saved profile (server/PlayerData). Client ->
 --                   server (no arguments): "send it again".
+--   Reward:         server -> one client: something was earned (a table: Kind = "Coins",
+--                   "LevelUp", "Items"...), for the popups in client/Menu.
+--   MoveDone:       client -> server: a move started ("WallRun", "Slide", "Vault", "Climb"), for
+--                   stats and quests. Only counted during a live round, and throttled.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
 
 local FOLDER = "Remotes"
-local NAMES = { "TagSwing", "TagSwingPlayed", "Notify", "DevCommand", "ProfileSync" }
+local NAMES = {
+	"TagSwing",
+	"TagSwingPlayed",
+	"Notify",
+	"DevCommand",
+	"ProfileSync",
+	"Reward",
+	"MoveDone",
+}
 
 -- Server only: creates the folder and every RemoteEvent.
 function Remotes.setup()
