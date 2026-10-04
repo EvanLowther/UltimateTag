@@ -2,17 +2,13 @@
 -- Jump at a ledge (Config.Mantle reach) and you grab it and pull yourself up automatically.
 -- Only grabs near the top of a jump or while falling, and only while you're moving toward the
 -- ledge, so normal jumps are untouched.
--- You stop at the top, unless you hit Mantle Boost: press jump inside the timing window
--- (Config.Mantle.BoostWindowStart/End, shown by MantleBoostUI) to launch up and over.
--- Pressing too early uses up your try for that climb. No sprint needed.
+-- You stop at the top. No sprint needed.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local Crouch = require(script.Parent.Crouch)
-local MantleBoostUI = require(script.Parent.MantleBoostUI)
 local MoveState = require(script.Parent.MoveState)
 
 local Mantle = {}
@@ -114,12 +110,8 @@ function Mantle.start()
 	local trackHumanoid: Humanoid? = nil
 	local track: AnimationTrack? = nil
 
-	local onJumpPressed: (() -> ())? = nil -- set while a climb is running
-
-	local function mantle(hum: Humanoid, root: BasePart, goal: Vector3, dir: Vector3)
+	local function mantle(hum: Humanoid, root: BasePart, goal: Vector3)
 		MoveState.busy = "Mantle"
-		local tried = false -- one boost attempt per climb
-		local boosted = false
 		local drive, release = MoveState.drive(root, false)
 
 		if trackHumanoid ~= hum or not track then
@@ -133,18 +125,6 @@ function Mantle.start()
 		-- Two steps: straight up the wall until level with the goal, then forward over the edge.
 		local upTarget = Vector3.new(root.Position.X, goal.Y + 0.2, root.Position.Z)
 		local elapsed = 0
-		MantleBoostUI.begin(settings.BoostWindowStart, settings.BoostWindowEnd)
-		onJumpPressed = function()
-			if tried then
-				return
-			end
-			tried = true
-			if elapsed >= settings.BoostWindowStart and elapsed <= settings.BoostWindowEnd then
-				boosted = true
-			else
-				MantleBoostUI.miss()
-			end
-		end
 		local connection: RBXScriptConnection
 		connection = RunService.Heartbeat:Connect(function(dt)
 			elapsed += dt
@@ -153,24 +133,11 @@ function Mantle.start()
 				connection:Disconnect()
 				release()
 				MoveState.busy = nil
-				onJumpPressed = nil
-				MantleBoostUI.hide()
 				lastEnd = os.clock()
 				if hum.Parent then
 					-- You stop at the top.
 					root.AssemblyLinearVelocity = Vector3.zero
 				end
-				return
-			end
-			-- Mantle Boost hit: launch up and over instead of stopping at the top.
-			if boosted then
-				connection:Disconnect()
-				release()
-				MoveState.busy = nil
-				onJumpPressed = nil
-				MantleBoostUI.success()
-				lastEnd = os.clock()
-				MoveState.launch(root, dir, settings.BoostForward, settings.BoostUp)
 				return
 			end
 			local target, timeLeft
@@ -197,9 +164,9 @@ function Mantle.start()
 		if root.AssemblyLinearVelocity.Y > settings.MaxRiseSpeed then
 			return
 		end
-		local goal, dir = findLedge(parts.character, hum, root)
+		local goal = findLedge(parts.character, hum, root)
 		if goal then
-			mantle(hum, root, goal, dir)
+			mantle(hum, root, goal)
 		end
 	end)
 
@@ -210,24 +177,13 @@ function Mantle.start()
 		if not parts or MoveState.busy then
 			return false
 		end
-		local goal, dir = findLedge(parts.character, parts.humanoid, parts.root, toward)
+		local goal = findLedge(parts.character, parts.humanoid, parts.root, toward)
 		if not goal then
 			return false
 		end
-		mantle(parts.humanoid, parts.root, goal, dir)
+		mantle(parts.humanoid, parts.root, goal)
 		return true
 	end
-
-	-- A fresh jump press during a climb is the boost attempt. (Not JumpRequest: that keeps
-	-- firing while jump is held, which would count as an instant early press.)
-	UserInputService.InputBegan:Connect(function(input, processed)
-		if processed or not onJumpPressed then
-			return
-		end
-		if input.KeyCode == Enum.KeyCode.Space or input.KeyCode == Enum.KeyCode.ButtonA then
-			(onJumpPressed :: () -> ())()
-		end
-	end)
 end
 
 return Mantle

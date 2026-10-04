@@ -7,7 +7,8 @@
 --            back or run out of grip to let go.
 --   WallRun: running alongside a wall. You run along it, rising a little then sinking, with
 --            the camera leaning away from the wall. Ends when the wall does or time runs out.
--- Jump during a climb or wall run to kick off the wall. Short walls are left to Mantle.
+-- Jump during a wall run to drop off it early, keeping your speed (no kick off the wall).
+-- Short walls are left to Mantle.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -116,14 +117,6 @@ function WallRun.start()
 		CameraKick.lean(0)
 	end
 
-	-- Kick off the wall: away from it and up, keeping `along` (your speed along the wall).
-	local function kickOff(parts: Parts, normal: Vector3, along: Vector3)
-		local out = normal * settings.JumpOut + along
-		parts.root.AssemblyLinearVelocity = Vector3.new(out.X, settings.JumpUp, out.Z)
-		MoveState.airVelocity = out
-		MoveState.launchTime = os.clock()
-	end
-
 	local function hang(parts: Parts, normal: Vector3)
 		MoveState.busy = "Hang"
 		MoveState.faceDirection = -normal
@@ -163,8 +156,7 @@ function WallRun.start()
 
 	-- Jump-up-and-hold climbing, like the reference video: a hop up the wall face, then you
 	-- cling to it. Jump while clinging to hop higher (up to MaxHops per wall). Reaching the top
-	-- turns into a ledge hang. Steer away and jump to kick off; hold back (or wait too long)
-	-- to let go.
+	-- turns into a ledge hang. Hold back (or run out of grip) to let go.
 	local function climb(parts: Parts, normal: Vector3)
 		MoveState.busy = "Climb"
 		MoveState.faceDirection = -normal
@@ -193,10 +185,8 @@ function WallRun.start()
 
 		onJump = function()
 			if hum.MoveDirection:Dot(normal) > 0.5 then
-				-- Steering away from the wall: kick off it.
-				connection:Disconnect()
-				leave(normal, release, track)
-				kickOff(parts, normal, Vector3.zero)
+				-- Steering away from the wall: let go (no kick off it).
+				letGo()
 			elseif
 				clinging
 				and hopsLeft > 0
@@ -289,9 +279,7 @@ function WallRun.start()
 			MoveState.airVelocity = along * speed -- keep the run's speed into the air
 		end
 		onJump = function()
-			connection:Disconnect()
-			leave(normal, release, track)
-			kickOff(parts, normal, along * speed * settings.KeepAlong)
+			finish() -- drop off the wall early, keeping the run's speed
 		end
 
 		connection = RunService.Heartbeat:Connect(function(dt)

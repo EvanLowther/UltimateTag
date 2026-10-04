@@ -16,9 +16,9 @@ MAIN FLOOR: a long rectangle (north-south longer). A classroom in the middle wit
     the basement.
   - South hallway: a collapsed ceiling: slide under the low slab (or squeeze past by the wall),
     or mantle on and run up to a section hanging at 10, then drop off; rubble to vault.
-  - Classroom: doors on the west (north end) and east (south end). A support column in the
-    middle, an HVAC duct catwalk at 12 high (climb a riser at either end), and fallen bookshelves
-    to vault across the diagonal between the doors.
+  - Classroom: doors on the west (north end) and east (south end). Two rows of tall bookshelves
+    cross it (wall-run faces, a high route on top), each with a vault gap (a fallen shelf) and a
+    gap under the duct; a support column in the middle; an HVAC duct catwalk at 11 (climb a riser).
 BASEMENT: exactly two openings.
   - East chamber under the hole: a steam updraft pad launches you back up through the hole,
     landing north of it.
@@ -134,6 +134,11 @@ class Map:
         return self.part(group, name, (x1 - x0, y1 - y0, z1 - z0),
                          ((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), color, **props)
 
+    def cylinder(self, group, name, length, diameter, pos, color, rows=None, **props):
+        """A cylinder; by default standing upright (its length is vertical)."""
+        return self.part(group, name, (length, diameter, diameter), pos, color,
+                         rows if rows is not None else rot_z(90), Shape="Cylinder", **props)
+
     def slab(self, group, name, rect, y0, y1, holes, color, **props):
         """A slab over rect (x0, x1, z0, z1) with rectangular holes cut out (grid split)."""
         x0, x1, z0, z1 = rect
@@ -233,9 +238,8 @@ def main_floor(m):
     for i, z in enumerate(range(-48, 48, 3)):
         m.block(h, "Locker", -IN_X, -IN_X + 2, 0, 9, z, z + 3,
                 "locker_a" if i % 2 == 0 else "locker_b")
-    # North: a puddle across the whole hallway (slip).
-    m.block(h, "Puddle", -14, 14, 0, 0.12, -IN_Z, -ROOM_Z, "puddle", Material="Glass",
-            Transparency=0.4, Reflectance=0.1, attributes={"Slip": 1.6})
+    # North: a round puddle (slip) that leaves room to go round it, and the janitor's bucket.
+    puddle(m, h, -4, -58)
     # East: the tipped lunch table in the middle of the hallway, rising north to the hole's south
     # edge (4 high). Off the end, steer toward either wall to wall-run across.
     hx0, hx1, hz0, hz1 = HOLE
@@ -322,10 +326,41 @@ def ceiling_collapse(m, g):
                 z + size[2] / 2, "rubble")
 
 
+def puddle(m, g, x, z):
+    """A roundish puddle (three overlapping discs) with Slip, about 11 across in the 16-wide
+    hallway, and a yellow mop bucket with a mop and a wet-floor sign next to it."""
+    wet = {"Material": "Glass", "Transparency": 0.35, "Reflectance": 0.15, "CanCollide": False,
+           "attributes": {"Slip": 1.6}}
+    for dx, dz, size in ((0, 0, 9), (3.2, 1.5, 5.5), (-3.4, -1.2, 4.5)):
+        m.cylinder(g, "Puddle", 0.12, size, (x + dx, 0.06, z + dz), "puddle", **wet)
+    # Mop bucket (vault-sized, it's in the way if you hug the wall).
+    bx, bz = x + 9, z - 4
+    m.cylinder(g, "MopBucket", 2.4, 2.6, (bx, 1.2, bz), "hazard")
+    m.cylinder(g, "BucketWater", 0.1, 2.2, (bx, 2.42, bz), (110, 130, 120), CanCollide=False,
+               CanQuery=False)
+    m.block(g, "Wringer", bx - 1.4, bx - 0.2, 2.4, 3.4, bz - 0.9, bz + 0.9, "grate",
+            CanCollide=False, CanQuery=False)
+    for dx, dz in ((-1.1, -1.1), (1.1, -1.1), (-1.1, 1.1), (1.1, 1.1)):  # casters
+        m.cylinder(g, "Caster", 0.4, 0.5, (bx + dx, 0.2, bz + dz), "grate", rot_z(0),
+                   CanCollide=False, CanQuery=False)
+    # The mop leaning out of the bucket.
+    m.cylinder(g, "MopHandle", 7, 0.25, (bx + 0.6, 4.6, bz + 0.3), (200, 170, 120),
+               rot_z(75), CanCollide=False, CanQuery=False)
+    m.block(g, "MopHead", bx - 0.4, bx + 1.0, 1.4, 2.6, bz - 0.4, bz + 1.0, (220, 215, 200),
+            CanCollide=False, CanQuery=False)
+    # Wet floor sign: an A-frame, yellow.
+    sx, sz = x - 7, z + 2
+    for tilt in (14, -14):
+        m.part(g, "WetFloorSign", (0.2, 3.2, 2), (sx + (0.4 if tilt > 0 else -0.4), 1.55, sz),
+               "hazard", rot_z(tilt), CanCollide=False, CanQuery=False)
+    m.block(g, "SignStripe", sx - 0.1, sx + 0.1, 1.2, 1.8, sz - 1.05, sz + 1.05, (30, 30, 30),
+            CanCollide=False, CanQuery=False)
+
+
 DUCT_X = 9  # the catwalk runs north-south east of the column
 DUCT_TOP = 11  # walk on top: out of reach of a tag from the floor, 7 below the ceiling (room
 # to stand, and the mantle's headroom check passes)
-DUCT_W = 4
+DUCT_W = 6
 DUCT_Z = 42  # catwalk from -DUCT_Z to DUCT_Z, with a riser down to the floor at each end
 
 
@@ -354,18 +389,54 @@ def classroom_obstacles(m, g, inner_x, inner_z):
         m.block(g, "RiserGrille", x0 - 0.1, x1 + 0.1, 3, 6, z0 - 0.1, z1 + 0.1, "duct_dark",
                 CanCollide=False, CanQuery=False)
 
-    # Fallen bookshelves: on their backs, 3.5 tall and 3 deep (a thin vault), broken lines across
-    # the room at angles, with gaps you can walk round.
-    shelves = (  # center x, center z, length, angle
-        (-15, -20, 14, 20), (-4, -14, 10, -15), (-17, 8, 12, -30), (15, -26, 12, 35),
-        (-6, 24, 14, 10), (17, 16, 12, -20), (-1, 35, 10, 40),
+    # Two rows of tall bookshelves cross the room (east-west), splitting it into three zones.
+    # Their long faces are wall-run walls; their tops (9) are a mantle-up high route. Each row has
+    # two gaps: one where a shelf has fallen into it (vault it) and one under the duct. Getting
+    # from one door to the other means picking a gap in each row.
+    rows = (
+        # row z, standing segments (x0, x1), vault gaps (x0, x1, fallen shelf height)
+        (-18, ((-inner_x, -17), (-11, DUCT_X - DUCT_W / 2 - 1), (DUCT_X + DUCT_W / 2 + 1, inner_x)),
+         ((-17, -11, 3.2),)),
+        (18, ((-inner_x, -21), (-15, DUCT_X - DUCT_W / 2 - 1), (DUCT_X + DUCT_W / 2 + 1, inner_x)),
+         ((-21, -15, 3.2), (DUCT_X - DUCT_W / 2 - 1, DUCT_X + DUCT_W / 2 + 1, 2.2))),
     )
     books = ("books_a", "books_b", "books_c")
-    for i, (x, z, length, angle) in enumerate(shelves):
-        rows = rot_y(angle)
-        m.part(g, "FallenShelf", (length, 3.5, 3), (x, 1.75, z), "shelf", rows)
-        m.part(g, "Books", (length - 1.5, 0.6, 2), (x, 3.75, z), books[i % 3], rows,
-               CanCollide=False, CanQuery=False)
+    for z, segments, gaps in rows:
+        for k, (x0, x1) in enumerate(segments):
+            bookshelf_row(m, g, x0, x1, z, books, k)
+        for x0, x1, height in gaps:
+            # A shelf fallen across the gap (low enough to vault; the one under the duct is
+            # lower still so the vault clears the duct).
+            m.block(g, "FallenShelf", x0 + 0.3, x1 - 0.3, 0, height, z - 1.5, z + 1.5, "shelf")
+            m.block(g, "SpilledBooks", x0 + 1, x1 - 1, height, height + 0.4, z - 1, z + 1,
+                    books[int(abs(x0)) % 3], CanCollide=False, CanQuery=False)
+            for i, dx in enumerate((-2.2, 0.8, 2.6)):  # books on the floor beside it
+                m.part(g, "Book", (1.2, 0.3, 0.9), ((x0 + x1) / 2 + dx, 0.15, z + 2.6 + i * 0.4),
+                       books[i], rot_y(25 * i - 20), CanCollide=False, CanQuery=False)
+
+
+SHELF_HEIGHT = 9
+SHELF_DEPTH = 2.5
+
+
+def bookshelf_row(m, g, x0, x1, z, books, k):
+    """Standing bookshelves from x0 to x1: a solid back and frame (the wall-run face), shelves of
+    coloured book spines on both faces (decoration)."""
+    m.block(g, "Bookshelf", x0, x1, 0, SHELF_HEIGHT, z - SHELF_DEPTH / 2, z + SHELF_DEPTH / 2,
+            "shelf")
+    for side in (-1, 1):
+        face = z + side * (SHELF_DEPTH / 2 + 0.05)
+        for level, y in enumerate((1.2, 3.6, 6.0)):
+            # Book spines: a few coloured runs per shelf level, with small gaps.
+            x = x0 + 0.6
+            i = level + k
+            while x < x1 - 1.2:
+                width = min(1.5 + (i * 7 % 5) * 0.6, x1 - 0.6 - x)
+                height = 1.4 + (i * 3 % 4) * 0.15
+                m.block(g, "Books", x, x + width, y, y + height, face - 0.05, face + 0.05,
+                        books[i % 3], CanCollide=False, CanQuery=False)
+                x += width + 0.3
+                i += 1
 
 
 def basement(m):

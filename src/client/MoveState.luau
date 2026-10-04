@@ -9,7 +9,6 @@
 --   headroom():  studs between the top of your head and whatever is above it (ceilings), so
 --                moves that drive you upward stop instead of pushing you into the roof.
 --   drive():     a LinearVelocity that takes over the character's velocity during a move.
---   launch():    throws the character up and out (vault and mantle launches).
 -- Moves keep their own small Heartbeat that only runs while they need it (no central loop).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -27,7 +26,7 @@ local MoveState = {
 	-- landing keep your air speed before ground friction eats it.
 	landVelocity = nil :: Vector3?,
 	landTime = -math.huge,
-	launchTime = -math.huge, -- when the last launch (vault or mantle) happened
+	launchTime = -math.huge, -- when the last launch (a launch pad) happened
 	wallSide = "Left", -- during a wall run: which side of your body the wall is on
 	tagTime = -math.huge, -- when you last swung to tag (the first-person arm jabs)
 	-- A move can set this to point the body somewhere other than the camera (FaceCamera uses
@@ -66,15 +65,6 @@ function MoveState.headroom(parts: Parts, reach: number): number
 	params.RespectCanCollide = true
 	local hit = workspace:Raycast(parts.root.Position, Vector3.new(0, head + reach, 0), params)
 	return if hit then math.max(hit.Distance - head, 0) else math.huge
-end
-
--- Throws the character along the flat direction `dir` at `forward` studs/s and upward at `up`
--- studs/s. Air strafing carries the sideways speed from there. Used by vault and mantle.
-function MoveState.launch(root: BasePart, dir: Vector3, forward: number, up: number)
-	local out = dir * forward
-	root.AssemblyLinearVelocity = Vector3.new(out.X, up, out.Z)
-	MoveState.airVelocity = out
-	MoveState.launchTime = os.clock()
 end
 
 -- The sideways part of a vector (Y set to 0).

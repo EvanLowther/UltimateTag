@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.32.1",
+	Version = "0.33.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -201,7 +201,7 @@ local Config = {
 	WallRun = {
 		-- Jump at a wall while sprinting (or moving fast). Heading straight at it: you hop up it
 		-- and cling, jump to hop higher, hang at the top and climb over. Running alongside it: you run along it.
-		-- Jump during either to kick off the wall.
+		-- Jump during a wall run to drop off it early (no kick off the wall).
 		Reach = 2.2, -- studs from your body (ahead, beside or diagonally) that counts as touching a wall
 		ClimbAngle = 35, -- heading within this many degrees of straight at the wall = climb;
 		-- anything else (beside or glancing) = wall run, unless you're moving away from the wall
@@ -220,9 +220,6 @@ local Config = {
 		RunTime = 1.6, -- longest wall run in seconds
 		RunLift = 8, -- studs/s upward at the start of a wall run
 		RunSink = 6, -- studs/s downward by the end of a wall run
-		JumpOut = 28, -- kicking off the wall: studs/s away from it
-		JumpUp = 40, -- kicking off the wall: studs/s up
-		KeepAlong = 0.9, -- kicking off a wall run: fraction of your run speed you keep
 		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
 		RunGap = 1.3, -- studs from your body's center to the wall during a wall run (feet on the wall)
 		CeilingStop = 0.4, -- studs below a ceiling where climb hops and wall-run lift stop
@@ -359,12 +356,6 @@ local Config = {
 		OverTime = 0.15, -- seconds to climb over the edge
 		Cooldown = 0.25, -- seconds before you can mantle again
 		MaxRiseSpeed = 8, -- only grab once your jump has nearly peaked (rising slower than this)
-		-- Mantle Boost: press jump inside this window (seconds after the climb starts) to launch
-		-- up and over. Too early and you just climb. An on-screen indicator shows the timing.
-		BoostWindowStart = 0.14,
-		BoostWindowEnd = 0.3,
-		BoostForward = 68, -- studs/s forward at the boost (about 38 studs of flight)
-		BoostUp = 55, -- studs/s upward at the boost
 		Poses = {
 			Hang = { -- arms up holding the edge
 				RightUpperArm = Vector3.new(170, 0, 10),
@@ -554,8 +545,6 @@ local Config = {
 		Text = Color3.fromRGB(255, 255, 255),
 		Winner = Color3.fromRGB(230, 180, 30), -- YOU WIN! banner (gold)
 		Eliminated = Color3.fromRGB(90, 90, 96), -- ELIMINATED banner (gray)
-		BoostReady = Color3.fromRGB(40, 210, 210), -- mantle boost window open (cyan)
-		BoostMissed = Color3.fromRGB(120, 120, 120), -- mantle boost missed
 	},
 
 	Ui = {
@@ -669,17 +658,11 @@ local Config = {
 			{ "WallRun", "RunSpeed", 10, 60, 1 },
 			{ "WallRun", "RunTime", 0.3, 4, 0.05 },
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
-			{ "WallRun", "JumpOut", 0, 80, 1 },
-			{ "WallRun", "JumpUp", 0, 80, 1 },
 			{ "Vault", "MinHeight", 0.2, 4, 0.1 },
 			{ "Vault", "MaxHeight", 2, 8, 0.1 },
 			{ "Vault", "MaxDepth", 1, 10, 0.1 },
 			{ "Mantle", "Reach", 1, 5, 0.1 },
 			{ "Mantle", "UpTime", 0.05, 1, 0.01 },
-			{ "Mantle", "BoostWindowStart", 0, 0.6, 0.01 },
-			{ "Mantle", "BoostWindowEnd", 0.05, 0.8, 0.01 },
-			{ "Mantle", "BoostForward", 0, 150, 1 },
-			{ "Mantle", "BoostUp", 0, 120, 1 },
 			{ "LandingRoll", "MinFallSpeed", 20, 120, 1 },
 			{ "LandingRoll", "KeepSpeed", 0.5, 1.2, 0.01 },
 			{ "Tag", "Range", 2, 20, 0.5 },
