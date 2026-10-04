@@ -2,7 +2,22 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.25.0",
+	Version = "0.26.0",
+
+	Game = {
+		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
+		-- "Sandbox": free play on the test map, one It, nothing ends (for testing movement).
+		Mode = "Elimination",
+		MinPlayers = 2, -- players needed in the lobby to start a game
+		StudioMinPlayers = 2, -- the same when testing in Studio (use Test > Clients and Servers)
+		LobbyCountdown = 15, -- seconds from having enough players to the game starting
+		IntroTime = 5, -- seconds on a new map before the round timer starts
+		ItHeadStart = 3, -- seconds the Its are frozen at the start of a round
+		RoundTime = 60, -- seconds per round
+		ResultsTime = 5, -- seconds to show who was eliminated
+		VictoryTime = 8, -- seconds to show the winner before going back to the lobby
+		EliminateFraction = 0.45, -- share of the players still in who start a round as It (and lose it)
+	},
 
 	Tag = {
 		-- It left-clicks to swing; a swing tags the nearest Runner within Range.

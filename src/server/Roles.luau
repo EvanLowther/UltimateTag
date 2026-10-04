@@ -19,6 +19,7 @@ function Roles.get(player: Player): Role?
 	return player:GetAttribute("Role") :: Role?
 end
 
+-- The first It found (the sandbox only ever has one).
 function Roles.getIt(): Player?
 	for _, player in Players:GetPlayers() do
 		if Roles.get(player) == "It" then
@@ -26,6 +27,17 @@ function Roles.getIt(): Player?
 		end
 	end
 	return nil
+end
+
+-- Every player who is It right now (a game round can have several).
+function Roles.getIts(): { Player }
+	local its = {}
+	for _, player in Players:GetPlayers() do
+		if Roles.get(player) == "It" then
+			table.insert(its, player)
+		end
+	end
+	return its
 end
 
 function Roles.isFrozen(player: Player): boolean
