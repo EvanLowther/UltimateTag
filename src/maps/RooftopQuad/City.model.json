@@ -1,0 +1,8908 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Street",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     900,
+     1,
+     900
+    ],
+    "Color": [
+     0.094,
+     0.102,
+     0.133
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       -0.5,
+       0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanQuery": false
+   }
+  },
+  {
+   "name": "StreetLine",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     0.1,
+     900
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -5.0,
+       0.06,
+       0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StreetLine2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     900,
+     0.1,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       0.06,
+       -5.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StreetLine3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     0.1,
+     900
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       5.0,
+       0.06,
+       0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StreetLine4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     900,
+     0.1,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       0.06,
+       5.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.321,
+     81.59,
+     38.321
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       168.635,
+       40.795,
+       -2.971
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.921,
+     0.8,
+     38.921
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       168.635,
+       79.59,
+       -2.971
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.721,
+     1.6,
+     38.721
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       168.635,
+       20.327,
+       -2.971
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.721,
+     1.6,
+     38.721
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       168.635,
+       47.98,
+       -2.971
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.721,
+     1.6,
+     38.721
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       168.635,
+       66.48,
+       -2.971
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.2,
+     108.506,
+     33.2
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       155.31,
+       54.253,
+       17.825
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.8,
+     0.8,
+     33.8
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       155.31,
+       106.506,
+       17.825
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.6,
+     1.6,
+     33.6
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       155.31,
+       50.45,
+       17.825
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.6,
+     1.6,
+     33.6
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       155.31,
+       84.047,
+       17.825
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.6,
+     1.6,
+     33.6
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       155.31,
+       25.338,
+       17.825
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.85,
+     162.336,
+     44.85
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       250.638,
+       81.168,
+       66.118
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     45.45,
+     0.8,
+     45.45
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       250.638,
+       160.336,
+       66.118
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     45.25,
+     1.6,
+     45.25
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       250.638,
+       21.81,
+       66.118
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     45.25,
+     1.6,
+     45.25
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       250.638,
+       45.363,
+       66.118
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.221,
+     156.51,
+     33.221
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       149.974,
+       78.255,
+       69.52
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.821,
+     0.8,
+     33.821
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       149.974,
+       154.51,
+       69.52
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.621,
+     1.6,
+     33.621
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       149.974,
+       55.568,
+       69.52
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.621,
+     1.6,
+     33.621
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       149.974,
+       122.329,
+       69.52
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.621,
+     1.6,
+     33.621
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       149.974,
+       38.767,
+       69.52
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.193,
+     157.639,
+     32.193
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       218.738,
+       78.82,
+       143.11
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.793,
+     0.8,
+     32.793
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       218.738,
+       155.639,
+       143.11
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.593,
+     1.6,
+     32.593
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       218.738,
+       89.857,
+       143.11
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     35.698,
+     194.357,
+     35.698
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       175.248,
+       97.178,
+       155.543
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     36.298,
+     0.8,
+     36.298
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       175.248,
+       192.357,
+       155.543
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     36.098,
+     1.6,
+     36.098
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       175.248,
+       114.169,
+       155.543
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     36.098,
+     1.6,
+     36.098
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       175.248,
+       91.75,
+       155.543
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.378,
+     109.055,
+     39.378
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       194.884,
+       54.528,
+       216.013
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.978,
+     0.8,
+     39.978
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       194.884,
+       107.055,
+       216.013
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.778,
+     1.6,
+     39.778
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       194.884,
+       40.238,
+       216.013
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.778,
+     1.6,
+     39.778
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       194.884,
+       56.617,
+       216.013
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.778,
+     1.6,
+     39.778
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       194.884,
+       43.871,
+       216.013
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.61,
+     151.909,
+     25.61
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       139.342,
+       75.955,
+       214.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.21,
+     0.8,
+     26.21
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       139.342,
+       149.909,
+       214.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.01,
+     1.6,
+     26.01
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       139.342,
+       111.088,
+       214.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.863,
+     176.915,
+     24.863
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       104.064,
+       88.457,
+       208.361
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.463,
+     0.8,
+     25.463
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       104.064,
+       174.915,
+       208.361
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.263,
+     1.6,
+     25.263
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       104.064,
+       102.051,
+       208.361
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.263,
+     1.6,
+     25.263
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       104.064,
+       147.998,
+       208.361
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.263,
+     1.6,
+     25.263
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       104.064,
+       62.663,
+       208.361
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     36.758,
+     142.993,
+     36.758
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.506,
+       71.496,
+       244.03
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.358,
+     0.8,
+     37.358
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.506,
+       140.993,
+       244.03
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.158,
+     1.6,
+     37.158
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.506,
+       126.466,
+       244.03
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.335,
+     182.239,
+     25.335
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.565,
+       91.119,
+       263.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.935,
+     0.8,
+     25.935
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.565,
+       180.239,
+       263.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.735,
+     1.6,
+     25.735
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.565,
+       105.876,
+       263.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.735,
+     1.6,
+     25.735
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.565,
+       122.117,
+       263.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.735,
+     1.6,
+     25.735
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.565,
+       85.072,
+       263.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     31.634,
+     220.504,
+     31.634
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.683,
+       110.252,
+       308.465
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.234,
+     0.8,
+     32.234
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.683,
+       218.504,
+       308.465
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.034,
+     1.6,
+     32.034
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.683,
+       47.854,
+       308.465
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.034,
+     1.6,
+     32.034
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.683,
+       37.893,
+       308.465
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.845,
+     109.618,
+     26.845
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.177,
+       54.809,
+       284.573
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.445,
+     0.8,
+     27.445
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.177,
+       107.618,
+       284.573
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.245,
+     1.6,
+     27.245
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.177,
+       92.579,
+       284.573
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.245,
+     1.6,
+     27.245
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.177,
+       57.014,
+       284.573
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.112,
+     91.908,
+     30.112
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -53.985,
+       45.954,
+       209.468
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.712,
+     0.8,
+     30.712
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -53.985,
+       89.908,
+       209.468
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.512,
+     1.6,
+     30.512
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -53.985,
+       72.808,
+       209.468
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.512,
+     1.6,
+     30.512
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -53.985,
+       33.629,
+       209.468
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     43.452,
+     223.237,
+     43.452
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84.869,
+       111.618,
+       190.081
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.052,
+     0.8,
+     44.052
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84.869,
+       221.237,
+       190.081
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     43.852,
+     1.6,
+     43.852
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84.869,
+       31.451,
+       190.081
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.265,
+     202.975,
+     24.265
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -135.471,
+       101.487,
+       227.893
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.865,
+     0.8,
+     24.865
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -135.471,
+       200.975,
+       227.893
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.665,
+     1.6,
+     24.665
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -135.471,
+       61.762,
+       227.893
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.124,
+     160.615,
+     32.124
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -135.404,
+       80.307,
+       172.887
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.724,
+     0.8,
+     32.724
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -135.404,
+       158.615,
+       172.887
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.524,
+     1.6,
+     32.524
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -135.404,
+       108.641,
+       172.887
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.876,
+     78.639,
+     38.876
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -194.747,
+       39.319,
+       168.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.476,
+     0.8,
+     39.476
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -194.747,
+       76.639,
+       168.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.276,
+     1.6,
+     39.276
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -194.747,
+       57.797,
+       168.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.276,
+     1.6,
+     39.276
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -194.747,
+       36.047,
+       168.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows37",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.276,
+     1.6,
+     39.276
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -194.747,
+       36.401,
+       168.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.369,
+     80.776,
+     25.369
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -213.404,
+       40.388,
+       149.421
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.969,
+     0.8,
+     25.969
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -213.404,
+       78.776,
+       149.421
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.769,
+     1.6,
+     25.769
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -213.404,
+       39.576,
+       149.421
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.252,
+     160.685,
+     26.252
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.879,
+       80.343,
+       114.508
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.852,
+     0.8,
+     26.852
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.879,
+       158.685,
+       114.508
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows39",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.652,
+     1.6,
+     26.652
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.879,
+       28.767,
+       114.508
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.652,
+     1.6,
+     26.652
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.879,
+       64.337,
+       114.508
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.652,
+     1.6,
+     26.652
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.879,
+       18.46,
+       114.508
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.268,
+     110.361,
+     27.268
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -248.81,
+       55.181,
+       63.046
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.868,
+     0.8,
+     27.868
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -248.81,
+       108.361,
+       63.046
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.668,
+     1.6,
+     27.668
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -248.81,
+       66.411,
+       63.046
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.668,
+     1.6,
+     27.668
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -248.81,
+       55.474,
+       63.046
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     45.512,
+     146.863,
+     45.512
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -228.92,
+       73.432,
+       41.956
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     46.112,
+     0.8,
+     46.112
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -228.92,
+       144.863,
+       41.956
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows44",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     45.912,
+     1.6,
+     45.912
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -228.92,
+       25.466,
+       41.956
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows45",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     45.912,
+     1.6,
+     45.912
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -228.92,
+       27.453,
+       41.956
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42.235,
+     95.83,
+     42.235
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -190.28,
+       47.915,
+       2.995
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42.835,
+     0.8,
+     42.835
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -190.28,
+       93.83,
+       2.995
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows46",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42.635,
+     1.6,
+     42.635
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -190.28,
+       29.535,
+       2.995
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.181,
+     216.263,
+     39.181
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -205.055,
+       108.132,
+       -39.011
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.781,
+     0.8,
+     39.781
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -205.055,
+       214.263,
+       -39.011
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows47",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.581,
+     1.6,
+     39.581
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -205.055,
+       72.014,
+       -39.011
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows48",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.581,
+     1.6,
+     39.581
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -205.055,
+       137.966,
+       -39.011
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows49",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.581,
+     1.6,
+     39.581
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -205.055,
+       32.407,
+       -39.011
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     43.982,
+     126.911,
+     43.982
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.377,
+       63.456,
+       -75.055
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.582,
+     0.8,
+     44.582
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.377,
+       124.911,
+       -75.055
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows50",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.382,
+     1.6,
+     44.382
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -226.377,
+       69.277,
+       -75.055
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.907,
+     199.842,
+     28.907
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -181.904,
+       99.921,
+       -89.288
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.507,
+     0.8,
+     29.507
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -181.904,
+       197.842,
+       -89.288
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows51",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.307,
+     1.6,
+     29.307
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -181.904,
+       155.936,
+       -89.288
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.988,
+     152.822,
+     28.988
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -231.088,
+       76.411,
+       -159.126
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.588,
+     0.8,
+     29.588
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -231.088,
+       150.822,
+       -159.126
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows52",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.388,
+     1.6,
+     29.388
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -231.088,
+       108.439,
+       -159.126
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows53",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.388,
+     1.6,
+     29.388
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -231.088,
+       141.493,
+       -159.126
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.26,
+     166.822,
+     28.26
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -169.178,
+       83.411,
+       -155.411
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.86,
+     0.8,
+     28.86
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -169.178,
+       164.822,
+       -155.411
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows54",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.66,
+     1.6,
+     28.66
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -169.178,
+       78.427,
+       -155.411
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows55",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.66,
+     1.6,
+     28.66
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -169.178,
+       147.89,
+       -155.411
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.022,
+     105.274,
+     32.022
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -198.403,
+       52.637,
+       -252.916
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.622,
+     0.8,
+     32.622
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -198.403,
+       103.274,
+       -252.916
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows56",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.422,
+     1.6,
+     32.422
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -198.403,
+       52.735,
+       -252.916
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     45.675,
+     167.642,
+     45.675
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -128.415,
+       83.821,
+       -192.864
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     46.275,
+     0.8,
+     46.275
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -128.415,
+       165.642,
+       -192.864
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows57",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     46.075,
+     1.6,
+     46.075
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -128.415,
+       83.393,
+       -192.864
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.865,
+     175.694,
+     25.865
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -117.197,
+       87.847,
+       -267.375
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.465,
+     0.8,
+     26.465
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -117.197,
+       173.694,
+       -267.375
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows58",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.265,
+     1.6,
+     26.265
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -117.197,
+       132.888,
+       -267.375
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows59",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.265,
+     1.6,
+     26.265
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -117.197,
+       128.041,
+       -267.375
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     41.361,
+     123.203,
+     41.361
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.365,
+       61.601,
+       -166.766
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     41.961,
+     0.8,
+     41.961
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.365,
+       121.203,
+       -166.766
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows60",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     41.761,
+     1.6,
+     41.761
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.365,
+       53.872,
+       -166.766
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows61",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     41.761,
+     1.6,
+     41.761
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.365,
+       54.417,
+       -166.766
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows62",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     41.761,
+     1.6,
+     41.761
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.365,
+       107.978,
+       -166.766
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26.795,
+     94.184,
+     26.795
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.681,
+       47.092,
+       -171.055
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.395,
+     0.8,
+     27.395
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.681,
+       92.184,
+       -171.055
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows63",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.195,
+     1.6,
+     27.195
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.681,
+       70.797,
+       -171.055
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows64",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.195,
+     1.6,
+     27.195
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.681,
+       25.113,
+       -171.055
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.46,
+     126.065,
+     38.46
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.651,
+       63.033,
+       -326.084
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.06,
+     0.8,
+     39.06
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.651,
+       124.065,
+       -326.084
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows65",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.86,
+     1.6,
+     38.86
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.651,
+       70.413,
+       -326.084
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows66",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.86,
+     1.6,
+     38.86
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.651,
+       17.162,
+       -326.084
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows67",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.86,
+     1.6,
+     38.86
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.651,
+       95.787,
+       -326.084
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40.489,
+     92.28,
+     40.489
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.271,
+       46.14,
+       -157.349
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     41.089,
+     0.8,
+     41.089
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.271,
+       90.28,
+       -157.349
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows68",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40.889,
+     1.6,
+     40.889
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.271,
+       70.584,
+       -157.349
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.445,
+     108.486,
+     30.445
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       47.694,
+       54.243,
+       -181.693
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     31.045,
+     0.8,
+     31.045
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       47.694,
+       106.486,
+       -181.693
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows69",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.845,
+     1.6,
+     30.845
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       47.694,
+       42.216,
+       -181.693
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows70",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.845,
+     1.6,
+     30.845
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       47.694,
+       60.446,
+       -181.693
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows71",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.845,
+     1.6,
+     30.845
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       47.694,
+       84.644,
+       -181.693
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower37",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     43.749,
+     175.996,
+     43.749
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       105.244,
+       87.998,
+       -260.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim37",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.349,
+     0.8,
+     44.349
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       105.244,
+       173.996,
+       -260.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows72",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.149,
+     1.6,
+     44.149
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       105.244,
+       78.513,
+       -260.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows73",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.149,
+     1.6,
+     44.149
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       105.244,
+       153.572,
+       -260.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows74",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     44.149,
+     1.6,
+     44.149
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       105.244,
+       90.747,
+       -260.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.412,
+     140.42,
+     24.412
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       130.106,
+       70.21,
+       -201.039
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.012,
+     0.8,
+     25.012
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       130.106,
+       138.42,
+       -201.039
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows75",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.812,
+     1.6,
+     24.812
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       130.106,
+       85.239,
+       -201.039
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower39",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.114,
+     169.056,
+     27.114
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       113.791,
+       84.528,
+       -124.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim39",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.714,
+     0.8,
+     27.714
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       113.791,
+       167.056,
+       -124.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows76",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.514,
+     1.6,
+     27.514
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       113.791,
+       95.164,
+       -124.222
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     36.22,
+     195.484,
+     36.22
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       177.491,
+       97.742,
+       -159.288
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     36.82,
+     0.8,
+     36.82
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       177.491,
+       193.484,
+       -159.288
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows77",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     36.62,
+     1.6,
+     36.62
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       177.491,
+       165.576,
+       -159.288
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.928,
+     85.639,
+     24.928
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       143.984,
+       42.82,
+       -101.82
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.528,
+     0.8,
+     25.528
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       143.984,
+       83.639,
+       -101.82
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows78",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.328,
+     1.6,
+     25.328
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       143.984,
+       49.063,
+       -101.82
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows79",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.328,
+     1.6,
+     25.328
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       143.984,
+       61.085,
+       -101.82
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.476,
+     150.889,
+     37.476
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       207.623,
+       75.444,
+       -84.653
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38.076,
+     0.8,
+     38.076
+    ],
+    "Color": [
+     0.157,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       207.623,
+       148.889,
+       -84.653
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows80",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.876,
+     1.6,
+     37.876
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       207.623,
+       40.103,
+       -84.653
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows81",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.876,
+     1.6,
+     37.876
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       207.623,
+       49.894,
+       -84.653
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows82",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.876,
+     1.6,
+     37.876
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       207.623,
+       78.971,
+       -84.653
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.448,
+     153.714,
+     29.448
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       228.834,
+       76.857,
+       -59.618
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.048,
+     0.8,
+     30.048
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       228.834,
+       151.714,
+       -59.618
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows83",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.848,
+     1.6,
+     29.848
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       228.834,
+       133.775,
+       -59.618
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows84",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.848,
+     1.6,
+     29.848
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       228.834,
+       129.91,
+       -59.618
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Tower44",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.166,
+     132.778,
+     33.166
+    ],
+    "Color": [
+     0.118,
+     0.125,
+     0.18
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       221.689,
+       66.389,
+       -38.635
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerTrim44",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.766,
+     0.8,
+     33.766
+    ],
+    "Color": [
+     0.353,
+     0.431,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       221.689,
+       130.778,
+       -38.635
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows85",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.566,
+     1.6,
+     33.566
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       221.689,
+       22.819,
+       -38.635
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TowerWindows86",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     33.566,
+     1.6,
+     33.566
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       221.689,
+       40.936,
+       -38.635
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  }
+ ]
+}

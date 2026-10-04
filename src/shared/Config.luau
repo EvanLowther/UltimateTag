@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.29.0",
+	Version = "0.30.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -17,6 +17,10 @@ local Config = {
 		ResultsTime = 5, -- seconds to show who was eliminated
 		VictoryTime = 8, -- seconds to show the winner before going back to the lobby
 		EliminateFraction = 0.45, -- share of the players still in who start a round as It (and lose it)
+		RespawnTime = 3, -- seconds before someone who died (fell off a map) comes back
+		-- Falling off: a map with a KillHeight attribute kills anyone who drops below that world
+		-- height within this many studs of it sideways. They respawn on the map (server/MapRespawn).
+		KillRadius = 400,
 	},
 
 	Lobby = {
@@ -550,6 +554,51 @@ local Config = {
 
 	Ui = {
 		Font = Enum.Font.SourceSansBold,
+	},
+
+	-- Map gadgets (client/MapGadgets), set up by attributes on map parts:
+	--   LaunchVelocity (Vector3): stepping on the part throws you with that velocity (studs/s).
+	--   SpeedBoost (number): jumping or running off the part sends you at least this fast.
+	Gadgets = {
+		LaunchCooldown = 0.8, -- seconds before the same player can be launched again
+		LaunchDriveTime = 0.08, -- seconds the launch velocity is forced (beats ground friction)
+		BoostWindow = 0.3, -- seconds after leaving a SpeedBoost part that the boost still applies
+	},
+
+	-- Per-map lighting (client/MapLighting): a map with a Lighting attribute (a preset name here)
+	-- switches your lighting to that preset while your camera is within Radius studs of it.
+	-- Other places use the normal lighting from default.project.json.
+	MapLighting = {
+		Radius = 500,
+		FadeTime = 1.2, -- seconds to blend between lightings
+		Presets = {
+			Night = {
+				Lighting = {
+					ClockTime = 0.4,
+					Brightness = 1.2,
+					Ambient = Color3.fromRGB(60, 55, 95),
+					OutdoorAmbient = Color3.fromRGB(80, 70, 130),
+					ExposureCompensation = 0.35,
+					EnvironmentDiffuseScale = 0.3,
+					EnvironmentSpecularScale = 0.6,
+				},
+				Atmosphere = {
+					Density = 0.36,
+					Offset = 0.05,
+					Color = Color3.fromRGB(70, 50, 120),
+					Decay = Color3.fromRGB(40, 25, 80),
+					Glare = 0,
+					Haze = 1.6,
+				},
+				Bloom = { Intensity = 1.1, Size = 30, Threshold = 0.95 },
+				ColorCorrection = {
+					Saturation = 0.35,
+					Contrast = 0.12,
+					Brightness = 0.02,
+					TintColor = Color3.fromRGB(235, 225, 255),
+				},
+			},
+		},
 	},
 
 	-- The developer panel (client/DevPanel, server/DevCommands): game flow, maps, movement tuning

@@ -1,0 +1,2406 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Body3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     64,
+     95,
+     64
+    ],
+    "Color": [
+     0.173,
+     0.188,
+     0.251
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       47.5,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Roof3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     64,
+     1,
+     64
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.361
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       95.5,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Windows61",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       10,
+       9.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows62",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       10,
+       74.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows63",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.8,
+       10,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows64",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.2,
+       10,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows65",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       22,
+       9.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows66",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       22,
+       74.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows67",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.8,
+       22,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows68",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.2,
+       22,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows69",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       34,
+       9.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows70",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       34,
+       74.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows71",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.8,
+       34,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows72",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.2,
+       34,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows73",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       46,
+       9.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows74",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       46,
+       74.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows75",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.8,
+       46,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows76",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     0.471,
+     0.863,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.2,
+       46,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows77",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       58,
+       9.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows78",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       58,
+       74.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows79",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.8,
+       58,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows80",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.471,
+     0.863
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.2,
+       58,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows81",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       70,
+       9.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows82",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       70,
+       74.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows83",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.8,
+       70,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows84",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.941,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.2,
+       70,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows85",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       82,
+       9.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows86",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       82,
+       74.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows87",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.8,
+       82,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Windows88",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     2.4,
+     56
+    ],
+    "Color": [
+     1.0,
+     0.824,
+     0.471
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.2,
+       82,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "EdgeTrim9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     65,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       95.7,
+       9.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "EdgeTrim10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     65,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       95.7,
+       74.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "EdgeTrim11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     65
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.7,
+       95.7,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "EdgeTrim12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     65
+    ],
+    "Color": [
+     1.0,
+     0.235,
+     0.784
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.3,
+       95.7,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Parapet5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     5.5,
+     64
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.361
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       73.0,
+       98.75,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Parapet6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     64,
+     5.5,
+     2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.361
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       98.75,
+       73.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "EdgeWall5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     120,
+     68
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       75.0,
+       156.0,
+       42.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "EdgeWall6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     68,
+     120,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       42.0,
+       156.0,
+       75.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DishPost",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.2,
+     5,
+     1.2
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.667
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       62,
+       98.5,
+       30
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Dish",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     8,
+     8
+    ],
+    "Color": [
+     0.824,
+     0.839,
+     0.878
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       62,
+       102.5,
+       30
+      ],
+      "orientation": [
+       [
+        0.5,
+        -0.866,
+        0
+       ],
+       [
+        0.866,
+        0.5,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false
+   }
+  },
+  {
+   "name": "DishPost2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.2,
+     5,
+     1.2
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.667
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       62,
+       98.5,
+       46
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Dish2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     8,
+     8
+    ],
+    "Color": [
+     0.824,
+     0.839,
+     0.878
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       62,
+       102.5,
+       46
+      ],
+      "orientation": [
+       [
+        0.5,
+        -0.866,
+        0
+       ],
+       [
+        0.866,
+        0.5,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false
+   }
+  },
+  {
+   "name": "DishPost3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.2,
+     5,
+     1.2
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.667
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       52,
+       98.5,
+       62
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Dish3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     8,
+     8
+    ],
+    "Color": [
+     0.824,
+     0.839,
+     0.878
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       52,
+       102.5,
+       62
+      ],
+      "orientation": [
+       [
+        0.5,
+        -0.866,
+        0
+       ],
+       [
+        0.866,
+        0.5,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false
+   }
+  },
+  {
+   "name": "ACUnit4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     4,
+     6
+    ],
+    "Color": [
+     0.471,
+     0.494,
+     0.549
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28,
+       98.0,
+       60
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "ACFan4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     4.5,
+     4.5
+    ],
+    "Color": [
+     0.235,
+     0.251,
+     0.298
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28,
+       100.2,
+       60
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false
+   }
+  },
+  {
+   "name": "ACUnit5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5,
+     4,
+     8
+    ],
+    "Color": [
+     0.471,
+     0.494,
+     0.549
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66,
+       98.0,
+       64
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "ACFan5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     3.5,
+     3.5
+    ],
+    "Color": [
+     0.235,
+     0.251,
+     0.298
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66,
+       100.2,
+       64
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false
+   }
+  },
+  {
+   "name": "Crates2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     3.5,
+     4
+    ],
+    "Color": [
+     0.69,
+     0.502,
+     0.314
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30,
+       97.75,
+       30
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

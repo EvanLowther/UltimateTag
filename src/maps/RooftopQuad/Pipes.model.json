@@ -1,0 +1,192 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Pipe",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.463,
+     2.6,
+     2.6
+    ],
+    "Color": [
+     1.0,
+     0.275,
+     0.275
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       88.4,
+       39
+      ],
+      "orientation": [
+       [
+        0.919,
+        -0.394,
+        0
+       ],
+       [
+        0.394,
+        0.919,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "Pipe2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.463,
+     2.6,
+     2.6
+    ],
+    "Color": [
+     0.235,
+     0.784,
+     0.353
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       88.4,
+       42
+      ],
+      "orientation": [
+       [
+        0.919,
+        -0.394,
+        0
+       ],
+       [
+        0.394,
+        0.919,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "Pipe3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.463,
+     2.6,
+     2.6
+    ],
+    "Color": [
+     0.235,
+     0.471,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       88.4,
+       45
+      ],
+      "orientation": [
+       [
+        0.919,
+        -0.394,
+        0
+       ],
+       [
+        0.394,
+        0.919,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "WalkPlate",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.463,
+     0.5,
+     9
+    ],
+    "Color": [
+     0.431,
+     0.455,
+     0.51
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       90.25,
+       42
+      ],
+      "orientation": [
+       [
+        0.919,
+        -0.394,
+        0
+       ],
+       [
+        0.394,
+        0.919,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  }
+ ]
+}
