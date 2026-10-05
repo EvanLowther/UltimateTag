@@ -2,14 +2,14 @@
  "className": "Folder",
  "children": [
   {
-   "name": "Floor",
+   "name": "Ground",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     88,
+     132,
      2,
-     36
+     148
     ],
     "Color": [
      0.549,
@@ -24,7 +24,7 @@
       "position": [
        0.0,
        -1.0,
-       -48.0
+       0.0
       ],
       "orientation": [
        [
@@ -48,14 +48,14 @@
    }
   },
   {
-   "name": "Floor2",
+   "name": "UpperFloor",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     72,
+     24,
      2,
-     26
+     32
     ],
     "Color": [
      0.549,
@@ -68,9 +68,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -8.0,
-       -1.0,
-       -17.0
+       52.0,
+       17.0,
+       -56.0
       ],
       "orientation": [
        [
@@ -94,14 +94,382 @@
    }
   },
   {
-   "name": "Floor3",
+   "name": "UpperFloor2",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     88,
+     24,
      2,
-     28
+     8
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -52.0,
+       17.0,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     2,
+     8
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       52.0,
+       17.0,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     96,
+     2,
+     12
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.0,
+       17.0,
+       -26.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     2,
+     8
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -58.0,
+       17.0,
+       -16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     76,
+     2,
+     8
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.0,
+       17.0,
+       -16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     52,
+     2,
+     24
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -38.0,
+       17.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     20,
+     2,
+     24
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.0,
+       17.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     96,
+     2,
+     20
+    ],
+    "Color": [
+     0.549,
+     0.573,
+     0.612
+    ],
+    "Material": "CeramicTiles",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.0,
+       17.0,
+       22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "UpperFloor10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     128,
+     2,
+     5
     ],
     "Color": [
      0.549,
@@ -115,8 +483,8 @@
      "CFrame": {
       "position": [
        0.0,
-       -1.0,
-       10.0
+       17.0,
+       34.5
       ],
       "orientation": [
        [
@@ -140,14 +508,14 @@
    }
   },
   {
-   "name": "Floor4",
+   "name": "UpperFloor11",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     5,
+     68,
      2,
-     6
+     3
     ],
     "Color": [
      0.549,
@@ -160,9 +528,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -41.5,
-       -1.0,
-       27.0
+       -30.0,
+       17.0,
+       38.5
       ],
       "orientation": [
        [
@@ -186,14 +554,14 @@
    }
   },
   {
-   "name": "Floor5",
+   "name": "UpperFloor12",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     77,
+     28,
      2,
-     6
+     3
     ],
     "Color": [
      0.549,
@@ -206,9 +574,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       5.5,
-       -1.0,
-       27.0
+       50.0,
+       17.0,
+       38.5
       ],
       "orientation": [
        [
@@ -232,14 +600,14 @@
    }
   },
   {
-   "name": "Floor6",
+   "name": "UpperFloor13",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     88,
+     68,
      2,
-     36
+     3
     ],
     "Color": [
      0.549,
@@ -252,9 +620,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       0.0,
-       -1.0,
-       48.0
+       -30.0,
+       17.0,
+       41.5
       ],
       "orientation": [
        [
@@ -278,75 +646,29 @@
    }
   },
   {
-   "name": "Ceiling",
+   "name": "UpperFloor14",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     92,
      4,
-     136
-    ],
-    "Color": [
-     0.431,
-     0.439,
-     0.471
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       0.0,
-       20.0,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
      2,
-     20,
-     136
+     3
     ],
     "Color": [
-     0.698,
-     0.659,
-     0.573
+     0.549,
+     0.573,
+     0.612
     ],
-    "Material": "Plaster",
+    "Material": "CeramicTiles",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       45.0,
-       8.0,
-       0.0
+       38.0,
+       17.0,
+       41.5
       ],
       "orientation": [
        [
@@ -370,29 +692,29 @@
    }
   },
   {
-   "name": "Wall2",
+   "name": "UpperFloor15",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
+     104,
      2,
-     20,
-     136
+     29
     ],
     "Color": [
-     0.698,
-     0.659,
-     0.573
+     0.549,
+     0.573,
+     0.612
     ],
-    "Material": "Plaster",
+    "Material": "CeramicTiles",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -45.0,
-       8.0,
-       0.0
+       -12.0,
+       17.0,
+       57.5
       ],
       "orientation": [
        [
@@ -413,290 +735,6 @@
       ]
      }
     }
-   }
-  },
-  {
-   "name": "Wall3",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     88,
-     20,
-     2
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       0.0,
-       8.0,
-       -67.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall4",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     88,
-     20,
-     2
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       0.0,
-       8.0,
-       67.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Trim",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.2,
-     1.0,
-     132
-    ],
-    "Color": [
-     0.314,
-     0.451,
-     0.647
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       43.9,
-       4.0,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false
-   }
-  },
-  {
-   "name": "Trim2",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.2,
-     1.0,
-     132
-    ],
-    "Color": [
-     0.314,
-     0.451,
-     0.647
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -43.9,
-       4.0,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false
-   }
-  },
-  {
-   "name": "Trim3",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     88,
-     1.0,
-     0.2
-    ],
-    "Color": [
-     0.314,
-     0.451,
-     0.647
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       0.0,
-       4.0,
-       -65.9
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false
-   }
-  },
-  {
-   "name": "Trim4",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     88,
-     1.0,
-     0.2
-    ],
-    "Color": [
-     0.314,
-     0.451,
-     0.647
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       0.0,
-       4.0,
-       65.9
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false
    }
   }
  ]

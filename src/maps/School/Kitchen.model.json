@@ -1,0 +1,348 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "KitchenIsland",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16,
+     3.5,
+     3
+    ],
+    "Color": [
+     0.706,
+     0.729,
+     0.753
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.0,
+       1.75,
+       63.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "KitchenIsland2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16,
+     3.5,
+     3
+    ],
+    "Color": [
+     0.706,
+     0.729,
+     0.753
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.0,
+       1.75,
+       63.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "WalkInFridge",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     10,
+     11
+    ],
+    "Color": [
+     0.804,
+     0.824,
+     0.843
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       29.0,
+       5.0,
+       65.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Stove",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16,
+     3.5,
+     2.5
+    ],
+    "Color": [
+     0.275,
+     0.282,
+     0.306
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.0,
+       1.75,
+       70.75
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Puddle4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     5,
+     5
+    ],
+    "Color": [
+     0.353,
+     0.667,
+     0.902
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       0.06,
+       68.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "Transparency": 0.35,
+    "Reflectance": 0.15,
+    "CanCollide": false
+   },
+   "attributes": {
+    "Slip": 1.2
+   }
+  },
+  {
+   "name": "Puddle5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.0,
+     3.0
+    ],
+    "Color": [
+     0.353,
+     0.667,
+     0.902
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1.75,
+       0.06,
+       69.35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "Transparency": 0.35,
+    "Reflectance": 0.15,
+    "CanCollide": false
+   },
+   "attributes": {
+    "Slip": 1.2
+   }
+  },
+  {
+   "name": "Puddle6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5,
+     2.5
+    ],
+    "Color": [
+     0.353,
+     0.667,
+     0.902
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -1.85,
+       0.06,
+       67.85
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "Transparency": 0.35,
+    "Reflectance": 0.15,
+    "CanCollide": false
+   },
+   "attributes": {
+    "Slip": 1.2
+   }
+  }
+ ]
+}

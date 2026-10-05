@@ -1,0 +1,237 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Roof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     132,
+     3,
+     62
+    ],
+    "Color": [
+     0.431,
+     0.439,
+     0.471
+    ],
+    "Material": "Plaster",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       35.5,
+       -43.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Roof2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     54,
+     3,
+     24
+    ],
+    "Color": [
+     0.431,
+     0.439,
+     0.471
+    ],
+    "Material": "Plaster",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -39.0,
+       35.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Roof3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     54,
+     3,
+     24
+    ],
+    "Color": [
+     0.431,
+     0.439,
+     0.471
+    ],
+    "Material": "Plaster",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       39.0,
+       35.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Roof4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     132,
+     3,
+     62
+    ],
+    "Color": [
+     0.431,
+     0.439,
+     0.471
+    ],
+    "Material": "Plaster",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       35.5,
+       43.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Skylight",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     0.4,
+     24
+    ],
+    "Color": [
+     0.725,
+     0.843,
+     0.922
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       36.2,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.5,
+    "CastShadow": false
+   }
+  }
+ ]
+}

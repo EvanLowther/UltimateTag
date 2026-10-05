@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Shared helpers for the map generators (tools/*_layout.py): build parts in code and write them
-as Rojo files under src/maps/<Name>/ so Rojo syncs the map into Studio by itself.
+as Rojo files under src/maps/<Name>/ so Rojo syncs the map into Studio by itself. Blocks,
+cylinders, straight walls with doors and windows, slabs with holes, round walls and floors, lights,
+text, particles.
 
     from maplib import Map, rot_x, rot_y, rot_z, polar
     m = Map(materials={"wall": "Plaster"}, colors={"wall": (200, 200, 200)})
@@ -111,6 +113,69 @@ class Map:
         """A cylinder; by default standing upright (its length is vertical)."""
         return self.part(group, name, (length, diameter, diameter), pos, color,
                          rows if rows is not None else rot_z(90), Shape="Cylinder", **props)
+
+    def slab(self, group, name, rect, y0, y1, holes, color, **props):
+        """A flat slab over rect (x0, x1, z0, z1) with rectangular holes (x0, x1, z0, z1) cut out
+        (split on a grid, neighbouring solid cells merged into one part per row)."""
+        x0, x1, z0, z1 = rect
+        xs = sorted({x0, x1, *[v for h in holes for v in h[:2] if x0 < v < x1]})
+        zs = sorted({z0, z1, *[v for h in holes for v in h[2:] if z0 < v < z1]})
+        for i in range(len(zs) - 1):
+            row = []
+            for j in range(len(xs) - 1):
+                cx, cz = (xs[j] + xs[j + 1]) / 2, (zs[i] + zs[i + 1]) / 2
+                inside = any(h[0] <= cx <= h[1] and h[2] <= cz <= h[3] for h in holes)
+                row.append(None if inside else (xs[j], xs[j + 1]))
+            run = None
+            for cell in row + [None]:
+                if cell and run:
+                    run = (run[0], cell[1])
+                elif cell:
+                    run = cell
+                else:
+                    if run:
+                        self.block(group, name, run[0], run[1], y0, y1, zs[i], zs[i + 1], color,
+                                   **props)
+                    run = None
+
+    def wall(self, group, axis, fixed, span, y0, y1, color, openings=(), name="Wall",
+             glass=(185, 215, 235), frame=(150, 100, 60)):
+        """A straight wall along `axis` ("X" or "Z"): `fixed` = (a0, a1) its thickness on the
+        other axis, `span` = (s0, s1) along it, from y0 to y1. Openings use absolute heights:
+        (s0, s1, top) is a doorway from y0 up to top; (s0, s1, top, bottom) is a window:
+        see-through glass from bottom to top, solid and flush with the wall so wall runs along it
+        still work."""
+        s0, s1 = span
+        pos = s0
+        pieces, panes = [], []
+        for opening in sorted(openings):
+            o0, o1, top = opening[:3]
+            bottom = opening[3] if len(opening) > 3 else None
+            if o0 > pos:
+                pieces.append((pos, o0, y0, y1))
+            if top < y1:
+                pieces.append((o0, o1, top, y1))  # lintel
+            if bottom is not None:
+                pieces.append((o0, o1, y0, bottom))  # sill
+                panes.append((o0, o1, bottom, top))
+            pos = max(pos, o1)
+        if pos < s1:
+            pieces.append((pos, s1, y0, y1))
+        for a, b, lo, hi in pieces:
+            if axis == "X":
+                self.block(group, name, a, b, lo, hi, fixed[0], fixed[1], color)
+            else:
+                self.block(group, name, fixed[0], fixed[1], lo, hi, a, b, color)
+        for a, b, lo, hi in panes:
+            glassy = {"Material": "Glass", "Transparency": 0.6, "CastShadow": False}
+            if axis == "X":
+                self.block(group, "Window", a, b, lo, hi, fixed[0], fixed[1], glass, **glassy)
+                self.block(group, "WindowFrame", a, b, lo - 0.3, lo, fixed[0] - 0.2,
+                           fixed[1] + 0.2, frame, Material="Wood", **NO_HIT)
+            else:
+                self.block(group, "Window", fixed[0], fixed[1], lo, hi, a, b, glass, **glassy)
+                self.block(group, "WindowFrame", fixed[0] - 0.2, fixed[1] + 0.2, lo - 0.3, lo, a,
+                           b, frame, Material="Wood", **NO_HIT)
 
     def ring_wall(self, group, name, radius, thickness, y0, y1, segments, color, skip=(),
                   **props):

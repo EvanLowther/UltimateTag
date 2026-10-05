@@ -1,924 +1,838 @@
 #!/usr/bin/env python3
-"""The School map (grey-box), from the user's blueprint. Run from the repo root:
+"""The School (2-8 players): a two-floor school round a double-height atrium, designed on the
+"School Map Rework" canvas (grey-box v1). Run from the repo root:
     python3 tools/school_layout.py
 It rewrites `src/maps/School/` (generated: don't edit those files by hand); Rojo syncs it.
 
-Axes: X east, Z south (north is -Z), Y up. Main floor at Y 0, basement floor at Y -22.
+Axes: X east, Z south (north is -Z), Y up. Inside 128 x 144. Ground floor at 0 (ceiling 16),
+upper floor at 18 (ceiling 34), roof 34-37. The gym, the atrium and the library are double height.
 
-MAIN FLOOR: a long rectangle (north-south longer). A classroom in the middle with a ring of
-16-wide hallways around it (the main loop).
-  - West hallway: lockers on the outer wall (wall-run surface); a floor grate near the south end
-    is one basement opening.
-  - North hallway: a puddle across the whole width: run or slide in and you slip, skid on with
-    your momentum, and get up (Slip).
-  - East hallway: a tipped lunch table in the middle of the hall ramps up toward a hole in the
-    floor. Off the ramp, steer to either wall and wall-run across (south to north only). Miss and you fall into
-    the basement.
-  - South hallway: a collapsed ceiling: slide under the low slab (or squeeze past by the wall),
-    or mantle on and run up to a section hanging at 10, then drop off; rubble to vault.
-  - Classroom: doors on the west (north end) and east (south end). Two rows of tall bookshelves
-    cross it (wall-run faces, a high route on top), each with a vault gap (a fallen shelf) and a
-    gap under the duct; a support column in the middle; an HVAC duct catwalk at 11 (climb a riser).
-BASEMENT: exactly two openings.
-  - East chamber under the hole: a steam updraft pad launches you back up through the hole,
-    landing north of it.
-  - An L-shaped tunnel: south from the chamber, then west under the south hallway.
-  - Pipe room at the west end: an incline (the pipe slide) up north to a platform under the
-    grate; climb the shaft (one 12-stud hop) and over onto the west hallway. From the top, drop
-    in the grate, land, and slide down the pipe into the tunnel.
+Tag flow: two loops instead of one. The inner loop is the hall ring round the atrium, on both
+floors; the outer loop runs through rooms that open into each other (gym, locker room, library,
+stairwells, kitchen, band room, classrooms). Eleven ways between the floors, none of them one-way:
+   1 the open grand stair up the middle of the atrium (run under its high end)
+   2 the gym bleachers (vault row to row, or the aisle) up to the upper floor
+   3 the north-west stairwell, 4 the south-east stairwell (switchbacks)
+   5 the upper hall's floor, fallen into the cafeteria as a ramp (up, down, or under its low end)
+   6 the science lab's floor, fallen into Room 101: drop, or climb the rubble and the cabinet
+   7 the library shelf tops (9) up onto the mezzanine (18)
+   8 the atrium's corner pillars: wall-climb two hops onto the balcony
+   9 the balcony railing: vault it anywhere and drop 18 (landing roll)
+  10 the gym springboard up onto the running track
+  11 the running track's railing: vault off into the gym
+Rooms: north the gym (bleachers, running track at 18, springboard); north-west and south-east the
+stairwells; north-east the locker room (slippery showers) with the teachers' lounge above; west
+Rooms 101 and 102 with the science lab and the computer lab above; east the library (shelf rows,
+the mezzanine, a bridge from the balcony); south the cafeteria (lunch tables, a serving line
+with a slide-under shutter and a vault-over counter), the kitchen (walk-in fridge, greasy floor)
+and the band room, with the art room, the upper hall and the music room above.
 """
-import json
 import math
-import os
-import shutil
+import re
+import sys
+
+sys.path.insert(0, "tools")
+from maplib import IDENTITY, NO_HIT, SMOKE, SPARK, Map, rot_x, rot_y, rot_z  # noqa: E402
 
 OUT = "src/maps/School"
+ATTRIBUTES = {"DisplayName": "School", "MinPlayers": 2, "MaxPlayers": 8, "InRotation": True,
+              "Lighting": "Indoor"}
 
-# Main floor
-IN_X, IN_Z = 44, 66  # inside faces of the outer walls (building is 88 x 132 inside)
-HALL = 16  # hallway width
-ROOM_X, ROOM_Z = IN_X - HALL, IN_Z - HALL  # classroom outer faces (28, 50)
+IN_X, IN_Z = 64, 72  # inside faces of the outer walls
 WALL = 2
-HEIGHT = 18  # floor to ceiling
-DOOR_W, DOOR_H = 8, 10
+F1, F1_TOP, F2, F2_TOP, ROOF = 0, 16, 18, 34, 37  # floors, ceilings, roof top
+DOOR, DOOR2 = F1 + 10, F2 + 10  # doorway tops on each floor
 
-# Openings in the main floor
-HOLE = (28, 44, -30, -4)  # x0, x1, z0, z1 (east hallway)
-GRATE = (-39, -33, 24, 30)  # west hallway, near the south end
+# Openings in the upper floor (x0, x1, z0, z1).
+GYM = (-40, 40, -72, -32)
+LIBRARY = (32, 64, -32, 32)
+VOID = (-12, 12, -12, 12)  # the atrium, open up to the skylight
+NW_STAIR = (-64, -40, -72, -40)
+SE_STAIR = (40, 64, 40, 72)
+LAB_HOLE = (-52, -44, -20, -12)  # the science lab floor, fallen into Room 101
+COLLAPSE = (4, 36, 37, 43)  # the upper hall floor, fallen into the cafeteria
 
-# Basement
-B_FLOOR = -22
-SLAB = -2  # bottom of the main floor slab
-TUNNEL_TOP = -12
-CHAMBER = (24, 46, -40, 2)  # x0, x1, z0, z1 (under the hole)
-TUNNEL_EAST = (34, 44, 2, 46)  # leg running south from the chamber
-TUNNEL_SOUTH = (-42, 44, 46, 56)  # leg running west under the south hallway
-PIPE_ROOM = (-42, -30, 24, 46)  # incline up north to the grate
-PLATFORM_Y = -12  # top of the incline / bottom of the grate shaft
-PIPE_TOP_Z = 30  # where the incline reaches the platform
+SPRINGBOARD = (0, -60)
+LAUNCH = (0, 95, -12)  # clears the track railing and lands mid-track (tune in game)
 
 COLORS = {
-    "floor": (140, 146, 156), "wall": (178, 168, 146), "trim": (80, 115, 165),
-    "ceiling": (110, 112, 120), "room_floor": (135, 100, 70), "desk": (160, 110, 70),
-    "desk_top": (205, 170, 120), "board": (40, 80, 60), "locker_a": (60, 110, 200),
-    "locker_b": (45, 90, 170), "table": (230, 120, 60), "puddle": (90, 170, 230),
-    "concrete": (110, 112, 118), "concrete_dark": (80, 82, 88), "pipe": (180, 70, 50),
-    "pad": (255, 140, 40), "grate": (60, 60, 64), "hazard": (250, 200, 40),
-    "light": (235, 235, 220), "light_warm": (240, 170, 100),
-    "column": (150, 140, 120), "duct": (165, 172, 182), "duct_dark": (120, 126, 136),
-    "shelf": (120, 80, 50), "books_a": (190, 60, 60), "books_b": (60, 120, 190),
-    "books_c": (220, 180, 60), "debris": (128, 128, 134), "rubble": (150, 145, 135),
-    "hole": (25, 25, 30), "chain": (90, 92, 98), "door": (150, 100, 60),
+    "floor": (140, 146, 156), "wall": (178, 168, 146), "ceiling": (110, 112, 120),
+    "room_floor": (135, 100, 70), "desk": (160, 110, 70), "board": (40, 80, 60),
+    "locker_a": (60, 110, 200), "locker_b": (45, 90, 170), "table": (230, 120, 60),
+    "puddle": (90, 170, 230), "concrete_dark": (80, 82, 88), "pad": (255, 140, 40),
+    "grate": (60, 60, 64), "hazard": (250, 200, 40), "shelf": (120, 80, 50),
+    "books_a": (190, 60, 60), "books_b": (60, 120, 190), "books_c": (220, 180, 60),
+    "debris": (128, 128, 134), "rubble": (150, 145, 135), "chain": (90, 92, 98),
+    "door": (150, 100, 60), "gym_floor": (214, 168, 106), "carpet_red": (150, 62, 62),
+    "carpet_blue": (62, 84, 150), "lab_floor": (222, 226, 230), "cafe_floor": (214, 204, 176),
+    "kitchen_floor": (176, 76, 64), "terrazzo": (200, 194, 182), "art_floor": (150, 152, 156),
+    "bleacher": (176, 126, 74), "track": (196, 88, 62), "rail": (62, 68, 78),
+    "pillar": (214, 204, 184), "stair": (152, 158, 168), "lab_bench": (44, 48, 58),
+    "fridge": (205, 210, 215), "counter": (180, 186, 192), "mat": (52, 92, 204),
+    "piano": (28, 28, 32), "planter": (128, 92, 70), "plant": (72, 150, 72),
+    "vending": (205, 44, 44), "couch": (92, 124, 92), "comp_floor": (96, 108, 128),
+    "glass": (185, 215, 235), "court_line": (245, 245, 245), "pad_wall": (40, 70, 160),
+    "plate": (40, 40, 50), "light": (235, 235, 220),
 }
-
-# Real materials for the named colours (the rest stay smooth plastic).
 MATERIALS = {
     "floor": "CeramicTiles", "wall": "Plaster", "ceiling": "Plaster", "room_floor": "WoodPlanks",
-    "shelf": "Wood", "door": "Wood", "desk": "Wood", "locker_a": "Metal", "locker_b": "Metal",
-    "duct": "Metal", "duct_dark": "Metal", "grate": "DiamondPlate", "board": "Slate",
-    "concrete": "Concrete", "concrete_dark": "Brick", "pipe": "Metal", "column": "Concrete",
-    "debris": "Concrete", "rubble": "Slate", "chain": "Metal", "cork": "Fabric",
+    "desk": "Wood", "board": "Slate", "locker_a": "Metal", "locker_b": "Metal",
+    "concrete_dark": "Brick", "grate": "DiamondPlate", "shelf": "Wood", "debris": "Concrete",
+    "rubble": "Slate", "chain": "Metal", "door": "Wood", "gym_floor": "WoodPlanks",
+    "carpet_red": "Fabric", "carpet_blue": "Fabric", "lab_floor": "CeramicTiles",
+    "cafe_floor": "CeramicTiles", "kitchen_floor": "CeramicTiles", "terrazzo": "Marble",
+    "art_floor": "Concrete", "bleacher": "WoodPlanks", "rail": "Metal", "pillar": "Concrete",
+    "stair": "Concrete", "lab_bench": "Slate", "fridge": "Metal", "counter": "Metal",
+    "mat": "Fabric", "planter": "Brick", "plant": "Grass", "couch": "Fabric",
+    "comp_floor": "Fabric", "pad_wall": "Fabric",
 }
 
-IDENTITY = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+# ---- walls -----------------------------------------------------------------------------------
+# Each wall runs along `axis` ("X" or "Z") on the line `line` (2 thick, centered on it) over
+# `span`. f1 / f2 are its openings on each floor, with absolute heights: (s0, s1, top) a doorway,
+# (s0, s1, top, bottom) a window. `floors` "12" builds both floors and the slab band between them.
+
+OUTER_WALLS = [
+    {"axis": "Z", "fixed": (-IN_X - WALL, -IN_X), "span": (-IN_Z - WALL, IN_Z + WALL),
+     "f1": [(a, b, 12, 4) for a, b in ((-28, -20), (-12, -4), (4, 12), (20, 28), (44, 52),
+                                       (58, 66))],
+     "f2": [(a, b, 30, 22) for a, b in ((-28, -20), (-12, -4), (4, 12), (20, 28), (44, 52),
+                                        (58, 66))]},
+    {"axis": "Z", "fixed": (IN_X, IN_X + WALL), "span": (-IN_Z - WALL, IN_Z + WALL),
+     "f1": [(-26, -18, 13, 3), (-6, 6, 13, 3), (18, 26, 13, 3)],
+     "f2": [(-26, -18, 31, 21), (18, 26, 31, 21)]},
+    {"axis": "X", "fixed": (-IN_Z - WALL, -IN_Z), "span": (-IN_X, IN_X),
+     "f2": [(-30, -18, 31, 23), (-6, 6, 31, 23), (18, 30, 31, 23)]},
+    {"axis": "X", "fixed": (IN_Z, IN_Z + WALL), "span": (-IN_X, IN_X),
+     "f2": [(-30, -18, 31, 25), (-6, 6, 31, 25), (18, 30, 31, 25), (-58, -46, 30, 22)]},
+]
+
+INSIDE_WALLS = {
+    # Along X at Z -32: the gym and the stairwell / locker room against the halls,
+    # Room 101 / science lab and the library.
+    "north": {"axis": "X", "line": -32, "span": (-IN_X, IN_X),
+              "f1": [(-60, -52, DOOR), (-32, -24, DOOR), (24, 32, DOOR), (40, 46, DOOR)],
+              "f2": [(-60, -52, DOOR2), (-16, 16, DOOR2), (56, 62, DOOR2)]},
+    # Along X at Z 32: the halls and the library against the south wing.
+    "south": {"axis": "X", "line": 32, "span": (-IN_X, IN_X),
+              "f1": [(-60, -52, DOOR), (-30, -22, DOOR), (-10, 10, 12), (22, 30, DOOR),
+                     (40, 46, DOOR)],
+              "f2": [(-60, -52, DOOR2), (-16, 16, DOOR2), (56, 62, DOOR2)]},
+    # Along Z at X -32: the west wing against the halls.
+    "west": {"axis": "Z", "line": -32, "span": (-32, 32),
+             "f1": [(-16, -8, DOOR), (8, 16, DOOR)],
+             "f2": [(-16, -8, DOOR2), (8, 16, DOOR2), (-28, -20, 30, 22), (20, 28, 30, 22)]},
+    # Along Z at X 32: the library against the halls (the bridge comes in at 18).
+    "east": {"axis": "Z", "line": 32, "span": (-32, 32),
+             "f1": [(-10, -4, DOOR), (4, 10, DOOR), (-28, -20, 12, 4), (20, 28, 12, 4)],
+             "f2": [(-4, 4, DOOR2), (-28, -10, 31, 21), (10, 28, 31, 21)]},
+    "classrooms": {"axis": "X", "line": 0, "span": (-IN_X, -32),
+                   "f1": [(-56, -50, DOOR)], "f2": [(-56, -50, DOOR2)]},
+    "gym_west": {"axis": "Z", "line": -40, "span": (-IN_Z, -32),
+                 "f1": [(-38, -33, DOOR)], "f2": [(-38, -33, DOOR2)]},
+    "gym_east": {"axis": "Z", "line": 40, "span": (-IN_Z, -32),
+                 "f1": [(-60, -52, DOOR)], "f2": [(-60, -52, DOOR2)]},
+    "band": {"axis": "Z", "line": -40, "span": (32, IN_Z),
+             "f1": [(40, 48, DOOR), (62, 68, DOOR)], "f2": [(34, 42, DOOR2), (56, 64, DOOR2)]},
+    "stairs_se": {"axis": "Z", "line": 40, "span": (32, IN_Z),
+                  "f1": [(33, 39, DOOR), (63, 69, 7)], "f2": [(33, 39, DOOR2)]},
+    # The serving line between the cafeteria and the kitchen (ground floor only).
+    "serving": {"axis": "X", "line": 56, "span": (-40, 40), "floors": "1",
+                "f1": [(-36, -30, DOOR), (-22, -4, 12), (4, 22, 12), (30, 36, DOOR)],
+                "gated": [(-22, -4), (4, 22)]},  # the shutter and the counter, on purpose
+    # The upper hall against the music room (upper floor only).
+    "music": {"axis": "X", "line": 44, "span": (-40, 40), "floors": "2",
+              "f2": [(-30, -22, DOOR2), (-8, 0, DOOR2)]},
+}
+ARCHES = [(-14, -6, 12), (6, 14, 12)]  # two a side in the atrium's ground-floor walls
+for _axis, _line in (("X", -20), ("X", 20), ("Z", -20), ("Z", 20)):
+    INSIDE_WALLS[f"atrium{_axis}{_line}"] = {"axis": _axis, "line": _line, "span": (-20, 20),
+                                             "floors": "1", "f1": ARCHES, "color": "pillar"}
+
+DOORS = []  # (axis, line, s0, s1, floor y) of every doorway, for the checks
 
 
-def rot_x(deg):
-    """Turns about X: a part's -Z end rises for positive angles."""
-    c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
-    return [[1, 0, 0], [0, c, -s], [0, s, c]]
+def walls(m, spec, group="Walls"):
+    axis, floors = spec["axis"], spec.get("floors", "12")
+    fixed = spec.get("fixed") or (spec["line"] - 1, spec["line"] + 1)
+    color = spec.get("color", "wall")
+    bottom = F1 if "line" in spec else -2  # outer walls reach down past the ground slab
+    if "1" in floors:
+        m.wall(group, axis, fixed, spec["span"], bottom, F1_TOP, color, spec.get("f1", ()))
+    if floors == "12":
+        m.wall(group, axis, fixed, spec["span"], F1_TOP, F2, color)
+    if "2" in floors:
+        m.wall(group, axis, fixed, spec["span"], F2, F2_TOP, color, spec.get("f2", ()))
+    for key, floor_y in (("f1", F1), ("f2", F2)):
+        for opening in spec.get(key, ()):
+            if len(opening) == 3 and tuple(opening[:2]) not in spec.get("gated", ()):
+                DOORS.append((axis, (fixed[0] + fixed[1]) / 2, opening[0], opening[1], floor_y))
 
 
-def rot_z(deg):
-    """Turns about Z: a part's +X end rises for positive angles."""
-    c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
-    return [[c, -s, 0], [s, c, 0], [0, 0, 1]]
+# ---- helpers ---------------------------------------------------------------------------------
+
+def ramp_z(m, g, name, x0, x1, za, ya, zb, yb, color="stair", thick=1.0, **props):
+    """A slab whose top runs straight from (za, ya) to (zb, yb) along Z (stairs, ramps)."""
+    dz, dy = zb - za, yb - ya
+    ang = math.degrees(math.atan(dy / -dz))
+    a = math.radians(ang)
+    normal = (0, math.cos(a), math.sin(a))
+    mid = ((x0 + x1) / 2, (ya + yb) / 2, (za + zb) / 2)
+    pos = tuple(mid[i] - 0.5 * thick * normal[i] for i in range(3))
+    return m.part(g, name, (x1 - x0, thick, math.hypot(dz, dy)), pos, color, rot_x(ang), **props)
 
 
-def rot_y(deg):
-    """Turns about Y (a part lying at an angle on the floor)."""
-    c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
-    return [[c, 0, s], [0, 1, 0], [-s, 0, c]]
+def ramp_x(m, g, name, z0, z1, xa, ya, xb, yb, color="stair", thick=1.0, **props):
+    """A slab whose top runs straight from (xa, ya) to (xb, yb) along X."""
+    dx, dy = xb - xa, yb - ya
+    ang = math.degrees(math.atan(dy / dx))
+    a = math.radians(ang)
+    normal = (-math.sin(a), math.cos(a), 0)
+    mid = ((xa + xb) / 2, (ya + yb) / 2, (z0 + z1) / 2)
+    pos = tuple(mid[i] - 0.5 * thick * normal[i] for i in range(3))
+    return m.part(g, name, (math.hypot(dx, dy), thick, z1 - z0), pos, color, rot_z(ang), **props)
 
 
-def r(v):
-    return round(v, 3)
+def rail(m, g, x0, x1, z0, z1, y=F2, glass=False):
+    """A railing 3.2 high: solid, low enough to vault over and drop."""
+    if glass:
+        m.block(g, "Railing", x0, x1, y, y + 3.2, z0, z1, "glass", Material="Glass",
+                Transparency=0.55, CastShadow=False)
+        m.block(g, "RailCap", x0, x1, y + 3.2, y + 3.4, z0, z1, "rail", **NO_HIT)
+    else:
+        m.block(g, "Railing", x0, x1, y, y + 3.2, z0, z1, "rail")
 
 
-def rgb(c):
-    return [r(v / 255) for v in c]
-
-
-class Map:
-    def __init__(self):
-        self.groups = {}
-        self.spawns = []
-        self.counts = {}
-
-    def _name(self, name):
-        n = self.counts.get(name, 0) + 1
-        self.counts[name] = n
-        return name if n == 1 else f"{name}{n}"
-
-    def part(self, group, name, size, pos, color, rows=IDENTITY, children=None, **props):
-        attributes = props.pop("attributes", None)
-        properties = {
-            "Anchored": True, "Size": [r(v) for v in size], "Color": rgb(COLORS.get(color, color)
-                                                                      if isinstance(color, str) else color),
-            "Material": MATERIALS.get(color, "SmoothPlastic") if isinstance(color, str)
-            else "SmoothPlastic",
-            "TopSurface": "Smooth", "BottomSurface": "Smooth",
-            "CFrame": {"CFrame": {"position": [r(v) for v in pos],
-                                  "orientation": [[r(v) for v in row] for row in rows]}},
-        }
-        properties.update(props)
-        node = {"name": self._name(name), "className": "Part", "properties": properties}
-        if attributes:
-            node["attributes"] = attributes
-        if children:
-            node["children"] = children
-        self.groups.setdefault(group, []).append(node)
-        return node
-
-    def block(self, group, name, x0, x1, y0, y1, z0, z1, color, **props):
-        """An axis-aligned block from its bounds."""
-        return self.part(group, name, (x1 - x0, y1 - y0, z1 - z0),
-                         ((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2), color, **props)
-
-    def cylinder(self, group, name, length, diameter, pos, color, rows=None, **props):
-        """A cylinder; by default standing upright (its length is vertical)."""
-        return self.part(group, name, (length, diameter, diameter), pos, color,
-                         rows if rows is not None else rot_z(90), Shape="Cylinder", **props)
-
-    def slab(self, group, name, rect, y0, y1, holes, color, **props):
-        """A slab over rect (x0, x1, z0, z1) with rectangular holes cut out (grid split)."""
-        x0, x1, z0, z1 = rect
-        xs = sorted({x0, x1, *[v for h in holes for v in h[:2] if x0 < v < x1]})
-        zs = sorted({z0, z1, *[v for h in holes for v in h[2:] if z0 < v < z1]})
-        for i in range(len(zs) - 1):
-            row = []
-            for j in range(len(xs) - 1):
-                cx, cz = (xs[j] + xs[j + 1]) / 2, (zs[i] + zs[i + 1]) / 2
-                inside = any(h[0] <= cx <= h[1] and h[2] <= cz <= h[3] for h in holes)
-                row.append(None if inside else (xs[j], xs[j + 1]))
-            # Merge neighbouring solid cells in the row.
-            run = None
-            for cell in row + [None]:
-                if cell and run:
-                    run = (run[0], cell[1])
-                elif cell:
-                    run = cell
-                else:
-                    if run:
-                        self.block(group, name, run[0], run[1], y0, y1, zs[i], zs[i + 1], color,
-                                   **props)
-                    run = None
-
-    def wall(self, group, axis, fixed, span, y0, y1, color, openings=(), name="Wall"):
-        """A wall along `axis` ("X" or "Z"). `fixed` = (a0, a1) its thickness range on the other
-        axis, `span` = (s0, s1) along it. Openings: (s0, s1, top) is a doorway from the floor up
-        to top; (s0, s1, top, bottom) is a window: glass (solid, see-through) from bottom to top,
-        flush with the wall so wall runs along it still work."""
-        s0, s1 = span
-        cuts = sorted(openings)
-        pos = s0
-        pieces = []
-        panes = []
-        for opening in cuts:
-            o0, o1, top = opening[:3]
-            bottom = opening[3] if len(opening) > 3 else None
-            if o0 > pos:
-                pieces.append((pos, o0, y0, y1))
-            if top < y1:
-                pieces.append((o0, o1, top, y1))  # lintel
-            if bottom is not None:
-                pieces.append((o0, o1, y0, bottom))  # sill
-                panes.append((o0, o1, bottom, top))
-            pos = o1
-        if pos < s1:
-            pieces.append((pos, s1, y0, y1))
-        glass = {"Material": "Glass", "Transparency": 0.6, "CastShadow": False}
-        for a, b, lo, hi in pieces:
-            if axis == "X":
-                self.block(group, name, a, b, lo, hi, fixed[0], fixed[1], color)
-            else:
-                self.block(group, name, fixed[0], fixed[1], lo, hi, a, b, color)
-        for a, b, lo, hi in panes:
-            if axis == "X":
-                self.block(group, "Window", a, b, lo, hi, fixed[0], fixed[1], (185, 215, 235),
-                           **glass)
-                self.block(group, "WindowFrame", a, b, lo - 0.3, lo, fixed[0] - 0.2, fixed[1] + 0.2,
-                           "door", CanCollide=False, CanQuery=False)
-            else:
-                self.block(group, "Window", fixed[0], fixed[1], lo, hi, a, b, (185, 215, 235),
-                           **glass)
-                self.block(group, "WindowFrame", fixed[0] - 0.2, fixed[1] + 0.2, lo - 0.3, lo, a, b,
-                           "door", CanCollide=False, CanQuery=False)
-
-    def light(self, group, x, y, z, size=(8, 0.2, 1), warm=False, brightness=0.5, reach=22,
-              flicker=False):
-        extra = {"attributes": {"Flicker": True}} if flicker else {}
-        self.part(group, "Light", size, (x, y, z), "light_warm" if warm else "light",
-                  Material="Neon", CanCollide=False, CanQuery=False, CastShadow=False, **extra,
-                  children=[{"name": "Glow", "className": "PointLight",
-                             "properties": {"Brightness": brightness, "Range": reach,
-                                            "Color": rgb(COLORS["light_warm" if warm else "light"]),
-                                            "Shadows": False}}])
-
-    def spawn(self, x, z, y=0.0):
-        self.spawns.append((x, y, z))
-
-
-def main_floor(m):
-    g = "Building"
-    # Floor slab with the hole and the grate cut out; ceiling.
-    m.slab(g, "Floor", (-IN_X, IN_X, -IN_Z, IN_Z), SLAB, 0, [HOLE, GRATE], "floor")
-    # Thick, so nothing gets pushed through it.
-    m.block(g, "Ceiling", -IN_X - WALL, IN_X + WALL, HEIGHT, HEIGHT + 4, -IN_Z - WALL, IN_Z + WALL,
-            "ceiling")
-    # Outer walls.
-    m.wall(g, "Z", (IN_X, IN_X + WALL), (-IN_Z - WALL, IN_Z + WALL), SLAB, HEIGHT, "wall")
-    m.wall(g, "Z", (-IN_X - WALL, -IN_X), (-IN_Z - WALL, IN_Z + WALL), SLAB, HEIGHT, "wall")
-    m.wall(g, "X", (-IN_Z - WALL, -IN_Z), (-IN_X, IN_X), SLAB, HEIGHT, "wall")
-    m.wall(g, "X", (IN_Z, IN_Z + WALL), (-IN_X, IN_X), SLAB, HEIGHT, "wall")
-    # Wainscot trim stripe along the hallway walls (decoration).
-    for x0, x1, z0, z1 in ((IN_X - 0.2, IN_X, -IN_Z, IN_Z), (-IN_X, -IN_X + 0.2, -IN_Z, IN_Z),
-                           (-IN_X, IN_X, -IN_Z, -IN_Z + 0.2), (-IN_X, IN_X, IN_Z - 0.2, IN_Z)):
-        m.block(g, "Trim", x0, x1, 3.5, 4.5, z0, z1, "trim", CanCollide=False, CanQuery=False)
-
-    # Classroom walls with two doors: west (north end) and east (south end).
-    c = "Classroom"
-    west_door = (-34, -26, DOOR_H)
-    east_door = (26, 34, DOOR_H)
-    # Windows between the classroom and the hallways (glass from 4 to 11), clear of the doors
-    # and of where the bookshelf rows meet the walls.
-    west_windows = [(-46, -38, 11, 4), (-14, -4, 11, 4), (4, 14, 11, 4), (24, 40, 11, 4)]
-    east_windows = [(-44, -36, 11, 4), (-14, -4, 11, 4), (4, 14, 11, 4), (38, 46, 11, 4)]
-    south_windows = [(-22, -10, 11, 4), (10, 20, 11, 4)]
-    m.wall(c, "Z", (-ROOM_X, -ROOM_X + WALL), (-ROOM_Z, ROOM_Z), 0, HEIGHT, "wall",
-           [west_door, *west_windows])
-    m.wall(c, "Z", (ROOM_X - WALL, ROOM_X), (-ROOM_Z, ROOM_Z), 0, HEIGHT, "wall",
-           [east_door, *east_windows])
-    m.wall(c, "X", (-ROOM_Z, -ROOM_Z + WALL), (-ROOM_X + WALL, ROOM_X - WALL), 0, HEIGHT, "wall")
-    m.wall(c, "X", (ROOM_Z - WALL, ROOM_Z), (-ROOM_X + WALL, ROOM_X - WALL), 0, HEIGHT, "wall",
-           south_windows)
-    m.block(c, "ClassFloor", -ROOM_X + WALL, ROOM_X - WALL, 0, 0.1, -ROOM_Z + WALL, ROOM_Z - WALL,
-            "room_floor", CanCollide=False, CanQuery=False)
-    for z0, z1, x in ((-34, -26, -ROOM_X), (26, 34, ROOM_X)):  # door frames
-        for zz in (z0, z1):
-            m.block(c, "DoorFrame", x - 1.2, x + 1.2, 0, DOOR_H, zz - 0.4, zz + 0.4, "door",
-                    CanCollide=False, CanQuery=False)
-    inner_x, inner_z = ROOM_X - WALL, ROOM_Z - WALL  # 26, 48
-    m.block(c, "Chalkboard", -16, 16, 5, 12, -inner_z, -inner_z + 0.3, "board",
-            CanCollide=False, CanQuery=False,
-            children=[surface_text("Back", "TODAY: TAG<br/>Rule #1: don't get caught",
-                                   (240, 240, 230), None, font="PermanentMarker", pps=20)])
-    m.block(c, "ChalkTray", -16, 16, 4.7, 5, -inner_z, -inner_z + 0.6, "door",
-            CanCollide=False, CanQuery=False)
-    classroom_obstacles(m, c, inner_x, inner_z)
-
-    # Hallway features.
-    h = "Hallways"
-    # West: a long run of lockers on the outer wall.
-    for i, z in enumerate(range(-48, 48, 3)):
-        m.block(h, "Locker", -IN_X, -IN_X + 2, 0, 9, z, z + 3,
-                "locker_a" if i % 2 == 0 else "locker_b")
-    # North: a round puddle (slip) that leaves room to go round it, and the janitor's bucket.
-    puddle(m, h, -4, -58)
-    # East: the tipped lunch table in the middle of the hallway, rising north to the hole's south
-    # edge (4 high). Off the end, steer toward either wall to wall-run across.
-    hx0, hx1, hz0, hz1 = HOLE
-    table_x = (ROOM_X + IN_X) / 2
-    length, rise = 12, 4
-    angle = math.degrees(math.atan2(rise, length))
-    slope_len = math.hypot(length, rise)
-    m.part(h, "LunchTable", (7, 0.6, slope_len), (table_x, rise / 2 + 0.1, hz1 + length / 2),
-           "table", rot_x(angle))
-    for dz in (3, 9):  # legs sticking out (decoration)
-        m.block(h, "TableLeg", table_x - 3, table_x + 3, 0, 0.6, hz1 + dz - 0.3, hz1 + dz + 0.3,
-                "grate", CanCollide=False, CanQuery=False)
-    # Hazard stripes around the hole and the grate, a grate grid (decoration).
-    for x0, x1, z0, z1 in ((hx0, hx1, hz0 - 1, hz0), (hx0, hx1, hz1, hz1 + 1)):
-        m.block(h, "HazardEdge", x0, x1, 0, 0.08, z0, z1, "hazard", CanCollide=False,
-                CanQuery=False)
-    gx0, gx1, gz0, gz1 = GRATE
-    for x in (gx0 + 1.5, (gx0 + gx1) / 2, gx1 - 1.5):
-        m.block(h, "GrateBar", x - 0.2, x + 0.2, -0.3, 0, gz0, gz1, "grate", CanCollide=False,
-                CanQuery=False)
-    m.block(h, "GrateFrame", gx0 - 0.5, gx1 + 0.5, 0, 0.08, gz0 - 0.5, gz0, "hazard",
-            CanCollide=False, CanQuery=False)
-    m.block(h, "GrateFrame", gx0 - 0.5, gx1 + 0.5, 0, 0.08, gz1, gz1 + 0.5, "hazard",
-            CanCollide=False, CanQuery=False)
-    # South: a collapsed ceiling section.
-    ceiling_collapse(m, "Collapse")
-
-    # Lights.
-    for z in range(-56, 57, 16):
-        m.light("Lights", -36, HEIGHT - 0.2, z, size=(1, 0.2, 8))
-        m.light("Lights", 36, HEIGHT - 0.2, z, size=(1, 0.2, 8), flicker=(z == -24))
-    for x in (-18, 0, 18):
-        m.light("Lights", x, HEIGHT - 0.2, -58)
-        m.light("Lights", x, HEIGHT - 0.2, 58, flicker=(x == 0))
-    for x in (-13, 13):
-        for z in (-30, 0, 30):
-            m.light("Lights", x, HEIGHT - 0.2, z, size=(8, 0.2, 1), reach=26)
-
-
-def ceiling_collapse(m, g):
-    """The middle of the south hallway, where the ceiling came down:
-      - a slab hanging at 4.2 high across most of the hall: slide or crouch under it (an
-        invisible SlideBlocker stops standing players, like the test map's slide bar), or squeeze
-        through the 3-wide gap left along the outer wall;
-      - mantle onto it (top 5.2), run up a broken panel to a section hanging on chains at 10,
-        and drop off the far end (landing roll);
-      - rubble at vault height on the west approach."""
-    z0, z1 = ROOM_Z, IN_Z - 3  # 50 to 63: leaves a 3-wide gap by the outer wall
-    gap_y = 4.2
-    # The low slab and the blocker under it.
-    m.block(g, "FallenSlab", -6, 6, gap_y, gap_y + 1, z0, z1, "debris")
-    m.block(g, "StandBlocker", -6, 6, 0, gap_y, z0, z1, (255, 255, 255), Transparency=1,
-            CastShadow=False, attributes={"SlideBlocker": True})
-    # The broken panel rising east from the slab's top to the hanging section.
-    low = (6, gap_y + 1)
-    high_x, high_top = 16, 10
-    run, rise = high_x - low[0], high_top - low[1]
-    angle = math.degrees(math.atan2(rise, run))
-    length = math.hypot(run, rise)
-    a = math.radians(angle)
-    cx = (low[0] + high_x) / 2 + 0.5 * math.sin(a)
-    cy = (low[1] + high_top) / 2 - 0.5 * math.cos(a)
-    m.part(g, "BrokenPanel", (length, 1, z1 - z0 - 2), (cx, cy, (z0 + z1) / 2), "debris", rot_z(angle))
-    # The hanging section at 10, on chains, with a drop off the east end.
-    m.block(g, "HangingSection", high_x, 24, high_top - 1, high_top, z0 + 1, z1 - 1, "debris")
-    for x in (high_x + 1, 23):
-        for z in (z0 + 2, z1 - 2):
-            m.block(g, "Chain", x - 0.15, x + 0.15, high_top, HEIGHT, z - 0.15, z + 0.15, "chain",
-                    CanCollide=False, CanQuery=False)
-    for x in (-5, 5):  # chains holding up the low slab
-        for z in (z0 + 2, z1 - 2):
-            m.block(g, "Chain", x - 0.15, x + 0.15, gap_y + 1, HEIGHT, z - 0.15, z + 0.15, "chain",
-                    CanCollide=False, CanQuery=False)
-    # The break in the ceiling above (dark), and loose tiles hanging from it.
-    m.block(g, "CeilingBreak", -8, 26, HEIGHT - 0.05, HEIGHT, z0, IN_Z - 1, "hole",
-            CanCollide=False, CanQuery=False, CastShadow=False,
-            children=[particles("Dust", rate=6, life=(3, 5), speed=(1, 3),
-                                size=((0, 0.3), (1, 0.8)), transparency=((0, 0.6), (1, 1)),
-                                color=(200, 195, 185), texture=SMOKE, direction="Bottom",
-                                spread=(30, 30))])
-    # A live wire hanging from the break, sparking.
-    m.cylinder(g, "Wire", 5, 0.15, (13, HEIGHT - 2.5, 57), (30, 30, 30), CanCollide=False,
-               CanQuery=False)
-    m.block(g, "WireEnd", 12.8, 13.2, HEIGHT - 5.2, HEIGHT - 4.8, 56.8, 57.2, (255, 160, 60),
-            Material="Neon", CanCollide=False, CanQuery=False,
-            children=[particles("Sparks", rate=10, life=(0.2, 0.45), speed=(6, 14),
-                                size=((0, 0.15), (1, 0.05)), transparency=((0, 0), (1, 1)),
-                                color=(255, 200, 90), texture=SPARK, direction="Bottom",
-                                spread=(60, 60), accel=(0, -60, 0), light=1)])
-    for x, z, ang in ((-3, 58, 25), (10, 54, -30), (20, 60, 20)):
-        m.part(g, "LooseTile", (4, 0.3, 4), (x, HEIGHT - 2, z), "ceiling", rot_z(ang),
-               CanCollide=False, CanQuery=False)
-    # Rubble on the west approach: vault-height chunks with room between them.
-    for x, z, size in ((-11, 53, (3, 2.6, 3)), (-15, 59, (4, 3.2, 3)), (-20, 54, (3, 2.4, 2.5)),
-                       (-10, 61, (2.5, 2, 2.5))):
-        m.block(g, "Rubble", x - size[0] / 2, x + size[0] / 2, 0, size[1], z - size[2] / 2,
-                z + size[2] / 2, "rubble")
-
-
-def puddle(m, g, x, z):
-    """A roundish puddle (three overlapping discs) with Slip, about 11 across in the 16-wide
-    hallway, and a yellow mop bucket with a mop and a wet-floor sign next to it."""
+def slip_puddle(m, g, x, z, y, size=9, slip=1.6):
+    """A roundish puddle (three overlapping discs): run or slide in and you slip (Slip)."""
     wet = {"Material": "Glass", "Transparency": 0.35, "Reflectance": 0.15, "CanCollide": False,
-           "attributes": {"Slip": 1.6}}
-    for dx, dz, size in ((0, 0, 9), (3.2, 1.5, 5.5), (-3.4, -1.2, 4.5)):
-        m.cylinder(g, "Puddle", 0.12, size, (x + dx, 0.06, z + dz), "puddle", **wet)
-    # Mop bucket (vault-sized, it's in the way if you hug the wall).
-    bx, bz = x + 9, z - 4
-    m.cylinder(g, "MopBucket", 2.4, 2.6, (bx, 1.2, bz), "hazard")
-    m.cylinder(g, "BucketWater", 0.1, 2.2, (bx, 2.42, bz), (110, 130, 120), CanCollide=False,
-               CanQuery=False)
-    m.block(g, "Wringer", bx - 1.4, bx - 0.2, 2.4, 3.4, bz - 0.9, bz + 0.9, "grate",
-            CanCollide=False, CanQuery=False)
-    for dx, dz in ((-1.1, -1.1), (1.1, -1.1), (-1.1, 1.1), (1.1, 1.1)):  # casters
-        m.cylinder(g, "Caster", 0.4, 0.5, (bx + dx, 0.2, bz + dz), "grate", rot_z(0),
-                   CanCollide=False, CanQuery=False)
-    # The mop leaning out of the bucket.
-    m.cylinder(g, "MopHandle", 7, 0.25, (bx + 0.6, 4.6, bz + 0.3), (200, 170, 120),
-               rot_z(75), CanCollide=False, CanQuery=False)
-    m.block(g, "MopHead", bx - 0.4, bx + 1.0, 1.4, 2.6, bz - 0.4, bz + 1.0, (220, 215, 200),
-            CanCollide=False, CanQuery=False)
-    # Wet floor sign: an A-frame, yellow.
-    sx, sz = x - 7, z + 2
-    for tilt in (14, -14):
-        m.part(g, "WetFloorSign", (0.2, 3.2, 2), (sx + (0.4 if tilt > 0 else -0.4), 1.55, sz),
-               "hazard", rot_z(tilt), CanCollide=False, CanQuery=False)
-    m.block(g, "SignStripe", sx - 0.1, sx + 0.1, 1.2, 1.8, sz - 1.05, sz + 1.05, (30, 30, 30),
-            CanCollide=False, CanQuery=False)
+           "attributes": {"Slip": slip}}
+    for dx, dz, k in ((0, 0, 1), (size * 0.35, size * 0.17, 0.6), (-size * 0.37, -size * 0.13, 0.5)):
+        m.cylinder(g, "Puddle", 0.12, size * k, (x + dx, y + 0.06, z + dz), "puddle", **wet)
 
 
-DUCT_X = 9  # the catwalk runs north-south east of the column
-DUCT_TOP = 11  # walk on top: out of reach of a tag from the floor, 7 below the ceiling (room
-# to stand, and the mantle's headroom check passes)
-DUCT_W = 6
-DUCT_Z = 42  # catwalk from -DUCT_Z to DUCT_Z, with a riser down to the floor at each end
-
-
-def classroom_obstacles(m, g, inner_x, inner_z):
-    """The classroom's obstacles: a support column in the middle (go around), an HVAC duct
-    catwalk at 12 high (climb a riser at either end, drop off anywhere), fallen bookshelves lying
-    across the diagonal between the two doors (sprint to vault them, walk and you stall)."""
-    # Center support column, floor to ceiling.
-    m.block(g, "SupportColumn", -3, 3, 0, HEIGHT, -3, 3, "column")
-    m.block(g, "ColumnBand", -3.2, 3.2, 3, 3.6, -3.2, 3.2, "trim", CanCollide=False, CanQuery=False)
-
-    # Duct catwalk: a 3-tall box hung from the ceiling, its top is the walkway.
-    x0, x1 = DUCT_X - DUCT_W / 2, DUCT_X + DUCT_W / 2
-    m.block(g, "Duct", x0, x1, DUCT_TOP - 3, DUCT_TOP, -DUCT_Z + 4, DUCT_Z - 4, "duct")
-    for z in range(-DUCT_Z + 8, DUCT_Z - 3, 8):  # seams and hanger rods (decoration)
-        m.block(g, "DuctSeam", x0 - 0.15, x1 + 0.15, DUCT_TOP - 3.1, DUCT_TOP + 0.05, z - 0.3,
-                z + 0.3, "duct_dark", CanCollide=False, CanQuery=False)
-    for z in range(-DUCT_Z + 10, DUCT_Z - 5, 16):
-        for x in (x0 + 0.5, x1 - 0.5):
-            m.block(g, "Hanger", x - 0.15, x + 0.15, DUCT_TOP, HEIGHT, z - 0.15, z + 0.15,
-                    "duct_dark", CanCollide=False, CanQuery=False)
-    # Risers: the duct turns down to the floor at each end; climb one (one 12-stud hop) and
-    # pull up onto the catwalk.
-    for z0, z1 in ((-DUCT_Z, -DUCT_Z + 4), (DUCT_Z - 4, DUCT_Z)):
-        m.block(g, "DuctRiser", x0, x1, 0, DUCT_TOP, z0, z1, "duct")
-        m.block(g, "RiserGrille", x0 - 0.1, x1 + 0.1, 3, 6, z0 - 0.1, z1 + 0.1, "duct_dark",
-                CanCollide=False, CanQuery=False)
-
-    # Two rows of tall bookshelves cross the room (east-west), splitting it into three zones.
-    # Their long faces are wall-run walls; their tops (9) are a mantle-up high route. Each row has
-    # two gaps: one where a shelf has fallen into it (vault it) and one under the duct. Getting
-    # from one door to the other means picking a gap in each row.
-    rows = (
-        # row z, standing segments (x0, x1), vault gaps (x0, x1, fallen shelf height)
-        (-18, ((-inner_x, -17), (-11, DUCT_X - DUCT_W / 2 - 1), (DUCT_X + DUCT_W / 2 + 1, inner_x)),
-         ((-17, -11, 3.2),)),
-        (18, ((-inner_x, -21), (-15, DUCT_X - DUCT_W / 2 - 1), (DUCT_X + DUCT_W / 2 + 1, inner_x)),
-         ((-21, -15, 3.2), (DUCT_X - DUCT_W / 2 - 1, DUCT_X + DUCT_W / 2 + 1, 2.2))),
-    )
-    books = ("books_a", "books_b", "books_c")
-    for z, segments, gaps in rows:
-        for k, (x0, x1) in enumerate(segments):
-            bookshelf_row(m, g, x0, x1, z, books, k)
-        for x0, x1, height in gaps:
-            # A shelf fallen across the gap (low enough to vault; the one under the duct is
-            # lower still so the vault clears the duct).
-            m.block(g, "FallenShelf", x0 + 0.3, x1 - 0.3, 0, height, z - 1.5, z + 1.5, "shelf")
-            m.block(g, "SpilledBooks", x0 + 1, x1 - 1, height, height + 0.4, z - 1, z + 1,
-                    books[int(abs(x0)) % 3], CanCollide=False, CanQuery=False)
-            for i, dx in enumerate((-2.2, 0.8, 2.6)):  # books on the floor beside it
-                m.part(g, "Book", (1.2, 0.3, 0.9), ((x0 + x1) / 2 + dx, 0.15, z + 2.6 + i * 0.4),
-                       books[i], rot_y(25 * i - 20), CanCollide=False, CanQuery=False)
+def desk(m, g, x, z, y=F1):
+    m.block(g, "Desk", x - 1.5, x + 1.5, y, y + 2.6, z - 1.1, z + 1.1, "desk")
 
 
 SHELF_HEIGHT = 9
 SHELF_DEPTH = 2.5
 
 
-def bookshelf_row(m, g, x0, x1, z, books, k):
-    """Standing bookshelves from x0 to x1: a solid back and frame (the wall-run face), shelves of
-    coloured book spines on both faces (decoration)."""
+def bookshelf_row(m, g, x0, x1, z, k):
+    """Standing bookshelves from x0 to x1: the solid case (a wall-run face, a high route on top)
+    with coloured book spines on both faces (decoration)."""
+    books = ("books_a", "books_b", "books_c")
     m.block(g, "Bookshelf", x0, x1, 0, SHELF_HEIGHT, z - SHELF_DEPTH / 2, z + SHELF_DEPTH / 2,
             "shelf")
     for side in (-1, 1):
         face = z + side * (SHELF_DEPTH / 2 + 0.05)
         for level, y in enumerate((1.2, 3.6, 6.0)):
-            # Book spines: a few coloured runs per shelf level, with small gaps.
             x = x0 + 0.6
             i = level + k
             while x < x1 - 1.2:
                 width = min(1.5 + (i * 7 % 5) * 0.6, x1 - 0.6 - x)
                 height = 1.4 + (i * 3 % 4) * 0.15
                 m.block(g, "Books", x, x + width, y, y + height, face - 0.05, face + 0.05,
-                        books[i % 3], CanCollide=False, CanQuery=False)
+                        books[i % 3], **NO_HIT)
                 x += width + 0.3
                 i += 1
 
 
-def basement(m):
-    g = "Basement"
-    rooms = [CHAMBER, TUNNEL_EAST, TUNNEL_SOUTH, PIPE_ROOM]
-    for x0, x1, z0, z1 in rooms:
-        m.block(g, "BasementFloor", x0 - WALL, x1 + WALL, B_FLOOR - 2, B_FLOOR, z0 - WALL,
-                z1 + WALL, "concrete")
-
-    # Chamber (tall: up to the slab) with an opening south into the tunnel.
-    cx0, cx1, cz0, cz1 = CHAMBER
-    tx0, tx1, _, _ = TUNNEL_EAST
-    m.wall(g, "Z", (cx0 - WALL, cx0), (cz0 - WALL, cz1 + WALL), B_FLOOR, SLAB, "concrete_dark")
-    m.wall(g, "Z", (cx1, cx1 + WALL), (cz0 - WALL, cz1 + WALL), B_FLOOR, SLAB, "concrete_dark")
-    m.wall(g, "X", (cz0 - WALL, cz0), (cx0, cx1), B_FLOOR, SLAB, "concrete_dark")
-    m.wall(g, "X", (cz1, cz1 + WALL), (cx0, cx1), B_FLOOR, SLAB, "concrete_dark",
-           [(tx0, tx1, TUNNEL_TOP)])
-    # Steam updraft pad under the hole: up through it, landing north of the hole.
-    pad_x, pad_z = 36, -12
-    m.part(g, "UpdraftPad", (8, 1, 8), (pad_x, B_FLOOR + 0.5, pad_z), "pad", Material="Neon",
-           attributes={"LaunchVelocity": {"Vector3": [0, 105, -40]}},
-           children=[particles("Steam", rate=28, life=(1.4, 2.2), speed=(10, 18),
-                               size=((0, 1.2), (0.5, 3), (1, 4.5)),
-                               transparency=((0, 0.5), (0.6, 0.75), (1, 1)),
-                               color=(235, 235, 240), texture=SMOKE, spread=(12, 12))])
-    m.block(g, "PadRing", pad_x - 5, pad_x + 5, B_FLOOR, B_FLOOR + 0.6, pad_z - 5, pad_z + 5,
-            "grate")
-    m.light(g, 30, SLAB - 0.5, -30, warm=True, brightness=0.6)
-    m.light(g, 40, SLAB - 0.5, -2, warm=True, brightness=0.6)
-
-    # East tunnel leg (south from the chamber).
-    ex0, ex1, ez0, ez1 = TUNNEL_EAST
-    sx0, sx1, sz0, sz1 = TUNNEL_SOUTH
-    m.wall(g, "Z", (ex0 - WALL, ex0), (ez0, sz0), B_FLOOR, TUNNEL_TOP, "concrete_dark")
-    m.wall(g, "Z", (ex1, ex1 + WALL), (ez0, sz1 + WALL), B_FLOOR, TUNNEL_TOP, "concrete_dark")
-    m.block(g, "TunnelCeiling", ex0 - WALL, ex1 + WALL, TUNNEL_TOP, TUNNEL_TOP + 1, ez0 + WALL,
-            sz0, "concrete")
-    # South tunnel leg (west to the pipe room).
-    px0, px1, pz0, pz1 = PIPE_ROOM
-    m.wall(g, "X", (sz0 - WALL, sz0), (px1, ex0 - WALL), B_FLOOR, TUNNEL_TOP, "concrete_dark")
-    m.wall(g, "X", (sz1, sz1 + WALL), (sx0 - WALL, ex1 + WALL), B_FLOOR, TUNNEL_TOP,
-           "concrete_dark")
-    m.wall(g, "Z", (sx0 - WALL, sx0), (sz0, sz1 + WALL), B_FLOOR, TUNNEL_TOP, "concrete_dark")
-    m.block(g, "TunnelCeiling", px1, ex1 + WALL, TUNNEL_TOP, TUNNEL_TOP + 1, sz0 - WALL,
-            sz1 + WALL, "concrete")
-    for x in (-10, 20):
-        m.light(g, x, TUNNEL_TOP - 0.5, (sz0 + sz1) / 2, warm=True, brightness=0.45, reach=20,
-                flicker=(x == -10))
-    m.light(g, (ex0 + ex1) / 2, TUNNEL_TOP - 0.5, 24, warm=True, brightness=0.45, reach=20)
-    # Pipes along the tunnel wall (decoration).
-    m.block(g, "Pipe", sx0, ex0 - WALL, TUNNEL_TOP - 2.5, TUNNEL_TOP - 1, sz1 - 1.5, sz1, "pipe",
-            CanCollide=False, CanQuery=False)
-
-    # Pipe room: tall (up to the slab), the incline up north to the platform under the grate.
-    m.wall(g, "Z", (px0 - WALL, px0), (pz0 - WALL, sz0), B_FLOOR, SLAB, "concrete_dark")
-    m.wall(g, "Z", (px1, px1 + WALL), (pz0 - WALL, sz0 - WALL), B_FLOOR, SLAB, "concrete_dark")
-    m.wall(g, "X", (pz0 - WALL, pz0), (px0, px1), B_FLOOR, SLAB, "concrete_dark")
-    m.block(g, "PipeRoomCap", sx0 - WALL, px1 + WALL, TUNNEL_TOP, SLAB, sz0 - WALL, sz0,
-            "concrete_dark")  # closes the gap above the tunnel mouth
-    rise = PLATFORM_Y - B_FLOOR
-    run = sz0 - PIPE_TOP_Z
-    angle = math.degrees(math.atan2(rise, run))
-    m.part(g, "PipeSlide", (px1 - px0, 1, math.hypot(run, rise)),
-           ((px0 + px1) / 2, (PLATFORM_Y + B_FLOOR) / 2 - 0.5, (PIPE_TOP_Z + sz0) / 2), "pipe",
-           rot_x(angle))
-    m.block(g, "GratePlatform", px0, px1, PLATFORM_Y - 1, PLATFORM_Y, pz0, PIPE_TOP_Z, "concrete")
-    m.block(g, "PlatformFill", px0, px1, B_FLOOR, PLATFORM_Y - 1, pz0, PIPE_TOP_Z, "concrete_dark")
-    m.light(g, (px0 + px1) / 2, SLAB - 0.5, 38, warm=True, brightness=0.45, reach=20)
+# Wall faces for decoration: (axis the face is on, its coordinate, which way it faces).
+FACE_NAMES = {("x", 1): "Right", ("x", -1): "Left", ("z", 1): "Back", ("z", -1): "Front"}
+HALL_W = ("x", -31, 1)  # west wing wall, hall side (both floors)
+HALL_E = ("x", 31, -1)  # library wall, hall side
+HALL_N = ("z", -31, 1)  # gym wall, hall side (also Room 101's north wall further west)
+HALL_S = ("z", 31, -1)  # cafeteria wall, hall side (also Room 102's south wall further west)
+ATRIUM_W = ("x", -21, -1)  # atrium walls, hall side
+ATRIUM_E = ("x", 21, 1)
+ATRIUM_S_IN = ("z", 19, -1)  # atrium south wall, atrium side
+GYM_N = ("z", -IN_Z, 1)
+GYM_E_IN = ("x", 39, -1)
+CAFE_N_IN = ("z", 33, 1)
+KITCHEN_SERVE = ("z", 57, 1)
+UPPER_HALL_S = ("z", 43, -1)
+UPPER_HALL_ART = ("x", -39, 1)
+TRACK_E = ("x", 39, -1)
+ART_W = ("x", -IN_X, 1)
+LIB_E = ("x", IN_X, -1)
+MEZZ_EDGE = ("x", 54, -1)
 
 
-# ---- Detail: decoration that makes the school feel lived in (no effect on the routes) ----------
-
-SMOKE = "rbxasset://textures/particles/smoke_main.dds"
-SPARK = "rbxasset://textures/particles/sparkles_main.dds"
-NO_HIT = {"CanCollide": False, "CanQuery": False, "CanTouch": False}
-
-
-def number_sequence(points):
-    return {"NumberSequence": {"keypoints": [{"time": t, "value": v, "envelope": 0}
-                                             for t, v in points]}}
-
-
-def particles(name, rate, life, speed, size, transparency, color, texture, direction="Top",
-              spread=(10, 10), accel=(0, 0, 0), light=0):
-    """A ParticleEmitter child (steam, dust, sparks, drips)."""
-    return {"name": name, "className": "ParticleEmitter", "properties": {
-        "Rate": rate, "Lifetime": {"NumberRange": list(life)}, "Speed": {"NumberRange": list(speed)},
-        "Size": number_sequence(size), "Transparency": number_sequence(transparency),
-        "Color": {"ColorSequence": {"keypoints": [{"time": 0, "color": rgb(color)},
-                                                  {"time": 1, "color": rgb(color)}]}},
-        "Texture": texture, "EmissionDirection": direction,
-        "SpreadAngle": {"Vector2": list(spread)}, "Acceleration": list(accel),
-        "LightEmission": light, "Drag": 0.5,
-    }}
-
-
-def surface_text(face, text, color, background, font="FredokaOne", pps=30, glow=False):
-    """A SurfaceGui with one label filling the face (posters, signs, the chalkboard). `glow`
-    makes it shine on its own (exit signs) instead of being lit like paper."""
-    label = {"Size": {"UDim2": [[0.92, 0], [0.88, 0]]}, "Position": {"UDim2": [[0.04, 0], [0.06, 0]]},
-             "BackgroundTransparency": 1, "Text": text, "TextScaled": True, "RichText": True,
-             "Font": font, "TextColor3": rgb(color)}
-    gui = {"Face": face, "SizingMode": "PixelsPerStud", "PixelsPerStud": pps}
-    if glow:
-        gui["LightInfluence"] = 0
-        gui["Brightness"] = 2
-    return {"name": f"Text{face}", "className": "SurfaceGui", "properties": gui,
-            "children": [{"name": "Label", "className": "TextLabel", "properties": label}]}
-
-
-# Wall faces: (axis the face is on, its coordinate, which way it faces).
-WALLS = {
-    "EO": ("x", IN_X, -1), "WO": ("x", -IN_X, 1), "NO": ("z", -IN_Z, 1), "SO": ("z", IN_Z, -1),
-    "EI": ("x", ROOM_X, 1), "WI": ("x", -ROOM_X, -1), "NI": ("z", -ROOM_Z, -1),
-    "SI": ("z", ROOM_Z, 1),
-    "CE": ("x", ROOM_X - WALL, -1), "CW": ("x", -ROOM_X + WALL, 1),
-    "CN": ("z", -ROOM_Z + WALL, 1), "CS": ("z", ROOM_Z - WALL, -1),
-}
-FACE = {("x", 1): "Right", ("x", -1): "Left", ("z", 1): "Back", ("z", -1): "Front"}
-
-
-def on_wall(m, g, name, wall, along, y, w, h, color, depth=0.12, out=0.0, children=None,
-            **props):
-    """A flat box on a wall face, centered `along` the wall at height y. `out` pushes it further
-    from the wall (for things that stick out). Returns the facing name for text."""
-    axis, coord, facing = WALLS[wall]
-    center = coord + facing * (out + depth / 2 + 0.02)
+def on_wall(m, g, name, face, along, y, w, h, color, depth=0.12, out=0.0, text=None,
+            text_color=(255, 255, 255), font="FredokaOne", glow=False, **props):
+    """A flat box on a wall face (no collision), centered `along` the wall at height y, with
+    optional text on its front."""
+    axis, coord, facing = face
+    c = coord + facing * (out + depth / 2 + 0.02)
+    children = [m.surface_text(FACE_NAMES[(axis, facing)], text, text_color, font=font,
+                               glow=glow)] if text else None
     extra = dict(NO_HIT)
     extra.update(props)
     if axis == "x":
-        m.part(g, name, (depth, h, w), (center, y, along), color, children=children, **extra)
+        m.part(g, name, (depth, h, w), (c, y, along), color, children=children, **extra)
     else:
-        m.part(g, name, (w, h, depth), (along, y, center), color, children=children, **extra)
-    return FACE[(axis, facing)]
+        m.part(g, name, (w, h, depth), (along, y, c), color, children=children, **extra)
 
 
-def poster(m, g, wall, along, y, w, h, background, text, text_color=(255, 255, 255)):
-    face = FACE[(WALLS[wall][0], WALLS[wall][2])]
-    on_wall(m, g, "Poster", wall, along, y, w, h, background,
-            children=[surface_text(face, text, text_color, background)])
+def lockers(m, g, face, s0, s1, openings=(), y=F1):
+    """Locker doors flat on a wall (decoration: the wall stays a clean wall-run face), skipping
+    the wall's doorways and windows."""
+    skip = [(o[0] - 0.5, o[1] + 0.5) for o in openings]
+    s, i = s0, 0
+    while s + 3 <= s1:
+        if not any(a < s + 3 and s < b for a, b in skip):
+            on_wall(m, g, "Locker", face, s + 1.5, y + 4.5, 2.8, 9,
+                    "locker_a" if i % 2 == 0 else "locker_b", depth=0.3)
+            on_wall(m, g, "LockerVent", face, s + 1.5, y + 7.8, 1.6, 0.5, (30, 35, 45),
+                    depth=0.05, out=0.3)
+            on_wall(m, g, "LockerHandle", face, s + 2.3, y + 4.6, 0.25, 1, (200, 200, 205),
+                    depth=0.12, out=0.3, Material="Metal")
+            i += 1
+        s += 3
 
 
-def bulletin_board(m, g, wall, along, y, w, h):
-    on_wall(m, g, "BulletinFrame", wall, along, y, w + 0.6, h + 0.6, "door", depth=0.1)
-    on_wall(m, g, "BulletinBoard", wall, along, y, w, h, (185, 140, 90), depth=0.12, out=0.1,
-            Material="Fabric")
-    notes = ((255, 250, 210), (200, 230, 255), (255, 210, 220), (210, 255, 210), (255, 255, 255))
-    spots = ((-0.32, 0.2, 1.4, 1.8), (-0.05, -0.15, 1.6, 1.2), (0.22, 0.22, 1.2, 1.5),
-             (0.33, -0.2, 1.3, 1.4), (-0.3, -0.25, 1.1, 1.0))
-    for i, (fx, fy, nw, nh) in enumerate(spots):
-        on_wall(m, g, "Note", wall, along + fx * w, y + fy * h, nw, nh, notes[i], depth=0.03,
-                out=0.23)
+def poster(m, g, face, along, y, w, h, background, text, text_color=(255, 255, 255)):
+    on_wall(m, g, "Poster", face, along, y, w, h, background, text=text, text_color=text_color)
 
 
-def clock(m, g, wall, along, y):
-    axis = WALLS[wall][0]
+def plate(m, g, face, along, y, text, w=None):
+    """A room sign over a door."""
+    on_wall(m, g, "RoomSign", face, along, y, w or max(2.4, 0.75 * len(text)), 1.4, "plate",
+            text=text, text_color=(240, 220, 120))
+
+
+def clock(m, g, face, along, y):
+    axis, coord, facing = face
     rows = IDENTITY if axis == "x" else rot_y(90)
-    _, coord, facing = WALLS[wall]
     c = coord + facing * 0.15
     pos = (c, y, along) if axis == "x" else (along, y, c)
-    m.part(g, "Clock", (0.25, 2.6, 2.6), pos, (245, 245, 245), rows, Shape="Cylinder",
-           children=None, **NO_HIT)
-    on_wall(m, g, "ClockRim", wall, along, y, 2.8, 0.2, (40, 40, 40), depth=0.2, out=0.0)
-    on_wall(m, g, "HourHand", wall, along + 0.25, y + 0.1, 0.7, 0.15, (20, 20, 20), depth=0.05,
+    m.part(g, "Clock", (0.25, 2.6, 2.6), pos, (245, 245, 245), rows, Shape="Cylinder", **NO_HIT)
+    on_wall(m, g, "HourHand", face, along + 0.25, y + 0.1, 0.7, 0.15, (20, 20, 20), depth=0.05,
             out=0.3)
-    on_wall(m, g, "MinuteHand", wall, along - 0.05, y + 0.5, 0.12, 1.0, (20, 20, 20), depth=0.05,
+    on_wall(m, g, "MinuteHand", face, along - 0.05, y + 0.5, 0.12, 1.0, (20, 20, 20), depth=0.05,
             out=0.32)
 
 
-def hallway_details(m):
+def bulletin_board(m, g, face, along, y, w, h):
+    on_wall(m, g, "BulletinFrame", face, along, y, w + 0.6, h + 0.6, "door", depth=0.1)
+    on_wall(m, g, "BulletinBoard", face, along, y, w, h, (185, 140, 90), out=0.1,
+            Material="Fabric")
+    notes = ((255, 250, 210), (200, 230, 255), (255, 210, 220), (210, 255, 210), (255, 255, 255))
+    for i, (fx, fy, nw, nh) in enumerate(((-0.32, 0.2, 1.4, 1.8), (-0.05, -0.15, 1.6, 1.2),
+                                          (0.22, 0.22, 1.2, 1.5), (0.33, -0.2, 1.3, 1.4),
+                                          (-0.3, -0.25, 1.1, 1.0))):
+        on_wall(m, g, "Note", face, along + fx * w, y + fy * h, nw, nh, notes[i], depth=0.03,
+                out=0.23)
+
+
+def exit_sign(m, g, x, y, z, along_x=True):
+    """A glowing EXIT sign hanging from the ceiling at y (its top), readable from both sides."""
+    rows = IDENTITY if along_x else rot_y(90)
+    m.part(g, "ExitSign", (3, 1.1, 0.3), (x, y - 1.6, z), (30, 30, 30), rows,
+           children=[m.surface_text("Front", "EXIT", (255, 60, 60), font="Arcade", glow=True),
+                     m.surface_text("Back", "EXIT", (255, 60, 60), font="Arcade", glow=True)],
+           **NO_HIT)
+
+
+def light(m, x, y, z, along_x=True, flicker=False, reach=24, brightness=0.6, warm=False):
+    color = (255, 205, 150) if warm else COLORS["light"]
+    m.light("Lights", (x, y - 0.1, z), size=(8, 0.2, 1) if along_x else (1, 0.2, 8), color=color,
+            brightness=brightness, reach=reach, flicker=flicker)
+
+
+# ---- the building ----------------------------------------------------------------------------
+
+def shell(m):
+    g = "Building"
+    m.block(g, "Ground", -IN_X - WALL, IN_X + WALL, -2, 0, -IN_Z - WALL, IN_Z + WALL, "floor")
+    m.slab(g, "UpperFloor", (-IN_X, IN_X, -IN_Z, IN_Z), F1_TOP, F2,
+           [GYM, LIBRARY, VOID, NW_STAIR, SE_STAIR, LAB_HOLE, COLLAPSE], "floor")
+    m.slab("Roof", "Roof", (-IN_X - WALL, IN_X + WALL, -IN_Z - WALL, IN_Z + WALL), F2_TOP, ROOF,
+           [VOID], "ceiling")
+    m.block("Roof", "Skylight", -12, 12, ROOF - 1, ROOF - 0.6, -12, 12, "glass", Material="Glass",
+            Transparency=0.5, CastShadow=False)
+    for spec in OUTER_WALLS:
+        walls(m, spec)
+    for spec in INSIDE_WALLS.values():
+        walls(m, spec)
+
+    # Floor finishes, so each room reads at a glance.
+    f = "Finishes"
+    for rect, y, color, holes in (
+        (GYM, F1, "gym_floor", ()), ((40, 64, -72, -32), F1, "lab_floor", ()),
+        ((-64, -32, -32, 32), F1, "room_floor", ()), ((-20, 20, -20, 20), F1, "terrazzo", ()),
+        (LIBRARY, F1, "carpet_red", ()), ((-64, -40, 32, 72), F1, "carpet_blue", ()),
+        ((-40, 40, 32, 56), F1, "cafe_floor", ()), ((-40, 40, 56, 72), F1, "kitchen_floor", ()),
+        ((40, 64, -72, -32), F2, "carpet_blue", ()), ((-64, -32, -32, 0), F2, "lab_floor",
+                                                      (LAB_HOLE,)),
+        ((-64, -32, 0, 32), F2, "comp_floor", ()), ((-64, -40, 32, 72), F2, "art_floor", ()),
+        ((-40, 40, 44, 72), F2, "room_floor", ()), ((54, 64, -32, 32), F2, "carpet_red", ()),
+    ):
+        m.slab(f, "FloorFinish", rect, y, y + 0.06, list(holes), color, **NO_HIT)
+
+
+def atrium(m):
+    """The middle of the school: double height under a skylight, an open stair up the middle to
+    the balcony, corner pillars to wall-climb, a vault-over glass railing all round."""
+    g = "Atrium"
+    # The grand stair: open underneath, so you can run under its high end and duck under the
+    # middle. Step edges painted on (decoration).
+    ramp_z(m, g, "GrandStair", -5, 5, 16, 0, -12, F2, thick=1.2)
+    ang = math.degrees(math.atan(F2 / 28))
+    a = math.radians(ang)
+    for k in range(1, 12):
+        t = k / 12
+        z, y = 16 - 28 * t, F2 * t
+        m.part(g, "StepEdge", (10, 0.06, 0.5), (0, y + 0.04 * math.cos(a), z + 0.04 * math.sin(a)),
+               "rail", rot_x(ang), **NO_HIT)
+    for x in (-5.3, 5.3):
+        ramp_z(m, g, "StairRail", x - 0.15, x + 0.15, 16, 3, -12, F2 + 3, color="rail", thick=0.3,
+               **NO_HIT)
+    for sx in (-1, 1):
+        for sz in (-1, 1):
+            x, z = sx * 12, sz * 12
+            m.block(g, "Pillar", x - 1.5, x + 1.5, F1, F2, z - 1.5, z + 1.5, "pillar")
+    # Balcony railing round the void, open where the stair arrives.
+    for x0, x1, z0, z1 in ((-10.5, -5, -12.3, -11.7), (5, 10.5, -12.3, -11.7),
+                           (-10.5, 10.5, 11.7, 12.3), (-12.3, -11.7, -10.5, 10.5),
+                           (11.7, 12.3, -10.5, 10.5)):
+        rail(m, g, x0, x1, z0, z1, glass=True)
+    # Planters and benches on the atrium floor (vault them).
+    for x in (-15, 15):
+        m.block(g, "Planter", x - 2.5, x + 2.5, F1, 3, 1.5, 6.5, "planter")
+        m.block(g, "Plant", x - 2, x + 2, 3, 3.6, 2, 6, "plant", **NO_HIT)
+        m.block(g, "Bench", x - 1, x + 1, F1, 1.8, -9, -3, "desk")
+    # The TIGERS banner over the void, the trophy case behind the stair.
+    m.block(g, "Banner", -6, 6, 24, 30, -0.05, 0.05, (130, 30, 40), **NO_HIT,
+            children=[m.surface_text("Front", "TIGERS", (250, 200, 60)),
+                      m.surface_text("Back", "TIGERS", (250, 200, 60))])
+    for x in (-5.5, 5.5):
+        m.block(g, "BannerRod", x - 0.05, x + 0.05, 30, F2_TOP, -0.05, 0.05, "chain", **NO_HIT)
+    on_wall(m, g, "TrophyCase", ATRIUM_S_IN, 0, 3.5, 12, 7, "door", depth=0.8)
+    on_wall(m, g, "TrophyGlass", ATRIUM_S_IN, 0, 3.8, 11.4, 6, "glass", depth=0.1, out=0.8,
+            Material="Glass", Transparency=0.6)
+    for i, x in enumerate((-4, -1.5, 1.5, 4)):
+        height = 1.2 + (i % 2) * 0.6
+        m.cylinder(g, "Trophy", height, 0.7, (x, 1.5 + height / 2, 18.4), (240, 190, 50),
+                   Material="Metal", Reflectance=0.3, **NO_HIT)
+
+
+def gym(m):
+    """North: double-height gym. Bleachers climb to the upper floor, a running track rings it at
+    18, a springboard throws you onto the track, mats and a ball cart to vault."""
+    g = "Gym"
+    # Bleachers: six 3-high rows (vault from row to row), the aisle ramp up the middle.
+    for i in range(6):
+        top = 3 * (i + 1)
+        front = -33 - 2.5 * (6 - i)
+        for x0, x1 in ((-24, -3), (3, 24)):
+            m.block(g, "Bleacher", x0, x1, F1, top, front, -33, "bleacher")
+    ramp_z(m, g, "BleacherAisle", -3, 3, -52, 0, -33, F2)
+    # The running track at 18 round the north, west and east walls, joined to the bleacher top.
+    for x0, x1, z0, z1 in ((-40, 40, -72, -66), (-40, -34, -66, -33), (34, 40, -66, -33),
+                           (-34, -24, -35.5, -33), (24, 34, -35.5, -33)):
+        m.block(g, "Track", x0, x1, F1_TOP, F2, z0, z1, "track")
+    for x0, x1, z0, z1 in ((-34, 34, -66.3, -65.7), (-34.3, -33.7, -65.7, -35.5),
+                           (33.7, 34.3, -65.7, -35.5)):
+        rail(m, g, x0, x1, z0, z1)
+    # The springboard.
+    sx, sz = SPRINGBOARD
+    m.part(g, "Springboard", (6, 1, 6), (sx, 0.5, sz), "pad", Material="Neon",
+           attributes={"LaunchVelocity": {"Vector3": list(LAUNCH)}})
+    for x0, x1, z0, z1 in ((sx - 4, sx + 4, sz - 4, sz - 3.4), (sx - 4, sx + 4, sz + 3.4, sz + 4),
+                           (sx - 4, sx - 3.4, sz - 3.4, sz + 3.4),
+                           (sx + 3.4, sx + 4, sz - 3.4, sz + 3.4)):
+        m.block(g, "HazardStripe", x0, x1, 0.06, 0.12, z0, z1, "hazard", **NO_HIT)
+    # Things to vault, hoops, court lines, wall pads.
+    m.block(g, "GymMats", -16, -10, F1, 3, -64, -60, "mat")
+    m.block(g, "BallCart", 10, 14, F1, 3.2, -64, -61, "grate")
+    for x, z in ((11, -62.5), (12.5, -61.8), (13, -63.2)):
+        m.part(g, "Ball", (1.4, 1.4, 1.4), (x, 3.9, z), (230, 110, 40), Shape="Ball", **NO_HIT)
+    for side in (-1, 1):
+        x = side * 33.4
+        m.block(g, "Backboard", x - 0.15, x + 0.15, 10, 13.5, -55, -49, (245, 245, 245),
+                **NO_HIT)
+        m.cylinder(g, "Hoop", 0.2, 1.8, (x - side * 1.1, 10.2, -52), (230, 90, 30), rot_z(90),
+                   **NO_HIT)
+    for x0, x1, z0, z1 in ((-36, 36, -64.2, -63.9), (-36, 36, -49.9, -49.6),
+                           (-0.15, 0.15, -64, -50)):
+        m.block(g, "CourtLine", x0, x1, 0.06, 0.1, z0, z1, "court_line", **NO_HIT)
+    door_w = INSIDE_WALLS["gym_west"]["f1"]
+    door_e = INSIDE_WALLS["gym_east"]["f1"]
+    for z in range(-70, -36, 4):
+        if not any(a - 0.5 < z + 3.6 and z < b + 0.5 for a, b, _ in door_w):
+            m.block(g, "WallPad", -39, -38.7, 1, 7, z, z + 3.6, "pad_wall", **NO_HIT)
+        if not any(a - 0.5 < z + 3.6 and z < b + 0.5 for a, b, _ in door_e):
+            m.block(g, "WallPad", 38.7, 39, 1, 7, z, z + 3.6, "pad_wall", **NO_HIT)
+
+
+def stairwells(m):
+    """Switchback stairs in the north-west and south-east corners: a flight up to a landing at 9,
+    then back the other way up to the upper floor."""
+    g = "Stairs"
+    ramp_z(m, g, "Stairs", -64, -52, -40, 0, -60, 9)
+    m.block(g, "Landing", -64, -40, 8, 9, -72, -60, "stair")
+    ramp_z(m, g, "Stairs", -52, -40, -60, 9, -40, F2)
+    ramp_z(m, g, "Stairs", 52, 64, 40, 0, 60, 9)
+    m.block(g, "Landing", 40, 64, 8, 9, 60, 72, "stair")
+    ramp_z(m, g, "Stairs", 40, 52, 60, 9, 40, F2)
+
+
+def west_wing(m):
+    """Rooms 101 and 102 below, the science lab and the computer lab above. The lab's floor has
+    fallen into 101: drop through, or climb the rubble (4) and the fallen cabinet (10) and pull
+    up onto the lab floor."""
+    g = "WestWing"
+    for x, z in ((-60, -22), (-60, -14), (-60, -6), (-38, -26), (-38, -3), (-46, -27)):
+        desk(m, g, x, z)
+    for x in (-56, -48, -40):
+        for z in (8, 16, 24):
+            desk(m, g, x, z)
+    on_wall(m, g, "Chalkboard", HALL_N, -43, 8, 14, 6, "board", depth=0.2,
+            text="TODAY: TAG<br/>Rule #1: don't get caught", text_color=(240, 240, 230),
+            font="PermanentMarker")
+    on_wall(m, g, "Chalkboard", HALL_S, -43, 8, 14, 6, "board", depth=0.2,
+            text="POP QUIZ:<br/>Who's It?", text_color=(240, 240, 230), font="PermanentMarker")
+    # The fall: a lab cabinet came down under the hole's south edge, with rubble next to it.
+    m.block(g, "FallenCabinet", -51, -47, F1, 10, -14.5, -12, "lab_bench")
+    m.block(g, "Rubble", -52, -46.5, F1, 4, -11, -6.5, "rubble")
+    m.block(g, "Rubble", -45, -42, F1, 2.2, -16, -13, "rubble")
+    m.part(g, "FloorChunk", (7, 1, 6), (-48, 1.2, -17.5), "debris", rot_z(14), **NO_HIT)
+    # Upper floor: lab benches round the hole, the fume hood, computer desks.
+    for z in (-24, -7):
+        for x0, x1 in ((-61, -51), (-45, -37)):
+            m.block(g, "LabBench", x0, x1, F2, F2 + 3.4, z - 1.5, z + 1.5, "lab_bench")
+    hx0, hx1, hz0, hz1 = LAB_HOLE
+    for x0, x1, z0, z1 in ((hx0 - 1, hx1 + 1, hz0 - 1, hz0), (hx0 - 1, hx1 + 1, hz1, hz1 + 1),
+                           (hx0 - 1, hx0, hz0, hz1), (hx1, hx1 + 1, hz0, hz1)):
+        m.block(g, "HazardEdge", x0, x1, F2, F2 + 0.08, z0, z1, "hazard", **NO_HIT)
+    m.block(g, "FumeHood", -50, -42, F2, F2 + 9, -31, -28, "counter")
+    for z in (8, 16, 24):
+        for x0, x1 in ((-61, -51), (-45, -38)):
+            m.block(g, "ComputerDesk", x0, x1, F2, F2 + 3, z - 1.2, z + 1.2, "desk")
+            for x in range(x0 + 1, x1 - 1, 3):
+                m.block(g, "Monitor", x, x + 1.6, F2 + 3, F2 + 4.2, z - 0.2, z + 0.1,
+                        (30, 30, 36), **NO_HIT)
+    m.block(g, "ServerRack", -63.5, -60.5, F2, F2 + 10, 28, 31, (30, 34, 40))
+    for i, (x, z) in enumerate(((-56, -18), (-44, -24), (-36, -10), (-52, 12), (-44, 28))):
+        m.part(g, "Paper", (1.3, 0.04, 1.7), (x, 0.13, z), (250, 250, 245),
+               rot_y(i * 37 % 90 - 45), **NO_HIT)
+
+
+def east_wing(m):
+    """The library (double height): shelf rows to wall-run and run along the tops, a mezzanine
+    at 18 on the east wall, a bridge across from the balcony. North of it the locker room, with
+    the teachers' lounge above."""
+    g = "Library"
+    for k, z in enumerate((-24, -14, 14, 24)):
+        bookshelf_row(m, g, 34, 40, z, k)
+        bookshelf_row(m, g, 46, 53, z, k + 1)  # ends 1 short of the mezzanine: climb from here
+    for x0, x1 in ((34, 39), (47, 52)):
+        m.block(g, "ReadingTable", x0, x1, F1, 2.8, -1.5, 1.5, "desk")
+    m.block(g, "FrontDesk", 34, 38, F1, 3.5, -31, -27, "door")
+    m.block(g, "Mezzanine", 54, IN_X, F1_TOP, F2, -32, 32, "floor")
+    m.block(g, "Bridge", 32, 54, F1_TOP, F2, -4, 4, "floor")
+    rail(m, g, 33, 54, -4.3, -3.7)
+    rail(m, g, 33, 54, 3.7, 4.3)
+    for z in (-24, -10, 10, 24):
+        m.block(g, "MezzColumn", 54, 55.5, F1, F1_TOP, z - 0.75, z + 0.75, "pillar")
+    for z0, z1 in ((-32, -4), (4, 32)):
+        m.block(g, "HazardEdge", 54, 54.6, F2, F2 + 0.08, z0, z1, "hazard", **NO_HIT)
+    for y in (F1, F2):  # bookshelves on the east wall, clear of the windows (decoration)
+        for z0, z1 in ((-16, -8), (8, 16)):
+            m.block(g, "WallShelf", 63, 63.9, y, y + 8, z0, z1, "shelf", **NO_HIT)
+    m.part(g, "GlobeStand", (0.8, 0.8, 0.8), (37, 9.4, -24), (60, 50, 40), **NO_HIT)
+    m.part(g, "Globe", (2, 2, 2), (37, 10.8, -24), (70, 130, 200), Shape="Ball", **NO_HIT)
+
+    g = "Lockers"
+    for x0 in (47, 55):
+        m.block(g, "LockerIsland", x0, x0 + 2.5, F1, 9, -56, -38, "locker_a")
+    m.block(g, "Bench", 51, 53, F1, 1.6, -54, -40, "desk")
+    for x in (50, 56, 62):
+        m.block(g, "ShowerWall", x - 0.2, x + 0.2, F1, 7, -72, -66, "lab_floor")
+    slip_puddle(m, g, 54, -63, F1, size=8)
+    m.block(g, "Couch", 44, 52, F2, F2 + 3, -50, -47, "couch")
+    m.block(g, "CoffeeTable", 45, 51, F2, F2 + 2, -44, -42, "desk")
+    m.block(g, "Vending", 60.5, 63.8, F2, F2 + 8, -44, -40, "vending")
+    m.block(g, "Kitchenette", 42, 60, F2, F2 + 3.5, -71.5, -69, "counter")
+
+
+def south_wing(m):
+    """Cafeteria, kitchen and band room below; art room, upper hall and music room above. The
+    upper hall's floor has fallen into the cafeteria as a ramp you can run up or down."""
+    g = "Cafeteria"
+    for x in (-32, -22, -12):
+        m.block(g, "LunchTable", x - 2, x + 2, F1, 2.6, 39, 51, "table")
+    for x in (14, 26):
+        m.block(g, "LunchTable", x - 2, x + 2, F1, 2.6, 46, 52, "table")
+    # The serving line: a half-down shutter (slide under it) and an open counter (vault it).
+    m.block(g, "Shutter", -22, -4, 4.2, 12, 55.4, 56.6, "grate")
+    m.block(g, "StandBlocker", -22, -4, F1, 4.2, 55.4, 56.6, (255, 255, 255), Transparency=1,
+            CastShadow=False, attributes={"SlideBlocker": True})
+    m.block(g, "ServingCounter", 4, 22, F1, 3, 55, 57, "counter")
+    m.block(g, "Vending", -39.8, -37, F1, 8, 50, 54, "vending")
+    # The collapse: hinged at the hole's west edge, resting on the floor short of the east
+    # end (clear of the stairwell door).
+    cx0, cx1, cz0, cz1 = COLLAPSE
+    ramp_x(m, g, "CollapsedFloor", cz0 + 0.5, cz1 - 0.5, cx0, F2, cx1 - 2, 0, color="debris",
+           thick=1.5)
+    for x, z, size in ((38, 45.5, (2.5, 2, 2.5)), (31, 45.5, (3, 2.4, 2)), (20, 45, (2, 1.6, 2))):
+        m.block(g, "Rubble", x - size[0] / 2, x + size[0] / 2, F1, size[1], z - size[2] / 2,
+                z + size[2] / 2, "rubble")
+    m.block(g, "CollapseEdge", cx0, cx1, F2, F2 + 0.08, cz0 - 0.6, cz0, "hazard", **NO_HIT)
+
+    g = "Kitchen"
+    for x0, x1 in ((-30, -14), (-6, 10)):
+        m.block(g, "KitchenIsland", x0, x1, F1, 3.5, 62, 65, "counter")
+    m.block(g, "WalkInFridge", 22, 36, F1, 10, 60, 71, "fridge")
+    m.block(g, "Stove", -38, -22, F1, 3.5, 69.5, IN_Z, (70, 72, 78))
+    slip_puddle(m, g, 0, 68.5, F1, size=5, slip=1.2)
+
+    g = "BandArt"
+    for x0, x1, h in ((-64, -58, 4.5), (-58, -54, 3), (-54, -50, 1.5)):
+        m.block(g, "Riser", x0, x1, F1, h, 40, 68, "carpet_blue")
+    m.block(g, "Piano", -48, -43, F1, 3.5, 50, 56, "piano")
+    m.cylinder(g, "BassDrum", 1.5, 3, (-61, 6, 54), (220, 220, 220), rot_y(90), **NO_HIT)
+    for z in (40, 56):
+        m.block(g, "PaintTable", -60, -46, F2, F2 + 3, z, z + 5, "desk")
+    m.block(g, "Kiln", -62, -58, F2, F2 + 6, 66, 70, "concrete_dark")
+    for i, (x, z) in enumerate(((-50, 50), (-56, 63), (-47, 36))):
+        m.cylinder(g, "PaintSplat", 0.05, 3 + i, (x, F2 + 0.08, z),
+                   ((220, 60, 60), (60, 120, 220), (240, 200, 50))[i], **NO_HIT)
+    for i in range(4):  # the music room's tiers, stepping up to the south wall
+        m.block(g, "MusicTier", -34, 34, F2, F2 + 1.5 * (i + 1), 58 + 3.5 * i, IN_Z, "room_floor")
+    m.block(g, "GrandPiano", 10, 16, F2, F2 + 3.5, 49, 54, "piano")
+
+
+def upper_ring(m):
+    """The balcony ring's extras: a leak puddle with its bucket, benches."""
+    g = "UpperRing"
+    slip_puddle(m, g, 24, -22, F2, size=7, slip=1.4)
+    m.block(g, "Bucket", 29, 31, F2, F2 + 2.4, -26, -24, "hazard")
+    for x in (-24, 24):
+        m.block(g, "Bench", x - 3, x + 3, F2, F2 + 1.8, 22, 24, "desk")
+
+
+def lights(m):
+    # The hall ring, both floors.
+    for y in (F1_TOP, F2_TOP):
+        for x in (-26, 26):
+            for z in (-24, -8, 8, 24):
+                light(m, x, y, z, along_x=False)
+        for z in (-26, 26):
+            for x in (-8, 8):
+                light(m, x, y, z)
+    for x, z in ((-16, 0), (16, 0), (0, -16), (0, 16)):  # under the balcony
+        light(m, x, F1_TOP, z, along_x=x == 0)
+    for x in (-24, 0, 24):  # gym
+        for z in (-60, -44):
+            light(m, x, F2_TOP, z, brightness=0.7, reach=34)
+    for x, z in ((-56, -24), (-40, -24), (-58, -8), (-40, -6), (-48, 8), (-48, 24)):  # 101, 102
+        light(m, x, F1_TOP, z)
+    for x, z, flick in ((-58, -16, True), (-38, -18, False), (-48, 8, False), (-48, 24, False)):
+        light(m, x, F2_TOP, z, flicker=flick)  # labs
+    for x in (-30, -10, 10, 30):  # cafeteria
+        light(m, x, F1_TOP, 44)
+    for x in (-24, 0, 24):  # kitchen
+        light(m, x, F1_TOP, 64)
+    for z in (44, 60):  # band, art
+        light(m, -52, F1_TOP, z)
+        light(m, -52, F2_TOP, z)
+    for x in (-24, 0, 24):  # music
+        light(m, x, F2_TOP, 58)
+    for x, flick in ((-28, False), (-8, False), (20, True)):  # upper hall, flickering over the hole
+        light(m, x, F2_TOP, 38, flicker=flick)
+    for z in (-18, 0, 18):  # library, under and over the mezzanine
+        light(m, 42, F2_TOP, z, warm=True, reach=30)
+    for z in (-16, 16):
+        light(m, 59, F1_TOP, z, along_x=False, warm=True)
+        light(m, 59, F2_TOP, z, along_x=False, warm=True)
+    for z in (-62, -46):  # locker room, lounge
+        light(m, 52, F1_TOP, z)
+        light(m, 52, F2_TOP, z, warm=True)
+    for x, z in ((-52, -36), (-52, -56), (52, 36), (52, 56)):  # stairwells
+        light(m, x, F1_TOP if abs(z) < 40 else F2_TOP, z)
+
+
+def details(m):
+    """Decoration that makes the school feel lived in (no collision, no effect on the routes)."""
     g = "Details"
-    # Posters (the hallway ones are school notices).
+    hall = INSIDE_WALLS
+    # Lockers along the halls (both floors) and the upper hall, skipping doors and windows.
+    lockers(m, g, HALL_W, -30, 30, hall["west"]["f1"])
+    lockers(m, g, HALL_W, -30, 30, hall["west"]["f2"], y=F2)
+    lockers(m, g, HALL_E, -30, 30, hall["east"]["f1"])
+    lockers(m, g, ATRIUM_W, -19, 19, ARCHES)
+    lockers(m, g, ATRIUM_E, -19, 19, ARCHES)
+    lockers(m, g, UPPER_HALL_S, -38, 38, hall["music"]["f2"], y=F2)
+
+    # Posters (school notices) and bulletin boards.
     for args in (
-        ("EO", 46, 7, 5, 7, (40, 120, 200), "SCIENCE<br/>FAIR<br/>FRIDAY!"),
-        ("EO", -48, 7, 6, 4, (220, 60, 60), "NO RUNNING<br/>IN THE HALLS"),
-        ("NO", 26, 8, 8, 4, (250, 190, 40), "GO TIGERS!", (60, 30, 10)),
-        ("NO", -30, 7, 5, 6, (90, 180, 110), "READ<br/>MORE<br/>BOOKS"),
-        ("SO", -34, 7, 5, 6, (240, 140, 60), "LUNCH MENU<br/>PIZZA DAY"),
-        ("SO", 34, 7, 6, 4, (120, 90, 200), "STAY IN<br/>SCHOOL"),
-        ("WO", -58, 7, 5, 6, (60, 170, 200), "ART CLUB<br/>ROOM 104"),
-        ("WO", 58, 7, 5, 6, (230, 90, 150), "SPIRIT<br/>WEEK"),
-        ("WI", -20, 8, 4, 5, (70, 90, 160), "MATH TEAM<br/>TRYOUTS"),
-        ("EI", 20, 8, 5, 5, (200, 70, 70), "BOOK<br/>FAIR"),
-        ("NI", -10, 8, 6, 4, (60, 140, 140), "CLASS PHOTOS<br/>TUESDAY"),
-        ("SI", 24, 6, 4, 4, (240, 200, 70), "PROM<br/>TICKETS", (60, 30, 10)),
+        (HALL_W, -24, 12.5, 7, 3.5, (220, 60, 60), "NO RUNNING<br/>IN THE HALLS"),
+        (HALL_W, 24, 12.5, 5, 3.5, (230, 90, 150), "SPIRIT<br/>WEEK"),
+        (HALL_E, -15, 12.5, 5, 3.5, (90, 180, 110), "READ MORE<br/>BOOKS"),
+        (HALL_E, 15, 12.5, 5, 3.5, (200, 70, 70), "BOOK<br/>FAIR"),
+        (HALL_N, 0, 7.5, 10, 5, (250, 190, 40), "GO TIGERS!", (60, 30, 10)),
+        (HALL_S, -16, 7, 5, 6, (240, 140, 60), "LUNCH MENU<br/>PIZZA DAY"),
+        (HALL_S, 16, 7, 5, 4, (120, 90, 200), "STAY IN<br/>SCHOOL"),
+        (HALL_W, 0, 30.5, 6, 3.5, (40, 120, 200), "SCIENCE FAIR<br/>FRIDAY!"),
+        (HALL_S, -24, 24, 5, 5, (60, 170, 200), "ART CLUB<br/>ROOM 204"),
+        (HALL_S, 24, 24, 4, 4, (240, 200, 70), "PROM<br/>TICKETS", (60, 30, 10)),
+        (UPPER_HALL_S, -15, 30.5, 5, 3.5, (200, 70, 70), "BAND<br/>CONCERT"),
+        (UPPER_HALL_S, 22, 30.5, 6, 3.5, (70, 90, 160), "MATH TEAM<br/>TRYOUTS"),
+        (GYM_N, 0, 11, 16, 4.5, (130, 30, 40), "GO TIGERS!", (250, 200, 60)),
+        (KITCHEN_SERVE, 26, 8, 5, 4, (60, 140, 140), "WASH<br/>YOUR HANDS"),
+        (ART_W, 55, 25, 5, 4, (230, 90, 150), "ART<br/>CLUB"),
+        (CAFE_N_IN, 16, 8, 5, 4, (250, 190, 40), "TACO<br/>TUESDAY", (60, 30, 10)),
     ):
         poster(m, g, *args)
-    # Bulletin boards, clocks.
-    bulletin_board(m, g, "NI", 18, 7.5, 10, 5)
-    bulletin_board(m, g, "EO", 20, 7.5, 10, 5)
-    bulletin_board(m, g, "SO", 12, 7.5, 10, 5)
-    clock(m, g, "NO", 0, 13)
-    clock(m, g, "SO", -14, 13)
-    clock(m, g, "EI", -40, 13)
-    # Room plates by the classroom doors.
-    for wall, along in (("WI", -38), ("EI", 37)):
-        poster(m, g, wall, along, 8, 2.2, 1.2, (40, 40, 50), "101", (240, 220, 120))
-
-    # Exit signs hanging at the corners.
-    for x, z in ((36, -58), (-36, -58), (36, 58), (-36, 58)):
-        m.part(g, "ExitSign", (3, 1.1, 0.3), (x, HEIGHT - 1.6, z), (30, 30, 30),
-               children=[surface_text("Front", "EXIT", (255, 60, 60), None, font="Arcade",
-                                      glow=True),
-                         surface_text("Back", "EXIT", (255, 60, 60), None, font="Arcade",
-                                      glow=True)],
-               **NO_HIT)
-        for dx in (-1.2, 1.2):
-            m.block(g, "SignRod", x + dx - 0.05, x + dx + 0.05, HEIGHT - 1.05, HEIGHT, z - 0.05,
-                    z + 0.05, "chain", **NO_HIT)
-    # Fire alarms and an extinguisher cabinet.
-    for wall, along in (("EO", 12), ("WO", -54), ("SO", -40), ("NO", 40)):
-        on_wall(m, g, "FireAlarm", wall, along, 5.2, 0.8, 1.2, (210, 40, 40), depth=0.3)
-    on_wall(m, g, "ExtinguisherCase", "NO", -40, 5, 2, 3.2, (235, 235, 235), depth=0.6)
-    _, coord, facing = WALLS["NO"]
-    m.cylinder(g, "Extinguisher", 2.2, 0.8, (-40, 4.8, coord + facing * 0.7), (200, 30, 30),
-               **NO_HIT)
-    # Water fountain on the classroom's east wall (hallway side).
-    on_wall(m, g, "WaterFountain", "EI", 44, 3.2, 3, 1.2, (190, 195, 205), depth=1.4,
-            Material="Metal")
-    on_wall(m, g, "FountainBowl", "EI", 44, 3.9, 2.2, 0.15, (140, 150, 160), depth=1.2)
-    # Trophy case on the classroom's north wall (hallway side; that wall has no windows).
-    trophy_x = -23.5
-    on_wall(m, g, "TrophyCase", "NI", trophy_x, 6, 7, 6, "door", depth=1.2)
-    on_wall(m, g, "TrophyGlass", "NI", trophy_x, 6, 6.4, 5.4, (190, 220, 240), depth=0.1, out=1.2,
-            Material="Glass", Transparency=0.6)
-    _, coord, facing = WALLS["NI"]
-    for i, dx in enumerate((-2.2, -0.7, 0.8, 2.3)):
-        height = 1.2 + (i % 2) * 0.6
-        m.cylinder(g, "Trophy", height, 0.7,
-                   (trophy_x + dx, 4.4 + height / 2, coord + facing * 0.6), (240, 190, 50),
-                   Material="Metal", Reflectance=0.3, **NO_HIT)
-        m.cylinder(g, "TrophyBase", 0.4, 1, (trophy_x + dx, 4.25, coord + facing * 0.6),
-                   (60, 40, 30), **NO_HIT)
-    # School banner hanging over the north hallway.
-    m.part(g, "Banner", (10, 3, 0.1), (-14, 15, -58), (130, 30, 40),
-           children=[surface_text("Front", "TIGERS", (250, 200, 60), (130, 30, 40)),
-                     surface_text("Back", "TIGERS", (250, 200, 60), (130, 30, 40))], **NO_HIT)
-    for dx in (-4.5, 4.5):
-        m.block(g, "BannerRod", -14 + dx - 0.05, -14 + dx + 0.05, 16.5, HEIGHT, -58.05, -57.95,
-                "chain", **NO_HIT)
-    # Trash cans in the corners (solid: vault them or go round).
-    for x, z in ((41, -63), (-41, -63), (41, 63), (-41, 63)):
-        m.cylinder(g, "TrashCan", 3.2, 2.4, (x, 1.6, z), (110, 115, 120), Material="Metal")
-        m.cylinder(g, "TrashLid", 0.2, 2.6, (x, 3.3, z), (80, 85, 90), **NO_HIT)
-
-    # Locker details: vents, handles and the seams between lockers.
-    face = -IN_X + 2
-    for i, z in enumerate(range(-48, 48, 3)):
-        for y in (7.6, 8.0):
-            m.block(g, "LockerVent", face, face + 0.05, y, y + 0.12, z + 0.6, z + 2.4, (30, 35, 45),
-                    **NO_HIT)
-        m.block(g, "LockerHandle", face, face + 0.15, 4.2, 5.2, z + 2.3, z + 2.55, (200, 200, 205),
-                Material="Metal", **NO_HIT)
-        m.block(g, "LockerSeam", face, face + 0.04, 0, 9, z - 0.05, z + 0.05, (25, 30, 40),
-                **NO_HIT)
-        if i % 5 == 2:  # a few name tags
-            m.block(g, "NameTag", face, face + 0.04, 6.6, 7.1, z + 0.8, z + 2.2, (250, 250, 240),
-                    **NO_HIT)
-
-    # Baseboards along the hallway walls, and the ceiling tile grid.
-    base = (60, 55, 50)
-    for wall, s0, s1 in (("EO", -IN_Z, IN_Z), ("NO", -IN_X, IN_X), ("SO", -IN_X, IN_X),
-                         ("WO", -IN_Z, -48), ("WO", 48, IN_Z), ("NI", -ROOM_X, ROOM_X),
-                         ("SI", -ROOM_X, ROOM_X), ("EI", -ROOM_Z, 26), ("EI", 34, ROOM_Z),
-                         ("WI", -ROOM_Z, -34), ("WI", -26, ROOM_Z)):
-        on_wall(m, g, "Baseboard", wall, (s0 + s1) / 2, 0.3, s1 - s0, 0.6, base, depth=0.15)
-    grid = (95, 97, 104)
-    for x in range(-42, 43, 6):  # north and south hallways
-        for z0, z1 in ((-IN_Z, -ROOM_Z), (ROOM_Z, IN_Z)):
-            m.block(g, "CeilingGrid", x - 0.08, x + 0.08, HEIGHT - 0.04, HEIGHT, z0, z1, grid,
-                    **NO_HIT)
-    for z in range(-48, 49, 6):  # east and west hallways
-        for x0, x1 in ((-IN_X, -ROOM_X), (ROOM_X, IN_X)):
-            m.block(g, "CeilingGrid", x0, x1, HEIGHT - 0.04, HEIGHT, z - 0.08, z + 0.08, grid,
-                    **NO_HIT)
-
-
-def classroom_details(m):
-    g = "ClassroomDetails"
-    inner_x, inner_z = ROOM_X - WALL, ROOM_Z - WALL
-    # Alphabet strip over the board, a clock, a world map, a flag.
-    poster(m, g, "CN", 0, 13.2, 32, 1.4, (250, 250, 245),
-           "Aa  Bb  Cc  Dd  Ee  Ff  Gg  Hh  Ii  Jj  Kk  Ll  Mm", (40, 60, 140))
-    clock(m, g, "CN", 21, 14)
-    on_wall(m, g, "WorldMap", "CE", -28, 11.5, 8, 5, (90, 160, 210), depth=0.08)
-    for dx, dy, w, h in ((-2.2, 0.8, 2.4, 1.6), (0.4, 0.3, 1.6, 2.6), (2.6, 0.9, 2, 1.4),
-                         (2.9, -1.3, 1.4, 1)):
-        on_wall(m, g, "Continent", "CE", -28 + dx, 11.5 + dy, w, h, (110, 180, 90), depth=0.03,
-                out=0.08)
-    _, coord, facing = WALLS["CN"]
-    m.cylinder(g, "FlagPole", 6, 0.2, (-21, 12, coord + facing * 0.8), (200, 190, 150),
-               rot_z(70), **NO_HIT)
-    for i, color in enumerate(((200, 40, 50), (245, 245, 245), (200, 40, 50))):
-        m.part(g, "Flag", (3.2, 0.6, 0.05), (-19.6, 14.4 - i * 0.6, coord + facing * 0.9), color,
-               **NO_HIT)
-    # Papers scattered on the floor.
-    for i, (x, z) in enumerate(((-20, -40), (-6, -30), (14, -36), (20, -8), (-18, 6), (-2, 12),
-                                (16, 30), (-12, 34), (2, 42), (22, 40), (-22, -2), (8, -26))):
-        m.part(g, "Paper", (1.3, 0.04, 1.7), (x, 0.13, z), (250, 250, 245), rot_y(i * 37 % 90 - 45),
-               **NO_HIT)
-    # A globe on top of a bookshelf.
-    m.part(g, "GlobeStand", (0.8, 0.8, 0.8), (-23, 9.4, -18), (60, 50, 40), **NO_HIT)
-    m.part(g, "Globe", (2, 2, 2), (-23, 10.8, -18), (70, 130, 200), Shape="Ball", **NO_HIT)
-    # Ceiling fans (spinning).
-    for z in (-34, 34):
-        m.cylinder(g, "FanMotor", 0.8, 1.4, (-14, HEIGHT - 1, z), (60, 60, 64), **NO_HIT)
-        m.block(g, "FanRod", -14.08, -13.92, HEIGHT - 0.6, HEIGHT, z - 0.08, z + 0.08, "chain",
+    on_wall(m, g, "QuietSign", MEZZ_EDGE, -14, 17, 8, 1.6, "plate", text="QUIET PLEASE",
+            text_color=(240, 220, 120))
+    bulletin_board(m, g, HALL_N, -14, 7.5, 10, 5)
+    bulletin_board(m, g, HALL_S, -38, 24, 8, 4)  # upper floor, in the computer lab
+    # Room signs over the doors.
+    for face, along, y, text in (
+        (HALL_W, -12, 11.2, "101"), (HALL_W, 12, 11.2, "102"),
+        (HALL_E, -7, 11.2, "LIBRARY"), (HALL_E, 7, 11.2, "LIBRARY"),
+        (HALL_N, -28, 11.2, "GYM"), (HALL_N, 28, 11.2, "GYM"), (HALL_S, 0, 13.2, "CAFETERIA"),
+        (HALL_W, -12, 29.2, "SCIENCE LAB"), (HALL_W, 12, 29.2, "COMPUTER LAB"),
+        (HALL_E, 0, 29.2, "LIBRARY"), (HALL_N, 0, 29.2, "GYM"),
+        (UPPER_HALL_S, -26, 29.2, "MUSIC"), (UPPER_HALL_S, -4, 29.2, "MUSIC"),
+        (UPPER_HALL_ART, 38, 29.2, "ART"), (TRACK_E, -56, 29.2, "TEACHERS ONLY"),
+    ):
+        plate(m, g, face, along, y, text)
+    # Exit signs by the stairwell doors, clocks, fire alarms.
+    for x, y, z, along_x in ((-56, F1_TOP, -30, True), (-56, F2_TOP, -30, True),
+                             (37, F1_TOP, 36, False), (37, F2_TOP, 36, False),
+                             (43, F1_TOP, 30, True), (-37, F1_TOP, -35.5, False)):
+        exit_sign(m, g, x, y, z, along_x)
+    for face, along, y in ((GYM_N, 24, 11), (CAFE_N_IN, -16, 12), (HALL_N, -56, 13),
+                           (HALL_S, -56, 13), (HALL_E, -7, F2 + 7)):
+        clock(m, g, face, along, y)
+    for face, along, y in ((HALL_N, 20, 5.2), (HALL_S, 20, 5.2), (HALL_N, 22, F2 + 5.2)):
+        on_wall(m, g, "FireAlarm", face, along, y, 0.8, 1.2, (210, 40, 40), depth=0.3)
+    # Ceiling fans in the cafeteria (spinning).
+    for x in (-20, 0):
+        m.cylinder(g, "FanMotor", 0.8, 1.4, (x, F1_TOP - 1, 47), (60, 60, 64), **NO_HIT)
+        m.block(g, "FanRod", x - 0.08, x + 0.08, F1_TOP - 0.6, F1_TOP, 46.92, 47.08, "chain",
                 **NO_HIT)
         for angle in (0, 90):
-            m.part(g, "FanBlade", (7, 0.12, 0.9), (-14, HEIGHT - 1.3, z), (150, 110, 70),
+            m.part(g, "FanBlade", (7, 0.12, 0.9), (x, F1_TOP - 1.3, 47), (150, 110, 70),
                    rot_y(angle), Material="Wood", attributes={"Spin": 220}, **NO_HIT)
-    # Ceiling grid over the classroom.
-    for x in range(-24, 25, 8):
-        m.block(g, "CeilingGrid", x - 0.08, x + 0.08, HEIGHT - 0.04, HEIGHT, -inner_z, inner_z,
-                (95, 97, 104), **NO_HIT)
+    # Dust falling from the two collapses, a live wire sparking over the cafeteria.
+    dust = {"rate": 5, "life": (3, 5), "speed": (1, 3), "size": ((0, 0.3), (1, 0.8)),
+            "transparency": ((0, 0.6), (1, 1)), "color": (200, 195, 185), "texture": SMOKE,
+            "direction": "Bottom", "spread": (30, 30)}
+    cx0, cx1, cz0, cz1 = COLLAPSE
+    hx0, hx1, hz0, hz1 = LAB_HOLE
+    for name, x0, x1, z0, z1 in (("CollapseDust", cx0, cx1, cz0 - 0.4, cz0),
+                                 ("LabDust", hx0, hx1, hz0 - 0.4, hz0)):
+        m.block(g, name, x0, x1, F1_TOP - 0.1, F1_TOP, z0, z1, (255, 255, 255), Transparency=1,
+                CastShadow=False, children=[m.particles("Dust", **dust)], **NO_HIT)
+    m.cylinder(g, "Wire", 4, 0.15, (24, F1_TOP - 2, cz0 + 0.3), (30, 30, 30), **NO_HIT)
+    m.block(g, "WireEnd", 23.8, 24.2, F1_TOP - 4.2, F1_TOP - 3.8, cz0 + 0.1, cz0 + 0.5,
+            (255, 160, 60), Material="Neon", **NO_HIT,
+            children=[m.particles("Sparks", rate=10, life=(0.2, 0.45), speed=(6, 14),
+                                  size=((0, 0.15), (1, 0.05)), transparency=((0, 0), (1, 1)),
+                                  color=(255, 200, 90), texture=SPARK, direction="Bottom",
+                                  spread=(60, 60), accel=(0, -60, 0), light=1)])
+    # Baseboards along the halls, broken at the doorways.
+    for face, spec in ((HALL_N, hall["north"]), (HALL_S, hall["south"]), (HALL_W, hall["west"]),
+                       (HALL_E, hall["east"])):
+        s = -32
+        for o0, o1 in sorted((o[0], o[1]) for o in spec["f1"] if len(o) == 3) + [(32, 32)]:
+            a, b = max(s, -32), min(o0, 32)
+            if b - a > 0.5:
+                on_wall(m, g, "Baseboard", face, (a + b) / 2, 0.3, b - a, 0.6, (60, 55, 50),
+                        depth=0.15)
+            s = max(s, o1)
 
 
-def basement_details(m):
-    g = "BasementDetails"
-    cx0, cx1, cz0, cz1 = CHAMBER
-    # Boiler in the chamber's north-east corner (solid; clear of the hole above).
-    m.cylinder(g, "Boiler", 14, 7, (41.5, B_FLOOR + 7, -35), (140, 60, 45), Material="Metal")
-    m.cylinder(g, "BoilerBand", 0.6, 7.3, (41.5, B_FLOOR + 3, -35), (60, 60, 64), **NO_HIT)
-    m.cylinder(g, "BoilerBand", 0.6, 7.3, (41.5, B_FLOOR + 11, -35), (60, 60, 64), **NO_HIT)
-    m.cylinder(g, "BoilerPipe", 6, 1.2, (41.5, B_FLOOR + 17, -35), "pipe", **NO_HIT)
-    m.part(g, "Gauge", (0.2, 1.2, 1.2), (37.9, B_FLOOR + 8, -35), (240, 240, 235),
-           Shape="Cylinder", **NO_HIT)
-    # Crates in the north-west corner (solid).
-    m.block(g, "Crate", cx0 + 0.5, cx0 + 4.5, B_FLOOR, B_FLOOR + 4, cz0 + 0.5, cz0 + 4.5, "desk")
-    m.block(g, "Crate", cx0 + 1, cx0 + 4, B_FLOOR + 4, B_FLOOR + 7, cz0 + 1, cz0 + 4, "desk")
-    m.block(g, "Crate", cx0 + 5, cx0 + 8, B_FLOOR, B_FLOOR + 3, cz0 + 0.5, cz0 + 3.5, "desk")
-    # Hazard stripes round the updraft pad.
-    for x0, x1, z0, z1 in ((30, 42, -18.5, -17.5), (30, 42, -6.5, -5.5), (29.5, 30.5, -18, -6),
-                           (41.5, 42.5, -18, -6)):
-        m.block(g, "HazardStripe", x0, x1, B_FLOOR, B_FLOOR + 0.62, z0, z1, "hazard", **NO_HIT)
-    # Pipes along the walls and tunnels, with valve wheels.
-    runs = (
-        ((cx0 + 0.6, -6, cz0), (cx0 + 0.6, -6, cz1), 1.2, (70, 110, 70)),
-        ((cx0 + 0.6, -8, cz0), (cx0 + 0.6, -8, cz1), 0.8, "pipe"),
-        ((43.4, -13.6, 4), (43.4, -13.6, 46), 1.0, (70, 90, 140)),
-        ((-30, -13.6, 46.7), (32, -13.6, 46.7), 0.9, (70, 110, 70)),
-        ((-41.3, B_FLOOR, 40), (-41.3, -2, 40), 1.2, "pipe"),
-    )
-    for (ax, ay, az), (bx, by, bz), dia, color in runs:
-        length = math.dist((ax, ay, az), (bx, by, bz))
-        mid = ((ax + bx) / 2, (ay + by) / 2, (az + bz) / 2)
-        if ax != bx:
-            rows = IDENTITY  # along X
-        elif az != bz:
-            rows = rot_y(90)  # along Z
-        else:
-            rows = rot_z(90)  # vertical
-        m.cylinder(g, "Pipe", length, dia, mid, color, rows, Material="Metal", **NO_HIT)
-    for x, y, z, rows in ((cx0 + 1.4, -6, -20, IDENTITY), (42.6, -13.6, 24, IDENTITY),
-                          (0, -13.6, 47.6, rot_y(90))):
-        m.part(g, "Valve", (0.25, 1.6, 1.6), (x, y, z), (200, 40, 40), rows, Shape="Cylinder",
-               **NO_HIT)
-    # Water dripping in the pipe room, and a puddle under it (just a puddle: no slip).
-    m.block(g, "Drip", -36.2, -35.8, -2.4, -2.1, 40.8, 41.2, (90, 110, 130), **NO_HIT,
-            children=[particles("Drips", rate=3, life=(0.6, 0.8), speed=(2, 4),
-                                size=((0, 0.12), (1, 0.12)), transparency=((0, 0.2), (1, 0.4)),
-                                color=(160, 200, 230), texture=SPARK, direction="Bottom",
-                                spread=(0, 0), accel=(0, -60, 0))])
+SPAWNS = (  # x, z, floor
+    (-18, -56, F1), (18, -56, F1), (-26, 0, F1), (26, 0, F1), (0, 26, F1), (-60, 4, F1),
+    (43, 20, F1), (-17, 46, F1), (-58, -16, F2), (-34, 38, F2), (0, -24, F2), (56, -38, F2),
+)
 
 
 def build():
-    m = Map()
-    main_floor(m)
-    basement(m)
-    hallway_details(m)
-    classroom_details(m)
-    basement_details(m)
-    # Spawns around the hallways and one in a classroom aisle (none next to the hole or grate).
-    for x, z in ((-26, -58), (36, -58), (-36, -30), (-36, 6), (36, 32), (-30, 58), (34, 58),
-                 (4.5, 7)):
-        m.spawn(x, z)
+    DOORS.clear()
+    m = Map(colors=COLORS, materials=MATERIALS)
+    shell(m)
+    atrium(m)
+    gym(m)
+    stairwells(m)
+    west_wing(m)
+    east_wing(m)
+    south_wing(m)
+    upper_ring(m)
+    lights(m)
+    details(m)
+    for x, z, y in SPAWNS:
+        m.spawn(x, z, y)
     return m
+
+
+# ---- checks ----------------------------------------------------------------------------------
+
+def solids(m):
+    """World-space bounds of every part that blocks players."""
+    boxes = []
+    for nodes in m.groups.values():
+        for node in nodes:
+            p = node["properties"]
+            gate = (node.get("attributes") or {}).get("SlideBlocker")
+            if p.get("CanCollide") is False or (p.get("Transparency", 0) >= 1 and not gate):
+                continue
+            cf = p["CFrame"]["CFrame"]
+            rows, (x, y, z), size = cf["orientation"], cf["position"], p["Size"]
+            half = [sum(abs(rows[i][j]) * size[j] / 2 for j in range(3)) for i in range(3)]
+            name = re.sub(r"\d+$", "", node["name"])
+            boxes.append((name, (x - half[0], x + half[0]), (y - half[1], y + half[1]),
+                          (z - half[2], z + half[2])))
+    return boxes
+
+
+def overlaps(box, xs, ys, zs):
+    _, bx, by, bz = box
+    return all(a[0] < b[1] and b[0] < a[1] for a, b in ((bx, xs), (by, ys), (bz, zs)))
 
 
 def check(m):
     problems = []
-    for i, (x, _, z) in enumerate(m.spawns):
-        for j in range(i):
-            px, _, pz = m.spawns[j]
-            if math.hypot(x - px, z - pz) < 25:
-                problems.append(f"spawns {j + 1} and {i + 1} are under 25 studs apart")
-        for name, (x0, x1, z0, z1) in (("hole", HOLE), ("grate", GRATE)):
-            if x0 - 3 <= x <= x1 + 3 and z0 - 3 <= z <= z1 + 3:
-                problems.append(f"spawn {i + 1} is next to the {name}")
-    return problems
-
-
-def write(m):
-    if os.path.isdir(OUT):
-        shutil.rmtree(OUT)
-    os.makedirs(OUT)
-
-    def dump(name, data):
-        with open(os.path.join(OUT, name), "w") as f:
-            json.dump(data, f, indent=1)
-            f.write("\n")
-
-    dump("init.meta.json", {"className": "Model", "attributes": {
-        "DisplayName": "School", "MinPlayers": 2, "MaxPlayers": 8, "InRotation": True,
-        "Lighting": "Indoor"}})
-    for group, children in m.groups.items():
-        dump(f"{group}.model.json", {"className": "Folder", "children": children})
-    spawns = []
+    boxes = solids(m)
+    if len(m.spawns) < ATTRIBUTES["MaxPlayers"]:
+        problems.append(f"only {len(m.spawns)} spawns for {ATTRIBUTES['MaxPlayers']} players")
     for i, (x, y, z) in enumerate(m.spawns):
-        spawns.append({"name": f"Spawn{i + 1}", "className": "Part", "properties": {
-            "Anchored": True, "CanCollide": False, "CanQuery": False, "CanTouch": False,
-            "CastShadow": False, "Transparency": 1, "Size": [2, 1, 2],
-            "CFrame": {"CFrame": {"position": [r(x), r(y + 0.5), r(z)],
-                                  "orientation": IDENTITY}}}})
-    dump("Spawns.model.json", {"className": "Folder", "children": spawns})
+        for j in range(i):
+            if math.dist((x, y, z), m.spawns[j]) < 25:
+                problems.append(f"spawns {j + 1} and {i + 1} are under 25 studs apart")
+        body = ((x - 1, x + 1), (y + 0.3, y + 5), (z - 1, z + 1))
+        hits = [b[0] for b in boxes if overlaps(b, *body)]
+        if hits:
+            problems.append(f"spawn {i + 1} is inside {', '.join(sorted(set(hits)))}")
+        under = ((x - 0.5, x + 0.5), (y - 0.5, y - 0.01), (z - 0.5, z + 0.5))
+        if not any(overlaps(b, *under) for b in boxes):
+            problems.append(f"spawn {i + 1} has no floor under it")
+    # Every doorway: nothing solid in the way for 3 studs either side of the wall.
+    for axis, line, s0, s1, floor_y in DOORS:
+        along, across, ys = (s0 + 1, s1 - 1), (line - 4, line + 4), (floor_y + 0.5, floor_y + 5)
+        xs, zs = (along, across) if axis == "X" else (across, along)
+        hits = [b[0] for b in boxes if overlaps(b, xs, ys, zs) and b[0] != "Wall"]
+        if hits:
+            problems.append(f"door on {axis}={line} at {s0}..{s1} (floor {floor_y}) is blocked "
+                            f"by {', '.join(sorted(set(hits)))}")
+    return problems
 
 
 if __name__ == "__main__":
     layout = build()
     issues = check(layout)
-    count = sum(len(v) for v in layout.groups.values())
-    print(f"{count} parts in {len(layout.groups)} groups, {len(layout.spawns)} spawns")
+    print(f"{layout.count()} parts in {len(layout.groups)} groups, {len(layout.spawns)} spawns, "
+          f"{len(DOORS)} doorways")
     for line in issues:
         print("PROBLEM:", line)
-    write(layout)
+    layout.write(OUT, ATTRIBUTES)
     print(f"wrote {OUT}/ (Rojo syncs it into ServerStorage.Maps)")
     raise SystemExit(1 if issues else 0)

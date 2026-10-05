@@ -2,29 +2,719 @@
  "className": "Folder",
  "children": [
   {
-   "name": "Poster15",
+   "name": "Desk",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     32,
-     1.4,
-     0.12
+     3.0,
+     2.6,
+     2.2
     ],
     "Color": [
-     0.98,
-     0.98,
-     0.961
+     0.627,
+     0.431,
+     0.275
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Wood",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       0,
-       13.2,
-       -47.92
+       -60.0,
+       1.3,
+       -22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -60.0,
+       1.3,
+       -14.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -60.0,
+       1.3,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -38.0,
+       1.3,
+       -26.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -38.0,
+       1.3,
+       -3.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -46.0,
+       1.3,
+       -27.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       1.3,
+       8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       1.3,
+       16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       1.3,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -48.0,
+       1.3,
+       8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -48.0,
+       1.3,
+       16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -48.0,
+       1.3,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40.0,
+       1.3,
+       8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40.0,
+       1.3,
+       16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Desk15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2.6,
+     2.2
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40.0,
+       1.3,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Chalkboard",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     6,
+     0.2
+    ],
+    "Color": [
+     0.157,
+     0.314,
+     0.235
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -43,
+       8,
+       -30.88
       ],
       "orientation": [
        [
@@ -88,14 +778,14 @@
          ]
         },
         "BackgroundTransparency": 1,
-        "Text": "Aa  Bb  Cc  Dd  Ee  Ff  Gg  Hh  Ii  Jj  Kk  Ll  Mm",
+        "Text": "TODAY: TAG<br/>Rule #1: don't get caught",
         "TextScaled": true,
         "RichText": true,
-        "Font": "FredokaOne",
+        "Font": "PermanentMarker",
         "TextColor3": [
-         0.157,
-         0.235,
-         0.549
+         0.941,
+         0.941,
+         0.902
         ]
        }
       }
@@ -104,35 +794,35 @@
    ]
   },
   {
-   "name": "Clock4",
+   "name": "Chalkboard2",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.25,
-     2.6,
-     2.6
+     14,
+     6,
+     0.2
     ],
     "Color": [
-     0.961,
-     0.961,
-     0.961
+     0.157,
+     0.314,
+     0.235
     ],
-    "Material": "SmoothPlastic",
+    "Material": "Slate",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21,
-       14,
-       -47.85
+       -43,
+       8,
+       30.88
       ],
       "orientation": [
        [
-        0.0,
+        1,
         0,
-        1.0
+        0
        ],
        [
         0,
@@ -140,32 +830,455 @@
         0
        ],
        [
-        -1.0,
         0,
-        0.0
+        0,
+        1
        ]
       ]
      }
     },
-    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 30
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           0.92,
+           0
+          ],
+          [
+           0.88,
+           0
+          ]
+         ]
+        },
+        "Position": {
+         "UDim2": [
+          [
+           0.04,
+           0
+          ],
+          [
+           0.06,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "POP QUIZ:<br/>Who's It?",
+        "TextScaled": true,
+        "RichText": true,
+        "Font": "PermanentMarker",
+        "TextColor3": [
+         0.941,
+         0.941,
+         0.902
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "FallenCabinet",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     10,
+     2.5
+    ],
+    "Color": [
+     0.173,
+     0.188,
+     0.227
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.0,
+       5.0,
+       -13.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Rubble",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.5,
+     4,
+     4.5
+    ],
+    "Color": [
+     0.588,
+     0.569,
+     0.529
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.25,
+       2.0,
+       -8.75
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Rubble2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3,
+     2.2,
+     3
+    ],
+    "Color": [
+     0.588,
+     0.569,
+     0.529
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -43.5,
+       1.1,
+       -14.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "FloorChunk",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1,
+     6
+    ],
+    "Color": [
+     0.502,
+     0.502,
+     0.525
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -48,
+       1.2,
+       -17.5
+      ],
+      "orientation": [
+       [
+        0.97,
+        -0.242,
+        0
+       ],
+       [
+        0.242,
+        0.97,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
     "CanCollide": false,
     "CanQuery": false,
     "CanTouch": false
    }
   },
   {
-   "name": "ClockRim4",
+   "name": "LabBench",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.8,
-     0.2,
-     0.2
+     10,
+     3.4,
+     3.0
     ],
     "Color": [
-     0.157,
-     0.157,
+     0.173,
+     0.188,
+     0.227
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       19.7,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LabBench2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     3.4,
+     3.0
+    ],
+    "Color": [
+     0.173,
+     0.188,
+     0.227
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -41.0,
+       19.7,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LabBench3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     3.4,
+     3.0
+    ],
+    "Color": [
+     0.173,
+     0.188,
+     0.227
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       19.7,
+       -7.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LabBench4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     3.4,
+     3.0
+    ],
+    "Color": [
+     0.173,
+     0.188,
+     0.227
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -41.0,
+       19.7,
+       -7.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "HazardEdge",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     0.08,
+     1
+    ],
+    "Color": [
+     0.98,
+     0.784,
      0.157
     ],
     "Material": "SmoothPlastic",
@@ -174,9 +1287,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       21,
-       14,
-       -47.88
+       -48.0,
+       18.04,
+       -20.5
       ],
       "orientation": [
        [
@@ -203,117 +1316,68 @@
    }
   },
   {
-   "name": "HourHand4",
+   "name": "HazardEdge2",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.7,
-     0.15,
-     0.05
-    ],
-    "Color": [
-     0.078,
-     0.078,
-     0.078
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.25,
-       14.1,
-       -47.655
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "MinuteHand4",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.12,
-     1.0,
-     0.05
-    ],
-    "Color": [
-     0.078,
-     0.078,
-     0.078
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       20.95,
-       14.5,
-       -47.635
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "WorldMap",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
+     10,
      0.08,
-     5,
+     1
+    ],
+    "Color": [
+     0.98,
+     0.784,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -48.0,
+       18.04,
+       -11.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "HazardEdge3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     0.08,
      8
     ],
     "Color": [
-     0.353,
-     0.627,
-     0.824
+     0.98,
+     0.784,
+     0.157
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -321,9 +1385,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.94,
-       11.5,
-       -28
+       -52.5,
+       18.04,
+       -16.0
       ],
       "orientation": [
        [
@@ -350,19 +1414,160 @@
    }
   },
   {
-   "name": "Continent",
+   "name": "HazardEdge4",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.03,
-     1.6,
+     1,
+     0.08,
+     8
+    ],
+    "Color": [
+     0.98,
+     0.784,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -43.5,
+       18.04,
+       -16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "FumeHood",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     9,
+     3
+    ],
+    "Color": [
+     0.706,
+     0.729,
+     0.753
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -46.0,
+       22.5,
+       -29.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "ComputerDesk",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     3,
      2.4
     ],
     "Color": [
+     0.627,
      0.431,
-     0.706,
-     0.353
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       19.5,
+       8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Monitor",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -370,9 +1575,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.885,
-       12.3,
-       -30.2
+       -59.2,
+       21.6,
+       7.95
       ],
       "orientation": [
        [
@@ -399,19 +1604,163 @@
    }
   },
   {
-   "name": "Continent2",
+   "name": "Monitor2",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.03,
-     2.6,
-     1.6
+     1.6,
+     1.2,
+     0.3
     ],
     "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.2,
+       21.6,
+       7.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Monitor3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -53.2,
+       21.6,
+       7.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ComputerDesk2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     3,
+     2.4
+    ],
+    "Color": [
+     0.627,
      0.431,
-     0.706,
-     0.353
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -41.5,
+       19.5,
+       8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Monitor4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -419,9 +1768,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.885,
-       11.8,
-       -27.6
+       -43.2,
+       21.6,
+       7.95
       ],
       "orientation": [
        [
@@ -448,19 +1797,114 @@
    }
   },
   {
-   "name": "Continent3",
+   "name": "Monitor5",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.03,
-     1.4,
-     2
+     1.6,
+     1.2,
+     0.3
     ],
     "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40.2,
+       21.6,
+       7.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ComputerDesk3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     3,
+     2.4
+    ],
+    "Color": [
+     0.627,
      0.431,
-     0.706,
-     0.353
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       19.5,
+       16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Monitor6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -468,9 +1912,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.885,
-       12.4,
-       -25.4
+       -59.2,
+       21.6,
+       15.95
       ],
       "orientation": [
        [
@@ -497,19 +1941,163 @@
    }
   },
   {
-   "name": "Continent4",
+   "name": "Monitor7",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.03,
-     1,
-     1.4
+     1.6,
+     1.2,
+     0.3
     ],
     "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.2,
+       21.6,
+       15.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Monitor8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -53.2,
+       21.6,
+       15.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ComputerDesk4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     3,
+     2.4
+    ],
+    "Color": [
+     0.627,
      0.431,
-     0.706,
-     0.353
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -41.5,
+       19.5,
+       16.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Monitor9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -517,9 +2105,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.885,
-       10.2,
-       -25.1
+       -43.2,
+       21.6,
+       15.95
       ],
       "orientation": [
        [
@@ -546,19 +2134,19 @@
    }
   },
   {
-   "name": "FlagPole",
+   "name": "Monitor10",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
-     0.2,
-     0.2
+     1.6,
+     1.2,
+     0.3
     ],
     "Color": [
-     0.784,
-     0.745,
-     0.588
+     0.118,
+     0.118,
+     0.141
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -566,59 +2154,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -21,
-       12,
-       -47.2
-      ],
-      "orientation": [
-       [
-        0.342,
-        -0.94,
-        0
-       ],
-       [
-        0.94,
-        0.342,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Flag",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     3.2,
-     0.6,
-     0.05
-    ],
-    "Color": [
-     0.784,
-     0.157,
-     0.196
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -19.6,
-       14.4,
-       -47.1
+       -40.2,
+       21.6,
+       15.95
       ],
       "orientation": [
        [
@@ -645,19 +2183,65 @@
    }
   },
   {
-   "name": "Flag2",
+   "name": "ComputerDesk5",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     3.2,
-     0.6,
-     0.05
+     10,
+     3,
+     2.4
     ],
     "Color": [
-     0.961,
-     0.961,
-     0.961
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.0,
+       19.5,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Monitor11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -665,9 +2249,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -19.6,
-       13.8,
-       -47.1
+       -59.2,
+       21.6,
+       23.95
       ],
       "orientation": [
        [
@@ -694,19 +2278,19 @@
    }
   },
   {
-   "name": "Flag3",
+   "name": "Monitor12",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     3.2,
-     0.6,
-     0.05
+     1.6,
+     1.2,
+     0.3
     ],
     "Color": [
-     0.784,
-     0.157,
-     0.196
+     0.118,
+     0.118,
+     0.141
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -714,9 +2298,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -19.6,
-       13.2,
-       -47.1
+       -56.2,
+       21.6,
+       23.95
       ],
       "orientation": [
        [
@@ -740,6 +2324,245 @@
     "CanCollide": false,
     "CanQuery": false,
     "CanTouch": false
+   }
+  },
+  {
+   "name": "Monitor13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -53.2,
+       21.6,
+       23.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ComputerDesk6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     3,
+     2.4
+    ],
+    "Color": [
+     0.627,
+     0.431,
+     0.275
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -41.5,
+       19.5,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Monitor14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -43.2,
+       21.6,
+       23.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Monitor15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.118,
+     0.118,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40.2,
+       21.6,
+       23.95
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ServerRack",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     10,
+     3
+    ],
+    "Color": [
+     0.118,
+     0.133,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -62.0,
+       23.0,
+       29.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
    }
   },
   {
@@ -763,9 +2586,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -20,
+       -56,
        0.13,
-       -40
+       -18
       ],
       "orientation": [
        [
@@ -812,9 +2635,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -6,
+       -44,
        0.13,
-       -30
+       -24
       ],
       "orientation": [
        [
@@ -861,9 +2684,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       14,
+       -36,
        0.13,
-       -36
+       -10
       ],
       "orientation": [
        [
@@ -910,9 +2733,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       20,
+       -52,
        0.13,
-       -8
+       12
       ],
       "orientation": [
        [
@@ -959,9 +2782,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -18,
+       -44,
        0.13,
-       6
+       28
       ],
       "orientation": [
        [
@@ -978,1197 +2801,6 @@
         -0.225,
         0,
         0.974
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Paper6",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.3,
-     0.04,
-     1.7
-    ],
-    "Color": [
-     0.98,
-     0.98,
-     0.961
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -2,
-       0.13,
-       12
-      ],
-      "orientation": [
-       [
-        0.766,
-        0,
-        -0.643
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0.643,
-        0,
-        0.766
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Paper7",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.3,
-     0.04,
-     1.7
-    ],
-    "Color": [
-     0.98,
-     0.98,
-     0.961
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       16,
-       0.13,
-       30
-      ],
-      "orientation": [
-       [
-        0.999,
-        0,
-        -0.052
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0.052,
-        0,
-        0.999
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Paper8",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.3,
-     0.04,
-     1.7
-    ],
-    "Color": [
-     0.98,
-     0.98,
-     0.961
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -12,
-       0.13,
-       34
-      ],
-      "orientation": [
-       [
-        0.829,
-        0,
-        0.559
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.559,
-        0,
-        0.829
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Paper9",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.3,
-     0.04,
-     1.7
-    ],
-    "Color": [
-     0.98,
-     0.98,
-     0.961
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       2,
-       0.13,
-       42
-      ],
-      "orientation": [
-       [
-        0.946,
-        0,
-        -0.326
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0.326,
-        0,
-        0.946
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Paper10",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.3,
-     0.04,
-     1.7
-    ],
-    "Color": [
-     0.98,
-     0.98,
-     0.961
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       22,
-       0.13,
-       40
-      ],
-      "orientation": [
-       [
-        0.951,
-        0,
-        0.309
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.309,
-        0,
-        0.951
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Paper11",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.3,
-     0.04,
-     1.7
-    ],
-    "Color": [
-     0.98,
-     0.98,
-     0.961
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -22,
-       0.13,
-       -2
-      ],
-      "orientation": [
-       [
-        0.819,
-        0,
-        -0.574
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0.574,
-        0,
-        0.819
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Paper12",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.3,
-     0.04,
-     1.7
-    ],
-    "Color": [
-     0.98,
-     0.98,
-     0.961
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       8,
-       0.13,
-       -26
-      ],
-      "orientation": [
-       [
-        0.999,
-        0,
-        0.035
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.035,
-        0,
-        0.999
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "GlobeStand",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.8,
-     0.8,
-     0.8
-    ],
-    "Color": [
-     0.235,
-     0.196,
-     0.157
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -23,
-       9.4,
-       -18
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Globe",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     2,
-     2
-    ],
-    "Color": [
-     0.275,
-     0.51,
-     0.784
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -23,
-       10.8,
-       -18
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Ball",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "FanMotor",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.8,
-     1.4,
-     1.4
-    ],
-    "Color": [
-     0.235,
-     0.235,
-     0.251
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14,
-       17,
-       -34
-      ],
-      "orientation": [
-       [
-        0.0,
-        -1.0,
-        0
-       ],
-       [
-        1.0,
-        0.0,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "FanRod",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.6,
-     0.16
-    ],
-    "Color": [
-     0.353,
-     0.361,
-     0.384
-    ],
-    "Material": "Metal",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14.0,
-       17.7,
-       -34.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "FanBlade",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     7,
-     0.12,
-     0.9
-    ],
-    "Color": [
-     0.588,
-     0.431,
-     0.275
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14,
-       16.7,
-       -34
-      ],
-      "orientation": [
-       [
-        1.0,
-        0,
-        0.0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.0,
-        0,
-        1.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   },
-   "attributes": {
-    "Spin": 220
-   }
-  },
-  {
-   "name": "FanBlade2",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     7,
-     0.12,
-     0.9
-    ],
-    "Color": [
-     0.588,
-     0.431,
-     0.275
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14,
-       16.7,
-       -34
-      ],
-      "orientation": [
-       [
-        0.0,
-        0,
-        1.0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -1.0,
-        0,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   },
-   "attributes": {
-    "Spin": 220
-   }
-  },
-  {
-   "name": "FanMotor2",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.8,
-     1.4,
-     1.4
-    ],
-    "Color": [
-     0.235,
-     0.235,
-     0.251
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14,
-       17,
-       34
-      ],
-      "orientation": [
-       [
-        0.0,
-        -1.0,
-        0
-       ],
-       [
-        1.0,
-        0.0,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "FanRod2",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.6,
-     0.16
-    ],
-    "Color": [
-     0.353,
-     0.361,
-     0.384
-    ],
-    "Material": "Metal",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14.0,
-       17.7,
-       34.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "FanBlade3",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     7,
-     0.12,
-     0.9
-    ],
-    "Color": [
-     0.588,
-     0.431,
-     0.275
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14,
-       16.7,
-       34
-      ],
-      "orientation": [
-       [
-        1.0,
-        0,
-        0.0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.0,
-        0,
-        1.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   },
-   "attributes": {
-    "Spin": 220
-   }
-  },
-  {
-   "name": "FanBlade4",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     7,
-     0.12,
-     0.9
-    ],
-    "Color": [
-     0.588,
-     0.431,
-     0.275
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14,
-       16.7,
-       34
-      ],
-      "orientation": [
-       [
-        0.0,
-        0,
-        1.0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -1.0,
-        0,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   },
-   "attributes": {
-    "Spin": 220
-   }
-  },
-  {
-   "name": "CeilingGrid65",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.04,
-     96
-    ],
-    "Color": [
-     0.373,
-     0.38,
-     0.408
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -24.0,
-       17.98,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "CeilingGrid66",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.04,
-     96
-    ],
-    "Color": [
-     0.373,
-     0.38,
-     0.408
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -16.0,
-       17.98,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "CeilingGrid67",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.04,
-     96
-    ],
-    "Color": [
-     0.373,
-     0.38,
-     0.408
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -8.0,
-       17.98,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "CeilingGrid68",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.04,
-     96
-    ],
-    "Color": [
-     0.373,
-     0.38,
-     0.408
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       0.0,
-       17.98,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "CeilingGrid69",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.04,
-     96
-    ],
-    "Color": [
-     0.373,
-     0.38,
-     0.408
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       8.0,
-       17.98,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "CeilingGrid70",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.04,
-     96
-    ],
-    "Color": [
-     0.373,
-     0.38,
-     0.408
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       16.0,
-       17.98,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "CeilingGrid71",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.16,
-     0.04,
-     96
-    ],
-    "Color": [
-     0.373,
-     0.38,
-     0.408
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       24.0,
-       17.98,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
        ]
       ]
      }
