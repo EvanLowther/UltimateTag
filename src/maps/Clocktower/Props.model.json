@@ -2,14 +2,14 @@
  "className": "Folder",
  "children": [
   {
-   "name": "Crate",
+   "name": "Crate5",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.0,
+     4,
      3.5,
-     4.0
+     4
     ],
     "Color": [
      0.588,
@@ -22,15 +22,15 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       9.72,
+       16.263,
        1.75,
-       20.845
+       16.263
       ],
       "orientation": [
        [
-        1,
+        0.707,
         0,
-        0
+        0.707
        ],
        [
         0,
@@ -38,9 +38,9 @@
         0
        ],
        [
+        -0.707,
         0,
-        0,
-        1
+        0.707
        ]
       ]
      }
@@ -48,14 +48,14 @@
    }
   },
   {
-   "name": "Crate2",
+   "name": "Crate6",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.0,
+     4,
      3.5,
-     4.0
+     4
     ],
     "Color": [
      0.588,
@@ -68,15 +68,15 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -9.72,
+       -16.263,
        1.75,
-       -20.845
+       -16.263
       ],
       "orientation": [
        [
-        1,
+        -0.707,
         0,
-        0
+        -0.707
        ],
        [
         0,
@@ -84,9 +84,9 @@
         0
        ],
        [
+        0.707,
         0,
-        0,
-        1
+        -0.707
        ]
       ]
      }
@@ -114,9 +114,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -20.845,
+       -16.263,
        1.6,
-       9.72
+       16.263
       ],
       "orientation": [
        [
@@ -161,9 +161,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       20.845,
+       16.263,
        1.6,
-       -9.72
+       -16.263
       ],
       "orientation": [
        [

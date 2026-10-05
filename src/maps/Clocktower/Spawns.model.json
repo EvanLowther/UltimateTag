@@ -105,9 +105,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       14.369,
-       24.5,
-       30.814
+       35.0,
+       0.5,
+       0.0
       ],
       "orientation": [
        [
@@ -148,9 +148,95 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -14.369,
+       -35.0,
+       0.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Spawn5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Transparency": 1,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30.529,
        24.5,
-       -30.814
+       5.383
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Spawn6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Transparency": 1,
+    "Size": [
+     2,
+     1,
+     2
+    ],
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.529,
+       24.5,
+       -5.383
       ],
       "orientation": [
        [

@@ -22,9 +22,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       11.58,
-       17,
-       24.833
+       39.4,
+       16,
+       0.0
       ],
       "orientation": [
        [
@@ -88,9 +88,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -24.833,
-       17,
-       11.58
+       19.7,
+       16,
+       34.121
       ],
       "orientation": [
        [
@@ -115,9 +115,6 @@
     "CanCollide": false,
     "CanQuery": false,
     "CanTouch": false
-   },
-   "attributes": {
-    "Flicker": true
    },
    "children": [
     {
@@ -157,9 +154,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -11.58,
-       17,
-       -24.833
+       -39.4,
+       16,
+       0.0
       ],
       "orientation": [
        [
@@ -223,9 +220,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       24.833,
-       17,
-       -11.58
+       -19.7,
+       16,
+       -34.121
       ],
       "orientation": [
        [
@@ -289,9 +286,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       36.401,
-       32,
-       15.078
+       -15.3,
+       16,
+       26.5
       ],
       "orientation": [
        [
@@ -322,8 +319,8 @@
      "name": "Glow",
      "className": "PointLight",
      "properties": {
-      "Brightness": 0.7,
-      "Range": 24,
+      "Brightness": 0.6,
+      "Range": 20,
       "Color": [
        1.0,
        0.784,
@@ -355,9 +352,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       15.078,
-       32,
-       36.401
+       15.3,
+       16,
+       -26.5
       ],
       "orientation": [
        [
@@ -383,13 +380,16 @@
     "CanQuery": false,
     "CanTouch": false
    },
+   "attributes": {
+    "Flicker": true
+   },
    "children": [
     {
      "name": "Glow",
      "className": "PointLight",
      "properties": {
-      "Brightness": 0.7,
-      "Range": 24,
+      "Brightness": 0.6,
+      "Range": 20,
       "Color": [
        1.0,
        0.784,
@@ -421,9 +421,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -15.078,
-       32,
-       36.401
+       12.119,
+       17,
+       24.574
       ],
       "orientation": [
        [
@@ -455,7 +455,7 @@
      "className": "PointLight",
      "properties": {
       "Brightness": 0.7,
-      "Range": 24,
+      "Range": 22,
       "Color": [
        1.0,
        0.784,
@@ -487,9 +487,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -36.401,
-       32,
-       15.078
+       -24.574,
+       17,
+       12.119
       ],
       "orientation": [
        [
@@ -515,13 +515,16 @@
     "CanQuery": false,
     "CanTouch": false
    },
+   "attributes": {
+    "Flicker": true
+   },
    "children": [
     {
      "name": "Glow",
      "className": "PointLight",
      "properties": {
       "Brightness": 0.7,
-      "Range": 24,
+      "Range": 22,
       "Color": [
        1.0,
        0.784,
@@ -553,9 +556,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -36.401,
-       32,
-       -15.078
+       -12.119,
+       17,
+       -24.574
       ],
       "orientation": [
        [
@@ -587,7 +590,7 @@
      "className": "PointLight",
      "properties": {
       "Brightness": 0.7,
-      "Range": 24,
+      "Range": 22,
       "Color": [
        1.0,
        0.784,
@@ -619,9 +622,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -15.078,
-       32,
-       -36.401
+       24.574,
+       17,
+       -12.119
       ],
       "orientation": [
        [
@@ -653,7 +656,7 @@
      "className": "PointLight",
      "properties": {
       "Brightness": 0.7,
-      "Range": 24,
+      "Range": 22,
       "Color": [
        1.0,
        0.784,
@@ -685,9 +688,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       15.078,
+       36.401,
        32,
-       -36.401
+       15.078
       ],
       "orientation": [
        [
@@ -751,6 +754,402 @@
     "CFrame": {
      "CFrame": {
       "position": [
+       15.078,
+       32,
+       36.401
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.078,
+       32,
+       36.401
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -36.401,
+       32,
+       15.078
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -36.401,
+       32,
+       -15.078
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.078,
+       32,
+       -36.401
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.078,
+       32,
+       -36.401
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
        36.401,
        32,
        -15.078
@@ -797,7 +1196,205 @@
    ]
   },
   {
-   "name": "Light13",
+   "name": "Light19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       39.4,
+       46,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       46,
+       39.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     1.2,
+     0.8
+    ],
+    "Color": [
+     1.0,
+     0.784,
+     0.549
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -39.4,
+       46,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 24,
+      "Color": [
+       1.0,
+       0.784,
+       0.549
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light22",
    "className": "Part",
    "properties": {
     "Anchored": true,
