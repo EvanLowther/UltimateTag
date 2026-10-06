@@ -21,6 +21,7 @@ local UserInputService = game:GetService("UserInputService")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
+local Icons = require(script.Parent.Icons)
 local Profile = require(script.Parent.Profile)
 local LeadersTab = require(script.LeadersTab)
 local LockerTab = require(script.LockerTab)
@@ -34,14 +35,14 @@ local Menu = {}
 
 type Page = { name: string, title: string?, icon: string, color: Color3, module: any }
 local PAGES: { Page } = {
-	{ name = "Shop", icon = "🛒", color = Ui.Colors.Yellow, module = ShopTab },
-	{ name = "Locker", icon = "🎒", color = Ui.Colors.Cyan, module = LockerTab },
-	{ name = "Quests", icon = "🎯", color = Ui.Colors.Pink, module = QuestsTab },
-	{ name = "Rewards", icon = "🎁", color = Ui.Colors.Lime, module = RewardsTab },
+	{ name = "Shop", icon = "shop", color = Ui.Colors.Yellow, module = ShopTab },
+	{ name = "Locker", icon = "locker", color = Ui.Colors.Cyan, module = LockerTab },
+	{ name = "Quests", icon = "quests", color = Ui.Colors.Pink, module = QuestsTab },
+	{ name = "Rewards", icon = "rewards", color = Ui.Colors.Lime, module = RewardsTab },
 	{
 		name = "Leaders",
 		title = "Leaderboards",
-		icon = "🏆",
+		icon = "leaders",
 		color = Ui.Colors.Orange,
 		module = LeadersTab,
 	},
@@ -132,7 +133,6 @@ function Menu.start()
 	local sizeLimit = Instance.new("UISizeConstraint")
 	sizeLimit.MaxSize = WINDOW_MAX
 	sizeLimit.Parent = window
-	local icon = header:FindFirstChild("Icon") :: TextLabel
 	local modal = Instance.new("TextButton") -- frees the mouse in first person while open
 	modal.BackgroundTransparency = 1
 	modal.Text = ""
@@ -174,6 +174,14 @@ function Menu.start()
 			)
 			local label = button:FindFirstChild("Label") :: TextLabel
 			label.TextColor3 = if open then Ui.Colors.Ink else Ui.Colors.Text
+			local pageIcon = button:FindFirstChild("PageIcon")
+			if pageIcon then
+				if open then
+					Icons.paint(pageIcon, Ui.Colors.Ink, Ui.Colors.Text)
+				else
+					Icons.paint(pageIcon, Ui.Colors.Text, page.color)
+				end
+			end
 		end
 	end
 
@@ -221,7 +229,7 @@ function Menu.start()
 		local page = byName[name]
 		place(page.module.docked == true)
 		title.Text = Ui.upper(page.title or page.name)
-		icon.Text = page.icon
+		Ui.windowIcon(header, page.icon)
 		Ui.paint(header, page.color)
 		refreshInfo()
 		local refresh = refreshers[name]
@@ -263,9 +271,9 @@ function Menu.start()
 		edge.Name = "Edge"
 		edge.Size = UDim2.new(0, 16, 1, 0)
 		edge.ZIndex = 2
-		local pageIcon = Ui.icon(button, page.icon, 20)
-		pageIcon.Position = UDim2.fromOffset(20, 0)
-		pageIcon.Size = UDim2.fromOffset(28, 38)
+		local pageIcon = Ui.icon(button, page.icon, 22, Ui.Colors.Text, page.color)
+		pageIcon.Name = "PageIcon"
+		pageIcon.Position = UDim2.fromOffset(23, 8)
 		pageIcon.ZIndex = 3
 		local label = Ui.caps(button, page.name, 15, Ui.Colors.Text)
 		label.Name = "Label"

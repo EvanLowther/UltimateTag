@@ -10,6 +10,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local CosmeticLook = require(Shared:WaitForChild("CosmeticLook"))
+local Icons = require(script.Parent.Parent.Icons)
 local Ui = require(script.Parent.Ui)
 
 local ItemCard = {}
@@ -17,39 +18,54 @@ local ItemCard = {}
 local WHITE = Color3.new(1, 1, 1)
 
 local TAG_ICONS = {
-	Classic = "💥",
-	Pop = "⭕",
-	Sparks = "✨",
-	Hearts = "💖",
-	Stars = "⭐",
-	Confetti = "🎉",
-	Shockwave = "🌀",
-	Lightning = "⚡",
-	Meteor = "☄️",
-	Shatter = "💎",
+	Classic = "burst",
+	Pop = "ring",
+	Sparks = "sparks",
+	Hearts = "heart",
+	Stars = "sparkle",
+	Confetti = "confetti",
+	Shockwave = "shockwave",
+	Lightning = "bolt",
+	Meteor = "meteor",
+	Shatter = "shards",
 }
 local VICTORY_ICONS = {
-	None = "➖",
-	Flex = "💪",
-	Cheer = "🎉",
-	Backflip = "🤸",
-	CapToss = "🎓",
+	None = "dash",
+	Flex = "figureFlex",
+	Cheer = "figureCheer",
+	Backflip = "figureFlip",
+	CapToss = "figureCap",
 }
 
--- The icon for a tag effect or victory.
+-- The icon (client/Icons) for a tag effect or victory.
 function ItemCard.icon(item: Catalog.Item): string
 	local look = item.look
 	if item.kind == "TagEffect" then
-		return TAG_ICONS[look.Effect] or "💥"
+		return TAG_ICONS[look.Effect] or "burst"
 	elseif item.kind == "Victory" then
 		if look.Effect == "Fireworks" then
-			return "🎆"
+			return "fireworks"
 		elseif look.Effect == "Hologram" then
-			return "💠"
+			return "hologram"
 		end
-		return VICTORY_ICONS[look.Pose] or "🏆"
+		return VICTORY_ICONS[look.Pose] or "figureCheer"
 	end
-	return "✨"
+	return "sparkle"
+end
+
+-- An item's icon colors: its look's first color (white if none) and second. Without a second
+-- the accent is gold on a white icon and white on a colored one, never dark: the preview wells
+-- are nearly black, so a dark accent would vanish (Sparks' spokes, Backflip's arrow).
+local function iconColors(item: Catalog.Item): (Color3, Color3)
+	local colors = (item.look.Colors or {}) :: { Color3 }
+	local main = colors[1] or WHITE
+	local accent = colors[2] or if main == WHITE then Ui.Colors.Gold else WHITE
+	if item.look.Effect == "Fireworks" then
+		return WHITE, Ui.Colors.Gold
+	elseif item.look.Effect == "Lightning" then
+		return WHITE, Ui.Colors.Cyan
+	end
+	return main, accent
 end
 
 -- A trail swatch: a tilted bar painted in the trail's pattern, glowing for Legendary and up.
@@ -86,10 +102,12 @@ local function swatch(parent: GuiObject, look: { [string]: any }, width: number,
 	end
 	glow.Parent = holder
 	if look.Effect then
-		local sparkle = Ui.icon(parent, "✨", math.max(12, height + 4))
+		local sparkle = Ui.icon(parent, "sparkle", math.max(12, height + 6), WHITE, Ui.Colors.Gold)
 		sparkle.AnchorPoint = Vector2.new(0, 0.5)
-		sparkle.Position = UDim2.new(0.5, width / 2 + 2, 0.5, 0)
-		sparkle.Size = UDim2.fromOffset(height + 8, height + 8)
+		sparkle.Position = UDim2.new(0.5, width / 2 + 4, 0.5, 0)
+		if look.Pattern == "Holo" then
+			Icons.holo(sparkle)
+		end
 	end
 end
 
@@ -130,23 +148,21 @@ function ItemCard.preview(parent: GuiObject, item: Catalog.Item, scale: number?)
 		inner.Size = UDim2.new(1, -8, 0, math.floor(24 * s))
 		titleText(inner, item, math.floor(20 * s))
 	elseif item.kind == "TagEffect" and item.look.Effect == "Pow" then
-		local pow = Ui.title(parent, "POW", math.floor(15 * s), Ui.Colors.Red)
-		pow.AnchorPoint = Vector2.new(0.5, 0.5)
-		pow.Position = UDim2.fromScale(0.5, 0.5)
-		pow.Size = UDim2.fromOffset(math.floor(46 * s), math.floor(22 * s))
-		pow.BackgroundColor3 = Ui.Colors.Yellow
-		pow.BackgroundTransparency = 0
-		pow.Rotation = -8
-		local border = Instance.new("UIStroke")
-		border.Color = Ui.Colors.Red
-		border.Thickness = 2
-		border.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		border.Parent = pow
+		-- The comic burst with TAG! across it, as it pops up in the game.
+		local main, accent = iconColors(item)
+		Ui.centerIcon(parent, "burst", math.floor(40 * s), main, accent)
+		local tag = Ui.title(parent, "TAG!", math.floor(15 * s), main)
+		tag.AnchorPoint = Vector2.new(0.5, 0.5)
+		tag.Position = UDim2.fromScale(0.5, 0.5)
+		tag.Size = UDim2.fromOffset(math.floor(48 * s), math.floor(20 * s))
+		tag.Rotation = -8
+		Ui.stroke(tag, 2, accent)
 	else
-		local icon = Ui.icon(parent, ItemCard.icon(item), math.floor(26 * s))
-		icon.AnchorPoint = Vector2.new(0.5, 0.5)
-		icon.Position = UDim2.fromScale(0.5, 0.5)
-		icon.Size = UDim2.fromScale(1, 1)
+		local main, accent = iconColors(item)
+		local icon = Ui.centerIcon(parent, ItemCard.icon(item), math.floor(32 * s), main, accent)
+		if item.rarity == "Iridescent" then
+			Icons.holo(icon)
+		end
 	end
 end
 
@@ -200,7 +216,7 @@ function ItemCard.shop(
 
 	local buy = Ui.button(
 		card,
-		if owned then "✓ Owned" else "",
+		if owned then "Owned" else "",
 		if owned then Ui.Colors.Tab elseif canAfford then Ui.Colors.Yellow else Ui.Colors.Track,
 		function()
 			if not owned then
@@ -208,7 +224,8 @@ function ItemCard.shop(
 			end
 		end,
 		if owned then Ui.Colors.Dim else Ui.Colors.Ink,
-		7
+		7,
+		if owned then "check" else nil
 	)
 	buy.AnchorPoint = Vector2.new(0, 1)
 	buy.Position = UDim2.new(0, 8, 1, -10)
@@ -267,7 +284,7 @@ function ItemCard.tile(
 	ItemCard.preview(well, item, 0.85)
 	-- Titles already show their name in the preview: the line under says the rarity instead.
 	local label = if item.kind == "Title" then item.rarity else item.name
-	local name = Ui.caps(tile, (if owned then "" else "🔒 ") .. label, 11, Ui.Colors.Text)
+	local name = Ui.caps(tile, label, 11, Ui.Colors.Text)
 	name.AnchorPoint = Vector2.new(0.5, 1)
 	name.Position = UDim2.new(0.5, 0, 1, -4)
 	name.Size = UDim2.new(1, -6, 0, 14)
@@ -283,6 +300,9 @@ function ItemCard.tile(
 		veil.Size = well.Size
 		veil.BackgroundTransparency = 0.45
 		veil.ZIndex = 3
+		local lock = Ui.icon(tile, "lock", 13, Ui.Colors.Dim, Ui.Colors.Card)
+		lock.Position = UDim2.fromOffset(6, 10)
+		lock.ZIndex = 4
 	end
 	if equipped then
 		local on = Ui.caps(tile, "On", 11, Ui.Colors.Ink)

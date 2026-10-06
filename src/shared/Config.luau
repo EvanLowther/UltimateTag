@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.40.0",
+	Version = "0.40.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -809,25 +809,26 @@ local Config = {
 		VipPass = nil :: number?, -- gamepass id: +VipXPBonus XP and the VIP title
 		DoubleCoinsPass = nil :: number?, -- gamepass id: double coins from games
 		-- Coin packs (developer products). Id: the product id. Robux: shown only until the real
-		-- price loads from Roblox. Bonus: the "+%" label. Tag: an optional ribbon.
+		-- price loads from Roblox. Bonus: the "+%" label. Tag: an optional ribbon. Icon: a
+		-- client/Icons name.
 		CoinPacks = {
-			{ Id = nil :: number?, Coins = 1000, Bonus = 0, Robux = 49 }, -- no Icon: a drawn coin
-			{ Id = nil :: number?, Coins = 2750, Bonus = 10, Robux = 129, Icon = "💰" },
+			{ Id = nil :: number?, Coins = 1000, Bonus = 0, Robux = 49, Icon = "coin" },
+			{ Id = nil :: number?, Coins = 2750, Bonus = 10, Robux = 129, Icon = "coins2" },
 			{
 				Id = nil :: number?,
 				Coins = 6000,
 				Bonus = 20,
 				Robux = 249,
-				Icon = "🐷",
+				Icon = "coins3",
 				Tag = "Popular",
 			},
-			{ Id = nil :: number?, Coins = 13000, Bonus = 30, Robux = 499, Icon = "💼" },
+			{ Id = nil :: number?, Coins = 13000, Bonus = 30, Robux = 499, Icon = "coinPile" },
 			{
 				Id = nil :: number?,
 				Coins = 30000,
 				Bonus = 50,
 				Robux = 999,
-				Icon = "💎",
+				Icon = "gem",
 				Tag = "Best value",
 			},
 		} :: { { [string]: any } },
@@ -877,15 +878,16 @@ local Config = {
 	},
 
 	-- How the Quests window groups achievements into tiered chains (one row per Stat, its
-	-- achievements sorted by Goal). Category: the filter chip it shows under.
+	-- achievements sorted by Goal). Icon: a client/Icons name. Category: the filter chip it
+	-- shows under.
 	AchievementGroups = {
-		{ Stat = "Wins", Name = "Winner", Icon = "🏆", Category = "Wins" },
-		{ Stat = "GamesPlayed", Name = "Veteran", Icon = "🎮", Category = "Wins" },
-		{ Stat = "RoundsSurvived", Name = "Survivor", Icon = "🛡️", Category = "Wins" },
-		{ Stat = "Tags", Name = "Tag machine", Icon = "👋", Category = "Tags" },
-		{ Stat = "WallRuns", Name = "Wall runner", Icon = "🧱", Category = "Moves" },
-		{ Stat = "Level", Name = "Climber", Icon = "📈", Category = "Levels" },
-		{ Stat = "Streak", Name = "Regular", Icon = "🔥", Category = "Streaks" },
+		{ Stat = "Wins", Name = "Winner", Icon = "trophy", Category = "Wins" },
+		{ Stat = "GamesPlayed", Name = "Veteran", Icon = "gamepad", Category = "Wins" },
+		{ Stat = "RoundsSurvived", Name = "Survivor", Icon = "shield", Category = "Wins" },
+		{ Stat = "Tags", Name = "Tag machine", Icon = "burst", Category = "Tags" },
+		{ Stat = "WallRuns", Name = "Wall runner", Icon = "wall", Category = "Moves" },
+		{ Stat = "Level", Name = "Climber", Icon = "chart", Category = "Levels" },
+		{ Stat = "Streak", Name = "Regular", Icon = "flame", Category = "Streaks" },
 	} :: { { [string]: any } },
 
 	Avatar = {

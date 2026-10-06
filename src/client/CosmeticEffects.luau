@@ -1,5 +1,6 @@
 --!strict
--- Cosmetic effects everyone sees (each client plays them locally), from shared/Catalog looks:
+-- Cosmetic effects everyone sees (each client plays them locally), from shared/Catalog looks.
+-- Shapes in the air (hearts, stars, the Pow burst) are drawn icons (client/Icons), not emoji.
 --   Tag effects: when a tag lands (TagHit remote), the tagger's equipped TagEffect plays on the
 --   tagged player. Common: one color (Classic burst, Pop ring, Sparks). Rare: two colors and
 --   simple shapes (Hearts, Stars, a Pow comic burst). Epic: gradients (Confetti, Shockwave
@@ -23,6 +24,7 @@ local CosmeticLook = require(Shared:WaitForChild("CosmeticLook"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local CameraKick = require(script.Parent.CameraKick)
+local Icons = require(script.Parent.Icons)
 
 local CosmeticEffects = {}
 
@@ -138,27 +140,40 @@ local function confetti(position: Vector3, count: number, power: number, colors:
 	end
 end
 
--- Emoji floating up and out from `position`, taking turns through `symbols`.
-local function emojis(position: Vector3, symbols: { string }, count: number)
+-- Fades a drawn icon (and any text in it) out over `seconds`.
+local function fadeOut(root: Instance, seconds: number)
+	local info = TweenInfo.new(seconds, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+	for _, item in root:GetDescendants() do
+		if item:IsA("TextLabel") then
+			TweenService:Create(item, info, { TextTransparency = 1 }):Play()
+		elseif item:IsA("Frame") and item.BackgroundTransparency < 1 then
+			TweenService:Create(item, info, { BackgroundTransparency = 1 }):Play()
+		elseif item:IsA("UIStroke") then
+			TweenService:Create(item, info, { Transparency = 1 }):Play()
+		end
+	end
+end
+
+-- Drawn icons (client/Icons) floating up and out from `position`, taking turns through
+-- `icons` ({ name, color, accent } each).
+local function floaters(position: Vector3, icons: { { any } }, count: number)
 	for i = 1, count do
+		local spec = icons[(i - 1) % #icons + 1]
 		local attachment = Instance.new("Attachment")
 		attachment.Parent = workspace.Terrain
 		attachment.WorldPosition = position
 		local gui = Instance.new("BillboardGui")
-		gui.Size = UDim2.fromScale(1.6, 1.6)
+		gui.Size = UDim2.fromScale(1.5, 1.5)
 		gui.LightInfluence = 0
 		gui.Adornee = attachment
-		local label = Instance.new("TextLabel")
-		label.BackgroundTransparency = 1
-		label.Size = UDim2.fromScale(1, 1)
-		label.Text = symbols[(i - 1) % #symbols + 1]
-		label.TextScaled = true
-		label.Parent = gui
+		local icon = Icons.draw(gui, spec[1], 64, spec[2], spec[3])
+		icon.Size = UDim2.fromScale(1, 1)
+		icon.Rotation = rnd(-20, 20)
 		gui.Parent = attachment
 		local drift = Vector3.new(rnd(-3, 3), rnd(4, 7), rnd(-3, 3))
 		local info = TweenInfo.new(1.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 		TweenService:Create(attachment, info, { WorldPosition = position + drift }):Play()
-		TweenService:Create(label, info, { TextTransparency = 1 }):Play()
+		fadeOut(icon, 1.1)
 		Debris:AddItem(attachment, 1.2)
 	end
 end
@@ -230,20 +245,25 @@ local function pow(position: Vector3, colors: { Color3 })
 	local attachment = Instance.new("Attachment")
 	attachment.WorldPosition = position + Vector3.new(0, 1, 0)
 	attachment.Parent = workspace.Terrain
+	-- Square, because an icon's shapes are sized against both sides: in a wide billboard the
+	-- burst's turned spikes would stretch unevenly.
 	local gui = Instance.new("BillboardGui")
-	gui.Size = UDim2.fromScale(7, 4)
+	gui.Size = UDim2.fromScale(7, 7)
 	gui.LightInfluence = 0
 	gui.Adornee = attachment
-	local star = Instance.new("TextLabel")
-	star.BackgroundTransparency = 1
+	-- The comic burst behind the text (client/Icons).
+	local star = Icons.draw(
+		gui,
+		"burst",
+		96,
+		colors[1] or Color3.fromRGB(255, 214, 10),
+		colors[2] or Color3.fromRGB(227, 36, 43)
+	)
 	star.Size = UDim2.fromScale(1, 1)
-	star.Text = "💥"
-	star.TextScaled = true
-	star.Parent = gui
 	local text = Instance.new("TextLabel")
 	text.BackgroundTransparency = 1
-	text.Size = UDim2.fromScale(1, 0.7)
-	text.Position = UDim2.fromScale(0, 0.15)
+	text.Size = UDim2.fromScale(1, 0.4)
+	text.Position = UDim2.fromScale(0, 0.3)
 	text.Text = "TAG!"
 	text.FontFace = BANGERS
 	text.TextScaled = true
@@ -260,10 +280,7 @@ local function pow(position: Vector3, colors: { Color3 })
 	gui.Parent = attachment
 	TweenService:Create(scale, TweenInfo.new(0.18, Enum.EasingStyle.Back), { Scale = 1 }):Play()
 	task.delay(0.5, function()
-		local fade = TweenInfo.new(0.25)
-		TweenService:Create(text, fade, { TextTransparency = 1 }):Play()
-		TweenService:Create(star, fade, { TextTransparency = 1 }):Play()
-		TweenService:Create(outline, fade, { Transparency = 1 }):Play()
+		fadeOut(gui, 0.25)
 	end)
 	Debris:AddItem(attachment, 0.85)
 end
@@ -415,11 +432,21 @@ local TAG_EFFECTS: { [string]: (Model, Vector3, { Color3 }) -> () } = {
 	Sparks = function(_, position, colors)
 		burst(position, 45, colors[1], NumberRange.new(14, 24), 0.4, 50)
 	end,
-	Hearts = function(_, position)
-		emojis(position, { "💖", "🤍" }, 8)
+	Hearts = function(_, position, colors)
+		floaters(position, {
+			{ "heart", colors[1] or Color3.fromRGB(255, 90, 150) },
+			{ "heart", colors[2] or Color3.new(1, 1, 1) },
+		}, 8)
 	end,
-	Stars = function(_, position)
-		emojis(position, { "⭐", "✨" }, 8)
+	Stars = function(_, position, colors)
+		floaters(position, {
+			{ "sparkle", colors[1] or Color3.fromRGB(255, 240, 120), Color3.new(1, 1, 1) },
+			{
+				"sparkle",
+				colors[2] or Color3.new(1, 1, 1),
+				colors[1] or Color3.fromRGB(255, 240, 120),
+			},
+		}, 8)
 	end,
 	Pow = function(_, position, colors)
 		pow(position, colors)
@@ -772,7 +799,11 @@ function CosmeticEffects.playVictory(character: Model, item: Catalog.Item?, hold
 		fireworks(root)
 		spotlight(root, seconds)
 	elseif effect == "Stars" then
-		emojis(root.Position + Vector3.new(0, 2, 0), { "⭐", "🌟" }, 12)
+		local gold = Color3.fromRGB(255, 214, 10)
+		floaters(root.Position + Vector3.new(0, 2, 0), {
+			{ "sparkle", gold, Color3.new(1, 1, 1) },
+			{ "sparkle", Color3.new(1, 1, 1), gold },
+		}, 12)
 		burst(
 			root.Position + Vector3.new(0, 2, 0),
 			40,

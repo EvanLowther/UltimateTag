@@ -42,7 +42,7 @@ function RewardsTab.info(profile: { [string]: any }): string
 	local days = if RewardsTab.canClaim(profile)
 		then (if profile.Streak.LastDay == DayClock.day() - 1 then profile.Streak.Count else 0)
 		else profile.Streak.Count
-	return `🔥 {days} day streak`
+	return `{days} day streak`
 end
 
 function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
@@ -52,8 +52,11 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local streakHead = Ui.frame(scroll)
 	streakHead.LayoutOrder = 1
 	streakHead.Size = UDim2.new(1, -6, 0, 22)
+	local flame = Ui.icon(streakHead, "flame", 20, Ui.Colors.Orange, Ui.Colors.Yellow)
+	flame.Position = UDim2.fromOffset(0, 1)
 	local streakTitle = Ui.caps(streakHead, "", 14, Ui.Colors.Text)
-	streakTitle.Size = UDim2.fromScale(0.6, 1)
+	streakTitle.Position = UDim2.fromOffset(26, 0)
+	streakTitle.Size = UDim2.new(0.6, -26, 1, 0)
 	streakTitle.TextXAlignment = Enum.TextXAlignment.Left
 	local streakNote = Ui.caps(streakHead, "", 12, Ui.Colors.Dim)
 	streakNote.AnchorPoint = Vector2.new(1, 0)
@@ -82,9 +85,9 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	crate.Size = UDim2.new(0, 220, 1, 0)
 	local crateStrip = Ui.frame(crate, Ui.Colors.Yellow)
 	crateStrip.Size = UDim2.new(1, -10, 0, 4)
-	local box = Ui.icon(crate, "📦", 64)
-	box.Position = UDim2.fromOffset(0, 14)
-	box.Size = UDim2.new(1, 0, 0, 84)
+	local box = Ui.icon(crate, "crate", 80, Ui.Colors.Yellow, Ui.Colors.Ink)
+	box.AnchorPoint = Vector2.new(0.5, 0)
+	box.Position = UDim2.new(0.5, 0, 0, 16)
 	local crateName = Ui.title(crate, "Mystery crate", 26, Ui.Colors.Text)
 	crateName.Position = UDim2.fromOffset(0, 100)
 	crateName.Size = UDim2.new(1, 0, 0, 30)
@@ -144,7 +147,7 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local buttons = Ui.frame(scroll)
 	buttons.LayoutOrder = 5
 	buttons.Size = UDim2.new(1, -6, 0, 44)
-	local open = Ui.button(buttons, "🔓 Open", Ui.Colors.Lime, function()
+	local open = Ui.button(buttons, "Open", Ui.Colors.Lime, function()
 		api.send("OpenCrate", 1)
 	end)
 	open.Size = UDim2.fromOffset(150, 42)
@@ -241,9 +244,8 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		local can = RewardsTab.canClaim(profile)
 		local count = nextCount(profile)
 		streakTitle.Text = if can
-			then `🔥 LOGIN STREAK: DAY {count}`
-			else `🔥 LOGIN STREAK: {profile.Streak.Count} DAY{if profile.Streak.Count
-					== 1
+			then `LOGIN STREAK: DAY {count}`
+			else `LOGIN STREAK: {profile.Streak.Count} DAY{if profile.Streak.Count == 1
 				then ""
 				else "S"}`
 		streakNote.Text = if can
@@ -286,8 +288,8 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			top.ZIndex = 2
 			local bottomText = if isNext
 				then `Claim {reward.Coins}`
-				elseif claimed then "✓"
-				else `{reward.Coins}{if reward.Crates then " + 📦" else ""}`
+				elseif claimed then ""
+				else `{reward.Coins}{if reward.Crates then " + crate" else ""}`
 			local bottom = Ui.caps(
 				tile,
 				bottomText,
@@ -297,6 +299,12 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			bottom.Position = UDim2.fromOffset(0, 26)
 			bottom.Size = UDim2.new(1, 0, 0, 26)
 			bottom.ZIndex = 2
+			if claimed then
+				local check = Ui.icon(tile, "check", 22, Ui.Colors.Lime)
+				check.AnchorPoint = Vector2.new(0.5, 0)
+				check.Position = UDim2.new(0.5, 0, 0, 28)
+				check.ZIndex = 2
+			end
 			if isNext then
 				tile.Activated:Connect(function()
 					api.send("ClaimStreak")

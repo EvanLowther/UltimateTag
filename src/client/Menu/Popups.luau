@@ -193,7 +193,7 @@ local function crateReel(results: { { [string]: any } })
 	local prize = best :: Catalog.Item
 	local width, height = 128, 170
 	local count, stopAt = 26, 22
-	local window, body, close = Ui.window(gui, "Mystery crate", Ui.Colors.Yellow, "📦")
+	local window, body, close = Ui.window(gui, "Mystery crate", Ui.Colors.Yellow, "crate")
 	onTop(window)
 	close.Visible = false
 	window.AnchorPoint = Vector2.new(0.5, 0.5)

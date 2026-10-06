@@ -8,6 +8,7 @@
 --   vertical, and t = 0.5 always runs through the middle of the frame, so rotating it to
 --   atan(cap width / height) cuts exactly corner to corner. Ui.paint recolors a slab.
 --   Moving gradients (the Iridescent holo shimmer) are tagged for client/GradientFx.
+--   Icons are drawn shapes (client/Icons), never emoji.
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
@@ -15,6 +16,7 @@ local TweenService = game:GetService("TweenService")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local CosmeticLook = require(Shared:WaitForChild("CosmeticLook"))
+local Icons = require(script.Parent.Parent.Icons)
 
 local Ui = {}
 
@@ -260,16 +262,63 @@ function Ui.stroke(label: TextLabel, thickness: number?, color: Color3?): UIStro
 	return s
 end
 
--- An emoji icon.
-function Ui.icon(parent: Instance?, emoji: string, size: number?): TextLabel
-	local l = Instance.new("TextLabel")
-	l.BackgroundTransparency = 1
-	l.Text = emoji
-	l.TextSize = size or 22
-	l.FontFace = Ui.Bold
-	l.TextColor3 = WHITE
-	l.Parent = parent
-	return l
+-- An icon (client/Icons), `size` pixels square: white with a dark accent unless colors are
+-- given.
+function Ui.icon(
+	parent: Instance?,
+	name: string,
+	size: number,
+	color: Color3?,
+	accent: Color3?
+): Frame
+	return Icons.draw(parent, name, size, color, accent)
+end
+
+-- An icon centered in its parent.
+function Ui.centerIcon(
+	parent: Instance?,
+	name: string,
+	size: number,
+	color: Color3?,
+	accent: Color3?
+): Frame
+	local icon = Icons.draw(parent, name, size, color, accent)
+	icon.AnchorPoint = Vector2.new(0.5, 0.5)
+	icon.Position = UDim2.fromScale(0.5, 0.5)
+	return icon
+end
+
+-- An icon followed by caps text, side by side (auto width, centered vertically). Returns the
+-- row and its label.
+function Ui.iconText(
+	parent: Instance?,
+	icon: string,
+	text: string,
+	size: number,
+	color: Color3,
+	iconColor: Color3?,
+	accent: Color3?
+): (Frame, TextLabel)
+	local row = Instance.new("Frame")
+	row.Name = "IconText"
+	row.BackgroundTransparency = 1
+	row.Size = UDim2.fromOffset(0, size + 6)
+	row.AutomaticSize = Enum.AutomaticSize.X
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.VerticalAlignment = Enum.VerticalAlignment.Center
+	layout.Padding = UDim.new(0, math.max(4, math.floor(size / 3)))
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = row
+	local mark = Icons.draw(row, icon, size + 2, iconColor or color, accent)
+	mark.LayoutOrder = 1
+	local label = Ui.caps(row, text, size, color)
+	label.Name = "Label"
+	label.LayoutOrder = 2
+	label.Size = UDim2.fromScale(0, 1)
+	label.AutomaticSize = Enum.AutomaticSize.X
+	row.Parent = parent
+	return row, label
 end
 
 -- Makes an object's fill or text shimmer in the Iridescent holo colors (client/GradientFx).
@@ -319,7 +368,8 @@ function Ui.button(
 	color: Color3,
 	onClick: () -> (),
 	textColor: Color3?,
-	slant: number?
+	slant: number?,
+	icon: string?
 ): TextButton
 	local b = Instance.new("TextButton")
 	b.AutoButtonColor = false
@@ -329,10 +379,19 @@ function Ui.button(
 	local fill = Ui.slab(b, color, slant)
 	fill.Name = "Fill"
 	fill.Size = UDim2.fromScale(1, 1)
-	local label = Ui.caps(b, text, 15, textColor or Ui.Colors.Ink)
-	label.Name = "Label"
-	label.Size = UDim2.fromScale(1, 1)
-	label.ZIndex = 2
+	if icon then
+		-- An icon before the text, the pair centered on the button.
+		local row, label = Ui.iconText(b, icon, text, 15, textColor or Ui.Colors.Ink)
+		row.AnchorPoint = Vector2.new(0.5, 0.5)
+		row.Position = UDim2.fromScale(0.5, 0.5)
+		row.ZIndex = 2
+		label.ZIndex = 2
+	else
+		local label = Ui.caps(b, text, 15, textColor or Ui.Colors.Ink)
+		label.Name = "Label"
+		label.Size = UDim2.fromScale(1, 1)
+		label.ZIndex = 2
+	end
 	local scale = Instance.new("UIScale")
 	scale.Parent = b
 	local quick = TweenInfo.new(0.08)
@@ -356,7 +415,7 @@ end
 
 -- Changes a Ui.button's text.
 function Ui.setText(button: GuiObject, text: string)
-	local label = button:FindFirstChild("Label")
+	local label = button:FindFirstChild("Label", true)
 	if label and label:IsA("TextLabel") then
 		label.Text = Ui.upper(text)
 	end
@@ -369,15 +428,19 @@ function Ui.setColor(button: GuiObject, color: Color3, textColor: Color3?)
 	if fill and fill:IsA("Frame") then
 		Ui.paint(fill, color)
 	end
-	local label = button:FindFirstChild("Label")
+	local label = button:FindFirstChild("Label", true)
 	if textColor and label and label:IsA("TextLabel") then
 		label.TextColor3 = textColor
+		local icon = button:FindFirstChild("Icon", true)
+		if icon then
+			Icons.paint(icon, textColor)
+		end
 	end
 end
 
 -- Changes a Ui.button's text size.
 function Ui.setTextSize(button: GuiObject, size: number)
-	local label = button:FindFirstChild("Label")
+	local label = button:FindFirstChild("Label", true)
 	if label and label:IsA("TextLabel") then
 		label.TextSize = size
 	end
@@ -471,6 +534,15 @@ function Ui.tabs(
 	return row, select, badge
 end
 
+-- Puts icon `name` in a window header (dark on the bright bar, white details).
+function Ui.windowIcon(header: Frame, name: string)
+	local holder = header:FindFirstChild("IconHolder")
+	if holder then
+		Ui.clear(holder)
+		Icons.draw(holder, name, 32, Ui.Colors.Ink, WHITE)
+	end
+end
+
 -- The menu window: a black panel with cut corners, a slanted header bar in `color` (an icon,
 -- the title in Bangers, and an info text on the right), and a pink close button. Returns the
 -- window, its body (under the header), the close button, the header, the title and the info.
@@ -486,11 +558,14 @@ function Ui.window(
 	header.Name = "Header"
 	header.Position = UDim2.fromOffset(0, 0)
 	header.Size = UDim2.new(1, -60, 0, 52)
-	local iconLabel = Ui.icon(header, icon or "", 26)
-	iconLabel.Name = "Icon"
-	iconLabel.Position = UDim2.fromOffset(14, 0)
-	iconLabel.Size = UDim2.fromOffset(34, 52)
-	iconLabel.ZIndex = 2
+	local iconHolder = Ui.frame(header)
+	iconHolder.Name = "IconHolder"
+	iconHolder.Position = UDim2.fromOffset(14, 10)
+	iconHolder.Size = UDim2.fromOffset(32, 32)
+	iconHolder.ZIndex = 2
+	if icon then
+		Ui.windowIcon(header, icon)
+	end
 	local titleLabel = Ui.title(header, title, 36, Ui.Colors.Ink)
 	titleLabel.Name = "Title"
 	titleLabel.Position = UDim2.fromOffset(52, 2)

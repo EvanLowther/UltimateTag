@@ -17,16 +17,17 @@ local Ui = require(script.Parent.Ui)
 
 local QuestsTab = {}
 
+-- The icon (client/Icons) for each kind of quest.
 local EVENT_ICONS = {
-	Win = "🏆",
-	Tag = "👋",
-	GamePlayed = "🎮",
-	RoundSurvived = "🛡️",
-	WallRun = "🧱",
-	Slide = "💨",
-	Vault = "🤸",
-	Climb = "🧗",
-	PlayMinute = "⏱️",
+	Win = "trophy",
+	Tag = "burst",
+	GamePlayed = "gamepad",
+	RoundSurvived = "shield",
+	WallRun = "wall",
+	Slide = "speed",
+	Vault = "vault",
+	Climb = "ladder",
+	PlayMinute = "clock",
 }
 local CATEGORIES = { "All", "Wins", "Tags", "Moves", "Levels", "Streaks" }
 
@@ -147,8 +148,7 @@ local function row(
 	local box = Ui.frame(r, Ui.Colors.Panel)
 	box.Position = UDim2.fromOffset(18, 9)
 	box.Size = UDim2.fromOffset(38, 38)
-	local iconLabel = Ui.icon(box, icon, 22)
-	iconLabel.Size = UDim2.fromScale(1, 1)
+	Ui.centerIcon(box, icon, 28, accent, Ui.Colors.Text)
 	local title = Ui.caps(r, titleText, 14, Ui.Colors.Text)
 	title.Position = UDim2.fromOffset(66, 6)
 	title.Size = UDim2.new(1, -66 - 220, 0, 20)
@@ -184,6 +184,13 @@ local function claimButton(parent: Frame, onClick: () -> ())
 	claim.Size = UDim2.fromOffset(104, 34)
 	Ui.setTextSize(claim, 16)
 	Ui.pulse(claim)
+end
+
+-- A done mark on the right of a row: an icon and a word.
+local function rightMark(parent: Frame, icon: string, text: string, color: Color3)
+	local mark = Ui.iconText(parent, icon, text, 12, color)
+	mark.AnchorPoint = Vector2.new(1, 0.5)
+	mark.Position = UDim2.fromScale(1, 0.5)
 end
 
 local function rightText(parent: Frame, text: string, color: Color3?)
@@ -269,7 +276,7 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 				order,
 				accent,
 				if done and not claimed then Ui.Colors.PaidBack else Ui.Colors.Card,
-				if done then "✅" else EVENT_ICONS[def.Event] or "🎯",
+				if done then "check" else EVENT_ICONS[def.Event] or "quests",
 				def.Text,
 				nil,
 				quest.Progress / def.Goal,
@@ -278,7 +285,7 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			if claimed then
 				r.Name = "Claimed"
 				Ui.fade(r, 0.5)
-				rightText(right, "✓ Claimed", Ui.Colors.Dim)
+				rightMark(right, "check", "Claimed", Ui.Colors.Dim)
 			elseif done then
 				claimButton(right, function()
 					api.send("ClaimQuest", kind, slot)
@@ -306,14 +313,18 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			Ui.upper(`Resets in {DayClock.format(DayClock.secondsToNextWeek())}`)
 		)
 		order = questRows(profile, "Weekly", order + 1)
-		local note = Ui.caps(
-			dailyList,
-			"⚡ Progress tracks on its own. Claim each reward here when it's done.",
+		local noteRow = Ui.frame(dailyList)
+		noteRow.LayoutOrder = order + 1
+		noteRow.Size = UDim2.new(1, -6, 0, 24)
+		local note = Ui.iconText(
+			noteRow,
+			"bolt",
+			"Progress tracks on its own. Claim each reward here when it's done.",
 			11,
 			Ui.Colors.Dim
 		)
-		note.LayoutOrder = order + 1
-		note.Size = UDim2.new(1, -6, 0, 24)
+		note.AnchorPoint = Vector2.new(0.5, 0.5)
+		note.Position = UDim2.fromScale(0.5, 0.5)
 	end
 
 	local function refreshChains(profile: { [string]: any })
@@ -372,7 +383,7 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 				if full then Ui.number(value) else `{Ui.number(value)}/{Ui.number(tier.Goal)}`
 			)
 			if full then
-				rightText(right, "✓ Complete", Ui.Colors.Gold)
+				rightMark(right, "check", "Complete", Ui.Colors.Gold)
 			elseif can then
 				claimButton(right, function()
 					api.send("ClaimAchievement", tier.Id)

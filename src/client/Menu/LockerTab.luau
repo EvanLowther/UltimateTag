@@ -161,8 +161,13 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	scene.Size = UDim2.fromOffset(300, 28)
 	scene.Visible = false
 	chip = scene
+	local scenePlay = Ui.icon(scene, "play", 14, Ui.Colors.Yellow)
+	scenePlay.Position = UDim2.fromOffset(18, 7)
+	scenePlay.ZIndex = 2
 	local sceneText = Ui.caps(scene, "", 12, Ui.Colors.Yellow)
-	sceneText.Size = UDim2.fromScale(1, 1)
+	sceneText.Position = UDim2.fromOffset(38, 0)
+	sceneText.Size = UDim2.new(1, -48, 1, 0)
+	sceneText.TextXAlignment = Enum.TextXAlignment.Left
 
 	local function current(profile: { [string]: any }): Catalog.Item?
 		local id = selected[kind] or profile.Equipped[kind]
@@ -194,10 +199,12 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 		if equipped then
 			local done = Ui.button(
 				action,
-				"✓ Equipped",
+				"Equipped",
 				Ui.Colors.Tab,
 				function() end,
-				Ui.Colors.Cyan
+				Ui.Colors.Cyan,
+				nil,
+				"check"
 			)
 			done.Size = UDim2.fromOffset(150, 34)
 		elseif owned then
@@ -207,18 +214,19 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 			equip.Size = UDim2.fromOffset(150, 34)
 			Ui.setTextSize(equip, 17)
 		else
-			local how = Ui.button(action, `🔒 {source(item)}`, Ui.Colors.Tab, function()
+			local how = Ui.button(action, source(item), Ui.Colors.Tab, function()
 				if ShopRotation.offer(item.id) then
 					api.open("Shop")
 				end
-			end, Ui.Colors.Dim)
+			end, Ui.Colors.Dim, nil, "lock")
 			how.Size = UDim2.new(1, 0, 0, 34)
 			Ui.setTextSize(how, 13)
 		end
 		local live = LockerStage.isActive()
 		sceneText.Text = if live
-			then Ui.upper(`▶ {SCENES[item.kind]} · your character`)
+			then Ui.upper(`{SCENES[item.kind]} · your character`)
 			else "PREVIEW IN THE LOBBY"
+		scenePlay.Visible = live
 		sceneText.TextColor3 = if live then Ui.Colors.Yellow else Ui.Colors.Pink
 		if live then
 			LockerStage.show(item)

@@ -118,9 +118,8 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 	crate.Size = UDim2.new(1, 0, 0, 104)
 	local crateStrip = Ui.frame(crate, Ui.Colors.Yellow)
 	crateStrip.Size = UDim2.new(1, -10, 0, 4)
-	local box = Ui.icon(crate, "📦", 48)
-	box.Position = UDim2.fromOffset(10, 18)
-	box.Size = UDim2.fromOffset(70, 70)
+	local box = Ui.icon(crate, "crate", 64, Ui.Colors.Yellow, Ui.Colors.Ink)
+	box.Position = UDim2.fromOffset(14, 22)
 	local crateName = Ui.caps(crate, "Mystery crate", 16, Ui.Colors.Text)
 	crateName.Position = UDim2.fromOffset(90, 12)
 	crateName.Size = UDim2.new(1, -250, 0, 20)
@@ -268,14 +267,7 @@ local function buildCoins(page: Frame): () -> ()
 		local well = Ui.frame(card, Ui.Colors.Well)
 		well.Position = UDim2.fromOffset(8, 24)
 		well.Size = UDim2.new(1, -16, 0, 60)
-		if pack.Icon then
-			local icon = Ui.icon(well, pack.Icon, 34)
-			icon.Size = UDim2.fromScale(1, 1)
-		else
-			local coin = Ui.coin(well, 34)
-			coin.AnchorPoint = Vector2.new(0.5, 0.5)
-			coin.Position = UDim2.fromScale(0.5, 0.5)
-		end
+		Ui.centerIcon(well, pack.Icon or "coin", 50, Ui.Colors.Cyan, Ui.Colors.Text)
 		local amount = Ui.title(card, Ui.number(pack.Coins), 28, Ui.Colors.Yellow)
 		amount.Position = UDim2.fromOffset(0, 90)
 		amount.Size = UDim2.new(1, 0, 0, 30)
@@ -328,7 +320,7 @@ local function buildCoins(page: Frame): () -> ()
 	local passList: { Pass } = {
 		{
 			name = "VIP",
-			icon = "👑",
+			icon = "crown",
 			text = `+{math.floor(settings.VipXPBonus * 100)}% XP, the VIP title`,
 			id = settings.VipPass,
 			robux = settings.PassRobux.Vip,
@@ -337,7 +329,7 @@ local function buildCoins(page: Frame): () -> ()
 		},
 		{
 			name = "2x coins",
-			icon = "", -- a drawn coin
+			icon = "coin2x",
 			text = "Double coins from every game",
 			id = settings.DoubleCoinsPass,
 			robux = settings.PassRobux.DoubleCoins,
@@ -350,14 +342,8 @@ local function buildCoins(page: Frame): () -> ()
 		local card = Ui.panel(passes, Ui.Colors.Card, 10)
 		local strip = Ui.frame(card, pass.color)
 		strip.Size = UDim2.new(1, -10, 0, 4)
-		if pass.icon ~= "" then
-			local icon = Ui.icon(card, pass.icon, 32)
-			icon.Position = UDim2.fromOffset(10, 12)
-			icon.Size = UDim2.fromOffset(52, 56)
-		else
-			local coin = Ui.coin(card, 30)
-			coin.Position = UDim2.fromOffset(21, 25)
-		end
+		local icon = Ui.icon(card, pass.icon, 44, Ui.Colors.Gold, Ui.Colors.Ink)
+		icon.Position = UDim2.fromOffset(14, 18)
 		local name = Ui.caps(card, pass.name, 16, Ui.Colors.Text)
 		name.Position = UDim2.fromOffset(68, 14)
 		name.Size = UDim2.new(1, -200, 0, 22)
@@ -388,7 +374,7 @@ local function buildCoins(page: Frame): () -> ()
 	local function refresh()
 		for pass, button in passButtons do
 			if player:GetAttribute(pass.attribute) then
-				Ui.setText(button, "✓ Owned")
+				Ui.setText(button, "Owned")
 				Ui.setColor(button, Ui.Colors.Tab, Ui.Colors.Dim)
 			end
 		end

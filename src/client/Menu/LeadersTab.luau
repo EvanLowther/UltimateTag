@@ -162,10 +162,9 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		face.AnchorPoint = Vector2.new(0.5, 1)
 		face.Position = UDim2.new(0.5, 0, 1, -height - 24)
 		if rank == 1 then
-			local crown = Ui.icon(column, "👑", 22)
+			local crown = Ui.icon(column, "crown", 28, Ui.Colors.Yellow, Ui.Colors.Ink)
 			crown.AnchorPoint = Vector2.new(0.5, 1)
 			crown.Position = UDim2.new(0.5, 0, 1, -height - 70)
-			crown.Size = UDim2.fromOffset(30, 24)
 		end
 	end
 
@@ -271,10 +270,10 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 		Ui.clear(moves)
 		local moveList = {
-			{ "🧱", "Wall runs", stats.WallRuns, Ui.Colors.Cyan },
-			{ "💨", "Slides", stats.Slides, Ui.Colors.Pink },
-			{ "🤸", "Vaults", stats.Vaults, Ui.Colors.Yellow },
-			{ "🧗", "Climbs", stats.Climbs, Ui.Colors.Lime },
+			{ "wall", "Wall runs", stats.WallRuns, Ui.Colors.Cyan },
+			{ "speed", "Slides", stats.Slides, Ui.Colors.Pink },
+			{ "vault", "Vaults", stats.Vaults, Ui.Colors.Yellow },
+			{ "ladder", "Climbs", stats.Climbs, Ui.Colors.Lime },
 		}
 		local most = 1
 		for _, move in moveList do
@@ -282,9 +281,8 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 		for i, move in moveList do
 			local y = (i - 1) * 30
-			local icon = Ui.icon(moves, move[1], 18)
-			icon.Position = UDim2.fromOffset(0, y)
-			icon.Size = UDim2.fromOffset(26, 24)
+			local icon = Ui.icon(moves, move[1], 22, move[4], Ui.Colors.Text)
+			icon.Position = UDim2.fromOffset(2, y + 1)
 			local name = Ui.caps(moves, move[2], 12, Ui.Colors.Text)
 			name.Position = UDim2.fromOffset(32, y)
 			name.Size = UDim2.fromOffset(100, 24)
