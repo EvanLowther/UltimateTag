@@ -18,9 +18,14 @@
 --   Victory:        server -> clients: (winner) play the winner's victory pose and effect.
 --   ShopBuy:        client -> server: buy today's shop item (its id).
 --   BuyCrate:       client -> server: buy a crate (it goes into your crates).
---   OpenCrate:      client -> server: open one of your crates.
+--   OpenCrate:      client -> server: (count) open that many of your crates (1 if left out).
 --   ClaimStreak:    client -> server: claim today's login streak reward.
 --   ClaimQuest:     client -> server: ("Daily" | "Weekly", slot) claim a finished quest.
+--   ClaimAchievement: client -> server: (achievement id) claim a reached achievement's reward.
+--   Announce:       server -> clients: something everyone sees (a table: Kind = "Unbox" when
+--                   someone opens an Iridescent item, with Name, Item and Serial).
+--   Leaderboard:    client -> server (no arguments): "send me the boards". Server -> client:
+--                   the cached boards and this player's ranks (server/Leaderboards).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
@@ -42,6 +47,9 @@ local NAMES = {
 	"OpenCrate",
 	"ClaimStreak",
 	"ClaimQuest",
+	"ClaimAchievement",
+	"Announce",
+	"Leaderboard",
 }
 
 -- Server only: creates the folder and every RemoteEvent.

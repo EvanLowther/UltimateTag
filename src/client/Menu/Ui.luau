@@ -1,152 +1,348 @@
 --!strict
--- The game's UI style (every menu, popup and HUD piece uses it): chunky and bright, like a
--- classic simulator shop. White windows with a red header bar, thick dark outlines on
--- everything, bold white text with a dark outline, bright glossy cards, white price pills with a
--- coin, and buttons that bounce. Everything is built in code.
+-- The game's UI kit, "Street sprint": flat black panels with cut corners, slanted bars and
+-- buttons, hazard yellow, hot pink and cyan, Bangers headlines over Titillium Web labels. Every
+-- menu, popup and HUD piece is built from these helpers (the dev panel keeps its own plain look).
+--   Slants: Roblox can't skew a frame, so a slanted shape (Ui.slab) is three frames, a middle
+--   and two end caps. Each cap is cut along its diagonal by a UIGradient with a hard
+--   transparency step at 0.5: a gradient rotated r degrees has edges leaning r degrees from
+--   vertical, and t = 0.5 always runs through the middle of the frame, so rotating it to
+--   atan(cap width / height) cuts exactly corner to corner. Ui.paint recolors a slab.
+--   Moving gradients (the Iridescent holo shimmer) are tagged for client/GradientFx.
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
+
+local Shared = ReplicatedStorage:WaitForChild("Shared")
+local Catalog = require(Shared:WaitForChild("Catalog"))
+local CosmeticLook = require(Shared:WaitForChild("CosmeticLook"))
 
 local Ui = {}
 
 Ui.Colors = {
-	Outline = Color3.fromRGB(28, 30, 48), -- the thick dark edge on everything
-	Window = Color3.fromRGB(248, 248, 252), -- window bodies
-	Header = Color3.fromRGB(236, 52, 62), -- window header bars
-	Ink = Color3.fromRGB(44, 48, 70), -- dark text on white
-	InkDim = Color3.fromRGB(120, 126, 150),
+	Panel = Color3.fromRGB(17, 17, 17), -- windows and bars
+	Card = Color3.fromRGB(30, 30, 30), -- cards and rows
+	Tab = Color3.fromRGB(38, 38, 38), -- idle tabs and chips
+	Track = Color3.fromRGB(44, 44, 46), -- the empty part of bars
+	Well = Color3.fromRGB(22, 22, 22), -- preview wells inside cards
 	Text = Color3.fromRGB(255, 255, 255),
-	Pill = Color3.fromRGB(250, 250, 255),
-	Track = Color3.fromRGB(70, 74, 96), -- empty part of bars
-	Coin = Color3.fromRGB(255, 205, 50),
-	XP = Color3.fromRGB(80, 190, 255),
-	Good = Color3.fromRGB(80, 205, 80),
-	Bad = Color3.fromRGB(236, 60, 70),
-	Locked = Color3.fromRGB(150, 155, 175),
-	-- Card colors.
-	Teal = Color3.fromRGB(50, 215, 200),
-	Purple = Color3.fromRGB(160, 100, 255),
-	Blue = Color3.fromRGB(70, 155, 255),
-	Orange = Color3.fromRGB(255, 150, 45),
-	Yellow = Color3.fromRGB(255, 210, 45),
-	Green = Color3.fromRGB(85, 205, 85),
-	Pink = Color3.fromRGB(255, 105, 180),
-	Red = Color3.fromRGB(240, 70, 80),
+	Dim = Color3.fromRGB(138, 138, 138),
+	Ink = Color3.fromRGB(17, 17, 17), -- dark text on bright fills
+	Yellow = Color3.fromRGB(255, 214, 10),
+	Pink = Color3.fromRGB(255, 46, 136),
+	Cyan = Color3.fromRGB(25, 227, 255),
+	Lime = Color3.fromRGB(124, 255, 79),
+	Orange = Color3.fromRGB(255, 138, 31),
+	Red = Color3.fromRGB(227, 36, 43),
+	Blue = Color3.fromRGB(60, 150, 255),
+	Purple = Color3.fromRGB(170, 80, 255),
+	Gold = Color3.fromRGB(255, 180, 40),
+	Coin = Color3.fromRGB(255, 214, 10),
+	XP = Color3.fromRGB(25, 227, 255),
+	PaidBack = Color3.fromRGB(22, 36, 15), -- a finished row's dark green
+	DoneBack = Color3.fromRGB(42, 34, 16), -- a completed chain's dark gold
 }
 
-Ui.Font = Enum.Font.FredokaOne
-Ui.BigFont = Enum.Font.LuckiestGuy
-Ui.OutlineThickness = 3
+Ui.Display = Font.new("rbxasset://fonts/families/Bangers.json")
+Ui.Bold = Font.new("rbxasset://fonts/families/TitilliumWeb.json", Enum.FontWeight.Bold)
+Ui.Heavy = Font.new("rbxasset://fonts/families/TitilliumWeb.json", Enum.FontWeight.Heavy)
 
-function Ui.corner(parent: Instance, radius: number?)
-	local c = Instance.new("UICorner")
-	c.CornerRadius = UDim.new(0, radius or 12)
-	c.Parent = parent
+Ui.Slant = 8 -- default slant in pixels: how far a slab's top edge sits right of its bottom
+
+local WHITE = Color3.new(1, 1, 1)
+
+local function kp(t: number, v: number): NumberSequenceKeypoint
+	return NumberSequenceKeypoint.new(t, v)
 end
+local KEEP_HIGH = NumberSequence.new({ kp(0, 1), kp(0.49, 1), kp(0.51, 0), kp(1, 0) })
+local KEEP_LOW = NumberSequence.new({ kp(0, 0), kp(0.49, 0), kp(0.51, 1), kp(1, 1) })
 
--- The thick dark border.
-function Ui.outline(parent: Instance, thickness: number?, color: Color3?)
-	local s = Instance.new("UIStroke")
-	s.Color = color or Ui.Colors.Outline
-	s.Thickness = thickness or Ui.OutlineThickness
-	s.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	s.LineJoinMode = Enum.LineJoinMode.Round
-	s.Parent = parent
-end
-
-function Ui.padding(parent: Instance, pixels: number)
-	local p = Instance.new("UIPadding")
-	p.PaddingLeft = UDim.new(0, pixels)
-	p.PaddingRight = UDim.new(0, pixels)
-	p.PaddingTop = UDim.new(0, pixels)
-	p.PaddingBottom = UDim.new(0, pixels)
-	p.Parent = parent
-end
-
--- A glossy shine: lighter at the top.
-function Ui.gloss(parent: GuiObject)
-	local g = Instance.new("UIGradient")
-	g.Color = ColorSequence.new(Color3.new(1, 1, 1), Color3.fromRGB(200, 200, 210))
-	g.Rotation = 90
-	g.Parent = parent
-end
-
-function Ui.frame(parent: Instance, color: Color3?, radius: number?): Frame
+local function piece(parent: Instance, name: string, color: Color3): Frame
 	local f = Instance.new("Frame")
-	f.BackgroundColor3 = color or Ui.Colors.Window
+	f.Name = name
 	f.BorderSizePixel = 0
-	Ui.corner(f, radius)
+	f.BackgroundColor3 = color
+	f.ZIndex = 0 -- under whatever goes on the shape
 	f.Parent = parent
 	return f
 end
 
--- A bright card: colored, outlined, glossy.
-function Ui.card(parent: Instance, color: Color3, radius: number?): Frame
-	local f = Ui.frame(parent, color, radius or 12)
-	Ui.outline(f)
-	Ui.gloss(f)
+local function cut(frame: Frame, keep: NumberSequence, rotation: number): UIGradient
+	local g = Instance.new("UIGradient")
+	g.Transparency = keep
+	g.Rotation = rotation
+	g.Parent = frame
+	return g
+end
+
+-- A slanted bar. Its top edge leans `slant` pixels right of its bottom (negative: left; 0: a
+-- plain rectangle). Size and place it like a Frame; children go on top of it.
+function Ui.slab(parent: Instance?, color: Color3, slant: number?): Frame
+	local s = slant or Ui.Slant
+	local slab = Instance.new("Frame")
+	slab.Name = "Slab"
+	slab.BackgroundTransparency = 1
+	slab.BorderSizePixel = 0
+	local w = math.abs(s)
+	if w < 1 then
+		local whole = piece(slab, "SlabMid", color)
+		whole.Size = UDim2.fromScale(1, 1)
+	else
+		local left = piece(slab, "SlabLeft", color)
+		left.Size = UDim2.new(0, w, 1, 0)
+		local middle = piece(slab, "SlabMid", color)
+		middle.Position = UDim2.fromOffset(w, 0)
+		middle.Size = UDim2.new(1, -2 * w, 1, 0)
+		local right = piece(slab, "SlabRight", color)
+		right.AnchorPoint = Vector2.new(1, 0)
+		right.Position = UDim2.fromScale(1, 0)
+		right.Size = UDim2.new(0, w, 1, 0)
+		local leftCut = cut(left, KEEP_HIGH, 0)
+		local rightCut = cut(right, KEEP_LOW, 0)
+		local function fit()
+			local height = slab.AbsoluteSize.Y
+			if height > 0 then
+				local scale = left.AbsoluteSize.X / w -- UIScale and friends scale both sides
+				local angle = math.deg(math.atan(w * (if scale > 0 then scale else 1) / height))
+				leftCut.Rotation = if s > 0 then angle else -angle
+				rightCut.Rotation = leftCut.Rotation
+			end
+		end
+		slab:GetPropertyChangedSignal("AbsoluteSize"):Connect(fit)
+		task.defer(fit)
+	end
+	slab.Parent = parent
+	return slab
+end
+
+-- A panel with its top-right and bottom-left corners cut off (the menu windows).
+function Ui.panel(parent: Instance?, color: Color3, corner: number?): Frame
+	local c = corner or 16
+	local panel = Instance.new("Frame")
+	panel.Name = "Panel"
+	panel.BackgroundTransparency = 1
+	panel.BorderSizePixel = 0
+	local top = piece(panel, "SlabTop", color)
+	top.Size = UDim2.new(1, -c, 0, c)
+	local topRight = piece(panel, "SlabTopRight", color)
+	topRight.AnchorPoint = Vector2.new(1, 0)
+	topRight.Position = UDim2.fromScale(1, 0)
+	topRight.Size = UDim2.fromOffset(c, c)
+	cut(topRight, KEEP_LOW, -45)
+	local middle = piece(panel, "SlabMid", color)
+	middle.Position = UDim2.fromOffset(0, c)
+	middle.Size = UDim2.new(1, 0, 1, -2 * c)
+	local bottom = piece(panel, "SlabBottom", color)
+	bottom.AnchorPoint = Vector2.new(0, 1)
+	bottom.Position = UDim2.new(0, c, 1, 0)
+	bottom.Size = UDim2.new(1, -c, 0, c)
+	local bottomLeft = piece(panel, "SlabBottomLeft", color)
+	bottomLeft.AnchorPoint = Vector2.new(0, 1)
+	bottomLeft.Position = UDim2.fromScale(0, 1)
+	bottomLeft.Size = UDim2.fromOffset(c, c)
+	cut(bottomLeft, KEEP_HIGH, -45)
+	panel.Parent = parent
+	return panel
+end
+
+-- Recolors a slab or panel (or any frame).
+function Ui.paint(object: GuiObject, color: Color3)
+	local painted = false
+	for _, child in object:GetChildren() do
+		if child:IsA("Frame") and string.sub(child.Name, 1, 4) == "Slab" then
+			child.BackgroundColor3 = color
+			painted = true
+		end
+	end
+	if not painted then
+		object.BackgroundColor3 = color
+	end
+end
+
+-- Sets a slab's or panel's transparency.
+function Ui.fade(object: GuiObject, transparency: number)
+	for _, child in object:GetChildren() do
+		if child:IsA("Frame") and string.sub(child.Name, 1, 4) == "Slab" then
+			child.BackgroundTransparency = transparency
+		end
+	end
+end
+
+-- A plain frame (no slant).
+function Ui.frame(parent: Instance?, color: Color3?): Frame
+	local f = Instance.new("Frame")
+	f.BorderSizePixel = 0
+	f.BackgroundColor3 = color or Ui.Colors.Card
+	if not color then
+		f.BackgroundTransparency = 1
+	end
+	f.Parent = parent
 	return f
 end
 
--- Bold white text with a dark outline (the main text style).
+-- Text (no background), bold Titillium unless `font` says otherwise. Rich text allowed.
 function Ui.text(
-	parent: Instance,
+	parent: Instance?,
 	text: string,
 	size: number?,
 	color: Color3?,
-	font: Enum.Font?
+	font: Font?
 ): TextLabel
 	local l = Instance.new("TextLabel")
 	l.BackgroundTransparency = 1
-	l.Text = text
-	l.Font = font or Ui.BigFont
-	l.TextSize = size or 20
+	l.FontFace = font or Ui.Bold
+	l.TextSize = size or 16
 	l.TextColor3 = color or Ui.Colors.Text
 	l.RichText = true
-	local s = Instance.new("UIStroke")
-	s.Thickness = math.max(1.5, (size or 20) / 9)
-	s.Color = Ui.Colors.Outline
-	s.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
-	s.LineJoinMode = Enum.LineJoinMode.Round
-	s.Parent = l
+	l.Text = text
 	l.Parent = parent
 	return l
 end
 
--- Plain dark text (on white backgrounds).
-function Ui.ink(parent: Instance, text: string, size: number?, color: Color3?): TextLabel
+local function upperPlain(text: string): string
+	return (string.gsub(text, "[a-z]", string.upper))
+end
+
+-- Upper-cases the ASCII letters in `text` and nothing else: emoji, accented letters (Roblox's
+-- string.upper mangles their bytes) and rich text tags stay as written.
+function Ui.upper(text: string): string
+	local out = {}
+	local i = 1
+	while i <= #text do
+		local open = string.find(text, "<", i, true)
+		if not open then
+			table.insert(out, upperPlain(string.sub(text, i)))
+			break
+		end
+		table.insert(out, upperPlain(string.sub(text, i, open - 1)))
+		local close = string.find(text, ">", open, true) or #text
+		table.insert(out, string.sub(text, open, close))
+		i = close + 1
+	end
+	return table.concat(out)
+end
+
+-- Upper-case heavy text (labels, tags, buttons).
+function Ui.caps(parent: Instance?, text: string, size: number?, color: Color3?): TextLabel
+	local label = Ui.text(parent, "", size or 14, color, Ui.Heavy)
+	label.Text = Ui.upper(text)
+	return label
+end
+
+-- Keeps `frame` as wide as `content` (an auto-sized label inside it) plus `extra` pixels. A
+-- frame can't size itself to its children (AutomaticSize) while it also holds children sized
+-- by Scale, like a slab's pieces: those stretch it to fill its parent instead.
+function Ui.fitWidth(frame: GuiObject, content: GuiObject, extra: number?)
+	local function fit()
+		local size = frame.Size
+		frame.Size = UDim2.new(
+			0,
+			math.ceil(content.AbsoluteSize.X) + (extra or 0),
+			size.Y.Scale,
+			size.Y.Offset
+		)
+	end
+	content:GetPropertyChangedSignal("AbsoluteSize"):Connect(fit)
+	task.defer(fit)
+end
+
+-- A headline in Bangers.
+function Ui.title(parent: Instance?, text: string, size: number?, color: Color3?): TextLabel
+	return Ui.text(parent, text, size or 30, color, Ui.Display)
+end
+
+-- A dark outline round text (for text straight over the game world).
+function Ui.stroke(label: TextLabel, thickness: number?, color: Color3?): UIStroke
+	local s = Instance.new("UIStroke")
+	s.Color = color or Ui.Colors.Ink
+	s.Thickness = thickness or 2
+	s.LineJoinMode = Enum.LineJoinMode.Round
+	s.Parent = label
+	return s
+end
+
+-- An emoji icon.
+function Ui.icon(parent: Instance?, emoji: string, size: number?): TextLabel
 	local l = Instance.new("TextLabel")
 	l.BackgroundTransparency = 1
-	l.Text = text
-	l.Font = Ui.Font
-	l.TextSize = size or 18
-	l.TextColor3 = color or Ui.Colors.Ink
-	l.RichText = true
+	l.Text = emoji
+	l.TextSize = size or 22
+	l.FontFace = Ui.Bold
+	l.TextColor3 = WHITE
 	l.Parent = parent
 	return l
 end
 
--- Kept for older callers: same as Ui.ink.
-Ui.label = Ui.ink
+-- Makes an object's fill or text shimmer in the Iridescent holo colors (client/GradientFx).
+function Ui.holo(object: GuiObject, rotation: number?): UIGradient
+	local g = Instance.new("UIGradient")
+	g.Color = CosmeticLook.holoSequence(0)
+	g.Rotation = rotation or 0
+	g.Parent = object
+	CollectionService:AddTag(g, "HoloGradient")
+	return g
+end
 
--- A button that bounces: colored, outlined, glossy, with outlined white text.
-function Ui.button(parent: Instance, text: string, color: Color3, onClick: () -> ()): TextButton
+-- A rarity's color.
+function Ui.rarityColor(rarity: string): Color3
+	local r = Catalog.Rarities[rarity]
+	return if r then r.color else Ui.Colors.Dim
+end
+
+-- A rarity's name in its color (Iridescent shimmers).
+function Ui.rarity(parent: Instance?, rarity: string, size: number?): TextLabel
+	local label = Ui.caps(parent, rarity, size or 12, Ui.rarityColor(rarity))
+	if rarity == "Iridescent" then
+		label.TextColor3 = WHITE
+		Ui.holo(label)
+	end
+	return label
+end
+
+-- A strip in a rarity's color (Iridescent shimmers), across the top of cards and tiles.
+function Ui.rarityStrip(parent: Instance, rarity: string, height: number?): Frame
+	local strip = Ui.frame(parent, Ui.rarityColor(rarity))
+	strip.Name = "RarityStrip"
+	strip.Size = UDim2.new(1, 0, 0, height or 4)
+	strip.ZIndex = 2
+	if rarity == "Iridescent" then
+		strip.BackgroundColor3 = WHITE
+		Ui.holo(strip)
+	end
+	return strip
+end
+
+-- A slanted button: a colored slab with a label; it brightens under the mouse and bounces when
+-- pressed. The label is dark (for bright fills) unless `textColor` says otherwise.
+function Ui.button(
+	parent: Instance?,
+	text: string,
+	color: Color3,
+	onClick: () -> (),
+	textColor: Color3?,
+	slant: number?
+): TextButton
 	local b = Instance.new("TextButton")
 	b.AutoButtonColor = false
-	b.BackgroundColor3 = color
+	b.BackgroundTransparency = 1
 	b.Text = ""
-	Ui.corner(b, 10)
-	Ui.outline(b)
-	Ui.gloss(b)
-	local label = Ui.text(b, text, 20)
+	b:SetAttribute("Color", color)
+	local fill = Ui.slab(b, color, slant)
+	fill.Name = "Fill"
+	fill.Size = UDim2.fromScale(1, 1)
+	local label = Ui.caps(b, text, 15, textColor or Ui.Colors.Ink)
 	label.Name = "Label"
 	label.Size = UDim2.fromScale(1, 1)
-	label.TextScaled = false
+	label.ZIndex = 2
 	local scale = Instance.new("UIScale")
 	scale.Parent = b
 	local quick = TweenInfo.new(0.08)
 	b.MouseEnter:Connect(function()
-		TweenService:Create(scale, quick, { Scale = 1.05 }):Play()
+		local base = b:GetAttribute("Color") :: Color3
+		Ui.paint(fill, base:Lerp(WHITE, 0.18))
+		TweenService:Create(scale, quick, { Scale = 1.04 }):Play()
 	end)
 	b.MouseLeave:Connect(function()
+		Ui.paint(fill, b:GetAttribute("Color") :: Color3)
 		TweenService:Create(scale, quick, { Scale = 1 }):Play()
 	end)
 	b.Activated:Connect(function()
@@ -159,194 +355,397 @@ function Ui.button(parent: Instance, text: string, color: Color3, onClick: () ->
 end
 
 -- Changes a Ui.button's text.
-function Ui.setText(button: TextButton, text: string)
+function Ui.setText(button: GuiObject, text: string)
 	local label = button:FindFirstChild("Label")
 	if label and label:IsA("TextLabel") then
-		label.Text = text
+		label.Text = Ui.upper(text)
 	end
 end
 
--- Sets a Ui.button's text size.
-function Ui.setTextSize(button: TextButton, size: number)
+-- Changes a Ui.button's color (and its text color).
+function Ui.setColor(button: GuiObject, color: Color3, textColor: Color3?)
+	button:SetAttribute("Color", color)
+	local fill = button:FindFirstChild("Fill")
+	if fill and fill:IsA("Frame") then
+		Ui.paint(fill, color)
+	end
+	local label = button:FindFirstChild("Label")
+	if textColor and label and label:IsA("TextLabel") then
+		label.TextColor3 = textColor
+	end
+end
+
+-- Changes a Ui.button's text size.
+function Ui.setTextSize(button: GuiObject, size: number)
 	local label = button:FindFirstChild("Label")
 	if label and label:IsA("TextLabel") then
 		label.TextSize = size
-		local stroke = label:FindFirstChildOfClass("UIStroke")
-		if stroke then
-			stroke.Thickness = math.max(1.5, size / 9)
-		end
 	end
 end
 
--- A square icon button (the left-side menu): a big emoji, a small name underneath.
-function Ui.iconButton(
-	parent: Instance,
-	icon: string,
-	name: string,
+-- A row of slanted tabs. Clicking one calls `onSelect(name)`. Returns the row, a function that
+-- shows a tab as selected, and one that sets a tab's badge count (nil or 0 hides it).
+function Ui.tabs(
+	parent: Instance?,
+	names: { string },
 	color: Color3,
-	onClick: () -> ()
-): TextButton
-	local b = Ui.button(parent, "", color, onClick)
-	b.Size = UDim2.fromOffset(68, 68)
-	local emoji = Instance.new("TextLabel")
-	emoji.BackgroundTransparency = 1
-	emoji.Text = icon
-	emoji.TextScaled = true
-	emoji.Position = UDim2.fromScale(0.15, 0.06)
-	emoji.Size = UDim2.fromScale(0.7, 0.62)
-	emoji.Parent = b
-	local label = Ui.text(b, name, 13)
-	label.AnchorPoint = Vector2.new(0.5, 1)
-	label.Position = UDim2.new(0.5, 0, 1, -3)
-	label.Size = UDim2.new(1, 0, 0, 16)
-	return b
-end
+	onSelect: (string) -> (),
+	height: number?,
+	textSize: number?
+): (Frame, (string) -> (), (string, number?) -> ())
+	local row = Instance.new("Frame")
+	row.Name = "Tabs"
+	row.BackgroundTransparency = 1
+	row.Size = UDim2.fromOffset(0, height or 30)
+	row.AutomaticSize = Enum.AutomaticSize.X
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.Padding = UDim.new(0, 6)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = row
+	local tabs: { [string]: TextButton } = {}
+	local labels: { [string]: TextLabel } = {}
+	local badges: { [string]: number } = {}
+	local current: string? = nil
 
--- A gold coin (a circle with a C), `size` pixels.
-function Ui.coinIcon(parent: Instance, size: number): Frame
-	local coin = Instance.new("Frame")
-	coin.Size = UDim2.fromOffset(size, size)
-	coin.BackgroundColor3 = Ui.Colors.Coin
-	Ui.corner(coin, size)
-	Ui.outline(coin, 2, Color3.fromRGB(150, 100, 15))
-	local c = Ui.text(coin, "C", math.floor(size * 0.62), Color3.fromRGB(255, 240, 170))
-	c.Size = UDim2.fromScale(1, 1)
-	coin.Parent = parent
-	return coin
-end
-
--- A white price pill with a coin and a number (dark text).
-function Ui.pricePill(parent: Instance, amount: number?, text: string?): Frame
-	local pill = Ui.frame(parent, Ui.Colors.Pill, 20)
-	Ui.outline(pill, 2.5)
-	pill.Size = UDim2.fromOffset(84, 26)
-	local label = Ui.ink(pill, text or Ui.number(amount or 0), 17)
-	label.Name = "Label"
-	if amount then
-		local coin = Ui.coinIcon(pill, 18)
-		coin.Position = UDim2.fromOffset(5, 4)
-		label.Position = UDim2.fromOffset(24, 0)
-		label.Size = UDim2.new(1, -28, 1, 0)
-	else
-		label.Size = UDim2.fromScale(1, 1)
-	end
-	return pill
-end
-
--- A dark divider line with round ends.
-function Ui.divider(parent: Instance): Frame
-	local line = Ui.frame(parent, Ui.Colors.Outline, 3)
-	line.Size = UDim2.new(1, -16, 0, 4)
-	return line
-end
-
--- A progress bar: dark outlined track, colored fill. Returns the bar and a setter (0-1).
-function Ui.bar(parent: Instance, color: Color3): (Frame, (number) -> ())
-	local bar = Ui.frame(parent, Ui.Colors.Track, 8)
-	Ui.outline(bar, 2.5)
-	local fill = Ui.frame(bar, color, 8)
-	Ui.gloss(fill)
-	fill.Size = UDim2.fromScale(0, 1)
-	return bar,
-		function(fraction: number)
-			TweenService:Create(
-				fill,
-				TweenInfo.new(0.35),
-				{ Size = UDim2.fromScale(math.clamp(fraction, 0, 1), 1) }
-			):Play()
+	local function draw(name: string)
+		local label = labels[name]
+		local count = badges[name]
+		local selected = name == current
+		local text = Ui.upper(name)
+		if count and count > 0 then
+			text ..= `  <font color="#{if selected then "111111" else Ui.Colors.Lime:ToHex()}">{count}</font>`
 		end
+		label.Text = text
+		label.TextColor3 = if selected then Ui.Colors.Ink else Ui.Colors.Dim
+		Ui.paint(
+			tabs[name]:FindFirstChild("Fill") :: Frame,
+			if selected then color else Ui.Colors.Tab
+		)
+	end
+
+	for i, name in names do
+		local tab = Instance.new("TextButton")
+		tab.Name = name
+		tab.AutoButtonColor = false
+		tab.BackgroundTransparency = 1
+		tab.Text = ""
+		tab.LayoutOrder = i
+		tab.Size = UDim2.fromScale(0, 1)
+		local fill = Ui.slab(tab, Ui.Colors.Tab, 7)
+		fill.Name = "Fill"
+		fill.Size = UDim2.fromScale(1, 1)
+		local label = Ui.caps(tab, name, textSize or 13, Ui.Colors.Dim)
+		label.Size = UDim2.fromScale(0, 1)
+		label.AutomaticSize = Enum.AutomaticSize.X
+		label.ZIndex = 2
+		local pad = Instance.new("UIPadding")
+		pad.PaddingLeft = UDim.new(0, 14)
+		pad.PaddingRight = UDim.new(0, 14)
+		pad.Parent = label
+		Ui.fitWidth(tab, label)
+		tab.Activated:Connect(function()
+			if current ~= name then
+				onSelect(name)
+			end
+		end)
+		tab.Parent = row
+		tabs[name] = tab
+		labels[name] = label
+		draw(name)
+	end
+	row.Parent = parent
+
+	local function select(name: string)
+		current = name
+		for other in tabs do
+			draw(other)
+		end
+	end
+	local function badge(name: string, count: number?)
+		if tabs[name] then
+			badges[name] = count or 0
+			draw(name)
+		end
+	end
+	return row, select, badge
 end
 
--- A window: white body, thick outline, colored header bar with a title and a red X.
--- Returns the window, its content area (below the header), and the close button.
+-- The menu window: a black panel with cut corners, a slanted header bar in `color` (an icon,
+-- the title in Bangers, and an info text on the right), and a pink close button. Returns the
+-- window, its body (under the header), the close button, the header, the title and the info.
 function Ui.window(
-	parent: Instance,
+	parent: Instance?,
 	title: string,
-	headerColor: Color3?
-): (Frame, Frame, TextButton, TextLabel)
-	local window = Ui.frame(parent, Ui.Colors.Window, 16)
-	Ui.outline(window, 4)
-	local header = Ui.frame(window, headerColor or Ui.Colors.Header, 16)
+	color: Color3,
+	icon: string?
+): (Frame, Frame, TextButton, Frame, TextLabel, TextLabel)
+	local window = Ui.panel(parent, Ui.Colors.Panel, 18)
+	window.Name = "Window"
+	local header = Ui.slab(window, color, 12)
 	header.Name = "Header"
-	header.Size = UDim2.new(1, 0, 0, 52)
-	-- Square off the header's bottom corners with a strip under it.
-	local strip = Instance.new("Frame")
-	strip.BorderSizePixel = 0
-	strip.BackgroundColor3 = headerColor or Ui.Colors.Header
-	strip.Position = UDim2.new(0, 0, 1, -16)
-	strip.Size = UDim2.new(1, 0, 0, 16)
-	strip.Parent = header
-	local edge = Ui.frame(window, Ui.Colors.Outline, 0)
-	edge.Position = UDim2.fromOffset(0, 52)
-	edge.Size = UDim2.new(1, 0, 0, 4)
-	local titleLabel = Ui.text(header, title, 32)
-	titleLabel.Position = UDim2.fromOffset(18, 0)
-	titleLabel.Size = UDim2.new(1, -80, 1, 0)
+	header.Position = UDim2.fromOffset(0, 0)
+	header.Size = UDim2.new(1, -60, 0, 52)
+	local iconLabel = Ui.icon(header, icon or "", 26)
+	iconLabel.Name = "Icon"
+	iconLabel.Position = UDim2.fromOffset(14, 0)
+	iconLabel.Size = UDim2.fromOffset(34, 52)
+	iconLabel.ZIndex = 2
+	local titleLabel = Ui.title(header, title, 36, Ui.Colors.Ink)
+	titleLabel.Name = "Title"
+	titleLabel.Position = UDim2.fromOffset(52, 2)
+	titleLabel.Size = UDim2.new(0.6, -52, 1, 0)
 	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 	titleLabel.ZIndex = 2
-	-- The close button: a bold X on a dark red square (callers connect close.Activated).
-	local close = Ui.button(header, "X", Color3.fromRGB(190, 30, 42), function() end)
-	close.AnchorPoint = Vector2.new(1, 0.5)
-	close.Position = UDim2.new(1, -10, 0.5, 0)
-	close.Size = UDim2.fromOffset(40, 40)
-	close.ZIndex = 2
-	Ui.setTextSize(close, 26)
-	local closeLabel = close:FindFirstChild("Label")
-	if closeLabel and closeLabel:IsA("TextLabel") then
-		closeLabel.ZIndex = 2
-	end
+	local info = Ui.caps(header, "", 15, Ui.Colors.Ink)
+	info.Name = "Info"
+	info.AnchorPoint = Vector2.new(1, 0)
+	info.Position = UDim2.new(1, -22, 0, 0)
+	info.Size = UDim2.fromScale(0.4, 1)
+	info.TextXAlignment = Enum.TextXAlignment.Right
+	info.ZIndex = 2
+	local close = Ui.button(window, "X", Ui.Colors.Pink, function() end, Ui.Colors.Text, 0)
+	close.Name = "Close"
+	close.AnchorPoint = Vector2.new(1, 0)
+	close.Position = UDim2.new(1, -22, 0, 8)
+	close.Size = UDim2.fromOffset(36, 36)
+	Ui.setTextSize(close, 22)
 	local body = Instance.new("Frame")
 	body.Name = "Body"
 	body.BackgroundTransparency = 1
-	body.Position = UDim2.fromOffset(14, 66)
-	body.Size = UDim2.new(1, -28, 1, -80)
+	body.Position = UDim2.fromOffset(16, 62)
+	body.Size = UDim2.new(1, -32, 1, -78)
 	body.Parent = window
-	return window, body, close, titleLabel
+	return window, body, close, header, titleLabel, info
 end
 
--- A vertical scrolling list with a dark rounded scrollbar.
-function Ui.scroll(parent: Instance, padding: number?): ScrollingFrame
+-- A slanted progress bar: a dark track and a colored fill. Returns the bar and a setter (0-1).
+function Ui.bar(parent: Instance?, color: Color3, slant: number?): (Frame, (number) -> ())
+	local s = slant or 4
+	local track = Ui.slab(parent, Ui.Colors.Track, s)
+	track.Name = "Bar"
+	track.ClipsDescendants = true
+	local fill = Ui.slab(track, color, s)
+	fill.Name = "Fill"
+	fill.Size = UDim2.fromScale(0, 1)
+	fill.Visible = false
+	local limit = Instance.new("UISizeConstraint")
+	limit.MinSize = Vector2.new(math.abs(s) * 2 + 2, 0)
+	limit.Parent = fill
+	return track,
+		function(fraction: number)
+			local f = math.clamp(fraction, 0, 1)
+			fill.Visible = f > 0
+			TweenService:Create(fill, TweenInfo.new(0.35), { Size = UDim2.fromScale(f, 1) }):Play()
+		end
+end
+
+-- A row of `count` slanted segments that fill up like a bar (the XP bar). Returns the row and a
+-- setter (0-1).
+function Ui.segments(
+	parent: Instance?,
+	count: number,
+	color: Color3,
+	width: number?,
+	height: number?
+): (Frame, (number) -> ())
+	local row = Instance.new("Frame")
+	row.Name = "Segments"
+	row.BackgroundTransparency = 1
+	row.Size = UDim2.fromOffset(count * ((width or 20) + 4), height or 14)
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.Padding = UDim.new(0, 4)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = row
+	local segments = {}
+	for i = 1, count do
+		local seg = Ui.slab(row, Ui.Colors.Track, 5)
+		seg.LayoutOrder = i
+		seg.Size = UDim2.fromOffset(width or 20, height or 14)
+		segments[i] = seg
+	end
+	row.Parent = parent
+	return row,
+		function(fraction: number)
+			local filled = math.floor(math.clamp(fraction, 0, 1) * count + 0.0001)
+			for i, seg in segments do
+				Ui.paint(seg, if i <= filled then color else Ui.Colors.Track)
+			end
+		end
+end
+
+-- A gold coin, `size` pixels.
+function Ui.coin(parent: Instance?, size: number): Frame
+	local coin = Ui.frame(parent, Ui.Colors.Coin)
+	coin.Name = "Coin"
+	coin.Size = UDim2.fromOffset(size, size)
+	local round = Instance.new("UICorner")
+	round.CornerRadius = UDim.new(1, 0)
+	round.Parent = coin
+	local ring = Instance.new("UIStroke")
+	ring.Color = Color3.fromRGB(170, 120, 0)
+	ring.Thickness = math.max(1, size / 12)
+	ring.Parent = coin
+	local c = Ui.text(coin, "C", math.floor(size * 0.7), Color3.fromRGB(150, 100, 0), Ui.Heavy)
+	c.Size = UDim2.fromScale(1, 1)
+	return coin
+end
+
+-- A coin and an amount side by side (auto width). Returns the holder and the amount label.
+function Ui.coinAmount(
+	parent: Instance?,
+	amount: number,
+	size: number?,
+	color: Color3?
+): (Frame, TextLabel)
+	local h = size or 16
+	local holder = Instance.new("Frame")
+	holder.Name = "CoinAmount"
+	holder.BackgroundTransparency = 1
+	holder.Size = UDim2.fromOffset(0, h + 4)
+	holder.AutomaticSize = Enum.AutomaticSize.X
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.VerticalAlignment = Enum.VerticalAlignment.Center
+	layout.Padding = UDim.new(0, 5)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = holder
+	local coin = Ui.coin(holder, h)
+	coin.LayoutOrder = 1
+	local label = Ui.caps(holder, Ui.number(amount), h + 2, color or Ui.Colors.Yellow)
+	label.LayoutOrder = 2
+	label.Size = UDim2.fromScale(0, 1)
+	label.AutomaticSize = Enum.AutomaticSize.X
+	holder.Parent = parent
+	return holder, label
+end
+
+-- A vertical scrolling list.
+function Ui.scroll(parent: Instance?, padding: number?): ScrollingFrame
 	local scroll = Instance.new("ScrollingFrame")
 	scroll.BackgroundTransparency = 1
 	scroll.BorderSizePixel = 0
 	scroll.Size = UDim2.fromScale(1, 1)
 	scroll.CanvasSize = UDim2.new()
 	scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	scroll.ScrollBarThickness = 8
-	scroll.ScrollBarImageColor3 = Ui.Colors.Outline
-	scroll.ScrollBarImageTransparency = 0
+	scroll.ScrollingDirection = Enum.ScrollingDirection.Y
+	scroll.ScrollBarThickness = 6
+	scroll.ScrollBarImageColor3 = Ui.Colors.Dim
+	scroll.ScrollBarImageTransparency = 0.3
 	scroll.Parent = parent
 	local layout = Instance.new("UIListLayout")
-	layout.Padding = UDim.new(0, padding or 10)
+	layout.Padding = UDim.new(0, padding or 8)
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
-	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	layout.Parent = scroll
 	local pad = Instance.new("UIPadding")
-	pad.PaddingTop = UDim.new(0, 6)
-	pad.PaddingBottom = UDim.new(0, 6)
+	pad.PaddingTop = UDim.new(0, 2)
+	pad.PaddingBottom = UDim.new(0, 8)
 	pad.PaddingRight = UDim.new(0, 12)
-	pad.PaddingLeft = UDim.new(0, 4)
 	pad.Parent = scroll
 	return scroll
 end
 
--- Bounces something in: grows from small with a little overshoot.
-function Ui.popIn(object: GuiObject, seconds: number?)
-	local scale = object:FindFirstChildOfClass("UIScale") or Instance.new("UIScale")
-	scale.Scale = 0.4
-	scale.Parent = object
+-- A horizontal row (auto sizing), children in LayoutOrder.
+function Ui.row(parent: Instance?, gap: number?, height: number?): Frame
+	local row = Instance.new("Frame")
+	row.BackgroundTransparency = 1
+	row.Size = UDim2.new(1, 0, 0, height or 24)
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.VerticalAlignment = Enum.VerticalAlignment.Center
+	layout.Padding = UDim.new(0, gap or 8)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = row
+	row.Parent = parent
+	return row
+end
+
+-- A pink count badge pinned to an object's top-right corner. Returns its label (Text "" hides
+-- it).
+function Ui.badge(parent: GuiObject): TextLabel
+	local badge = Ui.caps(parent, "", 12, Ui.Colors.Text)
+	badge.Name = "Badge"
+	badge.AnchorPoint = Vector2.new(1, 0.5)
+	badge.Position = UDim2.new(1, 6, 0, 2)
+	badge.Size = UDim2.fromOffset(0, 18)
+	badge.AutomaticSize = Enum.AutomaticSize.X
+	badge.BackgroundColor3 = Ui.Colors.Pink
+	badge.BackgroundTransparency = 0
+	badge.ZIndex = 5
+	local pad = Instance.new("UIPadding")
+	pad.PaddingLeft = UDim.new(0, 6)
+	pad.PaddingRight = UDim.new(0, 6)
+	pad.Parent = badge
+	badge.Visible = false
+	badge:GetPropertyChangedSignal("Text"):Connect(function()
+		badge.Visible = badge.Text ~= ""
+	end)
+	return badge
+end
+
+-- A gentle looping grow-and-shrink (a Claim button calling for attention).
+function Ui.pulse(object: GuiObject)
+	local scale = object:FindFirstChildOfClass("UIScale")
+	if not scale then
+		local new = Instance.new("UIScale")
+		new.Parent = object
+		scale = new
+	end
 	TweenService:Create(
-		scale,
-		TweenInfo.new(seconds or 0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+		scale :: UIScale,
+		TweenInfo.new(0.55, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
+		{ Scale = 1.07 }
+	):Play()
+end
+
+-- Pops something in: grows from small with a little overshoot.
+function Ui.popIn(object: GuiObject, seconds: number?)
+	local scale = object:FindFirstChildOfClass("UIScale")
+	if not scale then
+		local new = Instance.new("UIScale")
+		new.Parent = object
+		scale = new
+	end
+	local s = scale :: UIScale
+	s.Scale = 0.5
+	TweenService:Create(
+		s,
+		TweenInfo.new(seconds or 0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
 		{ Scale = 1 }
 	):Play()
+end
+
+-- Padding on all four sides (or left/right and top/bottom).
+function Ui.padding(parent: Instance, x: number, y: number?)
+	local p = Instance.new("UIPadding")
+	p.PaddingLeft = UDim.new(0, x)
+	p.PaddingRight = UDim.new(0, x)
+	p.PaddingTop = UDim.new(0, y or x)
+	p.PaddingBottom = UDim.new(0, y or x)
+	p.Parent = parent
+end
+
+-- Removes every GuiObject child (to rebuild a list).
+function Ui.clear(parent: Instance)
+	for _, child in parent:GetChildren() do
+		if child:IsA("GuiObject") then
+			child:Destroy()
+		end
+	end
 end
 
 -- A number with thousands separators: 12500 -> "12,500".
 function Ui.number(n: number): string
 	local text = tostring(math.floor(n))
 	local formatted = text:reverse():gsub("(%d%d%d)", "%1,"):reverse()
-	return (formatted:gsub("^,", ""))
+	return (formatted:gsub("^,", ""):gsub("^%-,", "-"))
+end
+
+-- "1:24" from seconds.
+function Ui.clock(seconds: number): string
+	seconds = math.max(0, math.floor(seconds))
+	return string.format("%d:%02d", seconds // 60, seconds % 60)
 end
 
 return Ui

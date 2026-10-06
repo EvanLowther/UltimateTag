@@ -1,9 +1,13 @@
 --!strict
--- Reward popups (from the Reward remote, sent by server/Progression):
---   Earned:  "+15 coins  +20 XP  Round survived" floating up by the coin counter.
---   Grant:   a card listing what a quest, streak, achievement or prize gave you.
---   LevelUp: a big "LEVEL 5!" banner with what came with it.
---   Crate:   a crate opening: a reel of items spins and stops on what you got.
+-- Popups (Street sprint style), from the Reward remote (server/Progression, server/Shop) and the
+-- Announce remote:
+--   Earned:  "+15 COINS  +20 XP  ROUND SURVIVED" floating up beside your coins.
+--   Grant:   a small card listing what a quest, streak, achievement or purchase gave you.
+--   LevelUp: a cyan stripe across the screen, "LEVEL 5!", and what came with it.
+--   Crate:   the crate opening: a reel of cards spins and stops on the best thing you got, then
+--            lists the rest.
+--   Announce (Unbox): a holo stripe for everyone when someone opens an Iridescent item.
+-- Big popups take turns.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
@@ -16,9 +20,10 @@ local Popups = {}
 
 local gui: ScreenGui
 local floatAnchor: Frame
-local queue: { () -> () } = {} -- big popups wait their turn
+local queue: { () -> () } = {}
 local showing = false
 
+local TOP = 50 -- popups sit above the menu window
 local REASONS = {
 	GamePlayed = "Game played",
 	RoundSurvived = "Round survived",
@@ -27,43 +32,51 @@ local REASONS = {
 	PlayMinute = "Playing",
 }
 
--- "+15 coins  +20 XP" with coloured parts.
+local function hex(color: Color3): string
+	return color:ToHex()
+end
+
+-- "+15 COINS  +20 XP" in their colors.
 local function amounts(coins: number?, xp: number?): string
 	local parts = {}
 	if coins and coins > 0 then
-		table.insert(parts, `<font color="#FFCD3C">+{Ui.number(coins)} coins</font>`)
+		table.insert(
+			parts,
+			`<font color="#{hex(Ui.Colors.Yellow)}">+{Ui.number(coins)} COINS</font>`
+		)
 	end
 	if xp and xp > 0 then
-		table.insert(parts, `<font color="#5AC8FF">+{Ui.number(xp)} XP</font>`)
+		table.insert(parts, `<font color="#{hex(Ui.Colors.Cyan)}">+{Ui.number(xp)} XP</font>`)
 	end
 	return table.concat(parts, "   ")
 end
 
-local function itemLines(ids: { string }?): { string }
-	local lines = {}
-	for _, id in ids or {} do
-		local item = Catalog.get(id)
-		if item then
-			local color = Catalog.Rarities[item.rarity].color:ToHex()
-			table.insert(lines, `<font color="#{color}">{item.name}</font> ({item.kind})`)
-		end
+local function itemLine(id: string, prefix: string?): string?
+	local item = Catalog.get(id)
+	if not item then
+		return nil
 	end
-	return lines
+	local color = hex(Catalog.Rarities[item.rarity].color)
+	return `{prefix or ""}<font color="#{color}">{Ui.upper(item.name)}</font> <font color="#{hex(
+		Ui.Colors.Dim
+	)}">{Ui.upper(Catalog.KindSingular[item.kind] or "")}</font>`
 end
 
--- Outlined text that floats up from just above the money pill and fades.
+-- Puts something above everything else in the menu.
+local function onTop(object: GuiObject)
+	object.ZIndex = TOP
+end
+
+-- Text that floats up from beside your coins and fades.
 local function float(text: string)
-	local label = Ui.text(floatAnchor, text, 20, nil, Ui.Font)
-	label.Size = UDim2.new(1, 0, 0, 28)
+	local label = Ui.caps(floatAnchor, text, 18, Ui.Colors.Text)
+	label.Size = UDim2.new(1, 0, 0, 26)
 	label.TextXAlignment = Enum.TextXAlignment.Left
-	label.Position = UDim2.fromOffset(0, 0)
+	local stroke = Ui.stroke(label, 2)
 	local info = TweenInfo.new(2.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, -50), TextTransparency = 1 })
 		:Play()
-	local stroke = label:FindFirstChildOfClass("UIStroke")
-	if stroke then
-		TweenService:Create(stroke, info, { Transparency = 1 }):Play()
-	end
+	TweenService:Create(stroke, info, { Transparency = 1 }):Play()
 	task.delay(2.3, function()
 		label:Destroy()
 	end)
@@ -84,60 +97,114 @@ local function enqueue(show: () -> ())
 	end)
 end
 
--- A small window: a colored header with the title, lines underneath, held for `seconds`, then
--- shrinks away. Yields while it shows.
-local function card(title: string, lines: { string }, color: Color3, seconds: number)
-	local window, body, close = Ui.window(gui, title, color)
-	close.Visible = false
-	window.AnchorPoint = Vector2.new(0.5, 0.5)
-	window.Position = UDim2.fromScale(0.5, 0.38)
-	window.Size = UDim2.fromOffset(400, 86 + #lines * 32)
-	local layout = Instance.new("UIListLayout")
-	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	layout.VerticalAlignment = Enum.VerticalAlignment.Center
-	layout.Padding = UDim.new(0, 4)
-	layout.SortOrder = Enum.SortOrder.LayoutOrder
-	layout.Parent = body
-	for i, line in lines do
-		local l = Ui.text(body, line, 22, nil, Ui.Font)
-		l.LayoutOrder = i
-		l.Size = UDim2.new(1, 0, 0, 28)
-		l.TextWrapped = true
-	end
-	Ui.popIn(window)
-	task.wait(seconds)
-	local scale = window:FindFirstChildOfClass("UIScale")
+-- Shrinks something away and destroys it.
+local function dismiss(object: GuiObject)
+	local scale = object:FindFirstChildOfClass("UIScale")
 	if scale then
 		TweenService:Create(
 			scale,
-			TweenInfo.new(0.2, Enum.EasingStyle.Back, Enum.EasingDirection.In),
+			TweenInfo.new(0.18, Enum.EasingStyle.Back, Enum.EasingDirection.In),
 			{ Scale = 0 }
 		):Play()
 	end
-	task.wait(0.22)
-	window:Destroy()
+	task.wait(0.2)
+	object:Destroy()
 end
 
--- A crate opening: cards scroll past a marker and stop on the prize. Yields while it shows.
-local function crateReel(prize: Catalog.Item, duplicate: boolean)
-	local width = ItemCard.Width + 10
+-- A small card: a header bar in `color` with the title, the lines under it. Yields while shown.
+local function card(title: string, lines: { string }, color: Color3, seconds: number)
+	local panel = Ui.panel(gui, Ui.Colors.Panel, 12)
+	onTop(panel)
+	panel.AnchorPoint = Vector2.new(0.5, 0)
+	panel.Position = UDim2.new(0.5, 0, 0, 110)
+	panel.Size = UDim2.fromOffset(380, 58 + #lines * 26)
+	local header = Ui.slab(panel, color, 10)
+	header.Size = UDim2.new(1, -20, 0, 40)
+	local titleLabel = Ui.title(header, title, 28, Ui.Colors.Ink)
+	titleLabel.Size = UDim2.fromScale(1, 1)
+	for i, line in lines do
+		local l = Ui.caps(panel, line, 15, Ui.Colors.Text)
+		l.Position = UDim2.fromOffset(12, 44 + (i - 1) * 26)
+		l.Size = UDim2.new(1, -24, 0, 24)
+		l.TextWrapped = true
+	end
+	Ui.popIn(panel)
+	task.wait(seconds)
+	dismiss(panel)
+end
+
+-- A stripe right across the screen with big text, tilted a little. Yields while shown.
+local function stripe(
+	text: string,
+	color: Color3,
+	textColor: Color3,
+	seconds: number,
+	holo: boolean?
+)
+	local band = Ui.frame(gui, color)
+	onTop(band)
+	band.AnchorPoint = Vector2.new(0.5, 0.5)
+	band.Position = UDim2.fromScale(0.5, 0.32)
+	band.Size = UDim2.new(1.3, 0, 0, 74)
+	band.Rotation = -3
+	if holo then
+		band.BackgroundColor3 = Color3.new(1, 1, 1)
+		Ui.holo(band)
+	end
+	for _, edge in { 0, 1 } do
+		local line = Ui.frame(band, Ui.Colors.Ink)
+		line.AnchorPoint = Vector2.new(0, edge)
+		line.Position = UDim2.fromScale(0, edge)
+		line.Size = UDim2.new(1, 0, 0, 5)
+	end
+	local shadow = Ui.title(band, text, 52, Ui.Colors.Pink)
+	shadow.Position = UDim2.fromOffset(4, 4)
+	shadow.Size = UDim2.fromScale(1, 1)
+	local label = Ui.title(band, text, 52, textColor)
+	label.Size = UDim2.fromScale(1, 1)
+	local scale = Instance.new("UIScale")
+	scale.Parent = band
+	Ui.popIn(band, 0.25)
+	task.wait(seconds)
+	dismiss(band)
+end
+
+-- The crate opening: a reel spins past a marker and stops on the best item, then the rest are
+-- listed. Yields while it shows.
+local function crateReel(results: { { [string]: any } })
+	local best: Catalog.Item? = nil
+	local bestResult: { [string]: any }? = nil
+	for _, result in results do
+		local item = Catalog.get(result.Item)
+		if
+			item
+			and (
+				not best
+				or Catalog.Rarities[item.rarity].order > Catalog.Rarities[best.rarity].order
+			)
+		then
+			best = item
+			bestResult = result
+		end
+	end
+	if not best or not bestResult then
+		return
+	end
+	local prize = best :: Catalog.Item
+	local width, height = 128, 170
 	local count, stopAt = 26, 22
-	local frame, body, close = Ui.window(gui, "MYSTERY CRATE", Ui.Colors.Purple)
+	local window, body, close = Ui.window(gui, "Mystery crate", Ui.Colors.Yellow, "📦")
+	onTop(window)
 	close.Visible = false
-	frame.AnchorPoint = Vector2.new(0.5, 0.5)
-	frame.Position = UDim2.fromScale(0.5, 0.45)
-	frame.Size = UDim2.fromOffset(584, ItemCard.Height + 150)
-	local window = Instance.new("Frame")
-	window.BackgroundTransparency = 1
-	window.ClipsDescendants = true
-	window.Position = UDim2.fromOffset(0, 4)
-	window.Size = UDim2.new(1, 0, 0, ItemCard.Height + 8)
-	window.Parent = body
-	local strip = Instance.new("Frame")
-	strip.BackgroundTransparency = 1
-	strip.Size = UDim2.fromOffset(width * count, ItemCard.Height)
-	strip.Position = UDim2.fromOffset(0, 3)
-	strip.Parent = window
+	window.AnchorPoint = Vector2.new(0.5, 0.5)
+	window.Position = UDim2.fromScale(0.5, 0.45)
+	window.Size = UDim2.fromOffset(600, height + 170)
+	local view = Ui.frame(body)
+	view.ClipsDescendants = true
+	view.Size = UDim2.new(1, 0, 0, height + 10)
+	local strip = Ui.frame(view)
+	strip.Size = UDim2.fromOffset((width + 10) * count, height)
+	strip.Position = UDim2.fromOffset(0, 5)
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
 	layout.Padding = UDim.new(0, 10)
@@ -151,55 +218,82 @@ local function crateReel(prize: Catalog.Item, duplicate: boolean)
 	end
 	for i = 1, count do
 		local item = if i == stopAt then prize else pool[math.random(#pool)]
-		local reelCard = ItemCard.make(strip, item)
+		local reelCard = ItemCard.reel(strip, item, width, height)
 		reelCard.LayoutOrder = i
 	end
-	local marker = Ui.frame(body, Ui.Colors.Coin, 2)
-	Ui.outline(marker, 2)
+	local marker = Ui.frame(body, Ui.Colors.Yellow)
 	marker.AnchorPoint = Vector2.new(0.5, 0)
 	marker.Position = UDim2.new(0.5, 0, 0, -4)
-	marker.Size = UDim2.fromOffset(6, ItemCard.Height + 24)
+	marker.Size = UDim2.fromOffset(5, height + 18)
 	marker.ZIndex = 5
-	local result = Ui.text(body, "", 26)
-	result.Position = UDim2.new(0, 0, 1, -40)
-	result.Size = UDim2.new(1, 0, 0, 36)
-	Ui.popIn(frame, 0.25)
-	-- Scroll so the prize card ends centred under the marker.
-	local windowWidth = 556
-	local target = -((stopAt - 1) * width + ItemCard.Width / 2 - windowWidth / 2)
+	local result = Ui.caps(body, "", 20, Ui.Colors.Text)
+	result.Position = UDim2.fromOffset(0, height + 16)
+	result.Size = UDim2.new(1, 0, 0, 28)
+	local rest = Ui.caps(body, "", 12, Ui.Colors.Dim)
+	rest.Position = UDim2.fromOffset(0, height + 44)
+	rest.Size = UDim2.new(1, 0, 0, 40)
+	rest.TextWrapped = true
+	Ui.popIn(window, 0.25)
+
+	-- Scroll so the prize card ends up centred under the marker.
+	local viewWidth = 568
+	local target = -((stopAt - 1) * (width + 10) + width / 2 - viewWidth / 2)
 	local spin = TweenInfo.new(3.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
-	TweenService:Create(strip, spin, { Position = UDim2.fromOffset(target, 3) }):Play()
+	TweenService:Create(strip, spin, { Position = UDim2.fromOffset(target, 5) }):Play()
 	task.wait(3.3)
-	local color = Catalog.Rarities[prize.rarity].color:ToHex()
-	result.Text = if duplicate
-		then `<font color="#{color}">{prize.name}</font> (duplicate)`
-		else `You got <font color="#{color}">{prize.name}</font>!`
+	local color = hex(Catalog.Rarities[prize.rarity].color)
+	local label = `<font color="#{color}">{Ui.upper(prize.name)}</font>`
+	result.Text = if bestResult.Duplicate
+		then `{label} <font color="#{hex(Ui.Colors.Dim)}">(DUPLICATE)</font>`
+		elseif bestResult.Serial then `YOU GOT {label} NO. {bestResult.Serial}!`
+		else `YOU GOT {label}!`
 	Ui.popIn(result, 0.3)
-	task.wait(2)
-	frame:Destroy()
+	if #results > 1 then
+		local others = {}
+		for _, other in results do
+			if other ~= bestResult then
+				local line = itemLine(other.Item)
+				if line then
+					table.insert(others, line .. (if other.Duplicate then " (DUP)" else ""))
+				end
+			end
+		end
+		rest.Text = "ALSO: " .. table.concat(others, "  ·  ")
+	end
+	task.wait(if #results > 1 then 3 else 2)
+	dismiss(window)
 end
 
 function Popups.show(payload: { [string]: any })
 	local kind = payload.Kind
 	if kind == "Earned" then
 		local reason = REASONS[payload.Reason] or payload.Reason or ""
-		float(`{amounts(payload.Coins, payload.XP)}  <font color="#DDDDDD">{reason}</font>`)
+		float(
+			`{amounts(payload.Coins, payload.XP)}  <font color="#DDDDDD">{Ui.upper(reason)}</font>`
+		)
 	elseif kind == "LevelUp" then
 		enqueue(function()
+			stripe(`LEVEL {payload.Level}!`, Ui.Colors.Cyan, Ui.Colors.Ink, 1.6)
 			local lines = { amounts(payload.Coins, nil) }
 			if payload.Crates and payload.Crates > 0 then
-				table.insert(lines, `<font color="#FF8C3C">+{payload.Crates} free crate</font>`)
+				table.insert(
+					lines,
+					`<font color="#{hex(Ui.Colors.Lime)}">+{payload.Crates} FREE CRATE</font>`
+				)
 			end
-			for _, line in itemLines(payload.Items) do
-				table.insert(lines, `Unlocked: {line}`)
+			for _, id in payload.Items or {} do
+				local line = itemLine(id, "UNLOCKED: ")
+				if line then
+					table.insert(lines, line)
+				end
 			end
-			card(`LEVEL {payload.Level}!`, lines, Ui.Colors.XP, 2.6)
+			card("Level up!", lines, Ui.Colors.Cyan, 2.2)
 		end)
 	elseif kind == "Crate" then
-		local prize = Catalog.get(payload.Item)
-		if prize then
+		local results = payload.Items
+		if type(results) == "table" and #results > 0 then
 			enqueue(function()
-				crateReel(prize :: Catalog.Item, payload.Duplicate == true)
+				crateReel(results)
 			end)
 		end
 	elseif kind == "Grant" then
@@ -210,16 +304,43 @@ function Popups.show(payload: { [string]: any })
 				table.insert(lines, money)
 			end
 			if payload.Crates and payload.Crates > 0 then
-				table.insert(lines, `<font color="#FF8C3C">+{payload.Crates} crate</font>`)
+				table.insert(
+					lines,
+					`<font color="#{hex(Ui.Colors.Lime)}">+{payload.Crates} CRATE</font>`
+				)
 			end
-			for _, line in itemLines(payload.Items) do
-				table.insert(lines, `New: {line}`)
+			for _, id in payload.Items or {} do
+				local line = itemLine(id, "NEW: ")
+				if line then
+					table.insert(lines, line)
+				end
 			end
 			if #lines > 0 then
-				card(payload.Reason or "Reward!", lines, Ui.Colors.Coin, 2.2)
+				card(payload.Reason or "Reward!", lines, Ui.Colors.Lime, 2.2)
 			end
 		end)
 	end
+end
+
+-- Server-wide news (the Announce remote): an Iridescent unboxing.
+function Popups.announce(payload: { [string]: any })
+	if type(payload) ~= "table" or payload.Kind ~= "Unbox" then
+		return
+	end
+	local item = Catalog.get(payload.Item)
+	if not item then
+		return
+	end
+	enqueue(function()
+		local serial = if payload.Serial then ` NO. {payload.Serial}` else ""
+		stripe(
+			`{Ui.upper(payload.Name or "Someone")} UNBOXED {Ui.upper(item.name)}{serial}!`,
+			Ui.Colors.Pink,
+			Ui.Colors.Ink,
+			3.5,
+			true
+		)
+	end)
 end
 
 function Popups.start(screen: ScreenGui, anchor: Frame)

@@ -10,14 +10,15 @@ local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Co
 local ViewMode = {}
 
 local firstPerson = Config.Camera.StartFirstPerson
+local suspended = false -- something else has the camera (the Locker's preview)
 
 function ViewMode.isFirstPerson(): boolean
-	return firstPerson
+	return firstPerson and not suspended
 end
 
 local function apply()
 	local player = Players.LocalPlayer
-	if firstPerson then
+	if firstPerson and not suspended then
 		player.CameraMode = Enum.CameraMode.LockFirstPerson
 	else
 		player.CameraMode = Enum.CameraMode.Classic
@@ -32,6 +33,15 @@ end
 -- Re-applies the camera mode (after something else, like spectating, changed it).
 function ViewMode.apply()
 	apply()
+end
+
+-- While something else owns the camera (the Locker's preview), report third person so the
+-- first-person arms and body step aside; false puts things back.
+function ViewMode.suspend(on: boolean)
+	if suspended ~= on then
+		suspended = on
+		apply()
+	end
 end
 
 function ViewMode.start()

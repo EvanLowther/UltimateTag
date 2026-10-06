@@ -9,6 +9,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local GameState = require(Shared:WaitForChild("GameState"))
+local LockerStage = require(script.Parent.LockerStage)
 local Ui = require(script.Parent.Menu.Ui)
 local ViewMode = require(script.Parent.ViewMode)
 
@@ -46,15 +47,17 @@ function Spectate.start()
 	gui.Name = "Spectate"
 	gui.ResetOnSpawn = false
 	gui.Enabled = false
-	-- A white outlined pill above the money and level bar (Menu/Ui style).
-	local label = Ui.ink(gui, "", 22)
-	label.AnchorPoint = Vector2.new(0.5, 1)
-	label.Position = UDim2.new(0.5, 0, 1, -150)
-	label.Size = UDim2.fromOffset(420, 40)
-	label.BackgroundTransparency = 0
-	label.BackgroundColor3 = Ui.Colors.Window
-	Ui.corner(label, 20)
-	Ui.outline(label, 3)
+	-- A black slanted bar with a cyan edge, above the level bar (Menu/Ui style).
+	local bar = Ui.slab(gui, Ui.Colors.Panel, 10)
+	bar.AnchorPoint = Vector2.new(0.5, 1)
+	bar.Position = UDim2.new(0.5, 0, 1, -120)
+	bar.Size = UDim2.fromOffset(460, 36)
+	local edge = Ui.slab(bar, Ui.Colors.Cyan, 10)
+	edge.Size = UDim2.new(0, 18, 1, 0)
+	edge.ZIndex = 2
+	local label = Ui.caps(bar, "", 15, Ui.Colors.Text)
+	label.Size = UDim2.fromScale(1, 1)
+	label.ZIndex = 3
 	gui.Parent = player:WaitForChild("PlayerGui")
 
 	local function shouldSpectate(): boolean
@@ -92,6 +95,9 @@ function Spectate.start()
 	end
 
 	RunService.RenderStepped:Connect(function()
+		if LockerStage.isActive() then
+			return -- the Locker's preview has the camera
+		end
 		if not shouldSpectate() then
 			if spectating then
 				stop()
@@ -113,8 +119,8 @@ function Spectate.start()
 			camera.CameraSubject = humanoid
 		end
 		label.Text = if target
-			then `Spectating {target.DisplayName}  ·  Q / E to switch`
-			else "Spectating"
+			then `SPECTATING {Ui.upper(target.DisplayName)}  ·  Q / E TO SWITCH`
+			else "SPECTATING"
 	end)
 
 	UserInputService.InputBegan:Connect(function(input, processed)

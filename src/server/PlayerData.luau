@@ -1,6 +1,6 @@
 --!strict
--- Each player's saved profile: coins, XP and level, stats, cosmetics owned and equipped, login
--- streak, quests, achievements. One DataStore entry per player ("Profiles_v1", key
+-- Each player's saved profile: coins, XP and level, stats, cosmetics owned and equipped (and
+-- Iridescent serial numbers), crates, login streak, quests, achievements, weekly counts. One DataStore entry per player ("Profiles_v1", key
 -- "Player_<UserId>").
 --   Session lock: loading writes this server's id into the profile, and other servers wait for
 --   it to be released (on leave) or to go stale (Config.Data.LockStale, if a server crashed), so
@@ -98,7 +98,10 @@ function PlayerData.defaults(): Profile
 		Quests = { Day = -1, Daily = {}, Week = -1, Weekly = {} },
 		Achievements = {},
 		Wheel = { LastSpin = 0 },
-		Crates = 0, -- free crates waiting to be opened
+		Crates = 0, -- crates waiting to be opened (bought or earned)
+		Serials = {}, -- Iridescent item id -> its serial number (server/Serials)
+		-- This week's counts for the weekly leaderboards (server/Leaderboards).
+		Weekly = { Week = -1, Wins = 0, Tags = 0, WallRuns = 0 },
 		FirstWinDay = -1,
 		Migrated = false,
 	}

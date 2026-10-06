@@ -58,7 +58,8 @@ function FollowCam.start()
 		local subject = camera.CameraSubject
 		local humanoid = if subject and subject:IsA("Humanoid") then subject else nil
 		local root = humanoid and humanoid.RootPart
-		if ViewMode.isFirstPerson() or not humanoid or not root then
+		local scripted = camera.CameraType == Enum.CameraType.Scriptable -- the Locker's preview
+		if ViewMode.isFirstPerson() or not humanoid or not root or scripted then
 			shown = math.huge
 			unfade()
 			return

@@ -1,115 +1,322 @@
 --!strict
--- A card showing one cosmetic, in the game's chunky style: a bright glossy card in its rarity's
--- color with a thick outline, a big preview (trail colors, title text, or an icon for effects),
--- its name in outlined white text, its rarity, and an area underneath for a price pill or a
--- button (Equip, Buy...). Used by the Inventory and Shop tabs and the crate reel.
+-- How a cosmetic is shown in the menus: a preview of what it looks like (a trail swatch in its
+-- pattern, the title in its style, an icon for tag effects and victories) and the cards built
+-- round it:
+--   shop:  a Daily shop card (rarity strip, preview, rarity and kind, name, price button).
+--   tile:  a small clickable Locker tile (preview, name, a lock if not owned, ON if equipped).
+--   reel:  a card for the crate opening reel.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local Catalog = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Catalog"))
+local Shared = ReplicatedStorage:WaitForChild("Shared")
+local Catalog = require(Shared:WaitForChild("Catalog"))
+local CosmeticLook = require(Shared:WaitForChild("CosmeticLook"))
 local Ui = require(script.Parent.Ui)
 
 local ItemCard = {}
 
-local ICONS = {
+local WHITE = Color3.new(1, 1, 1)
+
+local TAG_ICONS = {
 	Classic = "💥",
+	Pop = "⭕",
 	Sparks = "✨",
 	Hearts = "💖",
 	Stars = "⭐",
 	Confetti = "🎉",
 	Shockwave = "🌀",
 	Lightning = "⚡",
+	Meteor = "☄️",
+	Shatter = "💎",
+}
+local VICTORY_ICONS = {
+	None = "➖",
 	Flex = "💪",
-	Cheer = "🙌",
+	Cheer = "🎉",
 	Backflip = "🤸",
 	CapToss = "🎓",
-	Fireworks = "🎆",
-	None = "➖",
 }
 
-ItemCard.Width, ItemCard.Height = 128, 172
-
--- The preview area for an item.
-local function preview(parent: Frame, item: Catalog.Item)
+-- The icon for a tag effect or victory.
+function ItemCard.icon(item: Catalog.Item): string
 	local look = item.look
-	if item.kind == "Trail" then
-		local swatch = Ui.frame(parent, Color3.new(1, 1, 1), 9)
-		Ui.outline(swatch, 2.5)
-		swatch.AnchorPoint = Vector2.new(0.5, 0.5)
-		swatch.Position = UDim2.fromScale(0.5, 0.5)
-		swatch.Size = UDim2.new(0.86, 0, 0, 20)
-		local gradient = Instance.new("UIGradient")
-		local colors = look.Colors :: { Color3 }
-		if #colors == 1 then
-			gradient.Color = ColorSequence.new(colors[1])
-		else
-			local points = {}
-			for i, color in colors do
-				table.insert(points, ColorSequenceKeypoint.new((i - 1) / (#colors - 1), color))
-			end
-			gradient.Color = ColorSequence.new(points)
+	if item.kind == "TagEffect" then
+		return TAG_ICONS[look.Effect] or "💥"
+	elseif item.kind == "Victory" then
+		if look.Effect == "Fireworks" then
+			return "🎆"
+		elseif look.Effect == "Hologram" then
+			return "💠"
 		end
-		gradient.Parent = swatch
-	elseif item.kind == "Title" then
-		local text = Ui.text(parent, look.Text, 22, look.Color)
-		text.Size = UDim2.fromScale(1, 1)
-		text.TextScaled = true
-		text.TextWrapped = true
-		local limit = Instance.new("UITextSizeConstraint")
-		limit.MaxTextSize = 24
-		limit.Parent = text
+		return VICTORY_ICONS[look.Pose] or "🏆"
+	end
+	return "✨"
+end
+
+-- A trail swatch: a tilted bar painted in the trail's pattern, glowing for Legendary and up.
+local function swatch(parent: GuiObject, look: { [string]: any }, width: number, height: number)
+	local holder = Ui.frame(parent)
+	holder.AnchorPoint = Vector2.new(0.5, 0.5)
+	holder.Position = UDim2.fromScale(0.5, 0.5)
+	holder.Size = UDim2.fromOffset(width, height)
+	holder.Rotation = -6
+	local lanes = CosmeticLook.trailLanes(look)
+	if not lanes then
+		local bar = Ui.frame(holder, WHITE)
+		bar.Size = UDim2.fromScale(1, 1)
+		Ui.holo(bar)
 	else
-		local key = if item.kind == "Victory" and look.Effect == "Fireworks"
-			then "Fireworks"
-			elseif item.kind == "Victory" then look.Pose
-			else look.Effect
-		local icon = Instance.new("TextLabel")
-		icon.BackgroundTransparency = 1
-		icon.Text = ICONS[key] or "❔"
-		icon.TextScaled = true
-		icon.Size = UDim2.fromScale(1, 1)
-		icon.Parent = parent
+		for i, sequence in lanes do
+			local bar = Ui.frame(holder, WHITE)
+			bar.Position = UDim2.fromScale(0, (i - 1) / #lanes)
+			bar.Size = UDim2.fromScale(1, 1 / #lanes)
+			local gradient = Instance.new("UIGradient")
+			gradient.Color = sequence
+			gradient.Parent = bar
+		end
+	end
+	local glow = Instance.new("UIStroke")
+	if look.Effect or (look.Light or 0) >= 1 then
+		glow.Color = if lanes then CosmeticLook.mainColor(look) else CosmeticLook.Holo[2]
+		glow.Thickness = 2
+		glow.Transparency = 0.35
+	else
+		-- A faint edge, so dark colors still show on the dark card.
+		glow.Color = Color3.fromRGB(90, 90, 96)
+		glow.Thickness = 1
+	end
+	glow.Parent = holder
+	if look.Effect then
+		local sparkle = Ui.icon(parent, "✨", math.max(12, height + 4))
+		sparkle.AnchorPoint = Vector2.new(0, 0.5)
+		sparkle.Position = UDim2.new(0.5, width / 2 + 2, 0.5, 0)
+		sparkle.Size = UDim2.fromOffset(height + 8, height + 8)
 	end
 end
 
--- Builds a card. `dim` greys it out (not owned). Returns the card and its bottom area (for a
--- pill or buttons).
-function ItemCard.make(parent: Instance, item: Catalog.Item, dim: boolean?): (Frame, Frame)
-	local rarity = Catalog.Rarities[item.rarity]
-	local card = Ui.card(parent, rarity.color, 14)
-	card.Size = UDim2.fromOffset(ItemCard.Width, ItemCard.Height)
-
-	local area = Instance.new("Frame")
-	area.BackgroundTransparency = 1
-	area.Position = UDim2.fromOffset(8, 6)
-	area.Size = UDim2.new(1, -16, 0, 62)
-	area.Parent = card
-	preview(area, item)
-
-	local name = Ui.text(card, item.name:upper(), 16)
-	name.Position = UDim2.fromOffset(4, 70)
-	name.Size = UDim2.new(1, -8, 0, 22)
-	name.TextScaled = true
-	local nameLimit = Instance.new("UITextSizeConstraint")
-	nameLimit.MaxTextSize = 17
-	nameLimit.Parent = name
-	local rarityLabel = Ui.text(card, item.rarity, 12, Color3.fromRGB(255, 255, 255), Ui.Font)
-	rarityLabel.Position = UDim2.fromOffset(4, 92)
-	rarityLabel.Size = UDim2.new(1, -8, 0, 16)
-
-	local bottom = Instance.new("Frame")
-	bottom.BackgroundTransparency = 1
-	bottom.Position = UDim2.fromOffset(8, 114)
-	bottom.Size = UDim2.new(1, -16, 0, 50)
-	bottom.Parent = card
-
-	if dim then
-		local veil = Ui.frame(card, Color3.fromRGB(30, 32, 45), 14)
-		veil.Size = UDim2.fromScale(1, 1)
-		veil.BackgroundTransparency = 0.5
-		veil.ZIndex = 3
-		bottom.ZIndex = 4
+-- A title in its style (solid, two-tone, gradient, shining, holo).
+local function titleText(parent: GuiObject, item: Catalog.Item, size: number)
+	local look = item.look
+	local label = Ui.title(parent, look.Text or item.name, size, WHITE)
+	label.Size = UDim2.fromScale(1, 1)
+	label.TextScaled = true
+	local limit = Instance.new("UITextSizeConstraint")
+	limit.MaxTextSize = size
+	limit.Parent = label
+	local sequence, rotation, animation = CosmeticLook.titleGradient(look)
+	if sequence then
+		local gradient = Instance.new("UIGradient")
+		gradient.Color = sequence
+		gradient.Rotation = rotation
+		gradient.Parent = label
+		if animation then
+			game:GetService("CollectionService"):AddTag(gradient, animation)
+		end
+	else
+		label.TextColor3 = CosmeticLook.mainColor(look)
 	end
-	return card, bottom
+	Ui.stroke(label, 1.5)
+end
+
+-- Draws an item's preview inside `parent` (sized to fit). `scale`: 1 normal, bigger for the
+-- Locker's info and the reel.
+function ItemCard.preview(parent: GuiObject, item: Catalog.Item, scale: number?)
+	local s = scale or 1
+	if item.kind == "Trail" then
+		swatch(parent, item.look, math.floor(58 * s), math.floor(10 * s))
+	elseif item.kind == "Title" then
+		local inner = Ui.frame(parent)
+		inner.AnchorPoint = Vector2.new(0.5, 0.5)
+		inner.Position = UDim2.fromScale(0.5, 0.5)
+		inner.Size = UDim2.new(1, -8, 0, math.floor(24 * s))
+		titleText(inner, item, math.floor(20 * s))
+	elseif item.kind == "TagEffect" and item.look.Effect == "Pow" then
+		local pow = Ui.title(parent, "POW", math.floor(15 * s), Ui.Colors.Red)
+		pow.AnchorPoint = Vector2.new(0.5, 0.5)
+		pow.Position = UDim2.fromScale(0.5, 0.5)
+		pow.Size = UDim2.fromOffset(math.floor(46 * s), math.floor(22 * s))
+		pow.BackgroundColor3 = Ui.Colors.Yellow
+		pow.BackgroundTransparency = 0
+		pow.Rotation = -8
+		local border = Instance.new("UIStroke")
+		border.Color = Ui.Colors.Red
+		border.Thickness = 2
+		border.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		border.Parent = pow
+	else
+		local icon = Ui.icon(parent, ItemCard.icon(item), math.floor(26 * s))
+		icon.AnchorPoint = Vector2.new(0.5, 0.5)
+		icon.Position = UDim2.fromScale(0.5, 0.5)
+		icon.Size = UDim2.fromScale(1, 1)
+	end
+end
+
+-- "EPIC TRAIL": the rarity in its color and the kind in grey, side by side.
+function ItemCard.rarityLine(parent: Instance, item: Catalog.Item, size: number?): Frame
+	local line = Ui.row(parent, 4, (size or 12) + 4)
+	local rarity = Ui.rarity(line, item.rarity, size or 12)
+	rarity.Size = UDim2.fromScale(0, 1)
+	rarity.AutomaticSize = Enum.AutomaticSize.X
+	rarity.LayoutOrder = 1
+	local kind = Ui.caps(line, Catalog.KindSingular[item.kind] or "", size or 12, Ui.Colors.Dim)
+	kind.Size = UDim2.fromScale(0, 1)
+	kind.AutomaticSize = Enum.AutomaticSize.X
+	kind.LayoutOrder = 2
+	return line
+end
+
+-- A Daily shop card. `oldPrice` (a deal) adds a ribbon and the old price struck out. `tall`
+-- makes the big deal card. Returns the card.
+function ItemCard.shop(
+	parent: Instance,
+	item: Catalog.Item,
+	price: number,
+	oldPrice: number?,
+	owned: boolean,
+	canAfford: boolean,
+	onBuy: () -> (),
+	tall: boolean?
+): Frame
+	local card = Ui.panel(parent, Ui.Colors.Card, 10)
+	card.Name = item.id
+	local strip = Ui.rarityStrip(card, item.rarity, 4)
+	strip.Size = UDim2.new(1, -10, 0, 4)
+	local wellHeight = if tall then 120 else 54
+	local well = Ui.frame(card, Ui.Colors.Well)
+	well.Name = "Well"
+	well.Position = UDim2.fromOffset(8, 12)
+	well.Size = UDim2.new(1, -16, 0, wellHeight)
+	ItemCard.preview(well, item, if tall then 1.6 else 1)
+	local y = 12 + wellHeight + 6
+	local line = ItemCard.rarityLine(card, item, 12)
+	line.Position = UDim2.fromOffset(8, y)
+	line.Size = UDim2.new(1, -16, 0, 16)
+	local name = if tall
+		then Ui.title(card, item.name, 30, Ui.Colors.Text)
+		else Ui.caps(card, item.name, 15, Ui.Colors.Text)
+	name.Position = UDim2.fromOffset(8, y + 16)
+	name.Size = UDim2.new(1, -16, 0, if tall then 32 else 20)
+	name.TextXAlignment = Enum.TextXAlignment.Left
+	name.TextTruncate = Enum.TextTruncate.AtEnd
+
+	local buy = Ui.button(
+		card,
+		if owned then "✓ Owned" else "",
+		if owned then Ui.Colors.Tab elseif canAfford then Ui.Colors.Yellow else Ui.Colors.Track,
+		function()
+			if not owned then
+				onBuy()
+			end
+		end,
+		if owned then Ui.Colors.Dim else Ui.Colors.Ink,
+		7
+	)
+	buy.AnchorPoint = Vector2.new(0, 1)
+	buy.Position = UDim2.new(0, 8, 1, -10)
+	buy.Size = UDim2.fromOffset(if tall then 130 else 110, 30)
+	if not owned then
+		local amount =
+			Ui.coinAmount(buy, price, 15, if canAfford then Ui.Colors.Ink else Ui.Colors.Dim)
+		amount.AnchorPoint = Vector2.new(0.5, 0.5)
+		amount.Position = UDim2.fromScale(0.5, 0.5)
+		amount.ZIndex = 2
+		for _, child in amount:GetDescendants() do
+			if child:IsA("GuiObject") then
+				child.ZIndex = 3
+			end
+		end
+	end
+	if oldPrice then
+		local ribbon = Ui.slab(card, Ui.Colors.Pink, 6)
+		ribbon.Position = UDim2.fromOffset(10, 16)
+		ribbon.Size = UDim2.fromOffset(104, 22)
+		ribbon.ZIndex = 3
+		local text = Ui.caps(ribbon, `Deal -{math.floor((1 - price / oldPrice) * 100 + 0.5)}%`, 13)
+		text.Size = UDim2.fromScale(1, 1)
+		text.ZIndex = 4
+		local was = Ui.caps(card, `<s>{Ui.number(oldPrice)}</s>`, 13, Ui.Colors.Dim)
+		was.AnchorPoint = Vector2.new(0, 1)
+		was.Position = UDim2.new(0, 148, 1, -14)
+		was.Size = UDim2.fromOffset(80, 20)
+		was.TextXAlignment = Enum.TextXAlignment.Left
+	end
+	return card
+end
+
+-- A Locker tile. Returns the clickable tile.
+function ItemCard.tile(
+	parent: Instance,
+	item: Catalog.Item,
+	owned: boolean,
+	equipped: boolean,
+	selected: boolean,
+	onClick: () -> ()
+): TextButton
+	local tile = Instance.new("TextButton")
+	tile.Name = item.id
+	tile.AutoButtonColor = false
+	tile.BackgroundTransparency = 1
+	tile.Text = ""
+	local back = Ui.panel(tile, if selected then Color3.fromRGB(23, 58, 66) else Ui.Colors.Card, 8)
+	back.Size = UDim2.fromScale(1, 1)
+	local strip = Ui.rarityStrip(tile, item.rarity, 4)
+	strip.Size = UDim2.new(1, -8, 0, 4)
+	local well = Ui.frame(tile)
+	well.Position = UDim2.fromOffset(4, 8)
+	well.Size = UDim2.new(1, -8, 1, -28)
+	well.ZIndex = 2
+	ItemCard.preview(well, item, 0.85)
+	-- Titles already show their name in the preview: the line under says the rarity instead.
+	local label = if item.kind == "Title" then item.rarity else item.name
+	local name = Ui.caps(tile, (if owned then "" else "🔒 ") .. label, 11, Ui.Colors.Text)
+	name.AnchorPoint = Vector2.new(0.5, 1)
+	name.Position = UDim2.new(0.5, 0, 1, -4)
+	name.Size = UDim2.new(1, -6, 0, 14)
+	name.TextTruncate = Enum.TextTruncate.AtEnd
+	name.ZIndex = 2
+	if item.kind == "Title" and owned then
+		name.TextColor3 = Ui.rarityColor(item.rarity)
+	end
+	if not owned then
+		name.TextColor3 = Ui.Colors.Dim
+		local veil = Ui.frame(tile, Ui.Colors.Card)
+		veil.Position = well.Position
+		veil.Size = well.Size
+		veil.BackgroundTransparency = 0.45
+		veil.ZIndex = 3
+	end
+	if equipped then
+		local on = Ui.caps(tile, "On", 11, Ui.Colors.Ink)
+		on.AnchorPoint = Vector2.new(1, 0)
+		on.Position = UDim2.new(1, 0, 0, 4)
+		on.Size = UDim2.fromOffset(24, 14)
+		on.BackgroundColor3 = Ui.Colors.Cyan
+		on.BackgroundTransparency = 0
+		on.ZIndex = 4
+	end
+	tile.Activated:Connect(onClick)
+	tile.Parent = parent
+	return tile
+end
+
+-- A card for the crate opening reel.
+function ItemCard.reel(parent: Instance, item: Catalog.Item, width: number, height: number): Frame
+	local card = Ui.panel(parent, Ui.Colors.Card, 10)
+	card.Name = item.id
+	card.Size = UDim2.fromOffset(width, height)
+	local strip = Ui.rarityStrip(card, item.rarity, 5)
+	strip.Size = UDim2.new(1, -10, 0, 5)
+	local well = Ui.frame(card, Ui.Colors.Well)
+	well.Position = UDim2.fromOffset(8, 14)
+	well.Size = UDim2.new(1, -16, 0, height - 70)
+	ItemCard.preview(well, item, 1.2)
+	local rarity = Ui.rarity(card, item.rarity, 12)
+	rarity.Position = UDim2.new(0, 8, 1, -52)
+	rarity.Size = UDim2.new(1, -16, 0, 16)
+	local name = Ui.caps(card, item.name, 14, Ui.Colors.Text)
+	name.Position = UDim2.new(0, 8, 1, -34)
+	name.Size = UDim2.new(1, -16, 0, 22)
+	name.TextTruncate = Enum.TextTruncate.AtEnd
+	return card
 end
 
 return ItemCard

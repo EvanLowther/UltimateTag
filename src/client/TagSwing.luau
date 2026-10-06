@@ -32,19 +32,24 @@ local function getAnimation(): Animation
 	return animation :: Animation
 end
 
--- Plays the swipe on any player's character (on this screen).
-local function playSwipe(player: Player)
-	local character = player.Character
-	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-	if not humanoid or humanoid.Health <= 0 then
-		return
-	end
+-- Plays the swipe on a humanoid (on this screen): any player's, or the Locker's preview.
+function TagSwing.swipe(humanoid: Humanoid)
 	local track = AnimationBuilder.load(humanoid, getAnimation())
 	track:Play(0.04)
 	task.delay(Config.Tag.SwingTime, function()
 		track:Stop(0.15)
 		task.delay(0.3, track.Destroy, track) -- after the fade-out finishes
 	end)
+end
+
+-- Plays the swipe on any player's character.
+local function playSwipe(player: Player)
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if not humanoid or humanoid.Health <= 0 then
+		return
+	end
+	TagSwing.swipe(humanoid)
 end
 
 function TagSwing.start()

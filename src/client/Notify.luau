@@ -5,7 +5,6 @@ local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local ProximityPromptService = game:GetService("ProximityPromptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Remotes = require(Shared:WaitForChild("Remotes"))
@@ -23,25 +22,16 @@ function Notify.show(text: string)
 	if not box then
 		return
 	end
-	box.Text = text
-	box.Visible = true
+	local toast = box.Parent :: Frame
+	box.Text = Ui.upper(text)
+	toast.Visible = true
+	Ui.fade(toast, 0.05)
 	box.TextTransparency = 0
-	box.BackgroundTransparency = 0
-	local stroke = box:FindFirstChildOfClass("UIStroke")
-	if stroke then
-		stroke.Transparency = 0
-	end
 	local stamp = os.clock()
 	shownAt = stamp
 	task.delay(SHOW_TIME, function()
 		if shownAt == stamp then
-			local fade = TweenInfo.new(0.4)
-			TweenService:Create(box, fade, { TextTransparency = 1, BackgroundTransparency = 1 })
-				:Play()
-			local outline = box:FindFirstChildOfClass("UIStroke")
-			if outline then
-				TweenService:Create(outline, fade, { Transparency = 1 }):Play()
-			end
+			toast.Visible = false
 		end
 	end)
 end
@@ -50,28 +40,25 @@ function Notify.start()
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "Notify"
 	gui.ResetOnSpawn = false
-	-- A white pill with a thick outline, above the money and level bar.
-	local box = Instance.new("TextLabel")
-	box.AnchorPoint = Vector2.new(0.5, 1)
-	box.Position = UDim2.new(0.5, 0, 1, -96)
-	box.Size = UDim2.fromOffset(0, 44)
+	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	-- A black slanted toast with a yellow edge, above the level bar.
+	local toast = Ui.slab(gui, Ui.Colors.Panel, 10)
+	toast.AnchorPoint = Vector2.new(0.5, 1)
+	toast.Position = UDim2.new(0.5, 0, 1, -70)
+	toast.Size = UDim2.fromOffset(0, 40)
+	toast.Visible = false
+	local edge = Ui.slab(toast, Ui.Colors.Yellow, 10)
+	edge.Size = UDim2.new(0, 18, 1, 0)
+	edge.ZIndex = 2
+	local box = Ui.caps(toast, "", 16, Ui.Colors.Text)
+	box.Size = UDim2.fromScale(0, 1)
 	box.AutomaticSize = Enum.AutomaticSize.X
-	box.BackgroundColor3 = Ui.Colors.Window
-	box.BackgroundTransparency = 1
-	box.Font = Ui.Font
-	box.TextSize = 24
-	box.TextColor3 = Ui.Colors.Ink
-	box.TextTransparency = 1
-	box.Visible = false
-	Ui.corner(box, 22)
-	Ui.padding(box, 0)
-	local pad = box:FindFirstChildOfClass("UIPadding")
-	if pad then
-		pad.PaddingLeft = UDim.new(0, 18)
-		pad.PaddingRight = UDim.new(0, 18)
-	end
-	Ui.outline(box, 3)
-	box.Parent = gui
+	box.ZIndex = 3
+	local pad = Instance.new("UIPadding")
+	pad.PaddingLeft = UDim.new(0, 30)
+	pad.PaddingRight = UDim.new(0, 22)
+	pad.Parent = box
+	Ui.fitWidth(toast, box)
 	gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 	label = box
 

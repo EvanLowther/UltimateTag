@@ -1,9 +1,11 @@
 --!strict
--- Robux purchases, ready but switched off: everything here only runs once Config.Monetization
--- has IDs (create the gamepasses and developer products on the Roblox website first).
+-- Robux purchases, ready but switched off: each one only works once it has an ID in
+-- Config.Monetization (create the gamepasses and developer products on the Roblox website
+-- first). The Shop's Coin shop tab prompts the purchases (client/Menu/ShopTab).
 --   VIP gamepass: +VipXPBonus XP and the exclusive VIP title. Sets the VIP attribute.
 --   2x Coins gamepass: double coins from games. Sets the DoubleCoins attribute.
---   Coin packs (developer products): coins, granted once per receipt.
+--   Coin packs (developer products, Config.Monetization.CoinPacks): coins, granted once per
+--   receipt.
 -- server/Progression reads the VIP and DoubleCoins attributes.
 local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:GetService("Players")
@@ -38,7 +40,13 @@ end
 
 function Purchases.start()
 	local settings = Config.Monetization
-	local anything = settings.VipPass or settings.DoubleCoinsPass or next(settings.CoinPacks) ~= nil
+	local packs: { [number]: number } = {} -- product id -> coins
+	for _, pack in settings.CoinPacks do
+		if pack.Id then
+			packs[pack.Id] = pack.Coins
+		end
+	end
+	local anything = settings.VipPass or settings.DoubleCoinsPass or next(packs) ~= nil
 	if not anything then
 		return
 	end
@@ -51,7 +59,7 @@ function Purchases.start()
 		end
 	end)
 	MarketplaceService.ProcessReceipt = function(receipt)
-		local coins = settings.CoinPacks[receipt.ProductId]
+		local coins = packs[receipt.ProductId]
 		local player = Players:GetPlayerByUserId(receipt.PlayerId)
 		if not coins or not player or not PlayerData.get(player) then
 			return Enum.ProductPurchaseDecision.NotProcessedYet

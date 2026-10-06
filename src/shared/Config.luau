@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.39.0",
+	Version = "0.40.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -314,13 +314,19 @@ local Config = {
 	},
 
 	SpeedTrails = {
-		-- Thin white streaks off the hands and feet while you're fast or doing a move.
+		-- Streaks off the hands and feet while you're fast or doing a move, in each player's
+		-- equipped trail (shared/Catalog, client/SpeedTrails): Common one color, Rare two colors
+		-- or a pattern, Epic a gradient, Legendary a gradient plus particles, Iridescent shifting
+		-- holo colors plus afterimages.
 		Enabled = true,
 		MinSpeed = 30, -- studs/s: faster than this always shows trails
-		Lifetime = 0.22, -- seconds a streak lasts
-		Width = 0.18, -- studs
-		-- Colors come from each player's equipped trail (shared/Catalog).
+		Lifetime = 0.26, -- seconds a streak lasts
+		Width = 0.26, -- studs (two-lane patterns split it in half)
 		Moves = { "Slide", "Vault", "Climb", "WallRun", "Roll" }, -- always show during these
+		EffectRate = 10, -- Legendary trails: particles per second from each hand and foot
+		HoloCycle = 2.5, -- Iridescent: seconds for the holo colors to go round once
+		AfterimageEvery = 0.09, -- Iridescent: seconds between afterimages while the trail is on
+		AfterimageLife = 0.45, -- seconds an afterimage takes to fade
 	},
 
 	Vault = {
@@ -797,11 +803,35 @@ local Config = {
 		},
 	} :: { { [string]: any } },
 
-	-- Robux purchases (server/Purchases): all off until these have IDs from the Roblox website.
+	-- Robux purchases (server/Purchases, the Shop's Coin shop tab): each one is off (shown as
+	-- "Soon") until it has an ID from the Roblox website.
 	Monetization = {
 		VipPass = nil :: number?, -- gamepass id: +VipXPBonus XP and the VIP title
 		DoubleCoinsPass = nil :: number?, -- gamepass id: double coins from games
-		CoinPacks = {} :: { [number]: number }, -- developer product id -> coins
+		-- Coin packs (developer products). Id: the product id. Robux: shown only until the real
+		-- price loads from Roblox. Bonus: the "+%" label. Tag: an optional ribbon.
+		CoinPacks = {
+			{ Id = nil :: number?, Coins = 1000, Bonus = 0, Robux = 49 }, -- no Icon: a drawn coin
+			{ Id = nil :: number?, Coins = 2750, Bonus = 10, Robux = 129, Icon = "💰" },
+			{
+				Id = nil :: number?,
+				Coins = 6000,
+				Bonus = 20,
+				Robux = 249,
+				Icon = "🐷",
+				Tag = "Popular",
+			},
+			{ Id = nil :: number?, Coins = 13000, Bonus = 30, Robux = 499, Icon = "💼" },
+			{
+				Id = nil :: number?,
+				Coins = 30000,
+				Bonus = 50,
+				Robux = 999,
+				Icon = "💎",
+				Tag = "Best value",
+			},
+		} :: { { [string]: any } },
+		PassRobux = { Vip = 199, DoubleCoins = 299 }, -- shown only until the real prices load
 		VipXPBonus = 0.25,
 	},
 
@@ -809,11 +839,54 @@ local Config = {
 	Shop = {
 		Featured = 4, -- items at full price each day, plus one deal
 		DealDiscount = 0.3, -- the deal is this much off
-		RarityWeights = { Common = 50, Rare = 30, Epic = 15, Legendary = 5 }, -- how often each shows up
+		-- How often each rarity shows up. Iridescent is never sold: crates only.
+		RarityWeights = { Common = 50, Rare = 30, Epic = 15, Legendary = 5 },
 		CratePrice = 300,
-		-- Bought crates go to your Inventory. Opening one rolls a rarity by Catalog.Rarities
-		-- weights (odds shown in the shop), then an item. Duplicates are possible.
+		-- Bought crates are opened in the Rewards window. Opening one rolls a rarity by the
+		-- Catalog.Rarities crate odds (shown in the Shop and Rewards), then an item of it.
+		-- Duplicates are possible and pay nothing back.
+		OpenAllMax = 10, -- "Open all" opens at most this many at once
 	},
+
+	-- Leaderboards (server/Leaderboards, the menu's Leaders window). Each board is an
+	-- OrderedDataStore; all-time wins share WinsStore's list. Weekly boards start over every
+	-- Monday 00:00 UTC (Level has none).
+	Leaderboards = {
+		Boards = {
+			{ Id = "Wins", Name = "Wins", Stat = "Wins", Weekly = true },
+			{ Id = "Tags", Name = "Tags", Stat = "Tags", Weekly = true },
+			{ Id = "Level", Name = "Level", Stat = "Level", Weekly = false },
+			{ Id = "WallRuns", Name = "Wall runs", Stat = "WallRuns", Weekly = true },
+		} :: { { [string]: any } },
+		TopCount = 100, -- entries read per board (your rank shows if you're in them)
+		ShowCount = 10, -- entries shown in the window
+		FlushSeconds = 60, -- how often changed values are written
+		RefreshSeconds = 20, -- one board is re-read this often (round robin)
+	},
+
+	-- The Locker's preview (client/LockerStage): a showcase stage far from everything, built on
+	-- your screen only, where a copy of your character shows the selected item: running with a
+	-- trail, tagging a dummy (tag effects, titles), or facing you for a victory.
+	Locker = {
+		Position = Vector3.new(-3000, 400, 0), -- the stage's origin
+		RunLength = 360, -- studs of runway the preview runs along before looping
+		RunSpeed = 30, -- studs/s
+		TagLoop = 2.4, -- seconds between the preview's tags
+		VictoryLoop = 5, -- seconds between victory replays
+		FieldOfView = 50,
+	},
+
+	-- How the Quests window groups achievements into tiered chains (one row per Stat, its
+	-- achievements sorted by Goal). Category: the filter chip it shows under.
+	AchievementGroups = {
+		{ Stat = "Wins", Name = "Winner", Icon = "🏆", Category = "Wins" },
+		{ Stat = "GamesPlayed", Name = "Veteran", Icon = "🎮", Category = "Wins" },
+		{ Stat = "RoundsSurvived", Name = "Survivor", Icon = "🛡️", Category = "Wins" },
+		{ Stat = "Tags", Name = "Tag machine", Icon = "👋", Category = "Tags" },
+		{ Stat = "WallRuns", Name = "Wall runner", Icon = "🧱", Category = "Moves" },
+		{ Stat = "Level", Name = "Climber", Icon = "📈", Category = "Levels" },
+		{ Stat = "Streak", Name = "Regular", Icon = "🔥", Category = "Streaks" },
+	} :: { { [string]: any } },
 
 	Avatar = {
 		UseOwnAvatar = false, -- false = everyone is the classic block avatar (easier to see animations)
