@@ -1,6 +1,6 @@
 --!strict
 -- Keeps Roblox's walk and run animations at a sensible pace. Roblox's Animate script sets their
--- speed from your movement speed, but only on certain events, so a fast moment (a mantle, a
+-- speed from your movement speed, but only on certain events, so a fast moment (a launch, a
 -- boost landing) can leave the run animation stuck playing several times too fast. Every frame
 -- this sets the pace from your actual ground speed instead, clamped to Config.RunPace limits.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")

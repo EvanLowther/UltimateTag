@@ -87,8 +87,6 @@ function PlayerData.defaults(): Profile
 			PlayMinutes = 0,
 			WallRuns = 0,
 			Slides = 0,
-			Vaults = 0,
-			Climbs = 0,
 			WinStreak = 0,
 			BestWinStreak = 0,
 		},

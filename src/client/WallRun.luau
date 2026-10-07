@@ -1,15 +1,9 @@
 --!strict
--- Wall running, automatic like the parkour reference: jump at a wall while sprinting (or moving
--- fast) and the angle you hit it at picks the move.
---   Climb:   heading straight at a tall wall. You hop up its face and cling to it (Cling);
---            jump while clinging to hop higher, up to MaxHops. Reaching the top you hang on the
---            ledge (Hang), then climb over (Mantle) by pressing jump or holding forward. Hold
---            back or run out of grip to let go.
---   WallRun: running alongside a wall. You run along it, rising a little then sinking, with
---            the camera leaning away from the wall, following the wall as it curves (round
---            towers). Ends when the wall does or time runs out.
--- Jump during a wall run to drop off it early, keeping your speed (no kick off the wall).
--- Short walls are left to Mantle.
+-- Wall running, automatic like the parkour reference: jump alongside a wall while sprinting (or
+-- moving fast) and you run along it, rising a little then sinking, with the camera leaning away
+-- from the wall, following the wall as it curves (round towers). Ends when the wall does or time
+-- runs out. Jump during a wall run to drop off it early, keeping your speed (no kick off the
+-- wall). Heading straight into a wall does nothing (there's no wall climb).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -17,7 +11,6 @@ local UserInputService = game:GetService("UserInputService")
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local CameraKick = require(script.Parent.CameraKick)
-local Mantle = require(script.Parent.Mantle)
 local MoveState = require(script.Parent.MoveState)
 local Sprint = require(script.Parent.Sprint)
 
@@ -25,7 +18,7 @@ local WallRun = {}
 
 type Parts = MoveState.Parts
 
--- Animations, built on first use: "Climb", "Hang", "RunLeft", "RunRight".
+-- Animations, built on first use: "RunLeft", "RunRight".
 local animations: { [string]: Animation } = {}
 
 local function getAnimation(name: string): Animation
@@ -47,11 +40,7 @@ local function getAnimation(name: string): Animation
 		}
 	end
 	local keys
-	if name == "Climb" then
-		keys = steps(poses.ClimbA, poses.ClimbB)
-	elseif name == "Hang" then
-		keys = { { time = 0, angles = poses.Hang }, { time = 1, angles = poses.Hang } }
-	elseif name == "RunLeft" then
+	if name == "RunLeft" then
 		keys = steps(poses.RunA, poses.RunB)
 	else
 		keys = steps(AnimationBuilder.mirror(poses.RunA), AnimationBuilder.mirror(poses.RunB))
@@ -69,7 +58,7 @@ function WallRun.start()
 	local lastWallTime = -math.huge
 	local tracks: { [string]: AnimationTrack } = {}
 	local trackHumanoid: Humanoid? = nil
-	local onJump: (() -> ())? = nil -- set while a climb, hang or wall run is running
+	local onJump: (() -> ())? = nil -- set while a wall run is running
 
 	local function play(hum: Humanoid, name: string): AnimationTrack
 		if trackHumanoid ~= hum then
@@ -87,14 +76,9 @@ function WallRun.start()
 	end
 
 	-- Casts from the body toward the wall (along -normal). Returns the hit, if the wall is there.
-	local function wallAt(
-		parts: Parts,
-		normal: Vector3,
-		height: number,
-		ahead: Vector3?
-	): RaycastResult?
+	local function wallAt(parts: Parts, normal: Vector3, ahead: Vector3?): RaycastResult?
 		params.FilterDescendantsInstances = { parts.character }
-		local origin = parts.root.Position + Vector3.new(0, height, 0) + (ahead or Vector3.zero)
+		local origin = parts.root.Position + (ahead or Vector3.zero)
 		local hit = workspace:Raycast(
 			origin,
 			-normal * (parts.root.Size.X / 2 + settings.Reach + 0.5),
@@ -116,147 +100,6 @@ function WallRun.start()
 		lastWallNormal = normal
 		lastWallTime = os.clock()
 		CameraKick.lean(0)
-	end
-
-	local function hang(parts: Parts, normal: Vector3)
-		MoveState.busy = "Hang"
-		MoveState.faceDirection = -normal
-		local drive, release = MoveState.drive(parts.root, false)
-		drive.VectorVelocity = Vector3.zero
-		local track = play(parts.humanoid, "Hang")
-		local elapsed = 0
-		local connection: RBXScriptConnection
-
-		local function climbOver()
-			connection:Disconnect()
-			leave(normal, release, track)
-			if not Mantle.climbToward(-normal) then
-				-- Nothing to stand on up there: just let go.
-				parts.root.AssemblyLinearVelocity = normal * 4
-			end
-		end
-		onJump = climbOver
-
-		connection = RunService.Heartbeat:Connect(function(dt)
-			elapsed += dt
-			local hum = parts.humanoid
-			if not hum.Parent or hum.Health <= 0 then
-				connection:Disconnect()
-				leave(normal, release, track)
-				return
-			end
-			local push = hum.MoveDirection:Dot(-normal)
-			if elapsed >= settings.HangMin and push > 0.5 then
-				climbOver() -- holding forward climbs you over
-			elseif push < -0.5 or elapsed >= settings.HangTime then
-				connection:Disconnect()
-				leave(normal, release, track) -- holding back (or waiting too long) lets go
-			end
-		end)
-	end
-
-	-- Jump-up-and-hold climbing, like the reference video: a hop up the wall face, then you
-	-- cling to it. Jump while clinging to hop higher (up to MaxHops per wall). Reaching the top
-	-- turns into a ledge hang. Hold back (or run out of grip) to let go.
-	local function climb(parts: Parts, normal: Vector3)
-		MoveState.busy = "Climb"
-		MoveState.faceDirection = -normal
-		local hum = parts.humanoid
-		local drive, release = MoveState.drive(parts.root, false)
-		local track = play(hum, "Climb")
-		local hopsLeft = settings.MaxHops - 1
-		local clinging = false
-		local phaseTime = 0
-		local connection: RBXScriptConnection
-
-		-- Hop (reaching up the wall) or cling (holding on with both hands).
-		local function setPhase(cling: boolean)
-			clinging = cling
-			phaseTime = 0
-			track:Stop(0.08)
-			track = play(hum, if cling then "Hang" else "Climb")
-			MoveState.busy = if cling then "Cling" else "Climb"
-		end
-
-		local function letGo()
-			connection:Disconnect()
-			leave(normal, release, track)
-			parts.root.AssemblyLinearVelocity = normal * 3
-		end
-
-		onJump = function()
-			if hum.MoveDirection:Dot(normal) > 0.5 then
-				-- Steering away from the wall: let go (no kick off it).
-				letGo()
-			elseif
-				clinging
-				and hopsLeft > 0
-				and MoveState.headroom(parts, 1) > 1 -- not when your head is already at a ceiling
-			then
-				hopsLeft -= 1
-				setPhase(false) -- hop higher (not when your head is already at a ceiling)
-			end
-		end
-
-		connection = RunService.Heartbeat:Connect(function(dt)
-			phaseTime += dt
-			if not hum.Parent or hum.Health <= 0 then
-				connection:Disconnect()
-				leave(normal, release, track)
-				return
-			end
-			-- Top of the wall: your chest still touches it but your head is above it.
-			local chest = wallAt(parts, normal, 0.5)
-			local head = wallAt(parts, normal, 2)
-			if not chest then
-				-- Fast hops can rise past the top edge between frames: if the wall is still
-				-- there just below you, you're over the top, so take the ledge.
-				if wallAt(parts, normal, -1.5) then
-					connection:Disconnect()
-					release()
-					track:Stop(0.1)
-					MoveState.busy = nil
-					hang(parts, normal)
-					return
-				end
-				letGo()
-				return
-			end
-			if not head then
-				connection:Disconnect()
-				release()
-				track:Stop(0.1)
-				MoveState.busy = nil
-				hang(parts, normal)
-				return
-			end
-
-			local up = 0
-			if clinging then
-				-- Holding on, sliding slowly. Hold back or run out of grip to let go.
-				if phaseTime >= settings.ClingTime or hum.MoveDirection:Dot(normal) > 0.5 then
-					letGo()
-					return
-				end
-				up = -settings.ClingSlide
-			elseif phaseTime >= settings.HopTime then
-				setPhase(true) -- top of the hop: grab on
-			else
-				up = settings.HopSpeed * (1 - phaseTime / settings.HopTime)
-				-- A wall that runs up to a ceiling: stop at the ceiling and hold on there,
-				-- instead of driving your head into (and through) the roof.
-				if
-					MoveState.headroom(parts, settings.CeilingStop + up * dt)
-					<= settings.CeilingStop + up * dt
-				then
-					up = 0
-					setPhase(true)
-				end
-			end
-			-- Stay ClingGap studs from the wall, hands on it.
-			local inward = math.clamp((chest.Distance - settings.ClingGap) * 12, -6, 20)
-			drive.VectorVelocity = Vector3.new(0, up, 0) - normal * inward
-		end)
 	end
 
 	local function wallRun(parts: Parts, normal: Vector3, along: Vector3, speed: number)
@@ -292,7 +135,7 @@ function WallRun.start()
 			end
 			-- Follow the wall's surface: on a curved wall (a round tower) the wall turns as you
 			-- run, so turn the run with it, keeping parallel to the surface beside you.
-			local beside = wallAt(parts, normal, 0)
+			local beside = wallAt(parts, normal)
 			if beside then
 				local surface = Vector3.new(beside.Normal.X, 0, beside.Normal.Z)
 				if surface.Magnitude > 0.5 then
@@ -304,7 +147,7 @@ function WallRun.start()
 					end
 				end
 			end
-			local wallEnds = not wallAt(parts, normal, 0, along * 1.5)
+			local wallEnds = not wallAt(parts, normal, along * 1.5)
 			local steerAway = hum.MoveDirection:Dot(normal) > 0.5
 			if
 				elapsed >= settings.RunTime
@@ -332,7 +175,7 @@ function WallRun.start()
 		end)
 	end
 
-	-- Looks for a wall to climb or run on.
+	-- Looks for a wall to run on.
 	RunService.Heartbeat:Connect(function()
 		if MoveState.busy then
 			return
@@ -389,12 +232,7 @@ function WallRun.start()
 		end
 
 		local facing = heading:Dot(-normal)
-		if facing >= math.cos(math.rad(settings.ClimbAngle)) then
-			-- Heading into the wall: climb it. Only tall walls; short ones are Mantle's.
-			if wallAt(parts, normal, Config.Mantle.MaxAbove + 0.5) then
-				climb(parts, normal)
-			end
-		elseif facing > -0.3 then
+		if facing < math.cos(math.rad(settings.HeadOnAngle)) and facing > -0.3 then
 			-- Beside it or glancing into it (not moving away): run along it.
 			local along = heading - normal * heading:Dot(normal)
 			if along.Magnitude > 0.2 then
@@ -403,7 +241,7 @@ function WallRun.start()
 		end
 	end)
 
-	-- A fresh jump press during a climb, hang or wall run.
+	-- A fresh jump press during a wall run.
 	UserInputService.InputBegan:Connect(function(input, processed)
 		if processed or not onJump then
 			return

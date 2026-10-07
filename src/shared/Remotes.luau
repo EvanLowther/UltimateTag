@@ -11,7 +11,7 @@
 --                   server (no arguments): "send it again".
 --   Reward:         server -> one client: something was earned (a table: Kind = "Coins",
 --                   "LevelUp", "Items"...), for the popups in client/Menu.
---   MoveDone:       client -> server: a move started ("WallRun", "Slide", "Vault", "Climb"), for
+--   MoveDone:       client -> server: a move started ("WallRun", "Slide"), for
 --                   stats and quests. Only counted during a live round, and throttled.
 --   Equip:          client -> server: equip an owned cosmetic (its id).
 --   TagHit:         server -> clients: (tagger, tagged) a tag landed: play the tagger's effect.

@@ -1,7 +1,7 @@
 --!strict
 -- First-person arms: the body's forearm (sleeve with stripe) and ball hand (BodyRig,
 -- Config.Body), scaled by Config.Viewmodel.Scale and attached to the camera, posed for what you're
--- doing (idle, running swing, air, slide, crouch, vault plant, mantle grab and push). Only shown
+-- doing (idle, running swing, air, slide, crouch, wall run, tag jab). Only shown
 -- in first person. Poses live in Config.Viewmodel.Poses.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -132,8 +132,6 @@ function Viewmodel.start()
 		end
 	end
 	local rightPose, leftPose = sides(pose("Idle"))
-	local lastBusy: string? = nil
-	local busySince = 0
 
 	RunService:BindToRenderStep("Viewmodel", Enum.RenderPriority.Camera.Value + 2, function(dt)
 		local parts = MoveState.parts()
@@ -148,10 +146,6 @@ function Viewmodel.start()
 
 		local busy = MoveState.busy
 		local now = os.clock()
-		if busy ~= lastBusy then
-			lastBusy = busy
-			busySince = now
-		end
 
 		local targetRight, targetLeft
 		if now - MoveState.tagTime < settings.TagJabTime then
@@ -160,22 +154,6 @@ function Viewmodel.start()
 			local _, idleLeft =
 				sides(pose(if MoveState.isGrounded(parts.humanoid) then "Idle" else "Air"))
 			targetRight, targetLeft = jabRight, idleLeft
-		elseif busy == "Mantle" then
-			-- Hands reach up to the ledge, then push down on it as you climb.
-			local mantle = Config.Mantle
-			local progress = math.clamp((now - busySince) / (mantle.UpTime + mantle.OverTime), 0, 1)
-			local grabRight, grabLeft = sides(pose("MantleGrab"))
-			local pushRight, pushLeft = sides(pose("MantlePush"))
-			targetRight, targetLeft =
-				grabRight:Lerp(pushRight, progress), grabLeft:Lerp(pushLeft, progress)
-		elseif busy == "Climb" then
-			-- Hands reach up the wall one after the other.
-			targetRight, targetLeft = sides(pose("Climb"))
-			local reach = math.sin(now * settings.ClimbRate) * settings.ClimbSwing
-			targetRight = CFrame.new(0, reach, 0) * targetRight
-			targetLeft = CFrame.new(0, -reach, 0) * targetLeft
-		elseif busy == "Hang" or busy == "Cling" then
-			targetRight, targetLeft = sides(pose("Hang"))
 		elseif busy == "WallRun" then
 			-- The wall-side hand trails on the wall; the other is in the air pose.
 			local handRight, handLeft = sides(pose("WallRunHand"))
@@ -185,10 +163,6 @@ function Viewmodel.start()
 			else
 				targetRight, targetLeft = airRight, handLeft
 			end
-		elseif busy == "Roll" then
-			targetRight, targetLeft = sides(pose("Roll"))
-		elseif busy == "Vault" then
-			targetRight, targetLeft = sides(pose("Vault"))
 		elseif busy == "Slide" then
 			targetRight, targetLeft = sides(pose("Slide"))
 		elseif busy == "Crouch" then

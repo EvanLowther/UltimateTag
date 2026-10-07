@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.40.1",
+	Version = "0.41.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -193,7 +193,7 @@ local Config = {
 
 	AirMomentum = {
 		-- In the air, you keep your speed (Roblox's own air control would drag you back to walk
-		-- speed and kill the momentum from wall runs, slides and vaults). Your keys steer it.
+		-- speed and kill the momentum from wall runs and slides). Your keys steer it.
 		TurnRate = 160, -- degrees per second your air path can turn toward where you steer
 		BrakeRate = 25, -- studs/s per second you slow down when steering backwards
 		AirControl = 45, -- studs/s per second you can speed up while slower than walk speed
@@ -201,62 +201,22 @@ local Config = {
 	},
 
 	WallRun = {
-		-- Jump at a wall while sprinting (or moving fast). Heading straight at it: you hop up it
-		-- and cling, jump to hop higher, hang at the top and climb over. Running alongside it: you run along it.
-		-- Jump during a wall run to drop off it early (no kick off the wall).
+		-- Jump alongside a wall while sprinting (or moving fast) and you run along it. Jump during
+		-- a wall run to drop off it early (no kick off the wall). No wall climb.
 		Reach = 2.2, -- studs from your body (ahead, beside or diagonally) that counts as touching a wall
-		ClimbAngle = 35, -- heading within this many degrees of straight at the wall = climb;
+		HeadOnAngle = 35, -- heading within this many degrees of straight at the wall = no wall run;
 		-- anything else (beside or glancing) = wall run, unless you're moving away from the wall
 		MinEntrySpeed = 18, -- studs/s sideways you need to start one (sprinting always counts)
 		Cooldown = 0.4, -- seconds before you can grab the same wall again
-		HopSpeed = 75, -- studs/s up the wall at the start of each hop (slows to 0 over HopTime)
-		HopTime = 0.32, -- seconds per hop. Height per hop = HopSpeed x HopTime / 2 (about 12 studs,
-		-- measured from the reference video: each hop is roughly 2.5 body heights)
-		MaxHops = 3, -- hops up one wall: the first one plus jumps while clinging
-		ClingTime = 1.1, -- seconds you can hold on to the wall face between hops
-		ClingSlide = 1.5, -- studs/s you slide down while clinging
-		ClingGap = 1.2, -- studs from your body's center to the wall while climbing or clinging
-		HangTime = 4, -- seconds you can hang at the top before dropping
-		HangMin = 0.15, -- seconds you hang before a held forward key climbs you over
 		RunSpeed = 30, -- slowest wall run (studs/s); faster entries keep their speed
 		RunTime = 1.6, -- longest wall run in seconds
 		RunLift = 8, -- studs/s upward at the start of a wall run
 		RunSink = 6, -- studs/s downward by the end of a wall run
 		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
 		RunGap = 1.3, -- studs from your body's center to the wall during a wall run (feet on the wall)
-		CeilingStop = 0.4, -- studs below a ceiling where climb hops and wall-run lift stop
-		-- Third-person poses. Wall-run poses are written for a wall on your LEFT (mirrored for the right).
+		CeilingStop = 0.4, -- studs below a ceiling where wall-run lift stops
+		-- Third-person poses, written for a wall on your LEFT (mirrored for the right).
 		Poses = {
-			ClimbA = { -- right hand reaching up, left knee up
-				RightUpperArm = Vector3.new(170, 0, 10),
-				RightLowerArm = Vector3.new(-10, 0, 0),
-				LeftUpperArm = Vector3.new(110, 0, -10),
-				LeftLowerArm = Vector3.new(-60, 0, 0),
-				LeftUpperLeg = Vector3.new(70, 0, 0),
-				LeftLowerLeg = Vector3.new(-80, 0, 0),
-				RightUpperLeg = Vector3.new(5, 0, 0),
-				RightLowerLeg = Vector3.new(-20, 0, 0),
-			},
-			ClimbB = { -- the mirror step: left hand up, right knee up
-				LeftUpperArm = Vector3.new(170, 0, -10),
-				LeftLowerArm = Vector3.new(-10, 0, 0),
-				RightUpperArm = Vector3.new(110, 0, 10),
-				RightLowerArm = Vector3.new(-60, 0, 0),
-				RightUpperLeg = Vector3.new(70, 0, 0),
-				RightLowerLeg = Vector3.new(-80, 0, 0),
-				LeftUpperLeg = Vector3.new(5, 0, 0),
-				LeftLowerLeg = Vector3.new(-20, 0, 0),
-			},
-			Hang = { -- both hands on the ledge, legs hanging
-				RightUpperArm = Vector3.new(175, 0, 12),
-				RightLowerArm = Vector3.new(-10, 0, 0),
-				LeftUpperArm = Vector3.new(175, 0, -12),
-				LeftLowerArm = Vector3.new(-10, 0, 0),
-				RightUpperLeg = Vector3.new(10, 0, 0),
-				RightLowerLeg = Vector3.new(-15, 0, 0),
-				LeftUpperLeg = Vector3.new(-5, 0, 0),
-				LeftLowerLeg = Vector3.new(-25, 0, 0),
-			},
 			-- Wall run, wall on the LEFT (mirrored for the right). The whole body tilts away from
 			-- the wall (LowerTorso roll) so the feet run on it; the head tilts back toward level.
 			-- Both arms pump like a sprint; the wall-side arm stays close to the body.
@@ -285,32 +245,7 @@ local Config = {
 				RightLowerLeg = Vector3.new(-75, 0, 0),
 			},
 		},
-		StepTime = 0.14, -- seconds per climbing or running step in the animations
-	},
-
-	LandingRoll = {
-		-- Land from a big drop while moving and you roll forward, keeping your speed, instead
-		-- of a hard landing. Holding the slide key as you land slides instead.
-		MinFallSpeed = 55, -- studs/s downward at landing that counts as a big drop (about 8 studs)
-		MinMoveSpeed = 6, -- studs/s sideways you need to be moving to roll
-		Time = 0.5, -- seconds the roll takes
-		KeepSpeed = 0.95, -- fraction of your landing speed kept through the roll
-		MinSpeed = 18, -- a roll always carries you at least this fast
-		CameraDip = -22, -- first person: degrees the view tips down during the roll
-		Poses = {
-			Tuck = { -- curled up: knees to chest, arms wrapped forward
-				UpperTorso = Vector3.new(-30, 0, 0),
-				Head = Vector3.new(-25, 0, 0),
-				RightUpperArm = Vector3.new(70, 0, 10),
-				RightLowerArm = Vector3.new(-90, 0, 0),
-				LeftUpperArm = Vector3.new(70, 0, -10),
-				LeftLowerArm = Vector3.new(-90, 0, 0),
-				RightUpperLeg = Vector3.new(100, 0, 0),
-				RightLowerLeg = Vector3.new(-130, 0, 0),
-				LeftUpperLeg = Vector3.new(100, 0, 0),
-				LeftLowerLeg = Vector3.new(-130, 0, 0),
-			},
-		},
+		StepTime = 0.14, -- seconds per running step in the animations
 	},
 
 	SpeedTrails = {
@@ -322,67 +257,11 @@ local Config = {
 		MinSpeed = 30, -- studs/s: faster than this always shows trails
 		Lifetime = 0.26, -- seconds a streak lasts
 		Width = 0.26, -- studs (two-lane patterns split it in half)
-		Moves = { "Slide", "Vault", "Climb", "WallRun", "Roll" }, -- always show during these
+		Moves = { "Slide", "WallRun" }, -- always show during these
 		EffectRate = 10, -- Legendary trails: particles per second from each hand and foot
 		HoloCycle = 2.5, -- Iridescent: seconds for the holo colors to go round once
 		AfterimageEvery = 0.09, -- Iridescent: seconds between afterimages while the trail is on
 		AfterimageLife = 0.45, -- seconds an afterimage takes to fade
-	},
-
-	Vault = {
-		-- Automatic, like the reference video: run into a low obstacle while sprinting and you hop
-		-- over it at full speed (thin obstacles) or step up onto it (deep ones). No key, no pause.
-		MinHeight = 1.2, -- studs above your feet: lower than this, you just run over it
-		MaxHeight = 4.5, -- studs above your feet: taller than this is a climb or mantle
-		MaxDepth = 4, -- obstacles thinner than this are hopped over; deeper ones are stepped onto
-		LookAhead = 0.12, -- seconds ahead (at your speed) to spot an obstacle, plus 1.5 studs
-		Clearance = 0.4, -- extra studs the body clears the top by
-		MinTime = 0.18, -- shortest a hop can take, in seconds
-		Landing = 2, -- studs past the far side (or onto the top) where the hop lands
-		HipHeightFactor = 0.5, -- legs tuck up to this fraction of normal hip height
-		Poses = {
-			Vault = { -- one hand planting on the top, legs tucked to the side
-				LowerTorso = Vector3.new(-15, 0, 10),
-				RightUpperArm = Vector3.new(60, 0, 15),
-				RightLowerArm = Vector3.new(-10, 0, 0),
-				LeftUpperArm = Vector3.new(20, 0, -40),
-				RightUpperLeg = Vector3.new(70, 0, -25),
-				RightLowerLeg = Vector3.new(-90, 0, 0),
-				LeftUpperLeg = Vector3.new(60, 0, -20),
-				LeftLowerLeg = Vector3.new(-100, 0, 0),
-			},
-		},
-	},
-
-	Mantle = {
-		-- Jump at a ledge and you grab it and pull yourself up automatically. You stop at the top.
-		Reach = 2.5, -- how far ahead (studs) the ledge face can be
-		MinAbove = 1.6, -- ledge top must be at least this far above your feet
-		MaxAbove = 3.5, -- and at most this far above the middle of your body (hands up)
-		Forward = 1.5, -- studs past the edge where you end up standing
-		UpTime = 0.25, -- seconds to pull up
-		OverTime = 0.15, -- seconds to climb over the edge
-		Cooldown = 0.25, -- seconds before you can mantle again
-		MaxRiseSpeed = 8, -- only grab once your jump has nearly peaked (rising slower than this)
-		Poses = {
-			Hang = { -- arms up holding the edge
-				RightUpperArm = Vector3.new(170, 0, 10),
-				LeftUpperArm = Vector3.new(170, 0, -10),
-				RightUpperLeg = Vector3.new(10, 0, 0),
-				RightLowerLeg = Vector3.new(-20, 0, 0),
-				LeftUpperLeg = Vector3.new(10, 0, 0),
-				LeftLowerLeg = Vector3.new(-20, 0, 0),
-			},
-			PullUp = { -- pushing down on the edge, one knee up onto it
-				LowerTorso = Vector3.new(-25, 0, 0),
-				RightUpperArm = Vector3.new(30, 0, 15),
-				RightLowerArm = Vector3.new(-90, 0, 0),
-				LeftUpperArm = Vector3.new(30, 0, -15),
-				LeftLowerArm = Vector3.new(-90, 0, 0),
-				RightUpperLeg = Vector3.new(80, 0, 0),
-				RightLowerLeg = Vector3.new(-100, 0, 0),
-			},
-		},
 	},
 
 	Camera = {
@@ -413,8 +292,6 @@ local Config = {
 		SprintBob = 2, -- swing multiplier while sprinting
 		BobRate = 9, -- swing speed at walk speed
 		TagJabTime = 0.2, -- seconds the first-person arm stays jabbed out after a tag swing
-		ClimbSwing = 0.35, -- studs the climbing hands move up and down
-		ClimbRate = 17, -- how fast the climbing hands alternate
 		Poses = {
 			Idle = {
 				Right = {
@@ -444,32 +321,6 @@ local Config = {
 					Rotation = Vector3.new(-20, -20, 20),
 				},
 			},
-			Vault = {
-				Right = {
-					Position = Vector3.new(0.45, -0.62, -1.35),
-					Rotation = Vector3.new(-40, 6, 0),
-				},
-			},
-			MantleGrab = {
-				Right = {
-					Position = Vector3.new(0.48, 0.25, -1.35),
-					Rotation = Vector3.new(35, 6, 0),
-				},
-			},
-			-- Wall climb: hands reach up the wall one after the other (ClimbSwing studs apart).
-			Climb = {
-				Right = {
-					Position = Vector3.new(0.45, 0.2, -1.15),
-					Rotation = Vector3.new(70, 6, 0),
-				},
-			},
-			-- Hanging at the top of a wall or clinging to it: both hands up gripping.
-			Hang = {
-				Right = {
-					Position = Vector3.new(0.4, 0.55, -1.05),
-					Rotation = Vector3.new(80, 8, 0),
-				},
-			},
 			-- Wall run: the wall-side hand trails on the wall (written for a wall on the right).
 			WallRunHand = {
 				Right = {
@@ -482,19 +333,6 @@ local Config = {
 				Right = {
 					Position = Vector3.new(0.3, -0.35, -1.6),
 					Rotation = Vector3.new(5, 15, 0),
-				},
-			},
-			-- Landing roll: arms tucked in.
-			Roll = {
-				Right = {
-					Position = Vector3.new(0.35, -0.8, -0.95),
-					Rotation = Vector3.new(30, 25, 0),
-				},
-			},
-			MantlePush = {
-				Right = {
-					Position = Vector3.new(0.48, -0.72, -1.15),
-					Rotation = Vector3.new(-50, 6, 0),
 				},
 			},
 		},
@@ -550,7 +388,7 @@ local Config = {
 			Victory = "victory_none",
 		},
 		-- What each event gives (Progression.record). Stat: the profile stat it counts toward.
-		-- Movement events (WallRun, Slide, Vault, Climb) only count during a live round.
+		-- Movement events (WallRun, Slide) only count during a live round.
 		Events = {
 			GamePlayed = { Stat = "GamesPlayed", Coins = 10, XP = 25 },
 			RoundSurvived = { Stat = "RoundsSurvived", XP = 20 }, -- XP only, no coins
@@ -563,8 +401,6 @@ local Config = {
 			PlayMinute = { Stat = "PlayMinutes", Coins = 1, XP = 2 }, -- each minute in a live game
 			WallRun = { Stat = "WallRuns" },
 			Slide = { Stat = "Slides" },
-			Vault = { Stat = "Vaults" },
-			Climb = { Stat = "Climbs" },
 			StreakDay = {}, -- a login streak claim (for achievements)
 		},
 		FirstWinMultiplier = 2, -- the day's first win pays this many times the coins
@@ -651,22 +487,6 @@ local Config = {
 				Text = "Slide 25 times",
 				Event = "Slide",
 				Goal = 25,
-				Coins = 60,
-				XP = 50,
-			},
-			{
-				Id = "d_vault",
-				Text = "Vault 20 times",
-				Event = "Vault",
-				Goal = 20,
-				Coins = 60,
-				XP = 50,
-			},
-			{
-				Id = "d_climb",
-				Text = "Climb 10 walls",
-				Event = "Climb",
-				Goal = 10,
 				Coins = 60,
 				XP = 50,
 			},
@@ -1018,20 +838,9 @@ local Config = {
 			{ "AirMomentum", "BrakeRate", 0, 100, 1 },
 			{ "AirMomentum", "AirControl", 0, 150, 1 },
 			{ "WallRun", "MinEntrySpeed", 0, 40, 1 },
-			{ "WallRun", "HopSpeed", 20, 150, 1 },
-			{ "WallRun", "HopTime", 0.1, 1, 0.01 },
-			{ "WallRun", "MaxHops", 1, 6, 1 },
-			{ "WallRun", "ClingTime", 0.2, 4, 0.05 },
 			{ "WallRun", "RunSpeed", 10, 60, 1 },
 			{ "WallRun", "RunTime", 0.3, 4, 0.05 },
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
-			{ "Vault", "MinHeight", 0.2, 4, 0.1 },
-			{ "Vault", "MaxHeight", 2, 8, 0.1 },
-			{ "Vault", "MaxDepth", 1, 10, 0.1 },
-			{ "Mantle", "Reach", 1, 5, 0.1 },
-			{ "Mantle", "UpTime", 0.05, 1, 0.01 },
-			{ "LandingRoll", "MinFallSpeed", 20, 120, 1 },
-			{ "LandingRoll", "KeepSpeed", 0.5, 1.2, 0.01 },
 			{ "Tag", "Range", 2, 20, 0.5 },
 			{ "Tag", "Cooldown", 0, 2, 0.05 },
 		} :: { { any } },

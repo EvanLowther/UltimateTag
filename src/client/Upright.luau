@@ -1,9 +1,9 @@
 --!strict
 -- Character settings the moves need:
---   Roblox's FallingDown and Ragdoll states kick in when physics shoves the body hard (vaults
---   and slides do) and make you topple. Both are off.
+--   Roblox's FallingDown and Ragdoll states kick in when physics shoves the body hard (slides
+--   do) and make you topple. Both are off.
 --   AutomaticScalingEnabled is off: with it on, Roblox's Animate script treats a lowered hip
---   height (crouch, slide, vault) as short legs and speeds the run animation up, and keeps
+--   height (crouch, slide) as short legs and speeds the run animation up, and keeps
 --   that speed after you stand until your running speed changes.
 local Players = game:GetService("Players")
 

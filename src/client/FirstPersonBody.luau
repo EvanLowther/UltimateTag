@@ -3,7 +3,7 @@
 -- is zoomed in; this shows the legs again (the head and torso stay hidden: seen from above, the
 -- blocky torso just fills the screen; the arms are replaced by the Viewmodel arms). Your own
 -- highlight (the red "It" glow) is turned off on your screen only, so it doesn't tint your view. The camera also follows your head as the animations move it,
--- so a slide, crouch or climb moves your view naturally, and it sits a little ahead of the
+-- so a slide, crouch or wall run moves your view naturally, and it sits a little ahead of the
 -- chest (Config.Camera.BodyForward) so you never look out from inside your body.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -92,10 +92,6 @@ function FirstPersonBody.start()
 			end
 			local head = parts.character:FindFirstChild("Head")
 			if not head or not head:IsA("BasePart") then
-				return
-			end
-			-- During a roll the head circles the waist; hold the camera still instead of looping.
-			if MoveState.busy == "Roll" then
 				return
 			end
 			local headLocal = parts.root.CFrame:PointToObjectSpace(head.Position)

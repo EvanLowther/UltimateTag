@@ -1,5 +1,5 @@
 --!strict
--- The one place that changes Humanoid.HipHeight, so moves (slide, vault, crouch) can lower the
+-- The one place that changes Humanoid.HipHeight, so moves (slide, crouch) can lower the
 -- body without fighting each other. Heights are a fraction of normal standing height. In third
 -- person it also dips the camera (CameraOffset); in first person FirstPersonBody owns the camera
 -- offset instead, following your head.

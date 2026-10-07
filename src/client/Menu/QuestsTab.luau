@@ -25,8 +25,6 @@ local EVENT_ICONS = {
 	RoundSurvived = "shield",
 	WallRun = "wall",
 	Slide = "speed",
-	Vault = "vault",
-	Climb = "ladder",
 	PlayMinute = "clock",
 }
 local CATEGORIES = { "All", "Wins", "Tags", "Moves", "Levels", "Streaks" }

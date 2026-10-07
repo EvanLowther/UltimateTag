@@ -272,8 +272,6 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		local moveList = {
 			{ "wall", "Wall runs", stats.WallRuns, Ui.Colors.Cyan },
 			{ "speed", "Slides", stats.Slides, Ui.Colors.Pink },
-			{ "vault", "Vaults", stats.Vaults, Ui.Colors.Yellow },
-			{ "ladder", "Climbs", stats.Climbs, Ui.Colors.Lime },
 		}
 		local most = 1
 		for _, move in moveList do

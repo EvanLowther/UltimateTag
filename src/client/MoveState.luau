@@ -1,7 +1,7 @@
 --!strict
 -- The one source of movement state on this client, shared by every move module:
---   busy:        the move in progress ("Slide", "Crouch", "Vault", "Mantle", "Climb", "Cling", "Hang",
---                "WallRun", "Roll"), or nil. One at a time.
+--   busy:        the move in progress ("Slide", "Crouch", "WallRun", or "Fly" from the dev
+--                panel), or nil. One at a time.
 --   airVelocity: the sideways speed being carried through the air (owned by AirMomentum).
 --   landVelocity / landTime: the air speed you landed with (set by AirMomentum).
 --   parts():     the local character's model, humanoid and root part, if alive.
@@ -30,7 +30,7 @@ local MoveState = {
 	wallSide = "Left", -- during a wall run: which side of your body the wall is on
 	tagTime = -math.huge, -- when you last swung to tag (the first-person arm jabs)
 	-- A move can set this to point the body somewhere other than the camera (FaceCamera uses
-	-- it): at the wall while climbing, along the wall while wall running. nil = face the camera.
+	-- it): along the wall while wall running. nil = face the camera.
 	faceDirection = nil :: Vector3?,
 }
 

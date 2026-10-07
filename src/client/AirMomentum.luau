@@ -1,6 +1,6 @@
 --!strict
 -- Keeps your speed in the air. Roblox's own air control drags you back to walk speed, which
--- would kill the momentum from wall runs, slides and vaults. While you're in the air and
+-- would kill the momentum from wall runs and slides. While you're in the air and
 -- no move is running, this owns your sideways velocity: you keep your speed, your movement keys
 -- turn your path toward where you steer (Config.AirMomentum.TurnRate), and steering backwards
 -- brakes. Below walk speed you get normal air control. It also remembers the speed you land

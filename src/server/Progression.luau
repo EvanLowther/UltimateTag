@@ -23,7 +23,7 @@ local Progression = {}
 
 export type Rewards = { Coins: number?, XP: number?, Crates: number?, Items: { string }? }
 
-local MOVES = { WallRun = true, Slide = true, Vault = true, Climb = true }
+local MOVES = { WallRun = true, Slide = true }
 
 local recordListeners: { (Player, string, number) -> () } = {}
 local tagsThisRound: { [Player]: number } = {}
