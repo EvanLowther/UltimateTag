@@ -26,11 +26,12 @@ import math
 import sys
 
 sys.path.insert(0, "tools")
+import mapcheck  # noqa: E402
 from maplib import NO_HIT, Map, facing_out, matmul, polar, rot_y, rot_z  # noqa: E402
 
 OUT = "src/maps/Clocktower"
 ATTRIBUTES = {"DisplayName": "The Clocktower", "MinPlayers": 2, "MaxPlayers": 4,
-              "InRotation": True, "Lighting": "Indoor"}
+              "InRotation": True, "Lighting": "Indoor", "OutOfBounds": "Ceiling"}
 SEGMENTS = 48
 SEG = 360 / SEGMENTS
 PIT_R = 28  # floor 1 radius (the pit wall's inner face)
@@ -56,9 +57,10 @@ LOW_CENTER_Y = PIVOT[1] - CHAIN  # platform center at the bottom of the swing
 
 GEAR_R = 7
 GEAR_RING = 18.5  # gear centers this far from the middle
-GEARS = ((20, 5, 22), (110, 10, -22), (200, 15, 22))  # angle, top, spin
+GEARS = ((20, 5, 22), (110, 10, -22), (200, 14, 22))  # angle, top, spin: each a jump up
+LADDER_DEG = 200  # the ladder up the pit wall from the top gear to the gallery
 
-DRUM_R, DRUM_TOP = 5, 7  # the escapement drum in the middle of the pit
+DRUM_R, DRUM_TOP = 5, 5  # the escapement drum in the middle of the pit (a jump high)
 SHAFT_DEG, SHAFT_UNDER, SHAFT_D = 290, 4.2, 1.6  # its drive shaft (slide under it)
 
 DOORWAYS = (63.75, 153.75, 243.75, 333.75)  # pit wall doorways (two wall panels each)
@@ -106,11 +108,9 @@ DECK_HOLES = hole_segments(STAIRS)
 
 
 def ring_piece(m, g, name, r0, r1, degrees, y0, y1, color, **props):
-    """One segment of a flat ring from r0 to r1 at `degrees`."""
-    width = 2 * math.pi * r1 / SEGMENTS * 1.05
-    x, z = polar((r0 + r1) / 2, degrees)
-    return m.part(g, name, (width, y1 - y0, r1 - r0), (x, (y0 + y1) / 2, z), color,
-                  facing_out(degrees), **props)
+    """One segment of a flat ring from r0 to r1 at `degrees` (exact: neighbours meet edge to
+    edge)."""
+    return m.ring_segment(g, name, r0, r1, degrees, SEG, y0, y1, color, **props)
 
 
 def spiral(m, g, name, a0, a1, y0, y1, r0, r1, steps, color, thick=1.0, **props):
@@ -134,19 +134,19 @@ def spiral(m, g, name, a0, a1, y0, y1, r0, r1, steps, color, thick=1.0, **props)
 
 def tower(m):
     g = "Tower"
-    m.cylinder(g, "Floor", 2, 2 * (OUTER_R + WALL + 1), (0, -1, 0), "floor")
+    m.cylinder(g, "Floor", 2, 2 * (OUTER_R + WALL), (0, -1, 0), "floor")
     # The pit wall, with four doorways into the Works.
     doors = set()
     for c in DOORWAYS:
         doors.add(round((c - SEG / 2) / SEG) % SEGMENTS)
         doors.add(round((c + SEG / 2) / SEG) % SEGMENTS)
-    m.ring_wall(g, "PitWall", PIT_R, WALL, -1, FLOOR2, SEGMENTS, "stone", skip=doors)
-    m.ring_wall(g, "PitWall", PIT_R, WALL, DOOR_TOP, FLOOR2, SEGMENTS, "stone",
+    m.ring_wall(g, "PitWall", PIT_R, WALL, -1, FLOOR2 - 1, SEGMENTS, "stone", skip=doors)
+    m.ring_wall(g, "PitWall", PIT_R, WALL, DOOR_TOP, FLOOR2 - 1, SEGMENTS, "stone",
                 skip=set(range(SEGMENTS)) - doors)
     # The gallery floor, cut away over the tops of the two ramps.
     for i in range(SEGMENTS):
         degrees = i * SEG
-        r1 = RAMP_IN if round(degrees, 3) in GALLERY_HOLES else OUTER_R + 0.5
+        r1 = RAMP_IN if round(degrees, 3) in GALLERY_HOLES else OUTER_R
         ring_piece(m, g, "Gallery", PIT_R, r1, degrees, FLOOR2 - 1, FLOOR2, "floor")
     # The tower wall goes all the way down (it's the Works' outer wall too).
     m.ring_wall(g, "TowerWall", OUTER_R, WALL, -1, TOP, SEGMENTS, "stone")
@@ -155,20 +155,20 @@ def tower(m):
     # Trim: the Works' floor, a dark band round the top of the pit wall with Roman numerals, a
     # blue light strip along the base of the tower wall, the pit floor's pattern.
     d = "Details"
-    m.ring_floor(d, "WorksFloor", PIT_R + WALL, OUTER_R, 0, 0.05, SEGMENTS, "works_floor",
+    m.ring_floor(d, "WorksFloor", PIT_R + WALL, OUTER_R, 0, 0.06, SEGMENTS, "works_floor",
                  **NO_HIT)
-    m.ring_floor(d, "GalleryEdge", PIT_R - 0.1, PIT_R + 0.6, FLOOR2, FLOOR2 + 0.05, SEGMENTS,
+    m.ring_floor(d, "GalleryEdge", PIT_R, PIT_R + 0.6, FLOOR2, FLOOR2 + 0.06, SEGMENTS,
                  "stone_dark", **NO_HIT)
     for i, numeral in enumerate(NUMERALS):
         m.on_ring(d, "Numeral", PIT_R, i * 30, FLOOR2 - 2.2, (3, 1.8, 0.15), "stone_dark",
                   children=[m.surface_text("Front", numeral, "ink", font="Garamond", pps=40)],
                   **NO_HIT)
-    m.ring_wall(d, "BlueStrip", OUTER_R - 0.15, 0.1, FLOOR2 + 0.4, FLOOR2 + 0.8, SEGMENTS, "blue",
+    m.ring_wall(d, "BlueStrip", OUTER_R - 0.3, 0.1, FLOOR2 + 0.4, FLOOR2 + 0.8, SEGMENTS, "blue",
                 Material="Neon", CastShadow=False, **NO_HIT)
     m.cylinder(d, "FloorRing", 0.06, 22, (0, 0.03, 0), "stone_dark", **NO_HIT)
     for i in range(12):
         x, z = polar(19, i * 30)
-        m.part(d, "FloorLine", (14, 0.05, 0.4), (x * 0.95, 0.03, z * 0.95), "stone_dark",
+        m.part(d, "FloorLine", (14, 0.06, 0.4), (x * 0.95, 0.1, z * 0.95), "stone_dark",
                rot_y(-i * 30), **NO_HIT)
 
 
@@ -206,7 +206,7 @@ def escapement(m):
                attributes=turning, **NO_HIT)
     for i in range(12):
         x, z = polar(3.3, i * 30)
-        m.part(g, "EscapeTooth", (0.9, 0.1, 0.5), (x, DRUM_TOP + 0.06, z), "glow",
+        m.part(g, "EscapeTooth", (0.9, 0.1, 0.5), (x, DRUM_TOP + 0.13, z), "glow",
                facing_out(i * 30), Material="Neon", attributes=turning, **NO_HIT)
     length = PIT_R - DRUM_R
     cx, cz = polar(DRUM_R + length / 2, SHAFT_DEG)
@@ -224,7 +224,7 @@ def escapement(m):
     for side in (-1, 1):  # hazard stripes either side of it on the floor
         x, z = polar(DRUM_R + length / 2, SHAFT_DEG)
         ox, oz = polar(1.6 * side, SHAFT_DEG + 90)
-        m.part(g, "HazardStripe", (length, 0.05, 0.5), (x + ox, 0.03, z + oz), "hazard", rows,
+        m.part(g, "HazardStripe", (length, 0.06, 0.5), (x + ox, 0.17, z + oz), "hazard", rows,
                **NO_HIT)
 
 
@@ -275,9 +275,9 @@ def pendulum(m):
                attributes=swing, **NO_HIT)
     m.cylinder(g, "Platform", PLATFORM_T, 2 * PLATFORM_R, (0, LOW_CENTER_Y, 0), "brass",
                attributes=ride)
-    m.cylinder(g, "PlatformRim", 0.3, 2 * PLATFORM_R + 0.6, (0, top - 0.1, 0), "glow",
+    m.cylinder(g, "PlatformRim", 0.3, 2 * PLATFORM_R + 0.6, (0, top - 0.25, 0), "glow",
                Material="Neon", attributes=level, **NO_HIT)
-    m.cylinder(g, "PlatformTop", 0.1, 2 * PLATFORM_R - 2, (0, top + 0.03, 0), "brass_dark",
+    m.cylinder(g, "PlatformTop", 0.1, 2 * PLATFORM_R - 2, (0, top + 0.1, 0), "brass_dark",
                attributes=level, **NO_HIT)
     m.block(g, "Shackle", -0.8, 0.8, top, top + 1.2, -0.8, 0.8, "iron", attributes=level,
             **NO_HIT)
@@ -306,8 +306,8 @@ def clock_deck(m):
             ring_piece(m, g, "Railing", STAIR_IN - 0.5, STAIR_IN, degrees, DECK, DECK + 3.2,
                        "iron")
         else:
-            ring_piece(m, g, "Deck", DECK_IN, OUTER_R + 0.5, degrees, DECK - 1, DECK, "floor")
-    m.ring_floor(g, "DeckEdge", DECK_IN, DECK_IN + 0.4, DECK, DECK + 0.05, SEGMENTS, "blue",
+            ring_piece(m, g, "Deck", DECK_IN, OUTER_R, degrees, DECK - 1, DECK, "floor")
+    m.ring_floor(g, "DeckEdge", DECK_IN, DECK_IN + 0.4, DECK, DECK + 0.06, SEGMENTS, "blue",
                  Material="Neon", **NO_HIT)
     for i in range(12):  # brackets under the deck (decoration)
         x, z = polar(OUTER_R - 3, i * 30 + 15)
@@ -318,18 +318,14 @@ def clock_deck(m):
     turning = {"Spin": WHEEL_SPIN, "SpinCenter": vec(0, 0, 0), "SpinCarry": True}
     trim = {"Spin": WHEEL_SPIN, "SpinCenter": vec(0, 0, 0)}
     step = 360 / WHEEL_SEGMENTS
-    width = 2 * math.pi * WHEEL_OUT / WHEEL_SEGMENTS * 1.04
     for i in range(WHEEL_SEGMENTS):
         if i in WHEEL_GAPS:
             continue
         degrees = i * step
-        x, z = polar((WHEEL_IN + WHEEL_OUT) / 2, degrees)
-        m.part(g, "Wheel", (width, 1, WHEEL_OUT - WHEEL_IN), (x, DECK - 0.5, z), "brass",
-               facing_out(degrees), attributes=turning)
-        x, z = polar(WHEEL_IN + 0.25, degrees)
-        m.part(g, "WheelGlow", (2 * math.pi * WHEEL_IN / WHEEL_SEGMENTS, 0.12, 0.5),
-               (x, DECK + 0.04, z), "glow", facing_out(degrees), Material="Neon",
-               attributes=trim, **NO_HIT)
+        m.ring_segment(g, "Wheel", WHEEL_IN, WHEEL_OUT, degrees, step, DECK - 1, DECK, "brass",
+                       attributes=turning)
+        m.ring_segment(g, "WheelGlow", WHEEL_IN, WHEEL_IN + 0.5, degrees, step, DECK, DECK + 0.1,
+                       "glow", Material="Neon", attributes=trim, **NO_HIT)
         for k in range(2):
             tooth = degrees + (k - 0.5) * step / 2
             x, z = polar(WHEEL_OUT + 0.4, tooth)
@@ -345,7 +341,7 @@ def clock_deck(m):
                facing_out(degrees), **NO_HIT)
 
 
-def clock_face(m, degrees=270, y=48, size=19):
+def clock_face(m, degrees=270, y=49.2, size=16):
     """The big clock on the tower wall, over the clock deck: a white face, numerals, hands."""
     g = "Clock"
     x, z = polar(OUTER_R - 0.3, degrees)
@@ -380,6 +376,7 @@ def clock_face(m, degrees=270, y=48, size=19):
     hx, hz = polar(OUTER_R - 0.9, degrees)
     m.part(g, "MinuteHand", (0.2, size * 0.42, 0.5), (hx, y + size * 0.19, hz), "ink",
            matmul(facing_out(degrees), rot_y(-90)), **NO_HIT)
+    hx, hz = polar(OUTER_R - 0.85, degrees)  # a little behind the minute hand
     m.part(g, "HourHand", (0.2, 0.6, size * 0.3), (hx, y, hz + size * 0.13), "ink",
            matmul(facing_out(degrees), rot_y(-90)), **NO_HIT)
 
@@ -402,10 +399,11 @@ def details(m):
         m.on_ring(d, "DoorArch", PIT_R, degrees, DOOR_TOP + 0.4, (8, 1, 0.16), "stone_dark",
                   **NO_HIT)
     for degrees in (0, 90, 180):  # sealed doorways in the tower wall above the gallery
+        # Set out from the wall: its flat pieces bow in by about 0.09 at their middles.
         m.on_ring(d, "Doorway", OUTER_R, degrees, FLOOR2 + 5.5, (6, 11, 0.12), "stone_dark",
-                  **NO_HIT)
+                  out=0.15, **NO_HIT)
         m.on_ring(d, "DoorGlow", OUTER_R, degrees, FLOOR2 + 5.5, (6.6, 11.6, 0.06), "blue",
-                  Material="Neon", **NO_HIT)
+                  out=0.1, Material="Neon", **NO_HIT)
     for degrees in (40, 130, 220, 310):
         glowing_gear(m, PIT_R, degrees, 13, 5)
     for degrees in (150, 330):
@@ -446,6 +444,9 @@ def build():
     tower(m)
     for angle, top, spin in GEARS:
         gear(m, angle, top, spin)
+    lx, lz = polar(PIT_R, LADDER_DEG)
+    inward = polar(-1, LADDER_DEG)
+    m.ladder("Gears", lx, lz, inward, GEARS[-1][1], FLOOR2)
     escapement(m)
     works(m)
     pendulum(m)
@@ -462,36 +463,20 @@ def build():
 # ---- checks ----------------------------------------------------------------------------------
 
 def solids(m):
-    """Every part that blocks players: (name, center, rotation rows, half size, is cylinder).
-    Spinning parts count where they are built (they turn in place); the swinging pendulum is
-    left out (it only ever passes through the air over the pit)."""
-    out = []
-    for nodes in m.groups.values():
-        for node in nodes:
-            p = node["properties"]
-            attrs = node.get("attributes") or {}
-            if p.get("CanCollide") is False or "SwingPivot" in attrs:
-                continue
-            if p.get("Transparency", 0) >= 1 and not attrs.get("SlideBlocker"):
-                continue
-            cf = p["CFrame"]["CFrame"]
-            out.append((node["name"].rstrip("0123456789"), cf["position"], cf["orientation"],
-                        [s / 2 for s in p["Size"]], p.get("Shape") == "Cylinder"))
-    return out
+    """Every part that blocks players. Spinning parts count where they are built (they turn in
+    place); the swinging pendulum is left out (it only ever passes through the air over the
+    pit)."""
+    nodes = [n for group in m.groups.values() for n in group]
+    return [p for p in mapcheck.parts_from_nodes(nodes)
+            if p.collide is not False and "SwingPivot" not in p.attrs
+            and (p.transparency < 1 or p.attrs.get("SlideBlocker"))]
 
 
 def blocked(boxes, point, skip=()):
     """The name of the first solid part containing `point`, or None."""
-    for name, center, rows, half, cylinder in boxes:
-        if name in skip:
-            continue
-        d = [point[i] - center[i] for i in range(3)]
-        local = [sum(rows[i][j] * d[i] for i in range(3)) for j in range(3)]
-        if cylinder:
-            if abs(local[0]) <= half[0] and math.hypot(local[1], local[2]) <= half[1]:
-                return name
-        elif all(abs(local[j]) <= half[j] for j in range(3)):
-            return name
+    for part in boxes:
+        if part.name not in skip and part.contains(point):
+            return part.name
     return None
 
 
@@ -535,13 +520,15 @@ def check(m):
         x1, z1 = polar(GEAR_RING, a1)
         x2, z2 = polar(GEAR_RING, a2)
         gap = math.hypot(x1 - x2, z1 - z2) - 2 * tooth_r
-        if gap > 11 or t2 - t1 > 7:
+        if gap > 10 or t2 - t1 > mapcheck.JUMP_UP:
             problems.append(f"gear {a1} -> {a2}: gap {gap:.1f}, rise {t2 - t1}")
-    edge_gap = PIT_R - (GEAR_RING + tooth_r)
-    if edge_gap > 6 or FLOOR2 - GEARS[-1][1] > 10 or edge_gap < 0.5:
-        problems.append(f"top gear to gallery: gap {edge_gap:.1f}")
+    if GEARS[0][1] > mapcheck.JUMP_UP or DRUM_TOP > mapcheck.JUMP_UP:
+        problems.append("the first gear or the drum is too high to jump onto")
     if GEAR_RING - tooth_r - DRUM_R > 6.5:
         problems.append("the drum is too far from the first gear to jump")
+    ladder_gap = PIT_R - 2 - (GEAR_RING + GEAR_R)
+    if LADDER_DEG != GEARS[-1][0] or not 0 < ladder_gap < 1.5:
+        problems.append(f"the ladder isn't right beside the top gear (gap {ladder_gap:.1f})")
     if not 2 <= DECK_IN - WHEEL_OUT <= 4:
         problems.append("the crown wheel is out of jumping reach of the deck")
     if (PIVOT[1] - DECK) * math.tan(math.radians(SWING_AMPLITUDE)) > WHEEL_IN - 1:
@@ -585,6 +572,8 @@ def check(m):
                 problems.append(f"spawns {j + 1} and {i + 1} are under 18 studs apart")
     if len(m.spawns) < ATTRIBUTES["MaxPlayers"]:
         problems.append(f"only {len(m.spawns)} spawns for {ATTRIBUTES['MaxPlayers']} players")
+    # Flicker, windows, and every floor reachable (and back) from the spawns.
+    problems += mapcheck.check_map(m, ATTRIBUTES)
     print(f"pendulum: chain {CHAIN:.1f}, swing +/-{SWING_AMPLITUDE:.1f} degrees, platform top "
           f"{LOW_CENTER_Y + PLATFORM_T / 2:.1f} at the bottom and {end_y:.1f} at the ends "
           f"({end_gap:.2f} from the gallery edge)")

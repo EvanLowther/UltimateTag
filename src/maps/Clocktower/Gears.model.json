@@ -2629,7 +2629,7 @@
      "CFrame": {
       "position": [
        -17.384,
-       14.25,
+       13.25,
        -6.327
       ],
       "orientation": [
@@ -2687,7 +2687,7 @@
      "CFrame": {
       "position": [
        -9.884,
-       14.25,
+       13.25,
        -6.327
       ],
       "orientation": [
@@ -2744,7 +2744,7 @@
      "CFrame": {
       "position": [
        -10.337,
-       14.25,
+       13.25,
        -3.762
       ],
       "orientation": [
@@ -2801,7 +2801,7 @@
      "CFrame": {
       "position": [
        -11.639,
-       14.25,
+       13.25,
        -1.506
       ],
       "orientation": [
@@ -2858,7 +2858,7 @@
      "CFrame": {
       "position": [
        -13.634,
-       14.25,
+       13.25,
        0.168
       ],
       "orientation": [
@@ -2915,7 +2915,7 @@
      "CFrame": {
       "position": [
        -16.082,
-       14.25,
+       13.25,
        1.059
       ],
       "orientation": [
@@ -2972,7 +2972,7 @@
      "CFrame": {
       "position": [
        -18.687,
-       14.25,
+       13.25,
        1.059
       ],
       "orientation": [
@@ -3029,7 +3029,7 @@
      "CFrame": {
       "position": [
        -21.134,
-       14.25,
+       13.25,
        0.168
       ],
       "orientation": [
@@ -3086,7 +3086,7 @@
      "CFrame": {
       "position": [
        -23.13,
-       14.25,
+       13.25,
        -1.506
       ],
       "orientation": [
@@ -3143,7 +3143,7 @@
      "CFrame": {
       "position": [
        -24.432,
-       14.25,
+       13.25,
        -3.762
       ],
       "orientation": [
@@ -3200,7 +3200,7 @@
      "CFrame": {
       "position": [
        -24.884,
-       14.25,
+       13.25,
        -6.327
       ],
       "orientation": [
@@ -3257,7 +3257,7 @@
      "CFrame": {
       "position": [
        -24.432,
-       14.25,
+       13.25,
        -8.893
       ],
       "orientation": [
@@ -3314,7 +3314,7 @@
      "CFrame": {
       "position": [
        -23.13,
-       14.25,
+       13.25,
        -11.148
       ],
       "orientation": [
@@ -3371,7 +3371,7 @@
      "CFrame": {
       "position": [
        -21.134,
-       14.25,
+       13.25,
        -12.823
       ],
       "orientation": [
@@ -3428,7 +3428,7 @@
      "CFrame": {
       "position": [
        -18.687,
-       14.25,
+       13.25,
        -13.713
       ],
       "orientation": [
@@ -3485,7 +3485,7 @@
      "CFrame": {
       "position": [
        -16.082,
-       14.25,
+       13.25,
        -13.713
       ],
       "orientation": [
@@ -3542,7 +3542,7 @@
      "CFrame": {
       "position": [
        -13.634,
-       14.25,
+       13.25,
        -12.823
       ],
       "orientation": [
@@ -3599,7 +3599,7 @@
      "CFrame": {
       "position": [
        -11.639,
-       14.25,
+       13.25,
        -11.148
       ],
       "orientation": [
@@ -3656,7 +3656,7 @@
      "CFrame": {
       "position": [
        -10.337,
-       14.25,
+       13.25,
        -8.893
       ],
       "orientation": [
@@ -3713,7 +3713,7 @@
      "CFrame": {
       "position": [
        -17.384,
-       15.25,
+       14.25,
        -6.327
       ],
       "orientation": [
@@ -3770,7 +3770,7 @@
      "CFrame": {
       "position": [
        -17.384,
-       15.25,
+       14.25,
        -6.327
       ],
       "orientation": [
@@ -3827,7 +3827,7 @@
      "CFrame": {
       "position": [
        -17.384,
-       15.4,
+       14.4,
        -6.327
       ],
       "orientation": [
@@ -3869,7 +3869,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     13.5,
+     12.5,
      2,
      2
     ],
@@ -3885,7 +3885,7 @@
      "CFrame": {
       "position": [
        -17.384,
-       6.75,
+       6.25,
        -6.327
       ],
       "orientation": [
@@ -3908,6 +3908,592 @@
      }
     },
     "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "LadderTruss",
+   "className": "TrussPart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     10,
+     2
+    ],
+    "Color": [
+     0.353,
+     0.353,
+     0.376
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.714,
+       19.0,
+       -8.295
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "LadderTruss2",
+   "className": "TrussPart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     10,
+     2
+    ],
+    "Color": [
+     0.353,
+     0.353,
+     0.376
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.03,
+       19.0,
+       -10.174
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "LadderRail",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     13,
+     0.3
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.398,
+       20.5,
+       -7.116
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRail2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     13,
+     0.3
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.03,
+       20.5,
+       -10.875
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       15,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       16.2,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       17.4,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       18.6,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       19.8,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       21.0,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       22.2,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.714,
+       23.4,
+       -8.995
+      ],
+      "orientation": [
+       [
+        0.342,
+        0,
+        0.94
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.94,
+        0,
+        0.342
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
    }
   }
  ]

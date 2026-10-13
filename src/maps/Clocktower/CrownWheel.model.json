@@ -7,9 +7,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -22,9 +22,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       22.699,
+       22.505,
        39.5,
-       6.082
+       6.03
       ],
       "orientation": [
        [
@@ -59,14 +59,128 @@
    }
   },
   {
+   "name": "Wheel2",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       23.299,
+       39.5,
+       3.067
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel3",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.711,
+       39.5,
+       8.993
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
    "name": "WheelGlow",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -79,9 +193,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       17.628,
-       40.04,
-       4.723
+       17.477,
+       40.05,
+       4.683
       ],
       "orientation": [
        [
@@ -98,6 +212,124 @@
         -0.966,
         0,
         0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow2",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       18.094,
+       40.05,
+       2.382
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow3",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       16.861,
+       40.05,
+       6.984
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.259,
+        -0.966
        ]
       ]
      }
@@ -236,14 +468,14 @@
    }
   },
   {
-   "name": "Wheel2",
+   "name": "Wheel4",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -256,9 +488,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       20.352,
+       20.177,
        39.5,
-       11.75
+       11.649
       ],
       "orientation": [
        [
@@ -293,14 +525,128 @@
    }
   },
   {
-   "name": "WheelGlow2",
+   "name": "Wheel5",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.711,
+       39.5,
+       8.993
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel6",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       18.644,
+       39.5,
+       14.306
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow4",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -313,9 +659,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       15.805,
-       40.04,
-       9.125
+       15.67,
+       40.05,
+       9.047
       ],
       "orientation": [
        [
@@ -332,6 +678,124 @@
         -0.866,
         0,
         0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow5",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       16.861,
+       40.05,
+       6.984
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow6",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.479,
+       40.05,
+       11.11
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.5,
+        -0.866
        ]
       ]
      }
@@ -470,14 +934,14 @@
    }
   },
   {
-   "name": "Wheel3",
+   "name": "Wheel7",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -490,9 +954,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       16.617,
+       16.475,
        39.5,
-       16.617
+       16.475
       ],
       "orientation": [
        [
@@ -527,14 +991,128 @@
    }
   },
   {
-   "name": "WheelGlow3",
+   "name": "Wheel8",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       18.644,
+       39.5,
+       14.306
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel9",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.306,
+       39.5,
+       18.644
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow7",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -547,9 +1125,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       12.905,
-       40.04,
-       12.905
+       12.794,
+       40.05,
+       12.794
       ],
       "orientation": [
        [
@@ -566,6 +1144,124 @@
         -0.707,
         0,
         0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow8",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.479,
+       40.05,
+       11.11
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow9",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.11,
+       40.05,
+       14.479
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.707,
+        -0.707
        ]
       ]
      }
@@ -704,14 +1400,14 @@
    }
   },
   {
-   "name": "Wheel4",
+   "name": "Wheel10",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -724,9 +1420,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       11.75,
+       11.649,
        39.5,
-       20.352
+       20.177
       ],
       "orientation": [
        [
@@ -761,14 +1457,128 @@
    }
   },
   {
-   "name": "WheelGlow4",
+   "name": "Wheel11",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.306,
+       39.5,
+       18.644
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel12",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.993,
+       39.5,
+       21.711
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow10",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -781,9 +1591,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       9.125,
-       40.04,
-       15.805
+       9.047,
+       40.05,
+       15.67
       ],
       "orientation": [
        [
@@ -800,6 +1610,124 @@
         -0.5,
         0,
         0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow11",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.11,
+       40.05,
+       14.479
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow12",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.984,
+       40.05,
+       16.861
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.866,
+        -0.5
        ]
       ]
      }
@@ -938,14 +1866,14 @@
    }
   },
   {
-   "name": "Wheel5",
+   "name": "Wheel13",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -958,9 +1886,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       6.082,
+       6.03,
        39.5,
-       22.699
+       22.505
       ],
       "orientation": [
        [
@@ -995,14 +1923,128 @@
    }
   },
   {
-   "name": "WheelGlow5",
+   "name": "Wheel14",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.993,
+       39.5,
+       21.711
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel15",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3.067,
+       39.5,
+       23.299
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow13",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -1015,9 +2057,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       4.723,
-       40.04,
-       17.628
+       4.683,
+       40.05,
+       17.477
       ],
       "orientation": [
        [
@@ -1034,6 +2076,124 @@
         -0.259,
         0,
         0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow14",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.984,
+       40.05,
+       16.861
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow15",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.382,
+       40.05,
+       18.094
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.966,
+        -0.259
        ]
       ]
      }
@@ -1172,14 +2332,14 @@
    }
   },
   {
-   "name": "Wheel6",
+   "name": "Wheel16",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -1194,7 +2354,7 @@
       "position": [
        0.0,
        39.5,
-       23.5
+       23.299
       ],
       "orientation": [
        [
@@ -1229,14 +2389,128 @@
    }
   },
   {
-   "name": "WheelGlow6",
+   "name": "Wheel17",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3.067,
+       39.5,
+       23.299
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.0,
+        -1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel18",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -3.067,
+       39.5,
+       23.299
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.0,
+        1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow16",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -1250,8 +2524,8 @@
      "CFrame": {
       "position": [
        0.0,
-       40.04,
-       18.25
+       40.05,
+       18.094
       ],
       "orientation": [
        [
@@ -1268,6 +2542,124 @@
         -0.0,
         0,
         1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow17",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.382,
+       40.05,
+       18.094
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.0,
+        -1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -1.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow18",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.382,
+       40.05,
+       18.094
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.0,
+        1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -1.0,
+        -0.0
        ]
       ]
      }
@@ -1406,14 +2798,14 @@
    }
   },
   {
-   "name": "Wheel7",
+   "name": "Wheel19",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -1426,9 +2818,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -6.082,
+       -6.03,
        39.5,
-       22.699
+       22.505
       ],
       "orientation": [
        [
@@ -1463,14 +2855,128 @@
    }
   },
   {
-   "name": "WheelGlow7",
+   "name": "Wheel20",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -3.067,
+       39.5,
+       23.299
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel21",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -8.993,
+       39.5,
+       21.711
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow19",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -1483,9 +2989,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -4.723,
-       40.04,
-       17.628
+       -4.683,
+       40.05,
+       17.477
       ],
       "orientation": [
        [
@@ -1502,6 +3008,124 @@
         0.259,
         0,
         0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow20",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.382,
+       40.05,
+       18.094
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow21",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.984,
+       40.05,
+       16.861
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
        ]
       ]
      }
@@ -1640,14 +3264,14 @@
    }
   },
   {
-   "name": "Wheel8",
+   "name": "Wheel22",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -1660,9 +3284,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -16.617,
+       -16.475,
        39.5,
-       16.617
+       16.475
       ],
       "orientation": [
        [
@@ -1697,14 +3321,128 @@
    }
   },
   {
-   "name": "WheelGlow8",
+   "name": "Wheel23",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.306,
+       39.5,
+       18.644
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel24",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.644,
+       39.5,
+       14.306
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow22",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -1717,9 +3455,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -12.905,
-       40.04,
-       12.905
+       -12.794,
+       40.05,
+       12.794
       ],
       "orientation": [
        [
@@ -1735,6 +3473,124 @@
        [
         0.707,
         0,
+        0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow23",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.11,
+       40.05,
+       14.479
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow24",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.479,
+       40.05,
+       11.11
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
         0.707
        ]
       ]
@@ -1874,14 +3730,14 @@
    }
   },
   {
-   "name": "Wheel9",
+   "name": "Wheel25",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -1894,9 +3750,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -20.352,
+       -20.177,
        39.5,
-       11.75
+       11.649
       ],
       "orientation": [
        [
@@ -1931,14 +3787,128 @@
    }
   },
   {
-   "name": "WheelGlow9",
+   "name": "Wheel26",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.644,
+       39.5,
+       14.306
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel27",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -21.711,
+       39.5,
+       8.993
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow25",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -1951,9 +3921,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -15.805,
-       40.04,
-       9.125
+       -15.67,
+       40.05,
+       9.047
       ],
       "orientation": [
        [
@@ -1970,6 +3940,124 @@
         0.866,
         0,
         0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow26",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.479,
+       40.05,
+       11.11
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow27",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.861,
+       40.05,
+       6.984
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
        ]
       ]
      }
@@ -2108,14 +4196,14 @@
    }
   },
   {
-   "name": "Wheel10",
+   "name": "Wheel28",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -2128,9 +4216,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -22.699,
+       -22.505,
        39.5,
-       6.082
+       6.03
       ],
       "orientation": [
        [
@@ -2165,14 +4253,128 @@
    }
   },
   {
-   "name": "WheelGlow10",
+   "name": "Wheel29",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -21.711,
+       39.5,
+       8.993
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel30",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.299,
+       39.5,
+       3.067
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow28",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -2185,9 +4387,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -17.628,
-       40.04,
-       4.723
+       -17.477,
+       40.05,
+       4.683
       ],
       "orientation": [
        [
@@ -2204,6 +4406,124 @@
         0.966,
         0,
         0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow29",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.861,
+       40.05,
+       6.984
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow30",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.094,
+       40.05,
+       2.382
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
        ]
       ]
      }
@@ -2342,14 +4662,14 @@
    }
   },
   {
-   "name": "Wheel11",
+   "name": "Wheel31",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -2362,7 +4682,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -23.5,
+       -23.299,
        39.5,
        0.0
       ],
@@ -2399,14 +4719,128 @@
    }
   },
   {
-   "name": "WheelGlow11",
+   "name": "Wheel32",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.299,
+       39.5,
+       3.067
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.0,
+        -1.0
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel33",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.299,
+       39.5,
+       -3.067
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.0,
+        1.0
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow31",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -2419,8 +4853,8 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -18.25,
-       40.04,
+       -18.094,
+       40.05,
        0.0
       ],
       "orientation": [
@@ -2438,6 +4872,124 @@
         1.0,
         0,
         0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow32",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.094,
+       40.05,
+       2.382
+      ],
+      "orientation": [
+       [
+        -0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow33",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.094,
+       40.05,
+       -2.382
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
        ]
       ]
      }
@@ -2576,14 +5128,14 @@
    }
   },
   {
-   "name": "Wheel12",
+   "name": "Wheel34",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -2596,9 +5148,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -22.699,
+       -22.505,
        39.5,
-       -6.082
+       -6.03
       ],
       "orientation": [
        [
@@ -2633,14 +5185,128 @@
    }
   },
   {
-   "name": "WheelGlow12",
+   "name": "Wheel35",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.299,
+       39.5,
+       -3.067
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel36",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -21.711,
+       39.5,
+       -8.993
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow34",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -2653,9 +5319,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -17.628,
-       40.04,
-       -4.723
+       -17.477,
+       40.05,
+       -4.683
       ],
       "orientation": [
        [
@@ -2672,6 +5338,124 @@
         0.966,
         0,
         -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow35",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.094,
+       40.05,
+       -2.382
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow36",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.861,
+       40.05,
+       -6.984
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        0.966
        ]
       ]
      }
@@ -2810,14 +5594,14 @@
    }
   },
   {
-   "name": "Wheel13",
+   "name": "Wheel37",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -2830,9 +5614,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -20.352,
+       -20.177,
        39.5,
-       -11.75
+       -11.649
       ],
       "orientation": [
        [
@@ -2867,14 +5651,128 @@
    }
   },
   {
-   "name": "WheelGlow13",
+   "name": "Wheel38",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -21.711,
+       39.5,
+       -8.993
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel39",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.644,
+       39.5,
+       -14.306
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow37",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -2887,9 +5785,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -15.805,
-       40.04,
-       -9.125
+       -15.67,
+       40.05,
+       -9.047
       ],
       "orientation": [
        [
@@ -2906,6 +5804,124 @@
         0.866,
         0,
         -0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow38",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.861,
+       40.05,
+       -6.984
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow39",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.479,
+       40.05,
+       -11.11
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        0.866
        ]
       ]
      }
@@ -3044,14 +6060,14 @@
    }
   },
   {
-   "name": "Wheel14",
+   "name": "Wheel40",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -3064,9 +6080,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -16.617,
+       -16.475,
        39.5,
-       -16.617
+       -16.475
       ],
       "orientation": [
        [
@@ -3101,14 +6117,128 @@
    }
   },
   {
-   "name": "WheelGlow14",
+   "name": "Wheel41",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.644,
+       39.5,
+       -14.306
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel42",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.306,
+       39.5,
+       -18.644
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow40",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -3121,9 +6251,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -12.905,
-       40.04,
-       -12.905
+       -12.794,
+       40.05,
+       -12.794
       ],
       "orientation": [
        [
@@ -3140,6 +6270,124 @@
         0.707,
         0,
         -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow41",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.479,
+       40.05,
+       -11.11
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow42",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.11,
+       40.05,
+       -14.479
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        0.707
        ]
       ]
      }
@@ -3278,14 +6526,14 @@
    }
   },
   {
-   "name": "Wheel15",
+   "name": "Wheel43",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -3298,9 +6546,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -6.082,
+       -6.03,
        39.5,
-       -22.699
+       -22.505
       ],
       "orientation": [
        [
@@ -3335,14 +6583,128 @@
    }
   },
   {
-   "name": "WheelGlow15",
+   "name": "Wheel44",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -8.993,
+       39.5,
+       -21.711
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel45",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -3.067,
+       39.5,
+       -23.299
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow43",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -3355,9 +6717,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -4.723,
-       40.04,
-       -17.628
+       -4.683,
+       40.05,
+       -17.477
       ],
       "orientation": [
        [
@@ -3374,6 +6736,124 @@
         0.259,
         0,
         -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow44",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.984,
+       40.05,
+       -16.861
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow45",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.382,
+       40.05,
+       -18.094
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        0.259
        ]
       ]
      }
@@ -3512,14 +6992,14 @@
    }
   },
   {
-   "name": "Wheel16",
+   "name": "Wheel46",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -3534,7 +7014,7 @@
       "position": [
        -0.0,
        39.5,
-       -23.5
+       -23.299
       ],
       "orientation": [
        [
@@ -3569,14 +7049,128 @@
    }
   },
   {
-   "name": "WheelGlow16",
+   "name": "Wheel47",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -3.067,
+       39.5,
+       -23.299
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel48",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3.067,
+       39.5,
+       -23.299
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow46",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -3590,8 +7184,8 @@
      "CFrame": {
       "position": [
        -0.0,
-       40.04,
-       -18.25
+       40.05,
+       -18.094
       ],
       "orientation": [
        [
@@ -3608,6 +7202,124 @@
         0.0,
         0,
         -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow47",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.382,
+       40.05,
+       -18.094
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow48",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.382,
+       40.05,
+       -18.094
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
        ]
       ]
      }
@@ -3746,14 +7458,14 @@
    }
   },
   {
-   "name": "Wheel17",
+   "name": "Wheel49",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -3766,9 +7478,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       6.082,
+       6.03,
        39.5,
-       -22.699
+       -22.505
       ],
       "orientation": [
        [
@@ -3803,14 +7515,128 @@
    }
   },
   {
-   "name": "WheelGlow17",
+   "name": "Wheel50",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3.067,
+       39.5,
+       -23.299
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel51",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.993,
+       39.5,
+       -21.711
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow49",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -3823,9 +7649,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       4.723,
-       40.04,
-       -17.628
+       4.683,
+       40.05,
+       -17.477
       ],
       "orientation": [
        [
@@ -3842,6 +7668,124 @@
         -0.259,
         0,
         -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow50",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.382,
+       40.05,
+       -18.094
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.966,
+        0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow51",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.984,
+       40.05,
+       -16.861
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
        ]
       ]
      }
@@ -3980,14 +7924,14 @@
    }
   },
   {
-   "name": "Wheel18",
+   "name": "Wheel52",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -4000,9 +7944,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       11.75,
+       11.649,
        39.5,
-       -20.352
+       -20.177
       ],
       "orientation": [
        [
@@ -4037,14 +7981,128 @@
    }
   },
   {
-   "name": "WheelGlow18",
+   "name": "Wheel53",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.993,
+       39.5,
+       -21.711
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel54",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.306,
+       39.5,
+       -18.644
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow52",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -4057,9 +8115,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       9.125,
-       40.04,
-       -15.805
+       9.047,
+       40.05,
+       -15.67
       ],
       "orientation": [
        [
@@ -4076,6 +8134,124 @@
         -0.5,
         0,
         -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow53",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.984,
+       40.05,
+       -16.861
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.866,
+        0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow54",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.11,
+       40.05,
+       -14.479
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        -0.5
        ]
       ]
      }
@@ -4214,14 +8390,14 @@
    }
   },
   {
-   "name": "Wheel19",
+   "name": "Wheel55",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -4234,9 +8410,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       16.617,
+       16.475,
        39.5,
-       -16.617
+       -16.475
       ],
       "orientation": [
        [
@@ -4271,14 +8447,128 @@
    }
   },
   {
-   "name": "WheelGlow19",
+   "name": "Wheel56",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.306,
+       39.5,
+       -18.644
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel57",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       18.644,
+       39.5,
+       -14.306
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow55",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -4291,9 +8581,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       12.905,
-       40.04,
-       -12.905
+       12.794,
+       40.05,
+       -12.794
       ],
       "orientation": [
        [
@@ -4309,6 +8599,124 @@
        [
         -0.707,
         0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow56",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.11,
+       40.05,
+       -14.479
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow57",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.479,
+       40.05,
+       -11.11
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
         -0.707
        ]
       ]
@@ -4448,14 +8856,14 @@
    }
   },
   {
-   "name": "Wheel20",
+   "name": "Wheel58",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -4468,9 +8876,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       20.352,
+       20.177,
        39.5,
-       -11.75
+       -11.649
       ],
       "orientation": [
        [
@@ -4505,14 +8913,128 @@
    }
   },
   {
-   "name": "WheelGlow20",
+   "name": "Wheel59",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       18.644,
+       39.5,
+       -14.306
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel60",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.711,
+       39.5,
+       -8.993
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow58",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -4525,9 +9047,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       15.805,
-       40.04,
-       -9.125
+       15.67,
+       40.05,
+       -9.047
       ],
       "orientation": [
        [
@@ -4544,6 +9066,124 @@
         -0.866,
         0,
         -0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow59",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.479,
+       40.05,
+       -11.11
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.5,
+        0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow60",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       16.861,
+       40.05,
+       -6.984
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
        ]
       ]
      }
@@ -4682,14 +9322,14 @@
    }
   },
   {
-   "name": "Wheel21",
+   "name": "Wheel61",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     7.896,
+     4.699,
      1,
-     11
+     10.906
     ],
     "Color": [
      0.776,
@@ -4702,9 +9342,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       22.699,
+       22.505,
        39.5,
-       -6.082
+       -6.03
       ],
       "orientation": [
        [
@@ -4739,14 +9379,128 @@
    }
   },
   {
-   "name": "WheelGlow21",
+   "name": "Wheel62",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.711,
+       39.5,
+       -8.993
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "Wheel63",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     10.906,
+     1.436
+    ],
+    "Color": [
+     0.776,
+     0.596,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       23.299,
+       39.5,
+       -3.067
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "SpinCarry": true
+   }
+  },
+  {
+   "name": "WheelGlow61",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.712,
-     0.12,
-     0.5
+     4.699,
+     0.1,
+     0.496
     ],
     "Color": [
      1.0,
@@ -4759,9 +9513,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       17.628,
-       40.04,
-       -4.723
+       17.477,
+       40.05,
+       -4.683
       ],
       "orientation": [
        [
@@ -4778,6 +9532,124 @@
         -0.966,
         0,
         -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow62",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       16.861,
+       40.05,
+       -6.984
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.259,
+        0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 8,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "WheelGlow63",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.496,
+     0.065
+    ],
+    "Color": [
+     1.0,
+     0.588,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       18.094,
+       40.05,
+       -2.382
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
        ]
       ]
      }

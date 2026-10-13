@@ -7,9 +7,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
+     4.186,
      1,
-     8.5
+     7.983
     ],
     "Color": [
      0.675,
@@ -22,7 +22,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       36.25,
+       35.923,
        39.5,
        0.0
       ],
@@ -49,13 +49,13 @@
   },
   {
    "name": "Deck2",
-   "className": "Part",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -68,9 +68,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       35.94,
+       35.923,
        39.5,
-       4.732
+       -2.355
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        -0.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck3",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.923,
+       39.5,
+       2.355
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.616,
+       39.5,
+       4.689
       ],
       "orientation": [
        [
@@ -94,14 +186,14 @@
    }
   },
   {
-   "name": "Deck3",
-   "className": "Part",
+   "name": "Deck5",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -114,9 +206,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       35.015,
+       35.923,
        39.5,
-       9.382
+       2.355
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.991,
+        -0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.131,
+        0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck6",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.308,
+       39.5,
+       7.023
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.991,
+        0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.131,
+        -0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       34.699,
+       39.5,
+       9.298
       ],
       "orientation": [
        [
@@ -140,14 +324,14 @@
    }
   },
   {
-   "name": "Deck4",
-   "className": "Part",
+   "name": "Deck8",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -160,9 +344,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       33.491,
+       35.308,
        39.5,
-       13.872
+       7.023
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck9",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       34.089,
+       39.5,
+       11.572
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.188,
+       39.5,
+       13.747
       ],
       "orientation": [
        [
@@ -186,14 +462,14 @@
    }
   },
   {
-   "name": "Deck5",
-   "className": "Part",
+   "name": "Deck11",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -206,9 +482,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       31.393,
+       34.089,
        39.5,
-       18.125
+       11.572
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.924,
+        -0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.383,
+        0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck12",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.287,
+       39.5,
+       15.922
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.924,
+        0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.383,
+        -0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.11,
+       39.5,
+       17.961
       ],
       "orientation": [
        [
@@ -232,14 +600,14 @@
    }
   },
   {
-   "name": "Deck6",
-   "className": "Part",
+   "name": "Deck14",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -252,9 +620,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       28.759,
+       32.287,
        39.5,
-       22.068
+       15.922
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck15",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       29.933,
+       39.5,
+       20.001
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.5,
+       39.5,
+       21.868
       ],
       "orientation": [
        [
@@ -278,14 +738,14 @@
    }
   },
   {
-   "name": "Deck7",
-   "className": "Part",
+   "name": "Deck17",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
      1,
-     3.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -298,9 +758,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       23.865,
+       29.933,
        39.5,
-       23.865
+       20.001
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.793,
+        -0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.609,
+        0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck18",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.066,
+       39.5,
+       23.736
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.793,
+        0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.609,
+        -0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     3.493
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       23.814,
+       39.5,
+       23.814
       ],
       "orientation": [
        [
@@ -324,14 +876,106 @@
    }
   },
   {
-   "name": "Railing7",
+   "name": "Deck20",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.375,
+       39.5,
+       22.253
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck21",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.253,
+       39.5,
+       25.375
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing19",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
+     4.578,
      3.2,
-     0.5
+     0.499
     ],
     "Color": [
      0.345,
@@ -344,9 +988,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       24.926,
+       24.872,
        41.6,
-       24.926
+       24.872
       ],
       "orientation": [
        [
@@ -370,14 +1014,106 @@
    }
   },
   {
-   "name": "Deck8",
+   "name": "Railing20",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.502,
+       41.6,
+       23.242
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing21",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       23.242,
+       41.6,
+       26.502
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck22",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
+     4.186,
      1,
-     3.5
+     3.493
     ],
     "Color": [
      0.675,
@@ -390,9 +1126,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       20.546,
+       20.502,
        39.5,
-       26.776
+       26.718
       ],
       "orientation": [
        [
@@ -416,14 +1152,106 @@
    }
   },
   {
-   "name": "Railing8",
+   "name": "Deck23",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.253,
+       39.5,
+       25.375
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        -0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.793,
+        0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck24",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       18.75,
+       39.5,
+       28.062
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.793,
+        -0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing22",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
+     4.578,
      3.2,
-     0.5
+     0.499
     ],
     "Color": [
      0.345,
@@ -436,9 +1264,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       21.459,
+       21.413,
        41.6,
-       27.966
+       27.906
       ],
       "orientation": [
        [
@@ -462,60 +1290,14 @@
    }
   },
   {
-   "name": "Deck9",
-   "className": "Part",
+   "name": "Railing23",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
-     1,
-     3.5
-    ],
-    "Color": [
-     0.675,
-     0.682,
-     0.722
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       16.875,
-       39.5,
-       29.228
-      ],
-      "orientation": [
-       [
-        0.866,
-        0,
-        0.5
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.5,
-        0,
-        0.866
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Railing9",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     4.879,
      3.2,
-     0.5
+     0.499,
+     0.033
     ],
     "Color": [
      0.345,
@@ -528,9 +1310,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       17.625,
+       23.242,
        41.6,
-       30.527
+       26.502
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        -0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.793,
+        0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing24",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.584,
+       41.6,
+       29.309
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.793,
+        -0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     3.493
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       16.839,
+       39.5,
+       29.166
       ],
       "orientation": [
        [
@@ -554,14 +1428,14 @@
    }
   },
   {
-   "name": "Deck10",
-   "className": "Part",
+   "name": "Deck26",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     3.493,
+     0.229
     ],
     "Color": [
      0.675,
@@ -574,9 +1448,239 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       13.872,
+       18.75,
        39.5,
-       33.491
+       28.062
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck27",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.927,
+       39.5,
+       30.269
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.578,
+     3.2,
+     0.499
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.587,
+       41.6,
+       30.462
+      ],
+      "orientation": [
+       [
+        0.866,
+        0,
+        0.5
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.5,
+        0,
+        0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing26",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.584,
+       41.6,
+       29.309
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing27",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.591,
+       41.6,
+       31.615
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.747,
+       39.5,
+       33.188
       ],
       "orientation": [
        [
@@ -600,14 +1704,14 @@
    }
   },
   {
-   "name": "Deck11",
-   "className": "Part",
+   "name": "Deck29",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -620,9 +1724,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       9.382,
+       15.922,
        39.5,
-       35.015
+       32.287
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.383,
+        -0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.924,
+        0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck30",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.572,
+       39.5,
+       34.089
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.383,
+        0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.924,
+        -0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.298,
+       39.5,
+       34.699
       ],
       "orientation": [
        [
@@ -646,14 +1842,14 @@
    }
   },
   {
-   "name": "Deck12",
-   "className": "Part",
+   "name": "Deck32",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -666,9 +1862,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       4.732,
+       11.572,
        39.5,
-       35.94
+       34.089
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck33",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       7.023,
+       39.5,
+       35.308
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       4.689,
+       39.5,
+       35.616
       ],
       "orientation": [
        [
@@ -692,14 +1980,106 @@
    }
   },
   {
-   "name": "Deck13",
+   "name": "Deck35",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       7.023,
+       39.5,
+       35.308
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.131,
+        -0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.991,
+        0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck36",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.355,
+       39.5,
+       35.923
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.131,
+        0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.991,
+        -0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck37",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
+     4.186,
      1,
-     8.5
+     7.983
     ],
     "Color": [
      0.675,
@@ -714,7 +2094,7 @@
       "position": [
        0.0,
        39.5,
-       36.25
+       35.923
       ],
       "orientation": [
        [
@@ -738,14 +2118,14 @@
    }
   },
   {
-   "name": "Deck14",
-   "className": "Part",
+   "name": "Deck38",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -758,9 +2138,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -4.732,
+       2.355,
        39.5,
-       35.94
+       35.923
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.0,
+        -1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck39",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.355,
+       39.5,
+       35.923
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.0,
+        1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -4.689,
+       39.5,
+       35.616
       ],
       "orientation": [
        [
@@ -784,14 +2256,14 @@
    }
   },
   {
-   "name": "Deck15",
-   "className": "Part",
+   "name": "Deck41",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -804,9 +2276,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -9.382,
+       -2.355,
        39.5,
-       35.015
+       35.923
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.131,
+        -0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.991,
+        -0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck42",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -7.023,
+       39.5,
+       35.308
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.131,
+        0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.991,
+        0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9.298,
+       39.5,
+       34.699
       ],
       "orientation": [
        [
@@ -830,14 +2394,14 @@
    }
   },
   {
-   "name": "Deck16",
-   "className": "Part",
+   "name": "Deck44",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -850,9 +2414,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -13.872,
+       -7.023,
        39.5,
-       33.491
+       35.308
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck45",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.572,
+       39.5,
+       34.089
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck46",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -13.747,
+       39.5,
+       33.188
       ],
       "orientation": [
        [
@@ -876,14 +2532,14 @@
    }
   },
   {
-   "name": "Deck17",
-   "className": "Part",
+   "name": "Deck47",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -896,9 +2552,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -18.125,
+       -11.572,
        39.5,
-       31.393
+       34.089
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.383,
+        -0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.924,
+        -0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck48",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.922,
+       39.5,
+       32.287
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.383,
+        0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.924,
+        0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck49",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.961,
+       39.5,
+       31.11
       ],
       "orientation": [
        [
@@ -922,14 +2670,14 @@
    }
   },
   {
-   "name": "Deck18",
-   "className": "Part",
+   "name": "Deck50",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -942,9 +2690,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -22.068,
+       -15.922,
        39.5,
-       28.759
+       32.287
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.5,
+        -0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck51",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.001,
+       39.5,
+       29.933
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.5,
+        0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck52",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -21.868,
+       39.5,
+       28.5
       ],
       "orientation": [
        [
@@ -968,14 +2808,14 @@
    }
   },
   {
-   "name": "Deck19",
-   "className": "Part",
+   "name": "Deck53",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -988,9 +2828,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -25.633,
+       -20.001,
        39.5,
-       25.633
+       29.933
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.609,
+        -0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.793,
+        -0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck54",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.736,
+       39.5,
+       27.066
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.609,
+        0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.793,
+        0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck55",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.401,
+       39.5,
+       25.401
       ],
       "orientation": [
        [
@@ -1014,14 +2946,14 @@
    }
   },
   {
-   "name": "Deck20",
-   "className": "Part",
+   "name": "Deck56",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1034,9 +2966,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.759,
+       -23.736,
        39.5,
-       22.068
+       27.066
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck57",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.066,
+       39.5,
+       23.736
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck58",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.5,
+       39.5,
+       21.868
       ],
       "orientation": [
        [
@@ -1060,14 +3084,14 @@
    }
   },
   {
-   "name": "Deck21",
-   "className": "Part",
+   "name": "Deck59",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1080,9 +3104,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -31.393,
+       -27.066,
        39.5,
-       18.125
+       23.736
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.793,
+        -0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.609,
+        -0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck60",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -29.933,
+       39.5,
+       20.001
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.793,
+        0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.609,
+        0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck61",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.11,
+       39.5,
+       17.961
       ],
       "orientation": [
        [
@@ -1106,14 +3222,14 @@
    }
   },
   {
-   "name": "Deck22",
-   "className": "Part",
+   "name": "Deck62",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1126,9 +3242,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -33.491,
+       -29.933,
        39.5,
-       13.872
+       20.001
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck63",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.287,
+       39.5,
+       15.922
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck64",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -33.188,
+       39.5,
+       13.747
       ],
       "orientation": [
        [
@@ -1152,14 +3360,14 @@
    }
   },
   {
-   "name": "Deck23",
-   "className": "Part",
+   "name": "Deck65",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1172,9 +3380,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -35.015,
+       -32.287,
        39.5,
-       9.382
+       15.922
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.924,
+        -0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.383,
+        -0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck66",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -34.089,
+       39.5,
+       11.572
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.924,
+        0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.383,
+        0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck67",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -34.699,
+       39.5,
+       9.298
       ],
       "orientation": [
        [
@@ -1198,14 +3498,14 @@
    }
   },
   {
-   "name": "Deck24",
-   "className": "Part",
+   "name": "Deck68",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1218,9 +3518,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -35.94,
+       -34.089,
        39.5,
-       4.732
+       11.572
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck69",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.308,
+       39.5,
+       7.023
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck70",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.616,
+       39.5,
+       4.689
       ],
       "orientation": [
        [
@@ -1244,14 +3636,14 @@
    }
   },
   {
-   "name": "Deck25",
-   "className": "Part",
+   "name": "Deck71",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1264,7 +3656,99 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -36.25,
+       -35.308,
+       39.5,
+       7.023
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.991,
+        -0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.131,
+        -0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck72",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.923,
+       39.5,
+       2.355
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.991,
+        0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.131,
+        0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck73",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.923,
        39.5,
        0.0
       ],
@@ -1290,14 +3774,14 @@
    }
   },
   {
-   "name": "Deck26",
-   "className": "Part",
+   "name": "Deck74",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1310,9 +3794,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -35.94,
+       -35.923,
        39.5,
-       -4.732
+       2.355
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.0,
+        -1.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck75",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.923,
+       39.5,
+       -2.355
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.0,
+        1.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck76",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.616,
+       39.5,
+       -4.689
       ],
       "orientation": [
        [
@@ -1336,14 +3912,14 @@
    }
   },
   {
-   "name": "Deck27",
-   "className": "Part",
+   "name": "Deck77",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1356,9 +3932,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -35.015,
+       -35.923,
        39.5,
-       -9.382
+       -2.355
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.991,
+        0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.131,
+        -0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck78",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.308,
+       39.5,
+       -7.023
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.991,
+        -0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.131,
+        0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck79",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -34.699,
+       39.5,
+       -9.298
       ],
       "orientation": [
        [
@@ -1382,14 +4050,14 @@
    }
   },
   {
-   "name": "Deck28",
-   "className": "Part",
+   "name": "Deck80",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1402,9 +4070,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -33.491,
+       -35.308,
        39.5,
-       -13.872
+       -7.023
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck81",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -34.089,
+       39.5,
+       -11.572
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck82",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -33.188,
+       39.5,
+       -13.747
       ],
       "orientation": [
        [
@@ -1428,14 +4188,14 @@
    }
   },
   {
-   "name": "Deck29",
-   "className": "Part",
+   "name": "Deck83",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1448,9 +4208,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -31.393,
+       -34.089,
        39.5,
-       -18.125
+       -11.572
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.924,
+        0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.383,
+        -0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck84",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.287,
+       39.5,
+       -15.922
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.924,
+        -0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.383,
+        0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck85",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.11,
+       39.5,
+       -17.961
       ],
       "orientation": [
        [
@@ -1474,14 +4326,14 @@
    }
   },
   {
-   "name": "Deck30",
-   "className": "Part",
+   "name": "Deck86",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1494,9 +4346,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.759,
+       -32.287,
        39.5,
-       -22.068
+       -15.922
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck87",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -29.933,
+       39.5,
+       -20.001
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck88",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.5,
+       39.5,
+       -21.868
       ],
       "orientation": [
        [
@@ -1520,14 +4464,14 @@
    }
   },
   {
-   "name": "Deck31",
-   "className": "Part",
+   "name": "Deck89",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
      1,
-     3.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1540,9 +4484,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -23.865,
+       -29.933,
        39.5,
-       -23.865
+       -20.001
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.793,
+        0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.609,
+        -0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck90",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.066,
+       39.5,
+       -23.736
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.793,
+        -0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.609,
+        0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck91",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     3.493
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.814,
+       39.5,
+       -23.814
       ],
       "orientation": [
        [
@@ -1566,14 +4602,106 @@
    }
   },
   {
-   "name": "Railing10",
+   "name": "Deck92",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.375,
+       39.5,
+       -22.253
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck93",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.253,
+       39.5,
+       -25.375
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing28",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
+     4.578,
      3.2,
-     0.5
+     0.499
     ],
     "Color": [
      0.345,
@@ -1586,9 +4714,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -24.926,
+       -24.872,
        41.6,
-       -24.926
+       -24.872
       ],
       "orientation": [
        [
@@ -1612,14 +4740,106 @@
    }
   },
   {
-   "name": "Deck32",
+   "name": "Railing29",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -26.502,
+       41.6,
+       -23.242
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing30",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.242,
+       41.6,
+       -26.502
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck94",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
+     4.186,
      1,
-     3.5
+     3.493
     ],
     "Color": [
      0.675,
@@ -1632,9 +4852,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -20.546,
+       -20.502,
        39.5,
-       -26.776
+       -26.718
       ],
       "orientation": [
        [
@@ -1658,14 +4878,106 @@
    }
   },
   {
-   "name": "Railing11",
+   "name": "Deck95",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.253,
+       39.5,
+       -25.375
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.609,
+        0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        -0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck96",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -18.75,
+       39.5,
+       -28.062
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.609,
+        -0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing31",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
+     4.578,
      3.2,
-     0.5
+     0.499
     ],
     "Color": [
      0.345,
@@ -1678,9 +4990,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -21.459,
+       -21.413,
        41.6,
-       -27.966
+       -27.906
       ],
       "orientation": [
        [
@@ -1704,60 +5016,14 @@
    }
   },
   {
-   "name": "Deck33",
-   "className": "Part",
+   "name": "Railing32",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.879,
-     1,
-     3.5
-    ],
-    "Color": [
-     0.675,
-     0.682,
-     0.722
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -16.875,
-       39.5,
-       -29.228
-      ],
-      "orientation": [
-       [
-        -0.866,
-        0,
-        -0.5
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0.5,
-        0,
-        -0.866
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Railing12",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     4.879,
      3.2,
-     0.5
+     0.499,
+     0.033
     ],
     "Color": [
      0.345,
@@ -1770,9 +5036,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -17.625,
+       -23.242,
        41.6,
-       -30.527
+       -26.502
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.609,
+        0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        -0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing33",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.584,
+       41.6,
+       -29.309
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.609,
+        -0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck97",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     3.493
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.839,
+       39.5,
+       -29.166
       ],
       "orientation": [
        [
@@ -1796,14 +5154,14 @@
    }
   },
   {
-   "name": "Deck34",
-   "className": "Part",
+   "name": "Deck98",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     3.493,
+     0.229
     ],
     "Color": [
      0.675,
@@ -1816,9 +5174,239 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -13.872,
+       -18.75,
        39.5,
-       -33.491
+       -28.062
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.5,
+        0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck99",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     3.493,
+     0.229
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.927,
+       39.5,
+       -30.269
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.5,
+        -0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.578,
+     3.2,
+     0.499
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.587,
+       41.6,
+       -30.462
+      ],
+      "orientation": [
+       [
+        -0.866,
+        0,
+        -0.5
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.5,
+        0,
+        -0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing35",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.584,
+       41.6,
+       -29.309
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.5,
+        0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Railing36",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.2,
+     0.499,
+     0.033
+    ],
+    "Color": [
+     0.345,
+     0.353,
+     0.392
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.591,
+       41.6,
+       -31.615
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.5,
+        -0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck100",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -13.747,
+       39.5,
+       -33.188
       ],
       "orientation": [
        [
@@ -1842,14 +5430,14 @@
    }
   },
   {
-   "name": "Deck35",
-   "className": "Part",
+   "name": "Deck101",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1862,9 +5450,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -9.382,
+       -15.922,
        39.5,
-       -35.015
+       -32.287
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.383,
+        0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.924,
+        -0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck102",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.572,
+       39.5,
+       -34.089
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.383,
+        -0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.924,
+        0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck103",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9.298,
+       39.5,
+       -34.699
       ],
       "orientation": [
        [
@@ -1888,14 +5568,14 @@
    }
   },
   {
-   "name": "Deck36",
-   "className": "Part",
+   "name": "Deck104",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -1908,9 +5588,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -4.732,
+       -11.572,
        39.5,
-       -35.94
+       -34.089
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck105",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -7.023,
+       39.5,
+       -35.308
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck106",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -4.689,
+       39.5,
+       -35.616
       ],
       "orientation": [
        [
@@ -1934,14 +5706,106 @@
    }
   },
   {
-   "name": "Deck37",
+   "name": "Deck107",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -7.023,
+       39.5,
+       -35.308
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.131,
+        0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.991,
+        -0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck108",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.355,
+       39.5,
+       -35.923
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.131,
+        -0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.991,
+        0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck109",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
+     4.186,
      1,
-     8.5
+     7.983
     ],
     "Color": [
      0.675,
@@ -1956,7 +5820,7 @@
       "position": [
        -0.0,
        39.5,
-       -36.25
+       -35.923
       ],
       "orientation": [
        [
@@ -1980,14 +5844,14 @@
    }
   },
   {
-   "name": "Deck38",
-   "className": "Part",
+   "name": "Deck110",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2000,9 +5864,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       4.732,
+       -2.355,
        39.5,
-       -35.94
+       -35.923
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck111",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.355,
+       39.5,
+       -35.923
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck112",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       4.689,
+       39.5,
+       -35.616
       ],
       "orientation": [
        [
@@ -2026,14 +5982,14 @@
    }
   },
   {
-   "name": "Deck39",
-   "className": "Part",
+   "name": "Deck113",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2046,9 +6002,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       9.382,
+       2.355,
        39.5,
-       -35.015
+       -35.923
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.131,
+        0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.991,
+        0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck114",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       7.023,
+       39.5,
+       -35.308
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.131,
+        -0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.991,
+        -0.131
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck115",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.298,
+       39.5,
+       -34.699
       ],
       "orientation": [
        [
@@ -2072,14 +6120,14 @@
    }
   },
   {
-   "name": "Deck40",
-   "className": "Part",
+   "name": "Deck116",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2092,9 +6140,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       13.872,
+       7.023,
        39.5,
-       -33.491
+       -35.308
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.966,
+        0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck117",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.572,
+       39.5,
+       -34.089
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck118",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.747,
+       39.5,
+       -33.188
       ],
       "orientation": [
        [
@@ -2118,14 +6258,14 @@
    }
   },
   {
-   "name": "Deck41",
-   "className": "Part",
+   "name": "Deck119",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2138,9 +6278,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       18.125,
+       11.572,
        39.5,
-       -31.393
+       -34.089
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.383,
+        0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.924,
+        0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck120",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.922,
+       39.5,
+       -32.287
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.383,
+        -0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.924,
+        -0.383
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck121",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.961,
+       39.5,
+       -31.11
       ],
       "orientation": [
        [
@@ -2164,14 +6396,14 @@
    }
   },
   {
-   "name": "Deck42",
-   "className": "Part",
+   "name": "Deck122",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2184,9 +6416,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       22.068,
+       15.922,
        39.5,
-       -28.759
+       -32.287
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.866,
+        0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck123",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.001,
+       39.5,
+       -29.933
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        -0.5
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck124",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.868,
+       39.5,
+       -28.5
       ],
       "orientation": [
        [
@@ -2210,14 +6534,14 @@
    }
   },
   {
-   "name": "Deck43",
-   "className": "Part",
+   "name": "Deck125",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2230,9 +6554,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.633,
+       20.001,
        39.5,
-       -25.633
+       -29.933
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.793,
+        0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck126",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       23.736,
+       39.5,
+       -27.066
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.609,
+        -0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        -0.609
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck127",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.401,
+       39.5,
+       -25.401
       ],
       "orientation": [
        [
@@ -2256,14 +6672,14 @@
    }
   },
   {
-   "name": "Deck44",
-   "className": "Part",
+   "name": "Deck128",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2276,9 +6692,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       28.759,
+       23.736,
        39.5,
-       -22.068
+       -27.066
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck129",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.066,
+       39.5,
+       -23.736
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck130",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.5,
+       39.5,
+       -21.868
       ],
       "orientation": [
        [
@@ -2302,14 +6810,14 @@
    }
   },
   {
-   "name": "Deck45",
-   "className": "Part",
+   "name": "Deck131",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2322,9 +6830,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       31.393,
+       27.066,
        39.5,
-       -18.125
+       -23.736
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.793,
+        0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.609,
+        0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck132",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       29.933,
+       39.5,
+       -20.001
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.793,
+        -0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.609,
+        -0.793
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck133",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.11,
+       39.5,
+       -17.961
       ],
       "orientation": [
        [
@@ -2348,14 +6948,14 @@
    }
   },
   {
-   "name": "Deck46",
-   "className": "Part",
+   "name": "Deck134",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2368,9 +6968,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       33.491,
+       29.933,
        39.5,
-       -13.872
+       -20.001
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.5,
+        0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck135",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.287,
+       39.5,
+       -15.922
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck136",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.188,
+       39.5,
+       -13.747
       ],
       "orientation": [
        [
@@ -2394,14 +7086,14 @@
    }
   },
   {
-   "name": "Deck47",
-   "className": "Part",
+   "name": "Deck137",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2414,9 +7106,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       35.015,
+       32.287,
        39.5,
-       -9.382
+       -15.922
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.924,
+        0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.383,
+        0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck138",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       34.089,
+       39.5,
+       -11.572
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.924,
+        -0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.383,
+        -0.924
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck139",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       34.699,
+       39.5,
+       -9.298
       ],
       "orientation": [
        [
@@ -2440,14 +7224,14 @@
    }
   },
   {
-   "name": "Deck48",
-   "className": "Part",
+   "name": "Deck140",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     5.567,
      1,
-     8.5
+     7.983,
+     0.523
     ],
     "Color": [
      0.675,
@@ -2460,9 +7244,101 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       35.94,
+       34.089,
        39.5,
-       -4.732
+       -11.572
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.259,
+        0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck141",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.308,
+       39.5,
+       -7.023
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck142",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     1,
+     7.983
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.616,
+       39.5,
+       -4.689
       ],
       "orientation": [
        [
@@ -2486,14 +7362,106 @@
    }
   },
   {
+   "name": "Deck143",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.308,
+       39.5,
+       -7.023
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.991,
+        0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.131,
+        0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Deck144",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1,
+     7.983,
+     0.523
+    ],
+    "Color": [
+     0.675,
+     0.682,
+     0.722
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.923,
+       39.5,
+       -2.355
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.991,
+        -0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.131,
+        -0.991
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
    "name": "DeckEdge",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     4.186,
+     0.06,
+     0.399
     ],
     "Color": [
      0.314,
@@ -2506,8 +7474,8 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       32.2,
-       40.025,
+       32.131,
+       40.03,
        0.0
       ],
       "orientation": [
@@ -2536,13 +7504,13 @@
   },
   {
    "name": "DeckEdge2",
-   "className": "Part",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2555,9 +7523,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       31.925,
-       40.025,
-       4.203
+       32.131,
+       40.03,
+       -2.106
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        -0.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge3",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.131,
+       40.03,
+       2.106
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.856,
+       40.03,
+       4.194
       ],
       "orientation": [
        [
@@ -2584,14 +7650,14 @@
    }
   },
   {
-   "name": "DeckEdge3",
-   "className": "Part",
+   "name": "DeckEdge5",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2604,9 +7670,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       31.103,
-       40.025,
-       8.334
+       32.131,
+       40.03,
+       2.106
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.991,
+        -0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.131,
+        0.991
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge6",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.581,
+       40.03,
+       6.282
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.991,
+        0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.131,
+        -0.991
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.036,
+       40.03,
+       8.316
       ],
       "orientation": [
        [
@@ -2633,14 +7797,14 @@
    }
   },
   {
-   "name": "DeckEdge4",
-   "className": "Part",
+   "name": "DeckEdge8",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2653,9 +7817,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       29.749,
-       40.025,
-       12.322
+       31.581,
+       40.03,
+       6.282
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge9",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30.491,
+       40.03,
+       10.35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.259,
+        -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       29.685,
+       40.03,
+       12.296
       ],
       "orientation": [
        [
@@ -2682,14 +7944,14 @@
    }
   },
   {
-   "name": "DeckEdge5",
-   "className": "Part",
+   "name": "DeckEdge11",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2702,9 +7964,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       27.886,
-       40.025,
-       16.1
+       30.491,
+       40.03,
+       10.35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.924,
+        -0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.383,
+        0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge12",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.879,
+       40.03,
+       14.242
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.924,
+        0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.383,
+        -0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.826,
+       40.03,
+       16.066
       ],
       "orientation": [
        [
@@ -2731,14 +8091,14 @@
    }
   },
   {
-   "name": "DeckEdge6",
-   "className": "Part",
+   "name": "DeckEdge14",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2751,9 +8111,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.546,
-       40.025,
-       19.602
+       28.879,
+       40.03,
+       14.242
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge15",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.773,
+       40.03,
+       17.889
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.5,
+        -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.491,
+       40.03,
+       19.56
       ],
       "orientation": [
        [
@@ -2780,14 +8238,14 @@
    }
   },
   {
-   "name": "DeckEdge7",
-   "className": "Part",
+   "name": "DeckEdge17",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2800,9 +8258,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       22.769,
-       40.025,
-       22.769
+       26.773,
+       40.03,
+       17.889
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.793,
+        -0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.609,
+        0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge18",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.209,
+       40.03,
+       21.231
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.793,
+        0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.609,
+        -0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.72,
+       40.03,
+       22.72
       ],
       "orientation": [
        [
@@ -2829,14 +8385,14 @@
    }
   },
   {
-   "name": "DeckEdge8",
-   "className": "Part",
+   "name": "DeckEdge20",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2849,9 +8405,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       19.602,
-       40.025,
-       25.546
+       24.209,
+       40.03,
+       21.231
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge21",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.231,
+       40.03,
+       24.209
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.56,
+       40.03,
+       25.491
       ],
       "orientation": [
        [
@@ -2878,14 +8532,14 @@
    }
   },
   {
-   "name": "DeckEdge9",
-   "className": "Part",
+   "name": "DeckEdge23",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2898,9 +8552,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       16.1,
-       40.025,
-       27.886
+       21.231,
+       40.03,
+       24.209
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        -0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.793,
+        0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge24",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.889,
+       40.03,
+       26.773
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.793,
+        -0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       16.066,
+       40.03,
+       27.826
       ],
       "orientation": [
        [
@@ -2927,14 +8679,14 @@
    }
   },
   {
-   "name": "DeckEdge10",
-   "className": "Part",
+   "name": "DeckEdge26",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2947,9 +8699,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       12.322,
-       40.025,
-       29.749
+       17.889,
+       40.03,
+       26.773
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge27",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.242,
+       40.03,
+       28.879
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.296,
+       40.03,
+       29.685
       ],
       "orientation": [
        [
@@ -2976,14 +8826,14 @@
    }
   },
   {
-   "name": "DeckEdge11",
-   "className": "Part",
+   "name": "DeckEdge29",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -2996,9 +8846,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       8.334,
-       40.025,
-       31.103
+       14.242,
+       40.03,
+       28.879
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.383,
+        -0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.924,
+        0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge30",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.35,
+       40.03,
+       30.491
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.383,
+        0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.924,
+        -0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.316,
+       40.03,
+       31.036
       ],
       "orientation": [
        [
@@ -3025,14 +8973,14 @@
    }
   },
   {
-   "name": "DeckEdge12",
-   "className": "Part",
+   "name": "DeckEdge32",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3045,9 +8993,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       4.203,
-       40.025,
-       31.925
+       10.35,
+       40.03,
+       30.491
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge33",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.282,
+       40.03,
+       31.581
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.966,
+        -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       4.194,
+       40.03,
+       31.856
       ],
       "orientation": [
        [
@@ -3074,14 +9120,112 @@
    }
   },
   {
-   "name": "DeckEdge13",
+   "name": "DeckEdge35",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.282,
+       40.03,
+       31.581
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.131,
+        -0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.991,
+        0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge36",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.106,
+       40.03,
+       32.131
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.131,
+        0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        -0.991,
+        -0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge37",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     4.186,
+     0.06,
+     0.399
     ],
     "Color": [
      0.314,
@@ -3095,8 +9239,8 @@
      "CFrame": {
       "position": [
        0.0,
-       40.025,
-       32.2
+       40.03,
+       32.131
       ],
       "orientation": [
        [
@@ -3123,14 +9267,14 @@
    }
   },
   {
-   "name": "DeckEdge14",
-   "className": "Part",
+   "name": "DeckEdge38",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3143,9 +9287,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -4.203,
-       40.025,
-       31.925
+       2.106,
+       40.03,
+       32.131
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -1.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge39",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.106,
+       40.03,
+       32.131
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -1.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -4.194,
+       40.03,
+       31.856
       ],
       "orientation": [
        [
@@ -3172,14 +9414,14 @@
    }
   },
   {
-   "name": "DeckEdge15",
-   "className": "Part",
+   "name": "DeckEdge41",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3192,9 +9434,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -8.334,
-       40.025,
-       31.103
+       -2.106,
+       40.03,
+       32.131
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.131,
+        -0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.991,
+        -0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge42",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.282,
+       40.03,
+       31.581
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.131,
+        0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.991,
+        0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -8.316,
+       40.03,
+       31.036
       ],
       "orientation": [
        [
@@ -3221,14 +9561,14 @@
    }
   },
   {
-   "name": "DeckEdge16",
-   "className": "Part",
+   "name": "DeckEdge44",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3241,9 +9581,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -12.322,
-       40.025,
-       29.749
+       -6.282,
+       40.03,
+       31.581
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge45",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -10.35,
+       40.03,
+       30.491
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.966,
+        0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge46",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.296,
+       40.03,
+       29.685
       ],
       "orientation": [
        [
@@ -3270,14 +9708,14 @@
    }
   },
   {
-   "name": "DeckEdge17",
-   "className": "Part",
+   "name": "DeckEdge47",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3290,9 +9728,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -16.1,
-       40.025,
-       27.886
+       -10.35,
+       40.03,
+       30.491
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.383,
+        -0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.924,
+        -0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge48",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.242,
+       40.03,
+       28.879
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.383,
+        0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.924,
+        0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge49",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.066,
+       40.03,
+       27.826
       ],
       "orientation": [
        [
@@ -3319,14 +9855,14 @@
    }
   },
   {
-   "name": "DeckEdge18",
-   "className": "Part",
+   "name": "DeckEdge50",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3339,9 +9875,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -19.602,
-       40.025,
-       25.546
+       -14.242,
+       40.03,
+       28.879
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.5,
+        -0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        -0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge51",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.889,
+       40.03,
+       26.773
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.5,
+        0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.866,
+        0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge52",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.56,
+       40.03,
+       25.491
       ],
       "orientation": [
        [
@@ -3368,14 +10002,14 @@
    }
   },
   {
-   "name": "DeckEdge19",
-   "className": "Part",
+   "name": "DeckEdge53",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3388,9 +10022,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -22.769,
-       40.025,
-       22.769
+       -17.889,
+       40.03,
+       26.773
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.609,
+        -0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.793,
+        -0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge54",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -21.231,
+       40.03,
+       24.209
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.609,
+        0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.793,
+        0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge55",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.72,
+       40.03,
+       22.72
       ],
       "orientation": [
        [
@@ -3417,14 +10149,14 @@
    }
   },
   {
-   "name": "DeckEdge20",
-   "className": "Part",
+   "name": "DeckEdge56",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3437,9 +10169,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -25.546,
-       40.025,
-       19.602
+       -21.231,
+       40.03,
+       24.209
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge57",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.209,
+       40.03,
+       21.231
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.707,
+        0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge58",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.491,
+       40.03,
+       19.56
       ],
       "orientation": [
        [
@@ -3466,14 +10296,14 @@
    }
   },
   {
-   "name": "DeckEdge21",
-   "className": "Part",
+   "name": "DeckEdge59",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3486,9 +10316,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -27.886,
-       40.025,
-       16.1
+       -24.209,
+       40.03,
+       21.231
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.793,
+        -0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.609,
+        -0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge60",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -26.773,
+       40.03,
+       17.889
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.793,
+        0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.609,
+        0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge61",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.826,
+       40.03,
+       16.066
       ],
       "orientation": [
        [
@@ -3515,14 +10443,14 @@
    }
   },
   {
-   "name": "DeckEdge22",
-   "className": "Part",
+   "name": "DeckEdge62",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3535,9 +10463,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -29.749,
-       40.025,
-       12.322
+       -26.773,
+       40.03,
+       17.889
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge63",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.879,
+       40.03,
+       14.242
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.5,
+        0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge64",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -29.685,
+       40.03,
+       12.296
       ],
       "orientation": [
        [
@@ -3564,14 +10590,14 @@
    }
   },
   {
-   "name": "DeckEdge23",
-   "className": "Part",
+   "name": "DeckEdge65",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3584,9 +10610,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -31.103,
-       40.025,
-       8.334
+       -28.879,
+       40.03,
+       14.242
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.924,
+        -0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.383,
+        -0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge66",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.491,
+       40.03,
+       10.35
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.924,
+        0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.383,
+        0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge67",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.036,
+       40.03,
+       8.316
       ],
       "orientation": [
        [
@@ -3613,14 +10737,14 @@
    }
   },
   {
-   "name": "DeckEdge24",
-   "className": "Part",
+   "name": "DeckEdge68",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3633,9 +10757,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -31.925,
-       40.025,
-       4.203
+       -30.491,
+       40.03,
+       10.35
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge69",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.581,
+       40.03,
+       6.282
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.259,
+        0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge70",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.856,
+       40.03,
+       4.194
       ],
       "orientation": [
        [
@@ -3662,14 +10884,14 @@
    }
   },
   {
-   "name": "DeckEdge25",
-   "className": "Part",
+   "name": "DeckEdge71",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3682,8 +10904,106 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -32.2,
-       40.025,
+       -31.581,
+       40.03,
+       6.282
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.991,
+        -0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.131,
+        -0.991
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge72",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.131,
+       40.03,
+       2.106
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.991,
+        0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        -0.131,
+        0.991
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge73",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.131,
+       40.03,
        0.0
       ],
       "orientation": [
@@ -3711,14 +11031,14 @@
    }
   },
   {
-   "name": "DeckEdge26",
-   "className": "Part",
+   "name": "DeckEdge74",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3731,9 +11051,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -31.925,
-       40.025,
-       -4.203
+       -32.131,
+       40.03,
+       2.106
+      ],
+      "orientation": [
+       [
+        -0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge75",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.131,
+       40.03,
+       -2.106
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge76",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.856,
+       40.03,
+       -4.194
       ],
       "orientation": [
        [
@@ -3760,14 +11178,14 @@
    }
   },
   {
-   "name": "DeckEdge27",
-   "className": "Part",
+   "name": "DeckEdge77",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3780,9 +11198,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -31.103,
-       40.025,
-       -8.334
+       -32.131,
+       40.03,
+       -2.106
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.991,
+        0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.131,
+        -0.991
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge78",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.581,
+       40.03,
+       -6.282
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.991,
+        -0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.131,
+        0.991
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge79",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -31.036,
+       40.03,
+       -8.316
       ],
       "orientation": [
        [
@@ -3809,14 +11325,14 @@
    }
   },
   {
-   "name": "DeckEdge28",
-   "className": "Part",
+   "name": "DeckEdge80",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3829,9 +11345,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -29.749,
-       40.025,
-       -12.322
+       -31.581,
+       40.03,
+       -6.282
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge81",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.491,
+       40.03,
+       -10.35
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge82",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -29.685,
+       40.03,
+       -12.296
       ],
       "orientation": [
        [
@@ -3858,14 +11472,14 @@
    }
   },
   {
-   "name": "DeckEdge29",
-   "className": "Part",
+   "name": "DeckEdge83",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3878,9 +11492,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -27.886,
-       40.025,
-       -16.1
+       -30.491,
+       40.03,
+       -10.35
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.924,
+        0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.383,
+        -0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge84",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.879,
+       40.03,
+       -14.242
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.924,
+        -0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.383,
+        0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge85",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.826,
+       40.03,
+       -16.066
       ],
       "orientation": [
        [
@@ -3907,14 +11619,14 @@
    }
   },
   {
-   "name": "DeckEdge30",
-   "className": "Part",
+   "name": "DeckEdge86",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3927,9 +11639,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -25.546,
-       40.025,
-       -19.602
+       -28.879,
+       40.03,
+       -14.242
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge87",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -26.773,
+       40.03,
+       -17.889
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge88",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.491,
+       40.03,
+       -19.56
       ],
       "orientation": [
        [
@@ -3956,14 +11766,14 @@
    }
   },
   {
-   "name": "DeckEdge31",
-   "className": "Part",
+   "name": "DeckEdge89",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -3976,9 +11786,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -22.769,
-       40.025,
-       -22.769
+       -26.773,
+       40.03,
+       -17.889
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.793,
+        0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.609,
+        -0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge90",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.209,
+       40.03,
+       -21.231
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.793,
+        -0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.609,
+        0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge91",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.72,
+       40.03,
+       -22.72
       ],
       "orientation": [
        [
@@ -4005,14 +11913,14 @@
    }
   },
   {
-   "name": "DeckEdge32",
-   "className": "Part",
+   "name": "DeckEdge92",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4025,9 +11933,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -19.602,
-       40.025,
-       -25.546
+       -24.209,
+       40.03,
+       -21.231
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge93",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -21.231,
+       40.03,
+       -24.209
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge94",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.56,
+       40.03,
+       -25.491
       ],
       "orientation": [
        [
@@ -4054,14 +12060,14 @@
    }
   },
   {
-   "name": "DeckEdge33",
-   "className": "Part",
+   "name": "DeckEdge95",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4074,9 +12080,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -16.1,
-       40.025,
-       -27.886
+       -21.231,
+       40.03,
+       -24.209
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.609,
+        0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        -0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge96",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.889,
+       40.03,
+       -26.773
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.609,
+        -0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge97",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.066,
+       40.03,
+       -27.826
       ],
       "orientation": [
        [
@@ -4103,14 +12207,14 @@
    }
   },
   {
-   "name": "DeckEdge34",
-   "className": "Part",
+   "name": "DeckEdge98",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4123,9 +12227,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -12.322,
-       40.025,
-       -29.749
+       -17.889,
+       40.03,
+       -26.773
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.5,
+        0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        -0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge99",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.242,
+       40.03,
+       -28.879
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.5,
+        -0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge100",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.296,
+       40.03,
+       -29.685
       ],
       "orientation": [
        [
@@ -4152,14 +12354,14 @@
    }
   },
   {
-   "name": "DeckEdge35",
-   "className": "Part",
+   "name": "DeckEdge101",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4172,9 +12374,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -8.334,
-       40.025,
-       -31.103
+       -14.242,
+       40.03,
+       -28.879
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.383,
+        0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.924,
+        -0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge102",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -10.35,
+       40.03,
+       -30.491
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.383,
+        -0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.924,
+        0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge103",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -8.316,
+       40.03,
+       -31.036
       ],
       "orientation": [
        [
@@ -4201,14 +12501,14 @@
    }
   },
   {
-   "name": "DeckEdge36",
-   "className": "Part",
+   "name": "DeckEdge104",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4221,9 +12521,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -4.203,
-       40.025,
-       -31.925
+       -10.35,
+       40.03,
+       -30.491
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge105",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.282,
+       40.03,
+       -31.581
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge106",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -4.194,
+       40.03,
+       -31.856
       ],
       "orientation": [
        [
@@ -4250,14 +12648,112 @@
    }
   },
   {
-   "name": "DeckEdge37",
+   "name": "DeckEdge107",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.282,
+       40.03,
+       -31.581
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.131,
+        0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.991,
+        -0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge108",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.106,
+       40.03,
+       -32.131
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.131,
+        -0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.991,
+        0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge109",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     4.186,
+     0.06,
+     0.399
     ],
     "Color": [
      0.314,
@@ -4271,8 +12767,8 @@
      "CFrame": {
       "position": [
        -0.0,
-       40.025,
-       -32.2
+       40.03,
+       -32.131
       ],
       "orientation": [
        [
@@ -4299,14 +12795,14 @@
    }
   },
   {
-   "name": "DeckEdge38",
-   "className": "Part",
+   "name": "DeckEdge110",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4319,9 +12815,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       4.203,
-       40.025,
-       -31.925
+       -2.106,
+       40.03,
+       -32.131
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        1.0
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge111",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.106,
+       40.03,
+       -32.131
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge112",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       4.194,
+       40.03,
+       -31.856
       ],
       "orientation": [
        [
@@ -4348,14 +12942,14 @@
    }
   },
   {
-   "name": "DeckEdge39",
-   "className": "Part",
+   "name": "DeckEdge113",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4368,9 +12962,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       8.334,
-       40.025,
-       -31.103
+       2.106,
+       40.03,
+       -32.131
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.131,
+        0.991
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.991,
+        0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge114",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.282,
+       40.03,
+       -31.581
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.131,
+        -0.991
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.991,
+        -0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge115",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.316,
+       40.03,
+       -31.036
       ],
       "orientation": [
        [
@@ -4397,14 +13089,14 @@
    }
   },
   {
-   "name": "DeckEdge40",
-   "className": "Part",
+   "name": "DeckEdge116",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4417,9 +13109,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       12.322,
-       40.025,
-       -29.749
+       6.282,
+       40.03,
+       -31.581
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.259,
+        0.966
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.966,
+        0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge117",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.35,
+       40.03,
+       -30.491
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.259,
+        -0.966
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.966,
+        -0.259
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge118",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.296,
+       40.03,
+       -29.685
       ],
       "orientation": [
        [
@@ -4446,14 +13236,14 @@
    }
   },
   {
-   "name": "DeckEdge41",
-   "className": "Part",
+   "name": "DeckEdge119",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4466,9 +13256,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       16.1,
-       40.025,
-       -27.886
+       10.35,
+       40.03,
+       -30.491
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.383,
+        0.924
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.924,
+        0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge120",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.242,
+       40.03,
+       -28.879
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.383,
+        -0.924
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.924,
+        -0.383
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge121",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       16.066,
+       40.03,
+       -27.826
       ],
       "orientation": [
        [
@@ -4495,14 +13383,14 @@
    }
   },
   {
-   "name": "DeckEdge42",
-   "className": "Part",
+   "name": "DeckEdge122",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4515,9 +13403,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       19.602,
-       40.025,
-       -25.546
+       14.242,
+       40.03,
+       -28.879
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.5,
+        0.866
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.866,
+        0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge123",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.889,
+       40.03,
+       -26.773
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.5,
+        -0.866
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.866,
+        -0.5
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge124",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.56,
+       40.03,
+       -25.491
       ],
       "orientation": [
        [
@@ -4544,14 +13530,14 @@
    }
   },
   {
-   "name": "DeckEdge43",
-   "className": "Part",
+   "name": "DeckEdge125",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4564,9 +13550,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       22.769,
-       40.025,
-       -22.769
+       17.889,
+       40.03,
+       -26.773
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.609,
+        0.793
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.793,
+        0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge126",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.231,
+       40.03,
+       -24.209
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.609,
+        -0.793
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.793,
+        -0.609
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge127",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.72,
+       40.03,
+       -22.72
       ],
       "orientation": [
        [
@@ -4593,14 +13677,14 @@
    }
   },
   {
-   "name": "DeckEdge44",
-   "className": "Part",
+   "name": "DeckEdge128",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4613,9 +13697,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       25.546,
-       40.025,
-       -19.602
+       21.231,
+       40.03,
+       -24.209
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.707,
+        0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge129",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.209,
+       40.03,
+       -21.231
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.707,
+        -0.707
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.707,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge130",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.491,
+       40.03,
+       -19.56
       ],
       "orientation": [
        [
@@ -4642,14 +13824,14 @@
    }
   },
   {
-   "name": "DeckEdge45",
-   "className": "Part",
+   "name": "DeckEdge131",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4662,9 +13844,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       27.886,
-       40.025,
-       -16.1
+       24.209,
+       40.03,
+       -21.231
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.793,
+        0.609
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.609,
+        0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge132",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       26.773,
+       40.03,
+       -17.889
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.793,
+        -0.609
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.609,
+        -0.793
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge133",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.826,
+       40.03,
+       -16.066
       ],
       "orientation": [
        [
@@ -4691,14 +13971,14 @@
    }
   },
   {
-   "name": "DeckEdge46",
-   "className": "Part",
+   "name": "DeckEdge134",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4711,9 +13991,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       29.749,
-       40.025,
-       -12.322
+       26.773,
+       40.03,
+       -17.889
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.866,
+        0.5
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.5,
+        0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge135",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.879,
+       40.03,
+       -14.242
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.866,
+        -0.5
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.5,
+        -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge136",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       29.685,
+       40.03,
+       -12.296
       ],
       "orientation": [
        [
@@ -4740,14 +14118,14 @@
    }
   },
   {
-   "name": "DeckEdge47",
-   "className": "Part",
+   "name": "DeckEdge137",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4760,9 +14138,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       31.103,
-       40.025,
-       -8.334
+       28.879,
+       40.03,
+       -14.242
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.924,
+        0.383
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.383,
+        0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge138",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30.491,
+       40.03,
+       -10.35
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.924,
+        -0.383
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.383,
+        -0.924
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge139",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.036,
+       40.03,
+       -8.316
       ],
       "orientation": [
        [
@@ -4789,14 +14265,14 @@
    }
   },
   {
-   "name": "DeckEdge48",
-   "className": "Part",
+   "name": "DeckEdge140",
+   "className": "WedgePart",
    "properties": {
     "Anchored": true,
     "Size": [
-     4.453,
-     0.05,
-     0.4
+     0.06,
+     0.399,
+     0.026
     ],
     "Color": [
      0.314,
@@ -4809,9 +14285,107 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       31.925,
-       40.025,
-       -4.203
+       30.491,
+       40.03,
+       -10.35
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.966,
+        0.259
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.259,
+        0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge141",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.581,
+       40.03,
+       -6.282
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.966,
+        -0.259
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.259,
+        -0.966
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge142",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.186,
+     0.06,
+     0.399
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.856,
+       40.03,
+       -4.194
       ],
       "orientation": [
        [
@@ -4828,6 +14402,104 @@
         -0.991,
         0,
         -0.131
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge143",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.581,
+       40.03,
+       -6.282
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.991,
+        0.131
+       ],
+       [
+        1.0,
+        0,
+        0
+       ],
+       [
+        -0.0,
+        0.131,
+        0.991
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeckEdge144",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     0.399,
+     0.026
+    ],
+    "Color": [
+     0.314,
+     0.784,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.131,
+       40.03,
+       -2.106
+      ],
+      "orientation": [
+       [
+        -0.0,
+        -0.991,
+        -0.131
+       ],
+       [
+        -1.0,
+        0,
+        0
+       ],
+       [
+        0.0,
+        0.131,
+        -0.991
        ]
       ]
      }

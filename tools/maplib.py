@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Shared helpers for the map generators (tools/*_layout.py): build parts in code and write them
 as Rojo files under src/maps/<Name>/ so Rojo syncs the map into Studio by itself. Blocks,
-cylinders, straight walls with doors and windows, slabs with holes, round walls and floors, lights,
-text, particles.
+cylinders, flat triangles, straight walls with doors and windows, slabs with holes, round walls and
+floors (exact pieces), ladders, lights, text, particles. Every generator runs tools/mapcheck.py on
+what it builds (flicker, windows, reach) before writing.
 
     from maplib import Map, rot_x, rot_y, rot_z, polar
     m = Map(materials={"wall": "Plaster"}, colors={"wall": (200, 200, 200)})
@@ -168,36 +169,102 @@ class Map:
                 self.block(group, name, fixed[0], fixed[1], lo, hi, a, b, color)
         for a, b, lo, hi in panes:
             glassy = {"Material": "Glass", "Transparency": 0.6, "CastShadow": False}
+            # The sill strips sit on the wall's faces (not in the plane of the sill's top, which
+            # would flicker through the glass).
             if axis == "X":
                 self.block(group, "Window", a, b, lo, hi, fixed[0], fixed[1], glass, **glassy)
-                self.block(group, "WindowFrame", a, b, lo - 0.3, lo, fixed[0] - 0.2,
-                           fixed[1] + 0.2, frame, Material="Wood", **NO_HIT)
+                for f0, f1 in ((fixed[0] - 0.2, fixed[0]), (fixed[1], fixed[1] + 0.2)):
+                    self.block(group, "WindowFrame", a, b, lo - 0.3, lo + 0.1, f0, f1, frame,
+                               Material="Wood", **NO_HIT)
             else:
                 self.block(group, "Window", fixed[0], fixed[1], lo, hi, a, b, glass, **glassy)
-                self.block(group, "WindowFrame", fixed[0] - 0.2, fixed[1] + 0.2, lo - 0.3, lo, a,
-                           b, frame, Material="Wood", **NO_HIT)
+                for f0, f1 in ((fixed[0] - 0.2, fixed[0]), (fixed[1], fixed[1] + 0.2)):
+                    self.block(group, "WindowFrame", f0, f1, lo - 0.3, lo + 0.1, a, b, frame,
+                               Material="Wood", **NO_HIT)
+
+    def flat_triangle(self, group, name, corner, a, b, y0, y1, color, **props):
+        """A right triangle lying flat (a WedgePart on its side) from y0 to y1: the right angle
+        at `corner`, its legs running to `a` and `b` (points (x, z))."""
+        la = math.hypot(a[0] - corner[0], a[1] - corner[1])
+        lb = math.hypot(b[0] - corner[0], b[1] - corner[1])
+        u = ((a[0] - corner[0]) / la, 0, (a[1] - corner[1]) / la)  # the wedge's Y: towards a
+        w = (-(b[0] - corner[0]) / lb, 0, -(b[1] - corner[1]) / lb)  # its Z: away from b
+        x = (u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0])
+        rows = [[x[i], u[i], w[i]] for i in range(3)]
+        center = (corner[0] + (a[0] - corner[0]) / 2 + (b[0] - corner[0]) / 2, (y0 + y1) / 2,
+                  corner[1] + (a[1] - corner[1]) / 2 + (b[1] - corner[1]) / 2)
+        node = self.part(group, name, (y1 - y0, la, lb), center, color, rows, **props)
+        node["className"] = "WedgePart"
+        return node
+
+    def ring_segment(self, group, name, r0, r1, degrees, span, y0, y1, color, **props):
+        """One piece of a round floor or wall: the exact shape between radius r0 and r1 over
+        `span` degrees centred on `degrees` (a block and two flat wedges), so neighbouring pieces
+        meet edge to edge instead of overlapping (overlaps flicker)."""
+        half = math.radians(span / 2)
+        s, c = math.sin(half), math.cos(half)
+        m = math.radians(degrees)
+        radial, tangent = (math.cos(m), math.sin(m)), (-math.sin(m), math.cos(m))
+
+        def world(t, r):
+            return (t * tangent[0] + r * radial[0], t * tangent[1] + r * radial[1])
+
+        mid = world(0, (r0 + r1) * c / 2)
+        parts = [self.part(group, name, (2 * r0 * s, y1 - y0, (r1 - r0) * c),
+                           (mid[0], (y0 + y1) / 2, mid[1]), color, facing_out(degrees), **props)]
+        if r0 * s < r1 * s - 1e-3:
+            for side in (-1, 1):
+                parts.append(self.flat_triangle(group, name, world(side * r0 * s, r1 * c),
+                                                world(side * r0 * s, r0 * c),
+                                                world(side * r1 * s, r1 * c), y0, y1, color,
+                                                **props))
+        return parts
+
+    def ladder(self, group, x, z, facing, y0, y1, width=4, color=(70, 74, 82), name="Ladder"):
+        """A ladder you climb (Roblox characters climb TrussParts): from the floor at y0 up to the
+        ledge at y1, against the face at (x, z). `facing` is the way that face looks (x, z): the
+        ladder stands out that way and you climb it facing back. Invisible trusses (2 x 2, one per
+        2 studs of width, their tops level with the ledge) do the climbing; the rails and rungs
+        in front are decoration."""
+        length = math.hypot(*facing)
+        fx, fz = facing[0] / length, facing[1] / length
+        tx, tz = fz, -fx  # along the face
+        rows = [[tx, 0, fx], [0, 1, 0], [tz, 0, fz]]  # local X along the face, Z out from it
+        height = 2 * math.ceil((y1 - y0) / 2 - 1e-6)
+        count = max(1, round(width / 2))
+        for k in range(count):
+            off = (k - (count - 1) / 2) * 2
+            node = self.part(group, "LadderTruss", (2, height, 2),
+                             (x + fx + tx * off, y1 - height / 2, z + fz + tz * off), (90, 90, 96),
+                             rows, Transparency=1, CastShadow=False)
+            node["className"] = "TrussPart"
+        rail_out = 1.7
+        for side in (-1, 1):
+            self.part(group, name + "Rail", (0.3, y1 - y0 + 3, 0.3),
+                      (x + fx * rail_out + tx * side * width / 2, (y0 + y1 + 3) / 2,
+                       z + fz * rail_out + tz * side * width / 2), color, rows, Material="Metal",
+                      **NO_HIT)
+        y = y0 + 1
+        while y < y1 - 0.2:
+            self.part(group, name + "Rung", (width, 0.2, 0.2), (x + fx * rail_out, y, z + fz * rail_out),
+                      color, rows, Material="Metal", **NO_HIT)
+            y += 1.2
 
     def ring_wall(self, group, name, radius, thickness, y0, y1, segments, color, skip=(),
                   **props):
-        """A round wall: `segments` flat panels whose inner faces sit at `radius` (they overlap a
-        little so there are no gaps). `skip` lists panel indices to leave out (doorways)."""
-        width = 2 * math.pi * (radius + thickness) / segments * 1.04
+        """A round wall of `segments` pieces whose inner faces sit at `radius`; `skip` lists
+        piece indices to leave out (doorways). Pieces meet exactly (ring_segment)."""
+        span = 360 / segments
         for i in range(segments):
-            if i in skip:
-                continue
-            degrees = i * 360 / segments
-            x, z = polar(radius + thickness / 2, degrees)
-            self.part(group, name, (width, y1 - y0, thickness), (x, (y0 + y1) / 2, z), color,
-                      facing_out(degrees), **props)
+            if i not in skip:
+                self.ring_segment(group, name, radius, radius + thickness, i * span, span, y0, y1,
+                                  color, **props)
 
     def ring_floor(self, group, name, r0, r1, y0, y1, segments, color, **props):
-        """A flat ring from radius r0 to r1 (wedges as overlapping boxes)."""
-        width = 2 * math.pi * r1 / segments * 1.05
+        """A flat ring from radius r0 to r1, in pieces that meet exactly (ring_segment)."""
+        span = 360 / segments
         for i in range(segments):
-            degrees = i * 360 / segments
-            x, z = polar((r0 + r1) / 2, degrees)
-            self.part(group, name, (width, y1 - y0, r1 - r0), (x, (y0 + y1) / 2, z), color,
-                      facing_out(degrees), **props)
+            self.ring_segment(group, name, r0, r1, i * span, span, y0, y1, color, **props)
 
     def on_ring(self, group, name, radius, degrees, y, size, color, out=0.0, children=None,
                 **props):

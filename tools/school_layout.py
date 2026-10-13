@@ -32,16 +32,18 @@ import re
 import sys
 
 sys.path.insert(0, "tools")
+import mapcheck  # noqa: E402
 from maplib import IDENTITY, NO_HIT, SMOKE, SPARK, Map, rot_x, rot_y, rot_z  # noqa: E402
 
 OUT = "src/maps/School"
 ATTRIBUTES = {"DisplayName": "School", "MinPlayers": 2, "MaxPlayers": 8, "InRotation": True,
-              "Lighting": "Indoor"}
+              "Lighting": "Indoor", "OutOfBounds": "Roof,Skylight,LockerIsland"}
 
 IN_X, IN_Z = 64, 72  # inside faces of the outer walls
 WALL = 2
 F1, F1_TOP, F2, F2_TOP, ROOF = 0, 16, 18, 34, 37  # floors, ceilings, roof top
 DOOR, DOOR2 = F1 + 10, F2 + 10  # doorway tops on each floor
+BAND_DROP = 0.1  # walls change from ground floor to upper floor this far under the floor top
 
 # Openings in the upper floor (x0, x1, z0, z1).
 GYM = (-40, 40, -72, -32)
@@ -50,7 +52,7 @@ VOID = (-12, 12, -12, 12)  # the atrium, open up to the skylight
 NW_STAIR = (-64, -40, -72, -40)
 SE_STAIR = (40, 64, 40, 72)
 LAB_HOLE = (-52, -44, -20, -12)  # the science lab floor, fallen into Room 101
-COLLAPSE = (4, 36, 37, 43)  # the upper hall floor, fallen into the cafeteria
+COLLAPSE = (4, 36, 37, 42.5)  # the upper hall floor, fallen into the cafeteria
 
 SPRINGBOARD = (0, -60)
 LAUNCH = (0, 95, -12)  # clears the track railing and lands mid-track (tune in game)
@@ -119,29 +121,29 @@ INSIDE_WALLS = {
                      (40, 46, DOOR)],
               "f2": [(-60, -52, DOOR2), (-16, 16, DOOR2), (56, 62, DOOR2)]},
     # Along Z at X -32: the west wing against the halls.
-    "west": {"axis": "Z", "line": -32, "span": (-32, 32),
+    "west": {"axis": "Z", "line": -32, "span": (-31, 31),
              "f1": [(-16, -8, DOOR), (8, 16, DOOR)],
              "f2": [(-16, -8, DOOR2), (8, 16, DOOR2), (-28, -20, 30, 22), (20, 28, 30, 22)]},
     # Along Z at X 32: the library against the halls (the bridge comes in at 18).
-    "east": {"axis": "Z", "line": 32, "span": (-32, 32),
+    "east": {"axis": "Z", "line": 32, "span": (-31, 31),
              "f1": [(-10, -4, DOOR), (4, 10, DOOR), (-28, -20, 12, 4), (20, 28, 12, 4)],
              "f2": [(-4, 4, DOOR2), (-28, -10, 31, 21), (10, 28, 31, 21)]},
-    "classrooms": {"axis": "X", "line": 0, "span": (-IN_X, -32),
+    "classrooms": {"axis": "X", "line": 0, "span": (-IN_X, -33),
                    "f1": [(-56, -50, DOOR)], "f2": [(-56, -50, DOOR2)]},
-    "gym_west": {"axis": "Z", "line": -40, "span": (-IN_Z, -32),
+    "gym_west": {"axis": "Z", "line": -40, "span": (-IN_Z, -33),
                  "f1": [(-38, -33, DOOR)], "f2": [(-38, -33, DOOR2)]},
-    "gym_east": {"axis": "Z", "line": 40, "span": (-IN_Z, -32),
+    "gym_east": {"axis": "Z", "line": 40, "span": (-IN_Z, -33),
                  "f1": [(-60, -52, DOOR)], "f2": [(-60, -52, DOOR2)]},
-    "band": {"axis": "Z", "line": -40, "span": (32, IN_Z),
+    "band": {"axis": "Z", "line": -40, "span": (33, IN_Z),
              "f1": [(40, 48, DOOR), (62, 68, DOOR)], "f2": [(34, 42, DOOR2), (56, 64, DOOR2)]},
-    "stairs_se": {"axis": "Z", "line": 40, "span": (32, IN_Z),
+    "stairs_se": {"axis": "Z", "line": 40, "span": (33, IN_Z),
                   "f1": [(33, 39, DOOR), (63, 69, 7)], "f2": [(33, 39, DOOR2)]},
     # The serving line between the cafeteria and the kitchen (ground floor only).
-    "serving": {"axis": "X", "line": 56, "span": (-40, 40), "floors": "1",
+    "serving": {"axis": "X", "line": 56, "span": (-39, 39), "floors": "1",
                 "f1": [(-36, -30, DOOR), (-22, -4, 12), (4, 22, 12), (30, 36, DOOR)],
                 "gated": [(-22, -4), (4, 22)]},  # the shutter and the counter, on purpose
     # The upper hall against the music room (upper floor only).
-    "music": {"axis": "X", "line": 44, "span": (-40, 40), "floors": "2",
+    "music": {"axis": "X", "line": 44, "span": (-39, 39), "floors": "2",
               "f2": [(-30, -22, DOOR2), (-8, 0, DOOR2)]},
 }
 ARCHES = [(-14, -6, 12), (6, 14, 12)]  # two a side in the atrium's ground-floor walls
@@ -160,9 +162,10 @@ def walls(m, spec, group="Walls"):
     if "1" in floors:
         m.wall(group, axis, fixed, spec["span"], bottom, F1_TOP, color, spec.get("f1", ()))
     if floors == "12":
-        m.wall(group, axis, fixed, spec["span"], F1_TOP, F2, color)
+        m.wall(group, axis, fixed, spec["span"], F1_TOP, F2 - BAND_DROP, color)
     if "2" in floors:
-        m.wall(group, axis, fixed, spec["span"], F2, F2_TOP, color, spec.get("f2", ()))
+        m.wall(group, axis, fixed, spec["span"], F2 - BAND_DROP, F2_TOP, color,
+               spec.get("f2", ()))
     for key, floor_y in (("f1", F1), ("f2", F2)):
         for opening in spec.get(key, ()):
             if len(opening) == 3 and tuple(opening[:2]) not in spec.get("gated", ()):
@@ -207,8 +210,10 @@ def slip_puddle(m, g, x, z, y, size=9, slip=1.6):
     """A roundish puddle (three overlapping discs): run or slide in and you slip (Slip)."""
     wet = {"Material": "Glass", "Transparency": 0.35, "Reflectance": 0.15, "CanCollide": False,
            "attributes": {"Slip": slip}}
-    for dx, dz, k in ((0, 0, 1), (size * 0.35, size * 0.17, 0.6), (-size * 0.37, -size * 0.13, 0.5)):
-        m.cylinder(g, "Puddle", 0.12, size * k, (x + dx, y + 0.06, z + dz), "puddle", **wet)
+    for layer, (dx, dz, k) in enumerate(((0, 0, 1), (size * 0.35, size * 0.17, 0.6),
+                                         (-size * 0.37, -size * 0.13, 0.5))):
+        m.cylinder(g, "Puddle", 0.12, size * k, (x + dx, y + 0.06 + layer * 0.05, z + dz), "puddle",
+                   **wet)
 
 
 def desk(m, g, x, z, y=F1):
@@ -346,7 +351,7 @@ def light(m, x, y, z, along_x=True, flicker=False, reach=24, brightness=0.6, war
 
 def shell(m):
     g = "Building"
-    m.block(g, "Ground", -IN_X - WALL, IN_X + WALL, -2, 0, -IN_Z - WALL, IN_Z + WALL, "floor")
+    m.block(g, "Ground", -IN_X, IN_X, -2, 0, -IN_Z, IN_Z, "floor")
     m.slab(g, "UpperFloor", (-IN_X, IN_X, -IN_Z, IN_Z), F1_TOP, F2,
            [GYM, LIBRARY, VOID, NW_STAIR, SE_STAIR, LAB_HOLE, COLLAPSE], "floor")
     m.slab("Roof", "Roof", (-IN_X - WALL, IN_X + WALL, -IN_Z - WALL, IN_Z + WALL), F2_TOP, ROOF,
@@ -368,8 +373,13 @@ def shell(m):
         ((40, 64, -72, -32), F2, "carpet_blue", ()), ((-64, -32, -32, 0), F2, "lab_floor",
                                                       (LAB_HOLE,)),
         ((-64, -32, 0, 32), F2, "comp_floor", ()), ((-64, -40, 32, 72), F2, "art_floor", ()),
-        ((-40, 40, 44, 72), F2, "room_floor", ()), ((54, 64, -32, 32), F2, "carpet_red", ()),
+        ((-40, 40, 44, 72), F2, "room_floor", ()), ((54.6, 64, -32, 32), F2, "carpet_red", ()),
     ):
+        # Finishes stop at the wall faces (running under a wall puts their edge in the plane of
+        # the wall's end at every doorway, which flickers).
+        x0, x1, z0, z1 = rect
+        rect = (x0 if abs(x0) in (IN_X, 54.6) else x0 + 1, x1 if abs(x1) == IN_X else x1 - 1,
+                z0 if abs(z0) == IN_Z else z0 + 1, z1 if abs(z1) == IN_Z else z1 - 1)
         m.slab(f, "FloorFinish", rect, y, y + 0.06, list(holes), color, **NO_HIT)
 
 
@@ -385,20 +395,23 @@ def atrium(m):
     for k in range(1, 12):
         t = k / 12
         z, y = 16 - 28 * t, F2 * t
-        m.part(g, "StepEdge", (10, 0.06, 0.5), (0, y + 0.04 * math.cos(a), z + 0.04 * math.sin(a)),
+        m.part(g, "StepEdge", (10, 0.06, 0.5), (0, y + 0.09 * math.cos(a), z + 0.09 * math.sin(a)),
                "rail", rot_x(ang), **NO_HIT)
     for x in (-5.3, 5.3):
         ramp_z(m, g, "StairRail", x - 0.15, x + 0.15, 16, 3, -12, F2 + 3, color="rail", thick=0.3,
                **NO_HIT)
     for sx in (-1, 1):
         for sz in (-1, 1):
-            x, z = sx * 12, sz * 12
-            m.block(g, "Pillar", x - 1.5, x + 1.5, F1, F2, z - 1.5, z + 1.5, "pillar")
-    # Balcony railing round the void, open where the stair arrives.
-    for x0, x1, z0, z1 in ((-10.5, -5, -12.3, -11.7), (5, 10.5, -12.3, -11.7),
-                           (-10.5, 10.5, 11.7, 12.3), (-12.3, -11.7, -10.5, 10.5),
-                           (11.7, 12.3, -10.5, 10.5)):
+            x, z = sx * 13.5, sz * 13.5
+            m.block(g, "Pillar", x - 1.5, x + 1.5, F1, F1_TOP, z - 1.5, z + 1.5, "pillar")
+    # Balcony railing round the void, open where the stair arrives and at the two ladders.
+    for x0, x1, z0, z1 in ((-12, -5, -12.3, -11.7), (5, 12, -12.3, -11.7),
+                           (-12, 12, 11.7, 12.3), (-12.3, -11.7, -11.7, -2.5),
+                           (-12.3, -11.7, 2.5, 11.7), (11.7, 12.3, -11.7, -2.5),
+                           (11.7, 12.3, 2.5, 11.7)):
         rail(m, g, x0, x1, z0, z1, glass=True)
+    m.ladder(g, -12, 0, (1, 0), F1, F2)
+    m.ladder(g, 12, 0, (-1, 0), F1, F2)
     # Planters and benches on the atrium floor (vault them).
     for x in (-15, 15):
         m.block(g, "Planter", x - 2.5, x + 2.5, F1, 3, 1.5, 6.5, "planter")
@@ -428,8 +441,9 @@ def gym(m):
         top = 3 * (i + 1)
         front = -33 - 2.5 * (6 - i)
         for x0, x1 in ((-24, -3), (3, 24)):
-            m.block(g, "Bleacher", x0, x1, F1, top, front, -33, "bleacher")
-    ramp_z(m, g, "BleacherAisle", -3, 3, -52, 0, -33, F2)
+            m.block(g, "Bleacher", x0, x1, F1, top, front, front + 2.5, "bleacher")
+    # The aisle: a solid slope (no hollow pocket under it).
+    m.part(g, "BleacherAisle", (6, F2, 19), (0, F2 / 2, -42.5), "stair")["className"] = "WedgePart"
     # The running track at 18 round the north, west and east walls, joined to the bleacher top.
     for x0, x1, z0, z1 in ((-40, 40, -72, -66), (-40, -34, -66, -33), (34, 40, -66, -33),
                            (-34, -24, -35.5, -33), (24, 34, -35.5, -33)):
@@ -444,7 +458,7 @@ def gym(m):
     for x0, x1, z0, z1 in ((sx - 4, sx + 4, sz - 4, sz - 3.4), (sx - 4, sx + 4, sz + 3.4, sz + 4),
                            (sx - 4, sx - 3.4, sz - 3.4, sz + 3.4),
                            (sx + 3.4, sx + 4, sz - 3.4, sz + 3.4)):
-        m.block(g, "HazardStripe", x0, x1, 0.06, 0.12, z0, z1, "hazard", **NO_HIT)
+        m.block(g, "HazardStripe", x0, x1, 0.06, 0.16, z0, z1, "hazard", **NO_HIT)
     # Things to vault, hoops, court lines, wall pads.
     m.block(g, "GymMats", -16, -10, F1, 3, -64, -60, "mat")
     m.block(g, "BallCart", 10, 14, F1, 3.2, -64, -61, "grate")
@@ -457,7 +471,7 @@ def gym(m):
         m.cylinder(g, "Hoop", 0.2, 1.8, (x - side * 1.1, 10.2, -52), (230, 90, 30), rot_z(90),
                    **NO_HIT)
     for x0, x1, z0, z1 in ((-36, 36, -64.2, -63.9), (-36, 36, -49.9, -49.6),
-                           (-0.15, 0.15, -64, -50)):
+                           (-0.15, 0.15, -63.9, -49.9)):
         m.block(g, "CourtLine", x0, x1, 0.06, 0.1, z0, z1, "court_line", **NO_HIT)
     door_w = INSIDE_WALLS["gym_west"]["f1"]
     door_e = INSIDE_WALLS["gym_east"]["f1"]
@@ -496,18 +510,20 @@ def west_wing(m):
     on_wall(m, g, "Chalkboard", HALL_S, -43, 8, 14, 6, "board", depth=0.2,
             text="POP QUIZ:<br/>Who's It?", text_color=(240, 240, 230), font="PermanentMarker")
     # The fall: a lab cabinet came down under the hole's south edge, with rubble next to it.
-    m.block(g, "FallenCabinet", -51, -47, F1, 10, -14.5, -12, "lab_bench")
+    m.ladder(g, -48, LAB_HOLE[3], (0, -1), F1, F2)
     m.block(g, "Rubble", -52, -46.5, F1, 4, -11, -6.5, "rubble")
-    m.block(g, "Rubble", -45, -42, F1, 2.2, -16, -13, "rubble")
-    m.part(g, "FloorChunk", (7, 1, 6), (-48, 1.2, -17.5), "debris", rot_z(14), **NO_HIT)
+    m.block(g, "Rubble", -43.5, -40.5, F1, 2.2, -17, -14, "rubble")
+    m.part(g, "FloorChunk", (6, 1, 5), (-56, 1.2, -16), "debris", rot_z(14), **NO_HIT)
     # Upper floor: lab benches round the hole, the fume hood, computer desks.
     for z in (-24, -7):
         for x0, x1 in ((-61, -51), (-45, -37)):
             m.block(g, "LabBench", x0, x1, F2, F2 + 3.4, z - 1.5, z + 1.5, "lab_bench")
     hx0, hx1, hz0, hz1 = LAB_HOLE
-    for x0, x1, z0, z1 in ((hx0 - 1, hx1 + 1, hz0 - 1, hz0), (hx0 - 1, hx1 + 1, hz1, hz1 + 1),
-                           (hx0 - 1, hx0, hz0, hz1), (hx1, hx1 + 1, hz0, hz1)):
-        m.block(g, "HazardEdge", x0, x1, F2, F2 + 0.08, z0, z1, "hazard", **NO_HIT)
+    for x0, x1, z0, z1 in ((hx0 - 1, hx1 + 1, hz0 - 1, hz0 + 0.05),
+                           (hx0 - 1, hx1 + 1, hz1 - 0.05, hz1 + 1),
+                           (hx0 - 1, hx0 + 0.05, hz0 + 0.05, hz1 - 0.05),
+                           (hx1 - 0.05, hx1 + 1, hz0 + 0.05, hz1 - 0.05)):
+        m.block(g, "HazardEdge", x0, x1, F2, F2 + 0.12, z0, z1, "hazard", **NO_HIT)
     m.block(g, "FumeHood", -50, -42, F2, F2 + 9, -31, -28, "counter")
     for z in (8, 16, 24):
         for x0, x1 in ((-61, -51), (-45, -38)):
@@ -528,7 +544,7 @@ def east_wing(m):
     g = "Library"
     for k, z in enumerate((-24, -14, 14, 24)):
         bookshelf_row(m, g, 34, 40, z, k)
-        bookshelf_row(m, g, 46, 53, z, k + 1)  # ends 1 short of the mezzanine: climb from here
+        bookshelf_row(m, g, 46, 53, z, k + 1)
     for x0, x1 in ((34, 39), (47, 52)):
         m.block(g, "ReadingTable", x0, x1, F1, 2.8, -1.5, 1.5, "desk")
     m.block(g, "FrontDesk", 34, 38, F1, 3.5, -31, -27, "door")
@@ -539,7 +555,9 @@ def east_wing(m):
     for z in (-24, -10, 10, 24):
         m.block(g, "MezzColumn", 54, 55.5, F1, F1_TOP, z - 0.75, z + 0.75, "pillar")
     for z0, z1 in ((-32, -4), (4, 32)):
-        m.block(g, "HazardEdge", 54, 54.6, F2, F2 + 0.08, z0, z1, "hazard", **NO_HIT)
+        m.block(g, "HazardEdge", 54, 54.6, F2, F2 + 0.12, z0, z1, "hazard", **NO_HIT)
+    for z in (-19, 19):
+        m.ladder(g, 54, z, (-1, 0), F1, F2)
     for y in (F1, F2):  # bookshelves on the east wall, clear of the windows (decoration)
         for z0, z1 in ((-16, -8), (8, 16)):
             m.block(g, "WallShelf", 63, 63.9, y, y + 8, z0, z1, "shelf", **NO_HIT)
@@ -581,20 +599,21 @@ def south_wing(m):
     for x, z, size in ((38, 45.5, (2.5, 2, 2.5)), (31, 45.5, (3, 2.4, 2)), (20, 45, (2, 1.6, 2))):
         m.block(g, "Rubble", x - size[0] / 2, x + size[0] / 2, F1, size[1], z - size[2] / 2,
                 z + size[2] / 2, "rubble")
-    m.block(g, "CollapseEdge", cx0, cx1, F2, F2 + 0.08, cz0 - 0.6, cz0, "hazard", **NO_HIT)
+    m.block(g, "CollapseEdge", cx0, cx1, F2, F2 + 0.12, cz0 - 0.6, cz0 + 0.05, "hazard", **NO_HIT)
 
     g = "Kitchen"
     for x0, x1 in ((-30, -14), (-6, 10)):
         m.block(g, "KitchenIsland", x0, x1, F1, 3.5, 62, 65, "counter")
     m.block(g, "WalkInFridge", 22, 36, F1, 10, 60, 71, "fridge")
+    m.ladder(g, 22, 66, (-1, 0), F1, 10)
     m.block(g, "Stove", -38, -22, F1, 3.5, 69.5, IN_Z, (70, 72, 78))
     slip_puddle(m, g, 0, 68.5, F1, size=5, slip=1.2)
 
     g = "BandArt"
-    for x0, x1, h in ((-64, -58, 4.5), (-58, -54, 3), (-54, -50, 1.5)):
+    for x0, x1, h in ((-64, -58, 3.5), (-58, -54, 2.5), (-54, -50, 1.5)):
         m.block(g, "Riser", x0, x1, F1, h, 40, 68, "carpet_blue")
     m.block(g, "Piano", -48, -43, F1, 3.5, 50, 56, "piano")
-    m.cylinder(g, "BassDrum", 1.5, 3, (-61, 6, 54), (220, 220, 220), rot_y(90), **NO_HIT)
+    m.cylinder(g, "BassDrum", 1.5, 3, (-61, 5, 54), (220, 220, 220), rot_y(90), **NO_HIT)
     for z in (40, 56):
         m.block(g, "PaintTable", -60, -46, F2, F2 + 3, z, z + 5, "desk")
     m.block(g, "Kiln", -62, -58, F2, F2 + 6, 66, 70, "concrete_dark")
@@ -602,7 +621,8 @@ def south_wing(m):
         m.cylinder(g, "PaintSplat", 0.05, 3 + i, (x, F2 + 0.08, z),
                    ((220, 60, 60), (60, 120, 220), (240, 200, 50))[i], **NO_HIT)
     for i in range(4):  # the music room's tiers, stepping up to the south wall
-        m.block(g, "MusicTier", -34, 34, F2, F2 + 1.5 * (i + 1), 58 + 3.5 * i, IN_Z, "room_floor")
+        m.block(g, "MusicTier", -34, 34, F2, F2 + 1.5 * (i + 1), 58 + 3.5 * i,
+                58 + 3.5 * (i + 1) if i < 3 else IN_Z, "room_floor")
     m.block(g, "GrandPiano", 10, 16, F2, F2 + 3.5, 49, 54, "piano")
 
 
@@ -715,11 +735,11 @@ def details(m):
         on_wall(m, g, "FireAlarm", face, along, y, 0.8, 1.2, (210, 40, 40), depth=0.3)
     # Ceiling fans in the cafeteria (spinning).
     for x in (-20, 0):
-        m.cylinder(g, "FanMotor", 0.8, 1.4, (x, F1_TOP - 1, 47), (60, 60, 64), **NO_HIT)
-        m.block(g, "FanRod", x - 0.08, x + 0.08, F1_TOP - 0.6, F1_TOP, 46.92, 47.08, "chain",
+        m.cylinder(g, "FanMotor", 0.8, 1.4, (x, F1_TOP - 1.2, 47), (60, 60, 64), **NO_HIT)
+        m.block(g, "FanRod", x - 0.08, x + 0.08, F1_TOP - 0.8, F1_TOP, 46.92, 47.08, "chain",
                 **NO_HIT)
-        for angle in (0, 90):
-            m.part(g, "FanBlade", (7, 0.12, 0.9), (x, F1_TOP - 1.3, 47), (150, 110, 70),
+        for k, angle in enumerate((0, 90)):
+            m.part(g, "FanBlade", (7, 0.12, 0.9), (x, F1_TOP - 1.64 + 0.05 * k, 47), (150, 110, 70),
                    rot_y(angle), Material="Wood", attributes={"Spin": 220}, **NO_HIT)
     # Dust falling from the two collapses, a live wire sparking over the cafeteria.
     dust = {"rate": 5, "life": (3, 5), "speed": (1, 3), "size": ((0, 0.3), (1, 0.8)),
@@ -741,9 +761,9 @@ def details(m):
     # Baseboards along the halls, broken at the doorways.
     for face, spec in ((HALL_N, hall["north"]), (HALL_S, hall["south"]), (HALL_W, hall["west"]),
                        (HALL_E, hall["east"])):
-        s = -32
-        for o0, o1 in sorted((o[0], o[1]) for o in spec["f1"] if len(o) == 3) + [(32, 32)]:
-            a, b = max(s, -32), min(o0, 32)
+        s = -30.8
+        for o0, o1 in sorted((o[0], o[1]) for o in spec["f1"] if len(o) == 3) + [(30.8, 30.8)]:
+            a, b = max(s, -30.8), min(o0, 30.8)
             if b - a > 0.5:
                 on_wall(m, g, "Baseboard", face, (a + b) / 2, 0.3, b - a, 0.6, (60, 55, 50),
                         depth=0.15)
@@ -823,7 +843,8 @@ def check(m):
         if hits:
             problems.append(f"door on {axis}={line} at {s0}..{s1} (floor {floor_y}) is blocked "
                             f"by {', '.join(sorted(set(hits)))}")
-    return problems
+    # Flicker, windows, and every floor reachable (and back) from the spawns.
+    return problems + mapcheck.check_map(m, ATTRIBUTES)
 
 
 if __name__ == "__main__":

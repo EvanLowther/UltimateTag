@@ -140,6 +140,592 @@
    }
   },
   {
+   "name": "LadderTruss11",
+   "className": "TrussPart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     10,
+     2
+    ],
+    "Color": [
+     0.353,
+     0.353,
+     0.376
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.0,
+       5.0,
+       65.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "LadderTruss12",
+   "className": "TrussPart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     10,
+     2
+    ],
+    "Color": [
+     0.353,
+     0.353,
+     0.376
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.0,
+       5.0,
+       67.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "LadderRail11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     13,
+     0.3
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       6.5,
+       64.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRail12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     13,
+     0.3
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       6.5,
+       68.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung76",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       1,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung77",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       2.2,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung78",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       3.4,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung79",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       4.6,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung80",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       5.8,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung81",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       7.0,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung82",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       8.2,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LadderRung83",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.3,
+       9.4,
+       66.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
    "name": "Stove",
    "className": "Part",
    "properties": {
@@ -260,7 +846,7 @@
      "CFrame": {
       "position": [
        1.75,
-       0.06,
+       0.11,
        69.35
       ],
       "orientation": [
@@ -313,7 +899,7 @@
      "CFrame": {
       "position": [
        -1.85,
-       0.06,
+       0.16,
        67.85
       ],
       "orientation": [

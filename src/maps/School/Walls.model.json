@@ -929,8 +929,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -944,8 +944,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       3.85,
+       -66.1,
+       3.9,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       3.9,
        -24.0
       ],
       "orientation": [
@@ -1021,13 +1070,13 @@
    }
   },
   {
-   "name": "WindowFrame2",
+   "name": "WindowFrame3",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -1041,8 +1090,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       3.85,
+       -66.1,
+       3.9,
+       -8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       3.9,
        -8.0
       ],
       "orientation": [
@@ -1118,13 +1216,13 @@
    }
   },
   {
-   "name": "WindowFrame3",
+   "name": "WindowFrame5",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -1138,8 +1236,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       3.85,
+       -66.1,
+       3.9,
+       8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       3.9,
        8.0
       ],
       "orientation": [
@@ -1215,13 +1362,13 @@
    }
   },
   {
-   "name": "WindowFrame4",
+   "name": "WindowFrame7",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -1235,8 +1382,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       3.85,
+       -66.1,
+       3.9,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       3.9,
        24.0
       ],
       "orientation": [
@@ -1312,13 +1508,13 @@
    }
   },
   {
-   "name": "WindowFrame5",
+   "name": "WindowFrame9",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -1332,8 +1528,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       3.85,
+       -66.1,
+       3.9,
+       48.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       3.9,
        48.0
       ],
       "orientation": [
@@ -1409,13 +1654,13 @@
    }
   },
   {
-   "name": "WindowFrame6",
+   "name": "WindowFrame11",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -1429,8 +1674,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       3.85,
+       -66.1,
+       3.9,
+       62.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       3.9,
        62.0
       ],
       "orientation": [
@@ -1464,7 +1758,7 @@
     "Anchored": true,
     "Size": [
      2,
-     2,
+     1.9,
      148
     ],
     "Color": [
@@ -1479,7 +1773,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       17.0,
+       16.95,
        0.0
       ],
       "orientation": [
@@ -1510,7 +1804,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      46
     ],
     "Color": [
@@ -1525,7 +1819,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       26.0,
+       25.95,
        -51.0
       ],
       "orientation": [
@@ -1602,7 +1896,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -1617,7 +1911,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       20.0,
+       19.95,
        -24.0
       ],
       "orientation": [
@@ -1648,7 +1942,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      8
     ],
     "Color": [
@@ -1663,7 +1957,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       26.0,
+       25.95,
        -16.0
       ],
       "orientation": [
@@ -1740,7 +2034,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -1755,7 +2049,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       20.0,
+       19.95,
        -8.0
       ],
       "orientation": [
@@ -1786,7 +2080,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      8
     ],
     "Color": [
@@ -1801,7 +2095,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       26.0,
+       25.95,
        0.0
       ],
       "orientation": [
@@ -1878,7 +2172,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -1893,7 +2187,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       20.0,
+       19.95,
        8.0
       ],
       "orientation": [
@@ -1924,7 +2218,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      8
     ],
     "Color": [
@@ -1939,7 +2233,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       26.0,
+       25.95,
        16.0
       ],
       "orientation": [
@@ -2016,7 +2310,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -2031,7 +2325,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       20.0,
+       19.95,
        24.0
       ],
       "orientation": [
@@ -2062,7 +2356,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      16
     ],
     "Color": [
@@ -2077,7 +2371,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       26.0,
+       25.95,
        36.0
       ],
       "orientation": [
@@ -2154,7 +2448,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -2169,7 +2463,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       20.0,
+       19.95,
        48.0
       ],
       "orientation": [
@@ -2200,7 +2494,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      6
     ],
     "Color": [
@@ -2215,7 +2509,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       26.0,
+       25.95,
        55.0
       ],
       "orientation": [
@@ -2292,7 +2586,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -2307,7 +2601,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       20.0,
+       19.95,
        62.0
       ],
       "orientation": [
@@ -2338,7 +2632,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      8
     ],
     "Color": [
@@ -2353,7 +2647,7 @@
      "CFrame": {
       "position": [
        -65.0,
-       26.0,
+       25.95,
        70.0
       ],
       "orientation": [
@@ -2426,13 +2720,13 @@
    }
   },
   {
-   "name": "WindowFrame7",
+   "name": "WindowFrame13",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -2446,8 +2740,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       21.85,
+       -66.1,
+       21.9,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       21.9,
        -24.0
       ],
       "orientation": [
@@ -2523,13 +2866,13 @@
    }
   },
   {
-   "name": "WindowFrame8",
+   "name": "WindowFrame15",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -2543,8 +2886,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       21.85,
+       -66.1,
+       21.9,
+       -8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       21.9,
        -8.0
       ],
       "orientation": [
@@ -2620,13 +3012,13 @@
    }
   },
   {
-   "name": "WindowFrame9",
+   "name": "WindowFrame17",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -2640,8 +3032,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       21.85,
+       -66.1,
+       21.9,
+       8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       21.9,
        8.0
       ],
       "orientation": [
@@ -2717,13 +3158,13 @@
    }
   },
   {
-   "name": "WindowFrame10",
+   "name": "WindowFrame19",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -2737,8 +3178,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       21.85,
+       -66.1,
+       21.9,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       21.9,
        24.0
       ],
       "orientation": [
@@ -2814,13 +3304,13 @@
    }
   },
   {
-   "name": "WindowFrame11",
+   "name": "WindowFrame21",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -2834,8 +3324,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       21.85,
+       -66.1,
+       21.9,
+       48.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       21.9,
        48.0
       ],
       "orientation": [
@@ -2911,13 +3450,13 @@
    }
   },
   {
-   "name": "WindowFrame12",
+   "name": "WindowFrame23",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -2931,8 +3470,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -65.0,
-       21.85,
+       -66.1,
+       21.9,
+       62.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -63.9,
+       21.9,
        62.0
       ],
       "orientation": [
@@ -3468,13 +4056,13 @@
    }
   },
   {
-   "name": "WindowFrame13",
+   "name": "WindowFrame25",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -3488,8 +4076,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       65.0,
-       2.85,
+       63.9,
+       2.9,
+       -22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.1,
+       2.9,
        -22.0
       ],
       "orientation": [
@@ -3565,13 +4202,13 @@
    }
   },
   {
-   "name": "WindowFrame14",
+   "name": "WindowFrame27",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      12
     ],
     "Color": [
@@ -3585,8 +4222,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       65.0,
-       2.85,
+       63.9,
+       2.9,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     12
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.1,
+       2.9,
        0.0
       ],
       "orientation": [
@@ -3662,13 +4348,13 @@
    }
   },
   {
-   "name": "WindowFrame15",
+   "name": "WindowFrame29",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -3682,8 +4368,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       65.0,
-       2.85,
+       63.9,
+       2.9,
+       22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.1,
+       2.9,
        22.0
       ],
       "orientation": [
@@ -3717,7 +4452,7 @@
     "Anchored": true,
     "Size": [
      2,
-     2,
+     1.9,
      148
     ],
     "Color": [
@@ -3732,7 +4467,7 @@
      "CFrame": {
       "position": [
        65.0,
-       17.0,
+       16.95,
        0.0
       ],
       "orientation": [
@@ -3763,7 +4498,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      48
     ],
     "Color": [
@@ -3778,7 +4513,7 @@
      "CFrame": {
       "position": [
        65.0,
-       26.0,
+       25.95,
        -50.0
       ],
       "orientation": [
@@ -3855,7 +4590,7 @@
     "Anchored": true,
     "Size": [
      2,
-     3,
+     3.1,
      8
     ],
     "Color": [
@@ -3870,7 +4605,7 @@
      "CFrame": {
       "position": [
        65.0,
-       19.5,
+       19.45,
        -22.0
       ],
       "orientation": [
@@ -3901,7 +4636,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      36
     ],
     "Color": [
@@ -3916,7 +4651,7 @@
      "CFrame": {
       "position": [
        65.0,
-       26.0,
+       25.95,
        0.0
       ],
       "orientation": [
@@ -3993,7 +4728,7 @@
     "Anchored": true,
     "Size": [
      2,
-     3,
+     3.1,
      8
     ],
     "Color": [
@@ -4008,7 +4743,7 @@
      "CFrame": {
       "position": [
        65.0,
-       19.5,
+       19.45,
        22.0
       ],
       "orientation": [
@@ -4039,7 +4774,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      48
     ],
     "Color": [
@@ -4054,7 +4789,7 @@
      "CFrame": {
       "position": [
        65.0,
-       26.0,
+       25.95,
        50.0
       ],
       "orientation": [
@@ -4127,13 +4862,13 @@
    }
   },
   {
-   "name": "WindowFrame16",
+   "name": "WindowFrame31",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -4147,8 +4882,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       65.0,
-       20.85,
+       63.9,
+       20.9,
+       -22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.1,
+       20.9,
        -22.0
       ],
       "orientation": [
@@ -4224,13 +5008,13 @@
    }
   },
   {
-   "name": "WindowFrame17",
+   "name": "WindowFrame33",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -4244,8 +5028,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       65.0,
-       20.85,
+       63.9,
+       20.9,
+       22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       66.1,
+       20.9,
        22.0
       ],
       "orientation": [
@@ -4325,7 +5158,7 @@
     "Anchored": true,
     "Size": [
      128,
-     2,
+     1.9,
      2
     ],
     "Color": [
@@ -4340,7 +5173,7 @@
      "CFrame": {
       "position": [
        0.0,
-       17.0,
+       16.95,
        -73.0
       ],
       "orientation": [
@@ -4371,7 +5204,7 @@
     "Anchored": true,
     "Size": [
      34,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -4386,7 +5219,7 @@
      "CFrame": {
       "position": [
        -47.0,
-       26.0,
+       25.95,
        -73.0
       ],
       "orientation": [
@@ -4463,7 +5296,7 @@
     "Anchored": true,
     "Size": [
      12,
-     5,
+     5.1,
      2
     ],
     "Color": [
@@ -4478,7 +5311,7 @@
      "CFrame": {
       "position": [
        -24.0,
-       20.5,
+       20.45,
        -73.0
       ],
       "orientation": [
@@ -4509,7 +5342,7 @@
     "Anchored": true,
     "Size": [
      12,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -4524,7 +5357,7 @@
      "CFrame": {
       "position": [
        -12.0,
-       26.0,
+       25.95,
        -73.0
       ],
       "orientation": [
@@ -4601,7 +5434,7 @@
     "Anchored": true,
     "Size": [
      12,
-     5,
+     5.1,
      2
     ],
     "Color": [
@@ -4616,7 +5449,7 @@
      "CFrame": {
       "position": [
        0.0,
-       20.5,
+       20.45,
        -73.0
       ],
       "orientation": [
@@ -4647,7 +5480,7 @@
     "Anchored": true,
     "Size": [
      12,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -4662,7 +5495,7 @@
      "CFrame": {
       "position": [
        12.0,
-       26.0,
+       25.95,
        -73.0
       ],
       "orientation": [
@@ -4739,7 +5572,7 @@
     "Anchored": true,
     "Size": [
      12,
-     5,
+     5.1,
      2
     ],
     "Color": [
@@ -4754,7 +5587,7 @@
      "CFrame": {
       "position": [
        24.0,
-       20.5,
+       20.45,
        -73.0
       ],
       "orientation": [
@@ -4785,7 +5618,7 @@
     "Anchored": true,
     "Size": [
      34,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -4800,7 +5633,7 @@
      "CFrame": {
       "position": [
        47.0,
-       26.0,
+       25.95,
        -73.0
       ],
       "orientation": [
@@ -4873,14 +5706,14 @@
    }
   },
   {
-   "name": "WindowFrame18",
+   "name": "WindowFrame35",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      12,
-     0.3,
-     2.4
+     0.4,
+     0.2
     ],
     "Color": [
      0.588,
@@ -4894,8 +5727,57 @@
      "CFrame": {
       "position": [
        -24.0,
-       22.85,
-       -73.0
+       22.9,
+       -74.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.4,
+     0.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.0,
+       22.9,
+       -71.9
       ],
       "orientation": [
        [
@@ -4970,14 +5852,14 @@
    }
   },
   {
-   "name": "WindowFrame19",
+   "name": "WindowFrame37",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      12,
-     0.3,
-     2.4
+     0.4,
+     0.2
     ],
     "Color": [
      0.588,
@@ -4991,8 +5873,57 @@
      "CFrame": {
       "position": [
        0.0,
-       22.85,
-       -73.0
+       22.9,
+       -74.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.4,
+     0.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       22.9,
+       -71.9
       ],
       "orientation": [
        [
@@ -5067,14 +5998,14 @@
    }
   },
   {
-   "name": "WindowFrame20",
+   "name": "WindowFrame39",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      12,
-     0.3,
-     2.4
+     0.4,
+     0.2
     ],
     "Color": [
      0.588,
@@ -5088,8 +6019,57 @@
      "CFrame": {
       "position": [
        24.0,
-       22.85,
-       -73.0
+       22.9,
+       -74.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.4,
+     0.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.0,
+       22.9,
+       -71.9
       ],
       "orientation": [
        [
@@ -5168,7 +6148,7 @@
     "Anchored": true,
     "Size": [
      128,
-     2,
+     1.9,
      2
     ],
     "Color": [
@@ -5183,7 +6163,7 @@
      "CFrame": {
       "position": [
        0.0,
-       17.0,
+       16.95,
        73.0
       ],
       "orientation": [
@@ -5214,7 +6194,7 @@
     "Anchored": true,
     "Size": [
      6,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -5229,7 +6209,7 @@
      "CFrame": {
       "position": [
        -61.0,
-       26.0,
+       25.95,
        73.0
       ],
       "orientation": [
@@ -5306,7 +6286,7 @@
     "Anchored": true,
     "Size": [
      12,
-     4,
+     4.1,
      2
     ],
     "Color": [
@@ -5321,7 +6301,7 @@
      "CFrame": {
       "position": [
        -52.0,
-       20.0,
+       19.95,
        73.0
       ],
       "orientation": [
@@ -5352,7 +6332,7 @@
     "Anchored": true,
     "Size": [
      16,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -5367,7 +6347,7 @@
      "CFrame": {
       "position": [
        -38.0,
-       26.0,
+       25.95,
        73.0
       ],
       "orientation": [
@@ -5444,7 +6424,7 @@
     "Anchored": true,
     "Size": [
      12,
-     7,
+     7.1,
      2
     ],
     "Color": [
@@ -5459,7 +6439,7 @@
      "CFrame": {
       "position": [
        -24.0,
-       21.5,
+       21.45,
        73.0
       ],
       "orientation": [
@@ -5490,7 +6470,7 @@
     "Anchored": true,
     "Size": [
      12,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -5505,7 +6485,7 @@
      "CFrame": {
       "position": [
        -12.0,
-       26.0,
+       25.95,
        73.0
       ],
       "orientation": [
@@ -5582,7 +6562,7 @@
     "Anchored": true,
     "Size": [
      12,
-     7,
+     7.1,
      2
     ],
     "Color": [
@@ -5597,7 +6577,7 @@
      "CFrame": {
       "position": [
        0.0,
-       21.5,
+       21.45,
        73.0
       ],
       "orientation": [
@@ -5628,7 +6608,7 @@
     "Anchored": true,
     "Size": [
      12,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -5643,7 +6623,7 @@
      "CFrame": {
       "position": [
        12.0,
-       26.0,
+       25.95,
        73.0
       ],
       "orientation": [
@@ -5720,7 +6700,7 @@
     "Anchored": true,
     "Size": [
      12,
-     7,
+     7.1,
      2
     ],
     "Color": [
@@ -5735,7 +6715,7 @@
      "CFrame": {
       "position": [
        24.0,
-       21.5,
+       21.45,
        73.0
       ],
       "orientation": [
@@ -5766,7 +6746,7 @@
     "Anchored": true,
     "Size": [
      34,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -5781,7 +6761,7 @@
      "CFrame": {
       "position": [
        47.0,
-       26.0,
+       25.95,
        73.0
       ],
       "orientation": [
@@ -5854,14 +6834,14 @@
    }
   },
   {
-   "name": "WindowFrame21",
+   "name": "WindowFrame41",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      12,
-     0.3,
-     2.4
+     0.4,
+     0.2
     ],
     "Color": [
      0.588,
@@ -5875,8 +6855,57 @@
      "CFrame": {
       "position": [
        -52.0,
-       21.85,
-       73.0
+       21.9,
+       71.9
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.4,
+     0.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -52.0,
+       21.9,
+       74.1
       ],
       "orientation": [
        [
@@ -5951,14 +6980,14 @@
    }
   },
   {
-   "name": "WindowFrame22",
+   "name": "WindowFrame43",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      12,
-     0.3,
-     2.4
+     0.4,
+     0.2
     ],
     "Color": [
      0.588,
@@ -5972,8 +7001,57 @@
      "CFrame": {
       "position": [
        -24.0,
-       24.85,
-       73.0
+       24.9,
+       71.9
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame44",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.4,
+     0.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.0,
+       24.9,
+       74.1
       ],
       "orientation": [
        [
@@ -6048,14 +7126,14 @@
    }
   },
   {
-   "name": "WindowFrame23",
+   "name": "WindowFrame45",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      12,
-     0.3,
-     2.4
+     0.4,
+     0.2
     ],
     "Color": [
      0.588,
@@ -6069,8 +7147,57 @@
      "CFrame": {
       "position": [
        0.0,
-       24.85,
-       73.0
+       24.9,
+       71.9
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame46",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.4,
+     0.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       24.9,
+       74.1
       ],
       "orientation": [
        [
@@ -6145,14 +7272,14 @@
    }
   },
   {
-   "name": "WindowFrame24",
+   "name": "WindowFrame47",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      12,
-     0.3,
-     2.4
+     0.4,
+     0.2
     ],
     "Color": [
      0.588,
@@ -6166,8 +7293,57 @@
      "CFrame": {
       "position": [
        24.0,
-       24.85,
-       73.0
+       24.9,
+       71.9
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame48",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.4,
+     0.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.0,
+       24.9,
+       74.1
       ],
       "orientation": [
        [
@@ -6614,7 +7790,7 @@
     "Anchored": true,
     "Size": [
      128,
-     2,
+     1.9,
      2
     ],
     "Color": [
@@ -6629,7 +7805,7 @@
      "CFrame": {
       "position": [
        0.0,
-       17.0,
+       16.95,
        -32.0
       ],
       "orientation": [
@@ -6660,7 +7836,7 @@
     "Anchored": true,
     "Size": [
      4,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -6675,7 +7851,7 @@
      "CFrame": {
       "position": [
        -62.0,
-       26.0,
+       25.95,
        -32.0
       ],
       "orientation": [
@@ -6752,7 +7928,7 @@
     "Anchored": true,
     "Size": [
      36,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -6767,7 +7943,7 @@
      "CFrame": {
       "position": [
        -34.0,
-       26.0,
+       25.95,
        -32.0
       ],
       "orientation": [
@@ -6844,7 +8020,7 @@
     "Anchored": true,
     "Size": [
      40,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -6859,7 +8035,7 @@
      "CFrame": {
       "position": [
        36.0,
-       26.0,
+       25.95,
        -32.0
       ],
       "orientation": [
@@ -6936,7 +8112,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -6951,7 +8127,7 @@
      "CFrame": {
       "position": [
        63.0,
-       26.0,
+       25.95,
        -32.0
       ],
       "orientation": [
@@ -7488,7 +8664,7 @@
     "Anchored": true,
     "Size": [
      128,
-     2,
+     1.9,
      2
     ],
     "Color": [
@@ -7503,7 +8679,7 @@
      "CFrame": {
       "position": [
        0.0,
-       17.0,
+       16.95,
        32.0
       ],
       "orientation": [
@@ -7534,7 +8710,7 @@
     "Anchored": true,
     "Size": [
      4,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -7549,7 +8725,7 @@
      "CFrame": {
       "position": [
        -62.0,
-       26.0,
+       25.95,
        32.0
       ],
       "orientation": [
@@ -7626,7 +8802,7 @@
     "Anchored": true,
     "Size": [
      36,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -7641,7 +8817,7 @@
      "CFrame": {
       "position": [
        -34.0,
-       26.0,
+       25.95,
        32.0
       ],
       "orientation": [
@@ -7718,7 +8894,7 @@
     "Anchored": true,
     "Size": [
      40,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -7733,7 +8909,7 @@
      "CFrame": {
       "position": [
        36.0,
-       26.0,
+       25.95,
        32.0
       ],
       "orientation": [
@@ -7810,7 +8986,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -7825,7 +9001,7 @@
      "CFrame": {
       "position": [
        63.0,
-       26.0,
+       25.95,
        32.0
       ],
       "orientation": [
@@ -7857,7 +9033,7 @@
     "Size": [
      2,
      16,
-     16
+     15
     ],
     "Color": [
      0.698,
@@ -7872,7 +9048,7 @@
       "position": [
        -32.0,
        8.0,
-       -24.0
+       -23.5
       ],
       "orientation": [
        [
@@ -8041,7 +9217,7 @@
     "Size": [
      2,
      16,
-     16
+     15
     ],
     "Color": [
      0.698,
@@ -8056,7 +9232,7 @@
       "position": [
        -32.0,
        8.0,
-       24.0
+       23.5
       ],
       "orientation": [
        [
@@ -8086,8 +9262,8 @@
     "Anchored": true,
     "Size": [
      2,
-     2,
-     64
+     1.9,
+     62
     ],
     "Color": [
      0.698,
@@ -8101,7 +9277,7 @@
      "CFrame": {
       "position": [
        -32.0,
-       17.0,
+       16.95,
        0.0
       ],
       "orientation": [
@@ -8132,8 +9308,8 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
-     4
+     16.1,
+     3
     ],
     "Color": [
      0.698,
@@ -8147,8 +9323,8 @@
      "CFrame": {
       "position": [
        -32.0,
-       26.0,
-       -30.0
+       25.95,
+       -29.5
       ],
       "orientation": [
        [
@@ -8224,7 +9400,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -8239,7 +9415,7 @@
      "CFrame": {
       "position": [
        -32.0,
-       20.0,
+       19.95,
        -24.0
       ],
       "orientation": [
@@ -8270,7 +9446,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      4
     ],
     "Color": [
@@ -8285,7 +9461,7 @@
      "CFrame": {
       "position": [
        -32.0,
-       26.0,
+       25.95,
        -18.0
       ],
       "orientation": [
@@ -8362,7 +9538,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      16
     ],
     "Color": [
@@ -8377,7 +9553,7 @@
      "CFrame": {
       "position": [
        -32.0,
-       26.0,
+       25.95,
        0.0
       ],
       "orientation": [
@@ -8454,7 +9630,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      4
     ],
     "Color": [
@@ -8469,7 +9645,7 @@
      "CFrame": {
       "position": [
        -32.0,
-       26.0,
+       25.95,
        18.0
       ],
       "orientation": [
@@ -8546,7 +9722,7 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
+     4.1,
      8
     ],
     "Color": [
@@ -8561,7 +9737,7 @@
      "CFrame": {
       "position": [
        -32.0,
-       20.0,
+       19.95,
        24.0
       ],
       "orientation": [
@@ -8592,8 +9768,8 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
-     4
+     16.1,
+     3
     ],
     "Color": [
      0.698,
@@ -8607,8 +9783,8 @@
      "CFrame": {
       "position": [
        -32.0,
-       26.0,
-       30.0
+       25.95,
+       29.5
       ],
       "orientation": [
        [
@@ -8680,13 +9856,13 @@
    }
   },
   {
-   "name": "WindowFrame25",
+   "name": "WindowFrame49",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -8700,8 +9876,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -32.0,
-       21.85,
+       -33.1,
+       21.9,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame50",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.9,
+       21.9,
        -24.0
       ],
       "orientation": [
@@ -8777,13 +10002,13 @@
    }
   },
   {
-   "name": "WindowFrame26",
+   "name": "WindowFrame51",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -8797,8 +10022,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -32.0,
-       21.85,
+       -33.1,
+       21.9,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame52",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.9,
+       21.9,
        24.0
       ],
       "orientation": [
@@ -8833,7 +10107,7 @@
     "Size": [
      2,
      16,
-     4
+     3
     ],
     "Color": [
      0.698,
@@ -8848,7 +10122,7 @@
       "position": [
        32.0,
        8.0,
-       -30.0
+       -29.5
       ],
       "orientation": [
        [
@@ -9293,7 +10567,7 @@
     "Size": [
      2,
      16,
-     4
+     3
     ],
     "Color": [
      0.698,
@@ -9308,7 +10582,7 @@
       "position": [
        32.0,
        8.0,
-       30.0
+       29.5
       ],
       "orientation": [
        [
@@ -9380,13 +10654,13 @@
    }
   },
   {
-   "name": "WindowFrame27",
+   "name": "WindowFrame53",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -9400,8 +10674,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       32.0,
-       3.85,
+       30.9,
+       3.9,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame54",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.1,
+       3.9,
        -24.0
       ],
       "orientation": [
@@ -9477,13 +10800,13 @@
    }
   },
   {
-   "name": "WindowFrame28",
+   "name": "WindowFrame55",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      8
     ],
     "Color": [
@@ -9497,8 +10820,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       32.0,
-       3.85,
+       30.9,
+       3.9,
+       24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame56",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     8
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.1,
+       3.9,
        24.0
       ],
       "orientation": [
@@ -9532,8 +10904,8 @@
     "Anchored": true,
     "Size": [
      2,
-     2,
-     64
+     1.9,
+     62
     ],
     "Color": [
      0.698,
@@ -9547,7 +10919,7 @@
      "CFrame": {
       "position": [
        32.0,
-       17.0,
+       16.95,
        0.0
       ],
       "orientation": [
@@ -9578,8 +10950,8 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
-     4
+     16.1,
+     3
     ],
     "Color": [
      0.698,
@@ -9593,8 +10965,8 @@
      "CFrame": {
       "position": [
        32.0,
-       26.0,
-       -30.0
+       25.95,
+       -29.5
       ],
       "orientation": [
        [
@@ -9670,7 +11042,7 @@
     "Anchored": true,
     "Size": [
      2,
-     3,
+     3.1,
      18
     ],
     "Color": [
@@ -9685,7 +11057,7 @@
      "CFrame": {
       "position": [
        32.0,
-       19.5,
+       19.45,
        -19.0
       ],
       "orientation": [
@@ -9716,7 +11088,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      6
     ],
     "Color": [
@@ -9731,7 +11103,7 @@
      "CFrame": {
       "position": [
        32.0,
-       26.0,
+       25.95,
        -7.0
       ],
       "orientation": [
@@ -9808,7 +11180,7 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      6
     ],
     "Color": [
@@ -9823,7 +11195,7 @@
      "CFrame": {
       "position": [
        32.0,
-       26.0,
+       25.95,
        7.0
       ],
       "orientation": [
@@ -9900,7 +11272,7 @@
     "Anchored": true,
     "Size": [
      2,
-     3,
+     3.1,
      18
     ],
     "Color": [
@@ -9915,7 +11287,7 @@
      "CFrame": {
       "position": [
        32.0,
-       19.5,
+       19.45,
        19.0
       ],
       "orientation": [
@@ -9946,8 +11318,8 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
-     4
+     16.1,
+     3
     ],
     "Color": [
      0.698,
@@ -9961,8 +11333,8 @@
      "CFrame": {
       "position": [
        32.0,
-       26.0,
-       30.0
+       25.95,
+       29.5
       ],
       "orientation": [
        [
@@ -10034,13 +11406,13 @@
    }
   },
   {
-   "name": "WindowFrame29",
+   "name": "WindowFrame57",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      18
     ],
     "Color": [
@@ -10054,8 +11426,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       32.0,
-       20.85,
+       30.9,
+       20.9,
+       -19.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame58",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     18
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.1,
+       20.9,
        -19.0
       ],
       "orientation": [
@@ -10131,13 +11552,13 @@
    }
   },
   {
-   "name": "WindowFrame30",
+   "name": "WindowFrame59",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.4,
-     0.3,
+     0.2,
+     0.4,
      18
     ],
     "Color": [
@@ -10151,8 +11572,57 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       32.0,
-       20.85,
+       30.9,
+       20.9,
+       19.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WindowFrame60",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.4,
+     18
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.1,
+       20.9,
        19.0
       ],
       "orientation": [
@@ -10277,7 +11747,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     18,
+     17,
      16,
      2
     ],
@@ -10292,7 +11762,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -41.0,
+       -41.5,
        8.0,
        0.0
       ],
@@ -10323,8 +11793,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     32,
-     2,
+     31,
+     1.9,
      2
     ],
     "Color": [
@@ -10338,8 +11808,8 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -48.0,
-       17.0,
+       -48.5,
+       16.95,
        0.0
       ],
       "orientation": [
@@ -10370,7 +11840,7 @@
     "Anchored": true,
     "Size": [
      8,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -10385,7 +11855,7 @@
      "CFrame": {
       "position": [
        -60.0,
-       26.0,
+       25.95,
        0.0
       ],
       "orientation": [
@@ -10461,8 +11931,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     18,
-     16,
+     17,
+     16.1,
      2
     ],
     "Color": [
@@ -10476,8 +11946,8 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -41.0,
-       26.0,
+       -41.5,
+       25.95,
        0.0
       ],
       "orientation": [
@@ -10600,8 +12070,8 @@
     "Anchored": true,
     "Size": [
      2,
-     16,
-     1
+     1.9,
+     39
     ],
     "Color": [
      0.698,
@@ -10615,8 +12085,8 @@
      "CFrame": {
       "position": [
        -40.0,
-       8.0,
-       -32.5
+       16.95,
+       -52.5
       ],
       "orientation": [
        [
@@ -10646,53 +12116,7 @@
     "Anchored": true,
     "Size": [
      2,
-     2,
-     40
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -40.0,
-       17.0,
-       -52.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall170",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     16,
+     16.1,
      34
     ],
     "Color": [
@@ -10707,7 +12131,7 @@
      "CFrame": {
       "position": [
        -40.0,
-       26.0,
+       25.95,
        -55.0
       ],
       "orientation": [
@@ -10732,7 +12156,7 @@
    }
   },
   {
-   "name": "Wall171",
+   "name": "Wall170",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -10778,53 +12202,7 @@
    }
   },
   {
-   "name": "Wall172",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     16,
-     1
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -40.0,
-       26.0,
-       -32.5
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall173",
+   "name": "Wall171",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -10870,7 +12248,7 @@
    }
   },
   {
-   "name": "Wall174",
+   "name": "Wall172",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -10916,14 +12294,14 @@
    }
   },
   {
-   "name": "Wall175",
+   "name": "Wall173",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
      16,
-     20
+     19
     ],
     "Color": [
      0.698,
@@ -10938,7 +12316,7 @@
       "position": [
        40.0,
        8.0,
-       -42.0
+       -42.5
       ],
       "orientation": [
        [
@@ -10962,14 +12340,14 @@
    }
   },
   {
-   "name": "Wall176",
+   "name": "Wall174",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
-     2,
-     40
+     1.9,
+     39
     ],
     "Color": [
      0.698,
@@ -10983,8 +12361,8 @@
      "CFrame": {
       "position": [
        40.0,
-       17.0,
-       -52.0
+       16.95,
+       -52.5
       ],
       "orientation": [
        [
@@ -11008,13 +12386,13 @@
    }
   },
   {
-   "name": "Wall177",
+   "name": "Wall175",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      12
     ],
     "Color": [
@@ -11029,7 +12407,7 @@
      "CFrame": {
       "position": [
        40.0,
-       26.0,
+       25.95,
        -66.0
       ],
       "orientation": [
@@ -11054,7 +12432,7 @@
    }
   },
   {
-   "name": "Wall178",
+   "name": "Wall176",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11100,14 +12478,14 @@
    }
   },
   {
-   "name": "Wall179",
+   "name": "Wall177",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
-     16,
-     20
+     16.1,
+     19
     ],
     "Color": [
      0.698,
@@ -11121,8 +12499,8 @@
      "CFrame": {
       "position": [
        40.0,
-       26.0,
-       -42.0
+       25.95,
+       -42.5
       ],
       "orientation": [
        [
@@ -11146,14 +12524,14 @@
    }
   },
   {
-   "name": "Wall180",
+   "name": "Wall178",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
      16,
-     8
+     7
     ],
     "Color": [
      0.698,
@@ -11168,7 +12546,7 @@
       "position": [
        -40.0,
        8.0,
-       36.0
+       36.5
       ],
       "orientation": [
        [
@@ -11192,7 +12570,7 @@
    }
   },
   {
-   "name": "Wall181",
+   "name": "Wall179",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11238,7 +12616,7 @@
    }
   },
   {
-   "name": "Wall182",
+   "name": "Wall180",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11284,7 +12662,7 @@
    }
   },
   {
-   "name": "Wall183",
+   "name": "Wall181",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11330,7 +12708,7 @@
    }
   },
   {
-   "name": "Wall184",
+   "name": "Wall182",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11376,99 +12754,99 @@
    }
   },
   {
+   "name": "Wall183",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     1.9,
+     39
+    ],
+    "Color": [
+     0.698,
+     0.659,
+     0.573
+    ],
+    "Material": "Plaster",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40.0,
+       16.95,
+       52.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Wall184",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     16.1,
+     1
+    ],
+    "Color": [
+     0.698,
+     0.659,
+     0.573
+    ],
+    "Material": "Plaster",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -40.0,
+       25.95,
+       33.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
    "name": "Wall185",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     2,
-     40
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -40.0,
-       17.0,
-       52.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall186",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     16,
-     2
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -40.0,
-       26.0,
-       33.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall187",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11514,13 +12892,13 @@
    }
   },
   {
-   "name": "Wall188",
+   "name": "Wall186",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      14
     ],
     "Color": [
@@ -11535,7 +12913,7 @@
      "CFrame": {
       "position": [
        -40.0,
-       26.0,
+       25.95,
        49.0
       ],
       "orientation": [
@@ -11560,7 +12938,7 @@
    }
   },
   {
-   "name": "Wall189",
+   "name": "Wall187",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11606,13 +12984,13 @@
    }
   },
   {
-   "name": "Wall190",
+   "name": "Wall188",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      8
     ],
     "Color": [
@@ -11627,7 +13005,7 @@
      "CFrame": {
       "position": [
        -40.0,
-       26.0,
+       25.95,
        68.0
       ],
       "orientation": [
@@ -11652,53 +13030,7 @@
    }
   },
   {
-   "name": "Wall191",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     16,
-     1
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       40.0,
-       8.0,
-       32.5
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall192",
+   "name": "Wall189",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11744,7 +13076,7 @@
    }
   },
   {
-   "name": "Wall193",
+   "name": "Wall190",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11790,7 +13122,7 @@
    }
   },
   {
-   "name": "Wall194",
+   "name": "Wall191",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11836,7 +13168,7 @@
    }
   },
   {
-   "name": "Wall195",
+   "name": "Wall192",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -11882,14 +13214,14 @@
    }
   },
   {
-   "name": "Wall196",
+   "name": "Wall193",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
-     2,
-     40
+     1.9,
+     39
     ],
     "Color": [
      0.698,
@@ -11903,8 +13235,8 @@
      "CFrame": {
       "position": [
        40.0,
-       17.0,
-       52.0
+       16.95,
+       52.5
       ],
       "orientation": [
        [
@@ -11928,53 +13260,7 @@
    }
   },
   {
-   "name": "Wall197",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     16,
-     1
-    ],
-    "Color": [
-     0.698,
-     0.659,
-     0.573
-    ],
-    "Material": "Plaster",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       40.0,
-       26.0,
-       32.5
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall198",
+   "name": "Wall194",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12020,13 +13306,13 @@
    }
   },
   {
-   "name": "Wall199",
+   "name": "Wall195",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      2,
-     16,
+     16.1,
      33
     ],
     "Color": [
@@ -12041,7 +13327,7 @@
      "CFrame": {
       "position": [
        40.0,
-       26.0,
+       25.95,
        55.5
       ],
       "orientation": [
@@ -12066,12 +13352,12 @@
    }
   },
   {
-   "name": "Wall200",
+   "name": "Wall196",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     3,
      16,
      2
     ],
@@ -12086,7 +13372,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -38.0,
+       -37.5,
        8.0,
        56.0
       ],
@@ -12112,7 +13398,7 @@
    }
   },
   {
-   "name": "Wall201",
+   "name": "Wall197",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12158,7 +13444,7 @@
    }
   },
   {
-   "name": "Wall202",
+   "name": "Wall198",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12204,7 +13490,7 @@
    }
   },
   {
-   "name": "Wall203",
+   "name": "Wall199",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12250,7 +13536,7 @@
    }
   },
   {
-   "name": "Wall204",
+   "name": "Wall200",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12296,7 +13582,7 @@
    }
   },
   {
-   "name": "Wall205",
+   "name": "Wall201",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12342,7 +13628,7 @@
    }
   },
   {
-   "name": "Wall206",
+   "name": "Wall202",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12388,7 +13674,7 @@
    }
   },
   {
-   "name": "Wall207",
+   "name": "Wall203",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12434,12 +13720,12 @@
    }
   },
   {
-   "name": "Wall208",
+   "name": "Wall204",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     3,
      16,
      2
     ],
@@ -12454,7 +13740,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       38.0,
+       37.5,
        8.0,
        56.0
       ],
@@ -12480,13 +13766,13 @@
    }
   },
   {
-   "name": "Wall209",
+   "name": "Wall205",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     10,
-     16,
+     9,
+     16.1,
      2
     ],
     "Color": [
@@ -12500,8 +13786,8 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -35.0,
-       26.0,
+       -34.5,
+       25.95,
        44.0
       ],
       "orientation": [
@@ -12526,7 +13812,7 @@
    }
   },
   {
-   "name": "Wall210",
+   "name": "Wall206",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12572,13 +13858,13 @@
    }
   },
   {
-   "name": "Wall211",
+   "name": "Wall207",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
      14,
-     16,
+     16.1,
      2
     ],
     "Color": [
@@ -12593,7 +13879,7 @@
      "CFrame": {
       "position": [
        -15.0,
-       26.0,
+       25.95,
        44.0
       ],
       "orientation": [
@@ -12618,7 +13904,7 @@
    }
   },
   {
-   "name": "Wall212",
+   "name": "Wall208",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -12664,13 +13950,13 @@
    }
   },
   {
-   "name": "Wall213",
+   "name": "Wall209",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     40,
-     16,
+     39,
+     16.1,
      2
     ],
     "Color": [
@@ -12684,9 +13970,193 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       20.0,
-       26.0,
+       19.5,
+       25.95,
        44.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Wall210",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     16,
+     2
+    ],
+    "Color": [
+     0.839,
+     0.8,
+     0.722
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       8.0,
+       -20.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Wall211",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     4,
+     2
+    ],
+    "Color": [
+     0.839,
+     0.8,
+     0.722
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -10.0,
+       14.0,
+       -20.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Wall212",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     16,
+     2
+    ],
+    "Color": [
+     0.839,
+     0.8,
+     0.722
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       8.0,
+       -20.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Wall213",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     4,
+     2
+    ],
+    "Color": [
+     0.839,
+     0.8,
+     0.722
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.0,
+       14.0,
+       -20.0
       ],
       "orientation": [
        [
@@ -12730,7 +14200,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -17.0,
+       17.0,
        8.0,
        -20.0
       ],
@@ -12761,8 +14231,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     8,
-     4,
+     6,
+     16,
      2
     ],
     "Color": [
@@ -12776,9 +14246,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -10.0,
-       14.0,
-       -20.0
+       -17.0,
+       8.0,
+       20.0
       ],
       "orientation": [
        [
@@ -12807,8 +14277,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     12,
-     16,
+     8,
+     4,
      2
     ],
     "Color": [
@@ -12822,9 +14292,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       0.0,
-       8.0,
-       -20.0
+       -10.0,
+       14.0,
+       20.0
       ],
       "orientation": [
        [
@@ -12853,8 +14323,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     8,
-     4,
+     12,
+     16,
      2
     ],
     "Color": [
@@ -12868,9 +14338,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       10.0,
-       14.0,
-       -20.0
+       0.0,
+       8.0,
+       20.0
       ],
       "orientation": [
        [
@@ -12899,8 +14369,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
-     16,
+     8,
+     4,
      2
     ],
     "Color": [
@@ -12914,9 +14384,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       17.0,
-       8.0,
-       -20.0
+       10.0,
+       14.0,
+       20.0
       ],
       "orientation": [
        [
@@ -12960,7 +14430,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -17.0,
+       17.0,
        8.0,
        20.0
       ],
@@ -12991,9 +14461,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     8,
-     4,
-     2
+     2,
+     16,
+     6
     ],
     "Color": [
      0.839,
@@ -13006,9 +14476,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -10.0,
-       14.0,
-       20.0
+       -20.0,
+       8.0,
+       -17.0
       ],
       "orientation": [
        [
@@ -13037,9 +14507,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     12,
-     16,
-     2
+     2,
+     4,
+     8
     ],
     "Color": [
      0.839,
@@ -13052,9 +14522,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       0.0,
-       8.0,
-       20.0
+       -20.0,
+       14.0,
+       -10.0
       ],
       "orientation": [
        [
@@ -13083,9 +14553,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     8,
-     4,
-     2
+     2,
+     16,
+     12
     ],
     "Color": [
      0.839,
@@ -13098,9 +14568,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       10.0,
-       14.0,
-       20.0
+       -20.0,
+       8.0,
+       0.0
       ],
       "orientation": [
        [
@@ -13129,9 +14599,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
-     16,
-     2
+     2,
+     4,
+     8
     ],
     "Color": [
      0.839,
@@ -13144,9 +14614,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       17.0,
-       8.0,
-       20.0
+       -20.0,
+       14.0,
+       10.0
       ],
       "orientation": [
        [
@@ -13192,7 +14662,7 @@
       "position": [
        -20.0,
        8.0,
-       -17.0
+       17.0
       ],
       "orientation": [
        [
@@ -13222,190 +14692,6 @@
     "Anchored": true,
     "Size": [
      2,
-     4,
-     8
-    ],
-    "Color": [
-     0.839,
-     0.8,
-     0.722
-    ],
-    "Material": "Concrete",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -20.0,
-       14.0,
-       -10.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall226",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     16,
-     12
-    ],
-    "Color": [
-     0.839,
-     0.8,
-     0.722
-    ],
-    "Material": "Concrete",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -20.0,
-       8.0,
-       0.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall227",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     4,
-     8
-    ],
-    "Color": [
-     0.839,
-     0.8,
-     0.722
-    ],
-    "Material": "Concrete",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -20.0,
-       14.0,
-       10.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall228",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
-     16,
-     6
-    ],
-    "Color": [
-     0.839,
-     0.8,
-     0.722
-    ],
-    "Material": "Concrete",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -20.0,
-       8.0,
-       17.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    }
-   }
-  },
-  {
-   "name": "Wall229",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2,
      16,
      6
     ],
@@ -13446,7 +14732,7 @@
    }
   },
   {
-   "name": "Wall230",
+   "name": "Wall226",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -13492,7 +14778,7 @@
    }
   },
   {
-   "name": "Wall231",
+   "name": "Wall227",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -13538,7 +14824,7 @@
    }
   },
   {
-   "name": "Wall232",
+   "name": "Wall228",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -13584,7 +14870,7 @@
    }
   },
   {
-   "name": "Wall233",
+   "name": "Wall229",
    "className": "Part",
    "properties": {
     "Anchored": true,

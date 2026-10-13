@@ -1,7 +1,7 @@
 --!strict
 -- The one source of movement state on this client, shared by every move module:
---   busy:        the move in progress ("Slide", "Crouch", "WallRun", or "Fly" from the dev
---                panel), or nil. One at a time.
+--   busy:        the move in progress ("Slide", "Crouch", "WallRun", "Climb" while on a
+--                ladder, or "Fly" from the dev panel), or nil. One at a time.
 --   airVelocity: the sideways speed being carried through the air (owned by AirMomentum).
 --   landVelocity / landTime: the air speed you landed with (set by AirMomentum).
 --   parts():     the local character's model, humanoid and root part, if alive.

@@ -16,3 +16,6 @@ ServerPackages/
 
 # Check builds (never overwrite UltimateTag.rbxlx: the lobby lives only in the place file)
 build/
+
+# Python caches (map generators import each other)
+__pycache__/
