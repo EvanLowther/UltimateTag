@@ -487,7 +487,7 @@ function Ui.tabs(
 		)
 	end
 
-	local function select(name: string)
+	local function selectTab(name: string)
 		current = name
 		for other in tabs do
 			draw(other)
@@ -516,9 +516,9 @@ function Ui.tabs(
 		Ui.fitWidth(tab, label)
 		tab.Activated:Connect(function()
 			-- The row shows the click itself, so a tab is always lit for what's on screen (and
-			-- every other tab stays clickable) even if `onSelect` doesn't call `select`.
+			-- every other tab stays clickable) even if `onSelect` doesn't call `selectTab`.
 			if current ~= name then
-				select(name)
+				selectTab(name)
 				onSelect(name)
 			end
 		end)
@@ -535,7 +535,7 @@ function Ui.tabs(
 			draw(name)
 		end
 	end
-	return row, select, badge
+	return row, selectTab, badge
 end
 
 -- Puts icon `name` in a window header (dark on the bright bar, white details).
