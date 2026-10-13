@@ -1,0 +1,13 @@
+{
+ "className": "Model",
+ "attributes": {
+  "DisplayName": "The Metro",
+  "MinPlayers": 2,
+  "MaxPlayers": 6,
+  "InRotation": true,
+  "KillHeight": -25,
+  "FallEliminates": true,
+  "Lighting": "Indoor",
+  "OutOfBounds": "Ceiling,WallTop,CarRoof,Kiosk,Vending,Shed,StaffRoomRoof,Tunnel,TunnelRoof"
+ }
+}

@@ -9,7 +9,9 @@ and a `CANVAS` dict: its labels, numbered markers and camera views. The viewer d
 spinning and swinging parts like client/MapAmbience, and marks the KillHeight.
 
 Each part is [style, x, y, z, sx, sy, sz, rotation, flags, motion]; flags: 1 cylinder, 2 detail
-(no collision), 4 roof, 8 slide gate, 16 slip floor, 32 launch pad or speed boost, 64 wedge.
+(no collision), 4 roof (parts named in canvas["roof_names"]), 8 slide gate, 16 slip floor, 32
+launch pad or speed boost, 64 wedge. Motions: spin, swing, and train cars ("car", plus "door" for
+door panels), which run as canvas["train"] describes.
 """
 import importlib
 import json
@@ -66,6 +68,10 @@ def export(m, canvas, kill_height=None, label="Design"):
                                "amp": attrs.get("SwingAmplitude", 0),
                                "period": attrs.get("SwingPeriod", 4),
                                "level": bool(attrs.get("SwingLevel"))})
+            if "TrainCar" in attrs:  # rides the train (canvas["train"] says how it runs)
+                motion["car"] = attrs["TrainCar"]
+                if attrs.get("TrainDoor"):
+                    motion["door"] = attrs["TrainDoor"]
             mi = -1
             if motion:
                 mk = json.dumps(motion, sort_keys=True)
@@ -84,9 +90,8 @@ def export(m, canvas, kill_height=None, label="Design"):
                 flags |= 8
             elif p.get("CanCollide") is False:
                 flags |= 2
-            if node["name"].startswith(("Roof", "Ceiling", "Skylight")) and p.get("CanCollide") is not False \
-                    and canvas.get("roof_names") and node["name"].rstrip("0123456789") in canvas["roof_names"]:
-                flags |= 4
+            if canvas.get("roof_names") and node["name"].rstrip("0123456789") in canvas["roof_names"]:
+                flags |= 4  # hidden until the viewer shows roofs and ceilings
             x, y, z = cf["position"]
             parts.append([style_index[key], *(round(v, 2) for v in (x, y, z, *p["Size"])), ri, flags,
                           mi])
@@ -95,7 +100,7 @@ def export(m, canvas, kill_height=None, label="Design"):
         "motions": motions, "labels": canvas["labels"], "markers": canvas["markers"],
         "spawns": [[round(x, 1), round(y + 0.5, 1), round(z, 1)] for x, y, z in m.spawns],
         "views": canvas["views"], "levels": canvas.get("levels", [{"label": "Whole map", "max": None}]),
-        "figure": canvas["figure"],
+        "figure": canvas["figure"], "train": canvas.get("train"), "killZones": canvas.get("kill_zones"),
     }
 
 

@@ -38,7 +38,7 @@ local counting = false -- a phase timer is running
 local remaining = 0 -- seconds left on it
 local skipping = false -- end the current timer now (dev panel)
 local forceStart = false -- start a game now, without the lobby countdown (dev panel)
-local fellThisRound: { Player } = {} -- out this round by falling off (FallEliminates maps)
+local fellThisRound: { Player } = {} -- out this round by dying on the map (FallEliminates maps)
 
 local function minPlayers(): number
 	return if RunService:IsStudio() then Config.Game.StudioMinPlayers else Config.Game.MinPlayers
@@ -133,7 +133,13 @@ local function fellOut(player: Player)
 	Roles.set(player, nil)
 	Progression.record(player, "GameLost")
 	table.insert(fellThisRound, player)
-	Remotes.get("Notify"):FireAllClients(`{player.DisplayName} fell and is out!`)
+	local character = player.Character
+	local hitByTrain = character ~= nil and character:GetAttribute("HitByTrain") == true
+	Remotes.get("Notify"):FireAllClients(
+		if hitByTrain
+			then `{player.DisplayName} was hit by the train and is out!`
+			else `{player.DisplayName} fell and is out!`
+	)
 end
 
 -- One round. Returns false if the game should stop (not enough players left).
@@ -184,7 +190,7 @@ local function playRound(round: number, lastMap: string?): string?
 		table.insert(results, `Eliminated: {names(out)}`)
 	end
 	if #fellThisRound > 0 then
-		table.insert(results, `Fell off: {names(fellThisRound)}`)
+		table.insert(results, `Out on the map: {names(fellThisRound)}`)
 	end
 	GameState.setStatus(
 		if #results > 0 then table.concat(results, ". ") else "Nobody was eliminated"

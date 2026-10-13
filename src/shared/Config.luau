@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.44.2",
+	Version = "0.45.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -21,7 +21,7 @@ local Config = {
 		-- Falling off: a map with a KillHeight attribute kills anyone who drops below that world
 		-- height within this many studs of it sideways. They respawn on the map (server/MapRespawn),
 		-- unless the map has FallEliminates: then they're out of the game.
-		KillRadius = 400,
+		KillRadius = 700, -- (the Metro's tunnel loops reach about 500 out)
 	},
 
 	Lobby = {
@@ -737,11 +737,33 @@ local Config = {
 		SlipCooldown = 1.5, -- seconds after getting up before you can slip again
 	},
 
+	-- A map's train (the Metro; its track and timetable are the map's TrainLine module,
+	-- shared/TrainLine). server/Trains starts it and decides who it hits; client/Trains moves it,
+	-- carries riders and pushes them out at the exit stop.
+	Trains = {
+		StartDelay = 0, -- seconds after the map loads before the timetable starts
+		PitHeight = 1.5, -- your middle is less than this over the train's floor: you're on the tracks
+		PitDepth = 8, -- ...and no more than this under it (falling away below doesn't count)
+		KillMargin = 0.3, -- studs past the train's sides that still get hit
+		NoseReach = 1.5, -- studs in front of the nose that get hit
+		MovingSpeed = 0.5, -- studs/s: slower than this the train doesn't hit anyone
+		AboardHeight = 11, -- your middle up to this over the floor (and over a car): you're aboard
+		PushOut = 9.6, -- the exit push walks you this far out from the train's middle (the platform)
+		PushTurn = 0.6, -- studs from the door line where the push turns out through the door
+		BoardRefresh = 0.25, -- seconds between departure board updates
+		WarnColor = Color3.fromRGB(255, 160, 30), -- platform edge lights while a train is coming
+		WarnDim = Color3.fromRGB(76, 53, 18),
+		ArrowColor = Color3.fromRGB(255, 46, 136), -- the exit arrows while you're pushed out
+		ArrowDim = Color3.fromRGB(74, 23, 48),
+		GateTransparency = 0.55, -- the no-entry doorways at the exit stop
+		BoardColor = Color3.fromRGB(255, 176, 40), -- departure board text
+	},
+
 	-- Per-map lighting (client/MapLighting): a map with a Lighting attribute (a preset name here)
 	-- switches your lighting to that preset while your camera is within Radius studs of it.
 	-- Other places use the normal lighting from default.project.json.
 	MapLighting = {
-		Radius = 500,
+		Radius = 650,
 		FadeTime = 1.2, -- seconds to blend between lightings
 		Presets = {
 			-- Inside buildings (the School): the outdoor sun settings and bloom wash an enclosed,

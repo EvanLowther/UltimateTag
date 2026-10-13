@@ -198,17 +198,19 @@ class Map:
         node["className"] = "WedgePart"
         return node
 
-    def ring_segment(self, group, name, r0, r1, degrees, span, y0, y1, color, **props):
+    def ring_segment(self, group, name, r0, r1, degrees, span, y0, y1, color, center=(0, 0),
+                     **props):
         """One piece of a round floor or wall: the exact shape between radius r0 and r1 over
         `span` degrees centred on `degrees` (a block and two flat wedges), so neighbouring pieces
-        meet edge to edge instead of overlapping (overlaps flicker)."""
+        meet edge to edge instead of overlapping (overlaps flicker). Round `center` (x, z)."""
         half = math.radians(span / 2)
         s, c = math.sin(half), math.cos(half)
         m = math.radians(degrees)
         radial, tangent = (math.cos(m), math.sin(m)), (-math.sin(m), math.cos(m))
 
         def world(t, r):
-            return (t * tangent[0] + r * radial[0], t * tangent[1] + r * radial[1])
+            return (center[0] + t * tangent[0] + r * radial[0],
+                    center[1] + t * tangent[1] + r * radial[1])
 
         mid = world(0, (r0 + r1) * c / 2)
         parts = [self.part(group, name, (2 * r0 * s, y1 - y0, (r1 - r0) * c),
