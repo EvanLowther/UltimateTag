@@ -1,6 +1,10 @@
 --!strict
 -- Map gadgets, driven by attributes on map parts (so any map can use them):
 --   LaunchVelocity (Vector3): standing on the part throws you with that velocity (a launch pad).
+--                             Sliding or crouching onto it works too (the slide ends first).
+--   LaunchAnyDirection (true): the pad throws you the way you're moving instead (the same up
+--                             speed and the same speed across as LaunchVelocity; standing
+--                             still, the way you face).
 --   SpeedBoost (number):      jumping or running off the part sends you at least this fast in
 --                             the direction you're moving (solar panel slides before a gap).
 --   Slip (number):            moving onto the part (running or sliding) makes you slip: you
@@ -25,6 +29,20 @@ local function floorPart(parts: MoveState.Parts): BasePart?
 	params.FilterDescendantsInstances = { parts.character }
 	local hit = workspace:Raycast(parts.root.Position, Vector3.new(0, -FLOOR_RAY, 0), params)
 	return if hit then hit.Instance :: BasePart else nil
+end
+
+-- An any-direction pad's throw: LaunchVelocity's up speed, and its speed across turned the way
+-- you're moving (or facing, if you're barely moving).
+local function aimed(parts: MoveState.Parts, velocity: Vector3): Vector3
+	local moving = MoveState.flat(parts.root.AssemblyLinearVelocity)
+	local direction = if moving.Magnitude >= Config.Gadgets.LaunchAimSpeed
+		then moving.Unit
+		elseif parts.humanoid.MoveDirection.Magnitude > 0.1 then MoveState.flat(
+			parts.humanoid.MoveDirection
+		).Unit
+		else MoveState.flat(parts.root.CFrame.LookVector).Unit
+	local across = direction * MoveState.flat(velocity).Magnitude
+	return Vector3.new(across.X, velocity.Y, across.Z)
 end
 
 local function launch(parts: MoveState.Parts, velocity: Vector3)
@@ -119,19 +137,28 @@ function MapGadgets.start()
 		if grounded then
 			local floor = floorPart(parts)
 			local velocity = floor and floor:GetAttribute("LaunchVelocity")
+			local busy = MoveState.busy
 			if
-				typeof(velocity) == "Vector3"
+				floor
+				and typeof(velocity) == "Vector3"
 				and now - lastLaunch > settings.LaunchCooldown
-				and not MoveState.busy -- a move in progress keeps control (slides, flying)
+				-- Slides and crouches launch too; other moves (wall runs, flying) keep control.
+				and (not busy or busy == "Slide" or busy == "Crouch")
 			then
 				lastLaunch = now
 				boostSpeed = nil
-				launch(parts, velocity)
+				-- Aim before the slide ends, so a slide throws you the way it was going.
+				local throw = if floor:GetAttribute("LaunchAnyDirection") == true
+					then aimed(parts, velocity)
+					else velocity
+				if busy then
+					Slide.cancel() -- ends the slide or crouch: hips up, normal collisions
+				end
+				launch(parts, throw)
 				wasGrounded = false
 				return
 			end
 			local slipTime = floor and floor:GetAttribute("Slip")
-			local busy = MoveState.busy
 			if
 				type(slipTime) == "number"
 				and (not busy or busy == "Slide" or busy == "Crouch") -- sliding slips too

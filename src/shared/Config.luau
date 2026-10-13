@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.46.0",
+	Version = "0.46.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -729,6 +729,7 @@ local Config = {
 	Gadgets = {
 		LaunchCooldown = 0.8, -- seconds before the same player can be launched again
 		LaunchDriveTime = 0.08, -- seconds the launch velocity is forced (beats ground friction)
+		LaunchAimSpeed = 2, -- LaunchAnyDirection pads: slower than this (studs/s) throws you the way you face
 		BoostWindow = 0.3, -- seconds after leaving a SpeedBoost part that the boost still applies
 		SlipMinSpeed = 4, -- studs/s you must be moving to slip
 		SlipSpin = 7, -- how hard the slip tips you backwards (radians/s)

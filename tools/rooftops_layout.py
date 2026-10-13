@@ -213,7 +213,7 @@ def crossings(m):
     for name, (px, pz, roof, tx, tz, troof) in LAUNCHES.items():
         velocity, _ = launch_velocity(px, pz, roof, tx, tz, troof)
         m.block(g, name, px - 2, px + 2, roof, roof + 0.6, pz - 2, pz + 2, "pad", Material="Neon",
-                attributes={"LaunchVelocity": vec(*velocity)})
+                attributes={"LaunchVelocity": vec(*velocity), "LaunchAnyDirection": True})
         m.block(g, "VentGrille", px - 2.4, px + 2.4, roof, roof + 0.4, pz - 2.4, pz + 2.4, "rail",
                 **NO_HIT)
 
@@ -479,7 +479,7 @@ CANVAS = {
         _marker(2, "Billboard run", "Radio Hub → Depot. Jump off the hub's east edge beside either "
                 "billboard and wall-run down to the Depot, 12 lower.", 39, 60, 0),
         _marker(3, "Depot launch vent", "Depot → Radio Hub. A vent that throws you 12 up and about 50 "
-                "across onto the hub.", 63, 44, 0),
+                "across the way you're moving: run at it toward the hub to land on it.", 63, 44, 0),
         _marker(4, "The swing", "Radio Hub ↔ Apartments, both at 52. A platform swinging across the "
                 "street that pauses just below each roof edge every 2.5 seconds: step on, ride, step "
                 "off.", 0, 56, 39),
@@ -501,8 +501,9 @@ CANVAS = {
                 "ladder on the tower's wall and climb 12.", -43, 58, -82),
         _marker(12, "Hotel ladder", "Depot (40) → Hotel (64): walk the plank to the ladder on the "
                 "hotel's wall and climb 24.", 80, 50, 41),
-        _marker(13, "Apartment launch vent", "Apartments (52) → Hotel (64): a vent that throws you onto "
-                "the hotel roof, short of the pool.", 29, 58, 80),
+        _marker(13, "Apartment launch vent", "Apartments (52) → Hotel (64): a vent that throws you the "
+                "way you're moving; run at it toward the hotel to land on its roof, short of the pool.",
+                29, 58, 80),
         _marker(14, "Lookout", "The high ground in the middle of the hub: ladders up its west and "
                 "north sides (12). You can see the whole map from here.", 0, 69, 0),
         _marker(15, "Drop-offs", "Every higher roof drops onto its lower neighbours: jump the 18-22 "
