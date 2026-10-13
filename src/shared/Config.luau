@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.47.1",
+	Version = "0.48.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -70,6 +70,10 @@ local Config = {
 				RightLowerArm = Vector3.new(5, 0, 0),
 			},
 		},
+	},
+
+	Jump = {
+		CoyoteTime = 0.15, -- seconds after running, walking or sliding off an edge that a jump still works
 	},
 
 	Sprint = {
@@ -858,6 +862,7 @@ local Config = {
 			{ "WallRun", "RunSpeed", 10, 60, 1 },
 			{ "WallRun", "RunTime", 0.3, 4, 0.05 },
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
+			{ "Jump", "CoyoteTime", 0, 0.5, 0.01 },
 			{ "WallRun", "JumpUp", 0, 80, 1 },
 			{ "WallRun", "JumpAwayAngle", 0, 80, 1 },
 			{ "WallRun", "ChainMaxRise", 0, 30, 0.5 },
