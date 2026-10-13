@@ -48,10 +48,9 @@
     "Shape": "Cylinder",
     "Transparency": 0.35,
     "Reflectance": 0.15,
-    "CanCollide": false
-   },
-   "attributes": {
-    "Slip": 1.4
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
    }
   },
   {
@@ -101,10 +100,9 @@
     "Shape": "Cylinder",
     "Transparency": 0.35,
     "Reflectance": 0.15,
-    "CanCollide": false
-   },
-   "attributes": {
-    "Slip": 1.4
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
    }
   },
   {
@@ -154,10 +152,9 @@
     "Shape": "Cylinder",
     "Transparency": 0.35,
     "Reflectance": 0.15,
-    "CanCollide": false
-   },
-   "attributes": {
-    "Slip": 1.4
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
    }
   },
   {

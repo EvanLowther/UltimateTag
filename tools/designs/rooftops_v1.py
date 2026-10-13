@@ -288,10 +288,10 @@ def crossings(m):
 
 # ---- roofs ------------------------------------------------------------------------------------
 
-def slip_puddle(m, g, x, z, y, size=8, slip=1.4):
-    """Three overlapping discs at slightly different heights (level overlaps flicker)."""
-    wet = {"Material": "Glass", "Transparency": 0.35, "Reflectance": 0.15, "CanCollide": False,
-           "attributes": {"Slip": slip}}
+def puddle(m, g, x, z, y, size=8):
+    """Three overlapping discs at slightly different heights (level overlaps flicker):
+    decoration, you run straight through."""
+    wet = {"Material": "Glass", "Transparency": 0.35, "Reflectance": 0.15, **NO_HIT}
     for layer, (dx, dz, k) in enumerate(((0, 0, 1), (size * 0.35, size * 0.17, 0.6),
                                          (-size * 0.37, -size * 0.13, 0.5))):
         m.cylinder(g, "Puddle", 0.12, size * k, (x + dx, y + 0.06 + layer * 0.05, z + dz),
@@ -326,17 +326,17 @@ def roofs(m):
     m.block(g, "Crate", 85, 89, LOW + 3.5, LOW + 7, -75, -71, "wood")
     m.block(g, "Skylight", 72, 86, LOW, LOW + 2.5, -96, -92, "glass", Material="Glass",
             Transparency=0.3)
-    slip_puddle(m, g, 76, -84, LOW)
+    puddle(m, g, 76, -84, LOW)
     # Depot (40): shipping containers (ladders up them; wall-run along them), a crate.
     m.block(g, "Container", 80, 88, LOW, LOW + 8.5, -24, -8, "container_red")
     m.block(g, "Container", 80, 88, LOW, LOW + 8.5, 8, 24, "container_blue")
     for z in (-16, 16):
         m.ladder(g, 80, z, (-1, 0), LOW, LOW + 8.5)
     m.block(g, "Crate", 70, 74, LOW, LOW + 3.5, -20, -16, "wood")
-    # Hotel (64): the pool (wet floor: run in and you slip), loungers to jump, a cabana, sign.
+    # Hotel (64): the pool (a shallow pit to run through), loungers to jump, a cabana, sign.
     x0, x1, z0, z1 = POOL
     m.block(g, "PoolFloor", x0, x1, HIGH - 2.5, HIGH - 2.4, z0, z1, "puddle", Material="Glass",
-            Transparency=0.2, CanCollide=False, attributes={"Slip": 1.2})
+            Transparency=0.2, **NO_HIT)
     m.block(g, "PoolWater", x0, x1, HIGH - 0.4, HIGH - 0.3, z0, z1, (80, 180, 235),
             Material="Glass", Transparency=0.55, **NO_HIT)
     for x in (70, 76, 82, 88):
@@ -462,10 +462,10 @@ def _marker(n, title, text, x, y, z):
 
 
 CANVAS = {
-    "label": "Design v1.1 (ladders)",
+    "label": "Design v1.2 (flush ladders, no slipping)",
     "labels": [_label(f"{b[5]} · {b[4]}", (b[0] + b[1]) / 2, b[4] + 7, (b[2] + b[3]) / 2)
                for b in BUILDINGS.values()] + [
-        _label("Pool (slippery)", 78, 66, 79, "feature"),
+        _label("Pool", 78, 66, 79, "feature"),
         _label("Water towers: slide under", 0, 63, 78, "feature"),
         _label("Helipad", -80, 66, -86, "feature"), _label("Containers", 84, 51, 0, "feature")],
     "markers": [

@@ -9,22 +9,22 @@ upper floor at 18 (ceiling 34), roof 34-37. The gym, the atrium and the library 
 
 Tag flow: two loops instead of one. The inner loop is the hall ring round the atrium, on both
 floors; the outer loop runs through rooms that open into each other (gym, locker room, library,
-stairwells, kitchen, band room, classrooms). Eleven ways between the floors, none of them one-way:
+stairwells, kitchen, band room, classrooms). Ten ways between the floors:
    1 the open grand stair up the middle of the atrium (run under its high end)
-   2 the gym bleachers (vault row to row, or the aisle) up to the upper floor
+   2 the gym bleachers (jump row to row, or the aisle) up to the upper floor
    3 the north-west stairwell, 4 the south-east stairwell (switchbacks)
    5 the upper hall's floor, fallen into the cafeteria as a ramp (up, down, or under its low end)
-   6 the science lab's floor, fallen into Room 101: drop, or climb the rubble and the cabinet
-   7 the library shelf tops (9) up onto the mezzanine (18)
-   8 the atrium's corner pillars: wall-climb two hops onto the balcony
-   9 the balcony railing: vault it anywhere and drop 18 (landing roll)
-  10 the gym springboard up onto the running track
-  11 the running track's railing: vault off into the gym
+   6 the science lab's floor, fallen into Room 101: drop, or the ladder back up (the map's only
+     ladder, flush on a support column under the hole's edge)
+   7 the library mezzanine (reached by the bridge from the balcony): drop 18 to the library
+   8 the balcony railing: vault it anywhere and drop 18
+   9 the gym springboard up onto the running track
+  10 the running track's railing: vault off into the gym
 Rooms: north the gym (bleachers, running track at 18, springboard); north-west and south-east the
-stairwells; north-east the locker room (slippery showers) with the teachers' lounge above; west
+stairwells; north-east the locker room (showers) with the teachers' lounge above; west
 Rooms 101 and 102 with the science lab and the computer lab above; east the library (shelf rows,
 the mezzanine, a bridge from the balcony); south the cafeteria (lunch tables, a serving line
-with a slide-under shutter and a vault-over counter), the kitchen (walk-in fridge, greasy floor)
+with a slide-under shutter and a vault-over counter), the kitchen (walk-in fridge, a grease spill)
 and the band room, with the art room, the upper hall and the music room above.
 """
 import math
@@ -37,7 +37,7 @@ from maplib import IDENTITY, NO_HIT, SMOKE, SPARK, Map, rot_x, rot_y, rot_z  # n
 
 OUT = "src/maps/School"
 ATTRIBUTES = {"DisplayName": "School", "MinPlayers": 2, "MaxPlayers": 8, "InRotation": True,
-              "Lighting": "Indoor", "OutOfBounds": "Roof,Skylight,LockerIsland"}
+              "Lighting": "Indoor", "OutOfBounds": "Roof,Skylight,LockerIsland,WalkInFridge"}
 
 IN_X, IN_Z = 64, 72  # inside faces of the outer walls
 WALL = 2
@@ -206,10 +206,10 @@ def rail(m, g, x0, x1, z0, z1, y=F2, glass=False):
         m.block(g, "Railing", x0, x1, y, y + 3.2, z0, z1, "rail")
 
 
-def slip_puddle(m, g, x, z, y, size=9, slip=1.6):
-    """A roundish puddle (three overlapping discs): run or slide in and you slip (Slip)."""
-    wet = {"Material": "Glass", "Transparency": 0.35, "Reflectance": 0.15, "CanCollide": False,
-           "attributes": {"Slip": slip}}
+def puddle(m, g, x, z, y, size=9):
+    """A roundish puddle (three overlapping discs, each a little higher): decoration only, you
+    run straight through it."""
+    wet = {"Material": "Glass", "Transparency": 0.35, "Reflectance": 0.15, **NO_HIT}
     for layer, (dx, dz, k) in enumerate(((0, 0, 1), (size * 0.35, size * 0.17, 0.6),
                                          (-size * 0.37, -size * 0.13, 0.5))):
         m.cylinder(g, "Puddle", 0.12, size * k, (x + dx, y + 0.06 + layer * 0.05, z + dz), "puddle",
@@ -385,7 +385,7 @@ def shell(m):
 
 def atrium(m):
     """The middle of the school: double height under a skylight, an open stair up the middle to
-    the balcony, corner pillars to wall-climb, a vault-over glass railing all round."""
+    the balcony, a vault-over glass railing all round (no pillars: the floor is open)."""
     g = "Atrium"
     # The grand stair: open underneath, so you can run under its high end and duck under the
     # middle. Step edges painted on (decoration).
@@ -400,18 +400,11 @@ def atrium(m):
     for x in (-5.3, 5.3):
         ramp_z(m, g, "StairRail", x - 0.15, x + 0.15, 16, 3, -12, F2 + 3, color="rail", thick=0.3,
                **NO_HIT)
-    for sx in (-1, 1):
-        for sz in (-1, 1):
-            x, z = sx * 13.5, sz * 13.5
-            m.block(g, "Pillar", x - 1.5, x + 1.5, F1, F1_TOP, z - 1.5, z + 1.5, "pillar")
-    # Balcony railing round the void, open where the stair arrives and at the two ladders.
+    # Balcony railing round the void, open where the stair arrives.
     for x0, x1, z0, z1 in ((-12, -5, -12.3, -11.7), (5, 12, -12.3, -11.7),
-                           (-12, 12, 11.7, 12.3), (-12.3, -11.7, -11.7, -2.5),
-                           (-12.3, -11.7, 2.5, 11.7), (11.7, 12.3, -11.7, -2.5),
-                           (11.7, 12.3, 2.5, 11.7)):
+                           (-12, 12, 11.7, 12.3), (-12.3, -11.7, -11.7, 11.7),
+                           (11.7, 12.3, -11.7, 11.7)):
         rail(m, g, x0, x1, z0, z1, glass=True)
-    m.ladder(g, -12, 0, (1, 0), F1, F2)
-    m.ladder(g, 12, 0, (-1, 0), F1, F2)
     # Planters and benches on the atrium floor (vault them).
     for x in (-15, 15):
         m.block(g, "Planter", x - 2.5, x + 2.5, F1, 3, 1.5, 6.5, "planter")
@@ -496,8 +489,8 @@ def stairwells(m):
 
 def west_wing(m):
     """Rooms 101 and 102 below, the science lab and the computer lab above. The lab's floor has
-    fallen into 101: drop through, or climb the rubble (4) and the fallen cabinet (10) and pull
-    up onto the lab floor."""
+    fallen into 101: drop through, or take the ladder back up (on a support column under the
+    hole's south edge)."""
     g = "WestWing"
     for x, z in ((-60, -22), (-60, -14), (-60, -6), (-38, -26), (-38, -3), (-46, -27)):
         desk(m, g, x, z)
@@ -509,16 +502,19 @@ def west_wing(m):
             font="PermanentMarker")
     on_wall(m, g, "Chalkboard", HALL_S, -43, 8, 14, 6, "board", depth=0.2,
             text="POP QUIZ:<br/>Who's It?", text_color=(240, 240, 230), font="PermanentMarker")
-    # The fall: a lab cabinet came down under the hole's south edge, with rubble next to it.
-    m.ladder(g, -48, LAB_HOLE[3], (0, -1), F1, F2)
-    m.block(g, "Rubble", -52, -46.5, F1, 4, -11, -6.5, "rubble")
+    # The fall: a support column under the hole's south edge, the ladder flat on it (its face
+    # runs on up the hole's edge), rubble round about.
+    hx0, hx1, hz0, hz1 = LAB_HOLE
+    m.block(g, "SupportColumn", (hx0 + hx1) / 2 - 3, (hx0 + hx1) / 2 + 3, F1, F1_TOP, hz1, hz1 + 2,
+            "pillar")
+    m.ladder(g, (hx0 + hx1) / 2, hz1, (0, -1), F1, F2)
+    m.block(g, "Rubble", -52, -46.5, F1, 4, -9.5, -5, "rubble")
     m.block(g, "Rubble", -43.5, -40.5, F1, 2.2, -17, -14, "rubble")
     m.part(g, "FloorChunk", (6, 1, 5), (-56, 1.2, -16), "debris", rot_z(14), **NO_HIT)
     # Upper floor: lab benches round the hole, the fume hood, computer desks.
     for z in (-24, -7):
         for x0, x1 in ((-61, -51), (-45, -37)):
             m.block(g, "LabBench", x0, x1, F2, F2 + 3.4, z - 1.5, z + 1.5, "lab_bench")
-    hx0, hx1, hz0, hz1 = LAB_HOLE
     for x0, x1, z0, z1 in ((hx0 - 1, hx1 + 1, hz0 - 1, hz0 + 0.05),
                            (hx0 - 1, hx1 + 1, hz1 - 0.05, hz1 + 1),
                            (hx0 - 1, hx0 + 0.05, hz0 + 0.05, hz1 - 0.05),
@@ -538,9 +534,9 @@ def west_wing(m):
 
 
 def east_wing(m):
-    """The library (double height): shelf rows to wall-run and run along the tops, a mezzanine
-    at 18 on the east wall, a bridge across from the balcony. North of it the locker room, with
-    the teachers' lounge above."""
+    """The library (double height): shelf rows to wall-run, a mezzanine at 18 on the east wall
+    (the bridge from the balcony gets you up; drop off it to come down). North of it the locker
+    room, with the teachers' lounge above."""
     g = "Library"
     for k, z in enumerate((-24, -14, 14, 24)):
         bookshelf_row(m, g, 34, 40, z, k)
@@ -556,8 +552,6 @@ def east_wing(m):
         m.block(g, "MezzColumn", 54, 55.5, F1, F1_TOP, z - 0.75, z + 0.75, "pillar")
     for z0, z1 in ((-32, -4), (4, 32)):
         m.block(g, "HazardEdge", 54, 54.6, F2, F2 + 0.12, z0, z1, "hazard", **NO_HIT)
-    for z in (-19, 19):
-        m.ladder(g, 54, z, (-1, 0), F1, F2)
     for y in (F1, F2):  # bookshelves on the east wall, clear of the windows (decoration)
         for z0, z1 in ((-16, -8), (8, 16)):
             m.block(g, "WallShelf", 63, 63.9, y, y + 8, z0, z1, "shelf", **NO_HIT)
@@ -570,7 +564,7 @@ def east_wing(m):
     m.block(g, "Bench", 51, 53, F1, 1.6, -54, -40, "desk")
     for x in (50, 56, 62):
         m.block(g, "ShowerWall", x - 0.2, x + 0.2, F1, 7, -72, -66, "lab_floor")
-    slip_puddle(m, g, 54, -63, F1, size=8)
+    puddle(m, g, 54, -63, F1, size=8)
     m.block(g, "Couch", 44, 52, F2, F2 + 3, -50, -47, "couch")
     m.block(g, "CoffeeTable", 45, 51, F2, F2 + 2, -44, -42, "desk")
     m.block(g, "Vending", 60.5, 63.8, F2, F2 + 8, -44, -40, "vending")
@@ -605,9 +599,8 @@ def south_wing(m):
     for x0, x1 in ((-30, -14), (-6, 10)):
         m.block(g, "KitchenIsland", x0, x1, F1, 3.5, 62, 65, "counter")
     m.block(g, "WalkInFridge", 22, 36, F1, 10, 60, 71, "fridge")
-    m.ladder(g, 22, 66, (-1, 0), F1, 10)
     m.block(g, "Stove", -38, -22, F1, 3.5, 69.5, IN_Z, (70, 72, 78))
-    slip_puddle(m, g, 0, 68.5, F1, size=5, slip=1.2)
+    puddle(m, g, 0, 68.5, F1, size=5)
 
     g = "BandArt"
     for x0, x1, h in ((-64, -58, 3.5), (-58, -54, 2.5), (-54, -50, 1.5)):
@@ -629,7 +622,7 @@ def south_wing(m):
 def upper_ring(m):
     """The balcony ring's extras: a leak puddle with its bucket, benches."""
     g = "UpperRing"
-    slip_puddle(m, g, 24, -22, F2, size=7, slip=1.4)
+    puddle(m, g, 24, -22, F2, size=7)
     m.block(g, "Bucket", 29, 31, F2, F2 + 2.4, -26, -24, "hazard")
     for x in (-24, 24):
         m.block(g, "Bench", x - 3, x + 3, F2, F2 + 1.8, 22, 24, "desk")

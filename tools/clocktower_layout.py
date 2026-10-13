@@ -27,7 +27,7 @@ import sys
 
 sys.path.insert(0, "tools")
 import mapcheck  # noqa: E402
-from maplib import NO_HIT, Map, facing_out, matmul, polar, rot_y, rot_z  # noqa: E402
+from maplib import LADDER_DEPTH, NO_HIT, Map, facing_out, matmul, polar, rot_y, rot_z  # noqa: E402
 
 OUT = "src/maps/Clocktower"
 ATTRIBUTES = {"DisplayName": "The Clocktower", "MinPlayers": 2, "MaxPlayers": 4,
@@ -58,7 +58,9 @@ LOW_CENTER_Y = PIVOT[1] - CHAIN  # platform center at the bottom of the swing
 GEAR_R = 7
 GEAR_RING = 18.5  # gear centers this far from the middle
 GEARS = ((20, 5, 22), (110, 10, -22), (200, 14, 22))  # angle, top, spin: each a jump up
-LADDER_DEG = 200  # the ladder up the pit wall from the top gear to the gallery
+LADDER_DEG = 198.75  # the ladder up the pit wall from the top gear to the gallery (on a corner
+# of the wall's flat pieces, which bow in toward the pit on either side of it: LADDER_GAP clears them)
+LADDER_GAP = 0.2
 
 DRUM_R, DRUM_TOP = 5, 5  # the escapement drum in the middle of the pit (a jump high)
 SHAFT_DEG, SHAFT_UNDER, SHAFT_D = 290, 4.2, 1.6  # its drive shaft (slide under it)
@@ -446,7 +448,7 @@ def build():
         gear(m, angle, top, spin)
     lx, lz = polar(PIT_R, LADDER_DEG)
     inward = polar(-1, LADDER_DEG)
-    m.ladder("Gears", lx, lz, inward, GEARS[-1][1], FLOOR2)
+    m.ladder("Gears", lx, lz, inward, GEARS[-1][1], FLOOR2, gap=LADDER_GAP)
     escapement(m)
     works(m)
     pendulum(m)
@@ -526,8 +528,11 @@ def check(m):
         problems.append("the first gear or the drum is too high to jump onto")
     if GEAR_RING - tooth_r - DRUM_R > 6.5:
         problems.append("the drum is too far from the first gear to jump")
-    ladder_gap = PIT_R - 2 - (GEAR_RING + GEAR_R)
-    if LADDER_DEG != GEARS[-1][0] or not 0 < ladder_gap < 1.5:
+    ladder_gap = PIT_R - LADDER_GAP - LADDER_DEPTH - (GEAR_RING + tooth_r)
+    bow = (2 + LADDER_DEPTH / 2) * math.tan(math.radians(SEG / 2))  # the wall's pieces at its ends
+    if LADDER_GAP < bow + 0.05 or (LADDER_DEG - SEG / 2) % SEG > 1e-6:
+        problems.append("the ladder cuts into the pit wall (put it on a corner, gap past the bow)")
+    if abs(LADDER_DEG - GEARS[-1][0]) > 3 or not 0 < ladder_gap < 1.5:
         problems.append(f"the ladder isn't right beside the top gear (gap {ladder_gap:.1f})")
     if not 2 <= DECK_IN - WHEEL_OUT <= 4:
         problems.append("the crown wheel is out of jumping reach of the deck")

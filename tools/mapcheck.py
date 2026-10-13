@@ -9,6 +9,8 @@ them on the map folders themselves (every map in rotation, or the ones you name)
            buried: right in front of it is something solid and opaque, so no camera can see it.
   windows  Nothing, decoration included, cuts into a window's glass or sits right in front of
            it (parts named "Window", as maplib's walls make them).
+  ladders  A ladder's invisible truss is sunk into something solid behind its rungs (maplib's
+           ladders stand flush on a wall): one that floats leaves invisible collision in the open.
   reach    Every walkable area can be reached from the spawns, and you can always get back.
            Areas too small to matter (under MIN_AREA, or with no 4x4 patch to stand in: a ledge,
            a wall top) are skipped, and so are the tops of parts named in the map's OutOfBounds
@@ -38,6 +40,7 @@ JUMP_SPEED = math.sqrt(2 * GRAVITY * 7.2)
 RUN = 30.0  # sprint speed
 JUMP_MARGIN = 2.5  # studs short of a perfect jump that still counts as reliable
 LAUNCH_DRIVE = 0.08  # Config.Gadgets.LaunchDriveTime
+LADDER_SKIN = 0.37  # a ladder truss's front past the wall face (maplib gap + depth)
 MIN_AREA = 24  # studs^2: smaller unreachable spots (the tops of small props) are ignored
 CELL = 2.0  # walkable grid spacing
 
@@ -458,6 +461,37 @@ def windows(parts, limit=40):
 
 # ---- reach -------------------------------------------------------------------------------------
 
+def ladders(parts, limit=20):
+    """Invisible trusses (maplib ladders) must sit in something solid behind their fronts: the
+    climbing face sticks out LADDER_SKIN, everything behind it is inside the wall."""
+    grid = Grid(parts)
+    problems = []
+    for part in parts:
+        if part.cls != "TrussPart" or part.visible:
+            continue
+        hx, hy, hz = part.half
+        face = hz - LADDER_SKIN  # local Z of the wall face (local +Z is the way the ladder faces)
+        loose = 0
+        for lx in (-hx + 0.15, 0.0, hx - 0.15):
+            for lz in (-hz + 0.15, (face - hz) / 2, face - 0.25):
+                ly = -hy + 0.25
+                while ly < hy:
+                    point = [part.pos[i] + part.rows[i][0] * lx + part.rows[i][1] * ly
+                             + part.rows[i][2] * lz for i in range(3)]
+                    if not any(parts[n].solid and parts[n].cls != "TrussPart"
+                               and parts[n].contains(point, 0.01)
+                               for n in grid.near(point[0], point[2])):
+                        loose += 1
+                    ly += 0.5
+        if loose:
+            x, y, z = part.pos
+            problems.append(f"ladder at ({x:.1f}, {y:.1f}, {z:.1f}) floats: its truss isn't sunk "
+                            f"into something solid ({loose} points in the open)")
+            if len(problems) >= limit:
+                break
+    return problems
+
+
 def jump_reach(drop):
     """How far a sprinting jump carries you before your feet are `drop` below where you took off
     (negative: above), less a margin so the jump is one you make every time."""
@@ -611,10 +645,18 @@ class Reach:
         for index, part in enumerate(self.parts):
             if part.cls != "TrussPart":
                 continue
-            group = [n for n, (x, z, h, _, _) in enumerate(self.nodes)
-                     if part.lo[0] - 2.5 <= x <= part.hi[0] + 2.5
-                     and part.lo[2] - 2.5 <= z <= part.hi[2] + 2.5
-                     and part.lo[1] - 1.0 <= h <= part.hi[1] + 0.6]
+            group = []
+            for n, (x, z, h, _, _) in enumerate(self.nodes):
+                if not (part.lo[0] - 2.5 <= x <= part.hi[0] + 2.5
+                        and part.lo[2] - 2.5 <= z <= part.hi[2] + 2.5
+                        and part.lo[1] - 1.0 <= h <= part.hi[1] + 0.6):
+                    continue
+                lx, _, lz = part.local((x, h, z))
+                # Below the top you get on from the front (an invisible truss is sunk in a
+                # wall, and what's behind that wall is somewhere else); at the top, the ledge.
+                if h >= part.hi[1] - 0.6 or (lz >= part.half[2] - 1.0 and abs(lx) <= part.half[0] + 2.5) \
+                        or part.visible:
+                    group.append(n)
             for a in group:
                 self.edges[a].update(b for b in group if b != a)
 
@@ -761,9 +803,9 @@ class Reach:
 # ---- running them ------------------------------------------------------------------------------
 
 def check(parts, spawns, attributes, ignore_tops=(), routes=()):
-    """All three checks. `parts` from parts_from_nodes (or load_folder); `routes` are extra ways
+    """All the checks. `parts` from parts_from_nodes (or load_folder); `routes` are extra ways
     across: ((x, y, z) from, (x, y, z) to, both ways?)."""
-    problems = flicker(parts) + windows(parts)
+    problems = flicker(parts) + windows(parts) + ladders(parts)
     # The map's OutOfBounds attribute names parts whose tops aren't play area (roofs, ceilings,
     # tall furniture), comma-separated.
     off = [n.strip() for n in str(attributes.get("OutOfBounds", "")).split(",") if n.strip()]

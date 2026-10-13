@@ -24,6 +24,7 @@ IDENTITY = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 NO_HIT = {"CanCollide": False, "CanQuery": False, "CanTouch": False}
 SMOKE = "rbxasset://textures/particles/smoke_main.dds"
 SPARK = "rbxasset://textures/particles/sparkles_main.dds"
+LADDER_DEPTH = 0.3  # a ladder's rails stand this far out (plus its gap off the wall)
 
 
 def rot_x(deg):
@@ -220,34 +221,39 @@ class Map:
                                                 **props))
         return parts
 
-    def ladder(self, group, x, z, facing, y0, y1, width=4, color=(70, 74, 82), name="Ladder"):
+    def ladder(self, group, x, z, facing, y0, y1, width=4, color=(70, 74, 82), name="Ladder",
+               gap=0.07):
         """A ladder you climb (Roblox characters climb TrussParts): from the floor at y0 up to the
-        ledge at y1, against the face at (x, z). `facing` is the way that face looks (x, z): the
-        ladder stands out that way and you climb it facing back. Invisible trusses (2 x 2, one per
-        2 studs of width, their tops level with the ledge) do the climbing; the rails and rungs
-        in front are decoration."""
+        ledge at y1, flat against the face at (x, z). `facing` is the way that face looks (x, z):
+        you climb it facing back. The rails and rungs sit `gap` off the face (more on a curved
+        wall, whose flat pieces bow in). Invisible trusses (2 x 2, one per 2 studs of width, tops
+        level with the ledge) do the climbing: their fronts are level with the rails and the rest
+        is sunk into whatever is behind the face, so that must be solid and at least 2 deep for
+        the ladder's whole height (mapcheck finds a ladder that floats)."""
         length = math.hypot(*facing)
         fx, fz = facing[0] / length, facing[1] / length
         tx, tz = fz, -fx  # along the face
         rows = [[tx, 0, fx], [0, 1, 0], [tz, 0, fz]]  # local X along the face, Z out from it
         height = 2 * math.ceil((y1 - y0) / 2 - 1e-6)
         count = max(1, round(width / 2))
+        out = gap + LADDER_DEPTH - 1  # truss centers: fronts level with the rails' fronts
         for k in range(count):
             off = (k - (count - 1) / 2) * 2
             node = self.part(group, "LadderTruss", (2, height, 2),
-                             (x + fx + tx * off, y1 - height / 2, z + fz + tz * off), (90, 90, 96),
-                             rows, Transparency=1, CastShadow=False)
+                             (x + fx * out + tx * off, y1 - height / 2, z + fz * out + tz * off),
+                             (90, 90, 96), rows, Transparency=1, CastShadow=False)
             node["className"] = "TrussPart"
-        rail_out = 1.7
+        rail_out = gap + LADDER_DEPTH / 2
         for side in (-1, 1):
-            self.part(group, name + "Rail", (0.3, y1 - y0 + 3, 0.3),
+            self.part(group, name + "Rail", (LADDER_DEPTH, y1 - y0 + 3, LADDER_DEPTH),
                       (x + fx * rail_out + tx * side * width / 2, (y0 + y1 + 3) / 2,
                        z + fz * rail_out + tz * side * width / 2), color, rows, Material="Metal",
                       **NO_HIT)
         y = y0 + 1
-        while y < y1 - 0.2:
-            self.part(group, name + "Rung", (width, 0.2, 0.2), (x + fx * rail_out, y, z + fz * rail_out),
-                      color, rows, Material="Metal", **NO_HIT)
+        while y < y1 - 0.2:  # rungs a little thinner than the rails (their faces would meet)
+            self.part(group, name + "Rung", (width, LADDER_DEPTH - 0.1, LADDER_DEPTH - 0.1),
+                      (x + fx * rail_out, y, z + fz * rail_out), color, rows, Material="Metal",
+                      **NO_HIT)
             y += 1.2
 
     def ring_wall(self, group, name, radius, thickness, y0, y1, segments, color, skip=(),

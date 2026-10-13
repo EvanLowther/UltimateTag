@@ -896,7 +896,53 @@
    ]
   },
   {
-   "name": "LadderTruss5",
+   "name": "SupportColumn",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     16,
+     2
+    ],
+    "Color": [
+     0.839,
+     0.8,
+     0.722
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -48.0,
+       8.0,
+       -11.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LadderTruss",
    "className": "TrussPart",
    "properties": {
     "Anchored": true,
@@ -918,7 +964,7 @@
       "position": [
        -47.0,
        9.0,
-       -13.0
+       -11.37
       ],
       "orientation": [
        [
@@ -944,7 +990,7 @@
    }
   },
   {
-   "name": "LadderTruss6",
+   "name": "LadderTruss2",
    "className": "TrussPart",
    "properties": {
     "Anchored": true,
@@ -966,7 +1012,7 @@
       "position": [
        -49.0,
        9.0,
-       -13.0
+       -11.37
       ],
       "orientation": [
        [
@@ -992,7 +1038,7 @@
    }
   },
   {
-   "name": "LadderRail5",
+   "name": "LadderRail",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1014,7 +1060,7 @@
       "position": [
        -46.0,
        10.5,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1041,7 +1087,7 @@
    }
   },
   {
-   "name": "LadderRail6",
+   "name": "LadderRail2",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1063,7 +1109,7 @@
       "position": [
        -50.0,
        10.5,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1090,7 +1136,7 @@
    }
   },
   {
-   "name": "LadderRung31",
+   "name": "LadderRung",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1112,7 +1158,7 @@
       "position": [
        -48.0,
        1,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1139,7 +1185,7 @@
    }
   },
   {
-   "name": "LadderRung32",
+   "name": "LadderRung2",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1161,7 +1207,7 @@
       "position": [
        -48.0,
        2.2,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1188,7 +1234,7 @@
    }
   },
   {
-   "name": "LadderRung33",
+   "name": "LadderRung3",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1210,7 +1256,7 @@
       "position": [
        -48.0,
        3.4,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1237,7 +1283,7 @@
    }
   },
   {
-   "name": "LadderRung34",
+   "name": "LadderRung4",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1259,7 +1305,7 @@
       "position": [
        -48.0,
        4.6,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1286,7 +1332,7 @@
    }
   },
   {
-   "name": "LadderRung35",
+   "name": "LadderRung5",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1308,7 +1354,7 @@
       "position": [
        -48.0,
        5.8,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1335,7 +1381,7 @@
    }
   },
   {
-   "name": "LadderRung36",
+   "name": "LadderRung6",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1357,7 +1403,7 @@
       "position": [
        -48.0,
        7.0,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1384,7 +1430,7 @@
    }
   },
   {
-   "name": "LadderRung37",
+   "name": "LadderRung7",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1406,7 +1452,7 @@
       "position": [
        -48.0,
        8.2,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1433,7 +1479,7 @@
    }
   },
   {
-   "name": "LadderRung38",
+   "name": "LadderRung8",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1455,7 +1501,7 @@
       "position": [
        -48.0,
        9.4,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1482,7 +1528,7 @@
    }
   },
   {
-   "name": "LadderRung39",
+   "name": "LadderRung9",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1504,7 +1550,7 @@
       "position": [
        -48.0,
        10.6,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1531,7 +1577,7 @@
    }
   },
   {
-   "name": "LadderRung40",
+   "name": "LadderRung10",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1553,7 +1599,7 @@
       "position": [
        -48.0,
        11.8,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1580,7 +1626,7 @@
    }
   },
   {
-   "name": "LadderRung41",
+   "name": "LadderRung11",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1602,7 +1648,7 @@
       "position": [
        -48.0,
        13.0,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1629,7 +1675,7 @@
    }
   },
   {
-   "name": "LadderRung42",
+   "name": "LadderRung12",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1651,7 +1697,7 @@
       "position": [
        -48.0,
        14.2,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1678,7 +1724,7 @@
    }
   },
   {
-   "name": "LadderRung43",
+   "name": "LadderRung13",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1700,7 +1746,7 @@
       "position": [
        -48.0,
        15.4,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1727,7 +1773,7 @@
    }
   },
   {
-   "name": "LadderRung44",
+   "name": "LadderRung14",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1749,7 +1795,7 @@
       "position": [
        -48.0,
        16.6,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1776,7 +1822,7 @@
    }
   },
   {
-   "name": "LadderRung45",
+   "name": "LadderRung15",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1798,7 +1844,7 @@
       "position": [
        -48.0,
        17.8,
-       -13.7
+       -12.22
       ],
       "orientation": [
        [
@@ -1847,7 +1893,7 @@
       "position": [
        -49.25,
        2.0,
-       -8.75
+       -7.25
       ],
       "orientation": [
        [
