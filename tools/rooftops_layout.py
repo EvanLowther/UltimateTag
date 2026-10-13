@@ -80,6 +80,9 @@ MATERIALS = {"steel": "Metal", "wood": "WoodPlanks", "duct": "Metal", "rail": "M
 DUCT = (-40, -37)  # z range of the duct over the duct bridge
 DUCT_UNDER = 4.2  # slide-height gap under it
 STEPS = ((-52, -46, 44), (-40, -34, 48), (-28, -23, 52))  # W -> hub scaffold steps (x0, x1, top)
+STEP_W = 12  # the scaffold steps' width (across the way you cross)
+WALK = 6  # planks (and the ladders at their ends) are this wide
+GIRDER_W = 9  # the duct bridge's girder
 SWING_PIVOT = (0, 92, 39)
 SWING_PERIOD = 5.0
 SWING_R = 5  # the platform's radius
@@ -190,10 +193,11 @@ def billboard(m, g, x0, x1, y0, y1, z0, z1, text, color):
 def crossings(m):
     g = "Crossings"
     # 1. Duct bridge, hub <-> Glass Offices (52): a girder with a duct across it at slide height.
-    m.block(g, "Girder", -3, 3, MID - 1, MID, -58, -20, "steel")
+    m.block(g, "Girder", -GIRDER_W / 2, GIRDER_W / 2, MID - 1, MID, -58, -20, "steel")
     m.block(g, "GirderWeb", -0.4, 0.4, MID - 3, MID - 1, -58, -20, "steel", **NO_HIT)
     m.block(g, "Duct", -7, 7, MID + DUCT_UNDER, MID + DUCT_UNDER + 3.4, DUCT[0], DUCT[1], "duct")
-    m.block(g, "StandBlocker", -3.2, 3.2, MID, MID + DUCT_UNDER, DUCT[0], DUCT[1], (255, 255, 255),
+    m.block(g, "StandBlocker", -GIRDER_W / 2 - 0.2, GIRDER_W / 2 + 0.2, MID, MID + DUCT_UNDER,
+            DUCT[0], DUCT[1], (255, 255, 255),
             Transparency=1, CastShadow=False, attributes={"SlideBlocker": True})
     for x in (-7.5, 7.5):
         m.block(g, "DuctPost", x - 0.5, x + 0.5, 0, MID + DUCT_UNDER + 3.4, DUCT[0] + 1,
@@ -238,9 +242,9 @@ def crossings(m):
 
     # 5. Scaffold steps, Billboard Block <-> hub: platforms 4 up at a time.
     for x0, x1, step_top in STEPS:
-        m.block(g, "Step", x0, x1, step_top - 1, step_top, -4, 4, "wood")
+        m.block(g, "Step", x0, x1, step_top - 1, step_top, -STEP_W / 2, STEP_W / 2, "wood")
         for x in (x0 + 0.4, x1 - 0.4):
-            for z in (-3.6, 3.6):
+            for z in (-STEP_W / 2 + 0.4, STEP_W / 2 - 0.4):
                 m.block(g, "ScaffoldPole", x - 0.2, x + 0.2, 0, step_top - 1, z - 0.2, z + 0.2,
                         "steel", **NO_HIT)
 
@@ -258,33 +262,32 @@ def crossings(m):
     m.block(g, "SpeedStrip", -63.4, -59, LOW, LOW + 0.15, 53, 68, "boost", Material="Neon",
             attributes={"SpeedBoost": 42})
 
+    # Fire escapes: flights 6 wide (4.5 on the switchback) a stud off the wall, landings 9 out
+    # from the wall and 6 deep, planks over from the neighbouring roof.
     # 8. Fire escape, Warehouse (40) -> Glass Offices (52), on the offices' east wall.
-    m.block(g, "Plank", 40, 52, LOW - 1, LOW, -64, -60, "wood")
-    m.block(g, "Landing", 34, 40, LOW - 1, LOW, -64, -60, "steel")
-    ramp_z(m, g, "FireEscape", 35, 39, -64, LOW, -86, MID, "steel")
-    m.block(g, "Landing", 34, 40, MID - 1, MID, -90, -86, "steel")
-    m.block(g, "Handrail", 40, 40.2, LOW, MID + 3, -90, -60, "rail", **NO_HIT)
+    m.block(g, "Plank", 43, 52, LOW - 1, LOW, -65, -59, "wood")
+    m.block(g, "Landing", 34, 43, LOW - 1, LOW, -65, -59, "steel")
+    ramp_z(m, g, "FireEscape", 35, 41, -65, LOW, -87, MID, "steel")
+    m.block(g, "Landing", 34, 43, MID - 1, MID, -93, -87, "steel")
     # 9. Fire escape, Garden Flats (40) -> Apartments (52), on the apartments' west wall.
-    m.block(g, "Plank", -52, -40, LOW - 1, LOW, 90, 94, "wood")
-    m.block(g, "Landing", -40, -34, LOW - 1, LOW, 90, 94, "steel")
-    ramp_z(m, g, "FireEscape", -39, -35, 90, LOW, 68, MID, "steel")
-    m.block(g, "Landing", -40, -34, MID - 1, MID, 64, 68, "steel")
-    m.block(g, "Handrail", -40.2, -40, LOW, MID + 3, 64, 94, "rail", **NO_HIT)
+    m.block(g, "Plank", -52, -43, LOW - 1, LOW, 89, 95, "wood")
+    m.block(g, "Landing", -43, -34, LOW - 1, LOW, 89, 95, "steel")
+    ramp_z(m, g, "FireEscape", -41, -35, 89, LOW, 67, MID, "steel")
+    m.block(g, "Landing", -43, -34, MID - 1, MID, 61, 67, "steel")
     # 10. Fire escape, Billboard Block (40) -> Skyline Tower (64): two flights up its south wall.
-    m.block(g, "Plank", -94, -90, LOW - 1, LOW, -44, -30, "wood")
-    m.block(g, "Landing", -94, -90, LOW - 1, LOW, -48, -44, "steel")
-    ramp_x(m, g, "FireEscape", -47.5, -44.5, -90, LOW, -68, MID, "steel")
-    m.block(g, "Landing", -68, -64, MID - 1, MID, -52, -44, "steel")
-    ramp_x(m, g, "FireEscape", -51.5, -48.5, -68, MID, -90, HIGH, "steel")
-    m.block(g, "Landing", -94, -90, HIGH - 1, HIGH, -52, -48, "steel")
-    m.block(g, "Handrail", -94, -64, LOW, HIGH + 3, -44, -43.8, "rail", **NO_HIT)
+    m.block(g, "Plank", -96, -90, LOW - 1, LOW, -40, -30, "wood")
+    m.block(g, "Landing", -96, -90, LOW - 1, LOW, -46, -40, "steel")
+    ramp_x(m, g, "FireEscape", -45.25, -40.75, -90, LOW, -68, MID, "steel")
+    m.block(g, "Landing", -68, -62, MID - 1, MID, -52, -40, "steel")
+    ramp_x(m, g, "FireEscape", -51.25, -46.75, -68, MID, -90, HIGH, "steel")
+    m.block(g, "Landing", -96, -90, HIGH - 1, HIGH, -52, -46, "steel")
 
     # 11. Plank to a ladder, Glass Offices (52) -> Skyline Tower (64).
-    m.block(g, "Plank", -52, -34, MID - 1, MID, -84, -80, "wood")
-    m.ladder(g, -52, -82, (1, 0), MID, HIGH)
+    m.block(g, "Plank", -52, -34, MID - 1, MID, -82 - WALK / 2, -82 + WALK / 2, "wood")
+    m.ladder(g, -52, -82, (1, 0), MID, HIGH, width=WALK)
     # 12. Plank to a ladder, Depot (40) -> Hotel (64): 24 up the hotel's wall.
-    m.block(g, "Plank", 78, 82, LOW - 1, LOW, 30, 52, "wood")
-    m.ladder(g, 80, 52, (0, -1), LOW, HIGH)
+    m.block(g, "Plank", 80 - WALK / 2, 80 + WALK / 2, LOW - 1, LOW, 30, 52, "wood")
+    m.ladder(g, 80, 52, (0, -1), LOW, HIGH, width=WALK)
 
 
 # ---- roofs ------------------------------------------------------------------------------------
@@ -463,7 +466,7 @@ def _marker(n, title, text, x, y, z):
 
 
 CANVAS = {
-    "label": "In game (v1.2)",
+    "label": "In game (v1.3: wider walkways)",
     "labels": [_label(f"{b[5]} · {b[4]}", (b[0] + b[1]) / 2, b[4] + 7, (b[2] + b[3]) / 2)
                for b in BUILDINGS.values()] + [
         _label("Pool", 78, 66, 79, "feature"),

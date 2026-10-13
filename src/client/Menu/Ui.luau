@@ -487,6 +487,13 @@ function Ui.tabs(
 		)
 	end
 
+	local function select(name: string)
+		current = name
+		for other in tabs do
+			draw(other)
+		end
+	end
+
 	for i, name in names do
 		local tab = Instance.new("TextButton")
 		tab.Name = name
@@ -508,7 +515,10 @@ function Ui.tabs(
 		pad.Parent = label
 		Ui.fitWidth(tab, label)
 		tab.Activated:Connect(function()
+			-- The row shows the click itself, so a tab is always lit for what's on screen (and
+			-- every other tab stays clickable) even if `onSelect` doesn't call `select`.
 			if current ~= name then
+				select(name)
 				onSelect(name)
 			end
 		end)
@@ -519,12 +529,6 @@ function Ui.tabs(
 	end
 	row.Parent = parent
 
-	local function select(name: string)
-		current = name
-		for other in tabs do
-			draw(other)
-		end
-	end
 	local function badge(name: string, count: number?)
 		if tabs[name] then
 			badges[name] = count or 0

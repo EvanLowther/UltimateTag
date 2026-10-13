@@ -7,7 +7,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
+     9.0,
      1,
      38
     ],
@@ -148,7 +148,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6.4,
+     9.4,
      4.2,
      3
     ],
@@ -2696,7 +2696,7 @@
     "Size": [
      6,
      1,
-     8
+     12.0
     ],
     "Color": [
      0.588,
@@ -2757,7 +2757,7 @@
       "position": [
        -51.6,
        21.5,
-       -3.6
+       -5.6
       ],
       "orientation": [
        [
@@ -2806,7 +2806,7 @@
       "position": [
        -51.6,
        21.5,
-       3.6
+       5.6
       ],
       "orientation": [
        [
@@ -2855,7 +2855,7 @@
       "position": [
        -46.4,
        21.5,
-       -3.6
+       -5.6
       ],
       "orientation": [
        [
@@ -2904,7 +2904,7 @@
       "position": [
        -46.4,
        21.5,
-       3.6
+       5.6
       ],
       "orientation": [
        [
@@ -2938,7 +2938,7 @@
     "Size": [
      6,
      1,
-     8
+     12.0
     ],
     "Color": [
      0.588,
@@ -2999,7 +2999,7 @@
       "position": [
        -39.6,
        23.5,
-       -3.6
+       -5.6
       ],
       "orientation": [
        [
@@ -3048,7 +3048,7 @@
       "position": [
        -39.6,
        23.5,
-       3.6
+       5.6
       ],
       "orientation": [
        [
@@ -3097,7 +3097,7 @@
       "position": [
        -34.4,
        23.5,
-       -3.6
+       -5.6
       ],
       "orientation": [
        [
@@ -3146,7 +3146,7 @@
       "position": [
        -34.4,
        23.5,
-       3.6
+       5.6
       ],
       "orientation": [
        [
@@ -3180,7 +3180,7 @@
     "Size": [
      5,
      1,
-     8
+     12.0
     ],
     "Color": [
      0.588,
@@ -3241,7 +3241,7 @@
       "position": [
        -27.6,
        25.5,
-       -3.6
+       -5.6
       ],
       "orientation": [
        [
@@ -3290,7 +3290,7 @@
       "position": [
        -27.6,
        25.5,
-       3.6
+       5.6
       ],
       "orientation": [
        [
@@ -3339,7 +3339,7 @@
       "position": [
        -23.4,
        25.5,
-       -3.6
+       -5.6
       ],
       "orientation": [
        [
@@ -3388,7 +3388,7 @@
       "position": [
        -23.4,
        25.5,
-       3.6
+       5.6
       ],
       "orientation": [
        [
@@ -4550,9 +4550,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     12,
+     9,
      1,
-     4
+     6
     ],
     "Color": [
      0.588,
@@ -4565,7 +4565,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       46.0,
+       47.5,
        39.5,
        -62.0
       ],
@@ -4596,9 +4596,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
+     9,
      1,
-     4
+     6
     ],
     "Color": [
      0.431,
@@ -4611,7 +4611,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       37.0,
+       38.5,
        39.5,
        -62.0
       ],
@@ -4642,7 +4642,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.6,
      25.06
     ],
@@ -4657,9 +4657,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       37.0,
+       38.0,
        45.737,
-       -75.144
+       -76.144
       ],
       "orientation": [
        [
@@ -4688,9 +4688,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
+     9,
      1,
-     4
+     6
     ],
     "Color": [
      0.431,
@@ -4703,9 +4703,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       37.0,
+       38.5,
        51.5,
-       -88.0
+       -90.0
       ],
       "orientation": [
        [
@@ -4729,63 +4729,14 @@
    }
   },
   {
-   "name": "Handrail",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.2,
-     15,
-     30
-    ],
-    "Color": [
-     0.275,
-     0.29,
-     0.322
-    ],
-    "Material": "Metal",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       40.1,
-       47.5,
-       -75.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
    "name": "Plank2",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     12,
+     9,
      1,
-     4
+     6
     ],
     "Color": [
      0.588,
@@ -4798,7 +4749,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -46.0,
+       -47.5,
        39.5,
        92.0
       ],
@@ -4829,9 +4780,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
+     9,
      1,
-     4
+     6
     ],
     "Color": [
      0.431,
@@ -4844,7 +4795,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -37.0,
+       -38.5,
        39.5,
        92.0
       ],
@@ -4875,7 +4826,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.6,
      25.06
     ],
@@ -4890,9 +4841,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -37.0,
+       -38.0,
        45.737,
-       78.856
+       77.856
       ],
       "orientation": [
        [
@@ -4921,9 +4872,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6,
+     9,
      1,
-     4
+     6
     ],
     "Color": [
      0.431,
@@ -4936,9 +4887,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -37.0,
+       -38.5,
        51.5,
-       66.0
+       64.0
       ],
       "orientation": [
        [
@@ -4962,63 +4913,14 @@
    }
   },
   {
-   "name": "Handrail2",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.2,
-     15,
-     30
-    ],
-    "Color": [
-     0.275,
-     0.29,
-     0.322
-    ],
-    "Material": "Metal",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -40.1,
-       47.5,
-       79.0
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
    "name": "Plank3",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      1,
-     14
+     10
     ],
     "Color": [
      0.588,
@@ -5031,9 +4933,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -92.0,
+       -93.0,
        39.5,
-       -37.0
+       -35.0
       ],
       "orientation": [
        [
@@ -5062,9 +4964,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      1,
-     4
+     6
     ],
     "Color": [
      0.431,
@@ -5077,9 +4979,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -92.0,
+       -93.0,
        39.5,
-       -46.0
+       -43.0
       ],
       "orientation": [
        [
@@ -5110,7 +5012,7 @@
     "Size": [
      25.06,
      0.6,
-     3.0
+     4.5
     ],
     "Color": [
      0.431,
@@ -5125,7 +5027,7 @@
       "position": [
        -78.856,
        45.737,
-       -46.0
+       -43.0
       ],
       "orientation": [
        [
@@ -5154,9 +5056,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      1,
-     8
+     12
     ],
     "Color": [
      0.431,
@@ -5169,9 +5071,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -66.0,
+       -65.0,
        51.5,
-       -48.0
+       -46.0
       ],
       "orientation": [
        [
@@ -5202,7 +5104,7 @@
     "Size": [
      25.06,
      0.6,
-     3.0
+     4.5
     ],
     "Color": [
      0.431,
@@ -5217,7 +5119,7 @@
       "position": [
        -79.144,
        57.737,
-       -50.0
+       -49.0
       ],
       "orientation": [
        [
@@ -5246,9 +5148,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      1,
-     4
+     6
     ],
     "Color": [
      0.431,
@@ -5261,9 +5163,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -92.0,
+       -93.0,
        63.5,
-       -50.0
+       -49.0
       ],
       "orientation": [
        [
@@ -5287,55 +5189,6 @@
    }
   },
   {
-   "name": "Handrail3",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     30,
-     27,
-     0.2
-    ],
-    "Color": [
-     0.275,
-     0.29,
-     0.322
-    ],
-    "Material": "Metal",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -79.0,
-       53.5,
-       -43.9
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
    "name": "Plank4",
    "className": "Part",
    "properties": {
@@ -5343,7 +5196,7 @@
     "Size": [
      18,
      1,
-     4
+     6.0
     ],
     "Color": [
      0.588,
@@ -5404,7 +5257,7 @@
       "position": [
        -52.63,
        58.0,
-       -81.0
+       -80.0
       ],
       "orientation": [
        [
@@ -5452,7 +5305,55 @@
       "position": [
        -52.63,
        58.0,
-       -83.0
+       -82.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "LadderTruss3",
+   "className": "TrussPart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     12,
+     2
+    ],
+    "Color": [
+     0.353,
+     0.353,
+     0.376
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -52.63,
+       58.0,
+       -84.0
       ],
       "orientation": [
        [
@@ -5500,7 +5401,7 @@
       "position": [
        -51.78,
        59.5,
-       -80.0
+       -79.0
       ],
       "orientation": [
        [
@@ -5549,7 +5450,7 @@
       "position": [
        -51.78,
        59.5,
-       -84.0
+       -85.0
       ],
       "orientation": [
        [
@@ -5581,7 +5482,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5630,7 +5531,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5679,7 +5580,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5728,7 +5629,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5777,7 +5678,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5826,7 +5727,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5875,7 +5776,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5924,7 +5825,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -5973,7 +5874,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6022,7 +5923,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6.0,
      1,
      22
     ],
@@ -6063,7 +5964,7 @@
    }
   },
   {
-   "name": "LadderTruss3",
+   "name": "LadderTruss4",
    "className": "TrussPart",
    "properties": {
     "Anchored": true,
@@ -6083,7 +5984,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       81.0,
+       82.0,
        52.0,
        52.63
       ],
@@ -6111,7 +6012,7 @@
    }
   },
   {
-   "name": "LadderTruss4",
+   "name": "LadderTruss5",
    "className": "TrussPart",
    "properties": {
     "Anchored": true,
@@ -6131,7 +6032,55 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       79.0,
+       80.0,
+       52.0,
+       52.63
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "LadderTruss6",
+   "className": "TrussPart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     24,
+     2
+    ],
+    "Color": [
+     0.353,
+     0.353,
+     0.376
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       78.0,
        52.0,
        52.63
       ],
@@ -6179,7 +6128,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       82.0,
+       83.0,
        53.5,
        51.78
       ],
@@ -6228,7 +6177,7 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       78.0,
+       77.0,
        53.5,
        51.78
       ],
@@ -6262,7 +6211,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6311,7 +6260,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6360,7 +6309,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6409,7 +6358,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6458,7 +6407,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6507,7 +6456,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6556,7 +6505,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6605,7 +6554,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6654,7 +6603,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6703,7 +6652,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6752,7 +6701,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6801,7 +6750,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6850,7 +6799,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6899,7 +6848,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6948,7 +6897,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -6997,7 +6946,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -7046,7 +6995,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -7095,7 +7044,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
@@ -7144,7 +7093,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4,
+     6,
      0.2,
      0.2
     ],
