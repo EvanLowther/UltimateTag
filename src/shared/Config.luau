@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.42.0",
+	Version = "0.42.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -302,6 +302,16 @@ local Config = {
 			Hand = Vector3.new(0, 0, -20),
 		},
 		WallHandBlend = 14, -- how quickly the wall hand reaches out and comes back (higher = snappier)
+		-- While you're It: a faint red tint that darkens toward the edges of the screen
+		-- (client/ItTint). Transparencies: 1 = clear.
+		ItTint = {
+			Color = Color3.fromRGB(255, 40, 40),
+			Wash = 0.94, -- the faint tint over the whole screen
+			Edge = 0.55, -- at the very edge of the screen (the corners come out darker still)
+			Reach = 0.38, -- how far in from the top and bottom the edges darken (fraction of the screen)
+			SideReach = 0.7, -- the left and right edges reach this fraction of that (screens are wide)
+			FadeTime = 0.3, -- seconds to fade in or out
+		},
 	},
 
 	Body = {

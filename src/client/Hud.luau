@@ -4,7 +4,8 @@
 --   the timer in big yellow numbers and how many players are left, a yellow underline and a
 --   pink shadow. The status line sits under it.
 --   Banners: YOU'RE IT!, RUN!, ELIMINATED, YOU WIN! and "<NAME> WINS!" sweep across the screen
---   as a tilted stripe when they change, then stay as a small tag under the bar.
+--   as a tilted stripe when they change, then stay as a small tag under the bar (except
+--   YOU'RE IT!, which only sweeps: in first person the red ItTint shows you're It).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
@@ -17,7 +18,7 @@ local Hud = {}
 
 local STRIPE_TIME = 2.2 -- seconds a banner's stripe stays before shrinking to the tag
 
-type Banner = { text: string, color: Color3, ink: Color3 }
+type Banner = { text: string, color: Color3, ink: Color3, sweepOnly: boolean? }
 
 local function phaseTag(): string
 	local phase = GameState.getPhase()
@@ -152,7 +153,7 @@ function Hud.start()
 			return
 		end
 		shown = text
-		roleTag.Visible = banner ~= nil
+		roleTag.Visible = banner ~= nil and not banner.sweepOnly
 		if banner then
 			roleText.Text = Ui.upper(banner.text)
 			roleText.TextColor3 = banner.ink
@@ -187,7 +188,12 @@ function Hud.start()
 		elseif eliminated then
 			showBanner({ text = "Eliminated", color = Ui.Colors.Panel, ink = Ui.Colors.Red })
 		elseif role == "It" then
-			showBanner({ text = "You're it!", color = Ui.Colors.Yellow, ink = Ui.Colors.Ink })
+			showBanner({
+				text = "You're it!",
+				color = Ui.Colors.Yellow,
+				ink = Ui.Colors.Ink,
+				sweepOnly = true,
+			})
 		elseif role == "Runner" then
 			showBanner({ text = "Run!", color = Ui.Colors.Cyan, ink = Ui.Colors.Ink })
 		else
