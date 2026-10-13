@@ -1709,8 +1709,8 @@
     "Anchored": true,
     "Size": [
      12,
-     7,
-     0.8
+     1.5,
+     1.2
     ],
     "Color": [
      0.588,
@@ -1724,8 +1724,204 @@
      "CFrame": {
       "position": [
        0,
-       3.5,
-       18.58
+       0.75,
+       -18.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": true,
+    "CanQuery": true,
+    "CanTouch": true
+   }
+  },
+  {
+   "name": "TrophyCase2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     0.5,
+     1.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       6.75,
+       -18.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": true,
+    "CanQuery": true,
+    "CanTouch": true
+   }
+  },
+  {
+   "name": "TrophyCase3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     5,
+     1.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -5.75,
+       4,
+       -18.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": true,
+    "CanQuery": true,
+    "CanTouch": true
+   }
+  },
+  {
+   "name": "TrophyCase4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     5,
+     1.2
+    ],
+    "Color": [
+     0.588,
+     0.392,
+     0.235
+    ],
+    "Material": "Wood",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       5.75,
+       4,
+       -18.38
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": true,
+    "CanQuery": true,
+    "CanTouch": true
+   }
+  },
+  {
+   "name": "TrophyCaseBack",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     11,
+     5,
+     0.2
+    ],
+    "Color": [
+     0.431,
+     0.282,
+     0.173
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       4,
+       -18.88
       ],
       "orientation": [
        [
@@ -1757,8 +1953,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     11.4,
-     6,
+     11,
+     5,
      0.1
     ],
     "Color": [
@@ -1773,8 +1969,8 @@
      "CFrame": {
       "position": [
        0,
-       3.8,
-       18.13
+       4,
+       -17.93
       ],
       "orientation": [
        [
@@ -1795,10 +1991,11 @@
       ]
      }
     },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false,
-    "Transparency": 0.6
+    "CanCollide": true,
+    "CanQuery": true,
+    "CanTouch": true,
+    "Transparency": 0.6,
+    "CastShadow": false
    }
   },
   {
@@ -1824,7 +2021,7 @@
       "position": [
        -4,
        2.1,
-       18.4
+       -18.4
       ],
       "orientation": [
        [
@@ -1875,7 +2072,7 @@
       "position": [
        -1.5,
        2.4,
-       18.4
+       -18.4
       ],
       "orientation": [
        [
@@ -1926,7 +2123,7 @@
       "position": [
        1.5,
        2.1,
-       18.4
+       -18.4
       ],
       "orientation": [
        [
@@ -1977,7 +2174,7 @@
       "position": [
        4,
        2.4,
-       18.4
+       -18.4
       ],
       "orientation": [
        [

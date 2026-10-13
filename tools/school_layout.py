@@ -147,9 +147,11 @@ INSIDE_WALLS = {
               "f2": [(-30, -22, DOOR2), (-8, 0, DOOR2)]},
 }
 ARCHES = [(-14, -6, 12), (6, 14, 12)]  # two a side in the atrium's ground-floor walls
+ARCH_WIDE = [(-14, 14, 12)]  # the south side: one wide opening at the foot of the grand stair
 for _axis, _line in (("X", -20), ("X", 20), ("Z", -20), ("Z", 20)):
-    INSIDE_WALLS[f"atrium{_axis}{_line}"] = {"axis": _axis, "line": _line, "span": (-20, 20),
-                                             "floors": "1", "f1": ARCHES, "color": "pillar"}
+    INSIDE_WALLS[f"atrium{_axis}{_line}"] = {
+        "axis": _axis, "line": _line, "span": (-20, 20), "floors": "1", "color": "pillar",
+        "f1": ARCH_WIDE if (_axis, _line) == ("X", 20) else ARCHES}
 
 DOORS = []  # (axis, line, s0, s1, floor y) of every doorway, for the checks
 
@@ -252,7 +254,7 @@ HALL_N = ("z", -31, 1)  # gym wall, hall side (also Room 101's north wall furthe
 HALL_S = ("z", 31, -1)  # cafeteria wall, hall side (also Room 102's south wall further west)
 ATRIUM_W = ("x", -21, -1)  # atrium walls, hall side
 ATRIUM_E = ("x", 21, 1)
-ATRIUM_S_IN = ("z", 19, -1)  # atrium south wall, atrium side
+ATRIUM_N_IN = ("z", -19, 1)  # atrium north wall, atrium side
 GYM_N = ("z", -IN_Z, 1)
 GYM_E_IN = ("x", 39, -1)
 CAFE_N_IN = ("z", 33, 1)
@@ -410,18 +412,23 @@ def atrium(m):
         m.block(g, "Planter", x - 2.5, x + 2.5, F1, 3, 1.5, 6.5, "planter")
         m.block(g, "Plant", x - 2, x + 2, 3, 3.6, 2, 6, "plant", **NO_HIT)
         m.block(g, "Bench", x - 1, x + 1, F1, 1.8, -9, -3, "desk")
-    # The TIGERS banner over the void, the trophy case behind the stair.
+    # The TIGERS banner over the void, the trophy case under the stair's high end.
     m.block(g, "Banner", -6, 6, 24, 30, -0.05, 0.05, (130, 30, 40), **NO_HIT,
             children=[m.surface_text("Front", "TIGERS", (250, 200, 60)),
                       m.surface_text("Back", "TIGERS", (250, 200, 60))])
     for x in (-5.5, 5.5):
         m.block(g, "BannerRod", x - 0.05, x + 0.05, 30, F2_TOP, -0.05, 0.05, "chain", **NO_HIT)
-    on_wall(m, g, "TrophyCase", ATRIUM_S_IN, 0, 3.5, 12, 7, "door", depth=0.8)
-    on_wall(m, g, "TrophyGlass", ATRIUM_S_IN, 0, 3.8, 11.4, 6, "glass", depth=0.1, out=0.8,
-            Material="Glass", Transparency=0.6)
+    # A solid wooden case (frame, back, glass front) with the trophies standing inside it.
+    solid = {"CanCollide": True, "CanQuery": True, "CanTouch": True}
+    for along, y, w, h in ((0, 0.75, 12, 1.5), (0, 6.75, 12, 0.5), (-5.75, 4, 0.5, 5),
+                           (5.75, 4, 0.5, 5)):
+        on_wall(m, g, "TrophyCase", ATRIUM_N_IN, along, y, w, h, "door", depth=1.2, **solid)
+    on_wall(m, g, "TrophyCaseBack", ATRIUM_N_IN, 0, 4, 11, 5, (110, 72, 44), depth=0.2)
+    on_wall(m, g, "TrophyGlass", ATRIUM_N_IN, 0, 4, 11, 5, "glass", depth=0.1, out=1.0,
+            Material="Glass", Transparency=0.6, CastShadow=False, **solid)
     for i, x in enumerate((-4, -1.5, 1.5, 4)):
         height = 1.2 + (i % 2) * 0.6
-        m.cylinder(g, "Trophy", height, 0.7, (x, 1.5 + height / 2, 18.4), (240, 190, 50),
+        m.cylinder(g, "Trophy", height, 0.7, (x, 1.5 + height / 2, -18.4), (240, 190, 50),
                    Material="Metal", Reflectance=0.3, **NO_HIT)
 
 
