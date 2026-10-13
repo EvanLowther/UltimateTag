@@ -22,8 +22,10 @@ import os
 import sys
 
 sys.path.insert(0, "tools")
+sys.path.insert(0, "tools/designs")
+import canvas_import as ci  # noqa: E402
 import mapcheck  # noqa: E402
-from maplib import NO_HIT, Map  # noqa: E402
+from maplib import Map  # noqa: E402
 
 DESIGN = "tools/designs/metro_v1.json"
 OUT = "src/maps/Metro"
@@ -33,9 +35,7 @@ ATTRIBUTES = {"DisplayName": "The Metro", "MinPlayers": 2, "MaxPlayers": 6, "InR
                              "TunnelRoof"}
 FIRST_WAIT = 3  # seconds the train waits before its first run in a round
 
-# The design's flags: 1 cylinder, 2 detail (no collision), 4 roof or ceiling, 8 slide gate,
-# 128 tunnel.
-CYLINDER, DETAIL, ROOF, GATE, TUNNEL = 1, 2, 4, 8, 128
+DETAIL, ROOF, GATE, TUNNEL = ci.DETAIL, ci.ROOF, ci.GATE, ci.TUNNEL
 
 # What each of the design's styles is: (name, material). Some styles cover several things; those
 # get their names from `role` below.
@@ -124,40 +124,20 @@ def role(style, size, flags, motion, pos):
     return STYLES[style][0]
 
 
-def text_face(size, pos):
-    """The face of a flat sign that looks into the station."""
-    sx, _, sz = size
-    if sz <= sx:  # thin along Z: on a wall along X
-        return "Back" if pos[2] < 0 else "Front"
-    return "Right" if pos[0] < 0 else "Left"
+text_face = ci.text_face
 
 
 def build():
-    data = json.load(open(DESIGN))["v1"]
+    data = ci.load(DESIGN)
     m = Map()
-    styles, rots, motions = data["styles"], data["rots"], data["motions"]
     posters = 0
-    for p in data["parts"]:
-        style, x, y, z, sx, sy, sz, ri, flags, mi = p
-        motion = motions[mi] if mi >= 0 else None
+    for part in ci.parts(data):
+        style, flags, motion, color = part["style"], part["flags"], part["motion"], part["color"]
+        (x, y, z), (sx, sy, sz), rows = part["pos"], part["size"], part["rows"]
         if motion and motion.get("fx") == "nose":
             continue  # the design's danger box in front of the train (viewer only)
-        color_hex, code, alpha = styles[style]
-        color = tuple(int(color_hex[i:i + 2], 16) for i in (0, 2, 4))
         name = role(style, (sx, sy, sz), flags, motion, (x, y, z))
-        r = rots[ri]
-        rows = [r[0:3], r[3:6], r[6:9]]
-        props = {"Material": STYLES[style][1]}
-        if flags & CYLINDER:
-            props["Shape"] = "Cylinder"
-        if flags & DETAIL:
-            props.update(NO_HIT)
-        if code == "n":
-            props["Material"] = "Neon"
-        if code == "g":
-            props["Material"] = "Glass"
-            props["Transparency"] = round(1 - alpha, 2)
-            props["CastShadow"] = False
+        props = ci.props(part, STYLES[style][1])
         attributes = {}
         children = None
         if flags & GATE:  # slide gates: an invisible blocker that only stops standing players
