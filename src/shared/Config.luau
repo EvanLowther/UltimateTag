@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.47.0",
+	Version = "0.47.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -218,10 +218,10 @@ local Config = {
 		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
 		RunGap = 1.3, -- studs from your body's center to the wall during a wall run (feet on the wall)
 		CeilingStop = 0.4, -- studs below a ceiling where wall-run lift stops
-		JumpUp = 42, -- studs/s up when you jump off a wall run (a normal jump is 50); across, you keep the run's speed
+		JumpUp = 51.4, -- studs/s up when you jump off a wall run (about 6.7 studs high; a normal jump is 50); across, you keep the run's speed
 		JumpAwayAngle = 20, -- a wall jump leaves at least this many degrees away from the wall
 		-- (looking into the wall pushes you off along it instead)
-		ChainMaxRise = 6, -- studs a chain of wall runs and wall jumps can climb above where it
+		ChainMaxRise = 9, -- studs a chain of wall runs and wall jumps can climb above where it
 		-- started, so nobody bounces up a corridor forever; touching the ground starts a new chain
 		-- Third-person poses, written for a wall on your LEFT (mirrored for the right).
 		Poses = {

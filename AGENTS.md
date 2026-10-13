@@ -167,6 +167,7 @@ Rules of thumb:
 - Server owns all game state. Clients read attributes and ask the server through RemoteEvents in `shared/Remotes.luau` (add new names to its list).
 
 ## Changelog
+- 0.47.1: Wall jumps 1.5x higher (`JumpUp` 51.4, about 6.7 studs) and a chain can climb 9 (`ChainMaxRise`).
 - 0.47.0: Wall jumps: jump during a wall run to jump off it, up and the way you're looking, at the run's speed (never back into the wall). Aim at another wall to chain runs across long gaps or bounce between two walls; a chain can't climb more than 6 studs above where it started. `Config.WallRun` JumpUp, JumpAwayAngle, ChainMaxRise (dev panel sliders). Replaces dropping straight off with the run's speed.
 - 0.46.2: Rooftop District fire escapes 1.5x wider again (flights 9, 6.75 on the Skyline Tower switchback, landings 13.5 x 9, planks to match) with railings along every open side of the flights, landings and planks: a top rail on posts plus an invisible guard, so you can't fall off them.
 - 0.46.1: Fix: sliding (or crouching) onto a launch pad now launches you; it used to be ignored while a move was running. New `LaunchAnyDirection` pad attribute: the pad throws you whichever way you're moving (same up speed and speed across). The Rooftop District's two launch vents use it.
