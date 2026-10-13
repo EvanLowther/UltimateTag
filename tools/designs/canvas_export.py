@@ -20,6 +20,15 @@ no-entry doorways), "nose" (the kill box); {"gang": n, "t": slice} is a slice of
 behind car n (GangwaySlice: 0 at that car's end, 1 at the next car's), so the gangway bends
 between the two cars; {"warn": "A"} flashes before a train comes in on that track. The
 invisible no-entry and nose boxes are exported as pink glass.
+
+Sign text (a part's SurfaceGui labels) is listed in "texts" as [part index, face, text, color,
+glow], so the viewer can paint it on that face.
+
+A design with things driving round a path (Tag Mart's cleaning robot) has a `MOVERS` dict, path
+name to {"points": [[x, z], ...] (a closed loop), "speed", "turn" (seconds turning on the spot
+at each corner), "rest": [x, z, heading] (where its parts are built)}, and tags the parts with
+PathMover = name: their motion is {"mover": name}. A `DEMO` list (figures acting out a round:
+{"tag", "color", "speed", "offset", "points": [[x, y, z, flag], ...]}) is passed through.
 """
 import importlib
 import json
@@ -33,10 +42,10 @@ sys.path.insert(0, os.path.dirname(HERE))  # map generators (tools/*_layout.py)
 MATERIAL_CODES = {"Neon": "n", "Glass": "g"}
 
 
-def export(m, canvas, kill_height=None, label="Design", train=None):
+def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
     styles, style_index = [], {}
     rots, rot_index = [[1, 0, 0, 0, 1, 0, 0, 0, 1]], {}
-    motions, motion_index, parts = [], {}, []
+    motions, motion_index, parts, texts = [], {}, [], []
     tunnel_groups = set(canvas.get("tunnel_groups", []))
     roof_extra = set(canvas.get("roof_extra", []))
     for group, nodes in m.groups.items():
@@ -93,6 +102,8 @@ def export(m, canvas, kill_height=None, label="Design", train=None):
                 motion["t"] = attrs.get("GangwaySlice", 0.5)
             if "TrackWarning" in attrs:
                 motion["warn"] = attrs["TrackWarning"]
+            if "PathMover" in attrs:
+                motion["mover"] = attrs["PathMover"]
             mi = -1
             if motion:
                 mk = json.dumps(motion, sort_keys=True)
@@ -122,22 +133,35 @@ def export(m, canvas, kill_height=None, label="Design", train=None):
             x, y, z = cf["position"]
             parts.append([style_index[key], *(round(v, 2) for v in (x, y, z, *p["Size"])), ri, flags,
                           mi])
+            for gui in node.get("children") or ():
+                if gui.get("className") != "SurfaceGui":
+                    continue
+                for label in gui.get("children") or ():
+                    lp = label.get("properties", {})
+                    if label.get("className") == "TextLabel" and lp.get("Text"):
+                        texts.append([len(parts) - 1, gui["properties"]["Face"], lp["Text"],
+                                      "%02x%02x%02x" % tuple(round(c * 255) for c in lp["TextColor3"]),
+                                      1 if gui["properties"].get("LightInfluence") == 0 else 0])
     out = {
         "label": label, "killHeight": kill_height, "styles": styles, "rots": rots, "parts": parts,
-        "motions": motions, "labels": canvas["labels"], "markers": canvas["markers"],
+        "motions": motions, "texts": texts, "labels": canvas["labels"], "markers": canvas["markers"],
         "spawns": [[round(x, 1), round(y + 0.5, 1), round(z, 1)] for x, y, z in m.spawns],
         "views": canvas["views"], "levels": canvas.get("levels", [{"label": "Whole map", "max": None}]),
-        "figure": canvas["figure"],
+        "figure": canvas["figure"], "cutaways": canvas.get("cutaways", []),
     }
     if train:
         out["train"] = train
+    out.update(extra or {})
     return out
 
 
 if __name__ == "__main__":
     design = importlib.import_module(sys.argv[1])
+    extra = {key: getattr(design, name) for key, name in (("movers", "MOVERS"), ("demo", "DEMO"))
+             if hasattr(design, name)}
     data = {"v1": export(design.build(), design.CANVAS, design.ATTRIBUTES.get("KillHeight"),
-                         design.CANVAS.get("label", "Design"), getattr(design, "TRAIN", None))}
+                         design.CANVAS.get("label", "Design"), getattr(design, "TRAIN", None),
+                         extra)}
     with open(sys.argv[2], "w") as fh:
         json.dump(data, fh, separators=(",", ":"))
     print(f"{len(data['v1']['parts'])} parts -> {sys.argv[2]}")

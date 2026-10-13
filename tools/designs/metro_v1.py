@@ -649,7 +649,7 @@ def walls(m):
             m.block(d, "Poster", x - 6, x + 6, 1.5, 7, off[0] - 0.04 * sign, off[1] - 0.04 * sign,
                     color, **DETAIL)
         # Cable trays near the top.
-        m.block(d, "CableTray", -PX, PX, 15.5, 16, off[0] - 0.5 * sign, off[1] - 0.04 * sign,
+        m.block(d, "CableTray", -PX, PX, 15.5, 16, *sorted((face - 0.09 * sign, face - 0.6 * sign)),
                 "steel", **DETAIL)
     # End walls: the closed way out on each, a station map.
     for sign in (-1, 1):

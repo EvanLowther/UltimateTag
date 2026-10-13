@@ -434,6 +434,14 @@ def _obb_overlap(a, b, grow_a=(0, 0, 0), shrink=0.02):
     return True
 
 
+def sizes(parts, limit=20):
+    """Parts under Roblox's smallest size (0.001: no thickness at all), or built from bounds the
+    wrong way round (a negative size)."""
+    bad = [p for p in parts if min(p.half) < 0.0005]
+    return [f"sizes: {p.name} at ({p.pos[0]:.1f}, {p.pos[1]:.1f}, {p.pos[2]:.1f}) has size "
+            f"{[round(2 * h, 3) for h in p.half]}" for p in bad[:limit]]
+
+
 def windows(parts, limit=40):
     problems = []
     panes = [p for p in parts if p.name == "Window"]
@@ -805,7 +813,7 @@ class Reach:
 def check(parts, spawns, attributes, ignore_tops=(), routes=()):
     """All the checks. `parts` from parts_from_nodes (or load_folder); `routes` are extra ways
     across: ((x, y, z) from, (x, y, z) to, both ways?)."""
-    problems = flicker(parts) + windows(parts) + ladders(parts)
+    problems = sizes(parts) + flicker(parts) + windows(parts) + ladders(parts)
     # The map's OutOfBounds attribute names parts whose tops aren't play area (roofs, ceilings,
     # tall furniture), comma-separated.
     off = [n.strip() for n in str(attributes.get("OutOfBounds", "")).split(",") if n.strip()]
