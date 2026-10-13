@@ -134,6 +134,74 @@ def ramp_z(m, g, name, x0, x1, za, ya, zb, yb, color, thick=0.6, **props):
     return m.part(g, name, (x1 - x0, thick, math.hypot(dz, dy)), pos, color, rot_x(ang), **props)
 
 
+# ---- railings (fire escapes) --------------------------------------------------------------------
+
+RAIL_H = 3.6  # railing height; an invisible guard as tall stands in it
+RAIL_T = 0.3  # railing thickness
+GUARD = {"Transparency": 1, "CastShadow": False, "CanQuery": False, "CanTouch": False}
+
+
+def rail_posts(m, g, points):
+    """Posts (decoration) under a railing: (x, z, floor y, rail bottom y)."""
+    for x, z, y0, y1 in points:
+        m.block(g, "RailPost", x - 0.1, x + 0.1, y0, y1, z - 0.1, z + 0.1, "rail", **NO_HIT)
+
+
+def flat_rail(m, g, x0, x1, z0, z1, y):
+    """A railing on a landing or plank (its footprint x0..x1 by z0..z1, floor at y): a top rail
+    on posts you can see, and an invisible guard as tall that you can't walk, slide or get pushed
+    through. Wall runs and the camera ignore the guard."""
+    m.block(g, "RailGuard", x0, x1, y, y + RAIL_H, z0, z1, (255, 255, 255), **GUARD)
+    m.block(g, "Rail", x0, x1, y + RAIL_H - RAIL_T, y + RAIL_H, z0, z1, "rail", **NO_HIT)
+    along_x = x1 - x0 > z1 - z0
+    length = (x1 - x0) if along_x else (z1 - z0)
+    n = max(1, math.ceil(length / 4))
+    cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
+    posts = []
+    for i in range(n + 1):
+        t = 0.25 + (length - 0.5) * i / n
+        x, z = (x0 + t, cz) if along_x else (cx, z0 + t)
+        posts.append((x, z, y, y + RAIL_H - RAIL_T))
+    rail_posts(m, g, posts)
+
+
+def slope_rail(m, g, axis, c0, c1, sa, ya, sb, yb):
+    """A railing up a flight along `axis` ("x" or "z"), rising from (sa, ya) to (sb, yb); c0..c1
+    is its strip across the flight. The guard is a row of upright boxes (square ends, so no gap
+    where the flight meets a landing); the top rail follows the slope, stopping just short of the
+    ends so it never runs into a landing's railing."""
+    length = abs(sb - sa)
+    sgn = 1 if sb > sa else -1
+    slope = (yb - ya) / length
+    step = 2.0
+    n = math.ceil(length / step)
+    for i in range(n):
+        d0, d1 = i * step, min((i + 1) * step, length)
+        a, b = sa + sgn * d0, sa + sgn * d1
+        lo, hi = ya + slope * d0, ya + slope * d1 + RAIL_H
+        if axis == "z":
+            m.block(g, "RailGuard", c0, c1, lo, hi, min(a, b), max(a, b), (255, 255, 255), **GUARD)
+        else:
+            m.block(g, "RailGuard", min(a, b), max(a, b), lo, hi, c0, c1, (255, 255, 255), **GUARD)
+    inset = 0.4
+    ra, rb = sa + sgn * inset, sb - sgn * inset
+    rya, ryb = ya + slope * inset + RAIL_H, yb - slope * inset + RAIL_H
+    if axis == "z":
+        ramp_z(m, g, "Rail", c0, c1, ra, rya, rb, ryb, "rail", thick=RAIL_T, **NO_HIT)
+    else:
+        ramp_x(m, g, "Rail", c0, c1, ra, rya, rb, ryb, "rail", thick=RAIL_T, **NO_HIT)
+    bar = RAIL_T * math.hypot(1, slope)  # the top rail's depth measured straight down
+    count = max(1, math.ceil((length - 1.2) / 4))
+    cc = (c0 + c1) / 2
+    posts = []
+    for i in range(count + 1):
+        d = 0.6 + (length - 1.2) * i / count
+        s_at, y_at = sa + sgn * d, ya + slope * d
+        x, z = (cc, s_at) if axis == "z" else (s_at, cc)
+        posts.append((x, z, y_at, y_at + RAIL_H - bar))
+    rail_posts(m, g, posts)
+
+
 # ---- buildings --------------------------------------------------------------------------------
 
 def building(m, key):
@@ -262,25 +330,53 @@ def crossings(m):
     m.block(g, "SpeedStrip", -63.4, -59, LOW, LOW + 0.15, 53, 68, "boost", Material="Neon",
             attributes={"SpeedBoost": 42})
 
-    # Fire escapes: flights 6 wide (4.5 on the switchback) a stud off the wall, landings 9 out
-    # from the wall and 6 deep, planks over from the neighbouring roof.
+    # Fire escapes: flights 9 wide (6.75 on the switchback) a stud off the wall, landings 13.5
+    # out from the wall and 9 deep, planks over from the neighbouring roof, and railings along
+    # every open side so nobody walks, slides or gets shoved off.
     # 8. Fire escape, Warehouse (40) -> Glass Offices (52), on the offices' east wall.
-    m.block(g, "Plank", 43, 52, LOW - 1, LOW, -65, -59, "wood")
-    m.block(g, "Landing", 34, 43, LOW - 1, LOW, -65, -59, "steel")
-    ramp_z(m, g, "FireEscape", 35, 41, -65, LOW, -87, MID, "steel")
-    m.block(g, "Landing", 34, 43, MID - 1, MID, -93, -87, "steel")
+    m.block(g, "Plank", 47.5, 52, LOW - 1, LOW, -65, -56, "wood")
+    m.block(g, "Landing", 34, 47.5, LOW - 1, LOW, -65, -56, "steel")
+    ramp_z(m, g, "FireEscape", 35, 44, -65, LOW, -87, MID, "steel")
+    m.block(g, "Landing", 34, 47.5, MID - 1, MID, -96, -87, "steel")
+    flat_rail(m, g, 44, 52, -65, -64.7, LOW)
+    flat_rail(m, g, 34, 52, -56.3, -56, LOW)
+    slope_rail(m, g, "z", 43.7, 44, -65, LOW, -87, MID)
+    flat_rail(m, g, 44, 47.5, -87.3, -87, MID)
+    flat_rail(m, g, 47.2, 47.5, -95.7, -87.3, MID)
+    flat_rail(m, g, 34, 47.5, -96, -95.7, MID)
     # 9. Fire escape, Garden Flats (40) -> Apartments (52), on the apartments' west wall.
-    m.block(g, "Plank", -52, -43, LOW - 1, LOW, 89, 95, "wood")
-    m.block(g, "Landing", -43, -34, LOW - 1, LOW, 89, 95, "steel")
-    ramp_z(m, g, "FireEscape", -41, -35, 89, LOW, 67, MID, "steel")
-    m.block(g, "Landing", -43, -34, MID - 1, MID, 61, 67, "steel")
-    # 10. Fire escape, Billboard Block (40) -> Skyline Tower (64): two flights up its south wall.
-    m.block(g, "Plank", -96, -90, LOW - 1, LOW, -40, -30, "wood")
-    m.block(g, "Landing", -96, -90, LOW - 1, LOW, -46, -40, "steel")
-    ramp_x(m, g, "FireEscape", -45.25, -40.75, -90, LOW, -68, MID, "steel")
-    m.block(g, "Landing", -68, -62, MID - 1, MID, -52, -40, "steel")
-    ramp_x(m, g, "FireEscape", -51.25, -46.75, -68, MID, -90, HIGH, "steel")
-    m.block(g, "Landing", -96, -90, HIGH - 1, HIGH, -52, -46, "steel")
+    m.block(g, "Plank", -52, -47.5, LOW - 1, LOW, 89, 98, "wood")
+    m.block(g, "Landing", -47.5, -34, LOW - 1, LOW, 89, 98, "steel")
+    ramp_z(m, g, "FireEscape", -44, -35, 89, LOW, 67, MID, "steel")
+    m.block(g, "Landing", -47.5, -34, MID - 1, MID, 58, 67, "steel")
+    flat_rail(m, g, -52, -44, 89, 89.3, LOW)
+    flat_rail(m, g, -52, -34, 97.7, 98, LOW)
+    slope_rail(m, g, "z", -44, -43.7, 89, LOW, 67, MID)
+    flat_rail(m, g, -47.5, -44, 66.7, 67, MID)
+    flat_rail(m, g, -47.5, -47.2, 58.3, 66.7, MID)
+    flat_rail(m, g, -47.5, -34, 58, 58.3, MID)
+    # 10. Fire escape, Billboard Block (40) -> Skyline Tower (64): two flights up its south wall,
+    # 1.5 apart, with a railing each side of the lower one so nobody slips down between them.
+    m.block(g, "Plank", -98, -89, LOW - 1, LOW, -34, -30, "wood")
+    m.block(g, "Landing", -98, -89, LOW - 1, LOW, -43, -34, "steel")
+    ramp_x(m, g, "FireEscape", -43, -36.25, -89, LOW, -67, MID, "steel")
+    # (The middle landing reaches half a stud past the lower flight's side, so their sides don't
+    # share a plane and flicker.)
+    m.block(g, "Landing", -67, -58, MID - 1, MID, -52, -35.75, "steel")
+    ramp_x(m, g, "FireEscape", -51.25, -44.5, -67, MID, -89, HIGH, "steel")
+    m.block(g, "Landing", -98, -89, HIGH - 1, HIGH, -52, -43, "steel")
+    flat_rail(m, g, -98, -97.7, -42.7, -30, LOW)
+    flat_rail(m, g, -98, -89, -43, -42.7, LOW)
+    flat_rail(m, g, -89.3, -89, -36.25, -30, LOW)
+    slope_rail(m, g, "x", -36.55, -36.25, -89, LOW, -67, MID)
+    slope_rail(m, g, "x", -43, -42.7, -89, LOW, -67, MID)
+    flat_rail(m, g, -58.3, -58, -52, -36.05, MID)
+    flat_rail(m, g, -67, -58, -36.05, -35.75, MID)
+    flat_rail(m, g, -67, -66.7, -44.5, -43, MID)
+    slope_rail(m, g, "x", -44.8, -44.5, -67, MID, -89, HIGH)
+    flat_rail(m, g, -98, -97.7, -52, -43.3, HIGH)
+    flat_rail(m, g, -98, -89, -43.3, -43, HIGH)
+    flat_rail(m, g, -89.3, -89, -44.5, -43.3, HIGH)
 
     # 11. Plank to a ladder, Glass Offices (52) -> Skyline Tower (64).
     m.block(g, "Plank", -52, -34, MID - 1, MID, -82 - WALK / 2, -82 + WALK / 2, "wood")
