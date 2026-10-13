@@ -16,9 +16,10 @@ whose names start Roof, Ceiling or Skylight) or CANVAS["roof_extra"] (any).
 A design with a train (the Metro) also has a `TRAIN` dict (its track, stops and schedule) and
 tags the train's parts; their motions say what moves them: {"car": n} rides with car n (0 is the
 front), plus "door": the leaf's slide (built open), or "fx": "push" (exit arrows), "gate" (the
-no-entry doorways), "nose" (the kill box); {"gang": n} is the gangway behind car n; {"warn":
-"A"} flashes before a train comes in on that track. The invisible no-entry and nose boxes are
-exported as pink glass.
+no-entry doorways), "nose" (the kill box); {"gang": n, "t": slice} is a slice of the gangway
+behind car n (GangwaySlice: 0 at that car's end, 1 at the next car's), so the gangway bends
+between the two cars; {"warn": "A"} flashes before a train comes in on that track. The
+invisible no-entry and nose boxes are exported as pink glass.
 """
 import importlib
 import json
@@ -89,6 +90,7 @@ def export(m, canvas, kill_height=None, label="Design", train=None):
                         motion["fx"] = fx
             if "TrainGangway" in attrs:
                 motion["gang"] = attrs["TrainGangway"] - 1
+                motion["t"] = attrs.get("GangwaySlice", 0.5)
             if "TrackWarning" in attrs:
                 motion["warn"] = attrs["TrackWarning"]
             mi = -1

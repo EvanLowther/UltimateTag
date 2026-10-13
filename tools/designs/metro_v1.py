@@ -103,10 +103,11 @@ ROOF = 8.6  # interior ceiling (the roof's underside)
 WALL_T = 0.4
 CAB = 12.5  # the leading and trailing cabs start this far from the car's middle
 GANG_W = 4.5  # gangway opening between cars
+GANG_SLICES = 4  # the gangway's bellows, in slices that bend between the two car ends
 ISLAND = (-4, 4, -2, 2)  # the middle car's seat island with a glass screen (u0, u1, w0, w1)
 
 # ---- the track ---------------------------------------------------------------------------------
-LOOP_R = 64  # both turns and the bulb of each balloon loop
+LOOP_R = 150  # both turns and the bulb of each balloon loop: gentle, so the cars stay apart
 LOOP_STRAIGHT = 16  # straight from the portal into each loop (the train swings as it turns)
 MOUTH = PX + LOOP_STRAIGHT  # the tunnel mouths run x 80..96, the loops beyond
 MOUTH_FLOOR = 86  # the pit floor stops here: past it the tunnel drops away (falling kills)
@@ -117,7 +118,7 @@ SCHEDULE = {  # seconds; runs are (acceleration, top speed, braking) in studs/s
     "waitMin": 3, "waitMax": 12, "warn": 4,
     "doorsOpen": 1.5, "board": 7, "doorsClose": 2, "departDelay": 0.5,
     "exitOpen": 1.2, "exitPush": 3.5, "exitClose": 1.5,
-    "approach": (10, 45, 8), "ride": (10, 55, 10), "leave": (10, 50, 10),
+    "approach": (15, 70, 10), "ride": (15, 100, 15), "leave": (15, 100, 15),
 }
 
 COLORS = {
@@ -284,6 +285,8 @@ def ride_numbers():
     leave = (WAIT - STOP_B) % TRACK.length
     return {
         "ride": ride, "rideTime": run_time(ride, *SCHEDULE["ride"]) + SCHEDULE["departDelay"],
+        "loopTime": run_until(ride, *SCHEDULE["ride"], PORTAL_B - STOP_A)
+        - run_until(ride, *SCHEDULE["ride"], 2 * PX - STOP_A),
         "approach": approach, "approachTime": run_time(approach, *SCHEDULE["approach"]),
         "leave": leave, "leaveTime": run_time(leave, *SCHEDULE["leave"]),
     }
@@ -528,18 +531,26 @@ def build_car(m, index):
 
 
 def build_gangway(m, index):
-    """The flexible passage between car `index` and the next: floor plate, bellows walls."""
-    x0 = car_x(index) + CAR_LEN / 2
-    x1 = x0 + GAP
+    """The flexible passage between car `index` and the next: bellows in slices across the gap
+    (floor plate, two side walls, roof each), so on a curve it bends smoothly from one car end to
+    the other. GangwaySlice says where a slice sits: 0 at the front car's end, 1 at the next's.
+    Every other slice stands a little proud, like the folds of real bellows."""
+    x0 = car_x(index) + CAR_LEN / 2  # the front car's back end (the train rests heading west)
     cz = -TRACK_Z
-    attrs = {"TrainGangway": index + 1}
-    m.block("Train", "GangwayFloor", x0, x1, -0.5, 0, cz - GANG_W / 2, cz + GANG_W / 2,
-            "car_floor", attributes=attrs)
-    for w0, w1 in ((-GANG_W / 2 - 0.4, -GANG_W / 2), (GANG_W / 2, GANG_W / 2 + 0.4)):
-        m.block("Train", "Bellows", x0, x1, 0, DOOR_TOP + 0.4, cz + w0, cz + w1, "ink",
-                attributes=attrs)
-    m.block("Train", "Bellows", x0, x1, DOOR_TOP, DOOR_TOP + 0.4, cz - GANG_W / 2, cz + GANG_W / 2,
-            "ink", attributes=attrs)
+    step = GAP / GANG_SLICES
+    for k in range(GANG_SLICES):
+        a, b = x0 + k * step, x0 + (k + 1) * step
+        attrs = {"TrainGangway": index + 1, "GangwaySlice": round((k + 0.5) / GANG_SLICES, 4)}
+        fold = 0.12 * (k % 2)
+        color = "ink" if k % 2 else "under"
+        m.block("Train", "GangwayFloor", a, b, -0.5, 0, cz - GANG_W / 2, cz + GANG_W / 2,
+                "car_floor", attributes=attrs)
+        for w0, w1 in ((-GANG_W / 2 - 0.4 - fold, -GANG_W / 2),
+                       (GANG_W / 2, GANG_W / 2 + 0.4 + fold)):
+            m.block("Train", "Bellows", a, b, 0, DOOR_TOP + 0.4 + fold, cz + w0, cz + w1, color,
+                    attributes=attrs)
+        m.block("Train", "Bellows", a, b, DOOR_TOP, DOOR_TOP + 0.4 + fold, cz - GANG_W / 2,
+                cz + GANG_W / 2, color, attributes=attrs)
 
 
 # ---- the station ---------------------------------------------------------------------------------
@@ -712,7 +723,7 @@ def loop_tunnels(m):
     for name, (start, end) in LOOPS.items():
         s = start + LOOP_STRAIGHT
         stop = end - LOOP_STRAIGHT
-        count = max(1, round((stop - s) / 8))
+        count = max(1, round((stop - s) / 10))
         step = (stop - s) / count
         for i in range(count):
             a, b = s + i * step, s + (i + 1) * step
@@ -738,7 +749,16 @@ def loop_tunnels(m):
                 m.part(g, "Rail", (length, 0.4, 0.4), (x, PIT + 0.5, z), "rail", rot_y(-yaw),
                        **DETAIL)
     old_station(m, ghost)
-    m.block(g, "Abyss", -280, 280, -42, -40, -100, 100, "abyss", **DETAIL)
+    xs, zs = [], []
+    k = 0.0
+    while k < TRACK.length:
+        x, z, _ = TRACK.at(k)
+        xs.append(x)
+        zs.append(z)
+        k += 5
+    pad = TUNNEL_HALF + 20
+    m.block(g, "Abyss", min(xs) - pad, max(xs) + pad, -42, -40, min(zs) - pad, max(zs) + pad,
+            "abyss", **DETAIL)
 
 
 def ghost_span():
@@ -933,8 +953,8 @@ def _canvas():
         "labels": [
             _label("Platform", 0, 4, 0), _label("Track A · boarding", -62, 2, -TRACK_Z),
             _label("Track B · exit only", 62, 2, TRACK_Z),
-            _label("West loop: the ride", west_far[0] + 70, 16, west_far[1]),
-            _label("East loop", east_mid[0] - 70, 16, east_mid[1]),
+            _label("West loop: the ride", west_far[0] + LOOP_R, 16, west_far[1]),
+            _label("East loop", east_mid[0] - LOOP_R, 16, east_mid[1]),
             _label("Old Tag Street (closed)", gx, 15, gz, "feature"),
             _label("Kiosk", sum(KIOSK) / 2, 10.5, 0, "feature"),
             _label("Staff room", sum(STAFF) / 2, 11, 0, "feature"),
@@ -946,10 +966,11 @@ def _canvas():
                     "heading west and stops along the green side with its doors open for 7 "
                     "seconds. Get on, or don't: the doors chime and close over 2 seconds, so you "
                     "can still squeeze through (or get shut out) at the last moment.", -8, 9, -14),
-            _marker(2, "The ride", f"From the doors closing to the exit side takes about "
-                    f"{numbers['rideTime']:.0f} seconds: the train runs round the west loop under "
-                    "the city, past the old closed station. Whoever got on is shut in together. If "
-                    "It got on too, it's a chase through three cars; if not, it's a breather.",
+            _marker(2, "The ride", f"The west loop itself takes about "
+                    f"{numbers['loopTime']:.0f} seconds (about {numbers['rideTime']:.0f} from the "
+                    "doors closing to stopping on the exit side): a long, gentle loop under the "
+                    "city, past the old closed station. Whoever got on is shut in together. If It "
+                    "got on too, it's a chase through three cars; if not, it's a breather.",
                     west_far[0] + 40, 12, west_far[1]),
             _marker(3, "Exit side (track B)", "The same train comes back on the other side of the "
                     "platform heading east. The doors open and everyone inside is pushed to the "
@@ -981,7 +1002,7 @@ def _canvas():
                     "Falling in kills you.", 88, -3, -TRACK_Z),
         ],
         "views": {
-            "Overview": [70, 165, 150, 0, -2, 0], "Whole loop": [0, 620, 260, 0, -10, 0],
+            "Overview": [70, 165, 150, 0, -2, 0], "Whole loop": [0, 1180, 500, 0, -10, 0],
             "Platform": [-34, 7, 9, 30, 3, -4], "Boarding side": [-30, 14, -6, 20, 2, -TRACK_Z],
             "Exit side": [30, 14, 6, -20, 2, TRACK_Z], "West works": [-40, 22, -34, -63, 2, -6],
             "East works": [40, 22, 34, 63, 2, 6],
@@ -989,7 +1010,7 @@ def _canvas():
         },
         "figure": [-4, 0, 7],
         "roof_names": ["Ceiling", "CeilingTunnel"],
-        "roof_extra": ["RoofCar", "RoofCrown", "RoofUnit", "Light", "CeilingTunnel",
+        "roof_extra": ["Light", "CeilingTunnel",
                        "TrackWallUpper", "EndWallUpper", "TileBand", "NamePlate", "CableTray",
                        "WayOutSign"],
         "tunnel_groups": ["Tunnels"],
@@ -1054,6 +1075,29 @@ def train_clearance():
     return worst
 
 
+def car_end_gap():
+    """Smallest gap between neighbouring cars' facing corners round the track: on a turn the
+    inside corners close up, and too sharp a turn makes the cars clip into each other."""
+    worst = math.inf
+    half_l, half_w = CAR_LEN / 2, CAR_W / 2
+    s = 0.0
+    while s < TRACK.length:
+        frames = [car_frame(s, c) for c in range(CARS)]
+        for c in range(CARS - 1):
+            ax, az, ah = frames[c]
+            bx, bz, bh = frames[c + 1]
+            a, b = math.radians(ah), math.radians(bh)
+            fx, fz = math.cos(a), math.sin(a)
+            for dw in (-half_w, half_w):
+                rx = ax - half_l * fx + dw * math.sin(a)
+                rz = az - half_l * fz - dw * math.cos(a)
+                qx = bx + half_l * math.cos(b) + dw * math.sin(b)
+                qz = bz + half_l * math.sin(b) - dw * math.cos(b)
+                worst = min(worst, (rx - qx) * fx + (rz - qz) * fz)
+        s += 2.0
+    return worst
+
+
 def wall_gap(px, pz, near):
     """How far a point of the train is inside its walls. `near`: the car's place on the track
     (the nearest stretch of track is looked for round it)."""
@@ -1077,6 +1121,11 @@ def check(m):
     numbers = ride_numbers()
     if not 15 <= numbers["rideTime"] <= 20:
         problems.append(f"the ride takes {numbers['rideTime']:.1f} s (want 15-20)")
+    if not 10 <= numbers["loopTime"] <= 15:
+        problems.append(f"the loop takes {numbers['loopTime']:.1f} s (want 10-15)")
+    ends = car_end_gap()
+    if ends < 0.4:
+        problems.append(f"neighbouring cars come within {ends:.2f} of each other on the turns")
     gap = NOTCH[1] - NOTCH[0]
     if gap <= jump_reach(0) + 0.5:
         problems.append(f"a sprinting jump ({jump_reach(0):.1f}) clears the {gap} works gap")
@@ -1108,8 +1157,9 @@ if __name__ == "__main__":
     numbers = ride_numbers()
     print(f"{layout.count()} parts in {len(layout.groups)} groups, {len(layout.spawns)} spawns")
     print(f"track {TRACK.length:.1f} long; ride {numbers['ride']:.0f} studs in "
-          f"{numbers['rideTime']:.1f} s; approach {numbers['approachTime']:.1f} s; leave "
-          f"{numbers['leaveTime']:.1f} s; clearance {train_clearance():.2f}")
+          f"{numbers['rideTime']:.1f} s (the loop {numbers['loopTime']:.1f} s); approach "
+          f"{numbers['approachTime']:.1f} s; leave {numbers['leaveTime']:.1f} s; wall clearance "
+          f"{train_clearance():.2f}; car ends {car_end_gap():.2f} apart at the closest")
     end = TRACK.at(TRACK.length - 1e-9)
     print(f"track closes at ({end[0]:.3f}, {end[1]:.3f}) heading {end[2] % 360:.1f}")
     issues = check(layout)
