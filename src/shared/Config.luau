@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.42.1",
+	Version = "0.42.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -74,8 +74,8 @@ local Config = {
 	Sprint = {
 		Key = Enum.KeyCode.LeftShift, -- hold to sprint
 		Multiplier = 1.7, -- sprint speed = current walk speed x this (about 30 studs/s)
-		FovBoost = 8, -- degrees of extra field of view while sprinting (0 turns it off)
-		FovTime = 0.2, -- seconds to ease the field of view in and out
+		FovBoost = 8, -- degrees of extra field of view (top to bottom) while sprinting (0 turns it off)
+		FovTime = 0.2, -- seconds to ease the field of view in and out (also switching view mode)
 	},
 
 	Slide = {
@@ -267,6 +267,7 @@ local Config = {
 
 	Camera = {
 		StartFirstPerson = false, -- third person like the reference video (V toggles first person)
+		FieldOfView = 70, -- third person: degrees top to bottom (Roblox's default)
 		AllowToggle = true, -- testing: ToggleKey switches to third person and back
 		ToggleKey = Enum.KeyCode.V,
 		TurnRate = 18, -- third person: how quickly your body turns to face a move's direction
@@ -286,6 +287,10 @@ local Config = {
 		-- and legs are drawn as slimmer copies only you see (client/FirstPersonBody). After the
 		-- animations, your arms are moved so your hands stay in view (client/FirstPersonArms). Other
 		-- players always see your normal body and animations.
+		-- Degrees across the screen (left to right) in first person, on any screen shape. Roblox
+		-- measures field of view top to bottom, so client/Sprint works that out from the screen's
+		-- width and height (about 88.5 top to bottom on a 16:9 screen).
+		FieldOfViewAcross = 120,
 		ArmLift = 26, -- degrees the upper arms swing forward on top of the animation
 		MaxArmAngle = 96, -- never further forward than this (degrees from straight down, so just
 		-- above level: a slide's raised arm comes forward into view instead of over your head)
@@ -819,6 +824,7 @@ local Config = {
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
 			{ "Tag", "Range", 2, 20, 0.5 },
 			{ "Tag", "Cooldown", 0, 2, 0.05 },
+			{ "FirstPerson", "FieldOfViewAcross", 80, 150, 1 },
 			{ "FirstPerson", "ArmLift", 0, 60, 1 },
 			{ "FirstPerson", "MaxArmAngle", 45, 150, 1 },
 			{ "FirstPerson", "ArmTuck", 0, 30, 1 },
