@@ -1,7 +1,7 @@
 --!strict
 -- Left click (or the gamepad right trigger) while you're It swings to tag. Your swipe plays
--- straight away, the first-person arm jabs, and the server is asked to tag (server/TagService
--- decides if it hit). When anyone swings, the server tells every client, and each one plays
+-- straight away (in first person too: you see your own arm swipe), and the server is asked to
+-- tag (server/TagService decides if it hit). When anyone swings, the server tells every client, and each one plays
 -- the swipe on that player's character, so everyone sees it (the swipe is built in code, so
 -- it has to be played on each screen).
 local Players = game:GetService("Players")
@@ -12,7 +12,6 @@ local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
-local MoveState = require(script.Parent.MoveState)
 
 local TagSwing = {}
 
@@ -72,7 +71,6 @@ function TagSwing.start()
 			return
 		end
 		lastSwing = now
-		MoveState.tagTime = now
 		playSwipe(player) -- right away, no waiting for the server
 		swingRemote:FireServer()
 	end)

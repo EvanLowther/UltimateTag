@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.41.0",
+	Version = "0.42.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -61,12 +61,12 @@ local Config = {
 			WindUp = {
 				UpperTorso = Vector3.new(0, -20, 0),
 				RightUpperArm = Vector3.new(60, 0, 35),
-				RightLowerArm = Vector3.new(-70, 0, 0),
+				RightLowerArm = Vector3.new(70, 0, 0),
 			},
 			Reach = {
 				UpperTorso = Vector3.new(0, 18, 0),
 				RightUpperArm = Vector3.new(92, 0, 5),
-				RightLowerArm = Vector3.new(-5, 0, 0),
+				RightLowerArm = Vector3.new(5, 0, 0),
 			},
 		},
 	},
@@ -99,7 +99,8 @@ local Config = {
 		-- Slide animation, built from the reference frames. Each pose is degrees of rotation per
 		-- body part (X = tip forward/back, Y = twist, Z = sideways), relative to standing.
 		-- Positive X on LowerTorso leans the body back. Positive X on an upper leg or upper arm
-		-- swings it forward. Negative X on a lower leg bends the knee.
+		-- swings it forward. Negative X on a lower leg bends the knee; positive X on a lower arm
+		-- bends the elbow (the forearm comes forward).
 		Poses = {
 			-- Slide, like the reference video: feet first with both legs out straight, body leaned
 			-- well back (about 60 degrees), head tipped forward to look ahead, one arm up by the
@@ -112,7 +113,7 @@ local Config = {
 				LeftUpperLeg = Vector3.new(20, 0, 0),
 				LeftLowerLeg = Vector3.new(-40, 0, 0),
 				RightUpperArm = Vector3.new(90, 0, 20),
-				RightLowerArm = Vector3.new(-30, 0, 0),
+				RightLowerArm = Vector3.new(30, 0, 0),
 				LeftUpperArm = Vector3.new(-20, 0, -20),
 			},
 			Slide = { -- the held slide
@@ -124,9 +125,9 @@ local Config = {
 				LeftUpperLeg = Vector3.new(15, 0, -5),
 				LeftLowerLeg = Vector3.new(-30, 0, 0),
 				RightUpperArm = Vector3.new(150, 0, 25),
-				RightLowerArm = Vector3.new(-20, 0, 0),
+				RightLowerArm = Vector3.new(20, 0, 0),
 				LeftUpperArm = Vector3.new(-50, 0, -30),
-				LeftLowerArm = Vector3.new(-15, 0, 0),
+				LeftLowerArm = Vector3.new(15, 0, 0),
 			},
 			Lunge = { -- frame 6: pushing back up, one leg forward
 				LowerTorso = Vector3.new(-10, 0, 0),
@@ -149,9 +150,9 @@ local Config = {
 				LeftUpperLeg = Vector3.new(80, 0, 0),
 				LeftLowerLeg = Vector3.new(-130, 0, 0),
 				RightUpperArm = Vector3.new(25, 0, 10),
-				RightLowerArm = Vector3.new(-40, 0, 0),
+				RightLowerArm = Vector3.new(40, 0, 0),
 				LeftUpperArm = Vector3.new(25, 0, -10),
-				LeftLowerArm = Vector3.new(-40, 0, 0),
+				LeftLowerArm = Vector3.new(40, 0, 0),
 			},
 			-- One step of the crouch walk (right leg forward); the other step is its mirror.
 			-- Each leg's height matches the idle pose's, so the feet stay on the floor.
@@ -163,9 +164,9 @@ local Config = {
 				LeftUpperLeg = Vector3.new(65, 0, 0),
 				LeftLowerLeg = Vector3.new(-130, 0, 0),
 				RightUpperArm = Vector3.new(5, 0, 10),
-				RightLowerArm = Vector3.new(-40, 0, 0),
+				RightLowerArm = Vector3.new(40, 0, 0),
 				LeftUpperArm = Vector3.new(45, 0, -10),
-				LeftLowerArm = Vector3.new(-40, 0, 0),
+				LeftLowerArm = Vector3.new(40, 0, 0),
 			},
 			Crouch = { -- frame 7: rising through a crouch
 				LowerTorso = Vector3.new(-10, 0, 0),
@@ -224,9 +225,9 @@ local Config = {
 				LowerTorso = Vector3.new(5, 0, -28),
 				Head = Vector3.new(0, 0, 14),
 				LeftUpperArm = Vector3.new(-25, 0, -12),
-				LeftLowerArm = Vector3.new(-30, 0, 0),
+				LeftLowerArm = Vector3.new(30, 0, 0),
 				RightUpperArm = Vector3.new(45, 0, 12),
-				RightLowerArm = Vector3.new(-60, 0, 0),
+				RightLowerArm = Vector3.new(60, 0, 0),
 				RightUpperLeg = Vector3.new(65, 0, 0),
 				RightLowerLeg = Vector3.new(-50, 0, 0),
 				LeftUpperLeg = Vector3.new(-25, 0, 0),
@@ -236,9 +237,9 @@ local Config = {
 				LowerTorso = Vector3.new(5, 0, -28),
 				Head = Vector3.new(0, 0, 14),
 				LeftUpperArm = Vector3.new(45, 0, -12),
-				LeftLowerArm = Vector3.new(-60, 0, 0),
+				LeftLowerArm = Vector3.new(60, 0, 0),
 				RightUpperArm = Vector3.new(-25, 0, 12),
-				RightLowerArm = Vector3.new(-30, 0, 0),
+				RightLowerArm = Vector3.new(30, 0, 0),
 				LeftUpperLeg = Vector3.new(65, 0, 0),
 				LeftLowerLeg = Vector3.new(-50, 0, 0),
 				RightUpperLeg = Vector3.new(-25, 0, 0),
@@ -279,63 +280,28 @@ local Config = {
 		FadeDistance = 3, -- your character fades when the camera is pushed closer than this
 	},
 
-	Viewmodel = {
-		-- First-person arms attached to the camera. Poses are camera space: Position in studs
-		-- (X right, Y up, -Z forward) of the arm's middle, Rotation in degrees (positive X tips
-		-- the arm up, positive Y turns it left, Z rolls it). Left mirrors Right unless given.
-		Enabled = true,
-		Scale = 0.7, -- arms are the body's forearm and hand (Config.Body), scaled by this
-		ClassicArm = Vector3.new(0.26, 0.26, 1.3), -- classic avatar: forearm block (long along Z)
-		ClassicHand = 0.32, -- classic avatar: hand block
-		Smooth = 16, -- how quickly arms move to a new pose (higher = snappier)
-		BobAmount = 0.04, -- studs of arm swing while running
-		SprintBob = 2, -- swing multiplier while sprinting
-		BobRate = 9, -- swing speed at walk speed
-		TagJabTime = 0.2, -- seconds the first-person arm stays jabbed out after a tag swing
-		Poses = {
-			Idle = {
-				Right = {
-					Position = Vector3.new(0.62, -0.72, -1.15),
-					Rotation = Vector3.new(10, 10, 0),
-				},
-			},
-			Air = {
-				Right = {
-					Position = Vector3.new(0.72, -0.55, -1.15),
-					Rotation = Vector3.new(25, 6, -15),
-				},
-			},
-			Crouch = {
-				Right = {
-					Position = Vector3.new(0.55, -0.7, -1.1),
-					Rotation = Vector3.new(4, 12, 0),
-				},
-			},
-			Slide = { -- right arm up for balance, left hand trailing low (like the slide reference)
-				Right = {
-					Position = Vector3.new(0.7, 0.05, -1.25),
-					Rotation = Vector3.new(65, 10, -10),
-				},
-				Left = {
-					Position = Vector3.new(-0.78, -0.8, -0.95),
-					Rotation = Vector3.new(-20, -20, 20),
-				},
-			},
-			-- Wall run: the wall-side hand trails on the wall (written for a wall on the right).
-			WallRunHand = {
-				Right = {
-					Position = Vector3.new(0.9, -0.3, -1),
-					Rotation = Vector3.new(5, -60, -15),
-				},
-			},
-			-- Tag swing: the right hand jabs forward into the middle of the view.
-			TagJab = {
-				Right = {
-					Position = Vector3.new(0.3, -0.35, -1.6),
-					Rotation = Vector3.new(5, 15, 0),
-				},
-			},
+	FirstPerson = {
+		-- First person shows your real body moving with the same animations as third person: the
+		-- camera rides your head (Camera.BodyForward), the head and torso are hidden, and your arms
+		-- and legs are drawn as slimmer copies only you see (client/FirstPersonBody). After the
+		-- animations, your arms are moved so your hands stay in view (client/FirstPersonArms). Other
+		-- players always see your normal body and animations.
+		ArmLift = 26, -- degrees the upper arms swing forward on top of the animation
+		MaxArmAngle = 96, -- never further forward than this (degrees from straight down, so just
+		-- above level: a slide's raised arm comes forward into view instead of over your head)
+		MinArmAngle = -15, -- never further back than this
+		ArmTuck = 12, -- degrees the arms swing in toward the middle of the view
+		ShoulderWidth = 0.78, -- the shoulders sit at this fraction of their real width
+		ArmThickness = 0.55, -- arms are drawn this thick (fraction of the real arm)
+		LegThickness = 0.82, -- legs are drawn this thick
+		-- Wall run: the wall-side arm reaches out and drags its hand along the wall. Degrees per
+		-- joint, written for a wall on the right (mirrored for the left).
+		WallHand = {
+			UpperArm = Vector3.new(38, 0, 28),
+			LowerArm = Vector3.new(12, 0, 0),
+			Hand = Vector3.new(0, 0, -20),
 		},
+		WallHandBlend = 14, -- how quickly the wall hand reaches out and comes back (higher = snappier)
 	},
 
 	Body = {
@@ -843,6 +809,12 @@ local Config = {
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
 			{ "Tag", "Range", 2, 20, 0.5 },
 			{ "Tag", "Cooldown", 0, 2, 0.05 },
+			{ "FirstPerson", "ArmLift", 0, 60, 1 },
+			{ "FirstPerson", "MaxArmAngle", 45, 150, 1 },
+			{ "FirstPerson", "ArmTuck", 0, 30, 1 },
+			{ "FirstPerson", "ShoulderWidth", 0.4, 1, 0.01 },
+			{ "FirstPerson", "ArmThickness", 0.2, 1, 0.01 },
+			{ "FirstPerson", "LegThickness", 0.2, 1, 0.01 },
 		} :: { { any } },
 	},
 }

@@ -28,7 +28,6 @@ local MoveState = {
 	landTime = -math.huge,
 	launchTime = -math.huge, -- when the last launch (a launch pad) happened
 	wallSide = "Left", -- during a wall run: which side of your body the wall is on
-	tagTime = -math.huge, -- when you last swung to tag (the first-person arm jabs)
 	-- A move can set this to point the body somewhere other than the camera (FaceCamera uses
 	-- it): along the wall while wall running. nil = face the camera.
 	faceDirection = nil :: Vector3?,

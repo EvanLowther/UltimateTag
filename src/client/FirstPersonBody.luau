@@ -1,10 +1,15 @@
 --!strict
--- Lets you see your own legs in first person. Roblox hides the whole character when the camera
--- is zoomed in; this shows the legs again (the head and torso stay hidden: seen from above, the
--- blocky torso just fills the screen; the arms are replaced by the Viewmodel arms). Your own
--- highlight (the red "It" glow) is turned off on your screen only, so it doesn't tint your view. The camera also follows your head as the animations move it,
--- so a slide, crouch or wall run moves your view naturally, and it sits a little ahead of the
--- chest (Config.Camera.BodyForward) so you never look out from inside your body.
+-- First person: you see your own body. Roblox hides your whole character when the camera is
+-- zoomed in; this draws your arms and legs again as copies only you see, slimmer than the real
+-- limbs (Config.FirstPerson.ArmThickness and LegThickness, so they read as hands and legs at
+-- the edge of the view instead of walls of plastic). The copies follow the real limbs every
+-- frame, so every animation (run, jump, slide, crouch, wall run, tag swipe) shows exactly as it
+-- does in third person; FirstPersonArms moves the arms so the hands stay in view. The head,
+-- torso and accessories stay hidden, and your own highlight (the red "It" glow) is turned off on
+-- your screen only, so it doesn't tint your view.
+-- The camera also follows your head as the animations move it, so a slide, crouch or wall run
+-- moves your view naturally, and it sits a little ahead of the chest (Config.Camera.BodyForward)
+-- so you never look out from inside your body.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -15,56 +20,119 @@ local ViewMode = require(script.Parent.ViewMode)
 
 local FirstPersonBody = {}
 
-local VISIBLE = {
-	LeftUpperLeg = true,
-	LeftLowerLeg = true,
-	LeftFoot = true,
-	RightUpperLeg = true,
-	RightLowerLeg = true,
-	RightFoot = true,
+local ARMS =
+	{ "RightUpperArm", "RightLowerArm", "RightHand", "LeftUpperArm", "LeftLowerArm", "LeftHand" }
+local LEGS =
+	{ "RightUpperLeg", "RightLowerLeg", "RightFoot", "LeftUpperLeg", "LeftLowerLeg", "LeftFoot" }
+
+-- One drawn copy: of a limb (offset nil), or of a detail welded onto it (knee ball, stripe, sole).
+type Copy = {
+	source: BasePart,
+	part: BasePart,
+	limb: BasePart,
+	offset: CFrame?,
+	arm: boolean,
 }
+
+-- The size of `part` thinned by `k` across its length. Limbs run along Y, except cylinders
+-- (along X); balls shrink evenly.
+local function thinned(part: BasePart, size: Vector3, k: number): Vector3
+	if part:IsA("Part") then
+		if part.Shape == Enum.PartType.Cylinder then
+			return Vector3.new(size.X, size.Y * k, size.Z * k)
+		elseif part.Shape == Enum.PartType.Ball then
+			return size * k
+		end
+	end
+	return Vector3.new(size.X * k, size.Y, size.Z * k)
+end
+
+-- A local, anchored copy of `source` that looks the same but takes no part in physics.
+local function copyOf(source: BasePart, parent: Instance): BasePart
+	local archivable = source.Archivable
+	source.Archivable = true
+	local copy = source:Clone()
+	source.Archivable = archivable
+	for _, child in copy:GetChildren() do
+		if
+			not (child:IsA("DataModelMesh") or child:IsA("Decal") or child:IsA("SurfaceAppearance"))
+		then
+			child:Destroy()
+		end
+	end
+	copy.Anchored = true
+	copy.CanCollide = false
+	copy.CanQuery = false
+	copy.CanTouch = false
+	copy.CastShadow = false
+	copy.Massless = true
+	copy.LocalTransparencyModifier = 0
+	copy.Parent = parent
+	return copy
+end
 
 function FirstPersonBody.start()
 	local player = Players.LocalPlayer
 	local settings = Config.Camera
-	local visibleParts: { BasePart } = {}
-	local hiddenDetails: { BasePart } = {} -- face, hair, shoulder balls etc. (never in your view)
+	local folder = Instance.new("Folder")
+	folder.Name = "FirstPersonBody"
+	local copies: { Copy } = {}
+	local hidden: { BasePart } = {} -- every real part we hide in first person
+	local built: Model? = nil
 	local restHead: Vector3? = nil -- where the head sits relative to the root when standing still
 	local offset = Vector3.zero
 	local wasFirstPerson = ViewMode.isFirstPerson()
 
-	local function setup(character: Model)
-		table.clear(visibleParts)
-		table.clear(hiddenDetails)
+	local function build(character: Model)
+		folder:ClearAllChildren()
+		table.clear(copies)
+		table.clear(hidden)
+		built = character
 		restHead = nil
-		for _, name in
-			{
-				"LeftUpperLeg",
-				"LeftLowerLeg",
-				"LeftFoot",
-				"RightUpperLeg",
-				"RightLowerLeg",
-				"RightFoot",
-			}
-		do
-			character:WaitForChild(name)
+		local limbs: { [string]: boolean } = {}
+		for _, name in ARMS do
+			limbs[name] = true
 		end
-		for _, part in character:GetChildren() do
-			if part:IsA("BasePart") and VISIBLE[part.Name] then
-				table.insert(visibleParts, part)
-				-- Details welded onto the leg (knee ball, stripe, sole).
-				for _, detail in part:GetDescendants() do
-					if detail:IsA("BasePart") then
-						table.insert(visibleParts, detail)
-					end
-				end
-			elseif part:IsA("BasePart") then
-				for _, detail in part:GetDescendants() do
-					if detail:IsA("BasePart") then
-						table.insert(hiddenDetails, detail)
-					end
+		for _, name in LEGS do
+			limbs[name] = false
+		end
+		for name, arm in limbs do
+			local limb = character:FindFirstChild(name)
+			if not limb or not limb:IsA("BasePart") then
+				continue
+			end
+			table.insert(
+				copies,
+				{ source = limb, part = copyOf(limb, folder), limb = limb, arm = arm }
+			)
+			for _, detail in limb:GetDescendants() do
+				if detail:IsA("BasePart") then
+					table.insert(copies, {
+						source = detail,
+						part = copyOf(detail, folder),
+						limb = limb,
+						offset = limb.CFrame:ToObjectSpace(detail.CFrame),
+						arm = arm,
+					})
 				end
 			end
+		end
+		for _, part in character:GetDescendants() do
+			if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+				table.insert(hidden, part)
+			end
+		end
+	end
+
+	local function setup(character: Model)
+		for _, name in LEGS do
+			character:WaitForChild(name)
+		end
+		for _, name in ARMS do
+			character:WaitForChild(name)
+		end
+		if player.Character == character then
+			build(character)
 		end
 	end
 	player.CharacterAdded:Connect(setup)
@@ -110,7 +178,8 @@ function FirstPersonBody.start()
 		end
 	)
 
-	-- After the camera updates (it hides the whole character in first person): show the legs.
+	-- After the camera updates (it hides the whole character in first person): draw the limbs.
+	local showing = false
 	RunService:BindToRenderStep("FirstPersonBody", Enum.RenderPriority.Camera.Value + 1, function()
 		local firstPerson = ViewMode.isFirstPerson()
 		local character = player.Character
@@ -118,14 +187,45 @@ function FirstPersonBody.start()
 		if highlight then
 			highlight.Enabled = not firstPerson
 		end
-		if not firstPerson then
+		local show = firstPerson
+			and character ~= nil
+			and character == built
+			and MoveState.parts() ~= nil
+		if show ~= showing then
+			showing = show
+			folder.Parent = if show then workspace.CurrentCamera else nil
+			if not show then
+				-- Back to third person: let the camera decide what's see-through again.
+				for _, part in hidden do
+					part.LocalTransparencyModifier = 0
+				end
+			end
+		end
+		if not show then
 			return
 		end
-		for _, part in visibleParts do
-			part.LocalTransparencyModifier = 0
-		end
-		for _, part in hiddenDetails do
+		for _, part in hidden do
 			part.LocalTransparencyModifier = 1
+		end
+		local look = Config.FirstPerson
+		for _, copy in copies do
+			local k = if copy.arm then look.ArmThickness else look.LegThickness
+			local part, source = copy.part, copy.source
+			local size = thinned(source, source.Size, k)
+			if part.Size ~= size then
+				part.Size = size
+			end
+			if copy.offset then
+				-- Details sit where they're welded, pulled in with the thinner limb.
+				local at = copy.offset.Position
+				part.CFrame = copy.limb.CFrame
+					* CFrame.new(at.X * k, at.Y, at.Z * k)
+					* copy.offset.Rotation
+			else
+				part.CFrame = source.CFrame
+			end
+			part.Color = source.Color
+			part.Transparency = source.Transparency
 		end
 	end)
 end
