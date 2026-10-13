@@ -2,11 +2,11 @@
 """Exports a map design for its 3D design canvas (the Design canvas viewer). Run from the
 repo root:
     python3 tools/designs/canvas_export.py <design module> <out.json>
-for example `python3 tools/designs/canvas_export.py rooftops_v1 build/rooftops.json`. The design
-module (in tools/designs/) has `build()` (a maplib Map) and a `CANVAS` dict: its labels,
-numbered markers and camera views. The viewer draws every part (invisible ones skipped: the
-ladders' trusses, slide gates are shown as red glass), plays spinning and swinging parts like
-client/MapAmbience, and marks the KillHeight.
+for example `python3 tools/designs/canvas_export.py rooftops_layout build/rooftops.json`. The
+module (a design in tools/designs/, or a map generator in tools/) has `build()` (a maplib Map)
+and a `CANVAS` dict: its labels, numbered markers and camera views. The viewer draws every part
+(invisible ones skipped: the ladders' trusses, slide gates are shown as red glass), plays
+spinning and swinging parts like client/MapAmbience, and marks the KillHeight.
 
 Each part is [style, x, y, z, sx, sy, sz, rotation, flags, motion]; flags: 1 cylinder, 2 detail
 (no collision), 4 roof, 8 slide gate, 16 slip floor, 32 launch pad or speed boost, 64 wedge.
@@ -18,7 +18,8 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
+sys.path.insert(0, HERE)  # designs not in the game yet
+sys.path.insert(0, os.path.dirname(HERE))  # map generators (tools/*_layout.py)
 MATERIAL_CODES = {"Neon": "n", "Glass": "g"}
 
 

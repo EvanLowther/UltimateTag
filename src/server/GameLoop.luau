@@ -4,8 +4,9 @@
 -- Each round: pick a map for the number of players still in (MapService), load it, place
 -- everyone on its spawn points, let the game mode assign roles (Modes/HotPotato), freeze
 -- everyone for the intro (Its a little longer), run the timer, then eliminate whoever the mode
--- says lost. Eliminated players go back to the lobby and spectate (client/Spectate). Rounds
--- continue until one player is left; they win.
+-- says lost. Eliminated players go back to the lobby and spectate (client/Spectate). On a map
+-- with FallEliminates, falling off during the round puts you out at once (server/MapRespawn).
+-- Rounds continue until one player is left; they win.
 -- With Config.Game.Mode = "Sandbox" this runs the free-play test mode instead (server/Sandbox).
 -- The dev panel (server/DevCommands) can switch modes, skip the current timer, change the time
 -- left and start a game early.
@@ -17,6 +18,7 @@ local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
+local MapRespawn = require(script.Parent.MapRespawn)
 local MapService = require(script.Parent.MapService)
 local Participants = require(script.Parent.Participants)
 local Progression = require(script.Parent.Progression)
@@ -36,6 +38,7 @@ local counting = false -- a phase timer is running
 local remaining = 0 -- seconds left on it
 local skipping = false -- end the current timer now (dev panel)
 local forceStart = false -- start a game now, without the lobby countdown (dev panel)
+local fellThisRound: { Player } = {} -- out this round by falling off (FallEliminates maps)
 
 local function minPlayers(): number
 	return if RunService:IsStudio() then Config.Game.StudioMinPlayers else Config.Game.MinPlayers
@@ -116,11 +119,29 @@ local function enoughToKeepPlaying(): boolean
 	return #Participants.alive() >= 2
 end
 
+local function roundGoesOn(): boolean
+	return enoughToKeepPlaying() and mode.canContinue(Participants.alive())
+end
+
+-- Out mid-round: fell off a map with FallEliminates (server/MapRespawn). They come back in the
+-- lobby on their own (the lobby has the only SpawnLocation) and spectate.
+local function fellOut(player: Player)
+	if GameState.getPhase() ~= "Playing" or not Participants.isAlive(player) then
+		return
+	end
+	Participants.eliminate(player)
+	Roles.set(player, nil)
+	Progression.record(player, "GameLost")
+	table.insert(fellThisRound, player)
+	Remotes.get("Notify"):FireAllClients(`{player.DisplayName} fell and is out!`)
+end
+
 -- One round. Returns false if the game should stop (not enough players left).
 local function playRound(round: number, lastMap: string?): string?
 	local alive = Participants.alive()
 	GameState.setRound(round)
 	Progression.newRound()
+	table.clear(fellThisRound)
 	local mapName = MapService.choose(#alive, lastMap)
 	if not mapName then
 		warn("[GameLoop] no maps to play on")
@@ -141,7 +162,7 @@ local function playRound(round: number, lastMap: string?): string?
 	countdown("Intro", intro, enoughToKeepPlaying)
 
 	GameState.setStatus(modeStatus)
-	countdown("Playing", Config.Game.RoundTime, enoughToKeepPlaying)
+	countdown("Playing", Config.Game.RoundTime, roundGoesOn)
 
 	-- Time's up: the mode decides who's out.
 	alive = Participants.alive()
@@ -152,13 +173,22 @@ local function playRound(round: number, lastMap: string?): string?
 		sendToLobby(player)
 		Progression.record(player, "GameLost")
 	end
-	if #out > 0 then
+	if #out > 0 or #fellThisRound > 0 then
 		for _, player in Participants.alive() do
 			Progression.record(player, "RoundSurvived")
 		end
 		Progression.checkTopFive(Participants.alive())
 	end
-	GameState.setStatus(if #out > 0 then `Eliminated: {names(out)}` else "Nobody was eliminated")
+	local results = {}
+	if #out > 0 then
+		table.insert(results, `Eliminated: {names(out)}`)
+	end
+	if #fellThisRound > 0 then
+		table.insert(results, `Fell off: {names(fellThisRound)}`)
+	end
+	GameState.setStatus(
+		if #results > 0 then table.concat(results, ". ") else "Nobody was eliminated"
+	)
 	countdown("Results", Config.Game.ResultsTime)
 	for _, player in Participants.alive() do
 		Roles.set(player, nil)
@@ -327,6 +357,7 @@ end
 
 function GameLoop.start()
 	Participants.start()
+	MapRespawn.onFellOut(fellOut)
 	run(if Config.Game.Mode == "Sandbox" then "Sandbox" else "Elimination")
 end
 

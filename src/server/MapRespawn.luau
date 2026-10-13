@@ -4,6 +4,9 @@
 -- lobby far away is never affected). Players
 -- who die on the map during a round (or in Sandbox) come back on one of its spawn points instead
 -- of in the lobby, keeping their role. Respawn delay: Config.Game.RespawnTime.
+-- A map with the FallEliminates attribute (the Rooftop District) is different: dying on it while
+-- a round is being played puts you out of the game (GameLoop listens with onFellOut), and you
+-- come back in the lobby to spectate.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -17,6 +20,7 @@ local Participants = require(script.Parent.Participants)
 local MapRespawn = {}
 
 local diedOnMap: { [Player]: boolean } = {}
+local fellOutListeners: { (Player) -> () } = {}
 
 -- Should this player come back on the map rather than in the lobby?
 local function belongsOnMap(player: Player): boolean
@@ -53,12 +57,28 @@ local function watch(player: Player)
 		local humanoid = character:WaitForChild("Humanoid", 5) :: Humanoid?
 		if humanoid then
 			humanoid.Died:Connect(function()
-				if MapService.active() and belongsOnMap(player) then
-					diedOnMap[player] = true
+				local map = MapService.active()
+				if not map or not belongsOnMap(player) then
+					return
 				end
+				if
+					map:GetAttribute("FallEliminates") == true
+					and GameState.getPhase() == "Playing"
+				then
+					for _, listener in fellOutListeners do
+						task.spawn(listener, player)
+					end
+					return -- out of the game: they come back in the lobby
+				end
+				diedOnMap[player] = true
 			end)
 		end
 	end)
+end
+
+-- Calls `listener(player)` when someone dies on a FallEliminates map during a round.
+function MapRespawn.onFellOut(listener: (Player) -> ())
+	table.insert(fellOutListeners, listener)
 end
 
 function MapRespawn.start()

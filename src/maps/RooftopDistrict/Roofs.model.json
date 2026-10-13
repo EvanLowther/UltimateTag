@@ -1,0 +1,557 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "NWRoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     0.5,
+     48
+    ],
+    "Color": [
+     0.839,
+     0.776,
+     0.62
+    ],
+    "Material": "Sandstone",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -76.0,
+       63.75,
+       -76.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "NRoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     68,
+     0.5,
+     42
+    ],
+    "Color": [
+     0.408,
+     0.471,
+     0.549
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       51.75,
+       -79.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "NERoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     0.5,
+     48
+    ],
+    "Color": [
+     0.518,
+     0.51,
+     0.494
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       76.0,
+       39.75,
+       -76.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "WRoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42,
+     0.5,
+     60
+    ],
+    "Color": [
+     0.518,
+     0.51,
+     0.494
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -79.0,
+       39.75,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "HUBRoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     0.5,
+     40
+    ],
+    "Color": [
+     0.408,
+     0.471,
+     0.549
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       51.75,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "ERoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42,
+     0.5,
+     60
+    ],
+    "Color": [
+     0.518,
+     0.51,
+     0.494
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       79.0,
+       39.75,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SWRoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     0.5,
+     48
+    ],
+    "Color": [
+     0.518,
+     0.51,
+     0.494
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -76.0,
+       39.75,
+       76.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SRoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     68,
+     0.5,
+     42
+    ],
+    "Color": [
+     0.408,
+     0.471,
+     0.549
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       51.75,
+       79.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SERoof",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     2.5,
+     18
+    ],
+    "Color": [
+     0.839,
+     0.776,
+     0.62
+    ],
+    "Material": "Sandstone",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       76.0,
+       62.75,
+       61.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SERoof2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     2.5,
+     18
+    ],
+    "Color": [
+     0.839,
+     0.776,
+     0.62
+    ],
+    "Material": "Sandstone",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       59.0,
+       62.75,
+       79.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SERoof3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     2.5,
+     18
+    ],
+    "Color": [
+     0.839,
+     0.776,
+     0.62
+    ],
+    "Material": "Sandstone",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       95.0,
+       62.75,
+       79.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SERoof4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     2.5,
+     12
+    ],
+    "Color": [
+     0.839,
+     0.776,
+     0.62
+    ],
+    "Material": "Sandstone",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       76.0,
+       62.75,
+       94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

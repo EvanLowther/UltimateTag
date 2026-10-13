@@ -7,6 +7,7 @@
 --   Name: string
 --   setup(players) -> status text   (assign roles at the start of a round)
 --   finish(players) -> eliminated   (who is out when the round timer ends)
+--   canContinue(players) -> boolean (false ends the round early: nothing left to play for)
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Config = require(ReplicatedStorage.Shared.Config)
@@ -35,6 +36,16 @@ function HotPotato.setup(players: { Player }): string
 	return if its == 1
 		then "1 player is It. Don't be It when time runs out!"
 		else `{its} players are It. Don't be It when time runs out!`
+end
+
+-- The round is over early once no It is left (they fell off a FallEliminates map).
+function HotPotato.canContinue(players: { Player }): boolean
+	for _, player in players do
+		if Roles.get(player) == "It" then
+			return true
+		end
+	end
+	return false
 end
 
 function HotPotato.finish(players: { Player }): { Player }

@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.43.2",
+	Version = "0.44.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -19,7 +19,8 @@ local Config = {
 		EliminateFraction = 0.45, -- share of the players still in who start a round as It (and lose it)
 		RespawnTime = 3, -- seconds before someone who died (fell off a map) comes back
 		-- Falling off: a map with a KillHeight attribute kills anyone who drops below that world
-		-- height within this many studs of it sideways. They respawn on the map (server/MapRespawn).
+		-- height within this many studs of it sideways. They respawn on the map (server/MapRespawn),
+		-- unless the map has FallEliminates: then they're out of the game.
 		KillRadius = 400,
 	},
 

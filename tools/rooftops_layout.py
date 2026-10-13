@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Rooftop District, design v1 (design stage: not in the game yet). 8-12 players, sunny day.
-Shown on the "Rooftop District" design canvas. Built with tools/maplib.py and checked with
-tools/mapcheck.py like the real map generators, so it becomes tools/rooftops_layout.py once the
-design is settled. Run from the repo root:
-    python3 tools/designs/rooftops_v1.py           (checks only)
-    python3 tools/designs/rooftops_v1.py --write   (writes src/maps/RooftopDistrict/)
+"""The Rooftop District (8-12 players, sunny day: the game's normal lighting), designed on the
+"Rooftop District" design canvas (v1.2) and ported. Run from the repo root:
+    python3 tools/rooftops_layout.py
+It rewrites `src/maps/RooftopDistrict/` (generated: don't edit those files by hand); Rojo syncs
+it. `python3 tools/designs/canvas_export.py rooftops_layout <out.json>` exports it for the canvas.
 
 Axes: X east, Z south, Y up. The street is far below and never playable: fall past KillHeight
-(30) and you're out. Roofs sit on three tiers, 12 apart:
+(30) and you're out of the game (the map's FallEliminates attribute; server/MapRespawn). Roofs
+sit on three tiers, 12 apart:
     LOW 40, MID 52, HIGH 64.
 Nine buildings on a 200 x 200 block: a ring of eight round a central hub, with wide streets
 between them (18-22 between ring neighbours, 38 round the hub) so the map stays open, with long
@@ -24,7 +24,7 @@ import math
 import os
 import sys
 
-REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.insert(0, os.path.join(REPO, "tools"))
 import mapcheck  # noqa: E402
 from maplib import NO_HIT, Map, rot_x, rot_y, rot_z  # noqa: E402
@@ -33,7 +33,8 @@ OUT = "src/maps/RooftopDistrict"
 LOW, MID, HIGH = 40, 52, 64
 KILL = 30  # world Y: below this you're out
 ATTRIBUTES = {"DisplayName": "Rooftop District", "MinPlayers": 8, "MaxPlayers": 12,
-              "InRotation": True, "KillHeight": KILL, "OutOfBounds": "WaterTank,Duct"}
+              "InRotation": True, "KillHeight": KILL, "FallEliminates": True,
+              "OutOfBounds": "WaterTank,Duct"}
 
 # Movement numbers the gaps are built round (Config + Roblox defaults).
 GRAVITY = 196.2
@@ -462,7 +463,7 @@ def _marker(n, title, text, x, y, z):
 
 
 CANVAS = {
-    "label": "Design v1.2 (flush ladders, no slipping)",
+    "label": "In game (v1.2)",
     "labels": [_label(f"{b[5]} · {b[4]}", (b[0] + b[1]) / 2, b[4] + 7, (b[2] + b[3]) / 2)
                for b in BUILDINGS.values()] + [
         _label("Pool", 78, 66, 79, "feature"),
@@ -571,8 +572,7 @@ if __name__ == "__main__":
     print(f"{layout.count()} parts in {len(layout.groups)} groups, {len(layout.spawns)} spawns")
     for line in issues:
         print("PROBLEM:", line)
-    if "--write" in sys.argv:
-        os.chdir(REPO)
-        layout.write(OUT, ATTRIBUTES)
-        print(f"wrote {OUT}/")
+    os.chdir(REPO)
+    layout.write(OUT, ATTRIBUTES)
+    print(f"wrote {OUT}/ (Rojo syncs it into ServerStorage.Maps)")
     raise SystemExit(1 if issues else 0)
