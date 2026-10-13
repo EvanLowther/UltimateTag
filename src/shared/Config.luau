@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.45.0",
+	Version = "0.45.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -742,8 +742,14 @@ local Config = {
 	-- carries riders and pushes them out at the exit stop.
 	Trains = {
 		StartDelay = 0, -- seconds after the map loads before the timetable starts
-		PitHeight = 1.5, -- your middle is less than this over the train's floor: you're on the tracks
-		PitDepth = 8, -- ...and no more than this under it (falling away below doesn't count)
+		-- Aboard: in a car (between its walls), your middle between these heights over the floor
+		-- (a crouch or slide keeps your middle over 1). Riders are never hit.
+		FloorHeight = 0.5,
+		BoardGrace = 1, -- seconds into the ride when someone who squeezed in still counts as aboard
+		-- Hit: not aboard, in the train's way while it moves, your middle from PitDepth under its
+		-- floor to RoofHeight over it.
+		RoofHeight = 10,
+		PitDepth = 8,
 		KillMargin = 0.3, -- studs past the train's sides that still get hit
 		NoseReach = 1.5, -- studs in front of the nose that get hit
 		MovingSpeed = 0.5, -- studs/s: slower than this the train doesn't hit anyone

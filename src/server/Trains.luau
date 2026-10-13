@@ -3,8 +3,12 @@
 -- starts its timetable: the map's TrainEpoch (server time it starts) and TrainSeed (its random
 -- waits), which every client reads to run the same train (client/Trains, shared/TrainLine).
 -- Then every frame:
---   - anyone down on the tracks in the train's way while it's moving is killed (a death on the
---     map: during a round on a FallEliminates map that puts you out of the game; MapRespawn);
+--   - whoever is in a car while the train is stopped (and anyone who squeezed in as it set off)
+--     is aboard: riding, so the train never hits them, however they move about (slides and
+--     crouches included) and however far behind their position reaches the server at speed;
+--   - anyone else in the train's way while it's moving (anywhere from the bottom of the pit to
+--     its roof: on the tracks, jumping in the pit, in front of the nose) is killed (a death on
+--     the map: during a round on a FallEliminates map that puts you out of the game; MapRespawn);
 --   - when the exit stop's doors have shut, anyone still aboard is put on the platform outside
 --     the nearest door (client/Trains pushes riders out first; this makes sure nobody rides round
 --     again).
@@ -19,7 +23,12 @@ local TrainLine = require(Shared.TrainLine)
 
 local Trains = {}
 
-type Running = { map: Model, timetable: TrainLine.Timetable, phase: string }
+type Running = {
+	map: Model,
+	timetable: TrainLine.Timetable,
+	phase: string,
+	aboard: { [Model]: boolean }, -- characters riding (a new character never is)
+}
 
 local running: Running? = nil
 
@@ -36,7 +45,12 @@ local function begin(map: Instance)
 	local seed = math.random(1, 2 ^ 20)
 	map:SetAttribute("TrainSeed", seed)
 	map:SetAttribute("TrainEpoch", epoch)
-	running = { map = map, timetable = TrainLine.timetable(spec, seed, epoch), phase = "" }
+	running = {
+		map = map,
+		timetable = TrainLine.timetable(spec, seed, epoch),
+		phase = "",
+		aboard = {},
+	}
 end
 
 -- Puts a rider still aboard at the exit stop on the platform outside the nearest door.
@@ -63,13 +77,20 @@ local function step()
 	local timetable = train.timetable
 	local spec = timetable.spec
 	local state = timetable:at(workspace:GetServerTimeNow())
-	local leaving = state.phase.name == "leave" and train.phase ~= "leave"
-	train.phase = state.phase.name
+	local name = state.phase.name
+	local leaving = name == "leave" and train.phase ~= "leave"
+	train.phase = name
 	local moving = state.speed > C.MovingSpeed
-	if not moving and not leaving then
-		return
-	end
+	-- Just setting off from the boarding side: anyone in a car by now still counts as aboard
+	-- (their position reaches the server a moment late).
+	local boarding = name == "depart" or (name == "ride" and state.into < C.BoardGrace)
 	local frames = TrainLine.frames(spec, state.s)
+	local aboard = train.aboard
+	for character in aboard do
+		if not character.Parent then
+			aboard[character] = nil
+		end
+	end
 	for _, player in Players:GetPlayers() do
 		local character = player.Character
 		local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
@@ -79,16 +100,23 @@ local function step()
 		end
 		local p = root.Position
 		local height = p.Y - spec.floorY
-		if moving and height < C.PitHeight and height > -C.PitDepth then
-			local car = TrainLine.locate(spec, frames, p.X, p.Z, C.KillMargin, C.NoseReach)
-			if car then
+		local inside, u = TrainLine.locate(spec, frames, p.X, p.Z, 0)
+		local onFloor = inside ~= nil and height > C.FloorHeight and height < C.AboardHeight
+		if leaving and onFloor then
+			-- Doors shut at the exit stop: nobody rides round again.
+			putOff(spec, frames, character, u)
+			aboard[character] = nil
+		elseif not moving or boarding then
+			if onFloor then
+				aboard[character] = true
+			elseif not moving then
+				aboard[character] = nil
+			end
+		end
+		if moving and not aboard[character] and height < C.RoofHeight and height > -C.PitDepth then
+			if TrainLine.locate(spec, frames, p.X, p.Z, C.KillMargin, C.NoseReach) then
 				character:SetAttribute("HitByTrain", true)
 				humanoid.Health = 0
-			end
-		elseif leaving and height >= -1 and height < C.AboardHeight then
-			local car, u = TrainLine.locate(spec, frames, p.X, p.Z, 0)
-			if car then
-				putOff(spec, frames, character, u)
 			end
 		end
 	end
