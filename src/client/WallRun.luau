@@ -2,8 +2,11 @@
 -- Wall running, automatic like the parkour reference: jump alongside a wall while sprinting (or
 -- moving fast) and you run along it, rising a little then sinking, with the camera leaning away
 -- from the wall, following the wall as it curves (round towers). Ends when the wall does or time
--- runs out. Jump during a wall run to drop off it early, keeping your speed (no kick off the
--- wall). Heading straight into a wall does nothing (there's no wall climb).
+-- runs out. Jump during a wall run to jump off it: up (JumpUp) and the way you're looking, at the
+-- run's speed, never back into the wall (JumpAwayAngle). Land on another wall to keep going:
+-- chained runs and jumps can cross long gaps, but can't climb more than ChainMaxRise above where
+-- the chain started (touching the ground starts a new one). Heading straight into a wall does
+-- nothing (there's no wall climb).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -59,6 +62,7 @@ function WallRun.start()
 	local tracks: { [string]: AnimationTrack } = {}
 	local trackHumanoid: Humanoid? = nil
 	local onJump: (() -> ())? = nil -- set while a wall run is running
+	local chainY: number? = nil -- root height where the current chain of wall runs started
 
 	local function play(hum: Humanoid, name: string): AnimationTrack
 		if trackHumanoid ~= hum then
@@ -104,6 +108,9 @@ function WallRun.start()
 
 	local function wallRun(parts: Parts, normal: Vector3, along: Vector3, speed: number)
 		MoveState.busy = "WallRun"
+		if not chainY then
+			chainY = parts.root.Position.Y
+		end
 		MoveState.faceDirection = along
 		-- Which side of the body the wall is on, with the body facing along the wall.
 		local right = along:Cross(Vector3.yAxis)
@@ -123,7 +130,25 @@ function WallRun.start()
 			MoveState.airVelocity = along * speed -- keep the run's speed into the air
 		end
 		onJump = function()
-			finish() -- drop off the wall early, keeping the run's speed
+			-- Jump off: the way you're looking, but always at least JumpAwayAngle off the wall.
+			local look = MoveState.flat(workspace.CurrentCamera.CFrame.LookVector)
+			local direction = if look.Magnitude > 0.1 then look.Unit else along
+			local minAway = math.sin(math.rad(settings.JumpAwayAngle))
+			local away = direction:Dot(normal)
+			if away < minAway then
+				local flat = direction - normal * away
+				local path = if flat.Magnitude > 0.1 then flat.Unit else along
+				direction = (path * math.cos(math.rad(settings.JumpAwayAngle)) + normal * minAway).Unit
+			end
+			finish()
+			-- Up, but never past the chain's ceiling.
+			local root = parts.root
+			local room = (chainY or root.Position.Y) + settings.ChainMaxRise - root.Position.Y
+			local up =
+				math.min(settings.JumpUp, math.sqrt(2 * workspace.Gravity * math.max(room, 0)))
+			local across = direction * speed
+			root.AssemblyLinearVelocity = across + Vector3.new(0, up, 0)
+			MoveState.airVelocity = across -- AirMomentum carries it from here
 		end
 
 		connection = RunService.Heartbeat:Connect(function(dt)
@@ -164,10 +189,13 @@ function WallRun.start()
 			local vertical = settings.RunLift + (-settings.RunSink - settings.RunLift) * f
 			if
 				vertical > 0
-				and MoveState.headroom(parts, settings.CeilingStop + vertical * dt)
-					<= settings.CeilingStop + vertical * dt
+				and (
+					MoveState.headroom(parts, settings.CeilingStop + vertical * dt)
+						<= settings.CeilingStop + vertical * dt
+					or parts.root.Position.Y >= (chainY or math.huge) + settings.ChainMaxRise
+				)
 			then
-				vertical = 0 -- don't rise into a ceiling
+				vertical = 0 -- don't rise into a ceiling, or past the chain's ceiling
 			end
 			local gap = if beside then beside.Distance else settings.RunGap
 			local inward = math.clamp((gap - settings.RunGap) * 12, -6, 20)
@@ -177,10 +205,13 @@ function WallRun.start()
 
 	-- Looks for a wall to run on.
 	RunService.Heartbeat:Connect(function()
+		local parts = MoveState.parts()
+		if parts and MoveState.isGrounded(parts.humanoid) and MoveState.busy ~= "WallRun" then
+			chainY = nil -- back on the ground: the next wall run starts a new chain
+		end
 		if MoveState.busy then
 			return
 		end
-		local parts = MoveState.parts()
 		if not parts or MoveState.isGrounded(parts.humanoid) then
 			return
 		end

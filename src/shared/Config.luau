@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.46.2",
+	Version = "0.47.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -204,7 +204,8 @@ local Config = {
 
 	WallRun = {
 		-- Jump alongside a wall while sprinting (or moving fast) and you run along it. Jump during
-		-- a wall run to drop off it early (no kick off the wall). No wall climb.
+		-- a wall run to jump off it, up and the way you're looking (onto the next wall to chain
+		-- runs across a gap). No wall climb.
 		Reach = 2.2, -- studs from your body (ahead, beside or diagonally) that counts as touching a wall
 		HeadOnAngle = 35, -- heading within this many degrees of straight at the wall = no wall run;
 		-- anything else (beside or glancing) = wall run, unless you're moving away from the wall
@@ -217,6 +218,11 @@ local Config = {
 		LeanRoll = 12, -- degrees the camera leans away from the wall while wall running
 		RunGap = 1.3, -- studs from your body's center to the wall during a wall run (feet on the wall)
 		CeilingStop = 0.4, -- studs below a ceiling where wall-run lift stops
+		JumpUp = 42, -- studs/s up when you jump off a wall run (a normal jump is 50); across, you keep the run's speed
+		JumpAwayAngle = 20, -- a wall jump leaves at least this many degrees away from the wall
+		-- (looking into the wall pushes you off along it instead)
+		ChainMaxRise = 6, -- studs a chain of wall runs and wall jumps can climb above where it
+		-- started, so nobody bounces up a corridor forever; touching the ground starts a new chain
 		-- Third-person poses, written for a wall on your LEFT (mirrored for the right).
 		Poses = {
 			-- Wall run, wall on the LEFT (mirrored for the right). The whole body tilts away from
@@ -852,6 +858,9 @@ local Config = {
 			{ "WallRun", "RunSpeed", 10, 60, 1 },
 			{ "WallRun", "RunTime", 0.3, 4, 0.05 },
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
+			{ "WallRun", "JumpUp", 0, 80, 1 },
+			{ "WallRun", "JumpAwayAngle", 0, 80, 1 },
+			{ "WallRun", "ChainMaxRise", 0, 30, 0.5 },
 			{ "Tag", "Range", 2, 20, 0.5 },
 			{ "Tag", "Cooldown", 0, 2, 0.05 },
 			{ "FirstPerson", "FieldOfViewAcross", 80, 150, 1 },
