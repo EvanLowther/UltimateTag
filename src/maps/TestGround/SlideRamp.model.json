@@ -1,0 +1,74 @@
+{
+  "className": "Model",
+  "children": [
+    {
+      "name": "Tower",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [12, 20, 12],
+        "Color": [0.05, 0.41, 0.67],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet",
+        "CFrame": {
+          "CFrame": {
+            "position": [-60, 10, -40],
+            "orientation": [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+          }
+        }
+      }
+    },
+    {
+      "name": "TowerTruss",
+      "className": "TrussPart",
+      "properties": {
+        "Anchored": true,
+        "Size": [2, 20, 2],
+        "Color": [0.64, 0.64, 0.65],
+        "CFrame": {
+          "CFrame": {
+            "position": [-53, 10, -40],
+            "orientation": [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+          }
+        }
+      }
+    },
+    {
+      "name": "Ramp",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [12, 1, 47.33],
+        "Color": [0.96, 0.8, 0.19],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet",
+        "CFrame": {
+          "CFrame": {
+            "position": [-60, 9.547, -12.76],
+            "orientation": [[1, 0, 0], [0, 0.906308, -0.422618], [0, 0.422618, 0.906308]]
+          }
+        }
+      }
+    },
+    {
+      "name": "Kicker",
+      "className": "Part",
+      "properties": {
+        "Anchored": true,
+        "Size": [12, 1, 6.21],
+        "Color": [0.77, 0.16, 0.11],
+        "Material": "Plastic",
+        "TopSurface": "Studs",
+        "BottomSurface": "Inlet",
+        "CFrame": {
+          "CFrame": {
+            "position": [-60, 0.317, 23.129],
+            "orientation": [[1, 0, 0], [0, 0.96623, 0.25766], [0, -0.25766, 0.96623]]
+          }
+        }
+      }
+    }
+  ]
+}

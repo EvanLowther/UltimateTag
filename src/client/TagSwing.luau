@@ -1,7 +1,8 @@
 --!strict
--- Left click (or the gamepad right trigger) while you're It swings to tag. Your swipe plays
--- straight away (in first person too: you see your own arm swipe), and the server is asked to
--- tag (server/TagService decides if it hit). When anyone swings, the server tells every client, and each one plays
+-- Left click (or the gamepad right trigger) swings, for anyone: It's swing tags a Runner, any
+-- other swing shoves whoever is in reach. Your swipe plays straight away (in first person too:
+-- you see your own arm swipe), and the server decides what it hit (server/TagService). When
+-- anyone swings, the server tells every client, and each one plays
 -- the swipe on that player's character, so everyone sees it (the swipe is built in code, so
 -- it has to be played on each screen).
 local Players = game:GetService("Players")
@@ -63,7 +64,13 @@ function TagSwing.start()
 		end
 		local click = input.UserInputType == Enum.UserInputType.MouseButton1
 			or input.KeyCode == Enum.KeyCode.ButtonR2
-		if not click or player:GetAttribute("Role") ~= "It" then
+		if not click then
+			return
+		end
+		-- Anyone swings (It's swing tags, anyone else's shoves), just not while frozen.
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		if not humanoid or humanoid.Health <= 0 or humanoid.WalkSpeed <= 0 then
 			return
 		end
 		local now = os.clock()

@@ -1,9 +1,12 @@
 --!strict
 -- The one source of movement state on this client, shared by every move module:
 --   busy:        the move in progress ("Slide", "Crouch", "WallRun", "Climb" while on a
---                ladder, or "Fly" from the dev panel), or nil. One at a time.
+--                ladder, "Knockback" while a hit sends you flying, or "Fly" from the dev
+--                panel), or nil. One at a time.
 --   airVelocity: the sideways speed being carried through the air (owned by AirMomentum).
---   landVelocity / landTime: the air speed you landed with (set by AirMomentum).
+--   landVelocity / landTime / landImpact: the air speed you landed with (fall boost included)
+--                and how fast you hit the ground (set by AirMomentum).
+--   groundVelocity: a hand-off to GroundMomentum ("keep this speed along the ground").
 --   parts():     the local character's model, humanoid and root part, if alive.
 --   isGrounded(), flat(): the standard checks, so no module re-implements them.
 --   headroom():  studs between the top of your head and whatever is above it (ceilings), so
@@ -26,6 +29,10 @@ local MoveState = {
 	-- landing keep your air speed before ground friction eats it.
 	landVelocity = nil :: Vector3?,
 	landTime = -math.huge,
+	landImpact = 0, -- studs/s you were falling when you last landed (0 after a launch pad flight)
+	-- Set by a move that ends on the ground faster than you can run (a slide, a knockback):
+	-- GroundMomentum picks it up and carries that speed, fading it.
+	groundVelocity = nil :: Vector3?,
 	launchTime = -math.huge, -- when the last launch (a launch pad) happened
 	wallSide = "Left", -- during a wall run: which side of your body the wall is on
 	-- A move can set this to point the body somewhere other than the camera (FaceCamera uses
@@ -69,6 +76,24 @@ end
 -- The sideways part of a vector (Y set to 0).
 function MoveState.flat(v: Vector3): Vector3
 	return Vector3.new(v.X, 0, v.Z)
+end
+
+-- Turns `v` toward the unit direction `target` by at most `maxAngle` radians, keeping its length.
+function MoveState.turnToward(v: Vector3, target: Vector3, maxAngle: number): Vector3
+	local speed = v.Magnitude
+	if speed < 1e-4 then
+		return v
+	end
+	local from = v.Unit
+	local angle = math.acos(math.clamp(from:Dot(target), -1, 1))
+	if angle <= maxAngle then
+		return target * speed
+	end
+	local axis = from:Cross(target)
+	if axis.Magnitude < 1e-4 then
+		return v
+	end
+	return CFrame.fromAxisAngle(axis.Unit, maxAngle):VectorToWorldSpace(from) * speed
 end
 
 -- Adds a LinearVelocity to the root part. With `flat` it only controls sideways movement and

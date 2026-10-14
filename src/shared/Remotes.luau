@@ -15,6 +15,8 @@
 --                   stats and quests. Only counted during a live round, and throttled.
 --   Equip:          client -> server: equip an owned cosmetic (its id).
 --   TagHit:         server -> clients: (tagger, tagged) a tag landed: play the tagger's effect.
+--   TagKnockback:   server -> the player hit by a swing (tag or shove): (push) their flat push
+--                   velocity; client/Knockback applies it (they own their character's physics).
 --   Victory:        server -> clients: (winner) play the winner's victory pose and effect.
 --   ShopBuy:        client -> server: buy today's shop item (its id).
 --   BuyCrate:       client -> server: buy a crate (it goes into your crates).
@@ -41,6 +43,7 @@ local NAMES = {
 	"MoveDone",
 	"Equip",
 	"TagHit",
+	"TagKnockback",
 	"Victory",
 	"ShopBuy",
 	"BuyCrate",

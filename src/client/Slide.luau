@@ -6,8 +6,12 @@
 --              the slow-down only starts once you land, so you slide out of the landing.
 --   Crouch:    anything else. A low crouch at CrouchSpeed to get under things.
 -- Holding the key when a slide runs out turns it into a crouch. You can't stand up under a low
--- ceiling, and jumping out of a slide keeps its speed. Holding the key as you land slides (or
--- crouches) on touchdown, keeping the speed you landed with.
+-- ceiling. Holding the key as you land slides (or crouches) on touchdown, keeping the speed you
+-- landed with plus more of the drop (Config.Momentum.LandSlideCarry).
+-- Slopes: sliding downhill speeds you up (SlopeAccel) and the slide doesn't fade until you're off
+-- the slope; uphill slows you. Jumping out of a slide keeps its speed and goes higher the faster
+-- you were going (JumpLift). A slide that ends on the ground faster than you can run hands its
+-- speed to GroundMomentum, which carries it and fades it.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -23,6 +27,20 @@ local Slide = {}
 -- Slide.start; used by things that interrupt a slide, like slipping on a wet floor.
 function Slide.cancel() end
 
+-- Jumps out of the current slide (with its speed and lift), if one is running. Returns true if
+-- it did. Used by CoyoteJump for a slide that just went off an edge.
+function Slide.jump(): boolean
+	return false
+end
+
+-- The speed a normal jump leaves the ground with (0 while frozen).
+local function jumpSpeed(hum: Humanoid): number
+	if hum.UseJumpPower then
+		return hum.JumpPower
+	end
+	return math.sqrt(2 * workspace.Gravity * math.max(hum.JumpHeight, 0))
+end
+
 function Slide.start()
 	local settings = Config.Slide
 
@@ -37,6 +55,27 @@ function Slide.start()
 		if finish then
 			finish(false)
 		end
+	end
+	Slide.jump = function()
+		if finish and MoveState.busy == "Slide" then
+			finish(true)
+			return true
+		end
+		return false
+	end
+
+	-- The ground under the slide: how much it slopes downhill along `dir` (sine of the slope
+	-- toward dir: positive downhill, negative uphill, 0 on the flat or in the air).
+	local floorParams = RaycastParams.new()
+	floorParams.FilterType = Enum.RaycastFilterType.Exclude
+	floorParams.RespectCanCollide = true
+	local function downhill(parts: MoveState.Parts, dir: Vector3): number
+		floorParams.FilterDescendantsInstances = { parts.character }
+		local hit = workspace:Raycast(parts.root.Position, Vector3.new(0, -6, 0), floorParams)
+		if not hit then
+			return 0
+		end
+		return MoveState.flat(hit.Normal):Dot(dir)
 	end
 
 	-- Moves every part of the character into a collision group.
@@ -142,6 +181,8 @@ function Slide.start()
 		local endSpeed = hum.WalkSpeed
 			/ (if Sprint.isSprinting() then Config.Sprint.Multiplier else 1)
 		local elapsed = 0 -- only counts while on the ground, so air slides keep their speed
+		local age = 0 -- how long the slide has run
+		local slopeSpeed = 0 -- speed slopes have added (less on the way uphill)
 		local speed = startSpeed
 
 		local drive, release = MoveState.drive(root, true)
@@ -169,10 +210,21 @@ function Slide.start()
 			end
 			activePose.stop()
 			setGroup(character, "Default")
-			local v = root.AssemblyLinearVelocity
-			root.AssemblyLinearVelocity = Vector3.new(dir.X * speed, v.Y, dir.Z * speed)
-			if jumped then
-				hum.Jump = true
+			local across = Vector3.new(dir.X * speed, 0, dir.Z * speed)
+			local up = if jumped then jumpSpeed(hum) else 0
+			if up > 0 then
+				-- Out of the slide with its speed, higher the faster you were going.
+				local sprint = endSpeed * Config.Sprint.Multiplier
+				local lift =
+					math.min(math.max(speed - sprint, 0) * settings.JumpLift, settings.JumpLiftMax)
+				hum:ChangeState(Enum.HumanoidStateType.Jumping)
+				root.AssemblyLinearVelocity = across + Vector3.new(0, up + lift, 0)
+				MoveState.airVelocity = across
+				return
+			end
+			root.AssemblyLinearVelocity = across + Vector3.new(0, root.AssemblyLinearVelocity.Y, 0)
+			if MoveState.isGrounded(hum) and speed > hum.WalkSpeed + 1 then
+				MoveState.groundVelocity = across -- GroundMomentum carries it and fades it
 			end
 		end
 		finish = function(jumped: boolean)
@@ -186,11 +238,25 @@ function Slide.start()
 				return
 			end
 			local grounded = MoveState.isGrounded(hum)
-			if grounded then
+			age += dt
+			-- Slopes: downhill adds speed and holds off the fade; uphill takes speed away. On the
+			-- flat, what a slope gave you fades.
+			local slope = if grounded then downhill(parts, dir) else 0
+			if math.abs(slope) > 0.03 then
+				slopeSpeed += workspace.Gravity * settings.SlopeAccel * slope * dt
+			elseif grounded then
+				local fade = settings.SlopeFade * dt
+				slopeSpeed = if slopeSpeed > 0
+					then math.max(slopeSpeed - fade, 0)
+					else math.min(slopeSpeed + fade, 0)
+			end
+			if grounded and slope <= 0.03 then
 				elapsed += dt
 			end
 			local alpha = math.min(elapsed / settings.Duration, 1)
-			speed = endSpeed + (startSpeed - endSpeed) * (1 - alpha) ^ 2
+			local curve = endSpeed + (startSpeed - endSpeed) * (1 - alpha) ^ 2
+			slopeSpeed = math.min(slopeSpeed, settings.MaxSpeed - curve)
+			speed = math.clamp(curve + slopeSpeed, 0, settings.MaxSpeed)
 
 			-- Steering: your keys nudge the slide direction.
 			local move = hum.MoveDirection
@@ -201,11 +267,11 @@ function Slide.start()
 			MoveState.faceDirection = dir -- feet first: the body points along the slide
 
 			local v = root.AssemblyLinearVelocity
-			local hitWall = elapsed > 0.15 and Vector3.new(v.X, 0, v.Z).Magnitude < speed * 0.3
+			local hitWall = age > 0.15 and Vector3.new(v.X, 0, v.Z).Magnitude < speed * 0.3
 			local blocked = blockedAbove()
-			if hitWall then
+			if hitWall or speed < 2 then -- a wall, or an uphill slope that stopped you
 				stop(false, grounded and (keyHeld or blocked))
-			elseif alpha >= 1 then
+			elseif alpha >= 1 and slopeSpeed <= 0.5 then
 				-- Slide ran out: crouch if you're holding the key or stuck under something.
 				stop(false, keyHeld or blocked)
 			elseif not keyHeld and not blocked then
@@ -225,16 +291,20 @@ function Slide.start()
 		local fast = false -- moving faster than you can walk without sprinting
 
 		if grounded then
-			-- Just landed? Use the speed you landed with, before ground friction slowed you.
+			-- Just landed? Use the speed you landed with, before ground friction slowed you,
+			-- plus the extra a slide gets from the drop.
 			local landed = MoveState.landVelocity
 			if
 				landed
 				and os.clock() - MoveState.landTime < settings.LandingGrace
 				and landed.Magnitude > flat.Magnitude
 			then
-				flat = landed
-				fast = flat.Magnitude > hum.WalkSpeed
+				local momentum = Config.Momentum
+				local extra = (momentum.LandSlideCarry - momentum.LandCarry) * MoveState.landImpact
+				flat = landed + landed.Unit * math.max(extra, 0)
 			end
+			-- Faster than you can walk (carried momentum) counts as sprinting.
+			fast = flat.Magnitude > hum.WalkSpeed + 1
 		else
 			-- In the air, AirMomentum holds the speed you're actually carrying.
 			local air = MoveState.airVelocity
@@ -274,8 +344,16 @@ function Slide.start()
 		wasGrounded = grounded
 	end)
 	UserInputService.JumpRequest:Connect(function()
-		-- Jump out of a slide or crouch, unless a ceiling is in the way.
-		if finish and isBlocked and not isBlocked() then
+		-- Jump out of a slide or crouch, unless a ceiling is in the way. Only on the ground: a
+		-- slide that went off an edge jumps through CoyoteJump (in time) or not at all.
+		local parts = MoveState.parts()
+		if
+			finish
+			and isBlocked
+			and not isBlocked()
+			and parts
+			and MoveState.isGrounded(parts.humanoid)
+		then
 			finish(true)
 		end
 	end)

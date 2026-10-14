@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.48.0",
+	Version = "0.49.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -51,7 +51,9 @@ local Config = {
 	},
 
 	Tag = {
-		-- It left-clicks to swing; a swing tags the nearest Runner within Range.
+		-- Anyone left-clicks to swing. It's swing tags the nearest Runner within Range; any other
+		-- swing (a Runner's, It hitting another It, swings in the lobby) just shoves the nearest
+		-- player in reach.
 		Range = 7, -- studs between the two characters' centers that a swing reaches
 		Cooldown = 0.45, -- seconds between swings
 		FreezeTime = 2, -- seconds the newly tagged player is frozen (also stops instant tag-backs)
@@ -76,6 +78,21 @@ local Config = {
 		CoyoteTime = 0.15, -- seconds after running, walking or sliding off an edge that a jump still works
 	},
 
+	Knockback = {
+		-- The push a swing gives the player it hits, tag or shove (server/TagService works it
+		-- out, client/Knockback on the player hit applies it): Base studs/s plus PerSpeed of how
+		-- fast the swinger was moving at them, up to Max. If they're in the air it's AirMultiplier
+		-- times that, and pops them up more. Edges aren't protected: a hard hit can knock someone
+		-- off a roof.
+		Base = 20,
+		PerSpeed = 0.5,
+		Max = 80, -- before AirMultiplier
+		Pop = 10, -- studs/s up, so the push lifts them off the ground
+		AirMultiplier = 1.6,
+		AirPop = 16,
+		Shove = 1, -- a shove (a hit that isn't a tag) pushes this much compared to a tag
+	},
+
 	Sprint = {
 		Key = Enum.KeyCode.LeftShift, -- hold to sprint
 		Multiplier = 1.7, -- sprint speed = current walk speed x this (about 30 studs/s)
@@ -89,7 +106,12 @@ local Config = {
 		Duration = 0.9, -- seconds for the slide to fade back to walk speed
 		DeadSlideTime = 1.75, -- sliding again within this many seconds gives no speed boost
 		LandingGrace = 0.3, -- seconds after landing that a slide still gets your air speed
-		MaxSpeed = 60, -- a slide never starts faster than this
+		MaxSpeed = 90, -- a slide never goes faster than this
+		SlopeAccel = 0.5, -- downhill a slide speeds up by this much of gravity's pull along the
+		-- slope (uphill slows it the same way); the slide doesn't fade while you're going downhill
+		SlopeFade = 20, -- studs/s per second the speed a slope gave you fades on flat ground
+		JumpLift = 0.35, -- jumping out of a slide goes higher by this much of your speed over sprint speed
+		JumpLiftMax = 25, -- ...up to this many studs/s more than a normal jump
 		CrouchSpeed = 8, -- walk speed while crouched
 		CrouchStepTime = 0.3, -- seconds per crouch-walk step at CrouchSpeed (faster when moving faster)
 		Steer = 2, -- how much your movement keys turn a slide (higher = more control)
@@ -204,6 +226,19 @@ local Config = {
 		BrakeRate = 25, -- studs/s per second you slow down when steering backwards
 		AirControl = 45, -- studs/s per second you can speed up while slower than walk speed
 		WallStop = 0.5, -- if a wall cuts your speed below this fraction, carry the slower speed
+	},
+
+	Momentum = {
+		-- Speed builds and carries, like Crab Game (client/AirMomentum, client/GroundMomentum).
+		MinMoving = 8, -- studs/s across: slower than this, falls and landings don't add speed
+		FallGain = 0.12, -- falling, this much of gravity's pull goes into your speed across
+		-- (about 24 studs/s more per second of falling). Not on launch pad flights.
+		MaxAirSpeed = 90, -- falling never takes you faster than this across
+		LandCarry = 0.3, -- landing while moving adds this much of the speed you hit the ground with
+		LandSlideCarry = 0.5, -- ...this much if you slide as you land (hold the slide key)
+		GroundDecay = 30, -- studs/s per second extra speed fades on the ground, back to run speed
+		GroundTurnRate = 200, -- degrees per second your keys turn carried speed on the ground
+		MaxGroundSpeed = 90, -- the most speed the ground carries
 	},
 
 	WallRun = {
@@ -863,11 +898,21 @@ local Config = {
 			{ "WallRun", "RunTime", 0.3, 4, 0.05 },
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
 			{ "Jump", "CoyoteTime", 0, 0.5, 0.01 },
+			{ "Momentum", "FallGain", 0, 0.5, 0.01 },
+			{ "Momentum", "LandCarry", 0, 1, 0.01 },
+			{ "Momentum", "LandSlideCarry", 0, 1, 0.01 },
+			{ "Momentum", "GroundDecay", 5, 120, 1 },
+			{ "Slide", "SlopeAccel", 0, 1.5, 0.05 },
+			{ "Slide", "JumpLift", 0, 1, 0.01 },
 			{ "WallRun", "JumpUp", 0, 80, 1 },
 			{ "WallRun", "JumpAwayAngle", 0, 80, 1 },
 			{ "WallRun", "ChainMaxRise", 0, 30, 0.5 },
 			{ "Tag", "Range", 2, 20, 0.5 },
 			{ "Tag", "Cooldown", 0, 2, 0.05 },
+			{ "Knockback", "Base", 0, 80, 1 },
+			{ "Knockback", "PerSpeed", 0, 2, 0.05 },
+			{ "Knockback", "AirMultiplier", 1, 4, 0.05 },
+			{ "Knockback", "Shove", 0, 2, 0.05 },
 			{ "FirstPerson", "FieldOfViewAcross", 80, 150, 1 },
 			{ "FirstPerson", "ArmLift", 0, 60, 1 },
 			{ "FirstPerson", "MaxArmAngle", 45, 150, 1 },

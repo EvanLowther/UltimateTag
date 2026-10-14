@@ -1,6 +1,6 @@
 # Ultimate Tag
 
-A simple, classic-looking Roblox tag game. Each round some players are It: left-click to tag someone and pass it on, and don't be It when the timer runs out, or you're out. Rounds move to new maps until one player is left. The code lives in files here and syncs into Roblox Studio with [Rojo](https://rojo.space).
+A simple, classic-looking Roblox tag game. Each round some players are It: left-click to tag someone and pass it on, and don't be It when the timer runs out, or you're out. Anyone can swing to shove people around, and speed carries: falls, ramps and slides build it, and a fast hit sends people flying. Rounds move to new maps until one player is left. The code lives in files here and syncs into Roblox Studio with [Rojo](https://rojo.space).
 
 ## First-time setup
 1. Install [Rokit](https://github.com/rojo-rbx/rokit).

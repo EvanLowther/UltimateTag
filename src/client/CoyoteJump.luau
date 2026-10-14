@@ -77,8 +77,11 @@ function CoyoteJump.start()
 			return -- frozen
 		end
 		spent = true
+		if busy == "Slide" and Slide.jump() then
+			return -- a slide jump: its speed, and higher the faster you were going
+		end
 		if busy then
-			Slide.cancel() -- off the edge mid-slide: end it, keeping its speed
+			Slide.cancel() -- off the edge mid-crouch: end it
 		end
 		hum:ChangeState(Enum.HumanoidStateType.Jumping)
 		local v = root.AssemblyLinearVelocity
