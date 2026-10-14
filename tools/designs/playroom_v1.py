@@ -39,6 +39,11 @@ LAUNCH_DRIVE = 0.08
 
 R = 30  # the room: x and z from -30 to 30
 CEIL = 24
+CUT = 4  # the walls are built in two parts, split here (the canvas cuts them away above it)
+# Clouds painted on the walls and the ceiling (decoration): (wall, along, height, size).
+CLOUDS = (("N", -6, 15, 1.2), ("N", 16, 19, 0.9), ("S", -18, 17, 1.0), ("S", 12, 13, 1.3),
+          ("W", 18, 18, 1.1), ("W", -20, 14, 0.8), ("E", -4, 16, 1.2), ("E", 22, 20, 0.9))
+CEILING_CLOUDS = ((-12, -8, 1.4), (14, 10, 1.2), (2, 20, 1.0), (-18, 18, 0.9))
 # The bed (north-west) and the books stacked as stairs up to it.
 BED = (-28, -12, -28, -12, 6)  # x0, x1, z0, z1, top
 BOOKS = (-22, -17)  # x of the book stairs, which run south from the bed one stud at a time
@@ -106,8 +111,36 @@ def room(m):
     m.block(g, "Floor", -R - 1, R + 1, -1, 0, -R - 1, R + 1, "carpet")
     for a, b, c, d in ((-R - 1, R + 1, -R - 1, -R), (-R - 1, R + 1, R, R + 1),
                        (-R - 1, -R, -R, R), (R, R + 1, -R, R)):
-        m.block(g, "Wall", a, b, 0, CEIL, c, d, "sky")
+        m.block(g, "Wall", a, b, 0, CUT, c, d, "sky")
+        m.block(g, "WallUpper", a, b, CUT, CEIL, c, d, "sky")
     m.block(g, "Ceiling", -R - 1, R + 1, CEIL, CEIL + 1, -R - 1, R + 1, "ceiling")
+    for wall, along, y, size in CLOUDS:
+        cloud(m, wall, along, y, size)
+    for x, z, size in CEILING_CLOUDS:
+        for k, (dx, dz, w, d) in enumerate(CLOUD_PUFFS):
+            lo = CEIL - 0.06 * (k + 1)
+            m.block("Details", "Cloud", x + (dx - w / 2) * size, x + (dx + w / 2) * size, lo - 0.04,
+                    lo, z + (dz - d / 2) * size, z + (dz + d / 2) * size, "white", **DETAIL)
+
+
+# A cloud is three puffs, each a little further off its surface than the last (puffs in one plane
+# would flicker where they overlap): (offset along, offset up, width, height).
+CLOUD_PUFFS = ((0, 0, 9, 3), (-1.8, 1.4, 4, 3), (1.6, 1.8, 4.6, 3.4))
+
+
+def cloud(m, wall, along, y, size):
+    for k, (da, dy, w, h) in enumerate(CLOUD_PUFFS):
+        out = 0.06 * (k + 1)
+        a0, a1 = along + (da - w / 2) * size, along + (da + w / 2) * size
+        y0, y1 = y + (dy - h / 2) * size, y + (dy + h / 2) * size
+        if wall == "N":
+            m.block("Details", "Cloud", a0, a1, y0, y1, -R + out, -R + out + 0.04, "white", **DETAIL)
+        elif wall == "S":
+            m.block("Details", "Cloud", a0, a1, y0, y1, R - out - 0.04, R - out, "white", **DETAIL)
+        elif wall == "W":
+            m.block("Details", "Cloud", -R + out, -R + out + 0.04, y0, y1, a0, a1, "white", **DETAIL)
+        else:
+            m.block("Details", "Cloud", R - out - 0.04, R - out, y0, y1, a0, a1, "white", **DETAIL)
 
 
 def bed(m):
@@ -153,7 +186,9 @@ def castle(m):
 def toys(m):
     g = "Toys"
     x0, x1, z0, z1, top = TOY_BOX
-    m.block(g, "ToyBox", x0, x1, 0, top, z0, z1, "purple")
+    m.block(g, "ToyBox", x0, x1, 0, top, z0, z1, "purple",
+            children=[m.surface_text(f, "TOYS", COLORS["yellow"], pps=10)
+                      for f in ("Front", "Back", "Left", "Right")])
     p0, p1, foot = PLANK
     ramp_z(m, g, "Plank", p0, p1, foot, 0, z0, top, "wood")
     x0, x1, z0, z1, top = JACK
@@ -169,7 +204,9 @@ def toys(m):
             Transparency=1, CastShadow=False, attributes={"SlideBlocker": True})
     for k, (x, z) in enumerate(BLOCKS):
         m.block(g, "Block", x - BLOCK / 2, x + BLOCK / 2, 0, BLOCK, z - BLOCK / 2, z + BLOCK / 2,
-                ("red", "cyan", "orange")[k])
+                ("red", "cyan", "orange")[k],
+                children=[m.surface_text(f, "ABC"[k], COLORS["white"], pps=20)
+                          for f in ("Front", "Back", "Left", "Right", "Top")])
 
 
 def spinner(m):
@@ -188,6 +225,40 @@ def spinner(m):
         m.block("Details", "SpinBumper", x - 0.6, x + 0.6, y1 + 0.05, y1 + 0.4, -width / 2,
                 width / 2, "yellow", **DETAIL,
                 attributes={"Spin": SPIN_RATE, "SpinCenter": vec(0, 0, 0)})
+
+
+def demo_players():
+    """Figures acting out a round on the canvas: closed loops of [x, y, z, flag] points. Flags:
+    "j" jumps (or drops) into that point, "L" is thrown there by a launch pad, "c" is a slide or
+    crouch, "wr"/"wl" a wall run with the wall on the right/left."""
+    ring = [[round(14.5 * math.cos(math.radians(a)), 2), 0, round(14.5 * math.sin(math.radians(a)), 2),
+             ""] for a in range(0, 360, 30)]
+    bed_run = [  # up the books, across the bed, the wardrobe run to the desk, off by the chair
+        [-19.5, 0, 1, ""], [-19.5, 1, -3, ""], [-19.5, 2, -5, ""], [-19.5, 3, -7, ""],
+        [-19.5, 4, -9, ""], [-19.5, 5, -11, ""], [-19.5, BED[4], -14, ""],
+        [-25.6, BED[4], -16, ""], [-25.6, BED[4], -12.5, ""], [-25.6, 7.4, -8, "wr"],
+        [-25.6, 8.6, -3, "wr"], [-25.6, 7.4, 2, "wr"], [-24, DESK[4], 8, ""],
+        [-19, DESK[4], 10, ""], [-14, CHAIR[4], 10, "j"], [-10, 0, 12, "j"], [-12, 0, 5, ""],
+    ]
+    tunnel = [  # through the train tunnel, up the plank, off the toy box, back along the wall
+        [-12, 0, 24, ""], [-8.5, 0, 24, "c"], [4.5, 0, 24, "c"], [8, 0, 22, ""], [11, 0, 10, ""],
+        [20, 0, 2.5, ""], [20, TOY_BOX[4], 12, ""], [20, TOY_BOX[4], 20, ""],
+        [20, 0, 27, "j"], [10, 0, 28.8, ""], [-10, 0, 28.8, ""],
+    ]
+    launch = [  # onto the jack-in-the-box, thrown onto the castle, down its ramp
+        [24, JACK[4] + 0.2, 2, ""], [20.3, GATEHOUSE[4], -21.3, "L"], [17, GATEHOUSE[4], -20, ""],
+        [16, GATEHOUSE[4], -18, ""], [16, 0, -6, ""], [20, 0, -2, ""], [22.5, 0, 1, ""],
+        [24, JACK[4] + 0.2, 2, "j"],
+    ]
+    return [
+        {"tag": "", "color": "#3C82F0", "speed": 13, "offset": 0, "points": ring},
+        {"tag": "IT", "color": "#E8423F", "speed": 13, "offset": -0.8, "points": ring},
+        {"tag": "", "color": "#4CC46A", "speed": 11, "offset": 0, "points": bed_run,
+         "cam": "Bed runner"},
+        {"tag": "", "color": "#F2C94C", "speed": 11, "offset": 0, "points": tunnel},
+        {"tag": "", "color": "#A66BFF", "speed": 10, "offset": 0, "points": launch,
+         "cam": "Launch"},
+    ]
 
 
 SPAWNS = ((-6, -16), (-8, 12), (12, 8), (-14, -2), (14, -4), (0, 15), (4, -24), (27, -8))
@@ -241,10 +312,19 @@ CANVAS = {
                 "comes: it shoves you if it hits you. Cross the middle, or go round."
                 % round(360 / SPIN_RATE), 0, 6, 0),
     ],
-    "views": {"Overview": [44, 56, 60, 0, 0, 0], "Top": [0, 100, 0.01, 0, 0, 0]},
+    # [camera x, y, z, target x, y, z, walls and ceiling on (optional)]
+    "views": {"Overview": [44, 56, 60, 0, 0, 0, 0], "Top": [0, 100, 0.01, 0, 0, 0, 0],
+              "Player's eye": [14, 5, 28, -4, 4, -6, 1], "Spinner": [16, 12, 18, 0, 1, 0, 0],
+              "Bed & wardrobe": [-2, 16, 8, -22, 5, -8, 0],
+              "Block castle": [2, 16, 4, 20, 5, -20, 0],
+              "Toy box & jack": [2, 15, 0, 20, 3, 12, 0],
+              "Desk & tunnel": [8, 15, 6, -12, 3, 18, 0]},
     "figure": [0, 0, 0],
     "roof_names": ["Ceiling"],
-    "roof_extra": ["Ceiling"],
+    "roof_extra": ["Ceiling", "WallUpper", "Cloud"],
+    "roof_label": "Walls & ceiling",
+    "sky": "#BFE3FF",
+    "ground": "#8DB3D6",
     "plan": {
         "blueprint": True,
         "heights": [["6", -16, -24], ["16", -28.5, 8.5], ["6", -20, 13], ["3", -14, 10.5],
@@ -263,6 +343,9 @@ CANVAS = {
                  [-23.6, -12, -23.6, 6, "18 (wall run)"]],
     },
 }
+
+
+DEMO = demo_players()
 
 
 # ---- checks ---------------------------------------------------------------------------------------

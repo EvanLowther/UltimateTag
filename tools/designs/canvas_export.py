@@ -157,7 +157,7 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
         "views": canvas["views"], "levels": canvas.get("levels", [{"label": "Whole map", "max": None}]),
         "figure": canvas["figure"], "cutaways": canvas.get("cutaways", []),
     }
-    for key in ("sky", "plan"):  # the viewer's sky colour, extra marks for a 2D plan
+    for key in ("sky", "ground", "roof_label", "plan"):  # viewer colours, the roofs toggle, a plan
         if key in canvas:
             out[key] = canvas[key]
     if train:
