@@ -6,7 +6,7 @@ the map generator adds back; `parts` and `props` do the rest.
 """
 import json
 
-CYLINDER, DETAIL, ROOF, GATE, SLIP, BOOST, WEDGE, TUNNEL = 1, 2, 4, 8, 16, 32, 64, 128
+CYLINDER, DETAIL, ROOF, GATE, SLIP, BOOST, WEDGE, TUNNEL, BALL = 1, 2, 4, 8, 16, 32, 64, 128, 256
 NO_HIT = {"CanCollide": False, "CanQuery": False, "CanTouch": False}
 
 
@@ -39,6 +39,8 @@ def props(part, material):
     flags = part["flags"]
     if flags & CYLINDER:
         out["Shape"] = "Cylinder"
+    elif flags & BALL:
+        out["Shape"] = "Ball"
     if flags & DETAIL:
         out.update(NO_HIT)
     if part["code"] == "n":
@@ -48,6 +50,15 @@ def props(part, material):
         out["Transparency"] = round(1 - part["alpha"], 2)
         out["CastShadow"] = False
     return out
+
+
+def place(m, group, name, part, props, children=None):
+    """Adds the part to the map (a WedgePart if the design's is one) and returns its node."""
+    node = m.part(group, name, part["size"], part["pos"], part["color"], part["rows"],
+                  children=children, **props)
+    if part["flags"] & WEDGE:
+        node["className"] = "WedgePart"
+    return node
 
 
 def text_face(size, pos):

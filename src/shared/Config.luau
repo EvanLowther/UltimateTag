@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.49.1",
+	Version = "0.50.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -790,6 +790,18 @@ local Config = {
 		SlipCooldown = 1.5, -- seconds after getting up before you can slip again
 	},
 
+	-- Pop-ups (the Playroom's jack-in-the-box; client/PopUps, server/PopUps): a launch pad that
+	-- springs a toy open for everyone when someone launches off it. Each toy's own timing and
+	-- sizes are attributes on its parts (PopTime, PopCooldown, PopBack, PopRise, PopAngle...).
+	PopUps = {
+		TriggerRange = 10, -- studs from the pad a player can be when they say they launched off it
+		LidLead = 0.6, -- the lid is fully open this share of the way through the spring
+		LidCloseAt = 0.4, -- share of the wind back down before the lid starts to close
+		Wobble = 0.09, -- the head bobs on its spring this share of PopRise once it's out...
+		WobbleRate = 24, -- ...this fast (radians/s)...
+		WobbleDamp = 3.5, -- ...settling this quickly
+	},
+
 	-- A map's train (the Metro; its track and timetable are the map's TrainLine module,
 	-- shared/TrainLine). server/Trains starts it and decides who it hits; client/Trains moves it,
 	-- carries riders and pushes them out at the exit stop.
@@ -843,6 +855,25 @@ local Config = {
 					Contrast = 0.12,
 					Brightness = -0.02,
 					TintColor = Color3.fromRGB(255, 250, 240),
+				},
+			},
+			-- A bright room (the Playroom): walled in like Indoor, but lit like daytime.
+			Bright = {
+				Lighting = {
+					Brightness = 1,
+					Ambient = Color3.fromRGB(150, 150, 160),
+					OutdoorAmbient = Color3.fromRGB(160, 160, 170),
+					ExposureCompensation = 0,
+					EnvironmentDiffuseScale = 0.4,
+					EnvironmentSpecularScale = 0.2,
+				},
+				Atmosphere = { Density = 0, Haze = 0, Glare = 0 },
+				Bloom = { Intensity = 0.2, Size = 20, Threshold = 1.8 },
+				ColorCorrection = {
+					Saturation = 0.2,
+					Contrast = 0.06,
+					Brightness = 0.02,
+					TintColor = Color3.fromRGB(255, 252, 245),
 				},
 			},
 			Night = {

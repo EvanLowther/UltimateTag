@@ -21,7 +21,9 @@ steps of STEP, jump up JUMP_UP, run-and-jump across gaps (jump_reach), drop any 
 slide under anything CROUCH or more off the floor (SlideBlocker parts don't stop that), climb
 Roblox ladders (TrussParts) both ways, ride launch pads (LaunchVelocity) and level swinging
 platforms (SwingLevel + Carry) from one end of their swing to the other. Spinning parts count
-where they are built. Wall runs and any other route a map needs are passed in as `routes`.
+where they are built. Wall runs and any other route a map needs are passed in as `routes`, or
+kept on the map in its ReachRoutes attribute (see `routes_attribute`), so the check finds them
+when it runs on the map's folder too.
 """
 import json
 import math
@@ -802,9 +804,30 @@ class Reach:
 
 # ---- running them ------------------------------------------------------------------------------
 
+def routes_attribute(routes):
+    """Routes as a ReachRoutes map attribute: "x,y,z>x,y,z" one way ("<>" both ways), joined
+    with ";"."""
+    def point(p):
+        return ",".join(f"{v:g}" for v in p)
+    return ";".join(f"{point(a)}{'<>' if both else '>'}{point(b)}" for a, b, both in routes)
+
+
+def parse_routes(text):
+    out = []
+    for item in str(text or "").split(";"):
+        if not item.strip():
+            continue
+        both = "<>" in item
+        a, b = item.split("<>" if both else ">")
+        out.append((tuple(float(v) for v in a.split(",")), tuple(float(v) for v in b.split(",")),
+                    both))
+    return out
+
+
 def check(parts, spawns, attributes, ignore_tops=(), routes=()):
     """All the checks. `parts` from parts_from_nodes (or load_folder); `routes` are extra ways
-    across: ((x, y, z) from, (x, y, z) to, both ways?)."""
+    across: ((x, y, z) from, (x, y, z) to, both ways?), as well as the map's ReachRoutes."""
+    routes = tuple(routes) + tuple(parse_routes(attributes.get("ReachRoutes")))
     problems = flicker(parts) + windows(parts) + ladders(parts)
     # The map's OutOfBounds attribute names parts whose tops aren't play area (roofs, ceilings,
     # tall furniture), comma-separated.

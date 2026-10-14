@@ -5,6 +5,8 @@
 --   LaunchAnyDirection (true): the pad throws you the way you're moving instead (the same up
 --                             speed and the same speed across as LaunchVelocity; standing
 --                             still, the way you face).
+--   PopUp (string):           the pad springs a toy when it throws you (client/PopUps); while
+--                             the toy is out (its PopCooldown) the pad throws nobody.
 --   SpeedBoost (number):      jumping or running off the part sends you at least this fast in
 --                             the direction you're moving (solar panel slides before a gap).
 --   Slip (number):            moving onto the part (running or sliding) makes you slip: you
@@ -16,6 +18,7 @@ local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local MoveState = require(script.Parent.MoveState)
+local PopUps = require(script.Parent.PopUps)
 local Slide = require(script.Parent.Slide)
 
 local MapGadgets = {}
@@ -144,6 +147,8 @@ function MapGadgets.start()
 				and now - lastLaunch > settings.LaunchCooldown
 				-- Slides and crouches launch too; other moves (wall runs, flying) keep control.
 				and (not busy or busy == "Slide" or busy == "Crouch")
+				-- A pop-up's pad does nothing while its toy is still out.
+				and not (floor:GetAttribute("PopUp") ~= nil and PopUps.sprung(floor))
 			then
 				lastLaunch = now
 				boostSpeed = nil
@@ -155,6 +160,9 @@ function MapGadgets.start()
 					Slide.cancel() -- ends the slide or crouch: hips up, normal collisions
 				end
 				launch(parts, throw)
+				if floor:GetAttribute("PopUp") ~= nil then
+					PopUps.trigger(floor) -- spring the toy, for everyone
+				end
 				wasGrounded = false
 				return
 			end

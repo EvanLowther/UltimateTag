@@ -26,6 +26,8 @@
 --   ClaimAchievement: client -> server: (achievement id) claim a reached achievement's reward.
 --   Announce:       server -> clients: something everyone sees (a table: Kind = "Unbox" when
 --                   someone opens an Iridescent item, with Name, Item and Serial).
+--   PopUp:          client -> server: (pad) "I launched off this pop-up's pad": server/PopUps
+--                   springs it for everyone if it's ready.
 --   Leaderboard:    client -> server (no arguments): "send me the boards". Server -> client:
 --                   the cached boards and this player's ranks (server/Leaderboards).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -53,6 +55,7 @@ local NAMES = {
 	"ClaimAchievement",
 	"Announce",
 	"Leaderboard",
+	"PopUp",
 }
 
 -- Server only: creates the folder and every RemoteEvent.

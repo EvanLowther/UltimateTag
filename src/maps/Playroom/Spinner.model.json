@@ -1,0 +1,321 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "SpinnerCap",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.2,
+     0.35,
+     1.2
+    ],
+    "Color": [
+     0.98,
+     0.824,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.4,
+       3.02,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 72,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "SpinnerCap2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.2,
+     0.35,
+     1.2
+    ],
+    "Color": [
+     0.98,
+     0.824,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.4,
+       3.02,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "Spin": 72,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "Stage",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     36,
+     36
+    ],
+    "Color": [
+     0.941,
+     0.839,
+     0.471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       0.25,
+       0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "Stage2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     30,
+     30
+    ],
+    "Color": [
+     0.98,
+     0.824,
+     0.157
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       0.75,
+       0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "Hub",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     2.4,
+     2.4
+    ],
+    "Color": [
+     0.863,
+     0.235,
+     0.235
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       2.2,
+       0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "SpinnerBar",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30.0,
+     1.2,
+     1.2
+    ],
+    "Color": [
+     0.863,
+     0.235,
+     0.235
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       2.2,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Spin": 72,
+    "SpinCenter": {
+     "Vector3": [
+      0,
+      0,
+      0
+     ]
+    },
+    "Knockback": 45
+   }
+  }
+ ]
+}
