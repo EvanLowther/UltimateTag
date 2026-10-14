@@ -27,6 +27,15 @@ center's height). CANVAS "sky" and "plan" (heights and routes for a 2D plan) pas
 Sign text (a part's SurfaceGui labels) is listed in "texts" as [part index, face, text, color,
 glow], so the viewer can paint it on that face.
 
+A CANVAS with "extended" (the Night Market lobby) exports more: every Roblox material as a code
+(EXTENDED_CODES; a part's Look attribute, ChainLink or Hazard, overrides it), the pass each part
+was added in (index 10, from the Map's `passes`), text on invisible carriers (flag 512: draw the
+text, not the part) with its font, alignment, outline and weight ([..., font, align, stroke,
+weight]), Flicker as a motion, and two lists: "lights" (each PointLight or SpotLight: [x, y, z,
+colour, brightness, range, kind, direction or None, pass, cone angle or None]) and "emitters"
+(each ParticleEmitter: [x, y, z, width, depth, rate, colour, size from, size to, life, speed,
+kind, pass]).
+
 A design with things driving round a path (Tag Mart's cleaning robot) has a `MOVERS` dict, path
 name to {"points": [[x, z], ...] (a closed loop), "speed", "turn" (seconds turning on the spot
 at each corner), "rest": [x, z, heading] (where its parts are built)}, and tags the parts with
@@ -43,12 +52,35 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)  # designs not in the game yet
 sys.path.insert(0, os.path.dirname(HERE))  # map generators (tools/*_layout.py)
 MATERIAL_CODES = {"Neon": "n", "Glass": "g"}
+EXTENDED_CODES = {"Neon": "n", "Glass": "g", "Asphalt": "a", "Concrete": "c", "Brick": "b",
+                  "CorrugatedMetal": "r", "Metal": "m", "DiamondPlate": "d", "WoodPlanks": "p",
+                  "Wood": "w", "Fabric": "f", "Slate": "s", "Pavement": "v", "Cobblestone": "o",
+                  "Plastic": "l", "Rubber": "u", "Cardboard": "x", "Marble": "M", "Granite": "G",
+                  "Foil": "F", "CeramicTiles": "t", "Plaster": "P", "Leather": "L"}
+LOOK_CODES = {"ChainLink": "k", "Hazard": "z"}
+FACE_AXES = {"Right": (0, 1), "Left": (0, -1), "Top": (1, 1), "Bottom": (1, -1), "Back": (2, 1),
+             "Front": (2, -1)}
+
+
+def _hex(rgb):
+    return "%02x%02x%02x" % tuple(round(c * 255) for c in rgb)
+
+
+def _font(props):
+    face = props.get("FontFace", {}).get("Font")
+    if face:
+        family = face.get("family", "").rsplit("/", 1)[-1].replace(".json", "")
+        return family, face.get("weight", "Regular")
+    return props.get("Font", "FredokaOne"), "Regular"
 
 
 def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
     styles, style_index = [], {}
     rots, rot_index = [[1, 0, 0, 0, 1, 0, 0, 0, 1]], {}
     motions, motion_index, parts, texts = [], {}, [], []
+    lights, emitters = [], []
+    extended = bool(canvas.get("extended"))
+    passes = getattr(m, "passes", {}) if extended else None
     tunnel_groups = set(canvas.get("tunnel_groups", []))
     roof_extra = set(canvas.get("roof_extra", []))
     for group, nodes in m.groups.items():
@@ -58,10 +90,17 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
             transparency = p.get("Transparency", 0)
             gate = bool(attrs.get("SlideBlocker"))
             effect = bool(attrs.get("NoEntry") or attrs.get("TrainNose"))
-            if transparency >= 1 and not gate and not effect:
+            children = node.get("children") or ()
+            carrier = extended and any(c.get("className") in ("SurfaceGui", "ParticleEmitter",
+                                                              "PointLight", "SpotLight")
+                                       for c in children)
+            hidden = transparency >= 1 and not gate and not effect
+            if hidden and not carrier:
                 continue
             color = tuple(round(c * 255) for c in p["Color"])
-            material = MATERIAL_CODES.get(p.get("Material"), "")
+            material = (EXTENDED_CODES if extended else MATERIAL_CODES).get(p.get("Material"), "")
+            if extended and attrs.get("Look") in LOOK_CODES:
+                material = LOOK_CODES[attrs["Look"]]
             alpha = 0.28 if gate else round(1 - transparency, 2)
             if gate:
                 color, material = (230, 60, 60), "g"
@@ -115,6 +154,8 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
             if "PopOut" in attrs:  # a pop-up's piece (the jack-in-the-box's lid, spring, head)
                 motion["pop"] = attrs["PopOut"]
                 motion["role"] = attrs.get("PopRole", "")
+            if extended and attrs.get("Flicker"):
+                motion["flicker"] = 1
             mi = -1
             if motion:
                 mk = json.dumps(motion, sort_keys=True)
@@ -141,18 +182,47 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
                 flags |= 4
             if group in tunnel_groups:
                 flags |= 128
+            if hidden:
+                flags |= 512  # an invisible carrier: its text, light or particles, not the part
             x, y, z = cf["position"]
             parts.append([style_index[key], *(round(v, 2) for v in (x, y, z, *p["Size"])), ri, flags,
-                          mi])
-            for gui in node.get("children") or ():
-                if gui.get("className") != "SurfaceGui":
+                          mi] + ([passes.get(id(node), 1)] if extended else []))
+            pi = len(parts) - 1
+            stage = passes.get(id(node), 1) if extended else 1
+            for gui in children:
+                cls = gui.get("className")
+                gp = gui.get("properties", {})
+                if extended and cls in ("PointLight", "SpotLight"):
+                    direction = None
+                    if cls == "SpotLight":
+                        axis, sign = FACE_AXES[gp.get("Face", "Front")]
+                        rows = cf["orientation"]
+                        direction = [round(sign * rows[i][axis], 3) for i in range(3)]
+                    lights.append([round(x, 2), round(y, 2), round(z, 2), _hex(gp["Color"]),
+                                   gp.get("Brightness", 1), gp.get("Range", 16), gui.get("name", ""),
+                                   direction, stage,
+                                   gp.get("Angle", 90) if cls == "SpotLight" else None])
+                if extended and cls == "ParticleEmitter":
+                    kp = gp["Size"]["NumberSequence"]["keypoints"]
+                    col = gp["Color"]["ColorSequence"]["keypoints"][0]["color"]
+                    emitters.append([round(x, 2), round(y, 2), round(z, 2), round(p["Size"][0], 2),
+                                     round(p["Size"][2], 2), gp["Rate"], _hex(col), kp[0]["value"],
+                                     kp[-1]["value"], gp["Lifetime"]["NumberRange"],
+                                     gp["Speed"]["NumberRange"], gui.get("name", ""), stage])
+                if cls != "SurfaceGui":
                     continue
                 for label in gui.get("children") or ():
                     lp = label.get("properties", {})
                     if label.get("className") == "TextLabel" and lp.get("Text"):
-                        color = "%02x%02x%02x" % tuple(round(c * 255) for c in lp["TextColor3"])
-                        texts.append([len(parts) - 1, gui["properties"]["Face"], lp["Text"], color,
-                                      1 if gui["properties"].get("LightInfluence") == 0 else 0])
+                        color = _hex(lp["TextColor3"])
+                        entry = [pi, gp["Face"], lp["Text"], color,
+                                 1 if gp.get("LightInfluence") == 0 else 0]
+                        if extended:
+                            font, weight = _font(lp)
+                            stroke = _hex(lp["TextStrokeColor3"]) \
+                                if lp.get("TextStrokeTransparency", 1) < 1 else ""
+                            entry += [font, lp.get("TextXAlignment", "Center"), stroke, weight]
+                        texts.append(entry)
     out = {
         "label": label, "killHeight": kill_height, "styles": styles, "rots": rots, "parts": parts,
         "motions": motions, "texts": texts, "labels": canvas["labels"], "markers": canvas["markers"],
@@ -160,9 +230,13 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
         "views": canvas["views"], "levels": canvas.get("levels", [{"label": "Whole map", "max": None}]),
         "figure": canvas["figure"], "cutaways": canvas.get("cutaways", []),
     }
-    for key in ("sky", "ground", "roof_label", "plan"):  # viewer colours, the roofs toggle, a plan
-        if key in canvas:
+    for key in ("sky", "ground", "roof_label", "plan", "lighting", "legend", "passes",
+                "spawn_facing", "budget", "floors"):  # viewer colours, the roofs toggle, a plan, the lobby's
+        if key in canvas:  # lighting, legend and passes
             out[key] = canvas[key]
+    if extended:
+        out["lights"] = lights
+        out["emitters"] = emitters
     if train:
         out["train"] = train
     out.update(extra or {})
