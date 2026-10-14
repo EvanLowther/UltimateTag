@@ -112,6 +112,9 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
                 motion["warn"] = attrs["TrackWarning"]
             if "PathMover" in attrs:
                 motion["mover"] = attrs["PathMover"]
+            if "PopOut" in attrs:  # a pop-up's piece (the jack-in-the-box's lid, spring, head)
+                motion["pop"] = attrs["PopOut"]
+                motion["role"] = attrs.get("PopRole", "")
             mi = -1
             if motion:
                 mk = json.dumps(motion, sort_keys=True)
@@ -168,7 +171,8 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
 
 if __name__ == "__main__":
     design = importlib.import_module(sys.argv[1])
-    extra = {key: getattr(design, name) for key, name in (("movers", "MOVERS"), ("demo", "DEMO"))
+    extra = {key: getattr(design, name) for key, name in (("movers", "MOVERS"), ("demo", "DEMO"),
+                                                          ("pops", "POPS"))
              if hasattr(design, name)}
     data = {"v1": export(design.build(), design.CANVAS, design.ATTRIBUTES.get("KillHeight"),
                          design.CANVAS.get("label", "Design"), getattr(design, "TRAIN", None),

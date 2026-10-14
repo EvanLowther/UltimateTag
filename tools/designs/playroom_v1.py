@@ -18,7 +18,9 @@ a job:
            the toy box top: only by the castle slide. Run down the slide from the keep and jump
              right at the end of its lip, a speed strip that flings you 21 across onto the box.
              Jump early or late, or slide-jump without it, and you fall short.
-           the jack-in-the-box: a launch pad onto the castle's gatehouse.
+           the jack-in-the-box: step on its lid and it springs open, the clown on its spring
+             throwing you onto the castle's gatehouse. Then it's out for 2 seconds (it winds back
+             down): whoever's chasing you waits for it before they can follow.
   hazard   the spinner: a low round stage in the middle with a bar sweeping round it to jump.
 Axes: X east, Z south, Y up. The carpet is at 0.
 """
@@ -72,9 +74,13 @@ LIP = 3  # the lip runs on flat this far past the slide's foot
 LIP_BOOST = 55  # SpeedBoost: jump off the lip and you leave at least this fast
 # The toy box: its top only reachable by jumping off the slide's lip.
 TOY_BOX = (26, 44, 16, 34, 12)
-# The jack-in-the-box: a launch pad onto the gatehouse (its velocity is worked out below).
-JACK = (6, 10, -26, -22, 3)
+# The jack-in-the-box: a launch pad onto the gatehouse (its velocity is worked out below). Its lid
+# is the pad; step on it and the lid flies open, the clown springs up and throws you. Then it
+# stays sprung and winds back down: it won't throw anyone else for JACK_POP["cooldown"] seconds.
+JACK = (5, 11, -27, -21, 5)  # x0, x1, z0, z1, top of the box
+LID = 0.3  # the lid's thickness (it overhangs the box by 0.2)
 JACK_TARGET = (26, -37)
+JACK_POP = {"cooldown": 2.0, "rise": 6.0, "pop": 0.12, "back": 0.4, "lid_open": 110}
 # The train tunnel (south): slide through it along X.
 TUNNEL = (-14, 6, 32, 44, 11)
 TUNNEL_HOLE = (36, 40)  # z of the way through
@@ -272,10 +278,7 @@ def toys(m):
     m.block(g, "ToyBox", x0, x1, 0, top, z0, z1, "purple",
             children=[m.surface_text(f, "TOYS", COLORS["yellow"], pps=8)
                       for f in ("Front", "Back", "Left", "Right")])
-    x0, x1, z0, z1, top = JACK
-    m.block(g, "JackBox", x0, x1, 0, top, z0, z1, "pink")
-    m.block(g, "JackPad", x0 + 0.5, x1 - 0.5, top, top + 0.2, z0 + 0.5, z1 - 0.5, "yellow",
-            attributes={"LaunchVelocity": vec(*LAUNCH)})
+    jack_in_the_box(m)
     x0, x1, z0, z1, h = TUNNEL
     t0, t1 = TUNNEL_HOLE
     m.block(g, "Tunnel", x0, x1, 0, h, z0, t0, "grey")
@@ -288,6 +291,37 @@ def toys(m):
                 ("red", "cyan", "orange")[k],
                 children=[m.surface_text(f, "ABC"[k], COLORS["white"], pps=16)
                           for f in ("Front", "Back", "Left", "Right", "Top")])
+
+
+def jack_in_the_box(m):
+    """The box, its lid (the launch pad, hinged at the back), and the clown on its spring, packed
+    inside under the lid. Every moving piece is tagged PopOut = "Jack" with its PopRole; the pad
+    also carries LaunchCooldown, the seconds it stays sprung before it throws anyone again."""
+    g = "Toys"
+    d = "Details"
+    x0, x1, z0, z1, top = JACK
+    cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
+    m.block(g, "JackBox", x0, x1, 0, top, z0, z1, "pink",
+            children=[m.surface_text(f, "JACK", COLORS["yellow"], pps=10)
+                      for f in ("Front", "Back", "Left")])
+    pop = {"PopOut": "Jack"}
+    m.block(g, "JackPad", x0 - 0.2, x1 + 0.2, top, top + LID, z0 - 0.2, z1 + 0.2, "yellow",
+            attributes=dict(pop, PopRole="lid", LaunchVelocity=vec(*LAUNCH),
+                            LaunchCooldown=JACK_POP["cooldown"]))
+    head = top - 2.6  # the head's center: the clown packs right in under the lid
+    m.cylinder(d, "JackSpring", head - 1.2 - 0.2, 1.0, (cx, (head - 1.2 + 0.2) / 2, cz), "grey",
+               attributes=dict(pop, PopRole="spring"), **DETAIL)
+    m.part(d, "JackHead", (2.4, 2.4, 2.4), (cx, head, cz), "white", Shape="Ball",
+           attributes=dict(pop, PopRole="head"), **DETAIL)
+    m.part(d, "JackNose", (0.7, 0.7, 0.7), (cx, head, cz + 1.25), "red", Shape="Ball",
+           attributes=dict(pop, PopRole="head"), **DETAIL)
+    m.cylinder(d, "JackHat", 0.8, 1.4, (cx, head + 1.5, cz), "cyan",
+               attributes=dict(pop, PopRole="head"), **DETAIL)
+    m.cylinder(d, "JackHat", 0.6, 0.8, (cx, head + 2.2, cz), "cyan",
+               attributes=dict(pop, PopRole="head"), **DETAIL)
+    # The crank on its side (decoration).
+    m.block(d, "JackCrank", x1 + 0.05, x1 + 0.6, 2.1, 2.5, cz - 0.2, cz + 0.2, "yellow", **DETAIL)
+    m.block(d, "JackCrank", x1 + 0.6, x1 + 1.0, 1.4, 2.6, cz - 0.2, cz + 0.2, "yellow", **DETAIL)
 
 
 def spinner(m):
@@ -349,8 +383,11 @@ def aim(start, target, top, edge_z):
     return best[1]
 
 
-JACK_START = ((JACK[0] + JACK[1]) / 2, JACK[4] + 0.2, (JACK[2] + JACK[3]) / 2)
+JACK_START = ((JACK[0] + JACK[1]) / 2, JACK[4] + LID, (JACK[2] + JACK[3]) / 2)
 LAUNCH = aim(JACK_START, JACK_TARGET, GATEHOUSE[4], GATEHOUSE[3])
+# Everything a pop-up needs to play (the canvas plays it the way the game will): where its pad
+# is, how long it stays sprung, how far the clown rises, and the lid's hinge (height, z).
+POPS = {"Jack": dict(JACK_POP, pad=list(JACK_START), hinge=[JACK[4] + LID, JACK[2] - 0.2])}
 
 
 # ---- demo players for the canvas (the game ignores these) -------------------------------------------
@@ -379,11 +416,17 @@ def demo_players():
         [35.5, TOY_BOX[4], TOY_BOX[2] + 3, "L"], [35.5, TOY_BOX[4], 30, ""],
         [35.5, 0, 39, "j"], [22, 0, 40, ""], [22, 0, 10, ""],
     ]
-    launch = [  # onto the jack-in-the-box, thrown onto the gatehouse, down the ramp
-        [8, JACK[4] + 0.2, -24, ""], [JACK_TARGET[0], GATEHOUSE[4], JACK_TARGET[1], "L"],
-        [23.5, GATEHOUSE[4], -33, ""], [23.5, 0, RAMP1[2], ""], [16, 0, -16, ""],
-        [11, 0, -21, ""], [8, JACK[4] + 0.2, -24, "j"],
-    ]
+    def launch(wait_at_box):
+        """Onto the jack-in-the-box, thrown onto the gatehouse, down the ramp and back. A 5th
+        value is seconds spent waiting at that point: the follower waits beside the box for the
+        jack to wind back down, the leader the same time on the gatehouse (so both loops take
+        as long and they stay in step)."""
+        box = [3, 0, -24, "", JACK_WAIT if wait_at_box else 0]
+        lid = [JACK_START[0], JACK_START[1], JACK_START[2], "j"]
+        land = [JACK_TARGET[0], GATEHOUSE[4], JACK_TARGET[1], "L"]
+        rest = [25.5, GATEHOUSE[4], -36, "", 0 if wait_at_box else JACK_WAIT]
+        return [box, lid, land, rest, [23.5, GATEHOUSE[4], -33, ""], [23.5, 0, RAMP1[2], ""],
+                [16, 0, -16, ""], [4, 0, -18, ""]]
     tunnel = [  # through the train tunnel and back round its south side
         [-18, 0, 38, ""], [-14.5, 0, 38, "c"], [6.5, 0, 38, "c"], [10, 0, 38, ""],
         [10, 0, 46, ""], [-18, 0, 46, ""],
@@ -395,9 +438,16 @@ def demo_players():
          "cam": "Bed runner"},
         {"tag": "", "color": "#F2C94C", "speed": 12, "offset": 0, "points": slide_run,
          "cam": "Slide jump"},
-        {"tag": "", "color": "#A66BFF", "speed": 11, "offset": 0, "points": launch},
+        {"tag": "", "color": "#A66BFF", "speed": 11, "offset": 0, "points": launch(False),
+         "cam": "Jack-in-the-box"},
+        {"tag": "IT", "color": "#E8423F", "speed": 11, "offset": -JACK_LAG,
+         "points": launch(True)},
         {"tag": "", "color": "#FF8A1F", "speed": 11, "offset": 0, "points": tunnel},
     ]
+
+
+JACK_WAIT = 1.5  # the follower's wait beside the box
+JACK_LAG = 0.9  # how far behind the leader the follower comes
 
 
 SPAWNS = ((-22, -10), (14, -14), (-20, 24), (20, 30), (0, 26), (-6, -42), (44, -10), (-38, 40))
@@ -446,8 +496,10 @@ CANVAS = {
         _marker(6, "Toy box", "round", "A big box to circle, 12 high. Its lid is only reached "
                 "by the slide jump: the highest safe spot in the room until someone follows.",
                 35, 16, 26),
-        _marker(7, "Jack-in-the-box", "skill", "A launch pad: it throws you onto the castle's "
-                "gatehouse.", 8, 6, -24),
+        _marker(7, "Jack-in-the-box", "skill", "Step on its lid and it springs open: the clown "
+                "shoots up on its spring and throws you onto the castle's gatehouse. Then it stays "
+                "out for %d seconds, winding back down, so whoever's chasing you has to wait "
+                "before they can follow." % JACK_POP["cooldown"], 8, 8, -24),
         _marker(8, "Train tunnel", "through", "Slide or crouch through it (4.2 high), or run "
                 "round it.", -4, 14, 38),
         _marker(9, "ABC blocks", "round", "Cubes a jump high round the room to juke round and "
@@ -474,7 +526,7 @@ CANVAS = {
         "blueprint": True,
         "heights": [["9", -30, -40], ["8..1", -9, -41], ["26", -45.5, -15.5], ["9", -36, 15.5],
                     ["12", 24, -40], ["20", 36, -43.5], ["26", 17, -42], ["20→8", 42, -20],
-                    ["12", 40, 32], ["3", 8, -28], ["11", -4, 42.5], ["5", -6, -29.5],
+                    ["12", 40, 32], ["5", 8, -29], ["11", -4, 42.5], ["5", -6, -29.5],
                     ["1", 0, 9]],
         "routes": [
             {"k": "wallrun", "p": [[WARDROBE[1] + 1.4, BED[3] - 2],
@@ -549,6 +601,38 @@ def only_by(m, target, name, exclude=()):
     return problems
 
 
+def demo_pops():
+    """The demo players' launches off the jack, the way the canvas times them: each one must come
+    at least the cooldown after the one before (or the canvas would show a launch off a sprung
+    jack)."""
+    times, period = [], None
+    for fig in DEMO:
+        pts = []  # a point with a wait is followed by a copy of itself the wait long
+        for q in fig["points"]:
+            pts.append(q)
+            if len(q) > 4 and q[4]:
+                pts.append(q[:3] + ["", 0, q[4]])
+        pts.append(pts[0])
+        d, launches = 0.0, []
+        for i in range(1, len(pts)):
+            a, b = pts[i - 1], pts[i]
+            if b[3] == "L" and math.hypot(a[0] - JACK_START[0], a[2] - JACK_START[2]) < 1.5:
+                launches.append(d)
+            d += math.dist(a[:3], b[:3]) * (0.3 if b[3] == "L" else 1)
+            d += (b[5] if len(b) > 5 else 0) * fig["speed"]
+        loop = d / fig["speed"]
+        for at in launches:
+            times.append((at / fig["speed"] - fig["offset"]) % loop)
+            if period not in (None, loop):
+                return ["the jack-in-the-box's demo players don't loop in step"]
+            period = loop
+    times.sort()
+    gaps = [(times[(i + 1) % len(times)] - times[i]) % period for i in range(len(times))]
+    if len(times) > 1 and min(gaps) < JACK_POP["cooldown"]:
+        return [f"a demo player launches off the jack {min(gaps):.2f} s after another"]
+    return []
+
+
 def check(m):
     problems = []
     if GAP_DESK <= jump_reach(0, SLIDE_JUMP) or GAP_DESK > WALL_RUN or \
@@ -576,6 +660,7 @@ def check(m):
     for x, z in SPAWNS:
         if math.hypot(x, z) < STAGE[0][0] + 1.5:
             problems.append(f"the spawn at ({x}, {z}) is on the spinner")
+    problems += demo_pops()
     landing = fly(JACK_START, LAUNCH, GATEHOUSE[4], GATEHOUSE[3])
     if not landing or math.hypot(landing[0] - JACK_TARGET[0], landing[1] - JACK_TARGET[1]) > 1:
         problems.append("the jack-in-the-box misses the gatehouse")
