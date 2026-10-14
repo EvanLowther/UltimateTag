@@ -17,7 +17,8 @@ Big toys round a spinner, each one to loop round, run through, walk over or reac
     throwing you onto the gatehouse; it stays out 2 s, so whoever's chasing waits. Its lid turns
     on a hinge along the box's top back edge, which is also the lid's bottom back edge, so the lid
     is always joined to the box (the design's hinge sat in the air above and behind the box);
-  - the train tunnel (slide or crouch through, SlideBlocker) and ABC blocks to juke round.
+  - the train tunnel (slide or crouch through, SlideBlocker) and the A and C blocks to juke round
+    (the design's B block, by the toy box, is left out).
 
 Axes: X east, Z south, Y up. Floor at 0, ceiling 40.
 """
@@ -42,6 +43,7 @@ BAR_KNOCKBACK = 45  # studs/s: the spinner's bar shoves you this hard
 JACK = {"PopRise": 6, "PopTime": 0.12, "PopBack": 0.4, "PopCooldown": 2, "PopAngle": -110}
 JACK_TARGET = (26, 12, -37)  # where the jack throws you: the castle's gatehouse
 JACK_UP = 70  # studs/s up off the jack (the speed across follows from the target)
+LEFT_OUT = {109}  # design parts not in the map: the B block
 
 # The jack-in-the-box: the box is x 5..11, y 0..5, z -27..-21. Its lid rebuilt flush with the
 # box's back (the design's hung 0.2 over it) so the hinge line is a real edge of both.
@@ -139,6 +141,8 @@ def build():
     jack_launch = launch_velocity(8, -24, BOX[3] + LID_THICK, tx, tz, ty, JACK_UP)
     for part in ci.parts(data):
         i = part["index"]
+        if i in LEFT_OUT:
+            continue
         name, material = describe(i)
         props = ci.props(part, material)
         attributes = {}

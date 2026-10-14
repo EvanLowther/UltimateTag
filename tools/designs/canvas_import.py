@@ -18,7 +18,8 @@ def load(path):
 
 def parts(data):
     """Every part as a dict: index, style, color (r, g, b), code ("n" neon, "g" glass, ""),
-    alpha, pos, size, rows (orientation), flags and motion (or None)."""
+    alpha, pos, size, rows (orientation) and its index in the design's list (rot), flags and
+    motion (or None)."""
     styles, rots, motions = data["styles"], data["rots"], data["motions"]
     for index, p in enumerate(data["parts"]):
         style, x, y, z, sx, sy, sz, ri, flags, mi = p
@@ -28,7 +29,7 @@ def parts(data):
             "index": index, "style": style,
             "color": tuple(int(color_hex[i:i + 2], 16) for i in (0, 2, 4)),
             "code": code, "alpha": alpha, "pos": (x, y, z), "size": (sx, sy, sz),
-            "rows": [r[0:3], r[3:6], r[6:9]], "flags": flags,
+            "rows": [r[0:3], r[3:6], r[6:9]], "rot": ri, "flags": flags,
             "motion": motions[mi] if mi >= 0 else None,
         }
 
