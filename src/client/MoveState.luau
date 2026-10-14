@@ -33,6 +33,7 @@ local MoveState = {
 	-- Set by a move that ends on the ground faster than you can run (a slide, a knockback):
 	-- GroundMomentum picks it up and carries that speed, fading it.
 	groundVelocity = nil :: Vector3?,
+	groundSkid = false, -- with groundVelocity: a forced skid (a knockback) that ignores your keys
 	launchTime = -math.huge, -- when the last launch (a launch pad) happened
 	wallSide = "Left", -- during a wall run: which side of your body the wall is on
 	-- A move can set this to point the body somewhere other than the camera (FaceCamera uses

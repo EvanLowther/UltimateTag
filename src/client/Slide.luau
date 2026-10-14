@@ -258,10 +258,15 @@ function Slide.start()
 			slopeSpeed = math.min(slopeSpeed, settings.MaxSpeed - curve)
 			speed = math.clamp(curve + slopeSpeed, 0, settings.MaxSpeed)
 
-			-- Steering: your keys nudge the slide direction.
-			local move = hum.MoveDirection
-			if move.Magnitude > 0 then
-				dir = (dir + move * settings.Steer * dt).Unit
+			-- Steering: the slide turns toward your keys, relative to where you look (W follows
+			-- your view, A/D curve it). Holding back doesn't spin it round.
+			local move = MoveState.flat(hum.MoveDirection)
+			if move.Magnitude > 0.1 and move.Unit:Dot(dir) > -0.5 then
+				local turned =
+					MoveState.turnToward(dir, move.Unit, math.rad(settings.TurnRate) * dt)
+				if turned.Magnitude > 0.01 then
+					dir = turned.Unit
+				end
 			end
 			drive.PlaneVelocity = Vector2.new(dir.X * speed, dir.Z * speed)
 			MoveState.faceDirection = dir -- feet first: the body points along the slide

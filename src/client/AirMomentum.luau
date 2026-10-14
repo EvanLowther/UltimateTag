@@ -1,12 +1,16 @@
 --!strict
--- Keeps your speed in the air. Roblox's own air control drags you back to walk speed, which
--- would kill the momentum from wall runs and slides. While you're in the air and
--- no move is running, this owns your sideways velocity: you keep your speed, your movement keys
--- turn your path toward where you steer (Config.AirMomentum.TurnRate), and steering backwards
--- brakes. Below walk speed you get normal air control.
--- Falling builds speed (Config.Momentum): while you're moving and coming down below the height
--- you left the ground from, part of gravity's pull goes into your speed across (FallGain), so the
--- longer the drop, the faster you go. When you land lower than you took off, part of the speed
+-- Keeps your speed in the air while you hold a movement key. Roblox's own air control drags you
+-- back to walk speed, which would kill the momentum from wall runs and slides. While you're in
+-- the air and no move is running, this owns your sideways velocity: holding a key, you keep your
+-- speed and it follows where you steer, relative to where you look (W your view, A/D to the
+-- side; Config.AirMomentum.TurnRate is fast), and steering backwards brakes. Let go of the keys
+-- and the extra speed isn't carried: it bleeds off to walk speed (Momentum.ReleaseDecay; launch
+-- pad flights keep theirs so they still reach their target). Below walk speed you get normal
+-- air control.
+-- Falling builds speed (Config.Momentum), only while you hold a key: moving and coming down
+-- below the height you left the ground from, part of gravity's pull goes into your speed across
+-- (FallGain), so the longer the drop, the faster you go. When you land lower than you took off
+-- (still holding a key), part of the speed
 -- that drop gives (LandCarry; a slide on landing adds more, see client/Slide) is added too. A
 -- jump that lands where it started gains nothing, so hopping on flat ground doesn't build speed.
 -- The landing speed is remembered (MoveState.landVelocity) for GroundMomentum to carry and for a
@@ -34,9 +38,13 @@ function AirMomentum.start()
 			local grounded = parts ~= nil and MoveState.isGrounded(parts.humanoid)
 			if parts and air and grounded then
 				local launched = MoveState.launchTime > groundedAt
-				-- The speed the drop below your takeoff height is worth.
+				local steering = MoveState.flat(parts.humanoid.MoveDirection).Magnitude > 0.1
+				-- The speed the drop below your takeoff height is worth (only if you're still
+				-- holding a key: let go and the landing doesn't carry it).
 				local drop = math.max(groundY - parts.root.Position.Y, 0)
-				local impact = if launched then 0 else math.sqrt(2 * workspace.Gravity * drop)
+				local impact = if launched or not steering
+					then 0
+					else math.sqrt(2 * workspace.Gravity * drop)
 				local landed = air
 				if air.Magnitude >= momentum.MinMoving then
 					local speed = air.Magnitude + momentum.LandCarry * impact
@@ -65,7 +73,9 @@ function AirMomentum.start()
 
 		local wish = MoveState.flat(hum.MoveDirection)
 		local walk = hum.WalkSpeed
-		if wish.Magnitude > 0.1 then
+		local steering = wish.Magnitude > 0.1
+		local launched = MoveState.launchTime > groundedAt
+		if steering then
 			wish = wish.Unit
 			if current.Magnitude < walk then
 				-- Slower than walking: normal air control toward where you steer.
@@ -81,14 +91,18 @@ function AirMomentum.start()
 				-- Steering sideways or forwards: turn without losing speed.
 				current = MoveState.turnToward(current, wish, math.rad(settings.TurnRate) * dt)
 			end
+		elseif current.Magnitude > walk and not launched then
+			-- Let go of the keys: the extra speed isn't carried, it bleeds off.
+			local speed = math.max(current.Magnitude - momentum.ReleaseDecay * dt, walk)
+			current = current.Unit * speed
 		end
 
 		-- Coming down below where you took off, while moving: the fall feeds your speed (not on
 		-- a launch pad's flight).
 		local vertical = root.AssemblyLinearVelocity.Y
-		local launched = MoveState.launchTime > groundedAt
 		if
-			vertical < 0
+			steering
+			and vertical < 0
 			and root.Position.Y < groundY
 			and not launched
 			and current.Magnitude >= momentum.MinMoving

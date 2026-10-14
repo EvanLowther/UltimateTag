@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.49.0",
+	Version = "0.49.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -114,7 +114,8 @@ local Config = {
 		JumpLiftMax = 25, -- ...up to this many studs/s more than a normal jump
 		CrouchSpeed = 8, -- walk speed while crouched
 		CrouchStepTime = 0.3, -- seconds per crouch-walk step at CrouchSpeed (faster when moving faster)
-		Steer = 2, -- how much your movement keys turn a slide (higher = more control)
+		TurnRate = 540, -- degrees per second a slide turns toward where you steer (your keys,
+		-- relative to where you look: W follows your view, A/D curve it to the side)
 		HipHeightFactor = 0.3, -- hips sink to this fraction of their normal height
 		CameraDip = 1.5, -- studs the camera drops during a slide
 		DropTime = 0.1, -- seconds from the drop pose into the full slide pose
@@ -222,7 +223,8 @@ local Config = {
 	AirMomentum = {
 		-- In the air, you keep your speed (Roblox's own air control would drag you back to walk
 		-- speed and kill the momentum from wall runs and slides). Your keys steer it.
-		TurnRate = 160, -- degrees per second your air path can turn toward where you steer
+		TurnRate = 1080, -- degrees per second your air path turns toward where you steer (your
+		-- keys, relative to where you look), so carried speed follows your view almost at once
 		BrakeRate = 25, -- studs/s per second you slow down when steering backwards
 		AirControl = 45, -- studs/s per second you can speed up while slower than walk speed
 		WallStop = 0.5, -- if a wall cuts your speed below this fraction, carry the slower speed
@@ -237,7 +239,12 @@ local Config = {
 		LandCarry = 0.3, -- landing while moving adds this much of the speed you hit the ground with
 		LandSlideCarry = 0.5, -- ...this much if you slide as you land (hold the slide key)
 		GroundDecay = 30, -- studs/s per second extra speed fades on the ground, back to run speed
-		GroundTurnRate = 200, -- degrees per second your keys turn carried speed on the ground
+		GroundTurnRate = 1080, -- degrees per second carried speed on the ground turns toward
+		-- where you steer (follows your view)
+		-- Momentum is only carried while you hold a movement key (W, A/D...). Let go and it isn't:
+		-- on the ground you're straight back to normal running, in the air the extra speed bleeds
+		-- off at this many studs/s per second (launch pad flights keep theirs).
+		ReleaseDecay = 45,
 		MaxGroundSpeed = 90, -- the most speed the ground carries
 	},
 
@@ -887,10 +894,10 @@ local Config = {
 			{ "Slide", "StartMultiplier", 1, 2.5, 0.05 },
 			{ "Slide", "Duration", 0.2, 3, 0.05 },
 			{ "Slide", "MaxSpeed", 20, 120, 1 },
-			{ "Slide", "Steer", 0, 8, 0.1 },
+			{ "Slide", "TurnRate", 0, 1440, 10 },
 			{ "Slide", "DeadSlideTime", 0, 5, 0.05 },
 			{ "Slide", "CrouchSpeed", 2, 20, 0.5 },
-			{ "AirMomentum", "TurnRate", 0, 720, 5 },
+			{ "AirMomentum", "TurnRate", 0, 1440, 10 },
 			{ "AirMomentum", "BrakeRate", 0, 100, 1 },
 			{ "AirMomentum", "AirControl", 0, 150, 1 },
 			{ "WallRun", "MinEntrySpeed", 0, 40, 1 },
@@ -902,6 +909,7 @@ local Config = {
 			{ "Momentum", "LandCarry", 0, 1, 0.01 },
 			{ "Momentum", "LandSlideCarry", 0, 1, 0.01 },
 			{ "Momentum", "GroundDecay", 5, 120, 1 },
+			{ "Momentum", "ReleaseDecay", 0, 200, 1 },
 			{ "Slide", "SlopeAccel", 0, 1.5, 0.05 },
 			{ "Slide", "JumpLift", 0, 1, 0.01 },
 			{ "WallRun", "JumpUp", 0, 80, 1 },

@@ -2,8 +2,11 @@
 -- Carry and fade: when you end up on the ground faster than you can run (landing from a fall, a
 -- slide ending fast, being knocked back by a hit), you keep that speed along the ground and it
 -- fades back to your walk speed (Config.Momentum.GroundDecay) instead of Roblox snapping you to
--- it the moment you touch down. Your keys turn it (GroundTurnRate); steering backwards brakes
--- harder. Frozen players (walk speed 0) skid to a stop.
+-- it the moment you touch down. It's only carried while you hold a movement key: it follows where
+-- you steer, relative to where you look (W your view, A/D to the side; GroundTurnRate is fast),
+-- steering backwards brakes harder, and letting go of the keys drops it at once (normal running
+-- takes over). A knockback's skid (MoveState.groundSkid) is different: it ignores your keys and
+-- keeps its direction, so frozen (tagged) players skid to a stop.
 -- It only starts from hand-offs (the landing speed AirMomentum records, MoveState.groundVelocity
 -- from a slide or a knockback), never from how fast you happen to be moving on the ground, so
 -- trains and moving platforms can't set it off. It lets go when another move starts, when you
@@ -24,12 +27,14 @@ function GroundMomentum.start()
 	local release: (() -> ())? = nil
 	local driven: BasePart? = nil
 	local usedLanding = -math.huge -- the landing (MoveState.landTime) already picked up
+	local skid = false -- the carried speed is a knockback's skid (ignores your keys)
 
 	local function stop()
 		if release then
 			release()
 		end
 		carried, drive, release, driven = nil, nil, nil, nil
+		skid = false
 	end
 
 	RunService.Heartbeat:Connect(function(dt)
@@ -43,7 +48,9 @@ function GroundMomentum.start()
 
 		-- Hand-offs: a move that ended fast, or a landing.
 		local handoff = MoveState.groundVelocity
+		local forced = MoveState.groundSkid
 		MoveState.groundVelocity = nil
+		MoveState.groundSkid = false
 		if not handoff and grounded and MoveState.landTime ~= usedLanding then
 			usedLanding = MoveState.landTime
 			handoff = MoveState.landVelocity
@@ -52,6 +59,7 @@ function GroundMomentum.start()
 			local flat = MoveState.flat(handoff)
 			if flat.Magnitude > hum.WalkSpeed + 1 then
 				carried = flat.Unit * math.min(flat.Magnitude, settings.MaxGroundSpeed)
+				skid = forced
 			end
 		end
 		local current = carried
@@ -74,10 +82,14 @@ function GroundMomentum.start()
 			return
 		end
 
-		-- Steer, then fade.
+		-- Steer, then fade. Only while you hold a key (a knockback's skid aside).
 		local fade = settings.GroundDecay * dt
 		local wish = MoveState.flat(hum.MoveDirection)
-		if wish.Magnitude > 0.1 then
+		if not skid then
+			if wish.Magnitude <= 0.1 then
+				stop() -- let go of the keys: back to normal running
+				return
+			end
 			wish = wish.Unit
 			if current.Unit:Dot(wish) < -0.5 then
 				fade *= 2 -- steering backwards brakes

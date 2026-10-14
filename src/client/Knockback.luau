@@ -93,6 +93,7 @@ function Knockback.start()
 				local carried = across
 				finish()
 				MoveState.groundVelocity = carried -- skid on and fade (GroundMomentum)
+				MoveState.groundSkid = true -- whatever keys they hold
 			end
 		end)
 	end)
