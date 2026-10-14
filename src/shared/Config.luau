@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.51.0",
+	Version = "0.51.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -91,6 +91,25 @@ local Config = {
 		AirMultiplier = 1.6,
 		AirPop = 16,
 		Shove = 1, -- a shove (a hit that isn't a tag) pushes this much compared to a tag
+	},
+
+	-- Moving map hazards (a part with a Knockback attribute: the Playroom's spinner bar;
+	-- client/MapAmbience) hit you like a bat on a ball, through client/Knockback's flight. A
+	-- spinning one pushes you the way it's sweeping: its speed where it touches you plus
+	-- Restitution of how fast it closed on you (so running into it hits harder), at least the
+	-- part's Knockback; and pops you up, more the harder the hit, more again mid-jump.
+	MapHits = {
+		Restitution = 1, -- share of the closing speed that bounces back off it (1: like a bat)
+		Strength = 1, -- times that bounce: the push across
+		Max = 120, -- studs/s across at most
+		KeepAlong = 0.6, -- share of your speed along the hazard that you keep
+		MinSweep = 2, -- studs/s: slower than this where it touches you, it just shoves you away
+		Pop = 12, -- studs/s up from any hit
+		PopPerSpeed = 0.3, -- plus this much per studs/s it closed on you at
+		AirBonus = 1.4, -- caught mid-jump: the pop is this many times bigger (on top of your jump)
+		AirAcross = 1.15, -- and the push across this many times
+		Reach = 1.1, -- studs round the hazard that count as touching (about half your width)
+		Cooldown = 0.6, -- seconds before a hazard can hit you again
 	},
 
 	Sprint = {

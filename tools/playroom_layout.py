@@ -6,8 +6,9 @@ like the sky. Designed on the "Playroom" design canvas and ported from its desig
 It rewrites `src/maps/Playroom/` (generated: don't edit those files by hand); Rojo syncs it.
 
 Big toys round a spinner, each one to loop round, run through, walk over or reach with a move:
-  - the spinner: a low round stage with a 30-long bar sweeping round at hip height (Spin 72,
-    Knockback: jump it as it comes);
+  - the spinner: a low round stage with a 30-long bar sweeping round at hip height (Spin 108,
+    1.5x the design; Knockback: it hits you like a bat, harder the faster you run into it and
+    higher if it catches you mid-jump, so jump it as it comes or ride a timed hit up);
   - the bed (9): walk up the stack of books, then wall-run the wardrobe onto the desk (9; the
     only way up there); run under the desk;
   - the block castle: through the gate, up the ramps to the gatehouse (12) and the keep (20),
@@ -39,7 +40,8 @@ ATTRIBUTES = {"DisplayName": "Playroom", "MinPlayers": 2, "MaxPlayers": 6, "InRo
 
 # Things the export doesn't keep, set here (tune in game).
 LIP_BOOST = 50  # studs/s off the slide's lip: a jump at its end carries about 22 onto the toy box
-BAR_KNOCKBACK = 45  # studs/s: the spinner's bar shoves you this hard
+BAR_KNOCKBACK = 30  # studs/s: the spinner's bar pushes you at least this hard (Config.MapHits)
+SPIN_SPEEDUP = 1.5  # the spinner turns this much faster than the design (72 -> 108 degrees/s)
 JACK = {"PopRise": 6, "PopTime": 0.12, "PopBack": 0.4, "PopCooldown": 2, "PopAngle": -110}
 JACK_TARGET = (26, 12, -37)  # where the jack throws you: the castle's gatehouse
 JACK_UP = 70  # studs/s up off the jack (the speed across follows from the target)
@@ -151,11 +153,13 @@ def build():
             props = {"Transparency": 1, "CastShadow": False}
             attributes["SlideBlocker"] = True
         if motion and "spin" in motion:
-            attributes["Spin"] = motion["spin"]
+            attributes["Spin"] = motion["spin"] * (SPIN_SPEEDUP if group_of(i) == "Spinner" else 1)
             if motion.get("c") is not None:
                 attributes["SpinCenter"] = vec(motion["c"][0], 0, motion["c"][1])
         if name == "SpinnerBar":
+            # It hits you (client/MapAmbience) rather than shoving you about as a solid part.
             attributes["Knockback"] = BAR_KNOCKBACK
+            props.update(NO_HIT)
         if name == "SlideLip":
             attributes["SpeedBoost"] = LIP_BOOST
         if motion and motion.get("pop"):

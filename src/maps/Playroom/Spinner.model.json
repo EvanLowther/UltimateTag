@@ -50,7 +50,7 @@
     "CanTouch": false
    },
    "attributes": {
-    "Spin": 72,
+    "Spin": 108.0,
     "SpinCenter": {
      "Vector3": [
       0,
@@ -109,7 +109,7 @@
     "CanTouch": false
    },
    "attributes": {
-    "Spin": 72,
+    "Spin": 108.0,
     "SpinCenter": {
      "Vector3": [
       0,
@@ -303,10 +303,13 @@
        ]
       ]
      }
-    }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
    },
    "attributes": {
-    "Spin": 72,
+    "Spin": 108.0,
     "SpinCenter": {
      "Vector3": [
       0,
@@ -314,7 +317,7 @@
       0
      ]
     },
-    "Knockback": 45
+    "Knockback": 30
    }
   }
  ]

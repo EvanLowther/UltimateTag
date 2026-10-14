@@ -14,9 +14,18 @@
 --     platform you can stand on).
 --   Carry (true, or SpinCarry): standing on this moving part takes you with it (a spinning
 --     platform turns you; a swinging one carries you along).
---   Knockback (number, studs/s): touching the part shoves you away from it.
+--   Knockback (number, studs/s): the part hits you when it touches you, like a bat on a ball
+--     (Config.MapHits): a spinning one pushes you the way it's sweeping, harder the faster that
+--     bit of it is moving and the faster you're running into it (at least Knockback), and pops
+--     you up, more the harder the hit and more again if you're in the air (time a jump as it
+--     comes and it throws you higher). Anything else shoves you straight away from it. The hit
+--     uses client/Knockback's flight, so your keys and momentum can't cancel it.
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+
+local Knockback = require(script.Parent.Knockback)
 local MoveState = require(script.Parent.MoveState)
 
 local MapAmbience = {}
@@ -38,7 +47,6 @@ type Mover = {
 
 local flickers: { Flicker } = {}
 local movers: { Mover } = {}
-local KNOCK_COOLDOWN = 0.8
 local FLOOR_RAY = 4.5
 
 local function setLit(flicker: Flicker, lit: boolean)
@@ -136,13 +144,48 @@ local function floorPart(parts: MoveState.Parts): BasePart?
 	return if hit then hit.Instance :: BasePart else nil
 end
 
--- Is `point` inside the part's box, grown by `margin`?
-local function touching(part: BasePart, point: Vector3, margin: number): boolean
-	local localPoint = part.CFrame:PointToObjectSpace(point)
-	local half = part.Size / 2 + Vector3.new(margin, margin, margin)
-	return math.abs(localPoint.X) <= half.X
-		and math.abs(localPoint.Y) <= half.Y
-		and math.abs(localPoint.Z) <= half.Z
+-- Does your body (root to about 3 below and 2 above it, `reach` round it) overlap the part?
+local function touching(part: BasePart, at: CFrame, root: Vector3, reach: number): boolean
+	local p = at:PointToObjectSpace(root)
+	local half = part.Size / 2
+	return math.abs(p.X) <= half.X + reach
+		and math.abs(p.Z) <= half.Z + reach
+		and p.Y < half.Y + 3
+		and p.Y > -half.Y - 2
+end
+
+-- The hit: how hard and which way a hazard knocks you (see Knockback at the top).
+local function hit(mover: Mover, at: CFrame, parts: MoveState.Parts): boolean
+	local C = Config.MapHits
+	local root = parts.root
+	local mine = MoveState.flat(root.AssemblyLinearVelocity)
+	local sweep = Vector3.zero -- how fast the bit of it touching you is moving
+	if mover.spin then
+		local r = root.Position - mover.center
+		sweep = Vector3.new(r.Z, 0, -r.X) * math.rad(mover.spin)
+	end
+	local push: Vector3
+	local closing: number
+	if sweep.Magnitude > C.MinSweep then
+		local n = sweep.Unit
+		closing = sweep.Magnitude - mine:Dot(n) -- how fast it's catching you up
+		if closing <= 0 then
+			return false -- you're outrunning it
+		end
+		local out = (sweep.Magnitude + C.Restitution * closing) * C.Strength
+		local along = mine - n * mine:Dot(n)
+		push = n * math.clamp(out, mover.knockback or 0, C.Max) + along * C.KeepAlong
+	else
+		local away = MoveState.flat(root.Position - at.Position)
+		local direction = if away.Magnitude > 0.1 then away.Unit else -at.LookVector
+		closing = math.max(-mine:Dot(direction), 0)
+		push = direction * math.clamp(closing * C.Strength, mover.knockback or 0, C.Max)
+	end
+	local pop = C.Pop + C.PopPerSpeed * closing
+	if not MoveState.isGrounded(parts.humanoid) then
+		pop *= C.AirBonus -- caught mid-jump: thrown higher
+	end
+	return Knockback.apply(push, pop, C.AirAcross)
 end
 
 function MapAmbience.start()
@@ -167,7 +210,7 @@ function MapAmbience.start()
 
 	local lastKnock = -math.huge
 
-	RunService.Heartbeat:Connect(function()
+	RunService.Heartbeat:Connect(function(dt: number)
 		local t = workspace:GetServerTimeNow()
 		local parts = MoveState.parts()
 		local standingOn = if parts and #movers > 0 then floorPart(parts) else nil
@@ -194,17 +237,18 @@ function MapAmbience.start()
 					root.CFrame += moved - root.Position
 				end
 			end
-			-- Knocked back by a moving hazard.
-			if mover.knockback and parts and os.clock() - lastKnock > KNOCK_COOLDOWN then
-				if touching(part, parts.root.Position, 2) then
-					lastKnock = os.clock()
-					local away = parts.root.Position - part.Position
-					away = Vector3.new(away.X, 0, away.Z)
-					local push = if away.Magnitude > 0.1 then away.Unit else -part.CFrame.LookVector
-					local velocity = push * mover.knockback
-						+ Vector3.new(0, mover.knockback * 0.4, 0)
-					parts.root.AssemblyLinearVelocity = velocity
-					MoveState.airVelocity = Vector3.new(velocity.X, 0, velocity.Z)
+			-- Hit by a moving hazard (the reach grows by how far it swept this frame, so a fast
+			-- one can't pass through you between frames).
+			if mover.knockback and parts and os.clock() - lastKnock > Config.MapHits.Cooldown then
+				local swept = if mover.spin
+					then math.abs(math.rad(mover.spin)) * MoveState.flat(
+						parts.root.Position - mover.center
+					).Magnitude * dt
+					else 0
+				if touching(part, after, parts.root.Position, Config.MapHits.Reach + swept) then
+					if hit(mover, after, parts) then
+						lastKnock = os.clock()
+					end
 				end
 			end
 		end
