@@ -61,8 +61,14 @@ LAUNCH = (-7, 46, -44)
 # The train tunnel (south): slide through it along X.
 TUNNEL = (-8, 4, 20, 28, 7)
 TUNNEL_HOLE = (22, 26)  # z of the way through
-# ABC blocks on the rug: cubes a jump high.
-BLOCKS = ((-6, -4), (4, -6), (2, 5))
+# The spinner in the middle: a low round stage (two shallow steps) with a long bar sweeping round
+# it at hip height: jump it as it comes (it shoves you if it hits you).
+STAGE = ((12, 0.5), (10, 1.0))  # radius, top of each step
+SPIN_BAR = (20, 1.2, 1.6, 2.8)  # length, width, bottom, top
+SPIN_RATE = 72  # degrees a second: a turn every 5 seconds
+SPIN_SHOVE = 60
+# ABC blocks round the room: cubes a jump high.
+BLOCKS = ((10, -14), (-2, -24), (-16, 22))
 BLOCK = 4
 
 COLORS = {
@@ -102,7 +108,6 @@ def room(m):
                        (-R - 1, -R, -R, R), (R, R + 1, -R, R)):
         m.block(g, "Wall", a, b, 0, CEIL, c, d, "sky")
     m.block(g, "Ceiling", -R - 1, R + 1, CEIL, CEIL + 1, -R - 1, R + 1, "ceiling")
-    m.block("Details", "Rug", -12, 12, 0.05, 0.1, -10, 10, "rug", **DETAIL)
 
 
 def bed(m):
@@ -167,7 +172,25 @@ def toys(m):
                 ("red", "cyan", "orange")[k])
 
 
-SPAWNS = ((0, -12), (-8, 12), (10, 6), (-14, -2), (14, -4), (0, 15), (-2, -24), (27, -8))
+def spinner(m):
+    g = "Spinner"
+    bottom = 0
+    for k, (radius, top) in enumerate(STAGE):
+        m.cylinder(g, "Stage", top - bottom, radius * 2, (0, (top + bottom) / 2, 0),
+                   ("rug", "yellow")[k])
+        bottom = top
+    deck = STAGE[-1][1]
+    length, width, y0, y1 = SPIN_BAR
+    m.cylinder(g, "SpinPost", y1 + 0.6 - deck, 2.4, (0, (deck + y1 + 0.6) / 2, 0), "red")
+    m.block(g, "SpinBar", -length / 2, length / 2, y0, y1, -width / 2, width / 2, "red",
+            attributes={"Spin": SPIN_RATE, "SpinCenter": vec(0, 0, 0), "Knockback": SPIN_SHOVE})
+    for x in (-length / 2 + 0.6, length / 2 - 0.6):  # bumpers on its ends (decoration)
+        m.block("Details", "SpinBumper", x - 0.6, x + 0.6, y1 + 0.05, y1 + 0.4, -width / 2,
+                width / 2, "yellow", **DETAIL,
+                attributes={"Spin": SPIN_RATE, "SpinCenter": vec(0, 0, 0)})
+
+
+SPAWNS = ((-6, -16), (-8, 12), (12, 8), (-14, -2), (14, -4), (0, 15), (4, -24), (27, -8))
 
 
 def build():
@@ -177,6 +200,7 @@ def build():
     wardrobe_desk(m)
     castle(m)
     toys(m)
+    spinner(m)
     for x, z in SPAWNS:
         m.spawn(x, z)
     return m
@@ -210,8 +234,12 @@ CANVAS = {
                 "gatehouse.", 24, 5, 2),
         _marker(7, "Train tunnel", "through", "Slide or crouch through it (4.2 high), or run "
                 "round it.", -2, 9, 24),
-        _marker(8, "ABC blocks", "round", "Three cubes a jump high on the rug to juke round and "
-                "hop over.", 0, 6, -1),
+        _marker(8, "ABC blocks", "round", "Three cubes a jump high round the room to juke round "
+                "and hop over.", 10, 6, -14),
+        _marker(9, "The spinner", "hazard", "A low round stage in the middle (two shallow steps) "
+                "with a long bar sweeping round it every %d seconds at hip height. Jump it as it "
+                "comes: it shoves you if it hits you. Cross the middle, or go round."
+                % round(360 / SPIN_RATE), 0, 6, 0),
     ],
     "views": {"Overview": [44, 56, 60, 0, 0, 0], "Top": [0, 100, 0.01, 0, 0, 0]},
     "figure": [0, 0, 0],
@@ -221,11 +249,12 @@ CANVAS = {
         "blueprint": True,
         "heights": [["6", -16, -24], ["16", -28.5, 8.5], ["6", -20, 13], ["3", -14, 10.5],
                     ["8", 23, -22], ["12", 12, -28.5], ["6", 24, 22], ["3", 24, 2],
-                    ["7", 0, 26.5], ["4", -6, -6.6], ["5..1", -19.5, -6]],
+                    ["7", 0, 26.5], ["4", 10, -17], ["5..1", -19.5, -6], ["1", 0, 6.5]],
         "routes": [
             {"k": "wallrun", "p": [[-25.6, -13], [-25.6, 7]]},
             {"k": "launch", "p": [[24, 2], [20, -22]]},
             {"k": "slide", "p": [[-10, 24], [6, 24]]},
+            {"k": "spin", "p": [[0, 0], [10.6, 0]]},
             {"k": "stairs", "p": [[-19.5, -1], [-19.5, -13]]},
             {"k": "stairs", "p": [[16, -5], [16, -17]]},
             {"k": "stairs", "p": [[20, 5], [20, 11]]},
@@ -275,6 +304,12 @@ def check(m):
         problems.append("the wardrobe doesn't carry a wall run from the bed to the desk")
     if DESK[4] - CHAIR[4] > mapcheck.JUMP_UP or DESK[4] - 1 < mapcheck.STAND:
         problems.append("the desk isn't a jump up from the chair, or too low to run under")
+    if SPIN_BAR[3] - STAGE[-1][1] > JUMP - 3 or SPIN_BAR[1] / 2 > 1 or \
+            SPIN_BAR[0] / 2 > STAGE[-1][0]:
+        problems.append("the spinner's bar is too high to jump, too wide, or overhangs its stage")
+    for x, z in SPAWNS:
+        if math.hypot(x, z) < STAGE[0][0] + 1.5:
+            problems.append(f"the spawn at ({x}, {z}) is on the spinner")
     if BLOCK > mapcheck.JUMP_UP:
         problems.append("the ABC blocks are too high to hop onto")
     landing = launch_landing()
