@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.50.2",
+	Version = "0.51.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -21,7 +21,7 @@ local Config = {
 		-- Falling off: a map with a KillHeight attribute kills anyone who drops below that world
 		-- height within this many studs of it sideways. They respawn on the map (server/MapRespawn),
 		-- unless the map has FallEliminates: then they're out of the game.
-		KillRadius = 700, -- (the Metro's tunnel loops reach about 500 out)
+		KillRadius = 1000, -- (the Metro's tunnel loops reach about 760 out)
 	},
 
 	Lobby = {
@@ -807,19 +807,17 @@ local Config = {
 	-- carries riders and pushes them out at the exit stop.
 	Trains = {
 		StartDelay = 0, -- seconds after the map loads before the timetable starts
-		-- Aboard: in a car (between its walls), your middle between these heights over the floor
-		-- (a crouch or slide keeps your middle over 1). Riders are never hit.
+		-- The train's sizes come with its map (the TrainLine module, generated with it, so they
+		-- scale with it): aboard is in a car (between its walls) with your middle between
+		-- FloorHeight and its aboardHeight over the floor (a crouch or slide keeps your middle over
+		-- 1), and riders are never hit; anyone else in its way while it moves, middle from its
+		-- pitDepth under the floor to its roofHeight over it, is hit; the exit push walks riders
+		-- its pushOut from the train's middle (onto the platform).
 		FloorHeight = 0.5,
 		BoardGrace = 1, -- seconds into the ride when someone who squeezed in still counts as aboard
-		-- Hit: not aboard, in the train's way while it moves, your middle from PitDepth under its
-		-- floor to RoofHeight over it.
-		RoofHeight = 10,
-		PitDepth = 8,
 		KillMargin = 0.3, -- studs past the train's sides that still get hit
 		NoseReach = 1.5, -- studs in front of the nose that get hit
 		MovingSpeed = 0.5, -- studs/s: slower than this the train doesn't hit anyone
-		AboardHeight = 11, -- your middle up to this over the floor (and over a car): you're aboard
-		PushOut = 9.6, -- the exit push walks you this far out from the train's middle (the platform)
 		PushTurn = 0.6, -- studs from the door line where the push turns out through the door
 		BoardRefresh = 0.25, -- seconds between departure board updates
 		WarnColor = Color3.fromRGB(255, 160, 30), -- platform edge lights while a train is coming
@@ -834,7 +832,7 @@ local Config = {
 	-- switches your lighting to that preset while your camera is within Radius studs of it.
 	-- Other places use the normal lighting from default.project.json.
 	MapLighting = {
-		Radius = 650,
+		Radius = 1000, -- (the Metro's tunnel loops reach about 760 out)
 		FadeTime = 1.2, -- seconds to blend between lightings
 		Presets = {
 			-- Inside buildings (the School): the outdoor sun settings and bloom wash an enclosed,

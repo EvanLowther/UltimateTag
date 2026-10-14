@@ -9,6 +9,8 @@
 --   - anyone else in the train's way while it's moving (anywhere from the bottom of the pit to
 --     its roof: on the tracks, jumping in the pit, in front of the nose) is killed (a death on
 --     the map: during a round on a FallEliminates map that puts you out of the game; MapRespawn);
+--     how high and low that reaches comes with the map (its TrainLine: roofHeight, pitDepth,
+--     aboardHeight), so it scales with it;
 --   - when the exit stop's doors have shut, anyone still aboard is put on the platform outside
 --     the nearest door (client/Trains pushes riders out first; this makes sure nobody rides round
 --     again).
@@ -56,7 +58,7 @@ end
 -- Puts a rider still aboard at the exit stop on the platform outside the nearest door.
 local function putOff(spec: any, frames: { TrainLine.Frame }, character: Model, u: number)
 	local door = TrainLine.nearestDoor(spec, u)
-	local x, z = TrainLine.trainPoint(spec, frames, door + 0.9, Config.Trains.PushOut)
+	local x, z = TrainLine.trainPoint(spec, frames, door + spec.doorAim, spec.pushOut)
 	local frame = frames[1]
 	-- Face out of the train (its left).
 	local out = Vector3.new(math.sin(frame.h), 0, -math.cos(frame.h))
@@ -101,7 +103,7 @@ local function step()
 		local p = root.Position
 		local height = p.Y - spec.floorY
 		local inside, u = TrainLine.locate(spec, frames, p.X, p.Z, 0)
-		local onFloor = inside ~= nil and height > C.FloorHeight and height < C.AboardHeight
+		local onFloor = inside ~= nil and height > C.FloorHeight and height < spec.aboardHeight
 		if leaving and onFloor then
 			-- Doors shut at the exit stop: nobody rides round again.
 			putOff(spec, frames, character, u)
@@ -113,7 +115,12 @@ local function step()
 				aboard[character] = nil
 			end
 		end
-		if moving and not aboard[character] and height < C.RoofHeight and height > -C.PitDepth then
+		if
+			moving
+			and not aboard[character]
+			and height < spec.roofHeight
+			and height > -spec.pitDepth
+		then
 			if TrainLine.locate(spec, frames, p.X, p.Z, C.KillMargin, C.NoseReach) then
 				character:SetAttribute("HitByTrain", true)
 				humanoid.Health = 0

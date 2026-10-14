@@ -1,9 +1,9 @@
 --!strict
 -- A map's train (the Metro): where it is on its track and what it's doing at any moment. The
--- map has a TrainLine module (its track, cars and timetable, generated with the map) and two
--- attributes the server sets when the map loads: TrainEpoch (the server time its timetable
--- starts) and TrainSeed (picks the random waits). Everything here is worked out from those and
--- the server clock, the same way on the server (server/Trains) and every client
+-- map has a TrainLine module (its track, cars, timetable and hit zones, generated with the map)
+-- and two attributes the server sets when the map loads: TrainEpoch (the server time its
+-- timetable starts) and TrainSeed (picks the random waits). Everything here is worked out from
+-- those and the server clock, the same way on the server (server/Trains) and every client
 -- (client/Trains), so nothing about the train is ever sent. Ported from the Metro design canvas.
 --
 -- The track is lines and arcs laid end to end, measured by s (studs along it). The train is

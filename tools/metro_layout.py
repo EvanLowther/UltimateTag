@@ -28,6 +28,7 @@ Invisible barriers across the four tunnel mouths keep everyone but the train's r
 tunnels (client/Trains lets riders through).
 """
 import json
+import math
 import os
 import sys
 
@@ -192,10 +193,25 @@ def works(part):
     return ((lo + hi) / 2, y, z), (hi - lo, sy, sz)
 
 
+def tunnel_wall(pos, size, rot, roofs):
+    """A piece of the curved tunnel's wall (design studs). Its pieces overlap at the joints, which
+    flickers once the map is scaled up, so each one reaches up to the underside of its own roof
+    piece (the design staggers those) and every other one reaches a little lower."""
+    (x, y, z), (sx, sy, sz) = pos, size
+    top = min(roofs, key=lambda roof: math.hypot(roof[0] - x, roof[1] - z))[2]
+    bottom = y - sy / 2 - (0.1 if rot % 2 else 0)
+    return (x, (top + bottom) / 2, z), (sx, top - bottom, sz)
+
+
 def build():
     data = ci.load(DESIGN)
     m = Map()
     posters = 0
+    roofs = {}  # the curved tunnel's roof pieces by their turn: (x, z, underside)
+    for part in ci.parts(data):
+        if part["style"] == 31 and part["flags"] & ROOF and part["rows"][0] != [1, 0, 0]:
+            (x, y, z), sy = part["pos"], part["size"][1]
+            roofs.setdefault(part["rot"], []).append((x, z, y - sy / 2))
     for part in ci.parts(data):
         style, flags, motion, color = part["style"], part["flags"], part["motion"], part["color"]
         (x, y, z), (sx, sy, sz), rows = part["pos"], part["size"], part["rows"]
@@ -262,12 +278,8 @@ def build():
         group = ("Train" if motion and ("car" in motion or "gang" in motion) else
                  "Tunnels" if flags & TUNNEL else "Station")
         pos, size = works(part)
-        if style == 31 and not flags & ROOF and part["rot"] % 2:
-            # The curved tunnel's wall pieces overlap at their joints: every other one reaches a
-            # little further up (into the roof) and down so their tops and undersides never share a
-            # plane (the
-            # design staggers the roof pieces the same way).
-            size = (size[0], size[1] + 0.6, size[2])
+        if style == 31 and not flags & ROOF and part["rot"] in roofs:
+            pos, size = tunnel_wall(pos, size, part["rot"], roofs[part["rot"]])
         pos, size = place(pos, size, rows, cylinder=props.get("Shape") == "Cylinder")
         m.part(group, name, size, pos, color, rows, children=children, **props)
     # Invisible barriers across the tunnel mouths, over each track pit from its floor to the
@@ -301,9 +313,9 @@ def train_module(train):
             segs.append(f'\t\t{{ kind = "L", s0 = {far(g[1])}, len = {far(g[2])}, x = {far(g[3])}, '
                         f'z = {far(g[4])}, heading = {num(g[5])} }},')
         else:
-            segs.append(f'\t\t{{ kind = "A", s0 = {far(g[1])}, len = {far(g[2])}, cx = {far(g[3])}, '
-                        f'cz = {far(g[4])}, heading = {num(g[5])}, radius = {far(g[6])}, '
-                        f'side = {num(g[7])} }},')
+            segs.append(f'\t\t{{ kind = "A", s0 = {far(g[1])}, len = {far(g[2])}, '
+                        f'cx = {far(g[3])}, cz = {far(g[4])}, heading = {num(g[5])}, '
+                        f'radius = {far(g[6])}, side = {num(g[7])} }},')
     s = train["schedule"]
     run = lambda k: f"{{ {', '.join(far(v) for v in s[k])} }}"  # noqa: E731
     stops = ", ".join(f"{k} = {far(v)}" for k, v in train["stops"].items())
@@ -333,7 +345,8 @@ def train_module(train):
         f"\tdoors = {{ {doors} }},",
         "\t-- Hit zones: a rider's middle is up to aboardHeight over the floor; anyone else in the",
         "\t-- train's way while it moves, from pitDepth under its floor to roofHeight over it, is",
-        "\t-- hit; the exit push walks riders pushOut from its middle, aiming doorAim behind a door.",
+        "\t-- hit; the exit push walks riders pushOut from its middle, aiming doorAim behind a",
+        "\t-- door's middle.",
         *[f"\t{k} = {num(float(v))}," for k, v in zones.items()],
         "\tschedule = {",
         f"\t\tfirstWait = {FIRST_WAIT},",

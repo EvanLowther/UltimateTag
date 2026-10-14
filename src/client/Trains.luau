@@ -10,6 +10,8 @@
 --     out when the doors shut);
 --   - makes the exit stop's doorways (TrainFx "Gate") solid for you unless you're inside, so
 --     nobody gets on there;
+--   - keeps the invisible barriers across the tunnel mouths (TrainBarrier) solid for you unless
+--     you're aboard: nobody walks into a tunnel, but riders go through with the train;
 --   - flashes the platform edge lights (TrainWarn "A" or "B") before the train comes in, lights
 --     the exit arrows (TrainFx "Push") during the push, and runs the departure boards.
 -- The server (server/Trains) starts the timetable and decides who the train hits.
@@ -48,6 +50,7 @@ type Line = {
 	warnB: { BasePart },
 	arrows: { BasePart },
 	gates: { BasePart },
+	barriers: { BasePart },
 	boards: { TextLabel },
 	boardAt: number,
 	lastFrames: { TrainLine.Frame }?,
@@ -163,6 +166,7 @@ local function setup(map: Model)
 		warnB = {},
 		arrows = {},
 		gates = {},
+		barriers = {},
 		boards = {},
 		boardAt = 0,
 		lastFrames = nil,
@@ -197,6 +201,9 @@ local function setup(map: Model)
 			table.insert(new.arrows, item)
 		elseif fx == "Gate" then
 			table.insert(new.gates, item)
+		end
+		if item:GetAttribute("TrainBarrier") then
+			table.insert(new.barriers, item)
 		end
 		if item.Name == "DepartureBoard" then
 			makeBoard(item, new.boards)
@@ -248,7 +255,7 @@ local function step()
 	if parts and l.lastFrames then
 		local p = parts.root.Position
 		local height = p.Y - spec.floorY
-		if height > -1 and height < C.AboardHeight then
+		if height > -1 and height < spec.aboardHeight then
 			local car
 			car, u, w = TrainLine.locate(spec, l.lastFrames, p.X, p.Z, 0)
 			if car then
@@ -293,8 +300,8 @@ local function step()
 	if parts and exiting and (aboard or pushing) then
 		local p = parts.root.Position
 		local car
-		car, u, w = TrainLine.locate(spec, frames, p.X, p.Z, C.PushOut)
-		if car and w < C.PushOut - 1.5 and (state.push or pushing) then
+		car, u, w = TrainLine.locate(spec, frames, p.X, p.Z, spec.pushOut)
+		if car and w < spec.pushOut - 1.5 and (state.push or pushing) then
 			if not pushing then
 				pushing = true
 				setControls(false)
@@ -302,10 +309,10 @@ local function step()
 			if MoveState.busy == nil then
 				MoveState.busy = PUSH
 			end
-			local door = TrainLine.nearestDoor(spec, u) + 0.9
+			local door = TrainLine.nearestDoor(spec, u) + spec.doorAim
 			local targetW = if math.abs(u - door) > C.PushTurn and w < spec.width / 2 - 1.5
 				then w
-				else C.PushOut
+				else spec.pushOut
 			local x, z = TrainLine.trainPoint(spec, frames, door, targetW)
 			local to = Vector3.new(x - p.X, 0, z - p.Z)
 			parts.humanoid:Move(if to.Magnitude > 0.05 then to.Unit else Vector3.zero, false)
@@ -328,6 +335,12 @@ local function step()
 			end
 		end
 	)
+	-- The tunnel mouths are shut to everyone on foot; riders go through with the train.
+	show(l, "barrier", aboard, function()
+		for _, part in l.barriers do
+			part.CanCollide = not aboard
+		end
+	end)
 	-- Edge lights flash before the train comes in; the exit arrows flash during the push.
 	local flash = math.sin(os.clock() * math.pi * 5) > -0.2
 	show(l, "warnA", state.warnA and flash, function()
