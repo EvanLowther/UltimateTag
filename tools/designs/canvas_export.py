@@ -10,8 +10,8 @@ spinning and swinging parts like client/MapAmbience, and marks the KillHeight.
 
 Each part is [style, x, y, z, sx, sy, sz, rotation, flags, motion]; flags: 1 cylinder, 2 detail
 (no collision), 4 roof, 8 slide gate, 16 slip floor, 32 launch pad or speed boost, 64 wedge,
-128 tunnel (CANVAS["tunnel_groups"]). Roofs are parts named in CANVAS["roof_names"] (solid ones
-whose names start Roof, Ceiling or Skylight) or CANVAS["roof_extra"] (any).
+128 tunnel (CANVAS["tunnel_groups"]), 256 ball. Roofs are parts named in CANVAS["roof_names"]
+(solid ones whose names start Roof, Ceiling or Skylight) or CANVAS["roof_extra"] (any).
 
 A design with a train (the Metro) also has a `TRAIN` dict (its track, stops and schedule) and
 tags the train's parts; their motions say what moves them: {"car": n} rides with car n (0 is the
@@ -20,6 +20,9 @@ no-entry doorways), "nose" (the kill box); {"gang": n, "t": slice} is a slice of
 behind car n (GangwaySlice: 0 at that car's end, 1 at the next car's), so the gangway bends
 between the two cars; {"warn": "A"} flashes before a train comes in on that track. The
 invisible no-entry and nose boxes are exported as pink glass.
+
+A part spinning round another axis than up has SpinAxis: its motion gains "axis" and "cy" (the
+center's height). CANVAS "sky" and "plan" (heights and routes for a 2D plan) pass through.
 
 Sign text (a part's SurfaceGui labels) is listed in "texts" as [part index, face, text, color,
 glow], so the viewer can paint it on that face.
@@ -82,6 +85,11 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
                 center = attrs.get("SpinCenter")
                 motion["spin"] = attrs["Spin"]
                 motion["c"] = [center["Vector3"][0], center["Vector3"][2]] if center else None
+                if "SpinAxis" in attrs:  # a spin round another axis (a windmill's blades)
+                    axis = attrs["SpinAxis"]["Vector3"]
+                    n = math.sqrt(sum(a * a for a in axis)) or 1
+                    motion["axis"] = [round(a / n, 4) for a in axis]
+                    motion["cy"] = center["Vector3"][1] if center else None
             if "SwingPivot" in attrs:
                 axis = attrs["SwingAxis"]["Vector3"]
                 n = math.sqrt(sum(a * a for a in axis)) or 1
@@ -111,7 +119,7 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
                     motion_index[mk] = len(motions)
                     motions.append(motion)
                 mi = motion_index[mk]
-            flags = 1 if p.get("Shape") == "Cylinder" else 0
+            flags = 1 if p.get("Shape") == "Cylinder" else 256 if p.get("Shape") == "Ball" else 0
             if node.get("className") == "WedgePart":
                 flags |= 64
             if attrs.get("Slip"):
@@ -139,8 +147,8 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
                 for label in gui.get("children") or ():
                     lp = label.get("properties", {})
                     if label.get("className") == "TextLabel" and lp.get("Text"):
-                        texts.append([len(parts) - 1, gui["properties"]["Face"], lp["Text"],
-                                      "%02x%02x%02x" % tuple(round(c * 255) for c in lp["TextColor3"]),
+                        color = "%02x%02x%02x" % tuple(round(c * 255) for c in lp["TextColor3"])
+                        texts.append([len(parts) - 1, gui["properties"]["Face"], lp["Text"], color,
                                       1 if gui["properties"].get("LightInfluence") == 0 else 0])
     out = {
         "label": label, "killHeight": kill_height, "styles": styles, "rots": rots, "parts": parts,
@@ -149,6 +157,9 @@ def export(m, canvas, kill_height=None, label="Design", train=None, extra=None):
         "views": canvas["views"], "levels": canvas.get("levels", [{"label": "Whole map", "max": None}]),
         "figure": canvas["figure"], "cutaways": canvas.get("cutaways", []),
     }
+    for key in ("sky", "plan"):  # the viewer's sky colour, extra marks for a 2D plan
+        if key in canvas:
+            out[key] = canvas[key]
     if train:
         out["train"] = train
     out.update(extra or {})
