@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.52.1",
+	Version = "0.52.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -939,7 +939,7 @@ local Config = {
 					Glare = 0.2,
 					Haze = 1.6,
 				},
-				Bloom = { Intensity = 0.9, Size = 28, Threshold = 0.85 },
+				Bloom = { Intensity = 0.55, Size = 26, Threshold = 1.05 }, -- (0.9, 28, 0.85 was too strong)
 				ColorCorrection = {
 					Saturation = 0.22,
 					Contrast = 0.12,

@@ -2945,6 +2945,7 @@ def build():
 
 # ---- the game's copy --------------------------------------------------------------------------------
 
+NEON_STRENGTH = 0.8  # the game's neon: Neon parts' colours and glowing sign text dimmed by this
 SHOP_PROMPT = {"ActionText": "Shop", "HoldDuration": 0, "MaxActivationDistance": 10,
                "RequiresLineOfSight": False, "KeyboardKeyCode": "E"}
 WORLD_POINTS = ("SpinCenter", "SwingPivot")  # attributes that are places in the world, not directions
@@ -2952,8 +2953,9 @@ WORLD_POINTS = ("SpinCenter", "SwingPivot")  # attributes that are places in the
 
 def game_parts(m):
     """What the game needs on top of the design: SpawnLocations on the spawn ring (facing north,
-    to the boards), a prompt at each shop stall that opens the Shop, and the boards' rows empty
-    until the server fills them."""
+    to the boards), a prompt at each shop stall that opens the Shop, the boards' rows empty until
+    the server fills them, and the neon toned down (NEON_STRENGTH: it glows harder in the game
+    than on the canvas)."""
     spawns = []
     for k, (x, y, z) in enumerate(m.spawns):
         spawns.append({"name": "LobbySpawn" if k == 0 else f"LobbySpawn{k + 1}",
@@ -2977,6 +2979,13 @@ def game_parts(m):
             attrs = node.get("attributes") or {}
             if attrs.get("Field") in ("Name", "Value", "Wins", "Tags"):
                 node["children"][0]["children"][0]["properties"]["Text"] = ""
+            props = node["properties"]
+            if props.get("Material") == "Neon":
+                props["Color"] = [r(c * NEON_STRENGTH) for c in props["Color"]]
+            for child in node.get("children") or ():
+                gui = child["properties"]
+                if child["className"] == "SurfaceGui" and gui.get("LightInfluence") == 0:
+                    gui["Brightness"] = r(gui.get("Brightness", 1) * NEON_STRENGTH)
 
 
 def moved(m, d):
