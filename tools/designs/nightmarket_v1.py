@@ -719,7 +719,7 @@ def plaza(b):
             b.cyl(g, "SpawnPad", 0.06, 3.2, (x, y0 + 0.08, z), "lime", **NEON, Transparency=0.55)
             for s in (-1, 1):
                 b.part(g, "SpawnChevron", (1.5, 0.06, 0.36), (x + s * 0.5, y0 + 0.14 + 0.03 * (s + 1), z - 0.1),
-                       "white", rot_y(s * 38), **NEON)
+                       "white", rot_y(-s * 38), **NEON)
     with b.stage(4):
         for k in range(3):
             y = 20 + k * 7
@@ -2060,8 +2060,12 @@ def stations_info():
          (-1, 0), (2.0, 95.0)),
         (4, "LAUNCH PAD", ("STEP ON IT",), (50.8, 62.4), (0, 1), (52.0, 86.0)),
         (5, "LADDER", ("WALK INTO IT", "AND CLIMB"), (28.0, 87.5), (0, -1), (28.0, 70.0)),
-        (6, "TAG DUMMY", ("LEFT CLICK", "TO SWING"), (-30.0, 64.9), (0, 1), (-18.0, 70.0)),
+        (6, "TAG DUMMY", ("LEFT CLICK", "TO SWING"), (-30.0, 64.9), (0, 1), (-19.0, 80.0)),
     ]
+
+
+# The way you're running as you reach each station's start: its floor number reads that way up.
+SPOT_HEADING = {1: (-1, 0), 2: (0, 1), 3: (1, 0), 4: (0, -1), 5: (0, 1), 6: (-1, 0)}
 
 
 # Text widths in em (measured in the browser): Titillium Web Heavy for tips, Bangers for titles.
@@ -2228,7 +2232,7 @@ def chevron(b, g, x, z, dx, dz, color, size=2.2, y=0.0):
         off = (-math.cos(math.radians(a)) * 0.45 + s * -math.sin(math.radians(a)) * 0.6,
                -math.sin(math.radians(a)) * 0.45 + s * math.cos(math.radians(a)) * 0.6)
         b.part(g, "Arrow", (size, 0.05, 0.5), (x + off[0], y + 0.025 + (0.05 if s > 0 else 0), z + off[1]),
-               color, rot_y(-(a + s * 38)), **NEON, Transparency=0.15)
+               color, rot_y(-(a - s * 38)), **NEON, Transparency=0.15)
 
 
 def floor_text(b, g, name, x, z, w, h, text, color, up=(0, -1), y=0.0, font="Bangers"):
@@ -2261,7 +2265,7 @@ def alley_paint(b):
         for (n, title, tips, sign_xz, facing, (x, z)) in stations_info():
             b.cyl(g, "StationSpot", 0.05, 3.6, (x, 0.025, z), STATION_COLORS[n - 1], **NEON,
                   Transparency=0.45)
-            floor_text(b, g, "SpotNumber", x, z, 2.4, 2.4, str(n), "ink", up=(0, -1), y=0.0)
+            floor_text(b, g, "SpotNumber", x, z, 2.4, 2.4, str(n), "ink", up=SPOT_HEADING[n], y=0.0)
 
 
 WAYPOSTS = (  # (x, z), then blades: text, colour, the way it points
