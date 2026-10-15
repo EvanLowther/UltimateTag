@@ -75,7 +75,7 @@ BOARD_TOP = 31.6
 #   1 SLIDE      in through the gate's west half, west along the start lane: a 40-long sprint
 #                lane, the slide bar, then south through the crate tunnel
 #   2 GAP JUMP   east along the south lane: three platforms 4 high, gaps of 6 then 11
-#   3 WALL RUN   off the last platform along the 48-long wall, land on the mats
+#   3 WALL RUN   off the last platform, a 10-stud run-up, along the 48-long wall, land on the mats
 #   4 LAUNCH PAD north up the east side: the pad throws you onto the platform 16 high, 25 away;
 #                down its slide ramp into the launch pen
 #   5 LADDER     south into the infield, up the block to its ledge (14 high), down its slide ramp
@@ -101,11 +101,12 @@ BAR_POST = 0.6
 TUNNEL = (-57.4, -45.4, 66.0, 78.0, 4.2)  # inner x0, x1, z0, z1, inner height (12 wide, 12 long)
 TUNNEL_WALL = 2.0
 S_LANE = (88.2, 101.6)  # z: the south lane, between the guide fence and the wall's face
-GAP_PLATFORMS = ((-43.0, -35.0), (-29.0, -21.0), (-10.0, -2.0))  # x0, x1: gaps of 6, then 11
+GAP_PLATFORMS = ((-42.0, -36.0), (-30.0, -24.0), (-13.0, -7.0))  # x0, x1: gaps of 6, then 11
 GAP_Z = (88.4, 102.6)
 GAP_H = 4.0
-RUN_WALL = (-2.0, 46.0, 101.6, 103.2, 16.0)  # x0, x1, z0, z1, top: 48 long
-RUN_MATS = (46.0, 58.6, 88.4, 101.4, 0.8)
+RUN_WALL = (3.0, 51.0, 101.6, 103.2, 16.0)  # x0, x1, z0, z1, top: 48 long, after a 10 run-up
+RUN_UP = (8.0, 14.0)  # the run-up from the last platform to the wall: at least, at most
+RUN_MATS = (51.0, 58.6, 88.4, 101.4, 0.8)
 LAUNCH_PAD = (49.0, 55.0, 77.0, 83.0, 0.4)  # 6 x 6
 LAUNCH_PLATFORM = (44.0, 58.8, 48.8, 62.0, 16.0)
 LAUNCH_TARGET = (50.8, 55.0)
@@ -1901,7 +1902,7 @@ def alley(b):
                 b.lamp(g, "Floodlight", (1.4, 0.9, 1.4), p, (225, 238, 255), 2.2, FLOOD_RANGE,
                        "Flood", shape="Block", rows=axis_rows(flood_aim(p, target)), light=s > 0,
                        spot=("Right", FLOOD_ANGLE))
-        for (x, z, d) in ((34.0, 72.0, 4.0), (-15.5, 98.5, 3.0)):
+        for (x, z, d) in ((34.0, 72.0, 4.0), (-18.5, 99.0, 3.0)):
             b.cyl(g, "Puddle", 0.05, d, (x, 0.025, z), (26, 34, 56), Material="Glass",
                   Transparency=0.3)
             b.cyl(g, "PuddleGlow", 0.1, d * 0.8, (x, 0.05, z), "lime", **NEON, Transparency=0.82)
@@ -2050,19 +2051,19 @@ def course_paint(b):
 
 def stations_info():
     """Each station: number, title, tip lines, its sign (centre, facing) and where it starts.
-    Each sign faces you down the straight that leads to its station."""
+    Each sign stands at the side of the lane just before its station, turned to face you as you
+    run up to it."""
     return [
-        (1, "SLIDE", ("SPRINT (SHIFT),", "THEN PRESS C TO", "SLIDE UNDER"), (-7.2, 63.6), (0, -1),
+        (1, "SLIDE", ("SPRINT (SHIFT),", "THEN PRESS C TO", "SLIDE UNDER"), (-9.5, 63.2), (0, -1),
          (-9.0, 56.0)),
-        (2, "GAP JUMP", ("SPRINT AND JUMP", "AT THE VERY EDGE"), (-51.4, 103.0), (0, -1),
+        (2, "GAP JUMP", ("SPRINT AND", "JUMP AT THE", "VERY EDGE"), (-54.5, 100.5), (0.6, -0.8),
          (-51.4, 92.0)),
-        (3, "WALL RUN", ("JUMP AT A WALL", "WHILE FAST. YOU", "RUN ALONG IT"), (58.9, 95.0),
-         (-1, 0), (2.0, 95.0)),
-        (4, "LAUNCH PAD", ("STEP ON IT",), (50.8, 62.4), (0, 1), (52.0, 86.0)),
-        (5, "LADDER", ("WALK INTO IT", "AND CLIMB"), (28.0, 87.5), (0, -1), (28.0, 70.0)),
-        (6, "TAG DUMMY", ("LEFT CLICK", "TO SWING"), (-30.0, 64.9), (0, 1), (-19.0, 80.0)),
+        (3, "WALL RUN", ("JUMP AT A WALL", "WHILE FAST. YOU", "RUN ALONG IT"), (-1.6, 91.4),
+         (-0.7071, 0.7071), (-2.0, 98.5)),
+        (4, "LAUNCH PAD", ("STEP ON IT",), (55.4, 85.6), (-0.6, 0.8), (52.0, 86.0)),
+        (5, "LADDER", ("WALK INTO IT", "AND CLIMB"), (31.0, 85.6), (-0.4472, -0.8944), (28.0, 70.0)),
+        (6, "TAG DUMMY", ("LEFT CLICK", "TO SWING"), (-18.0, 84.2), (0.8, -0.6), (-19.0, 80.0)),
     ]
-
 
 # The way you're running as you reach each station's start: its floor number reads that way up.
 SPOT_HEADING = {1: (-1, 0), 2: (0, 1), 3: (1, 0), 4: (0, -1), 5: (0, 1), 6: (-1, 0)}
@@ -2075,14 +2076,14 @@ TEXT_EM = {
     "WALL RUN TO": 6.056, "LAUNCH OFF": 5.557, "SPRINT AND JUMP": 8.146, "AT THE VERY EDGE": 8.167,
     "WALK INTO IT": 6.021, "AND CLIMB": 4.972, "STEP ON IT": 4.851, "LEFT CLICK": 4.749,
     "TO SWING": 4.484, "SLIDE": 1.714, "WALL RUN": 3.134, "WALL JUMP": 3.514, "GAP JUMP": 3.202,
-    "LADDER": 2.402, "LAUNCH PAD": 3.893, "TAG DUMMY": 3.921,
+    "LADDER": 2.402, "LAUNCH PAD": 3.893, "TAG DUMMY": 3.921, "SPRINT AND": 5.502,
+    "JUMP AT THE": 5.683, "VERY EDGE": 4.913,
 }
 
 
-def sign_half(title, tips):
-    """Half the width of a station sign: the number panel (3), a gap, the text, a margin."""
-    text = max(TEXT_EM[title] * TITLE_H, max(TEXT_EM[t] for t in tips) * TIP_H) + 0.3
-    return (3.0 + 0.4 + text + 0.6) / 2
+def sign_fits(title, tips):
+    """The widest line on a station sign fits inside its margins."""
+    return max(TEXT_EM[title] * TITLE_H, max(TEXT_EM[t] for t in tips) * TIP_H) <= SIGN_W - 0.6
 
 
 def fly(start, velocity, target_y, edge=None):
@@ -2134,9 +2135,15 @@ LAUNCH = aim(PAD_START, LAUNCH_TARGET, LAUNCH_PLATFORM[4] + 0.4, PAD_EDGE)
 # ---- the station signs, floor paint and wayfinding -------------------------------------------------------
 
 STATION_COLORS = ("yellow", "cyan", "pink", "lime", "orange", "violet")
-SIGN_V = (2.8, 8.7)
-TIP_H = 1.1  # tip text height (the brief: at least 0.9)
-TITLE_H = 1.5
+SIGN_W = 8.0  # narrow enough to stand at the side of a lane
+SIGN_TOP = 8.8
+PANEL = 2.2  # the number panel, and the pictogram beside it
+TIP_H = 0.95  # tip text height (the brief: at least 0.9)
+TITLE_H = 1.3
+
+
+def sign_height(tips):
+    return 0.3 + PANEL + 0.2 + TITLE_H + 0.15 + len(tips) * (TIP_H + 0.1) + 0.2
 
 
 def pictogram(b, F, g, kind, u, v, w, color):
@@ -2191,34 +2198,37 @@ def pictogram(b, F, g, kind, u, v, w, color):
 
 
 def station_signs(b):
+    """Each station's sign: the number on a neon panel and its pictogram beside it, the title,
+    then the tip, on a dark plate with a neon rim, on two posts."""
     g = "AlleySigns"
     for (n, title, tips, (x, z), (dx, dz), _start) in stations_info():
         F = Frame(x, 0, z, dx, dz)
         color = STATION_COLORS[n - 1]
-        h = sign_half(title, tips)
-        v0, v1 = SIGN_V
+        h = SIGN_W / 2
+        v1 = SIGN_TOP
+        v0 = v1 - sign_height(tips)
         with b.stage(3):
             for u in (-h + 1.1, h - 1.1):
                 b.fbox(F, g, "SignPost", u - 0.15, u + 0.15, 0, v0, -0.15, 0.15, "black")
             b.fbox(F, g, "StationSign", -h, h, v0, v1, -0.15, 0.15, "plate")
             b.fbox(F, g, "StationSignRim", -h - 0.15, h + 0.15, v0 - 0.15, v1 + 0.15, -0.23, -0.17,
                    color, **NEON)
-            b.fbox(F, g, "NumberPanel", -h + 0.3, -h + 3.3, v0 + 0.3, v1 - 0.3, 0.15, 0.2, color,
-                   **NEON)
-            b.ftext(F, g, "StationNumber", -h + 0.4, -h + 3.2, v1 - 2.7, v1 - 0.4, 0.25, str(n), "ink",
-                    "Bangers", "Regular")
-            pictogram(b, F, g, title, -h + 1.8, v0 + 1.65, 0.2, "ink")
-            b.ftext(F, g, "StationTitle", -h + 3.7, h - 0.3, v1 - 0.3 - TITLE_H, v1 - 0.3, 0.45, title,
-                    color, "Bangers", "Regular", "Left", glow=True)
-            top = v1 - 0.45 - TITLE_H
+            p0, p1 = v1 - 0.3 - PANEL, v1 - 0.3
+            b.fbox(F, g, "NumberPanel", -h + 0.3, -h + 0.3 + PANEL, p0, p1, 0.15, 0.2, color, **NEON)
+            b.ftext(F, g, "StationNumber", -h + 0.4, -h + 0.2 + PANEL, p0 + 0.1, p1 - 0.1, 0.25, str(n),
+                    "ink", "Bangers", "Regular")
+            pictogram(b, F, g, title, -h + 0.6 + PANEL + 1.3, (p0 + p1) / 2, 0.2, color)
+            t1 = p0 - 0.2
+            b.ftext(F, g, "StationTitle", -h + 0.3, h - 0.3, t1 - TITLE_H, t1, 0.2, title, color,
+                    "Bangers", "Regular", "Left", glow=True)
+            top = t1 - TITLE_H - 0.15
             for k, line in enumerate(tips):
-                a = top - 0.1 - k * (TIP_H + 0.1)
-                b.ftext(F, g, "StationTip", -h + 3.7, h - 0.3, a - TIP_H, a, 0.45, line, "white",
+                a = top - k * (TIP_H + 0.1)
+                b.ftext(F, g, "StationTip", -h + 0.3, h - 0.3, a - TIP_H, a, 0.2, line, "white",
                         "TitilliumWeb", "Heavy", "Left", glow=True)
         with b.stage(4):
-            b.fbox(F, g, "Wash", -h + 1, h - 1, 0, WASH_STALL, 0.6, 5.0, color, **NEON,
+            b.fbox(F, g, "Wash", -h + 1, h - 1, 0, WASH_STALL, 0.6, 4.0, color, **NEON,
                    Transparency=0.86)
-
 
 def floor_mark(b, g, name, x0, x1, z0, z1, color, y=0.0, h=0.05, **kw):
     return b.box(g, name, x0, x1, y, y + h, z0, z1, color, **kw)
@@ -2257,8 +2267,8 @@ def alley_paint(b):
         floor_text(b, g, "FloorText", 6.4, 51.4, 9, 2.0, "FINISH", "pink", up=(0, -1),
                    font="TitilliumWeb")
         for (x, z, dx, dz) in ((-6.5, 59.5, -1, 0), (-14, 56.5, -1, 0), (-38, 56.5, -1, 0),
-                               (-51.4, 84, 0, 1), (-50, 95.5, 1, 0), (-32, 95, 1, 0),
-                               (-15.5, 95, 1, 0), (10, 92, 1, 0), (30, 92, 1, 0), (52, 72, 0, -1),
+                               (-51.4, 84, 0, 1), (-50, 95.5, 1, 0), (-33, 95, 1, 0),
+                               (-18.5, 95, 1, 0), (10, 92, 1, 0), (30, 92, 1, 0), (52, 72, 0, -1),
                                (19, 60, 0, 1), (36, 66, 0, 1), (26, 82, -1, 0), (-14, 82, -1, 0),
                                (-24, 81, 0, -1), (-10, 70, 1, 0), (6, 70, 0, -1), (6, 57, 0, -1)):
             chevron(b, g, x, z, dx, dz, "yellow")
@@ -2330,7 +2340,7 @@ ROOF_SIGNS = (  # building, face, centre along it, width, text, colour
     ("NW2", "S", 30.0, 22.0, "ARCADE", "cyan"), ("SE1", "W", 30.0, 20.0, "LAUNDRY 24H", "lime"),
 )
 FIRE_ESCAPES = (("MS2", "N", 6.0), ("SW1", "E", 40.0), ("FS", "N", 34.0), ("NW2", "S", 18.0),
-                ("NE1", "W", 46.0), ("S2", "N", 6.0))
+                ("NE1", "W", 46.0), ("S1", "N", 44.0))
 
 
 def rooftops(b):
@@ -2667,10 +2677,10 @@ def markers():
 STATION_NOTES = {
     1: "In through the gate's west half: a 40-long sprint lane, then the slide bar (underside 4.2, "
        "14 wide), then south through the crate tunnel (12 long, 12 wide, 4.2 inside: crouch).",
-    2: "Three platforms 4 high across the south lane, heading east: a 6 gap you can walk-jump, "
-       "then an 11 gap that needs a sprint.",
-    3: "Sprint off the last platform at the flat wall (48 long, 16 high) beside the 13-wide lane "
-       "and run along it; land on the mats at its end.",
+    2: "Three platforms 4 high (6 long) across the south lane, heading east: a 6 gap you can "
+       "walk-jump, then an 11 gap that needs a sprint.",
+    3: "Drop off the last platform, sprint the 10-stud run-up at the flat wall (48 long, 16 high) "
+       "beside the 13-wide lane and run along it; land on the mats at its end.",
     4: "North up the east side: the 6 x 6 chevron pad throws you onto the platform 16 high, 25 "
        "away (mats, a net on its far edges); slide down its ramp into the launch pen.",
     5: "South into the infield: a 4-wide ladder up the brick block to a ledge 14 high and 6 deep; "
@@ -2713,7 +2723,7 @@ def views():
         orbit("RICHEST PLAYERS board", "Boards", (38, 19.8, -36), (38, 19.8, FACADE_Z), 48),
         eye("1 Slide", "Stations", -31.0, 58.0, -46, 4.0, 58.5),
         eye("2 Gap jump", "Stations", -50.0, 95.0, -2, 6, 95),
-        eye("3 Wall run", "Stations", -4.0, 95.0, 44, 9, 100, y_extra=GAP_H),
+        eye("3 Wall run", "Stations", -10.0, 95.0, 44, 9, 100, y_extra=GAP_H),
         eye("4 Launch pad", "Stations", 52.0, 92.0, 51, 12, 56, y_extra=RUN_MATS[4]),
         eye("5 Ladder", "Stations", 30.0, 82.0, 18.8, 9, 82),
         eye("6 Tag dummy", "Stations", -14.0, 70.0, -30, 3, 71.5),
@@ -2854,9 +2864,10 @@ def stations_check(m):
             gaps[1] > jump_reach(0) - mapcheck.JUMP_MARGIN:
         problems.append("station 2: 6 should be a walking jump, 11 a sprinting one")
     if RUN_WALL[1] - RUN_WALL[0] != 48 or RUN_WALL[4] != 16 or \
-            abs(S_LANE[1] - S_LANE[0] - 14) > 1 or RUN_WALL[0] > GAP_PLATFORMS[-1][1]:
-        problems.append("station 3: the wall run isn't 48 x 16 beside a 14-wide lane, from the "
-                        "last platform")
+            abs(S_LANE[1] - S_LANE[0] - 14) > 1 or \
+            not RUN_UP[0] <= RUN_WALL[0] - GAP_PLATFORMS[-1][1] <= RUN_UP[1]:
+        problems.append("station 3: the wall run isn't 48 x 16 beside a 14-wide lane, after a "
+                        "run-up from the last platform")
     dist = math.hypot(LAUNCH_TARGET[0] - PAD_START[0], LAUNCH_TARGET[1] - PAD_START[2])
     landing = fly(PAD_START, LAUNCH, LAUNCH_PLATFORM[4] + MAT, PAD_EDGE)
     if LAUNCH_PAD[1] - LAUNCH_PAD[0] != 6 or LAUNCH_PAD[3] - LAUNCH_PAD[2] != 6 or \
@@ -2869,6 +2880,11 @@ def stations_check(m):
     east_guide = min(g[0] for g in GUIDES if g[0] == g[2] and g[0] > x1)
     if east_guide - 0.2 - x1 < CLEAR_RUN:
         problems.append("station 5: something stands in front of the ladder")
+    for (n, title, tips, (x, z), facing, start) in stations_info():
+        if not sign_fits(title, tips):
+            problems.append("station %d: its sign's text doesn't fit %g across" % (n, SIGN_W))
+        if SIGN_TOP - sign_height(tips) < 0.5:
+            problems.append("station %d: its sign comes down to the floor" % n)
     if GUIDE_H <= mapcheck.JUMP_UP:
         problems.append("the guide fences can be jumped")
     if len(spawn_points()) != SPAWNS or any(abs(math.hypot(x, z) - SPAWN_R) > 0.05
