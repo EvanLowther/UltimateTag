@@ -79,19 +79,24 @@ local function names(players: { Player }): string
 	return table.concat(list, ", ")
 end
 
--- Respawns a player in the lobby (the only SpawnLocation in the game).
+-- Respawns a player in the lobby (its spawn ring has the only SpawnLocations in the game).
 local function sendToLobby(player: Player)
 	if player.Parent then
 		player:LoadCharacter()
 	end
 end
 
--- The lobby's SpawnLocation is turned off in Sandbox so players spawn on the test map.
+-- The lobby's SpawnLocations (the spawn ring) are turned off in Sandbox so players spawn on the
+-- test map.
 local function setLobbySpawn(enabled: boolean)
 	local lobby = workspace:FindFirstChild("Lobby")
-	local spawn = lobby and lobby:FindFirstChildOfClass("SpawnLocation")
-	if spawn then
-		spawn.Enabled = enabled
+	if not lobby then
+		return
+	end
+	for _, spawn in lobby:GetDescendants() do
+		if spawn:IsA("SpawnLocation") then
+			spawn.Enabled = enabled
+		end
 	end
 end
 

@@ -1,0 +1,743 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "DummyBase",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     2.6,
+     2.6
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       0.3,
+       75.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "DummyBody",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.0,
+     1.7,
+     1.7
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       2.6,
+       75.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "DummyTarget",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     1.8,
+     1.8
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       3.4,
+       75.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyHead",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.5,
+     1.5,
+     1.5
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       5.25,
+       75.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyArms",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.5,
+     3.0
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       3.9,
+       75.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyBase2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     2.6,
+     2.6
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.969,
+       0.3,
+       69.75
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "DummyBody2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.0,
+     1.7,
+     1.7
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.969,
+       2.6,
+       69.75
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "DummyTarget2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     1.8,
+     1.8
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.969,
+       3.4,
+       69.75
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyHead2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.5,
+     1.5,
+     1.5
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.969,
+       5.25,
+       69.75
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyArms2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.5,
+     3.0
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.969,
+       3.9,
+       69.75
+      ],
+      "orientation": [
+       [
+        0.866,
+        0,
+        -0.5
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.5,
+        0,
+        0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyBase3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     2.6,
+     2.6
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1973.031,
+       0.3,
+       69.75
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "DummyBody3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.0,
+     1.7,
+     1.7
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1973.031,
+       2.6,
+       69.75
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "DummyTarget3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     1.8,
+     1.8
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1973.031,
+       3.4,
+       69.75
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyHead3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.5,
+     1.5,
+     1.5
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1973.031,
+       5.25,
+       69.75
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DummyArms3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.5,
+     3.0
+    ],
+    "Color": [
+     0.788,
+     0.643,
+     0.42
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1973.031,
+       3.9,
+       69.75
+      ],
+      "orientation": [
+       [
+        -0.866,
+        0,
+        -0.5
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.5,
+        0,
+        -0.866
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  }
+ ]
+}

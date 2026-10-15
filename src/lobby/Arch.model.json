@@ -1,0 +1,2446 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "ArchPillar",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     30,
+     3
+    ],
+    "Color": [
+     0.251,
+     0.141,
+     0.133
+    ],
+    "Material": "Brick",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       15.0,
+       -16.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "ArchPillar2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     30,
+     3
+    ],
+    "Color": [
+     0.251,
+     0.141,
+     0.133
+    ],
+    "Material": "Brick",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       15.0,
+       16.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "ArchBeam",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.0,
+     2,
+     30
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       29.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchSign",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     14,
+     30
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       20.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "PillarCap",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.6,
+     1,
+     3.3
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       30.5,
+       -16.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "PillarBase",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.6,
+     1.2,
+     3.3
+    ],
+    "Color": [
+     0.188,
+     0.208,
+     0.302
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       0.6,
+       -16.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "PillarCap2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.6,
+     1,
+     3.3
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       30.5,
+       16.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "PillarBase2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.6,
+     1.2,
+     3.3
+    ],
+    "Color": [
+     0.188,
+     0.208,
+     0.302
+    ],
+    "Material": "Slate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       0.6,
+       16.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchChain",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.3,
+     0.3
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       27.5,
+       -10.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchClamp",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.9,
+     0.35,
+     1.0
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       27.225,
+       -10.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchChain2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.3,
+     0.3
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       27.5,
+       10.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchClamp2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.9,
+     0.35,
+     1.0
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.0,
+       27.225,
+       10.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchPlate",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.2,
+     13.4,
+     0.4
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "Rubber",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.5,
+       20.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchFrame",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.9,
+     0.35,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.425,
+       26.875,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchFrame2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.9,
+     0.35,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.425,
+       13.125,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchFrame3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.35,
+     13.4,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.425,
+       20.0,
+       -14.775
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchFrame4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.35,
+     13.4,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.425,
+       20.0,
+       14.775
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchTube",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.6,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.18,
+       26.4,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchTube2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.6,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.18,
+       13.6,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchTube3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12.8,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.18,
+       20.0,
+       -14.3
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchTube4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12.8,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.18,
+       20.0,
+       14.3
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Bolt13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.06,
+       13.125,
+       -14.775
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bolt14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.06,
+       26.875,
+       -14.775
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bolt15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.06,
+       13.125,
+       14.775
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bolt16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.06,
+       26.875,
+       14.775
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchText",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     27.2,
+     6.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.025,
+       23.3,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "ULTIMATE TAG",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.831,
+         0.0
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        },
+        "TextStrokeColor3": [
+         1.0,
+         0.18,
+         0.576
+        ],
+        "TextStrokeTransparency": 0
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Halo4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32.0,
+     16.2,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.95,
+       20.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.72,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Wash4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     0.2,
+     7.6
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2037.4,
+       0.46,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.84,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchText2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     18.78,
+     4.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.025,
+       17.2,
+       -1.21
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "NIGHT MARKE",
+        "TextScaled": true,
+        "TextColor3": [
+         0.098,
+         0.89,
+         1.0
+        ],
+        "TextXAlignment": "Right",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ArchText3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.42,
+     4.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2041.025,
+       17.2,
+       9.39
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "T",
+        "TextScaled": true,
+        "TextColor3": [
+         0.098,
+         0.89,
+         1.0
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "attributes": {
+    "Flicker": true
+   }
+  },
+  {
+   "name": "TagBurst",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.0,
+     5.0,
+     0.06
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2040.87,
+       26.4,
+       12.6
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.139,
+        0.99,
+        0
+       ],
+       [
+        -0.99,
+        0.139,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "TagBurst2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     4.2,
+     0.06
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2040.77,
+       26.4,
+       12.6
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.799,
+        0.602,
+        0
+       ],
+       [
+        -0.602,
+        0.799,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "TagBurst3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     3.4,
+     0.06
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2040.67,
+       26.4,
+       12.6
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.927,
+        0.375,
+        0
+       ],
+       [
+        -0.375,
+        0.927,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BurstText",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2040.575,
+       26.4,
+       12.6
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TAG!",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ArchBackPlate",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.2,
+     13.4,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.45,
+       20.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "ArchBackText",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     5.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.875,
+       23.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "ULTIMATE TAG",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.831,
+         0.0
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        },
+        "TextStrokeColor3": [
+         1.0,
+         0.18,
+         0.576
+        ],
+        "TextStrokeTransparency": 0
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ArchBackText2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     18,
+     2.6,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.875,
+       17.3,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "BACK TO THE PLAZA",
+        "TextScaled": true,
+        "TextColor3": [
+         0.098,
+         0.89,
+         1.0
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ArchTube5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.6,
+     0.26,
+     0.26
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.75,
+       26.4,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchTube6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28.6,
+     0.26,
+     0.26
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.75,
+       13.6,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchTube7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12.8,
+     0.26,
+     0.26
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.75,
+       20.0,
+       14.3
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchTube8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12.8,
+     0.26,
+     0.26
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2042.75,
+       20.0,
+       -14.3
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "ArchLight",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2036.0,
+       16.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 1,
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Neon",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 1.4,
+      "Range": 30,
+      "Color": [
+       1.0,
+       0.18,
+       0.576
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  }
+ ]
+}

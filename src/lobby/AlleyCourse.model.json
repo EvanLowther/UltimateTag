@@ -1,0 +1,305 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Locker",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.8,
+     6.0,
+     2.8
+    ],
+    "Color": [
+     0.235,
+     0.353,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1941.7,
+       3.0,
+       83.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Locker2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.8,
+     6.0,
+     2.8
+    ],
+    "Color": [
+     0.235,
+     0.353,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1941.7,
+       3.0,
+       86.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BenchSeat17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.35,
+     1.5
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2018.0,
+       1.625,
+       49.65
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BenchBack17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     1.8,
+     0.3
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2018.0,
+       2.7,
+       49.0
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BenchLeg45",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.45,
+     1.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2015.6,
+       0.725,
+       49.6
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BenchLeg46",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.45,
+     1.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2020.4,
+       0.725,
+       49.6
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,197 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "RunWall",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48.0,
+     16.0,
+     1.6
+    ],
+    "Color": [
+     0.361,
+     0.188,
+     0.165
+    ],
+    "Material": "Brick",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2027.0,
+       8.0,
+       102.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LandingMat",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.6,
+     0.8,
+     13.0
+    ],
+    "Color": [
+     0.184,
+     0.435,
+     0.839
+    ],
+    "Material": "Rubber",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2054.8,
+       0.4,
+       94.9
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "WallBand",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     46.8,
+     1.2,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2027.0,
+       7.0,
+       101.575
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WallBand2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     46.8,
+     0.5,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2027.0,
+       12.65,
+       101.575
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

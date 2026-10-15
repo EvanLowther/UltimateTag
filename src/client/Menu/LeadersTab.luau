@@ -47,7 +47,12 @@ end
 
 function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local player = Players.LocalPlayer
-	local boardDefs = Config.Leaderboards.Boards
+	local boardDefs = {}
+	for _, def in Config.Leaderboards.Boards do
+		if def.Menu ~= false then -- (Coins is only on the lobby's board)
+			table.insert(boardDefs, def)
+		end
+	end
 
 	-- Leaderboards.
 	local boardsFrame = Ui.frame(page)

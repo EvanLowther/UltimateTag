@@ -1,0 +1,707 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "LaunchPlatform",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14.8,
+     16.0,
+     13.2
+    ],
+    "Color": [
+     0.227,
+     0.239,
+     0.282
+    ],
+    "Material": "Concrete",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2051.4,
+       8.0,
+       55.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SlideRamp",
+   "className": "WedgePart",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12.0,
+     16.0,
+     19.0
+    ],
+    "Color": [
+     0.541,
+     0.561,
+     0.6
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2034.5,
+       8.0,
+       55.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LaunchPad",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.4,
+     6.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.0,
+       0.2,
+       80.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      -2.1,
+      69,
+      -43.2
+     ]
+    }
+   }
+  },
+  {
+   "name": "LandingMat2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     11.8,
+     0.4,
+     11.2
+    ],
+    "Color": [
+     0.184,
+     0.435,
+     0.839
+    ],
+    "Material": "Rubber",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2051.9,
+       16.2,
+       55.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "SafetyNet",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.15,
+     13.2
+    ],
+    "Color": [
+     0.157,
+     0.173,
+     0.204
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2058.7,
+       17.625,
+       55.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.4
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "SafetyNet2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12.6,
+     3.15,
+     0.2
+    ],
+    "Color": [
+     0.157,
+     0.173,
+     0.204
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.3,
+       17.625,
+       48.9
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.4
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "PadRim",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.6,
+     0.2,
+     6.6
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.0,
+       0.1,
+       80.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Arrow",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2051.4,
+       0.425,
+       82.15
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.6,
+       0.475,
+       82.15
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2051.4,
+       0.425,
+       80.45
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.6,
+       0.475,
+       80.45
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2051.4,
+       0.425,
+       78.75
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.6,
+       0.475,
+       78.75
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "EdgePaint7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     11.7,
+     0.05,
+     0.9
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2051.9,
+       16.025,
+       61.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  }
+ ]
+}

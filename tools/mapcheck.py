@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Checks every map must pass. Each map generator runs them on what it builds, and you can run
-them on the map folders themselves (every map in rotation, or the ones you name):
-    python3 tools/mapcheck.py [MapName ...]
+them on the map folders themselves (every map in rotation and the lobby, or the ones you name):
+    python3 tools/mapcheck.py [MapName ... | Lobby]
 
+  sizes    No part thinner than Roblox allows (0.001) or built inside out (a negative size).
   flicker  No two visible faces in the same plane facing the same way where they overlap (that's
            z-fighting: the surfaces flicker as the camera moves), and no surface laid closer
            than MIN_GAP over another (it flickers from a distance). A face is ignored when it's
@@ -436,6 +437,14 @@ def _obb_overlap(a, b, grow_a=(0, 0, 0), shrink=0.02):
     return True
 
 
+def sizes(parts, limit=20):
+    """Parts under Roblox's smallest size (0.001: no thickness at all), or built from bounds the
+    wrong way round (a negative size)."""
+    bad = [p for p in parts if min(p.half) < 0.0005]
+    return [f"sizes: {p.name} at ({p.pos[0]:.1f}, {p.pos[1]:.1f}, {p.pos[2]:.1f}) has size "
+            f"{[round(2 * h, 3) for h in p.half]}" for p in bad[:limit]]
+
+
 def windows(parts, limit=40):
     problems = []
     panes = [p for p in parts if p.name == "Window"]
@@ -828,7 +837,7 @@ def check(parts, spawns, attributes, ignore_tops=(), routes=()):
     """All the checks. `parts` from parts_from_nodes (or load_folder); `routes` are extra ways
     across: ((x, y, z) from, (x, y, z) to, both ways?), as well as the map's ReachRoutes."""
     routes = tuple(routes) + tuple(parse_routes(attributes.get("ReachRoutes")))
-    problems = flicker(parts) + windows(parts) + ladders(parts)
+    problems = sizes(parts) + flicker(parts) + windows(parts) + ladders(parts)
     # The map's OutOfBounds attribute names parts whose tops aren't play area (roofs, ceilings,
     # tall furniture), comma-separated.
     off = [n.strip() for n in str(attributes.get("OutOfBounds", "")).split(",") if n.strip()]
@@ -845,11 +854,13 @@ def check_map(m, attributes, ignore_tops=(), routes=()):
 
 
 if __name__ == "__main__":
-    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src", "maps")
-    names = sys.argv[1:] or sorted(os.listdir(root))
+    src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src")
+    root = os.path.join(src, "maps")
+    names = sys.argv[1:] or sorted(os.listdir(root)) + ["Lobby"]
     failed = False
     for name in names:
-        folder = os.path.join(root, name)
+        # The lobby (src/lobby, tools/lobby_layout.py) is checked like a map.
+        folder = os.path.join(src, "lobby") if name == "Lobby" else os.path.join(root, name)
         if not os.path.isdir(folder):
             continue
         parts, spawns, attrs = load_folder(folder)

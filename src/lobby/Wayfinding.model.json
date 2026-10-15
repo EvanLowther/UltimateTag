@@ -1,0 +1,3621 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "SignPole",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14.9,
+     0.4,
+     0.4
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2022.0,
+       7.75,
+       31.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPoleCap",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.7,
+     0.7
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2022.0,
+       15.3,
+       31.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "WayBlade",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2025.0,
+       10.4,
+       31.0
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2027.6,
+       10.4,
+       31.0
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0.707,
+        0.0
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2024.95,
+       10.4,
+       31.125
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SHOP",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2024.95,
+       10.4,
+       30.875
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SHOP",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayBlade2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2022.0,
+       12.0,
+       28.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2022.0,
+       12.0,
+       25.4
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        0.707,
+        -0.707,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2022.125,
+       12.0,
+       28.05
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LEADERS",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2021.875,
+       12.0,
+       28.05
+      ],
+      "orientation": [
+       [
+        0.0,
+        0,
+        1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1.0,
+        0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LEADERS",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayBlade3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2021.009,
+       13.6,
+       33.832
+      ],
+      "orientation": [
+       [
+        0.33,
+        0,
+        0.944
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.944,
+        0,
+        0.33
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2020.15,
+       13.6,
+       36.286
+      ],
+      "orientation": [
+       [
+        0.234,
+        -0.234,
+        0.944
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        -0.667,
+        0.667,
+        0.33
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2020.907,
+       13.6,
+       33.743
+      ],
+      "orientation": [
+       [
+        0.33,
+        0,
+        0.944
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.944,
+        0,
+        0.33
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TRAINING",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2021.143,
+       13.6,
+       33.826
+      ],
+      "orientation": [
+       [
+        -0.33,
+        0,
+        -0.944
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.944,
+        0,
+        -0.33
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TRAINING",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     7.0,
+     7.0
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2022.0,
+       0.425,
+       31.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.9,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPole2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14.9,
+     0.4,
+     0.4
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       7.75,
+       -24.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPoleCap2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.7,
+     0.7
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       15.3,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "WayBlade4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1971.114,
+       10.4,
+       -26.785
+      ],
+      "orientation": [
+       [
+        -0.371,
+        0,
+        -0.928
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.928,
+        0,
+        -0.371
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1972.08,
+       10.4,
+       -29.199
+      ],
+      "orientation": [
+       [
+        -0.263,
+        0.263,
+        -0.928
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        0.657,
+        -0.657,
+        -0.371
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1971.212,
+       10.4,
+       -26.693
+      ],
+      "orientation": [
+       [
+        -0.371,
+        0,
+        -0.928
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.928,
+        0,
+        -0.371
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LEADERS",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.98,
+       10.4,
+       -26.785
+      ],
+      "orientation": [
+       [
+        0.371,
+        0,
+        0.928
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.928,
+        0,
+        0.371
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LEADERS",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayBlade5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1972.996,
+       12.0,
+       -23.85
+      ],
+      "orientation": [
+       [
+        -0.999,
+        0,
+        0.05
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.05,
+        0,
+        -0.999
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1975.593,
+       12.0,
+       -23.72
+      ],
+      "orientation": [
+       [
+        -0.706,
+        0.706,
+        0.05
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        -0.035,
+        0.035,
+        -0.999
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1972.94,
+       12.0,
+       -23.728
+      ],
+      "orientation": [
+       [
+        -0.999,
+        0,
+        0.05
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.05,
+        0,
+        -0.999
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SHOP",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1972.953,
+       12.0,
+       -23.978
+      ],
+      "orientation": [
+       [
+        0.999,
+        0,
+        -0.05
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.05,
+        0,
+        0.999
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SHOP",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayBlade6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.728,
+       13.6,
+       -21.09
+      ],
+      "orientation": [
+       [
+        -0.243,
+        0,
+        0.97
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.97,
+        0,
+        -0.243
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1971.358,
+       13.6,
+       -18.567
+      ],
+      "orientation": [
+       [
+        -0.171,
+        0.171,
+        0.97
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        -0.686,
+        0.686,
+        -0.243
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.594,
+       13.6,
+       -21.108
+      ],
+      "orientation": [
+       [
+        -0.243,
+        0,
+        0.97
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.97,
+        0,
+        -0.243
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TRAINING",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.837,
+       13.6,
+       -21.168
+      ],
+      "orientation": [
+       [
+        0.243,
+        0,
+        -0.97
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.97,
+        0,
+        0.243
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TRAINING",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     7.0,
+     7.0
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.0,
+       0.425,
+       -24.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.9,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPole3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14.8,
+     0.4,
+     0.4
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1946.0,
+       7.8,
+       22.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPoleCap3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.7,
+     0.7
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1946.0,
+       15.3,
+       22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "WayBlade7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1949.0,
+       10.4,
+       22.0
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1951.6,
+       10.4,
+       22.0
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0.707,
+        0.0
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1948.95,
+       10.4,
+       22.125
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "PLAZA",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1948.95,
+       10.4,
+       21.875
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "PLAZA",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayBlade8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1947.231,
+       12.0,
+       24.736
+      ],
+      "orientation": [
+       [
+        -0.41,
+        0,
+        0.912
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.912,
+        0,
+        -0.41
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1948.298,
+       12.0,
+       27.107
+      ],
+      "orientation": [
+       [
+        -0.29,
+        0.29,
+        0.912
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        -0.645,
+        0.645,
+        -0.41
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1947.097,
+       12.0,
+       24.741
+      ],
+      "orientation": [
+       [
+        -0.41,
+        0,
+        0.912
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.912,
+        0,
+        -0.41
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TRAINING",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1947.325,
+       12.0,
+       24.639
+      ],
+      "orientation": [
+       [
+        0.41,
+        0,
+        -0.912
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.912,
+        0,
+        0.41
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TRAINING",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     7.0,
+     7.0
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1946.0,
+       0.525,
+       22.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.9,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPole4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     15.05,
+     0.4,
+     0.4
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2108.0,
+       7.675,
+       26.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPoleCap4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.7,
+     0.7
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2108.0,
+       15.3,
+       26.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "WayBlade9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2105.058,
+       10.4,
+       25.412
+      ],
+      "orientation": [
+       [
+        0.981,
+        0,
+        -0.196
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.196,
+        0,
+        0.981
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2102.509,
+       10.4,
+       24.902
+      ],
+      "orientation": [
+       [
+        0.693,
+        -0.693,
+        -0.196
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        0.139,
+        -0.139,
+        0.981
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2105.132,
+       10.4,
+       25.299
+      ],
+      "orientation": [
+       [
+        0.981,
+        0,
+        -0.196
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.196,
+        0,
+        0.981
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "PLAZA",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2105.083,
+       10.4,
+       25.544
+      ],
+      "orientation": [
+       [
+        -0.981,
+        0,
+        0.196
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.196,
+        0,
+        -0.981
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "PLAZA",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayBlade10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.2,
+     0.2
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2105.428,
+       12.0,
+       24.457
+      ],
+      "orientation": [
+       [
+        0.857,
+        0,
+        -0.514
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.514,
+        0,
+        0.857
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayArrow10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.95,
+     0.3
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2103.198,
+       12.0,
+       23.119
+      ],
+      "orientation": [
+       [
+        0.606,
+        -0.606,
+        -0.514
+       ],
+       [
+        0.707,
+        0.707,
+        0
+       ],
+       [
+        0.364,
+        -0.364,
+        0.857
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WayText19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2105.535,
+       12.0,
+       24.375
+      ],
+      "orientation": [
+       [
+        0.857,
+        0,
+        -0.514
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.514,
+        0,
+        0.857
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LEADERS",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "WayText20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.5,
+     1.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2105.406,
+       12.0,
+       24.589
+      ],
+      "orientation": [
+       [
+        -0.857,
+        0,
+        0.514
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.514,
+        0,
+        -0.857
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LEADERS",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     7.0,
+     7.0
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2108.0,
+       0.275,
+       26.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.9,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,3203 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "LaneLine",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40.0,
+     0.05,
+     0.3
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1976.0,
+       0.025,
+       49.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "LaneLine2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40.0,
+     0.05,
+     0.3
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1976.0,
+       0.025,
+       63.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StartLine",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.05,
+     13.7
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1996.0,
+       0.025,
+       56.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "FloorText",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     3.6,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1974.0,
+       0.06,
+       56.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SPRINT!",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "FloorText2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1993.5,
+       0.06,
+       51.4
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        -0.0,
+        1.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "START",
+        "TextScaled": true,
+        "TextColor3": [
+         0.616,
+         1.0,
+         0.18
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "FloorText3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2006.4,
+       0.06,
+       51.4
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        -0.0,
+        -1.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "FINISH",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.18,
+         0.576
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Arrow7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1993.95,
+       0.025,
+       60.1
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1993.95,
+       0.075,
+       58.9
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1986.45,
+       0.025,
+       57.1
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1986.45,
+       0.075,
+       55.9
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1962.45,
+       0.025,
+       57.1
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1962.45,
+       0.075,
+       55.9
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1949.2,
+       0.025,
+       83.55
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        -0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1948.0,
+       0.075,
+       83.55
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        -0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1949.55,
+       0.025,
+       94.9
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1949.55,
+       0.075,
+       96.1
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.55,
+       0.025,
+       94.4
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.55,
+       0.075,
+       95.6
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1981.05,
+       0.025,
+       94.4
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1981.05,
+       0.075,
+       95.6
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2009.55,
+       0.025,
+       91.4
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2009.55,
+       0.075,
+       92.6
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2029.55,
+       0.025,
+       91.4
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2029.55,
+       0.075,
+       92.6
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2051.4,
+       0.025,
+       72.45
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.6,
+       0.075,
+       72.45
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2019.6,
+       0.025,
+       59.55
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        -0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2018.4,
+       0.075,
+       59.55
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        -0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2036.6,
+       0.025,
+       65.55
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        -0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2035.4,
+       0.075,
+       65.55
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        -0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2026.45,
+       0.025,
+       82.6
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2026.45,
+       0.075,
+       81.4
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1986.45,
+       0.025,
+       82.6
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1986.45,
+       0.075,
+       81.4
+      ],
+      "orientation": [
+       [
+        -0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        -0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1975.4,
+       0.025,
+       81.45
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1976.6,
+       0.075,
+       81.45
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow37",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1989.55,
+       0.025,
+       69.4
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        -0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1989.55,
+       0.075,
+       70.6
+      ],
+      "orientation": [
+       [
+        0.788,
+        0,
+        0.616
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.616,
+        0,
+        0.788
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow39",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2005.4,
+       0.025,
+       70.45
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2006.6,
+       0.075,
+       70.45
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2005.4,
+       0.025,
+       57.45
+      ],
+      "orientation": [
+       [
+        0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Arrow42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     0.05,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2006.6,
+       0.075,
+       57.45
+      ],
+      "orientation": [
+       [
+        -0.616,
+        0,
+        0.788
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.788,
+        0,
+        -0.616
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.15,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationSpot",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     3.6,
+     3.6
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1991.0,
+       0.025,
+       56.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.45,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SpotNumber",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1991.0,
+       0.06,
+       56.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "1",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationSpot2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     3.6,
+     3.6
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1948.6,
+       0.025,
+       92.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.45,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SpotNumber2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1948.6,
+       0.06,
+       92.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        -0.0,
+        1.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "2",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationSpot3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     3.6,
+     3.6
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.0,
+       0.025,
+       98.5
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.45,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SpotNumber3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.0,
+       0.06,
+       98.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        -1.0,
+        0.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "3",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationSpot4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     3.6,
+     3.6
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.0,
+       0.025,
+       86.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.45,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SpotNumber4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2052.0,
+       0.06,
+       86.0
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        -0.0,
+        -1.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "4",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationSpot5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     3.6,
+     3.6
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2028.0,
+       0.025,
+       70.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.45,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SpotNumber5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2028.0,
+       0.06,
+       70.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        -0.0,
+        1.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "5",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationSpot6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     3.6,
+     3.6
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1981.0,
+       0.025,
+       80.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "Transparency": 0.45,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SpotNumber6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1981.0,
+       0.06,
+       80.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "6",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

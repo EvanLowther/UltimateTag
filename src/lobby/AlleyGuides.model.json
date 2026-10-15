@@ -1,0 +1,4163 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "GuidePost",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.0,
+       3.0,
+       48.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.0,
+       3.0,
+       56.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.0,
+       3.0,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuideRail",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     7.5
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.0,
+       5.7,
+       52.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     7.5
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.0,
+       5.7,
+       60.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideLink",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     7.5
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.0,
+       2.825,
+       52.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     7.5
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.0,
+       2.825,
+       60.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuidePost4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1954.6,
+       3.0,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       3.0,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuideRail3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.6,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1956.1,
+       5.7,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideLink3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.6,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1956.1,
+       2.825,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuidePost6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1966.08,
+       3.0,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1974.56,
+       3.0,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1983.04,
+       3.0,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1991.52,
+       3.0,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuideRail4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1961.84,
+       5.7,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.32,
+       5.7,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1978.8,
+       5.7,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1987.28,
+       5.7,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1995.76,
+       5.7,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideLink4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1961.84,
+       2.825,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1970.32,
+       2.825,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1978.8,
+       2.825,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1987.28,
+       2.825,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.08,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1995.76,
+       2.825,
+       64.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuidePost10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       3.0,
+       72.133
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       3.0,
+       80.067
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuideRail9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     7.533
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       5.7,
+       68.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     7.533
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       5.7,
+       76.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     7.533
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       5.7,
+       84.033
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideLink9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     7.533
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       2.825,
+       68.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     7.533
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       2.825,
+       76.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     7.533
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1957.6,
+       2.825,
+       84.033
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuidePost13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1965.436,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1973.273,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1981.109,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1988.945,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1996.782,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2004.618,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.455,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2020.291,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2028.127,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2035.964,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       3.0,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuideRail12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1961.518,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1969.355,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1977.191,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1985.027,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1992.864,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.7,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2008.536,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2016.373,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2024.209,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2032.045,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     0.2,
+     0.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2039.882,
+       5.7,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideLink12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1961.518,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1969.355,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1977.191,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1985.027,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1992.864,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.7,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2008.536,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2016.373,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2024.209,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2032.045,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.436,
+     5.55,
+     0.1
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2039.882,
+       2.825,
+       88.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuidePost24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       3.0,
+       62.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       3.0,
+       70.667
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       3.0,
+       79.333
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuideRail23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     8.267
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       5.7,
+       66.333
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     8.267
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       5.7,
+       75.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     8.267
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       5.7,
+       83.667
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideLink23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     8.267
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       2.825,
+       66.333
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     8.267
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       2.825,
+       75.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     8.267
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2043.8,
+       2.825,
+       83.667
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuidePost27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       3.0,
+       48.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       3.0,
+       57.667
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       3.0,
+       66.933
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuidePost30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     6.0,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       3.0,
+       76.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Look": "Hazard"
+   }
+  },
+  {
+   "name": "GuideRail26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     8.867
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       5.7,
+       53.033
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     8.867
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       5.7,
+       62.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideRail28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     0.2,
+     8.867
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       5.7,
+       71.567
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "GuideLink26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     8.867
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       2.825,
+       53.033
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     8.867
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       2.825,
+       62.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  },
+  {
+   "name": "GuideLink28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     5.55,
+     8.867
+    ],
+    "Color": [
+     0.588,
+     0.612,
+     0.659
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2012.6,
+       2.825,
+       71.567
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.35
+   },
+   "attributes": {
+    "Look": "ChainLink"
+   }
+  }
+ ]
+}

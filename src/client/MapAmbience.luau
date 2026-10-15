@@ -1,12 +1,12 @@
 --!strict
 -- Moving map parts and small living touches, from part attributes on the loaded map
--- (Workspace.ActiveMap). Motion is worked out from the server's clock
+-- (Workspace.ActiveMap) and the lobby (Workspace.Lobby), including parts that stream in later. Motion is worked out from the server's clock
 -- (workspace:GetServerTimeNow), so every player sees the same parts in the same place without
 -- the server sending anything.
 --   Flicker (true): a light that cuts out now and then (its Neon and any light in it).
---   Spin (number, degrees per second): turns the part around the world's up axis, around
---     SpinCenter (Vector3, world position; default its own position). Parts sharing a center
---     turn together (a gear and its teeth).
+--   Spin (number, degrees per second): turns the part around the world's up axis (or SpinAxis,
+--     a Vector3 direction: a fan on a wall), around SpinCenter (Vector3, world position; default
+--     its own position). Parts sharing a center turn together (a gear and its teeth).
 --   SpinCarry (true): standing on this spinning part turns you with it (rotating platforms).
 --   Swing: SwingPivot (Vector3, world), SwingAxis (Vector3), SwingAmplitude (degrees),
 --     SwingPeriod (seconds): swings back and forth around the pivot (a pendulum).
@@ -30,11 +30,19 @@ local MoveState = require(script.Parent.MoveState)
 
 local MapAmbience = {}
 
-type Flicker = { part: BasePart, material: Enum.Material, lights: { Light }, nextAt: number }
+type Flicker = {
+	root: Instance,
+	part: BasePart,
+	material: Enum.Material,
+	lights: { Light },
+	nextAt: number,
+}
 type Mover = {
+	root: Instance,
 	part: BasePart,
 	base: CFrame,
 	spin: number?,
+	spinAxis: Vector3,
 	center: Vector3,
 	pivot: Vector3?,
 	axis: Vector3?,
@@ -47,6 +55,7 @@ type Mover = {
 
 local flickers: { Flicker } = {}
 local movers: { Mover } = {}
+local watching: { [Instance]: RBXScriptConnection } = {}
 local FLOOR_RAY = 4.5
 
 local function setLit(flicker: Flicker, lit: boolean)
@@ -68,48 +77,78 @@ local function flick(flicker: Flicker)
 	end)
 end
 
-local function scan(map: Instance)
-	table.clear(flickers)
-	table.clear(movers)
-	local now = os.clock()
-	for _, item in map:GetDescendants() do
-		if not item:IsA("BasePart") then
-			continue
-		end
-		if item:GetAttribute("Flicker") == true then
-			local lights = {}
-			for _, child in item:GetChildren() do
-				if child:IsA("Light") then
-					table.insert(lights, child)
-				end
+-- Picks up a part's ambience attributes (under `root`: the loaded map or the lobby).
+local function consider(item: Instance, root: Instance)
+	if not item:IsA("BasePart") then
+		return
+	end
+	if item:GetAttribute("Flicker") == true then
+		local lights = {}
+		for _, child in item:GetChildren() do
+			if child:IsA("Light") then
+				table.insert(lights, child)
 			end
-			table.insert(flickers, {
-				part = item,
-				material = item.Material,
-				lights = lights,
-				nextAt = now + math.random() * 4,
-			})
 		end
-		local spin = item:GetAttribute("Spin")
-		local pivot = item:GetAttribute("SwingPivot")
-		local knockback = item:GetAttribute("Knockback")
-		if type(spin) == "number" or typeof(pivot) == "Vector3" or type(knockback) == "number" then
-			local center = item:GetAttribute("SpinCenter")
-			local axis = item:GetAttribute("SwingAxis")
-			table.insert(movers, {
-				part = item,
-				base = item.CFrame,
-				spin = if type(spin) == "number" then spin else nil,
-				center = if typeof(center) == "Vector3" then center else item.Position,
-				pivot = if typeof(pivot) == "Vector3" then pivot else nil,
-				axis = if typeof(axis) == "Vector3" then axis.Unit else Vector3.xAxis,
-				amplitude = (item:GetAttribute("SwingAmplitude") or 0) :: number,
-				period = (item:GetAttribute("SwingPeriod") or 4) :: number,
-				carry = item:GetAttribute("SpinCarry") == true
-					or item:GetAttribute("Carry") == true,
-				level = item:GetAttribute("SwingLevel") == true,
-				knockback = if type(knockback) == "number" then knockback else nil,
-			})
+		table.insert(flickers, {
+			root = root,
+			part = item,
+			material = item.Material,
+			lights = lights,
+			nextAt = os.clock() + math.random() * 4,
+		})
+	end
+	local spin = item:GetAttribute("Spin")
+	local pivot = item:GetAttribute("SwingPivot")
+	local knockback = item:GetAttribute("Knockback")
+	if type(spin) == "number" or typeof(pivot) == "Vector3" or type(knockback) == "number" then
+		local center = item:GetAttribute("SpinCenter")
+		local spinAxis = item:GetAttribute("SpinAxis")
+		local axis = item:GetAttribute("SwingAxis")
+		table.insert(movers, {
+			root = root,
+			part = item,
+			base = item.CFrame,
+			spin = if type(spin) == "number" then spin else nil,
+			spinAxis = if typeof(spinAxis) == "Vector3" then spinAxis.Unit else Vector3.yAxis,
+			center = if typeof(center) == "Vector3" then center else item.Position,
+			pivot = if typeof(pivot) == "Vector3" then pivot else nil,
+			axis = if typeof(axis) == "Vector3" then axis.Unit else Vector3.xAxis,
+			amplitude = (item:GetAttribute("SwingAmplitude") or 0) :: number,
+			period = (item:GetAttribute("SwingPeriod") or 4) :: number,
+			carry = item:GetAttribute("SpinCarry") == true or item:GetAttribute("Carry") == true,
+			level = item:GetAttribute("SwingLevel") == true,
+			knockback = if type(knockback) == "number" then knockback else nil,
+		})
+	end
+end
+
+-- Starts animating a place: what's in it now, and whatever streams in later.
+local function track(root: Instance)
+	if watching[root] then
+		return
+	end
+	for _, item in root:GetDescendants() do
+		consider(item, root)
+	end
+	watching[root] = root.DescendantAdded:Connect(function(item)
+		task.defer(consider, item, root) -- once its children (lights) are in too
+	end)
+end
+
+local function untrack(root: Instance)
+	local connection = watching[root]
+	if connection then
+		connection:Disconnect()
+		watching[root] = nil
+	end
+	for i = #flickers, 1, -1 do
+		if flickers[i].root == root then
+			table.remove(flickers, i)
+		end
+	end
+	for i = #movers, 1, -1 do
+		if movers[i].root == root then
+			table.remove(movers, i)
 		end
 	end
 end
@@ -120,7 +159,10 @@ local function placeAt(mover: Mover, t: number): CFrame
 	if mover.spin then
 		local angle = math.rad((mover.spin * t) % 360)
 		local c = mover.center
-		cframe = CFrame.new(c) * CFrame.Angles(0, angle, 0) * CFrame.new(-c) * cframe
+		cframe = CFrame.new(c)
+			* CFrame.fromAxisAngle(mover.spinAxis, angle)
+			* CFrame.new(-c)
+			* cframe
 	end
 	if mover.pivot and mover.axis then
 		local angle = math.rad(mover.amplitude) * math.sin(2 * math.pi * t / mover.period)
@@ -190,22 +232,16 @@ end
 
 function MapAmbience.start()
 	workspace.ChildAdded:Connect(function(child)
-		if child.Name == "ActiveMap" then
-			task.wait(0.5) -- let it finish replicating
-			if child.Parent then
-				scan(child)
-			end
+		if child.Name == "ActiveMap" or child.Name == "Lobby" then
+			track(child)
 		end
 	end)
-	workspace.ChildRemoved:Connect(function(child)
-		if child.Name == "ActiveMap" then
-			table.clear(flickers)
-			table.clear(movers)
+	workspace.ChildRemoved:Connect(untrack)
+	for _, name in { "ActiveMap", "Lobby" } do
+		local place = workspace:FindFirstChild(name)
+		if place then
+			track(place)
 		end
-	end)
-	local current = workspace:FindFirstChild("ActiveMap")
-	if current then
-		scan(current)
 	end
 
 	local lastKnock = -math.huge
@@ -215,9 +251,11 @@ function MapAmbience.start()
 		local parts = MoveState.parts()
 		local standingOn = if parts and #movers > 0 then floorPart(parts) else nil
 		local carried = false
-		for _, mover in movers do
+		for i = #movers, 1, -1 do
+			local mover = movers[i]
 			local part = mover.part
 			if not part.Parent then
+				table.remove(movers, i) -- streamed out or gone (it's picked up again if it comes back)
 				continue
 			end
 			local before = part.CFrame
@@ -253,8 +291,11 @@ function MapAmbience.start()
 			end
 		end
 		local now = os.clock()
-		for _, flicker in flickers do
-			if now >= flicker.nextAt and flicker.part.Parent then
+		for i = #flickers, 1, -1 do
+			local flicker = flickers[i]
+			if not flicker.part.Parent then
+				table.remove(flickers, i)
+			elseif now >= flicker.nextAt then
 				flicker.nextAt = now + 2 + math.random() * 6
 				flick(flicker)
 			end

@@ -1,0 +1,6014 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "SignPost",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     1.3,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1993.4,
+       0.65,
+       63.2
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPost2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     1.3,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1987.6,
+       0.65,
+       63.2
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSign",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.0,
+     7.5,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.5,
+       5.05,
+       63.2
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSignRim",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.3,
+     7.8,
+     0.06
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.5,
+       5.05,
+       63.4
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NumberPanel",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     2.2,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1993.1,
+       7.4,
+       63.025
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationNumber",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1993.1,
+       7.4,
+       62.975
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "1",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pictogram",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     0.2,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.4,
+       8.25,
+       62.975
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     2.05,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1989.35,
+       7.325,
+       62.915
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     0.25,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.6,
+       6.775,
+       62.855
+      ],
+      "orientation": [
+       [
+        0.94,
+        -0.342,
+        0.0
+       ],
+       [
+        0.342,
+        0.94,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     0.5,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1991.4,
+       7.15,
+       62.795
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.4,
+     0.15,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.4,
+       6.325,
+       62.735
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationTitle",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     1.3,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.5,
+       5.45,
+       63.025
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SLIDE",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.831,
+         0.0
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.5,
+       4.175,
+       63.025
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SPRINT (SHIFT),",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.5,
+       3.125,
+       63.025
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "THEN PRESS C TO",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.5,
+       2.075,
+       63.025
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SLIDE UNDER",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.15,
+     3.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1990.5,
+       0.075,
+       60.9
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.86,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPost3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     1.3,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1947.82,
+       0.65,
+       102.24
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPost4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     1.3,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1943.18,
+       0.65,
+       98.76
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSign2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.0,
+     7.5,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.5,
+       5.05,
+       100.5
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSignRim2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.3,
+     7.8,
+     0.06
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.38,
+       5.05,
+       100.66
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NumberPanel2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     2.2,
+     0.05
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1947.685,
+       7.4,
+       101.92
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationNumber2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1947.715,
+       7.4,
+       101.88
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "2",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pictogram6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     0.7,
+     0.05
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1946.195,
+       6.55,
+       100.74
+      ],
+      "orientation": [
+       [
+        0.8,
+        0.0,
+        -0.6
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        0.6,
+        0.0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.8,
+     0.7,
+     0.05
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1944.951,
+       6.55,
+       99.732
+      ],
+      "orientation": [
+       [
+        0.8,
+        0.0,
+        -0.6
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        0.6,
+        0.0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.17,
+     0.05
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.987,
+       7.635,
+       100.434
+      ],
+      "orientation": [
+       [
+        0.63,
+        -0.493,
+        -0.6
+       ],
+       [
+        0.616,
+        0.788,
+        0
+       ],
+       [
+        0.473,
+        -0.369,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.17,
+     0.05
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.303,
+       7.635,
+       99.846
+      ],
+      "orientation": [
+       [
+        0.63,
+        0.493,
+        -0.6
+       ],
+       [
+        -0.616,
+        0.788,
+        0
+       ],
+       [
+        0.473,
+        0.369,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationTitle2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     1.3,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.605,
+       5.45,
+       100.36
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "GAP JUMP",
+        "TextScaled": true,
+        "TextColor3": [
+         0.098,
+         0.89,
+         1.0
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.605,
+       4.175,
+       100.36
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SPRINT AND",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.605,
+       3.125,
+       100.36
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "JUMP AT THE",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1945.605,
+       2.075,
+       100.36
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "VERY EDGE",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.15,
+     3.4
+    ],
+    "Color": [
+     0.098,
+     0.89,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1946.88,
+       0.075,
+       98.66
+      ],
+      "orientation": [
+       [
+        0.8,
+        0,
+        -0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.6,
+        0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.86,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPost5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     1.3,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1996.349,
+       0.65,
+       89.349
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPost6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     1.3,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2000.451,
+       0.65,
+       93.451
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSign3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.0,
+     7.5,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.4,
+       5.05,
+       91.4
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSignRim3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.3,
+     7.8,
+     0.06
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.541,
+       5.05,
+       91.259
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NumberPanel3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     2.2,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1996.438,
+       7.4,
+       89.685
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationNumber3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1996.402,
+       7.4,
+       89.721
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "3",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pictogram10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1999.036,
+       7.4,
+       92.355
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0.0,
+        0.707
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.707,
+        0.0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.2,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.145,
+       7.3,
+       91.548
+      ],
+      "orientation": [
+       [
+        -0.672,
+        -0.219,
+        0.707
+       ],
+       [
+        -0.309,
+        0.951,
+        0
+       ],
+       [
+        -0.672,
+        -0.219,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     0.5,
+     0.5
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.262,
+       8.25,
+       91.75
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0.0,
+        -0.707
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.707,
+        0.0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.12,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1997.513,
+       7.76,
+       91.085
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0.0,
+        0.707
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.707,
+        0.0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.12,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1997.47,
+       7.31,
+       91.128
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0.0,
+        0.707
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.707,
+        0.0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.12,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1997.428,
+       6.86,
+       91.17
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0.0,
+        0.707
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.707,
+        0.0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationTitle3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     1.3,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.276,
+       5.45,
+       91.524
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "WALL RUN",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.18,
+         0.576
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.276,
+       4.175,
+       91.524
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "JUMP AT A WALL",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.276,
+       3.125,
+       91.524
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "WHILE FAST. YOU",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1998.276,
+       2.075,
+       91.524
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "RUN ALONG IT",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.15,
+     3.4
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1996.774,
+       0.075,
+       93.026
+      ],
+      "orientation": [
+       [
+        -0.707,
+        0,
+        0.707
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.707,
+        0,
+        -0.707
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.86,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPost7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     3.4,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2053.08,
+       1.7,
+       83.86
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPost8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     3.4,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2057.72,
+       1.7,
+       87.34
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSign4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.0,
+     5.4,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2055.4,
+       6.1,
+       85.6
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSignRim4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.3,
+     5.7,
+     0.06
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2055.52,
+       6.1,
+       85.44
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NumberPanel4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     2.2,
+     0.05
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2053.215,
+       7.4,
+       84.18
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationNumber4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2053.185,
+       7.4,
+       84.22
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "4",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pictogram16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.2,
+     0.05
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2054.985,
+       6.7,
+       85.57
+      ],
+      "orientation": [
+       [
+        -0.678,
+        0.424,
+        0.6
+       ],
+       [
+        0.53,
+        0.848,
+        0
+       ],
+       [
+        -0.509,
+        0.318,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.2,
+     0.05
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2055.669,
+       6.7,
+       86.158
+      ],
+      "orientation": [
+       [
+        -0.678,
+        -0.424,
+        0.6
+       ],
+       [
+        -0.53,
+        0.848,
+        0
+       ],
+       [
+        -0.509,
+        -0.318,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.2,
+     0.05
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2054.913,
+       7.45,
+       85.666
+      ],
+      "orientation": [
+       [
+        -0.678,
+        0.424,
+        0.6
+       ],
+       [
+        0.53,
+        0.848,
+        0
+       ],
+       [
+        -0.509,
+        0.318,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.2,
+     0.05
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2055.597,
+       7.45,
+       86.254
+      ],
+      "orientation": [
+       [
+        -0.678,
+        -0.424,
+        0.6
+       ],
+       [
+        -0.53,
+        0.848,
+        0
+       ],
+       [
+        -0.509,
+        -0.318,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.2,
+     0.05
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2054.841,
+       8.2,
+       85.762
+      ],
+      "orientation": [
+       [
+        -0.678,
+        0.424,
+        0.6
+       ],
+       [
+        0.53,
+        0.848,
+        0
+       ],
+       [
+        -0.509,
+        0.318,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     0.2,
+     0.05
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2055.525,
+       8.2,
+       86.35
+      ],
+      "orientation": [
+       [
+        -0.678,
+        -0.424,
+        0.6
+       ],
+       [
+        -0.53,
+        0.848,
+        0
+       ],
+       [
+        -0.509,
+        -0.318,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationTitle4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     1.3,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2055.295,
+       5.45,
+       85.74
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LAUNCH PAD",
+        "TextScaled": true,
+        "TextColor3": [
+         0.616,
+         1.0,
+         0.18
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2055.295,
+       4.175,
+       85.74
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "STEP ON IT",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.15,
+     3.4
+    ],
+    "Color": [
+     0.616,
+     1.0,
+     0.18
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2054.02,
+       0.075,
+       87.44
+      ],
+      "orientation": [
+       [
+        -0.8,
+        0,
+        0.6
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.6,
+        0,
+        -0.8
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.86,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPost9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     2.35,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2033.594,
+       1.175,
+       84.303
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPost10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     2.35,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2028.406,
+       1.175,
+       86.897
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSign5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.0,
+     6.45,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2031.0,
+       5.575,
+       85.6
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSignRim5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.3,
+     6.75,
+     0.06
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2031.089,
+       5.575,
+       85.779
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NumberPanel5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     2.2,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2033.247,
+       7.4,
+       84.281
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationNumber5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2033.225,
+       7.4,
+       84.236
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "5",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pictogram22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2031.391,
+       7.4,
+       85.153
+      ],
+      "orientation": [
+       [
+        0.894,
+        0.0,
+        0.447
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.447,
+        0.0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     2.4,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.202,
+       7.4,
+       85.68
+      ],
+      "orientation": [
+       [
+        0.894,
+        0.0,
+        0.447
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.447,
+        0.0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.1,
+     0.15,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.756,
+       6.525,
+       85.336
+      ],
+      "orientation": [
+       [
+        0.894,
+        0.0,
+        0.447
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.447,
+        0.0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.1,
+     0.15,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.729,
+       7.145,
+       85.282
+      ],
+      "orientation": [
+       [
+        0.894,
+        0.0,
+        0.447
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.447,
+        0.0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.1,
+     0.15,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.703,
+       7.765,
+       85.229
+      ],
+      "orientation": [
+       [
+        0.894,
+        0.0,
+        0.447
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.447,
+        0.0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.1,
+     0.15,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.676,
+       8.385,
+       85.175
+      ],
+      "orientation": [
+       [
+        0.894,
+        0.0,
+        0.447
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        -0.447,
+        0.0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationTitle5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     1.3,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.922,
+       5.45,
+       85.443
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LADDER",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.549,
+         0.157
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.922,
+       4.175,
+       85.443
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "WALK INTO IT",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2030.922,
+       3.125,
+       85.443
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "AND CLIMB",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.15,
+     3.4
+    ],
+    "Color": [
+     1.0,
+     0.549,
+     0.157
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2029.971,
+       0.075,
+       83.543
+      ],
+      "orientation": [
+       [
+        0.894,
+        0,
+        0.447
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.447,
+        0,
+        0.894
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.86,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignPost11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     2.35,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1983.74,
+       1.175,
+       86.52
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SignPost12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     2.35,
+     0.3
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1980.26,
+       1.175,
+       81.88
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSign6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.0,
+     6.45,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.0,
+       5.575,
+       84.2
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "StationSignRim6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.3,
+     6.75,
+     0.06
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1981.84,
+       5.575,
+       84.32
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NumberPanel6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.2,
+     2.2,
+     0.05
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1983.7,
+       7.4,
+       86.175
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationNumber6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.0,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1983.74,
+       7.4,
+       86.145
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 1,
+      "Brightness": 1
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "6",
+        "TextScaled": true,
+        "TextColor3": [
+         0.055,
+         0.063,
+         0.102
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Pictogram28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     1.4,
+     0.05
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.51,
+       6.9,
+       84.505
+      ],
+      "orientation": [
+       [
+        0.6,
+        0.0,
+        -0.8
+       ],
+       [
+        0.0,
+        1.0,
+        0
+       ],
+       [
+        0.8,
+        0.0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.558,
+       8.0,
+       84.469
+      ],
+      "orientation": [
+       [
+        0.8,
+        0.0,
+        0.6
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -0.6,
+        0.0,
+        0.8
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.18,
+     0.05
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.006,
+       8.15,
+       83.633
+      ],
+      "orientation": [
+       [
+        0.46,
+        0.386,
+        -0.8
+       ],
+       [
+        -0.643,
+        0.766,
+        0
+       ],
+       [
+        0.613,
+        0.514,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.18,
+     0.05
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1981.814,
+       7.55,
+       83.277
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.6,
+        -0.8
+       ],
+       [
+        -1.0,
+        0.0,
+        0
+       ],
+       [
+        0.0,
+        0.8,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pictogram32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.7,
+     0.18,
+     0.05
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.072,
+       6.95,
+       83.521
+      ],
+      "orientation": [
+       [
+        -0.46,
+        0.386,
+        -0.8
+       ],
+       [
+        -0.643,
+        -0.766,
+        0
+       ],
+       [
+        -0.613,
+        0.514,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "StationTitle6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     1.3,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.14,
+       5.45,
+       84.095
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TAG DUMMY",
+        "TextScaled": true,
+        "TextColor3": [
+         0.725,
+         0.549,
+         1.0
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.14,
+       4.175,
+       84.095
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "LEFT CLICK",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "StationTip14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.4,
+     0.95,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1982.14,
+       3.125,
+       84.095
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "TO SWING",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Left",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wash27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.15,
+     3.4
+    ],
+    "Color": [
+     0.725,
+     0.549,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1983.84,
+       0.075,
+       82.82
+      ],
+      "orientation": [
+       [
+        0.6,
+        0,
+        -0.8
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.8,
+        0,
+        0.6
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.86,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

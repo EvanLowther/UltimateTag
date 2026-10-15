@@ -28,7 +28,8 @@ def parts(data):
         yield {
             "index": index, "style": style,
             "color": tuple(int(color_hex[i:i + 2], 16) for i in (0, 2, 4)),
-            "code": code, "alpha": alpha, "pos": (x, y, z), "size": (sx, sy, sz),
+            # (abs: the Metro's design has one part with a negative size, a slip of the canvas)
+            "code": code, "alpha": alpha, "pos": (x, y, z), "size": (abs(sx), abs(sy), abs(sz)),
             "rows": [r[0:3], r[3:6], r[6:9]], "rot": ri, "flags": flags,
             "motion": motions[mi] if mi >= 0 else None,
         }

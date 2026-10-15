@@ -1,0 +1,7755 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Counter12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     3.5,
+     4.0
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1887.0,
+       1.75,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "CounterFront12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     39.4,
+     2.6,
+     0.06
+    ],
+    "Color": [
+     0.588,
+     0.118,
+     0.118
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1889.03,
+       1.9,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "CounterLip12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     0.25,
+     1.95
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.175,
+       3.625,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "KitchenGlow",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     38,
+     6.0,
+     0.1
+    ],
+    "Color": [
+     1.0,
+     0.702,
+     0.278
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.1,
+       6.6,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.55,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Shelf",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.0,
+     0.2,
+     0.95
+    ],
+    "Color": [
+     0.29,
+     0.188,
+     0.125
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.625,
+       5.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       16.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       8.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       4.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       0.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       -4.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       -8.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       -12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       5.825,
+       -16.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Shelf2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     37.0,
+     0.2,
+     0.95
+    ],
+    "Color": [
+     0.29,
+     0.188,
+     0.125
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.625,
+       7.7,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       16.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       8.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       4.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       0.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       -4.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       -8.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       -12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bowl18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.45,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.62,
+       8.025,
+       -16.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodlePot",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.8,
+     2.2,
+     2.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.6,
+       4.65,
+       12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodlePot2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.8,
+     2.2,
+     2.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.6,
+       4.65,
+       2.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodlePot3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.8,
+     2.2,
+     2.2
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.6,
+       4.65,
+       -8.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBowl",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     1.15,
+     1.15
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.0,
+       16.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Noodles",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.95,
+     0.95
+    ],
+    "Color": [
+     0.98,
+     0.839,
+     0.471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.29,
+       16.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       15.77
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       15.53
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBowl2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     1.15,
+     1.15
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.0,
+       6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Noodles2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.95,
+     0.95
+    ],
+    "Color": [
+     0.98,
+     0.839,
+     0.471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.29,
+       6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       5.77
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       5.53
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBowl3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     1.15,
+     1.15
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.0,
+       -4.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Noodles3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.95,
+     0.95
+    ],
+    "Color": [
+     0.98,
+     0.839,
+     0.471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.29,
+       -4.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       -4.23
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       -4.47
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBowl4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     1.15,
+     1.15
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.0,
+       -14.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Noodles4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.95,
+     0.95
+    ],
+    "Color": [
+     0.98,
+     0.839,
+     0.471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.2,
+       4.29,
+       -14.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       -14.23
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Chopstick8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.422,
+     0.07,
+     0.07
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "WoodPlanks",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.25,
+       4.675,
+       -14.47
+      ],
+      "orientation": [
+       [
+        0.633,
+        -0.472,
+        0.614
+       ],
+       [
+        0.598,
+        0.802,
+        -0.0
+       ],
+       [
+        -0.492,
+        0.367,
+        0.789
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       18.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       18.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       18.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       15.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       15.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       15.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       9.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       9.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       9.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       3.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       3.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       3.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       0.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       0.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       0.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       -3.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       -3.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       -3.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       -6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       -6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       -6.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       -9.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       -9.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       -9.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       -12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       -12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       -12.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       -15.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       -15.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       -15.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStool13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       2.75,
+       -18.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolPost13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.15,
+     0.25,
+     0.25
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       1.525,
+       -18.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BarStoolFoot13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1890.5,
+       0.46,
+       -18.0
+      ],
+      "orientation": [
+       [
+        0,
+        -1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning53",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       18.9
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning54",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.953,
+     0.89,
+     0.765
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       14.7
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning55",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       10.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning56",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.953,
+     0.89,
+     0.765
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       6.3
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning57",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       2.1
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning58",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.953,
+     0.89,
+     0.765
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       -2.1
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning59",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       -6.3
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning60",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.953,
+     0.89,
+     0.765
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       -10.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning61",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       -14.7
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Awning62",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.2,
+     0.15,
+     7.071
+    ],
+    "Color": [
+     0.953,
+     0.89,
+     0.765
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1888.5,
+       11.1,
+       -18.9
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.141,
+        -0.99
+       ],
+       [
+        0,
+        0.99,
+        0.141
+       ],
+       [
+        1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Valance12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     42.2,
+     0.78,
+     0.2
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Fabric",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.98,
+       10.19,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBracket",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     1.0
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.4,
+       13.6,
+       10.3
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBracket2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     1.0
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.4,
+       17.75,
+       10.3
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBracket3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     1.0
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.4,
+       13.6,
+       -10.3
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleBracket4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     1.0
+    ],
+    "Color": [
+     0.353,
+     0.376,
+     0.424
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.4,
+       17.75,
+       -10.3
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleCable",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.046,
+     0.12,
+     0.12
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.55,
+       20.85,
+       9.0
+      ],
+      "orientation": [
+       [
+        -0.218,
+        0.43,
+        0.876
+       ],
+       [
+        0.892,
+        0.452,
+        0.0
+       ],
+       [
+        -0.396,
+        0.781,
+        -0.482
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleCable2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.046,
+     0.12,
+     0.12
+    ],
+    "Color": [
+     0.039,
+     0.043,
+     0.063
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.55,
+       20.85,
+       -9.0
+      ],
+      "orientation": [
+       [
+        -0.218,
+        0.43,
+        -0.876
+       ],
+       [
+        0.892,
+        0.452,
+        0.0
+       ],
+       [
+        0.396,
+        -0.781,
+        -0.482
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodlePlate",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     23.0,
+     5.8,
+     0.4
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "Rubber",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.1,
+       15.7,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleFrame",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     23.7,
+     0.35,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.175,
+       18.775,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleFrame2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     23.7,
+     0.35,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.175,
+       12.625,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleFrame3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.35,
+     5.8,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.175,
+       15.7,
+       11.675
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleFrame4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.35,
+     5.8,
+     0.65
+    ],
+    "Color": [
+     0.169,
+     0.18,
+     0.212
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.175,
+       15.7,
+       -11.675
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleTube",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     22.4,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.42,
+       18.3,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NoodleTube2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     22.4,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.42,
+       13.1,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -1.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NoodleTube3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.42,
+       15.7,
+       11.2
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "NoodleTube4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     0.32,
+     0.32
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.42,
+       15.7,
+       -11.2
+      ],
+      "orientation": [
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Bolt25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.54,
+       12.625,
+       11.675
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bolt26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.54,
+       18.775,
+       11.675
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bolt27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.54,
+       12.625,
+       -11.675
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Bolt28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     0.24,
+     0.24
+    ],
+    "Color": [
+     0.812,
+     0.839,
+     0.875
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.54,
+       18.775,
+       -11.675
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "NoodleText",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     17.2,
+     4.6,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.575,
+       15.7,
+       2.2
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "IT'S NOODLES!",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.831,
+         0.0
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/Bangers.json",
+          "weight": "Regular",
+          "style": "Normal"
+         }
+        },
+        "TextStrokeColor3": [
+         0.878,
+         0.192,
+         0.169
+        ],
+        "TextStrokeTransparency": 0
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Halo7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.8,
+     8.6,
+     0.2
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.65,
+       15.7,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.72,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Wash18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     20,
+     0.2,
+     10
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1898.0,
+       0.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.84,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BowlIcon",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     3.4,
+     3.4
+    ],
+    "Color": [
+     0.957,
+     0.965,
+     0.984
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.35,
+       15.2,
+       -8.9
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BowlIconCut",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.0,
+     2.0,
+     0.06
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.43,
+       16.2,
+       -8.9
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BowlIconNoodles",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.6,
+     0.25,
+     0.06
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.49,
+       15.125,
+       -8.9
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BowlIconStick",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     4.0,
+     0.08
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.56,
+       16.3,
+       -9.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -0.53,
+        0.848,
+        0
+       ],
+       [
+        0.848,
+        0.53,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BowlIconStick2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     4.0,
+     0.08
+    ],
+    "Color": [
+     0.478,
+     0.322,
+     0.196
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.56,
+       16.3,
+       -9.8
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -0.407,
+        0.914,
+        0
+       ],
+       [
+        0.914,
+        0.407,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MenuStrip",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28,
+     1.1,
+     0.15
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.225,
+       8.85,
+       0.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "MenuText5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.9,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.325,
+       8.85,
+       10.5
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "RAMEN",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.831,
+         0.0
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "MenuText6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.9,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.325,
+       8.85,
+       3.5
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "UDON",
+        "TextScaled": true,
+        "TextColor3": [
+         0.957,
+         0.965,
+         0.984
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "MenuText7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.9,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.325,
+       8.85,
+       -3.5
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "GYOZA",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.18,
+         0.576
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "MenuText8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.0,
+     0.9,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.325,
+       8.85,
+       -10.5
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "SPICY IT",
+        "TextScaled": true,
+        "TextColor3": [
+         0.878,
+         0.192,
+         0.169
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "OpenSign",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.8,
+     2.6,
+     0.3
+    ],
+    "Color": [
+     0.051,
+     0.063,
+     0.125
+    ],
+    "Material": "Rubber",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.45,
+       5.7,
+       -25.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "OpenSignRim",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.1,
+     2.9,
+     0.06
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.25,
+       5.7,
+       -25.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "OpenSignText",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.3,
+     2.2,
+     0.05
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1885.625,
+       5.7,
+       -25.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "TextFront",
+     "className": "SurfaceGui",
+     "properties": {
+      "Face": "Front",
+      "SizingMode": "PixelsPerStud",
+      "PixelsPerStud": 40,
+      "LightInfluence": 0,
+      "Brightness": 2.5
+     },
+     "children": [
+      {
+       "name": "Label",
+       "className": "TextLabel",
+       "properties": {
+        "Size": {
+         "UDim2": [
+          [
+           1,
+           0
+          ],
+          [
+           1,
+           0
+          ]
+         ]
+        },
+        "BackgroundTransparency": 1,
+        "Text": "OPEN ALL NIGHT",
+        "TextScaled": true,
+        "TextColor3": [
+         1.0,
+         0.18,
+         0.576
+        ],
+        "TextXAlignment": "Center",
+        "FontFace": {
+         "Font": {
+          "family": "rbxasset://fonts/families/TitilliumWeb.json",
+          "weight": "Heavy",
+          "style": "Normal"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PaperLantern82",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       17.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PaperLantern83",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       12.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PaperLantern84",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       7.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PaperLantern85",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       2.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PaperLantern86",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       -2.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PaperLantern87",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       -7.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PaperLantern88",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.878,
+     0.192,
+     0.169
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       -12.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PaperLantern89",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     1.0,
+     0.831,
+     0.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1891.7,
+       9.7,
+       -17.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CastShadow": false,
+    "Transparency": 0.08,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "KitchenLight",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     0.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.702,
+     0.278
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1889.8,
+       7.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 1,
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Stall",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 1.3,
+      "Range": 26,
+      "Color": [
+       1.0,
+       0.702,
+       0.278
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "PotSteam",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     0.2,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.6,
+       5.9,
+       12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "Steam",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 6,
+      "Lifetime": {
+       "NumberRange": [
+        1.6,
+        2.6
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        2,
+        4
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 4.0,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.863,
+           0.886,
+           0.941
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.863,
+           0.886,
+           0.941
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Top",
+      "SpreadAngle": {
+       "Vector2": [
+        12,
+        12
+       ]
+      },
+      "Acceleration": [
+       0,
+       0,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "PotSteam2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     0.2,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.6,
+       5.9,
+       2.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "Steam",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 6,
+      "Lifetime": {
+       "NumberRange": [
+        1.6,
+        2.6
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        2,
+        4
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 4.0,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.863,
+           0.886,
+           0.941
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.863,
+           0.886,
+           0.941
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Top",
+      "SpreadAngle": {
+       "Vector2": [
+        12,
+        12
+       ]
+      },
+      "Acceleration": [
+       0,
+       0,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "PotSteam3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     0.2,
+     2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1886.6,
+       5.9,
+       -8.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "children": [
+    {
+     "name": "Steam",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 6,
+      "Lifetime": {
+       "NumberRange": [
+        1.6,
+        2.6
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        2,
+        4
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 4.0,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.863,
+           0.886,
+           0.941
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.863,
+           0.886,
+           0.941
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Top",
+      "SpreadAngle": {
+       "Vector2": [
+        12,
+        12
+       ]
+      },
+      "Acceleration": [
+       0,
+       0,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Wash19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     0.15,
+     4.5
+    ],
+    "Color": [
+     1.0,
+     0.18,
+     0.576
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1887.75,
+       0.475,
+       -25.0
+      ],
+      "orientation": [
+       [
+        -0.0,
+        0,
+        -1.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1.0,
+        0,
+        -0.0
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "Transparency": 0.86,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

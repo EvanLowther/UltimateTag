@@ -25,7 +25,10 @@
       }
     },
     "Workspace": {
-      "$properties": {}
+      "$properties": {},
+      "Lobby": {
+        "$path": "src/lobby"
+      }
     },
     "Lighting": {
       "$properties": {
@@ -99,9 +102,6 @@
     "ServerStorage": {
       "Maps": {
         "$path": "src/maps"
-      },
-      "Tools": {
-        "$path": "src/tools"
       }
     }
   }

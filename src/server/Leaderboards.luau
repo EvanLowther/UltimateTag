@@ -10,6 +10,8 @@
 --   Clients ask with the Leaderboard remote; the reply has each board's top ShowCount plus the
 --   asking player's own rank (when they're in the top TopCount) and value.
 -- Without data stores (Studio with API access off) the boards list this server's players.
+-- Boards with Menu = false (Coins) aren't in the window: the lobby's boards read them with
+-- Leaderboards.top (server/LobbyBoards).
 local DataStoreService = game:GetService("DataStoreService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -23,7 +25,7 @@ local Progression = require(script.Parent.Progression)
 
 local Leaderboards = {}
 
-type Entry = { UserId: number, Name: string?, Value: number }
+export type Entry = { UserId: number, Name: string?, Value: number }
 type Board = { key: string, id: string, stat: string, weekly: boolean }
 
 local KEY_PREFIX = "Player_"
@@ -87,6 +89,8 @@ local function valueFor(profile: PlayerData.Profile, board: Board): number
 		return if weekly.Week == DayClock.week() then weekly[board.stat] or 0 else 0
 	elseif board.stat == "Level" then
 		return profile.Level
+	elseif board.stat == "Coins" then
+		return profile.Coins
 	end
 	return profile.Stats[board.stat] or 0
 end
@@ -225,6 +229,23 @@ local function reply(player: Player)
 		Me = mine,
 		WeekEndsIn = DayClock.secondsToNextWeek(),
 	})
+end
+
+-- A board's all-time top list, read fresh, and where it came from: "global" (saved) or "server"
+-- (saving is off: this server's players). Names are filled in for the top ShowCount. Yields.
+function Leaderboards.top(id: string): ({ Entry }, string)
+	for _, board in boards do
+		if board.id == id and not board.weekly then
+			if storesOn then
+				read(board)
+			end
+			if storesOn then
+				return cache[board.key] or {}, "global"
+			end
+			return serverBoard(board), "server"
+		end
+	end
+	return {}, "server"
 end
 
 function Leaderboards.start()
