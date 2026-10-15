@@ -27,7 +27,8 @@
     "Workspace": {
       "$properties": {},
       "Lobby": {
-        "$path": "src/lobby"
+        "$path": "src/lobby",
+        "$ignoreUnknownInstances": false
       }
     },
     "Lighting": {
