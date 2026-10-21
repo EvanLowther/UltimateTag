@@ -78,6 +78,7 @@ stylua src && selene src && lune run tools/check-syntax.luau && python3 tools/ma
 ## Workflow
 - After each change: update this file (layout, map, features, changelog) and the README if needed, run the checks, commit, then `git push`.
 - Commit message format: `area: what changed` (for example `map: add obstacle course`).
+- No co-author, AI attribution or session lines in commit messages (no `Co-Authored-By`), and nothing in the repo names the AI tools used to build it.
 - GitHub: https://github.com/EvanLowther/UltimateTag (private). The `.rbxlx` file is built by Rojo and git ignores it.
 
 ## Features
