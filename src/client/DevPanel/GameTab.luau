@@ -8,6 +8,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local GameState = require(Shared:WaitForChild("GameState"))
+local Catalog = require(Shared:WaitForChild("Catalog"))
+local WinScreen = require(script.Parent.Parent.WinScreen)
 local Widgets = require(script.Parent.Widgets)
 
 local GameTab = {}
@@ -46,6 +48,29 @@ function GameTab.build(page: Instance, send: (string, ...any) -> ())
 	Widgets.label(page, "Round length (s), from the next round")
 	Widgets.numberBox(page, Config.Game.RoundTime, function(seconds)
 		send("SetRoundTime", seconds)
+	end)
+
+	Widgets.section(page, "Win screen")
+	Widgets.label(page, "Shows the win screen to you now. Click anywhere to close it.")
+	local victories: { Catalog.Item } = {}
+	for _, item in Catalog.Items do
+		if item.kind == "Victory" and item.id ~= "victory_none" then
+			table.insert(victories, item)
+		end
+	end
+	local picked = 0 -- 0: your equipped Victory, otherwise an index into `victories`
+	local shows = Widgets.row(page)
+	for _, size in { 3, 2, 1 } do
+		Widgets.button(shows, `Show ({size})`, function()
+			WinScreen.preview(size, if picked == 0 then nil else victories[picked].id)
+		end)
+	end
+	local victoryButton: TextButton
+	victoryButton = Widgets.button(page, "Victory: your equipped", function()
+		picked = (picked + 1) % (#victories + 1)
+		victoryButton.Text = if picked == 0
+			then "Victory: your equipped"
+			else `Victory: {victories[picked].name}`
 	end)
 
 	Widgets.section(page, "Me")

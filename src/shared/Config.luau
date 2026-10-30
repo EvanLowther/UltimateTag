@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.53.0",
+	Version = "0.53.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -45,7 +45,7 @@ local Config = {
 		-- Block heights for 1st, 2nd and 3rd place.
 		StepHeights = { 6, 4.5, 3 },
 		-- Screens hidden while it plays (by ScreenGui name).
-		HideGuis = { "Hud", "Menu", "Notify", "ItTint", "Spectate" },
+		HideGuis = { "Hud", "Menu", "Notify", "ItTint", "Spectate", "DevPanel" },
 	},
 
 	Lobby = {

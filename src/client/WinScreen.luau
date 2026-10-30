@@ -54,7 +54,13 @@ type Rewards = {
 	Place: number,
 	Of: number,
 }
-type Info = { Podium: { Entry }, Duration: number, Rewards: Rewards? }
+type Info = {
+	Podium: { Entry },
+	Duration: number,
+	Rewards: Rewards?,
+	Preview: boolean?, -- the dev panel's preview: not tied to the game phase, click to close
+	PreviewVictory: string?, -- the Victory item to play instead of the winner's equipped one
+}
 
 local active = false
 local session = 0 -- counts screens, so late work from an earlier one gives up
@@ -516,6 +522,21 @@ local function openScreen(info: Info)
 	local fade = Ui.frame(screen, Color3.new(0, 0, 0))
 	fade.Size = UDim2.fromScale(1, 1)
 	fade.ZIndex = 100
+	if info.Preview then
+		local hint = Ui.caps(screen, "PREVIEW  ·  CLICK ANYWHERE TO CLOSE", 14, Ui.Colors.Yellow)
+		hint.AnchorPoint = Vector2.new(0, 1)
+		hint.Position = UDim2.new(0, 16, 1, -12)
+		hint.Size = UDim2.fromOffset(360, 20)
+		hint.TextXAlignment = Enum.TextXAlignment.Left
+		hint.ZIndex = 101
+		local close = Instance.new("TextButton")
+		close.BackgroundTransparency = 1
+		close.Text = ""
+		close.Size = UDim2.fromScale(1, 1)
+		close.ZIndex = 102
+		close.Activated:Connect(closeScreen)
+		close.Parent = screen
+	end
 	screen.Parent = player:WaitForChild("PlayerGui")
 	gui = screen
 
@@ -555,7 +576,10 @@ local function openScreen(info: Info)
 			end
 			if entry.Won then
 				winnerCopy = copy
-				winnerItem = Catalog.get(owner and owner:GetAttribute("EquippedVictory") :: string?)
+				winnerItem = Catalog.get(
+					info.PreviewVictory
+						or (owner and owner:GetAttribute("EquippedVictory") :: string?)
+				)
 			end
 		end)
 	end
@@ -564,7 +588,7 @@ local function openScreen(info: Info)
 	local emoted = false
 	RunService:BindToRenderStep(STEP, Enum.RenderPriority.Camera.Value + 5, function()
 		local t = os.clock() - started
-		if t > 0.5 and GameState.getPhase() ~= "Victory" then
+		if t > 0.5 and not info.Preview and GameState.getPhase() ~= "Victory" then
 			closeScreen()
 			return
 		end
@@ -618,6 +642,46 @@ local function openScreen(info: Info)
 		local fadeOut = 1 - math.clamp((info.Duration - t) / settings.FadeTime, 0, 1)
 		fade.BackgroundTransparency = 1 - math.max(fadeIn, fadeOut)
 	end)
+end
+
+-- Dev panel: shows the win screen right now with `size` podium places (1 to 3), you on 1st and
+-- the other players in the server (or copies of you) behind. `victoryId` picks the Victory
+-- played (default: yours). A sample rewards card is shown. Click to close.
+function WinScreen.preview(size: number?, victoryId: string?)
+	local player = Players.LocalPlayer
+	local others = {}
+	for _, other in Players:GetPlayers() do
+		if other ~= player then
+			table.insert(others, other)
+		end
+	end
+	local podium: { Entry } = {}
+	for place = 1, math.clamp(size or Config.Game.PodiumSize, 1, 3) do
+		local who = if place == 1 then player else (others[place - 1] or player)
+		table.insert(podium, {
+			UserId = who.UserId,
+			Name = who.Name,
+			DisplayName = who.DisplayName,
+			Place = place,
+			Won = place == 1,
+		})
+	end
+	openScreen({
+		Podium = podium,
+		Duration = Config.Game.VictoryTime,
+		Preview = true,
+		PreviewVictory = victoryId,
+		Rewards = {
+			Coins = 125,
+			XP = 340,
+			Crates = 1,
+			Items = if Catalog.get("trail_honor") then { "trail_honor" } else {},
+			LevelFrom = 4,
+			LevelTo = 5,
+			Place = 1,
+			Of = 8,
+		},
+	})
 end
 
 function WinScreen.isActive(): boolean
