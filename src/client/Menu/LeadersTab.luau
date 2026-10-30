@@ -5,6 +5,8 @@
 --   bottom. The boards come from the server through the Leaderboard remote when the page opens.
 --   My stats: your numbers from your profile (wins, games, win rate, level, tags, rounds
 --   survived, best win streak, time played) and your moves.
+-- Both pages scroll, so nothing is cut off on a short window; under NARROW_BELOW (a phone held
+-- upright) the chips use two rows and the stat tiles two columns (Ui.bodySize).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -23,6 +25,9 @@ local PODIUM_COLORS = {
 	Color3.fromRGB(217, 136, 74), -- 3rd
 }
 local PERIODS = { "All time", "This week" }
+local NARROW_BELOW = 560 -- pages narrower than this (virtual pixels) get the narrow layout
+local SCROLL_PAD = 12 -- the scroll lists' padding on the right
+local FOOTER = 64 -- room kept under the list for your rank and the footer line
 
 -- Puts a player's headshot on an ImageLabel (Roblox's thumbnail URL loads it in the background).
 local function headshot(image: ImageLabel, userId: number)
@@ -54,10 +59,16 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 	end
 
+	local top = Ui.hit(30) + 12 -- under the Leaderboards / My stats tabs
+	local chipHeight = Ui.hit(24)
+	local function narrow(): boolean
+		return Ui.bodySize(page).X < NARROW_BELOW
+	end
+
 	-- Leaderboards.
 	local boardsFrame = Ui.frame(page)
-	boardsFrame.Position = UDim2.fromOffset(0, 42)
-	boardsFrame.Size = UDim2.new(1, 0, 1, -42)
+	boardsFrame.Position = UDim2.fromOffset(0, top)
+	boardsFrame.Size = UDim2.new(1, 0, 1, -top)
 
 	local boardId = boardDefs[1].Id
 	local period = PERIODS[1]
@@ -73,27 +84,35 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local boardChips, selectBoard = Ui.tabs(boardsFrame, boardNames, Ui.Colors.Text, function(name)
 		boardId = nameToId[name]
 		redraw()
-	end, 24, 11)
+	end, 24, 11, 9)
 	boardChips.Position = UDim2.fromOffset(0, 0)
 	local periodChips, selectPeriod = Ui.tabs(boardsFrame, PERIODS, Ui.Colors.Text, function(name)
 		period = name
 		redraw()
-	end, 24, 11)
-	periodChips.AnchorPoint = Vector2.new(1, 0)
-	periodChips.Position = UDim2.fromScale(1, 0)
+	end, 24, 11, 9)
 	selectBoard(boardDefs[1].Name)
 	selectPeriod(period)
 
-	local podium = Ui.frame(boardsFrame)
-	podium.Position = UDim2.fromOffset(0, 34)
-	podium.Size = UDim2.new(1, 0, 0, 156)
-	local list = Ui.frame(boardsFrame)
-	list.Position = UDim2.fromOffset(0, 196)
-	list.Size = UDim2.new(1, 0, 1, -196 - 64)
-	local listLayout = Instance.new("UIListLayout")
-	listLayout.Padding = UDim.new(0, 4)
-	listLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	listLayout.Parent = list
+	-- The podium and the list scroll together between the chips and your own rank.
+	local middle = Ui.scroll(boardsFrame, 4)
+	local podium: Frame
+	local list = middle
+
+	-- The period chips sit at the right of the board chips, or under them when narrow.
+	local function arrangeChips()
+		local second = narrow()
+		if second then
+			periodChips.AnchorPoint = Vector2.zero
+			periodChips.Position = UDim2.fromOffset(0, chipHeight + 6)
+		else
+			periodChips.AnchorPoint = Vector2.new(1, 0)
+			periodChips.Position = UDim2.fromScale(1, 0)
+		end
+		local chipsBottom = if second then chipHeight * 2 + 6 else chipHeight
+		middle.Position = UDim2.fromOffset(0, chipsBottom + 10)
+		middle.Size = UDim2.new(1, 0, 1, -(chipsBottom + 10 + FOOTER))
+	end
+	arrangeChips()
 	local mine = Ui.frame(boardsFrame)
 	mine.AnchorPoint = Vector2.new(0, 1)
 	mine.Position = UDim2.new(0, 0, 1, -22)
@@ -113,8 +132,8 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	)
 		local parent = if highlight then mine else list
 		local r = Ui.slab(parent, if highlight then Ui.Colors.Orange else Ui.Colors.Card, 6)
-		r.LayoutOrder = order
-		r.Size = if highlight then UDim2.fromScale(1, 1) else UDim2.new(1, 0, 0, 30)
+		r.LayoutOrder = if highlight then order else 10 + order -- (after the podium)
+		r.Size = if highlight then UDim2.fromScale(1, 1) else UDim2.new(1, -6, 0, 30)
 		local text = if highlight then Ui.Colors.Ink else Ui.Colors.Text
 		local rankLabel = Ui.caps(r, rank, 14, if highlight then Ui.Colors.Ink else Ui.Colors.Dim)
 		rankLabel.Position = UDim2.fromOffset(14, 0)
@@ -144,7 +163,9 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		local column = Ui.frame(podium)
 		column.AnchorPoint = Vector2.new(0.5, 1)
 		column.Position = UDim2.fromScale(x, 1)
-		column.Size = UDim2.fromOffset(170, 156)
+		-- Three columns side by side: 170 wide each, less on a narrow page.
+		local available = Ui.bodySize(page).X - SCROLL_PAD - 6
+		column.Size = UDim2.fromOffset(math.min(170, math.floor(available * 0.31)), 156)
 		local color = PODIUM_COLORS[rank]
 		local block = Ui.slab(column, color, 10)
 		block.AnchorPoint = Vector2.new(0.5, 1)
@@ -180,12 +201,15 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 				def = d
 			end
 		end
+		arrangeChips()
 		periodChips.Visible = def ~= nil and def.Weekly == true
 		local weekly = period == "This week" and def ~= nil and def.Weekly == true
 		local key = `{boardId}:{if weekly then "Week" else "All"}`
-		Ui.clear(podium)
 		Ui.clear(list)
 		Ui.clear(mine)
+		podium = Ui.frame(middle)
+		podium.LayoutOrder = 1
+		podium.Size = UDim2.new(1, -6, 0, 156)
 		if not data then
 			footer.Text = "LOADING..."
 			return
@@ -194,6 +218,12 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		podiumBlock(2, entries[2], 0.2, 58)
 		podiumBlock(1, entries[1], 0.5, 82)
 		podiumBlock(3, entries[3], 0.8, 44)
+		if #entries == 0 then
+			-- Nothing recorded yet (a new week, or saving is off and nobody has a score).
+			local none = Ui.caps(list, "No scores yet", 12, Ui.Colors.Dim)
+			none.LayoutOrder = 10
+			none.Size = UDim2.new(1, -6, 0, 30)
+		end
 		for i = 4, math.min(#entries, Config.Leaderboards.ShowCount) do
 			local entry = entries[i]
 			listRow(i, `#{i}`, entry.UserId, entry.Name or "?", Ui.number(entry.Value), false)
@@ -221,20 +251,22 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	statsFrame.Position = boardsFrame.Position
 	statsFrame.Size = boardsFrame.Size
 	statsFrame.Visible = false
-	local tiles = Ui.frame(statsFrame)
+	local statsScroll = Ui.scroll(statsFrame, 8)
+	local tiles = Ui.frame(statsScroll)
+	tiles.LayoutOrder = 1
 	tiles.Size = UDim2.new(1, 0, 0, 152)
 	local tileGrid = Instance.new("UIGridLayout")
 	tileGrid.CellSize = UDim2.new(0.25, -6, 0, 72)
 	tileGrid.CellPadding = UDim2.fromOffset(8, 8)
 	tileGrid.SortOrder = Enum.SortOrder.LayoutOrder
 	tileGrid.Parent = tiles
-	local movesTitle = Ui.caps(statsFrame, "Moves", 13, Ui.Colors.Text)
-	movesTitle.Position = UDim2.fromOffset(0, 164)
+	local movesTitle = Ui.caps(statsScroll, "Moves", 13, Ui.Colors.Text)
+	movesTitle.LayoutOrder = 2
 	movesTitle.Size = UDim2.new(1, 0, 0, 20)
 	movesTitle.TextXAlignment = Enum.TextXAlignment.Left
-	local moves = Ui.frame(statsFrame)
-	moves.Position = UDim2.fromOffset(0, 190)
-	moves.Size = UDim2.new(1, 0, 0, 130)
+	local moves = Ui.frame(statsScroll)
+	moves.LayoutOrder = 3
+	moves.Size = UDim2.new(1, 0, 0, 64)
 
 	local function drawStats()
 		local profile = Profile.get()
@@ -242,6 +274,11 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 			return
 		end
 		local stats = profile.Stats
+		-- Four tiles across, or two on a narrow page.
+		local columns = if narrow() then 2 else 4
+		local rows = math.ceil(8 / columns)
+		tileGrid.CellSize = UDim2.new(1 / columns, -(8 * (columns - 1)) / columns, 0, 72)
+		tiles.Size = UDim2.new(1, 0, 0, rows * 72 + (rows - 1) * 8)
 		Ui.clear(tiles)
 		local games = math.max(stats.GamesPlayed, 0)
 		local minutes = stats.PlayMinutes or 0
@@ -272,6 +309,8 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 			value.Position = UDim2.fromOffset(10, 26)
 			value.Size = UDim2.new(1, -20, 0, 36)
 			value.TextXAlignment = Enum.TextXAlignment.Left
+			Ui.shrinkText(value, 16, 30)
+			Ui.shrinkText(label, 8, 11)
 		end
 		Ui.clear(moves)
 		local moveList = {
@@ -323,6 +362,8 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	return function()
 		if current == "My stats" then
 			drawStats()
+		else
+			redraw()
 		end
 	end
 end

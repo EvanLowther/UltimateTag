@@ -9,12 +9,20 @@
 --   atan(cap width / height) cuts exactly corner to corner. Ui.paint recolors a slab.
 --   Moving gradients (the Iridescent holo shimmer) are tagged for client/GradientFx.
 --   Icons are drawn shapes (client/Icons), never emoji.
+--   Screen sizes: layouts are made for a 1280x720 screen in "virtual pixels". Ui.scale(gui) puts
+--   a UIScale on a root frame (the shortest screen side against Config.Ui.Reference, clamped),
+--   so everything inside is laid out in virtual pixels: Ui.viewport() is the screen's size in
+--   them, Ui.factor() the real pixels per virtual one, Ui.onViewport(fn) tells you when either
+--   changes. Touch screens get a minimum button size (Ui.hit).
 local CollectionService = game:GetService("CollectionService")
+local GuiService = game:GetService("GuiService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
+local Config = require(Shared:WaitForChild("Config"))
 local CosmeticLook = require(Shared:WaitForChild("CosmeticLook"))
 local Icons = require(script.Parent.Parent.Icons)
 
@@ -57,6 +65,131 @@ local function kp(t: number, v: number): NumberSequenceKeypoint
 end
 local KEEP_HIGH = NumberSequence.new({ kp(0, 1), kp(0.49, 1), kp(0.51, 0), kp(1, 0) })
 local KEEP_LOW = NumberSequence.new({ kp(0, 0), kp(0.49, 0), kp(0.51, 1), kp(1, 1) })
+
+-- Screen scaling ---------------------------------------------------------------------------
+
+local viewportEvent = Instance.new("BindableEvent")
+local scaleFactor = 1
+local virtualSize: Vector2 = Config.Ui.Reference
+local scaledGui: ScreenGui? = nil
+local touchMins: { [UISizeConstraint]: boolean } = setmetatable({}, { __mode = "k" }) :: any
+
+-- Whether buttons get a minimum (touch) size on this device.
+function Ui.touch(): boolean
+	return Config.Ui.TouchTargets and UserInputService.TouchEnabled
+end
+
+-- Real pixels per virtual pixel (1 until Ui.scale has run).
+function Ui.factor(): number
+	return scaleFactor
+end
+
+-- The screen's size in virtual pixels: what scale-sized GUI objects are laid out against.
+function Ui.viewport(): Vector2
+	return virtualSize
+end
+
+-- The pixels the top bar takes at the top of the screen (the scaled gui starts under it).
+function Ui.inset(): Vector2
+	local gui = scaledGui
+	if gui and gui.IgnoreGuiInset then
+		return Vector2.zero
+	end
+	return GuiService:GetGuiInset()
+end
+
+-- Calls `fn(viewport, factor)` whenever the screen's size or scale changes.
+function Ui.onViewport(fn: (Vector2, number) -> ()): RBXScriptConnection
+	return viewportEvent.Event:Connect(fn)
+end
+
+-- A height of at least the touch minimum on touch screens (in virtual pixels), else `height`.
+function Ui.hit(height: number): number
+	if not Ui.touch() then
+		return height
+	end
+	return math.max(height, math.ceil(Config.Ui.MinTouchTarget / scaleFactor))
+end
+
+local function touchSizes()
+	local minimum = Ui.hit(0)
+	for constraint in touchMins do
+		constraint.MinSize = Vector2.new(0, minimum)
+	end
+end
+
+-- Keeps a button at least the touch minimum high (touch screens only).
+local function touchMin(object: GuiObject)
+	if Ui.touch() then
+		local limit = Instance.new("UISizeConstraint")
+		limit.Name = "TouchMin"
+		limit.MinSize = Vector2.new(0, Ui.hit(0))
+		limit.Parent = object
+		touchMins[limit] = true
+	end
+end
+
+-- Scales the whole screen gui: returns a root frame to build everything in (children are laid
+-- out in virtual pixels; the root fills the screen). Call once per ScreenGui, before building.
+function Ui.scale(gui: ScreenGui): Frame
+	scaledGui = gui
+	local root = Instance.new("Frame")
+	root.Name = "Root"
+	root.BackgroundTransparency = 1
+	root.BorderSizePixel = 0
+	root.Parent = gui
+	local scale = Instance.new("UIScale")
+	scale.Parent = root
+	local settings = Config.Ui
+	local function update()
+		local real = gui.AbsoluteSize
+		if real.X <= 0 or real.Y <= 0 then -- not on screen yet
+			local camera = workspace.CurrentCamera
+			real = if camera then camera.ViewportSize else settings.Reference
+		end
+		local lowest = if Ui.touch() then settings.TouchMinScale else settings.MinScale
+		local factor = math.clamp(
+			math.min(real.X / settings.Reference.X, real.Y / settings.Reference.Y),
+			lowest,
+			settings.MaxScale
+		)
+		local view = real / factor
+		if factor == scaleFactor and view == virtualSize and scale.Scale == factor then
+			return
+		end
+		scaleFactor = factor
+		virtualSize = view
+		scale.Scale = factor
+		root.Size = UDim2.fromScale(1 / factor, 1 / factor)
+		touchSizes()
+		viewportEvent:Fire(view, factor)
+	end
+	gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(update)
+	update()
+	return root
+end
+
+-- How big a menu page's body is, in virtual pixels (set by Menu on each page frame; the page
+-- is refreshed when it changes). Pages switch to narrow layouts under about 600 wide.
+function Ui.bodySize(page: GuiObject): Vector2
+	local width = page:GetAttribute("BodyW")
+	local height = page:GetAttribute("BodyH")
+	return Vector2.new(
+		if type(width) == "number" then width else 788,
+		if type(height) == "number" then height else 482
+	)
+end
+
+-- Lets a one-line label shrink to fit its box instead of spilling out of it (from `max` down
+-- to `min`); the label's own size is the box.
+function Ui.shrinkText(label: TextLabel, min: number, max: number?)
+	label.TextScaled = true
+	label.TextWrapped = false
+	local limit = Instance.new("UITextSizeConstraint")
+	limit.MinTextSize = min
+	limit.MaxTextSize = max or label.TextSize
+	limit.Parent = label
+end
 
 local function piece(parent: Instance, name: string, color: Color3): Frame
 	local f = Instance.new("Frame")
@@ -392,6 +525,7 @@ function Ui.button(
 		label.Size = UDim2.fromScale(1, 1)
 		label.ZIndex = 2
 	end
+	touchMin(b)
 	local scale = Instance.new("UIScale")
 	scale.Parent = b
 	local quick = TweenInfo.new(0.08)
@@ -454,12 +588,13 @@ function Ui.tabs(
 	color: Color3,
 	onSelect: (string) -> (),
 	height: number?,
-	textSize: number?
+	textSize: number?,
+	sidePadding: number?
 ): (Frame, (string) -> (), (string, number?) -> ())
 	local row = Instance.new("Frame")
 	row.Name = "Tabs"
 	row.BackgroundTransparency = 1
-	row.Size = UDim2.fromOffset(0, height or 30)
+	row.Size = UDim2.fromOffset(0, Ui.hit(height or 30))
 	row.AutomaticSize = Enum.AutomaticSize.X
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
@@ -510,8 +645,8 @@ function Ui.tabs(
 		label.AutomaticSize = Enum.AutomaticSize.X
 		label.ZIndex = 2
 		local pad = Instance.new("UIPadding")
-		pad.PaddingLeft = UDim.new(0, 14)
-		pad.PaddingRight = UDim.new(0, 14)
+		pad.PaddingLeft = UDim.new(0, sidePadding or 14)
+		pad.PaddingRight = UDim.new(0, sidePadding or 14)
 		pad.Parent = label
 		Ui.fitWidth(tab, label)
 		tab.Activated:Connect(function()
@@ -570,24 +705,29 @@ function Ui.window(
 	if icon then
 		Ui.windowIcon(header, icon)
 	end
+	-- The title and the info share the header; both shrink to fit rather than run into each
+	-- other or off the bar in a narrow window.
 	local titleLabel = Ui.title(header, title, 36, Ui.Colors.Ink)
 	titleLabel.Name = "Title"
 	titleLabel.Position = UDim2.fromOffset(52, 2)
-	titleLabel.Size = UDim2.new(0.6, -52, 1, 0)
+	titleLabel.Size = UDim2.new(0.6, -52, 1, -4)
 	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 	titleLabel.ZIndex = 2
+	Ui.shrinkText(titleLabel, 18, 36)
 	local info = Ui.caps(header, "", 15, Ui.Colors.Ink)
 	info.Name = "Info"
 	info.AnchorPoint = Vector2.new(1, 0)
 	info.Position = UDim2.new(1, -22, 0, 0)
-	info.Size = UDim2.fromScale(0.4, 1)
+	info.Size = UDim2.new(0.4, -4, 1, 0)
 	info.TextXAlignment = Enum.TextXAlignment.Right
 	info.ZIndex = 2
+	Ui.shrinkText(info, 9, 15)
+	local closeSize = Ui.hit(36)
 	local close = Ui.button(window, "X", Ui.Colors.Pink, function() end, Ui.Colors.Text, 0)
 	close.Name = "Close"
 	close.AnchorPoint = Vector2.new(1, 0)
-	close.Position = UDim2.new(1, -22, 0, 8)
-	close.Size = UDim2.fromOffset(36, 36)
+	close.Position = UDim2.new(1, -22, 0, math.max(0, 26 - closeSize // 2))
+	close.Size = UDim2.fromOffset(closeSize, closeSize)
 	Ui.setTextSize(close, 22)
 	local body = Instance.new("Frame")
 	body.Name = "Body"

@@ -4,15 +4,18 @@
 -- rest show how to get them. Picking a tile shows it on a copy of your character in the 3D
 -- preview (client/LockerStage), with an info plate on the right: the rarity and kind, the
 -- name, what it looks like, the Equip button (or how to get it), and the serial number of an
--- Iridescent you own.
+-- Iridescent you own. Where the window, plate and chip go on a given screen (and so where the
+-- character is shown) is Menu/LockerLayout.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local ShopRotation = require(Shared:WaitForChild("ShopRotation"))
+local Config = require(Shared:WaitForChild("Config"))
 local LockerStage = require(script.Parent.Parent.LockerStage)
 local Profile = require(script.Parent.Parent.Profile)
 local ItemCard = require(script.Parent.ItemCard)
+local LockerLayout = require(script.Parent.LockerLayout)
 local Ui = require(script.Parent.Ui)
 
 local LockerTab = {}
@@ -30,6 +33,9 @@ local SCENES = {
 local plate: Frame? = nil
 local chip: Frame? = nil
 local show: (() -> ())? = nil -- redraws the plate and the preview for the selection
+local arrange: (() -> ())? = nil -- puts the plate and the chip where the screen has room
+
+local TILE_WIDTH = 100 -- the tile grid's columns are at least this wide
 
 -- The header's right side: how much you own.
 function LockerTab.info(profile: { [string]: any }): string
@@ -56,6 +62,9 @@ local function source(item: Catalog.Item): string
 end
 
 function LockerTab.opened()
+	if arrange then
+		arrange()
+	end
 	if plate then
 		plate.Visible = true
 	end
@@ -90,19 +99,21 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 		nameToKind[name] = k
 	end
 	local refresh: () -> ()
+	local tabHeight = Ui.hit(28)
 	local _, selectTab = Ui.tabs(page, tabNames, Ui.Colors.Cyan, function(name)
 		kind = nameToKind[name]
 		refresh()
-	end, 28, 11)
+	end, 28, 11, 10)
 
 	local count = Ui.caps(page, "", 11, Ui.Colors.Dim)
-	count.Position = UDim2.fromOffset(2, 34)
+	count.Position = UDim2.fromOffset(2, tabHeight + 6)
 	count.Size = UDim2.new(1, -4, 0, 16)
 	count.TextXAlignment = Enum.TextXAlignment.Left
+	count.TextTruncate = Enum.TextTruncate.AtEnd
 
 	local holder = Ui.frame(page)
-	holder.Position = UDim2.fromOffset(0, 56)
-	holder.Size = UDim2.new(1, 0, 1, -56)
+	holder.Position = UDim2.fromOffset(0, tabHeight + 28)
+	holder.Size = UDim2.new(1, 0, 1, -(tabHeight + 28))
 	local scroll = Instance.new("ScrollingFrame")
 	scroll.BackgroundTransparency = 1
 	scroll.BorderSizePixel = 0
@@ -113,7 +124,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	scroll.ScrollBarImageColor3 = Ui.Colors.Dim
 	scroll.Parent = holder
 	local grid = Instance.new("UIGridLayout")
-	grid.CellSize = UDim2.new(1 / 3, -6, 0, 76)
+	grid.CellSize = UDim2.new(1 / 3, -6, 0, 76) -- (columns follow the window's width, below)
 	grid.CellPadding = UDim2.fromOffset(6, 6)
 	grid.SortOrder = Enum.SortOrder.LayoutOrder
 	grid.Parent = scroll
@@ -125,9 +136,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	-- The info plate (top right of the screen) and the preview chip (bottom right).
 	local info = Ui.panel(api.gui, Ui.Colors.Panel, 12)
 	info.Name = "LockerInfo"
-	info.AnchorPoint = Vector2.new(1, 0)
-	info.Position = UDim2.new(1, -16, 0, 16)
-	info.Size = UDim2.fromOffset(310, 168)
+	info.Size = UDim2.fromOffset(Config.Locker.PlateSize.X, Config.Locker.PlateSize.Y)
 	info.Visible = false
 	plate = info
 	local infoRarity = Ui.frame(info)
@@ -138,12 +147,14 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	infoName.Size = UDim2.new(1, -28, 0, 38)
 	infoName.TextXAlignment = Enum.TextXAlignment.Left
 	infoName.TextTruncate = Enum.TextTruncate.AtEnd
+	Ui.shrinkText(infoName, 18, 34) -- a long name gets smaller instead of being cut off
 	local infoText = Ui.text(info, "", 13, Ui.Colors.Dim)
 	infoText.Position = UDim2.fromOffset(14, 66)
 	infoText.Size = UDim2.new(1, -28, 0, 36)
 	infoText.TextXAlignment = Enum.TextXAlignment.Left
 	infoText.TextYAlignment = Enum.TextYAlignment.Top
 	infoText.TextWrapped = true
+	infoText.TextTruncate = Enum.TextTruncate.AtEnd
 	local action = Ui.frame(info)
 	action.Position = UDim2.fromOffset(14, 112)
 	action.Size = UDim2.new(1, -28, 0, 36)
@@ -156,9 +167,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 
 	local scene = Ui.slab(api.gui, Ui.Colors.Panel, 8)
 	scene.Name = "LockerScene"
-	scene.AnchorPoint = Vector2.new(1, 1)
-	scene.Position = UDim2.new(1, -16, 1, -16)
-	scene.Size = UDim2.fromOffset(300, 28)
+	scene.Size = UDim2.fromOffset(Config.Locker.ChipSize.X, Config.Locker.ChipSize.Y)
 	scene.Visible = false
 	chip = scene
 	local scenePlay = Ui.icon(scene, "play", 14, Ui.Colors.Yellow)
@@ -168,6 +177,22 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	sceneText.Position = UDim2.fromOffset(38, 0)
 	sceneText.Size = UDim2.new(1, -48, 1, 0)
 	sceneText.TextXAlignment = Enum.TextXAlignment.Left
+	sceneText.TextTruncate = Enum.TextTruncate.AtEnd
+
+	-- The plate and the chip go where the screen has room (side, column or sheet), and the tile
+	-- grid gets as many columns as the window is wide.
+	local function arrangeNow()
+		local layout = LockerLayout.get()
+		info.Position = UDim2.fromOffset(layout.plate.x, layout.plate.y)
+		info.Size = UDim2.fromOffset(layout.plate.w, layout.plate.h)
+		scene.Position = UDim2.fromOffset(layout.chip.x, layout.chip.y)
+		scene.Size = UDim2.fromOffset(layout.chip.w, layout.chip.h)
+		local columns = math.max(3, math.floor((Ui.bodySize(page).X - 8) / TILE_WIDTH))
+		grid.CellSize = UDim2.new(1 / columns, -6, 0, 76)
+	end
+	arrange = arrangeNow
+	Ui.onViewport(arrangeNow)
+	arrangeNow()
 
 	local function current(profile: { [string]: any }): Catalog.Item?
 		local id = selected[kind] or profile.Equipped[kind]
@@ -206,12 +231,12 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 				nil,
 				"check"
 			)
-			done.Size = UDim2.fromOffset(150, 34)
+			done.Size = UDim2.fromOffset(150, Ui.hit(34))
 		elseif owned then
 			local equip = Ui.button(action, "Equip", Ui.Colors.Cyan, function()
 				api.send("Equip", item.id)
 			end)
-			equip.Size = UDim2.fromOffset(150, 34)
+			equip.Size = UDim2.fromOffset(150, Ui.hit(34))
 			Ui.setTextSize(equip, 17)
 		else
 			local how = Ui.button(action, source(item), Ui.Colors.Tab, function()
@@ -219,7 +244,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 					api.open("Shop")
 				end
 			end, Ui.Colors.Dim, nil, "lock")
-			how.Size = UDim2.new(1, 0, 0, 34)
+			how.Size = UDim2.new(1, 0, 0, Ui.hit(34))
 			Ui.setTextSize(how, 13)
 		end
 		local live = LockerStage.isActive()
@@ -238,6 +263,9 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 		local profile = Profile.get()
 		if not profile then
 			return
+		end
+		if arrange then
+			arrange()
 		end
 		selectTab(Catalog.KindNames[kind])
 		local items = {}

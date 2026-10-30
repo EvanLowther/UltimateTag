@@ -6,6 +6,9 @@
 --   "Winner" is win 1, 10, 50...). Each chain shows its next tier, the progress, the reward,
 --   and a Claim button once that tier is reached (server/Achievements). Chips filter by
 --   category.
+-- Rows have two layouts, by the page's width (Ui.bodySize): wide (title and progress bar on
+-- the left, the reward or Claim button on the right) and narrow, under NARROW_BELOW (the
+-- reward or button gets its own line under the bar).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -28,6 +31,7 @@ local EVENT_ICONS = {
 	PlayMinute = "clock",
 }
 local CATEGORIES = { "All", "Wins", "Tags", "Moves", "Levels", "Streaks" }
+local NARROW_BELOW = 560 -- pages narrower than this (virtual pixels) get the narrow rows
 
 type Chain = { group: { [string]: any }, tiers: { { [string]: any } } }
 
@@ -99,7 +103,12 @@ function QuestsTab.badge(profile: { [string]: any }): number
 end
 
 -- What a reward bundle is, as short rich text.
-local function rewardText(coins: number?, xp: number?, items: { string }?): string
+local function rewardText(
+	coins: number?,
+	xp: number?,
+	items: { string }?,
+	separator: string?
+): string
 	local parts = {}
 	if coins and coins > 0 then
 		table.insert(
@@ -120,7 +129,7 @@ local function rewardText(coins: number?, xp: number?, items: { string }?): stri
 			)
 		end
 	end
-	return table.concat(parts, "<br/>")
+	return table.concat(parts, separator or "<br/>")
 end
 
 -- One row: an accent edge, an icon, a title and line under it, a progress bar with a count,
@@ -135,11 +144,18 @@ local function row(
 	titleText: string,
 	line: string?,
 	progress: number,
-	countText: string
+	countText: string,
+	narrow: boolean
 ): (Frame, Frame)
 	local r = Ui.slab(parent, back, 6)
 	r.LayoutOrder = order
-	r.Size = UDim2.new(1, -6, 0, if line then 64 else 56)
+	local barY = if line then 42 else 30
+	-- Narrow: the right side moves under the bar, so the row is taller and the texts get the
+	-- whole width (less the count beside the bar).
+	local rightHeight = Ui.hit(34) + 2
+	local textRight = if narrow then 12 else 220
+	r.Size =
+		UDim2.new(1, -6, 0, if narrow then barY + 20 + rightHeight + 6 else if line then 64 else 56)
 	local edge = Ui.slab(r, accent, 6)
 	edge.Size = UDim2.new(0, 12, 1, 0)
 	edge.ZIndex = 1
@@ -149,29 +165,37 @@ local function row(
 	Ui.centerIcon(box, icon, 28, accent, Ui.Colors.Text)
 	local title = Ui.caps(r, titleText, 14, Ui.Colors.Text)
 	title.Position = UDim2.fromOffset(66, 6)
-	title.Size = UDim2.new(1, -66 - 220, 0, 20)
+	title.Size = UDim2.new(1, -66 - textRight, 0, 20)
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.TextTruncate = Enum.TextTruncate.AtEnd
-	local barY = 30
 	if line then
 		local sub = Ui.text(r, line, 12, Ui.Colors.Dim)
 		sub.Position = UDim2.fromOffset(66, 24)
-		sub.Size = UDim2.new(1, -66 - 220, 0, 16)
+		sub.Size = UDim2.new(1, -66 - textRight, 0, 16)
 		sub.TextXAlignment = Enum.TextXAlignment.Left
-		barY = 42
+		sub.TextTruncate = Enum.TextTruncate.AtEnd
 	end
 	local bar, set = Ui.bar(r, accent, 4)
 	bar.Position = UDim2.fromOffset(66, barY)
-	bar.Size = UDim2.new(1, -66 - 220, 0, 12)
+	bar.Size = UDim2.new(1, -66 - textRight - (if narrow then 72 else 0), 0, 12)
 	set(progress)
 	local count = Ui.caps(r, countText, 13, Ui.Colors.Text)
 	count.AnchorPoint = Vector2.new(1, 0)
-	count.Position = UDim2.new(1, -150, 0, 0)
-	count.Size = UDim2.new(0, 64, 1, 0)
 	local right = Ui.frame(r)
-	right.AnchorPoint = Vector2.new(1, 0)
-	right.Position = UDim2.new(1, -12, 0, 0)
-	right.Size = UDim2.new(0, 132, 1, 0)
+	if narrow then
+		count.Position = UDim2.new(1, -12, 0, barY - 4)
+		count.Size = UDim2.fromOffset(64, 20)
+		count.TextXAlignment = Enum.TextXAlignment.Right
+		right.AnchorPoint = Vector2.new(1, 0)
+		right.Position = UDim2.new(1, -12, 0, barY + 20)
+		right.Size = UDim2.new(1, -66 - 12, 0, rightHeight)
+	else
+		count.Position = UDim2.new(1, -150, 0, 0)
+		count.Size = UDim2.new(0, 64, 1, 0)
+		right.AnchorPoint = Vector2.new(1, 0)
+		right.Position = UDim2.new(1, -12, 0, 0)
+		right.Size = UDim2.new(0, 132, 1, 0)
+	end
 	return r, right
 end
 
@@ -179,7 +203,7 @@ local function claimButton(parent: Frame, onClick: () -> ())
 	local claim = Ui.button(parent, "Claim", Ui.Colors.Lime, onClick, Ui.Colors.Ink, 7)
 	claim.AnchorPoint = Vector2.new(1, 0.5)
 	claim.Position = UDim2.fromScale(1, 0.5)
-	claim.Size = UDim2.fromOffset(104, 34)
+	claim.Size = UDim2.fromOffset(104, Ui.hit(34))
 	Ui.setTextSize(claim, 16)
 	Ui.pulse(claim)
 end
@@ -196,6 +220,16 @@ local function rightText(parent: Frame, text: string, color: Color3?)
 	label.Size = UDim2.fromScale(1, 1)
 	label.TextXAlignment = Enum.TextXAlignment.Right
 	label.TextWrapped = true
+	label.TextTruncate = Enum.TextTruncate.AtEnd
+end
+
+-- A dim line where a list has nothing to show.
+local function emptyRow(parent: Instance, order: number, text: string)
+	local frame = Ui.frame(parent)
+	frame.LayoutOrder = order
+	frame.Size = UDim2.new(1, -6, 0, 36)
+	local label = Ui.caps(frame, text, 12, Ui.Colors.Dim)
+	label.Size = UDim2.fromScale(1, 1)
 end
 
 local function heading(parent: Instance, order: number, text: string, timer: string)
@@ -213,9 +247,14 @@ local function heading(parent: Instance, order: number, text: string, timer: str
 end
 
 function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
+	local top = Ui.hit(30) + 12 -- under the Daily / Achievements tabs
+	local chipHeight = Ui.hit(24)
+	local function narrow(): boolean
+		return Ui.bodySize(page).X < NARROW_BELOW
+	end
 	local daily = Ui.frame(page)
-	daily.Position = UDim2.fromOffset(0, 42)
-	daily.Size = UDim2.new(1, 0, 1, -42)
+	daily.Position = UDim2.fromOffset(0, top)
+	daily.Size = UDim2.new(1, 0, 1, -top)
 	local dailyList = Ui.scroll(daily, 8)
 
 	local achievements = Ui.frame(page)
@@ -227,12 +266,12 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local chipRow, selectChip = Ui.tabs(achievements, CATEGORIES, Ui.Colors.Text, function(name)
 		category = name
 		refresh()
-	end, 24, 11)
+	end, 24, 11, 9)
 	chipRow.Position = UDim2.fromOffset(0, 0)
 	selectChip(category)
 	local chainHolder = Ui.frame(achievements)
-	chainHolder.Position = UDim2.fromOffset(0, 34)
-	chainHolder.Size = UDim2.new(1, 0, 1, -34)
+	chainHolder.Position = UDim2.fromOffset(0, chipHeight + 10)
+	chainHolder.Size = UDim2.new(1, 0, 1, -(chipHeight + 10))
 	local chainList = Ui.scroll(chainHolder, 8)
 
 	local current = "Daily"
@@ -278,7 +317,8 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 				def.Text,
 				nil,
 				quest.Progress / def.Goal,
-				`{math.min(quest.Progress, def.Goal)}/{def.Goal}`
+				`{math.min(quest.Progress, def.Goal)}/{def.Goal}`,
+				narrow()
 			)
 			if claimed then
 				r.Name = "Claimed"
@@ -289,7 +329,10 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 					api.send("ClaimQuest", kind, slot)
 				end)
 			else
-				rightText(right, rewardText(def.Coins, def.XP))
+				rightText(
+					right,
+					rewardText(def.Coins, def.XP, nil, if narrow() then " · " else nil)
+				)
 			end
 		end
 		return order
@@ -304,13 +347,22 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			Ui.upper(`New quests in {DayClock.format(DayClock.secondsToNextDay())}`)
 		)
 		local order = questRows(profile, "Daily", 1)
+		if order == 1 then
+			order += 1
+			emptyRow(dailyList, order, "No quests today")
+		end
 		heading(
 			dailyList,
 			order + 1,
 			"This week",
 			Ui.upper(`Resets in {DayClock.format(DayClock.secondsToNextWeek())}`)
 		)
-		order = questRows(profile, "Weekly", order + 1)
+		local weeklyStart = order + 1
+		order = questRows(profile, "Weekly", weeklyStart)
+		if order == weeklyStart then
+			order += 1
+			emptyRow(dailyList, order, "No quests this week")
+		end
 		local noteRow = Ui.frame(dailyList)
 		noteRow.LayoutOrder = order + 1
 		noteRow.Size = UDim2.new(1, -6, 0, 24)
@@ -327,11 +379,13 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 
 	local function refreshChains(profile: { [string]: any })
 		Ui.clear(chainList)
+		local shown = 0
 		for i, chain in chains do
 			local group = chain.group
 			if category ~= "All" and group.Category ~= category then
 				continue
 			end
+			shown += 1
 			local value = statValue(profile, group.Stat)
 			local nextIndex: number? = nil
 			for t, tier in chain.tiers do
@@ -378,7 +432,8 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 				`{Ui.upper(group.Name)}   {table.concat(pips, " ")}`,
 				line,
 				progress,
-				if full then Ui.number(value) else `{Ui.number(value)}/{Ui.number(tier.Goal)}`
+				if full then Ui.number(value) else `{Ui.number(value)}/{Ui.number(tier.Goal)}`,
+				narrow()
 			)
 			if full then
 				rightMark(right, "check", "Complete", Ui.Colors.Gold)
@@ -387,8 +442,14 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 					api.send("ClaimAchievement", tier.Id)
 				end)
 			else
-				rightText(right, rewardText(tier.Coins, nil, tier.Items))
+				rightText(
+					right,
+					rewardText(tier.Coins, nil, tier.Items, if narrow() then " · " else nil)
+				)
 			end
+		end
+		if shown == 0 then
+			emptyRow(chainList, 1, "No achievements here yet")
 		end
 	end
 

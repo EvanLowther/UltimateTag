@@ -7,7 +7,8 @@
 --   Crate:   the crate opening: a reel of cards spins and stops on the best thing you got, then
 --            lists the rest.
 --   Announce (Unbox): a holo stripe for everyone when someone opens an Iridescent item.
--- Big popups take turns.
+-- Big popups take turns. They are built in the menu's scaled root frame (Ui.scale), so sizes
+-- are virtual pixels; widths follow the screen (Ui.viewport) so nothing runs off a narrow one.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
@@ -18,12 +19,14 @@ local Ui = require(script.Parent.Ui)
 
 local Popups = {}
 
-local gui: ScreenGui
+local gui: GuiObject
 local floatAnchor: Frame
 local queue: { () -> () } = {}
 local showing = false
 
 local TOP = 50 -- popups sit above the menu window
+local CARD_WIDTH = 380 -- the reward card (narrower on a narrow screen)
+local REEL_WIDTH = 600 -- the crate window (ditto)
 local REASONS = {
 	GamePlayed = "Game played",
 	RoundSurvived = "Round survived",
@@ -72,6 +75,7 @@ local function float(text: string)
 	local label = Ui.caps(floatAnchor, text, 18, Ui.Colors.Text)
 	label.Size = UDim2.new(1, 0, 0, 26)
 	label.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(label, 10, 18) -- long lines shrink instead of leaving the screen
 	local stroke = Ui.stroke(label, 2)
 	local info = TweenInfo.new(2.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, -50), TextTransparency = 1 })
@@ -117,16 +121,17 @@ local function card(title: string, lines: { string }, color: Color3, seconds: nu
 	onTop(panel)
 	panel.AnchorPoint = Vector2.new(0.5, 0)
 	panel.Position = UDim2.new(0.5, 0, 0, 110)
-	panel.Size = UDim2.fromOffset(380, 58 + #lines * 26)
+	panel.Size = UDim2.fromOffset(math.min(CARD_WIDTH, Ui.viewport().X - 24), 58 + #lines * 26)
 	local header = Ui.slab(panel, color, 10)
 	header.Size = UDim2.new(1, -20, 0, 40)
 	local titleLabel = Ui.title(header, title, 28, Ui.Colors.Ink)
 	titleLabel.Size = UDim2.fromScale(1, 1)
+	Ui.shrinkText(titleLabel, 14, 28)
 	for i, line in lines do
 		local l = Ui.caps(panel, line, 15, Ui.Colors.Text)
 		l.Position = UDim2.fromOffset(12, 44 + (i - 1) * 26)
 		l.Size = UDim2.new(1, -24, 0, 24)
-		l.TextWrapped = true
+		Ui.shrinkText(l, 9, 15) -- one line each; a long item name gets smaller
 	end
 	Ui.popIn(panel)
 	task.wait(seconds)
@@ -157,11 +162,18 @@ local function stripe(
 		line.Position = UDim2.fromScale(0, edge)
 		line.Size = UDim2.new(1, 0, 0, 5)
 	end
+	-- The band is 1.3 screens wide, so the text keeps to the middle 0.72 of it (the visible
+	-- part is 1 / 1.3 = 0.77) and shrinks if it's long.
 	local shadow = Ui.title(band, text, 52, Ui.Colors.Pink)
-	shadow.Position = UDim2.fromOffset(4, 4)
-	shadow.Size = UDim2.fromScale(1, 1)
+	shadow.AnchorPoint = Vector2.new(0.5, 0)
+	shadow.Position = UDim2.new(0.5, 4, 0, 4)
+	shadow.Size = UDim2.new(0.72, 0, 1, -8)
+	Ui.shrinkText(shadow, 14, 52)
 	local label = Ui.title(band, text, 52, textColor)
-	label.Size = UDim2.fromScale(1, 1)
+	label.AnchorPoint = Vector2.new(0.5, 0)
+	label.Position = UDim2.fromScale(0.5, 0)
+	label.Size = UDim2.new(0.72, 0, 1, -8)
+	Ui.shrinkText(label, 14, 52)
 	local scale = Instance.new("UIScale")
 	scale.Parent = band
 	Ui.popIn(band, 0.25)
@@ -198,7 +210,8 @@ local function crateReel(results: { { [string]: any } })
 	close.Visible = false
 	window.AnchorPoint = Vector2.new(0.5, 0.5)
 	window.Position = UDim2.fromScale(0.5, 0.45)
-	window.Size = UDim2.fromOffset(600, height + 170)
+	local windowWidth = math.min(REEL_WIDTH, Ui.viewport().X - 24)
+	window.Size = UDim2.fromOffset(windowWidth, height + 170)
 	local view = Ui.frame(body)
 	view.ClipsDescendants = true
 	view.Size = UDim2.new(1, 0, 0, height + 10)
@@ -236,7 +249,7 @@ local function crateReel(results: { { [string]: any } })
 	Ui.popIn(window, 0.25)
 
 	-- Scroll so the prize card ends up centred under the marker.
-	local viewWidth = 568
+	local viewWidth = windowWidth - 32 -- the window's body (Ui.window: 16 each side)
 	local target = -((stopAt - 1) * (width + 10) + width / 2 - viewWidth / 2)
 	local spin = TweenInfo.new(3.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
 	TweenService:Create(strip, spin, { Position = UDim2.fromOffset(target, 5) }):Play()
@@ -343,7 +356,7 @@ function Popups.announce(payload: { [string]: any })
 	end)
 end
 
-function Popups.start(screen: ScreenGui, anchor: Frame)
+function Popups.start(screen: GuiObject, anchor: Frame)
 	gui = screen
 	floatAnchor = anchor
 end
