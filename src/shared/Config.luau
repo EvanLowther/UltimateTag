@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.55.3",
+	Version = "0.55.5",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -840,7 +840,7 @@ local Config = {
 			Backflip = { Size = Vector2.new(9, 11), Up = 2.5 },
 			ConfettiStorm = { Size = Vector2.new(12, 9), Up = 1 },
 			Breakdance = { Size = Vector2.new(10, 8), Up = -0.5 },
-			Katana = { Size = Vector2.new(11, 8), Up = 0.5 },
+			Katana = { Size = Vector2.new(13, 10), Up = 1 },
 			TrophyLift = { Size = Vector2.new(8, 9.5), Up = 1.5 },
 			PodiumRise = { Size = Vector2.new(12, 15), Up = 4 },
 			Thunderstorm = { Size = Vector2.new(12, 11), Up = 2 },
