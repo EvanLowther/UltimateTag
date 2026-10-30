@@ -253,28 +253,39 @@ local function turnBetween(from: Vector3, to: Vector3): CFrame
 	return CFrame.fromAxisAngle(axis.Unit, math.acos(math.clamp(u:Dot(v), -1, 1)))
 end
 
--- Turns one joint (after the animation this frame) so the bone from it to `tip` points at
--- `toward`. Returns the joint's new frame.
-local function aim(joint: Motor6D, tip: Vector3, toward: Vector3): CFrame
-	local base = (joint.Part0 :: BasePart).CFrame * joint.C0
-	local now = base * joint.Transform
-	local turned = CFrame.new(now.Position)
-		* turnBetween(tip - now.Position, toward - now.Position)
-		* now.Rotation
-	joint.Transform = base:Inverse() * turned
-	return turned
+-- Where a body part is this frame, worked out down the joints from the root with this frame's
+-- animation (reading a part's CFrame mid-frame can give last frame's place).
+local function frameOf(model: Model, name: string, depth: number?): CFrame?
+	local part = model:FindFirstChild(name)
+	if not part or not part:IsA("BasePart") then
+		return nil
+	end
+	if name == "HumanoidRootPart" or (depth or 0) > 8 then
+		return part.CFrame
+	end
+	for _, motor in part:GetChildren() do
+		if motor:IsA("Motor6D") and motor.Part1 == part and motor.Part0 then
+			local parent = frameOf(model, motor.Part0.Name, (depth or 0) + 1)
+			if parent then
+				return parent * motor.C0 * motor.Transform * motor.C1:Inverse()
+			end
+		end
+	end
+	return part.CFrame
 end
 
 -- Bends an arm ("Right" or "Left") so its hand reaches `target`, its elbow toward `pole`, laid
--- over the animation this frame (call it every frame, after the animation). `weight` (0-1)
--- blends from where the animation put the hand. Returns where the hand's middle ends up (short
--- of `target` if it's out of reach).
+-- over the animation this frame (call it every frame; it runs after the animation). `weight`
+-- (0-1) blends from where the animation put the hand. `turn`, if given, is the hand's turn in
+-- the world (how it grips). Returns where the hand's middle ends up (short of `target` if it's
+-- out of reach).
 function Kit.reach(
 	model: Model,
 	side: string,
 	target: Vector3,
 	pole: Vector3,
-	weight: number?
+	weight: number?,
+	turn: CFrame?
 ): Vector3?
 	local upper = model:FindFirstChild(side .. "UpperArm")
 	local lower = model:FindFirstChild(side .. "LowerArm")
@@ -293,23 +304,29 @@ function Kit.reach(
 			and elbow:IsA("Motor6D")
 			and wrist
 			and wrist:IsA("Motor6D")
+			and shoulder.Part0
 		)
 	then
 		return nil
 	end
-	local w = math.clamp(weight or 1, 0, 1)
-	if w <= 0 then
-		return (hand :: BasePart).Position
+	local torso = frameOf(model, (shoulder.Part0 :: BasePart).Name)
+	if not torso then
+		return nil
 	end
-	-- Where the joints are now.
-	local shoulderFrame = (shoulder.Part0 :: BasePart).CFrame * shoulder.C0 * shoulder.Transform
+	local w = math.clamp(weight or 1, 0, 1)
+	-- Where the joints are this frame.
+	local shoulderBase = torso * shoulder.C0
+	local shoulderFrame = shoulderBase * shoulder.Transform
 	local upperFrame = shoulderFrame * shoulder.C1:Inverse()
 	local elbowFrame = upperFrame * elbow.C0 * elbow.Transform
 	local lowerFrame = elbowFrame * elbow.C1:Inverse()
-	local wristAt = (lowerFrame * wrist.C0).Position
-	local s, e = shoulderFrame.Position, elbowFrame.Position
+	local wristFrame = lowerFrame * wrist.C0 * wrist.Transform
+	if w <= 0 then
+		return (wristFrame * wrist.C1:Inverse()).Position
+	end
+	local s, e, wristAt = shoulderFrame.Position, elbowFrame.Position, wristFrame.Position
 	local l1, l2 = (e - s).Magnitude, (wristAt - e).Magnitude
-	-- The wrist goes a hand's half length short of the target (the hand's middle is on it).
+	-- The wrist stops a hand's half length short of the target (the hand's middle is on it).
 	local reachFor = target + (s - target).Unit * ((hand :: BasePart).Size.Y / 2)
 	reachFor = wristAt:Lerp(reachFor, w)
 	local toward = reachFor - s
@@ -323,17 +340,26 @@ function Kit.reach(
 		bend = (e - s) - dir * (e - s):Dot(dir)
 	end
 	local elbowTo = s + dir * a + bend.Unit * h
-	local newShoulder = aim(shoulder :: Motor6D, e, elbowTo)
-	local newElbow = (newShoulder * shoulder.C1:Inverse()) * elbow.C0 * elbow.Transform
-	local newWrist = ((newElbow * elbow.C1:Inverse()) * wrist.C0).Position
-	-- The forearm: aimed from the moved elbow (aim reads the moved upper arm through Part0).
-	local base = (newShoulder * shoulder.C1:Inverse()) * elbow.C0
-	local turned = CFrame.new(newElbow.Position)
-		* turnBetween(newWrist - newElbow.Position, s + dir * d - newElbow.Position)
-		* newElbow.Rotation
-	elbow.Transform = base:Inverse() * turned
-	local handFrame = turned * elbow.C1:Inverse() * wrist.C0 * wrist.Transform * wrist.C1:Inverse()
-	return handFrame.Position
+	-- The upper arm points at the new elbow.
+	local newShoulder = CFrame.new(s) * turnBetween(e - s, elbowTo - s) * shoulderFrame.Rotation
+	shoulder.Transform = shoulderBase:Inverse() * newShoulder
+	-- The forearm points from it at the wrist's spot.
+	local elbowBase = newShoulder * shoulder.C1:Inverse() * elbow.C0
+	local elbowNow = elbowBase * elbow.Transform
+	local wristNow = (elbowNow * elbow.C1:Inverse() * wrist.C0).Position
+	local newElbow = CFrame.new(elbowNow.Position)
+		* turnBetween(wristNow - elbowNow.Position, s + dir * d - elbowNow.Position)
+		* elbowNow.Rotation
+	elbow.Transform = elbowBase:Inverse() * newElbow
+	-- The hand: turned to grip, blended in with the reach.
+	local wristBase = newElbow * elbow.C1:Inverse() * wrist.C0
+	local handJoint = wristBase * wrist.Transform
+	if turn then
+		local gripping = CFrame.new(wristBase.Position) * (turn * wrist.C1).Rotation
+		handJoint = handJoint:Lerp(gripping, w)
+		wrist.Transform = wristBase:Inverse() * handJoint
+	end
+	return (handJoint * wrist.C1:Inverse()).Position
 end
 
 -- A turn of `angles` round the point `point` (in the character's space).
@@ -362,8 +388,10 @@ local function chain(keys: { Key }): { AnimationBuilder.Key }
 	return out
 end
 
--- Plays `keys` on `model` (whole body unless `partial`), holding the last pose until `hold`.
-function Kit.pose(model: Model, keys: { Key }, hold: number, partial: boolean?): AnimationTrack?
+-- Plays `keys` on `model` (whole body unless `partial`). The last pose is held until the victory
+-- stops (the win screen closing, the Locker replaying), so nobody drops back to standing at the
+-- end. (`_hold` is kept for the callers' sake.)
+function Kit.pose(model: Model, keys: { Key }, _hold: number, partial: boolean?): AnimationTrack?
 	local humanoid = model:FindFirstChildOfClass("Humanoid")
 	if not humanoid then
 		return nil
@@ -376,14 +404,8 @@ function Kit.pose(model: Model, keys: { Key }, hold: number, partial: boolean?):
 	local track = AnimationBuilder.load(humanoid, animation)
 	track.Priority = Enum.AnimationPriority.Action4
 	track:Play(0.12)
-	local mine = session
 	Kit.onStop(function()
 		track:Stop(0.25)
-	end)
-	task.delay(hold, function()
-		if mine == session then
-			track:Stop(0.3)
-		end
 	end)
 	return track
 end
@@ -506,6 +528,21 @@ local REACTIONS: { [string]: { Key } } = {
 	},
 }
 
+-- The same reaction with the other side of the body (Left and Right swapped).
+local mirrors: { [{ Key }]: { Key } } = {}
+local function mirrored(keys: { Key }): { Key }
+	local done = mirrors[keys]
+	if not done then
+		done = {}
+		for i, key in keys do
+			done[i] =
+				{ time = key.time, angles = AnimationBuilder.mirror(key.angles), ease = key.ease }
+		end
+		mirrors[keys] = done
+	end
+	return done :: { Key }
+end
+
 local function lookToward(turn: number): { Key }
 	return {
 		{ time = 0, angles = {} },
@@ -528,10 +565,14 @@ function Kit.react(context: Context, kind: string, at: number)
 				continue
 			end
 			local keys = REACTIONS[if kind == "Stagger" then "Flail" else kind]
+			-- Which side the winner is on (their right is +X): heads turn that way, and an arm
+			-- they raise is the one on the winner's side (2nd place, on the winner's left, uses
+			-- the left arm; 3rd the right).
+			local winner = other:GetPivot():PointToObjectSpace(context.home.Position)
 			if kind == "LookUp" then
-				-- Turned toward the winner: their left (+ turn) or their right.
-				local winner = other:GetPivot():PointToObjectSpace(context.home.Position)
 				keys = if winner.X < 0 then LOOK_LEFT else LOOK_RIGHT
+			elseif winner.X < 0 then
+				keys = mirrored(keys)
 			end
 			Kit.pose(other, keys, context.hold - at, true)
 			if kind == "Stagger" then

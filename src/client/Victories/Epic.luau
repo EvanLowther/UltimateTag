@@ -596,6 +596,15 @@ local SLUMP: { Key } = {
 	},
 }
 
+-- A hand's turn for gripping a hilt that runs along `blade` (out of the hand's front, -Z), the
+-- forearm coming in toward `forearm` (the hand's top, +Y).
+local function gripTurn(blade: Vector3, forearm: Vector3): CFrame
+	local back = -blade.Unit
+	local right = forearm:Cross(back)
+	right = if right.Magnitude < 1e-3 then Vector3.xAxis else right.Unit
+	return CFrame.fromMatrix(Vector3.zero, right, back:Cross(right), back)
+end
+
 -- The sheath on the left hip: its mouth, and the way into it (back and down), in the lower
 -- torso's space. -Z of this frame points into the sheath.
 local MOUTH = A(-1.15, 0.15, -0.55)
@@ -836,26 +845,40 @@ function Epic.Katana(context: Context)
 		end
 		sheath.place((lower :: BasePart).CFrame * SHEATH)
 		local frame = swordAt(t)
-		-- The right hand holds the hilt; the left steadies the sheath.
+		-- The right hand grips the hilt, turned with the blade; the sword then sits exactly in it
+		-- (even at full stretch).
 		local grip = (frame * CFrame.new(0, 0, GRIP)).Position
+		local edge = frame.LookVector -- the way the blade points
+		local function forearm(side: string): Vector3
+			local upper = Kit.part(character, side .. "UpperArm")
+			return if upper then upper.Position - grip else Vector3.yAxis
+		end
 		local held = Kit.reach(
 			character,
 			"Right",
 			grip,
 			(home * CFrame.new(2.6, -1.2, 1)).Position,
-			Kit.span(t, 0.05, 0.3)
+			Kit.span(t, 0.05, 0.3),
+			gripTurn(edge, forearm("Right"))
 		)
-		Kit.reach(
-			character,
-			"Left",
-			(sheathed(0) * CFrame.new(0, 0, -0.7)).Position,
-			(home * CFrame.new(-2.6, -1.2, 0.6)).Position,
-			Kit.span(t, 0.1, 0.35)
-		)
-		-- Once it's in the hand, the sword sits exactly in it (even at full stretch).
 		if held and t > 0.3 then
 			frame += held - grip
 		end
+		-- The left hand steadies the sheath, lets go for the spin, then joins the right on the
+		-- hilt for the overhead and the cut (a two-handed strike), and goes back to the sheath to
+		-- take the blade home.
+		local sheathHold = (sheathed(0) * CFrame.new(0, 0, -0.7)).Position
+		local pommel = (frame * CFrame.new(0, 0, GRIP + 0.42)).Position
+		local twoHands = Kit.span(t, 1.6, 1.85) * (1 - Kit.span(t, 2.6, 2.85))
+		local free = Kit.span(t, 0.75, 0.85) * (1 - Kit.span(t, 1.6, 1.85))
+		Kit.reach(
+			character,
+			"Left",
+			sheathHold:Lerp(pommel, twoHands),
+			(home * CFrame.new(-2.6, -1.2, 0.6)).Position,
+			Kit.span(t, 0.1, 0.35) * (1 - free),
+			if twoHands > 0.5 then gripTurn(edge, forearm("Left")) else nil
+		)
 		sword.place(frame)
 		trail.Enabled = t > 0.45 and t < 2.9
 		-- The wide cut leaves its arc hanging in the air.
@@ -1042,14 +1065,20 @@ function Epic.TrophyLift(context: Context)
 		local leftPole = (home * CFrame.new(-2.6, 0, 1)).Position
 		-- Into the pocket first, then holding the trophy.
 		local pocket = (home * POCKET)
+		-- Holding the base from its sides: palms in, fingers up.
+		local across = facing.RightVector
+		local holding =
+			CFrame.fromMatrix(Vector3.zero, across, -Vector3.yAxis, across:Cross(-Vector3.yAxis))
 		local rightHand = Kit.reach(
 			character,
 			"Right",
 			if t < 0.35 then pocket else right,
 			rightPole,
-			Kit.span(t, 0, 0.3)
+			Kit.span(t, 0, 0.3),
+			if t < 0.35 then nil else holding
 		)
-		local leftHand = Kit.reach(character, "Left", left, leftPole, Kit.span(t, 0.75, 1.0))
+		local leftHand =
+			Kit.reach(character, "Left", left, leftPole, Kit.span(t, 0.75, 1.0), holding)
 		-- The trophy sits in the hands (even at full stretch).
 		local base = spot
 		if t >= 1.0 and rightHand and leftHand then
