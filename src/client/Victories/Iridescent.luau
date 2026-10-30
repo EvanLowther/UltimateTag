@@ -497,6 +497,7 @@ function Iridescent.Rift(context: Context)
 	end)
 
 	-- Deep space: the stage goes, dark blue-black and stars all round.
+	local spaceBloom: BloomEffect? = nil
 	Kit.at(1.95, function()
 		Kit.flash(PALE, 0.9, 0.45)
 		Kit.shake(1.5, 0.35)
@@ -519,7 +520,8 @@ function Iridescent.Rift(context: Context)
 			"ColorCorrectionEffect",
 			{ TintColor = Color3.fromRGB(205, 210, 255), Contrast = 0.12, Saturation = 0.1 }
 		)
-		Kit.lighting("BloomEffect", { Intensity = 0.9, Size = 36, Threshold = 0.9 })
+		spaceBloom =
+			Kit.lighting("BloomEffect", { Intensity = 0.5, Size = 30, Threshold = 1.1 }) :: BloomEffect
 		local field = Kit.block(A(180, 110, 60), home * CFrame.new(0, 10, 40), WHITE, nil, 1)
 		local stars = Kit.emitter(field, {
 			Shape = Enum.ParticleEmitterShape.Box,
@@ -537,6 +539,26 @@ function Iridescent.Rift(context: Context)
 			}),
 		})
 		stars:Emit(500)
+	end)
+
+	-- Floating in space they stay the focus: a soft outline (seen through the particles) and a
+	-- light in front of them.
+	Kit.at(2.2, function()
+		local outline = Instance.new("Highlight")
+		outline.Adornee = character
+		outline.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+		outline.FillTransparency = 1
+		outline.OutlineColor = PALE
+		outline.OutlineTransparency = 1
+		outline.Parent = Kit.folder()
+		Kit.track(outline)
+		Kit.tween(outline, 0.5, { OutlineTransparency = 0.35 })
+		local key = Kit.block(A(1, 1, 1), home * CFrame.new(0, 3.5, -4), WHITE, nil, 1)
+		local light = Instance.new("PointLight")
+		light.Color = Color3.fromRGB(255, 236, 246)
+		light.Range = 12
+		light.Brightness = 2.2
+		light.Parent = key
 	end)
 
 	-- A pink shooting star arcing across the sky, shedding sparkles.
@@ -629,7 +651,7 @@ function Iridescent.Rift(context: Context)
 		-- The core: a bright heart in layered glow.
 		local blast =
 			Kit.block(A(2, 2, 2), CFrame.new(nova), PALE, Enum.Material.Neon, 0, Enum.PartType.Ball)
-		Kit.tween(blast, 0.5, { Size = A(34, 34, 34), Transparency = 0.6 })
+		Kit.tween(blast, 0.5, { Size = A(26, 26, 26), Transparency = 0.7 })
 		Kit.at(4.4, function()
 			Kit.tween(blast, 1.4, { Size = A(11, 11, 11), Transparency = 0.35, Color = PINK })
 		end)
@@ -642,11 +664,11 @@ function Iridescent.Rift(context: Context)
 			Enum.PartType.Ball
 		)
 		local corona = Kit.block(
-			A(18, 18, 18),
+			A(14, 14, 14),
 			CFrame.new(nova),
 			PINK,
 			Enum.Material.Neon,
-			0.85,
+			0.9,
 			Enum.PartType.Ball
 		)
 		-- A long lens streak across the sky through it.
@@ -702,101 +724,80 @@ function Iridescent.Rift(context: Context)
 				phase = Kit.rnd(0, 6),
 			})
 		end
-		-- The nebula: big soft glowing clouds billowing out.
+		-- A faint nebula behind (soft, so the winner stands out against it).
 		Kit.emitter(origin, {
 			Texture = "rbxasset://textures/particles/smoke_main.dds",
 			Color = ColorSequence.new(ROSE, PINK),
-			Size = NumberSequence.new(14, 34),
-			Transparency = NumberSequence.new(0.55, 1),
+			Size = NumberSequence.new(12, 26),
+			Transparency = NumberSequence.new(0.78, 1),
 			Lifetime = NumberRange.new(5, 8),
-			Speed = NumberRange.new(3, 8),
+			Speed = NumberRange.new(3, 7),
 			SpreadAngle = Vector2.new(180, 180),
 			RotSpeed = NumberRange.new(-15, 15),
 			Rotation = NumberRange.new(0, 360),
 			Drag = 0.5,
-			Rate = 18,
-		}):Emit(30)
-		-- Streaks of light shooting out of it.
-		local streaks = Kit.emitter(origin, {
-			Orientation = Enum.ParticleOrientation.VelocityParallel,
-			Squash = NumberSequence.new(2.5),
-			Color = ColorSequence.new(WHITE, PINK),
-			Size = NumberSequence.new(0.6, 0.1),
-			Lifetime = NumberRange.new(1, 2.2),
-			Speed = NumberRange.new(35, 80),
-			SpreadAngle = Vector2.new(180, 180),
-			Drag = 1.2,
-			Rate = 90,
-		})
-		streaks:Emit(500)
-		-- Glitter filling the space round the winner.
-		local around = Kit.block(A(70, 34, 60), home * CFrame.new(0, 4, 12), WHITE, nil, 1)
-		Kit.emitter(around, {
-			Shape = Enum.ParticleEmitterShape.Box,
-			ShapeStyle = Enum.ParticleEmitterShapeStyle.Volume,
-			Color = ColorSequence.new(PALE, PINK),
-			Size = NumberSequence.new({
+			Rate = 8,
+		}):Emit(18)
+		-- The explosion: thousands of small points of light blast out of it, slow down and hang,
+		-- spaced out, filling the whole screen in pink (soft dots, like out-of-focus lights, and
+		-- sharper glints among them). Small and partly see-through, so the winner shows through.
+		local function grownIn(size: number, spread: number): NumberSequence
+			return NumberSequence.new({
 				NumberSequenceKeypoint.new(0, 0),
-				NumberSequenceKeypoint.new(0.5, 0.3),
+				NumberSequenceKeypoint.new(0.06, size, spread),
+				NumberSequenceKeypoint.new(0.85, size, spread),
 				NumberSequenceKeypoint.new(1, 0),
-			}),
-			Lifetime = NumberRange.new(2, 4),
-			Speed = NumberRange.new(0.2, 1),
-			SpreadAngle = Vector2.new(180, 180),
-			Rate = 260,
-		})
-		-- Soft out-of-focus blobs of light drifting.
-		Kit.emitter(around, {
-			Texture = "rbxasset://textures/particles/smoke_main.dds",
-			Shape = Enum.ParticleEmitterShape.Box,
-			ShapeStyle = Enum.ParticleEmitterShapeStyle.Volume,
-			Color = ColorSequence.new(ROSE, PINK),
-			Size = NumberSequence.new(1.2, 3),
-			Transparency = NumberSequence.new({
-				NumberSequenceKeypoint.new(0, 1),
-				NumberSequenceKeypoint.new(0.3, 0.55),
-				NumberSequenceKeypoint.new(1, 1),
-			}),
-			Lifetime = NumberRange.new(4, 6),
-			Speed = NumberRange.new(0.2, 0.6),
-			SpreadAngle = Vector2.new(180, 180),
-			Rate = 45,
-		})
-		-- Points of light thrown out of the blast and drifting round the winner.
-		type Mote = { part: BasePart, to: Vector3, phase: number, base: number }
-		local motes: { Mote } = {}
-		for _ = 1, 240 do
-			local size = Kit.rnd(0.15, 1.9)
-			local part = Kit.block(
-				A(size, size, size),
-				CFrame.new(nova),
-				PINK:Lerp(PALE, Kit.rnd(0, 0.85)),
-				Enum.Material.Neon,
-				0.3,
-				Enum.PartType.Ball
-			)
-			local to = (home * CFrame.new(Kit.rnd(-30, 30), Kit.rnd(-10, 20), Kit.rnd(-14, 44))).Position
-			table.insert(
-				motes,
-				{ part = part, to = to, phase = Kit.rnd(0, 6), base = Kit.rnd(0.15, 0.7) }
-			)
+			})
 		end
+		local twinkle = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 0.2),
+			NumberSequenceKeypoint.new(0.4, 0.35, 0.25),
+			NumberSequenceKeypoint.new(0.8, 0.3, 0.25),
+			NumberSequenceKeypoint.new(1, 1),
+		})
+		local palette = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, PALE),
+			ColorSequenceKeypoint.new(0.5, ROSE),
+			ColorSequenceKeypoint.new(1, PINK),
+		})
+		local soft = Kit.emitter(origin, {
+			Texture = "rbxasset://textures/particles/smoke_main.dds",
+			Color = palette,
+			Size = grownIn(0.42, 0.3),
+			Transparency = twinkle,
+			Lifetime = NumberRange.new(5, 7),
+			Speed = NumberRange.new(15, 95),
+			SpreadAngle = Vector2.new(180, 180),
+			Drag = 1.1,
+			Rate = 0,
+		})
+		soft:Emit(2200)
+		local glints = Kit.emitter(origin, {
+			Color = palette,
+			Size = grownIn(0.28, 0.15),
+			Transparency = twinkle,
+			Lifetime = NumberRange.new(4, 6),
+			Speed = NumberRange.new(20, 90),
+			SpreadAngle = Vector2.new(180, 180),
+			Drag = 1.1,
+			Rate = 0,
+		})
+		glints:Emit(900)
+		-- More keep pouring out, so the screen stays full.
+		Kit.at(4.3, function()
+			soft.Rate = 160
+			glints.Rate = 60
+		end)
 		local camera = workspace.CurrentCamera
 		Kit.lighting("DepthOfFieldEffect", {
 			FocusDistance = (camera.CFrame.Position - context.root.Position).Magnitude,
-			InFocusRadius = 6,
-			NearIntensity = 0.75,
-			FarIntensity = 0.5,
+			InFocusRadius = 9,
+			NearIntensity = 0.6,
+			FarIntensity = 0.3,
 		})
-		Kit.lighting("BloomEffect", { Intensity = 1.2, Size = 40, Threshold = 0.85 })
-		Kit.emitter(Kit.attach(context.root, Vector3.zero), {
-			Color = ColorSequence.new(PALE, PINK),
-			Size = NumberSequence.new(0.2, 0),
-			Lifetime = NumberRange.new(1.5, 2.5),
-			Speed = NumberRange.new(0.5, 1.5),
-			SpreadAngle = Vector2.new(180, 180),
-			Rate = 40,
-		})
+		if spaceBloom then
+			Kit.tween(spaceBloom, 0.4, { Intensity = 0.7 })
+		end
 		local begun = Kit.now()
 		Kit.every(function(t)
 			local u = t - begun
@@ -808,18 +809,7 @@ function Iridescent.Rift(context: Context)
 				flare.beam.CurveSize1 = -14 * math.cos(t * 0.6 + flare.phase)
 			end
 			heart.Transparency = 0.1 + 0.2 * math.abs(math.sin(t * 2))
-			corona.Size = A(18, 18, 18) * (1 + 0.08 * math.sin(t * 3))
-			local spread = Kit.span(u, 0, 1.6, "Out")
-			local parts = table.create(#motes)
-			local frames = table.create(#motes)
-			for _, mote in motes do
-				local drift = A(math.sin(t * 0.4 + mote.phase), math.cos(t * 0.3 + mote.phase), 0)
-					* 0.8
-				table.insert(parts, mote.part)
-				table.insert(frames, CFrame.new(nova:Lerp(mote.to, spread) + drift))
-				mote.part.Transparency = mote.base + 0.25 * math.sin(t * 2 + mote.phase)
-			end
-			workspace:BulkMoveTo(parts, frames, Enum.BulkMoveMode.FireCFrameChanged)
+			corona.Size = A(14, 14, 14) * (1 + 0.08 * math.sin(t * 3))
 			return nil
 		end)
 	end)
