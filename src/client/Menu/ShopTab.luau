@@ -28,7 +28,7 @@ local ROBUX = "R$"
 local WIDE_FROM = 680 -- pages at least this wide (virtual pixels) get the wide layout
 local SCROLL_PAD = 12 -- the scroll list's padding on the right
 local DEAL_WIDTH = 230 -- the wide layout's deal card
-local DEAL_TALL_NARROW = 220 -- the narrow layout's deal card, plus its buy button
+local DEAL_TALL_NARROW = 232 -- the narrow layout's deal card, plus its buy button
 local HOUR = 3600
 
 -- The header's right side: your coins.
@@ -74,14 +74,15 @@ local function header(parent: Instance, text: string, order: number): (Frame, Te
 	row.LayoutOrder = order
 	row.Size = UDim2.new(1, 0, 0, 22)
 	local left = Ui.caps(row, text, 14, Ui.Colors.Text)
-	left.Size = UDim2.fromScale(0.4, 1)
+	left.Size = UDim2.new(0.4, -4, 1, 0)
 	left.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(left, 11, 14)
 	local right = Ui.caps(row, "", 12, Ui.Colors.Dim)
 	right.AnchorPoint = Vector2.new(1, 0)
 	right.Position = UDim2.fromScale(1, 0)
-	right.Size = UDim2.fromScale(0.6, 1)
+	right.Size = UDim2.new(0.6, -4, 1, 0)
 	right.TextXAlignment = Enum.TextXAlignment.Right
-	Ui.shrinkText(right, 9, 12)
+	Ui.shrinkText(right, 11, 12)
 	return row, right
 end
 
@@ -128,7 +129,7 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 	-- The Mystery crate.
 	local crate = Ui.panel(scroll, Ui.Colors.Card, 10)
 	crate.LayoutOrder = 3
-	crate.Size = UDim2.new(1, 0, 0, 104)
+	crate.Size = UDim2.new(1, 0, 0, 116)
 	local crateStrip = Ui.frame(crate, Ui.Colors.Yellow)
 	crateStrip.Size = UDim2.new(1, -10, 0, 4)
 	local box = Ui.icon(crate, "crate", 64, Ui.Colors.Yellow, Ui.Colors.Ink)
@@ -143,12 +144,14 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 	)
 	crateNote.TextXAlignment = Enum.TextXAlignment.Left
 	crateNote.TextWrapped = true
+	crateNote.TextTruncate = Enum.TextTruncate.AtEnd
 	crateNote.TextYAlignment = Enum.TextYAlignment.Top
 	local bar = oddsBar(crate)
 	local odds = Ui.caps(crate, ShopTab.oddsText(), 11, Ui.Colors.Dim)
 	odds.TextXAlignment = Enum.TextXAlignment.Left
 	odds.TextYAlignment = Enum.TextYAlignment.Top
 	odds.TextWrapped = true
+	odds.TextTruncate = Enum.TextTruncate.AtEnd
 	local buyCrate = Ui.button(crate, "", Ui.Colors.Yellow, function()
 		api.send("BuyCrate")
 	end)
@@ -163,6 +166,8 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 		end
 	end
 	local owned = Ui.caps(crate, "", 11, Ui.Colors.Lime)
+	owned.TextWrapped = true
+	owned.TextTruncate = Enum.TextTruncate.AtEnd
 
 	-- Lays the page out for its width. `featuredCount`: how many full-price cards; `hasDeal`.
 	local function arrange(featuredCount: number, hasDeal: boolean)
@@ -189,39 +194,43 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 		end
 		-- The crate: text beside the button (wide) or the button under the text (narrow).
 		if wide then
-			crate.Size = UDim2.new(1, 0, 0, math.max(104, crateButtonHeight + 36))
+			-- Text on the left, the button on the right with what you have / what's missing
+			-- under it (two lines of its own, so a long line can't run into the odds).
+			crate.Size = UDim2.new(1, 0, 0, math.max(116, crateButtonHeight + 76))
 			crateName.Position = UDim2.fromOffset(90, 12)
-			crateName.Size = UDim2.new(1, -250, 0, 20)
-			crateNote.Position = UDim2.fromOffset(90, 32)
-			crateNote.Size = UDim2.new(1, -250, 0, 18)
-			bar.Position = UDim2.fromOffset(90, 56)
-			bar.Size = UDim2.new(1, -260, 0, 8)
-			odds.Position = UDim2.fromOffset(90, 68)
-			odds.Size = UDim2.new(1, -250, 0, 30)
-			buyCrate.AnchorPoint = Vector2.new(1, 0.5)
-			buyCrate.Position = UDim2.new(1, -16, 0.5, -8)
+			crateName.Size = UDim2.new(1, -330, 0, 22)
+			crateNote.Position = UDim2.fromOffset(90, 36)
+			crateNote.Size = UDim2.new(1, -330, 0, 32)
+			bar.Position = UDim2.fromOffset(90, 74)
+			bar.Size = UDim2.new(1, -340, 0, 8)
+			odds.Position = UDim2.fromOffset(90, 86)
+			odds.Size = UDim2.new(1, -330, 0, 28)
+			buyCrate.AnchorPoint = Vector2.new(1, 0)
+			buyCrate.Position = UDim2.new(1, -16, 0, 16)
 			buyCrate.Size = UDim2.fromOffset(130, crateButtonHeight)
 			owned.AnchorPoint = Vector2.new(1, 0)
-			owned.Position = UDim2.new(1, -16, 0.5, crateButtonHeight / 2 - 4)
-			owned.Size = UDim2.fromOffset(160, 16)
+			owned.Position = UDim2.new(1, -16, 0, 16 + crateButtonHeight + 6)
+			owned.Size = UDim2.fromOffset(190, 30)
 			owned.TextXAlignment = Enum.TextXAlignment.Center
+			owned.TextYAlignment = Enum.TextYAlignment.Top
 		else
-			crate.Size = UDim2.new(1, 0, 0, 176 + crateButtonHeight)
+			crate.Size = UDim2.new(1, 0, 0, 184 + crateButtonHeight)
 			crateName.Position = UDim2.fromOffset(90, 12)
-			crateName.Size = UDim2.new(1, -104, 0, 20)
-			crateNote.Position = UDim2.fromOffset(90, 34)
-			crateNote.Size = UDim2.new(1, -104, 0, 48)
-			bar.Position = UDim2.fromOffset(14, 92)
+			crateName.Size = UDim2.new(1, -106, 0, 22)
+			crateNote.Position = UDim2.fromOffset(90, 36)
+			crateNote.Size = UDim2.new(1, -106, 0, 48)
+			bar.Position = UDim2.fromOffset(14, 96)
 			bar.Size = UDim2.new(1, -28, 0, 8)
-			odds.Position = UDim2.fromOffset(14, 106)
+			odds.Position = UDim2.fromOffset(14, 110)
 			odds.Size = UDim2.new(1, -28, 0, 44)
 			buyCrate.AnchorPoint = Vector2.new(0, 1)
 			buyCrate.Position = UDim2.new(0, 14, 1, -12)
 			buyCrate.Size = UDim2.new(1, -28, 0, crateButtonHeight)
 			owned.AnchorPoint = Vector2.new(0, 1)
-			owned.Position = UDim2.new(0, 14, 1, -(crateButtonHeight + 16))
-			owned.Size = UDim2.new(1, -28, 0, 16)
+			owned.Position = UDim2.new(0, 14, 1, -(crateButtonHeight + 18))
+			owned.Size = UDim2.new(1, -28, 0, 18)
 			owned.TextXAlignment = Enum.TextXAlignment.Left
+			owned.TextYAlignment = Enum.TextYAlignment.Center
 		end
 	end
 
@@ -335,7 +344,7 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 	local player = Players.LocalPlayer
 	local scroll = Ui.scroll(page, 10)
 	header(scroll, "Coin packs", 1)
-	local packHeight = 166 + Ui.hit(30)
+	local packHeight = 176 + Ui.hit(30)
 
 	local packs = Ui.frame(scroll)
 	packs.LayoutOrder = 2
@@ -352,7 +361,7 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 		card.LayoutOrder = i
 		local tagColor = if pack.Tag == "Best value" then Ui.Colors.Cyan else Ui.Colors.Pink
 		local strip = Ui.frame(card, if pack.Tag then tagColor else Ui.Colors.Yellow)
-		strip.Size = UDim2.new(1, -10, 0, if pack.Tag then 18 else 4)
+		strip.Size = UDim2.new(1, -10, 0, if pack.Tag then 22 else 4)
 		if pack.Tag then
 			local tag = Ui.caps(
 				strip,
@@ -361,14 +370,16 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 				if pack.Tag == "Best value" then Ui.Colors.Ink else Ui.Colors.Text
 			)
 			tag.Size = UDim2.fromScale(1, 1)
+			Ui.pad(tag, 12, 0)
 		end
 		local well = Ui.frame(card, Ui.Colors.Well)
-		well.Position = UDim2.fromOffset(8, 24)
+		well.Position = UDim2.fromOffset(8, 28)
 		well.Size = UDim2.new(1, -16, 0, 60)
 		Ui.centerIcon(well, pack.Icon or "coin", 50, Ui.Colors.Cyan, Ui.Colors.Text)
 		local amount = Ui.title(card, Ui.number(pack.Coins), 28, Ui.Colors.Yellow)
-		amount.Position = UDim2.fromOffset(0, 90)
-		amount.Size = UDim2.new(1, 0, 0, 30)
+		amount.Position = UDim2.fromOffset(0, 94)
+		amount.Size = UDim2.new(1, 0, 0, 34)
+		Ui.pad(amount, 12, 0)
 		Ui.shrinkText(amount, 16, 28)
 		local bonus = Ui.caps(
 			card,
@@ -376,8 +387,10 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 			11,
 			Ui.Colors.Lime
 		)
-		bonus.Position = UDim2.fromOffset(0, 120)
-		bonus.Size = UDim2.new(1, 0, 0, 16)
+		bonus.Position = UDim2.fromOffset(0, 128)
+		bonus.Size = UDim2.new(1, 0, 0, 18)
+		Ui.pad(bonus, 12, 0)
+		Ui.shrinkText(bonus, 11, 11)
 		local buy = Ui.button(
 			card,
 			if pack.Id then `{ROBUX} {pack.Robux}` else "Soon",
@@ -399,7 +412,7 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 	end
 
 	header(scroll, "Game passes", 3)
-	local passHeight = 78
+	local passHeight = 88
 	local passes = Ui.frame(scroll)
 	passes.LayoutOrder = 4
 	passes.Size = UDim2.new(1, 0, 0, passHeight)
@@ -443,14 +456,16 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 		local strip = Ui.frame(card, pass.color)
 		strip.Size = UDim2.new(1, -10, 0, 4)
 		local icon = Ui.icon(card, pass.icon, 44, Ui.Colors.Gold, Ui.Colors.Ink)
-		icon.Position = UDim2.fromOffset(14, 18)
+		icon.Position = UDim2.fromOffset(14, 22)
 		local name = Ui.caps(card, pass.name, 16, Ui.Colors.Text)
 		name.Position = UDim2.fromOffset(68, 14)
-		name.Size = UDim2.new(1, -200, 0, 22)
+		name.Size = UDim2.new(1, -184, 0, 22)
 		name.TextXAlignment = Enum.TextXAlignment.Left
+		Ui.shrinkText(name, 11, 16)
 		local text = Ui.text(card, pass.text, 13, Ui.Colors.Dim)
 		text.Position = UDim2.fromOffset(68, 36)
-		text.Size = UDim2.new(1, -200, 0, 30)
+		text.Size = UDim2.new(1, -184, 0, 44)
+		text.TextTruncate = Enum.TextTruncate.AtEnd
 		text.TextXAlignment = Enum.TextXAlignment.Left
 		text.TextYAlignment = Enum.TextYAlignment.Top
 		text.TextWrapped = true

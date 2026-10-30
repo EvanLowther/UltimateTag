@@ -45,7 +45,7 @@ function Notify.start()
 	local toast = Ui.slab(gui, Ui.Colors.Panel, 10)
 	toast.AnchorPoint = Vector2.new(0.5, 1)
 	toast.Position = UDim2.new(0.5, 0, 1, -70)
-	toast.Size = UDim2.fromOffset(0, 40)
+	toast.Size = UDim2.fromOffset(0, 44)
 	toast.Visible = false
 	local edge = Ui.slab(toast, Ui.Colors.Yellow, 10)
 	edge.Size = UDim2.new(0, 18, 1, 0)
@@ -55,9 +55,19 @@ function Notify.start()
 	box.AutomaticSize = Enum.AutomaticSize.X
 	box.ZIndex = 3
 	local pad = Instance.new("UIPadding")
-	pad.PaddingLeft = UDim.new(0, 30)
-	pad.PaddingRight = UDim.new(0, 22)
+	pad.PaddingLeft = UDim.new(0, 32)
+	pad.PaddingRight = UDim.new(0, 26)
 	pad.Parent = box
+	-- A long message ("<20-letter name> fell and is out!") stops at the screen's width and is cut
+	-- off with "..." rather than leaving the screen.
+	box.TextTruncate = Enum.TextTruncate.AtEnd
+	local limit = Instance.new("UISizeConstraint")
+	limit.Parent = box
+	local function fitScreen()
+		limit.MaxSize = Vector2.new(math.max(160, gui.AbsoluteSize.X - 32), math.huge)
+	end
+	gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(fitScreen)
+	fitScreen()
 	Ui.fitWidth(toast, box)
 	gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 	label = box

@@ -12,6 +12,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
+local TextService = game:GetService("TextService")
 local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -43,6 +44,9 @@ local PLACE_COLORS = {
 }
 local INTRO_MOVE = 2.4 -- seconds the camera takes to push in
 local WAIT_FOR_CHARACTER = 3 -- seconds to wait for a podium player's character to arrive
+local PLATE_WIDTH = 230 -- a name plate; it shrinks when the blocks are close together on screen
+local HEADLINE_SIZE = 52
+local CARD_WIDTH = 360 -- the rewards card (narrower on a narrow screen)
 
 type Entry = { UserId: number, Name: string, DisplayName: string, Place: number, Won: boolean }
 type Rewards = {
@@ -295,26 +299,32 @@ local function plate(parent: Instance, entry: Entry): Frame
 	local color = PLACE_COLORS[entry.Place] or PLACE_COLORS[#PLACE_COLORS]
 	local back = Ui.slab(parent, Ui.Colors.Panel, 8)
 	back.AnchorPoint = Vector2.new(0.5, 0)
-	back.Size = UDim2.fromOffset(230, 44)
+	back.Size = UDim2.fromOffset(PLATE_WIDTH, 48)
 	back.Visible = false
+	local fit = Instance.new("UIScale")
+	fit.Name = "FitScale"
+	fit.Parent = back
 	local edge = Ui.slab(back, color, 8)
-	edge.Size = UDim2.new(0, 64, 1, 0)
+	edge.Size = UDim2.new(0, 68, 1, 0)
 	edge.ZIndex = 2
 	local place =
 		Ui.title(edge, if entry.Won then "WIN" else ordinal(entry.Place), 26, Ui.Colors.Ink)
 	place.Size = UDim2.fromScale(1, 1)
 	place.ZIndex = 3
+	Ui.pad(place, 8, 2)
+	Ui.shrinkText(place, 14, 26)
 	local name = Ui.caps(back, entry.DisplayName, 17, Ui.Colors.Text)
-	name.Position = UDim2.fromOffset(72, 0)
-	name.Size = UDim2.new(1, -80, 1, 0)
+	name.Position = UDim2.fromOffset(80, 0)
+	name.Size = UDim2.new(1, -96, 1, 0)
 	name.TextXAlignment = Enum.TextXAlignment.Left
-	name.TextTruncate = Enum.TextTruncate.AtEnd
 	name.ZIndex = 3
+	Ui.shrinkText(name, 11, 17) -- a 20-letter name shrinks, then is cut off
 	return back
 end
 
--- The headline across the top: "<NAME> WINS!", or "GAME OVER" when nobody won.
-local function headline(parent: Instance, text: string)
+-- The headline across the top: "<NAME> WINS!", or "GAME OVER" when nobody won. It gets a smaller
+-- text size when it would be wider than the screen (`screenWidth`, pixels).
+local function headline(parent: Instance, text: string, screenWidth: number)
 	local holder = Ui.frame(parent)
 	holder.AnchorPoint = Vector2.new(0.5, 0)
 	holder.Position = UDim2.new(0.5, 0, 0, 24)
@@ -325,7 +335,7 @@ local function headline(parent: Instance, text: string)
 	local back = Ui.slab(holder, Ui.Colors.Yellow, 16)
 	back.Size = UDim2.fromScale(1, 1)
 	back.ZIndex = 2
-	local label = Ui.title(back, Ui.upper(text), 52, Ui.Colors.Ink)
+	local label = Ui.title(back, Ui.upper(text), HEADLINE_SIZE, Ui.Colors.Ink)
 	label.Size = UDim2.fromScale(0, 1)
 	label.AutomaticSize = Enum.AutomaticSize.X
 	label.ZIndex = 3
@@ -333,6 +343,19 @@ local function headline(parent: Instance, text: string)
 	pad.PaddingLeft = UDim.new(0, 36)
 	pad.PaddingRight = UDim.new(0, 36)
 	pad.Parent = label
+	local ok, bounds = pcall(function()
+		local params = Instance.new("GetTextBoundsParams")
+		params.Text = label.Text
+		params.Font = Ui.Display
+		params.Size = HEADLINE_SIZE
+		params.Width = 100000
+		return TextService:GetTextBoundsAsync(params)
+	end)
+	if ok and bounds.X > 0 then
+		-- (the 72 of padding and the 6 of shadow, then 12 clear on each side of the screen)
+		local room = screenWidth - 24 - 72 - 6
+		label.TextSize = math.floor(math.clamp(HEADLINE_SIZE * room / bounds.X, 18, HEADLINE_SIZE))
+	end
 	Ui.fitWidth(holder, label)
 	Ui.popIn(holder, 0.4)
 	return holder
@@ -361,7 +384,7 @@ end
 
 -- Your rewards card: your place, then what you earned this game. Returns it (positioned just
 -- below the screen; the caller slides it in).
-local function rewardsCard(parent: Instance, rewards: Rewards): Frame
+local function rewardsCard(parent: Instance, rewards: Rewards, screenWidth: number): Frame
 	local rows: { (Frame) -> () } = {}
 	if rewards.Coins > 0 then
 		table.insert(rows, function(row)
@@ -405,7 +428,7 @@ local function rewardsCard(parent: Instance, rewards: Rewards): Frame
 		end)
 	end
 
-	local width = 360
+	local width = math.min(CARD_WIDTH, screenWidth - 24)
 	local height = 20 + 38 + #rows * 28 + 16
 	local card = Ui.panel(parent, Ui.Colors.Panel, 14)
 	card.AnchorPoint = Vector2.new(0.5, 1)
@@ -416,20 +439,22 @@ local function rewardsCard(parent: Instance, rewards: Rewards): Frame
 	header.Size = UDim2.new(1, -28, 0, 34)
 	header.ZIndex = 2
 	local title = Ui.caps(header, "YOUR REWARDS", 16, Ui.Colors.Ink)
-	title.Position = UDim2.fromOffset(18, 0)
-	title.Size = UDim2.fromScale(0.55, 1)
+	title.Position = UDim2.fromOffset(20, 0)
+	title.Size = UDim2.new(0.55, -20, 1, 0)
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.ZIndex = 3
+	Ui.shrinkText(title, 11, 16)
 	local finish = Ui.caps(header, `{ordinal(rewards.Place)} OF {rewards.Of}`, 16, Ui.Colors.Ink)
 	finish.AnchorPoint = Vector2.new(1, 0)
-	finish.Position = UDim2.new(1, -18, 0, 0)
-	finish.Size = UDim2.fromScale(0.4, 1)
+	finish.Position = UDim2.new(1, -20, 0, 0)
+	finish.Size = UDim2.new(0.45, -24, 1, 0)
 	finish.TextXAlignment = Enum.TextXAlignment.Right
 	finish.ZIndex = 3
+	Ui.shrinkText(finish, 11, 16)
 	local list = Ui.frame(card)
 	list.ZIndex = 2
-	list.Position = UDim2.fromOffset(26, 58)
-	list.Size = UDim2.new(1, -52, 1, -70)
+	list.Position = UDim2.fromOffset(28, 58)
+	list.Size = UDim2.new(1, -56, 1, -70)
 	local layout = Instance.new("UIListLayout")
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
 	layout.Parent = list
@@ -519,14 +544,15 @@ local function openScreen(info: Info)
 			winner = entry
 		end
 	end
-	headline(screen, if winner then `{winner.DisplayName} wins!` else "Game over")
+	local screenWidth = camera.ViewportSize.X
+	headline(screen, if winner then `{winner.DisplayName} wins!` else "Game over", screenWidth)
 	local plates: { [number]: Frame } = {}
 	for _, entry in podium do
 		plates[entry.Place] = plate(screen, entry)
 	end
 	local card: Frame? = nil
 	if info.Rewards then
-		card = rewardsCard(screen, info.Rewards)
+		card = rewardsCard(screen, info.Rewards, screenWidth)
 	end
 	local cardShown = false
 	local fade = Ui.frame(screen, Color3.new(0, 0, 0))
@@ -536,7 +562,7 @@ local function openScreen(info: Info)
 		local hint = Ui.caps(screen, "PREVIEW  ·  CLICK ANYWHERE TO CLOSE", 14, Ui.Colors.Yellow)
 		hint.AnchorPoint = Vector2.new(0, 1)
 		hint.Position = UDim2.new(0, 16, 1, -12)
-		hint.Size = UDim2.fromOffset(360, 20)
+		hint.Size = UDim2.new(1, -32, 0, 20)
 		hint.TextXAlignment = Enum.TextXAlignment.Left
 		hint.ZIndex = 101
 		local close = Instance.new("TextButton")
@@ -642,12 +668,29 @@ local function openScreen(info: Info)
 			)
 		)
 
-		-- Name plates under the blocks follow them on screen.
+		-- Name plates under the blocks follow them on screen, and shrink to stay clear of their
+		-- neighbours when the blocks are close together.
+		local across: { [number]: number } = {}
 		for place, back in plates do
 			local spot = settings.Position + Vector3.new(blockX(place), 0.2, BLOCK_DEPTH / 2 + 2)
 			local point, onScreen = camera:WorldToViewportPoint(spot)
 			back.Visible = onScreen and k > 0.6
 			back.Position = UDim2.fromOffset(point.X, point.Y + 4)
+			across[place] = point.X
+		end
+		for place, back in plates do
+			local nearest = math.huge
+			for other, x in across do
+				if other ~= place then
+					nearest = math.min(nearest, math.abs(x - across[place]))
+				end
+			end
+			local fit = back:FindFirstChild("FitScale")
+			if fit and fit:IsA("UIScale") then
+				fit.Scale = if nearest == math.huge
+					then 1
+					else math.clamp((nearest - 10) / PLATE_WIDTH, 0.6, 1)
+			end
 		end
 
 		-- Your rewards slide up after a moment.
@@ -711,6 +754,18 @@ function WinScreen.preview(size: number?, victoryId: string?)
 			Of = 8,
 		},
 	})
+end
+
+-- Shows the win screen with exactly this info now (the UI auditor's worst case: long names and
+-- a full rewards card). Click anywhere to close.
+function WinScreen.sample(info: Info)
+	info.Preview = true
+	openScreen(info)
+end
+
+-- Closes a previewed win screen.
+function WinScreen.close()
+	closeScreen()
 end
 
 function WinScreen.isActive(): boolean

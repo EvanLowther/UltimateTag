@@ -149,13 +149,14 @@ local function row(
 ): (Frame, Frame)
 	local r = Ui.slab(parent, back, 6)
 	r.LayoutOrder = order
-	local barY = if line then 42 else 30
+	local barY = if line then 46 else 30
 	-- Narrow: the right side moves under the bar, so the row is taller and the texts get the
-	-- whole width (less the count beside the bar).
+	-- whole width (less the count beside the bar). Wide: from the right edge, 12 margin, the
+	-- reward or button (132), a gap, the count (96), a gap, then the texts and bar.
 	local rightHeight = Ui.hit(34) + 2
-	local textRight = if narrow then 12 else 220
+	local textRight = if narrow then 12 else 256
 	r.Size =
-		UDim2.new(1, -6, 0, if narrow then barY + 20 + rightHeight + 6 else if line then 64 else 56)
+		UDim2.new(1, -6, 0, if narrow then barY + 20 + rightHeight + 8 else if line then 68 else 56)
 	local edge = Ui.slab(r, accent, 6)
 	edge.Size = UDim2.new(0, 12, 1, 0)
 	edge.ZIndex = 1
@@ -164,38 +165,39 @@ local function row(
 	box.Size = UDim2.fromOffset(38, 38)
 	Ui.centerIcon(box, icon, 28, accent, Ui.Colors.Text)
 	local title = Ui.caps(r, titleText, 14, Ui.Colors.Text)
-	title.Position = UDim2.fromOffset(66, 6)
+	title.Position = UDim2.fromOffset(66, 5)
 	title.Size = UDim2.new(1, -66 - textRight, 0, 20)
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.TextTruncate = Enum.TextTruncate.AtEnd
 	if line then
 		local sub = Ui.text(r, line, 12, Ui.Colors.Dim)
-		sub.Position = UDim2.fromOffset(66, 24)
-		sub.Size = UDim2.new(1, -66 - textRight, 0, 16)
+		sub.Position = UDim2.fromOffset(66, 25)
+		sub.Size = UDim2.new(1, -66 - textRight, 0, 18)
 		sub.TextXAlignment = Enum.TextXAlignment.Left
 		sub.TextTruncate = Enum.TextTruncate.AtEnd
 	end
 	local bar, set = Ui.bar(r, accent, 4)
 	bar.Position = UDim2.fromOffset(66, barY)
-	bar.Size = UDim2.new(1, -66 - textRight - (if narrow then 72 else 0), 0, 12)
+	bar.Size = UDim2.new(1, -66 - textRight - (if narrow then 96 else 0), 0, 12)
 	set(progress)
 	local count = Ui.caps(r, countText, 13, Ui.Colors.Text)
 	count.AnchorPoint = Vector2.new(1, 0)
+	count.TextXAlignment = Enum.TextXAlignment.Right
 	local right = Ui.frame(r)
 	if narrow then
 		count.Position = UDim2.new(1, -12, 0, barY - 4)
-		count.Size = UDim2.fromOffset(64, 20)
-		count.TextXAlignment = Enum.TextXAlignment.Right
+		count.Size = UDim2.fromOffset(88, 20)
 		right.AnchorPoint = Vector2.new(1, 0)
 		right.Position = UDim2.new(1, -12, 0, barY + 20)
 		right.Size = UDim2.new(1, -66 - 12, 0, rightHeight)
 	else
-		count.Position = UDim2.new(1, -150, 0, 0)
-		count.Size = UDim2.new(0, 64, 1, 0)
+		count.Position = UDim2.new(1, -156, 0, 0)
+		count.Size = UDim2.new(0, 96, 1, 0)
 		right.AnchorPoint = Vector2.new(1, 0)
 		right.Position = UDim2.new(1, -12, 0, 0)
 		right.Size = UDim2.new(0, 132, 1, 0)
 	end
+	Ui.shrinkText(count, 11, 13) -- 12,345/50,000 shrinks, then is cut off
 	return r, right
 end
 
@@ -237,13 +239,15 @@ local function heading(parent: Instance, order: number, text: string, timer: str
 	frame.LayoutOrder = order
 	frame.Size = UDim2.new(1, -6, 0, 22)
 	local left = Ui.caps(frame, text, 14, Ui.Colors.Text)
-	left.Size = UDim2.fromScale(0.5, 1)
+	left.Size = UDim2.new(0.5, -4, 1, 0)
 	left.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(left, 11, 14)
 	local right = Ui.caps(frame, timer, 12, Ui.Colors.Dim)
 	right.AnchorPoint = Vector2.new(1, 0)
 	right.Position = UDim2.fromScale(1, 0)
-	right.Size = UDim2.fromScale(0.5, 1)
+	right.Size = UDim2.new(0.5, -4, 1, 0)
 	right.TextXAlignment = Enum.TextXAlignment.Right
+	Ui.shrinkText(right, 11, 12)
 end
 
 function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
@@ -365,16 +369,17 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 		local noteRow = Ui.frame(dailyList)
 		noteRow.LayoutOrder = order + 1
-		noteRow.Size = UDim2.new(1, -6, 0, 24)
-		local note = Ui.iconText(
+		noteRow.Size = UDim2.new(1, -6, 0, 40)
+		local note = Ui.caps(
 			noteRow,
-			"bolt",
 			"Progress tracks on its own. Claim each reward here when it's done.",
 			11,
 			Ui.Colors.Dim
 		)
-		note.AnchorPoint = Vector2.new(0.5, 0.5)
-		note.Position = UDim2.fromScale(0.5, 0.5)
+		note.Size = UDim2.fromScale(1, 1)
+		note.TextWrapped = true
+		note.TextTruncate = Enum.TextTruncate.AtEnd
+		Ui.pad(note, 12, 4)
 	end
 
 	local function refreshChains(profile: { [string]: any })

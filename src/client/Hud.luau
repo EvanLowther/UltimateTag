@@ -20,6 +20,15 @@ local Ui = require(script.Parent.Menu.Ui)
 
 local Hud = {}
 
+local previewBanner: ((string, number) -> ())? = nil
+
+-- Sweeps a banner with `text` across the screen now (the UI auditor's worst-case name).
+function Hud.preview(text: string, seconds: number?)
+	if previewBanner then
+		previewBanner(text, seconds or 4)
+	end
+end
+
 local STRIPE_TIME = 2.2 -- seconds a banner's stripe stays before sweeping off
 
 type Banner = { text: string, color: Color3, ink: Color3, seconds: number? }
@@ -53,7 +62,7 @@ function Hud.start()
 	bar.Name = "Bar"
 	bar.AnchorPoint = Vector2.new(0.5, 0)
 	bar.Position = UDim2.new(0.5, 0, 0, 10)
-	bar.Size = UDim2.fromOffset(0, 50)
+	bar.Size = UDim2.fromOffset(0, 54)
 	local shadow = Ui.slab(bar, Ui.Colors.Pink, 14)
 	shadow.Position = UDim2.fromOffset(5, 5)
 	shadow.Size = UDim2.fromScale(1, 1)
@@ -66,7 +75,7 @@ function Hud.start()
 	underline.Size = UDim2.new(1, -13, 0, 4)
 	underline.ZIndex = 2
 	local content = Ui.frame(bar)
-	content.Size = UDim2.new(0, 0, 1, -4)
+	content.Size = UDim2.new(0, 0, 1, -6)
 	content.AutomaticSize = Enum.AutomaticSize.X
 	content.ZIndex = 3
 	local layout = Instance.new("UIListLayout")
@@ -77,7 +86,7 @@ function Hud.start()
 	layout.Parent = content
 	local pad = Instance.new("UIPadding")
 	pad.PaddingLeft = UDim.new(0, 0)
-	pad.PaddingRight = UDim.new(0, 22)
+	pad.PaddingRight = UDim.new(0, 26)
 	pad.Parent = content
 	local tag = Ui.slab(content, Ui.Colors.Pink, 14)
 	tag.LayoutOrder = 1
@@ -91,7 +100,7 @@ function Hud.start()
 	tagPad.PaddingRight = UDim.new(0, 14)
 	tagPad.Parent = tagText
 	Ui.fitWidth(tag, tagText)
-	local timer = Ui.title(content, "", 38, Ui.Colors.Yellow)
+	local timer = Ui.title(content, "", 36, Ui.Colors.Yellow)
 	timer.LayoutOrder = 2
 	timer.Size = UDim2.fromScale(0, 1)
 	timer.AutomaticSize = Enum.AutomaticSize.X
@@ -101,19 +110,24 @@ function Hud.start()
 	left.AutomaticSize = Enum.AutomaticSize.X
 	Ui.fitWidth(bar, content)
 
+	-- The status line: up to 560 wide, narrower on a narrow screen, and as tall as its lines.
 	local status = Ui.caps(gui, "", 14, Ui.Colors.Text)
 	status.AnchorPoint = Vector2.new(0.5, 0)
-	status.Position = UDim2.new(0.5, 0, 0, 68)
-	status.Size = UDim2.fromOffset(560, 20)
+	status.Position = UDim2.new(0.5, 0, 0, 74)
+	status.Size = UDim2.new(1, -24, 0, 20)
+	status.AutomaticSize = Enum.AutomaticSize.Y
 	status.TextWrapped = true
 	Ui.stroke(status, 2)
+	local statusLimit = Instance.new("UISizeConstraint")
+	statusLimit.MaxSize = Vector2.new(560, math.huge)
+	statusLimit.Parent = status
 
 	-- A stripe across the screen for a new banner.
 	local function sweep(banner: Banner)
 		local band = Ui.frame(gui, banner.color)
 		band.AnchorPoint = Vector2.new(0.5, 0.5)
 		band.Position = UDim2.fromScale(0.5, 0.3)
-		band.Size = UDim2.new(1.3, 0, 0, 84)
+		band.Size = UDim2.new(1.3, 0, 0, 92)
 		band.Rotation = -3
 		band.ZIndex = 20
 		for _, edge in { 0, 1 } do
@@ -122,17 +136,28 @@ function Hud.start()
 			line.Position = UDim2.fromScale(0, edge)
 			line.Size = UDim2.new(1, 0, 0, 5)
 		end
+		-- The band is 1.3 screens wide, so the text keeps to its middle 70% (a long name shrinks
+		-- instead of running off a narrow screen).
 		local echo = Ui.title(band, banner.text, 60, Ui.Colors.Pink)
-		echo.Position = UDim2.fromOffset(4, 4)
-		echo.Size = UDim2.fromScale(1, 1)
+		echo.AnchorPoint = Vector2.new(0.5, 0)
+		echo.Position = UDim2.new(0.5, 4, 0, 4)
+		echo.Size = UDim2.new(0.7, 0, 1, -8)
+		Ui.shrinkText(echo, 20, 60)
 		local label = Ui.title(band, banner.text, 60, banner.ink)
-		label.Size = UDim2.fromScale(1, 1)
+		label.AnchorPoint = Vector2.new(0.5, 0)
+		label.Position = UDim2.fromScale(0.5, 0)
+		label.Size = UDim2.new(0.7, 0, 1, -8)
+		Ui.shrinkText(label, 20, 60)
 		Ui.popIn(band, 0.25)
 		task.delay(banner.seconds or STRIPE_TIME, function()
 			local info = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
 			TweenService:Create(band, info, { Position = UDim2.fromScale(1.6, 0.3) }):Play()
 			task.delay(0.3, band.Destroy, band)
 		end)
+	end
+
+	previewBanner = function(text: string, seconds: number)
+		sweep({ text = text, color = Ui.Colors.Text, ink = Ui.Colors.Ink, seconds = seconds })
 	end
 
 	-- The role banner shows once a round, in the first RoleBannerTime seconds of the intro (the

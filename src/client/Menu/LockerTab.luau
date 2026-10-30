@@ -150,7 +150,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	Ui.shrinkText(infoName, 18, 34) -- a long name gets smaller instead of being cut off
 	local infoText = Ui.text(info, "", 13, Ui.Colors.Dim)
 	infoText.Position = UDim2.fromOffset(14, 66)
-	infoText.Size = UDim2.new(1, -28, 0, 36)
+	infoText.Size = UDim2.new(1, -28, 0, 42)
 	infoText.TextXAlignment = Enum.TextXAlignment.Left
 	infoText.TextYAlignment = Enum.TextYAlignment.Top
 	infoText.TextWrapped = true
@@ -161,8 +161,9 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local serial = Ui.caps(info, "", 12, Ui.Colors.Text)
 	serial.AnchorPoint = Vector2.new(1, 0)
 	serial.Position = UDim2.new(1, -16, 0, 12)
-	serial.Size = UDim2.fromOffset(100, 16)
+	serial.Size = UDim2.fromOffset(100, 18)
 	serial.TextXAlignment = Enum.TextXAlignment.Right
+	Ui.shrinkText(serial, 11, 12)
 	Ui.holo(serial)
 
 	local scene = Ui.slab(api.gui, Ui.Colors.Panel, 8)
@@ -174,8 +175,8 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	scenePlay.Position = UDim2.fromOffset(18, 7)
 	scenePlay.ZIndex = 2
 	local sceneText = Ui.caps(scene, "", 12, Ui.Colors.Yellow)
-	sceneText.Position = UDim2.fromOffset(38, 0)
-	sceneText.Size = UDim2.new(1, -48, 1, 0)
+	sceneText.Position = UDim2.fromOffset(40, 0)
+	sceneText.Size = UDim2.new(1, -56, 1, 0)
 	sceneText.TextXAlignment = Enum.TextXAlignment.Left
 	sceneText.TextTruncate = Enum.TextTruncate.AtEnd
 
@@ -278,7 +279,11 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 				end
 			end
 		end
-		count.Text = Ui.upper(`{owned} / {#items} owned · rarest first`)
+		count.Text = Ui.upper(
+			`{owned} / {#items} owned · rarest first{if kind == "Victory"
+				then " · epic and up"
+				else ""}`
+		)
 		table.sort(items, function(a, b)
 			local ra, rb = Catalog.Rarities[a.rarity].order, Catalog.Rarities[b.rarity].order
 			if ra ~= rb then
@@ -305,16 +310,6 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 				end
 			)
 			tile.LayoutOrder = i
-		end
-		if kind == "Victory" then
-			local note = Ui.caps(
-				scroll,
-				"Victories come in Epic, Legendary and Iridescent only",
-				11,
-				Ui.Colors.Dim
-			)
-			note.LayoutOrder = #items + 1
-			note.TextWrapped = true
 		end
 		if plate and plate.Visible then
 			drawPlate()
