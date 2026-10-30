@@ -17,6 +17,7 @@ local TweenService = game:GetService("TweenService")
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
+local Remotes = require(Shared.Remotes)
 local GameLog = require(script.Parent.GameLog)
 local Participants = require(script.Parent.Participants)
 local Roles = require(script.Parent.Roles)
@@ -29,7 +30,9 @@ local FLASH_NAME = "EliminatedFlash"
 -- Is a game being played right now, and is this player out of it? (Sandbox, the lobby, the
 -- countdown and the victory screen never park anyone.)
 function Spectators.shouldPark(player: Player): boolean
-	return GAME_PHASES[GameState.getPhase()] == true and not Participants.isAlive(player)
+	return GAME_PHASES[GameState.getPhase()] == true
+		and not Participants.isAlive(player)
+		and player:GetAttribute("LeftEarly") ~= true
 end
 
 function Spectators.isParked(character: Instance?): boolean
@@ -145,7 +148,27 @@ end
 function Spectators.releaseAll()
 	for _, player in Players:GetPlayers() do
 		player:SetAttribute("Spectating", nil)
+		player:SetAttribute("LeftEarly", nil)
 	end
+end
+
+-- The Leave button (client/Spectate): a player who is out of the running game, or watching it
+-- after joining late, goes back to the lobby now. They stay out of the game (no role, `InGame`
+-- cleared) with the `LeftEarly` attribute, which keeps them from being parked again; the game's
+-- end clears it. Players still in the game cannot leave. Returns whether they left.
+function Spectators.leaveEarly(player: Player): boolean
+	if GAME_PHASES[GameState.getPhase()] ~= true or Participants.isAlive(player) then
+		return false
+	end
+	if player:GetAttribute("LeftEarly") == true or player:GetAttribute("Spectating") ~= true then
+		return false
+	end
+	player:SetAttribute("LeftEarly", true)
+	player:SetAttribute("Spectating", nil)
+	player:SetAttribute("InGame", nil)
+	GameLog.say(`{player.Name} left the game early, back to the lobby`)
+	pcall(player.LoadCharacter, player)
+	return true
 end
 
 local function watch(player: Player)
@@ -163,6 +186,9 @@ local function watch(player: Player)
 end
 
 function Spectators.start()
+	Remotes.get("LeaveGame").OnServerEvent:Connect(function(player)
+		Spectators.leaveEarly(player)
+	end)
 	Players.PlayerAdded:Connect(watch)
 	for _, player in Players:GetPlayers() do
 		watch(player)

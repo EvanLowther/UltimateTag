@@ -42,6 +42,7 @@ function Participants.startGame(players: { Player })
 		local playing = table.find(players, player) ~= nil
 		player:SetAttribute("InGame", if playing then true else nil)
 		player:SetAttribute("Alive", if playing then true else nil)
+		player:SetAttribute("LeftEarly", nil)
 	end
 	refreshCount()
 	GameLog.say(`game {gameId} starts: {GameLog.everyone()}`)
@@ -156,6 +157,7 @@ function Participants.endGame()
 	for _, player in Players:GetPlayers() do
 		player:SetAttribute("InGame", nil)
 		player:SetAttribute("Alive", nil)
+		player:SetAttribute("LeftEarly", nil)
 	end
 	refreshCount()
 	GameLog.say("game over, everyone is out of the game state")

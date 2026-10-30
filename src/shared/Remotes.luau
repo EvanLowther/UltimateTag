@@ -22,6 +22,15 @@
 --                   has Won = true; none if nobody won), Duration (seconds the screen lasts),
 --                   and for players who were in the game Rewards = { Coins, XP, Crates, Items,
 --                   LevelFrom, LevelTo, Place, Of } (their own, from server/GameRewards).
+--   RoundResults:   server -> clients: a round just ended (client/RoundResults): the card of who
+--                   went out and how. A table: Round, Left (players still in), Out = { { UserId,
+--                   Name, DisplayName, Reason = "It" | "Fell" | "Train" | "Afk" } }, Next (true:
+--                   another round follows, so the card also covers the world while the next map
+--                   loads), Duration, CoverAt, and Mine = { InGame, Out, Tags, ItSeconds }.
+--   Activity:       client -> server (no arguments): "I pressed or moved something", throttled
+--                   (client/Activity); the AFK check reads it (server/Afk).
+--   LeaveGame:      client -> server (no arguments): an eliminated player goes back to the lobby
+--                   early (the Leave button on the spectate bar). Ignored for anyone still in.
 --   ShopBuy:        client -> server: buy today's shop item (its id).
 --   BuyCrate:       client -> server: buy a crate (it goes into your crates).
 --   OpenCrate:      client -> server: (count) open that many of your crates (1 if left out).
@@ -51,6 +60,9 @@ local NAMES = {
 	"TagHit",
 	"TagKnockback",
 	"GameOver",
+	"RoundResults",
+	"Activity",
+	"LeaveGame",
 	"ShopBuy",
 	"BuyCrate",
 	"OpenCrate",

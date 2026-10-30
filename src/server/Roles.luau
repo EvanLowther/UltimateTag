@@ -14,6 +14,8 @@ local HIGHLIGHT_NAME = "ItHighlight"
 local Roles = {}
 
 local frozenUntil: { [Player]: number } = {}
+local roleSince: { [Player]: number } = {} -- os.clock() when each player got their current role
+local listeners: { (Player, Role?, Role?) -> () } = {}
 
 function Roles.get(player: Player): Role?
 	return player:GetAttribute("Role") :: Role?
@@ -77,8 +79,28 @@ local function apply(player: Player)
 end
 
 function Roles.set(player: Player, role: Role?)
+	local old = Roles.get(player)
 	player:SetAttribute("Role", role)
+	if old ~= role or roleSince[player] == nil then
+		roleSince[player] = os.clock()
+	end
 	apply(player)
+	if old ~= role then
+		for _, listener in listeners do
+			task.spawn(listener, player, old, role)
+		end
+	end
+end
+
+-- How long (seconds) the player has had their current role.
+function Roles.heldFor(player: Player): number
+	local since = roleSince[player]
+	return if since then os.clock() - since else 0
+end
+
+-- Calls `listener(player, oldRole, newRole)` whenever a player's role changes.
+function Roles.onChanged(listener: (Player, Role?, Role?) -> ())
+	table.insert(listeners, listener)
 end
 
 -- Freezes the player in place for `seconds`. Frozen players can't move, jump, or tag.
@@ -126,6 +148,7 @@ function Roles.start()
 	end
 	Players.PlayerRemoving:Connect(function(player)
 		frozenUntil[player] = nil
+		roleSince[player] = nil
 	end)
 end
 

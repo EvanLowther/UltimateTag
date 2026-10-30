@@ -45,8 +45,11 @@ function GameTab.build(page: Instance, send: (string, ...any) -> ())
 	Widgets.numberBox(page, 10, function(seconds)
 		send("SetTimeLeft", seconds)
 	end)
-	Widgets.label(page, "Round length (s), from the next round")
-	Widgets.numberBox(page, Config.Game.RoundTime, function(seconds)
+	Widgets.label(
+		page,
+		"Round length (s) for every round, from the next round (normally by players left)"
+	)
+	Widgets.numberBox(page, 120, function(seconds)
 		send("SetRoundTime", seconds)
 	end)
 

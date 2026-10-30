@@ -4,22 +4,25 @@
 --   the timer in big yellow numbers and how many players are left, a yellow underline and a
 --   pink shadow. The status line sits under it.
 --   Banners: YOU'RE IT!, RUN!, ELIMINATED, YOU WIN! and "<NAME> WINS!" sweep across the screen
---   as a tilted stripe when they change, then stay as a small tag under the bar (except
---   YOU'RE IT!, which only sweeps: in first person the red ItTint shows you're It). ELIMINATED
---   sweeps while your body is still visible; once you are spectating no banners show.
+--   as a tilted stripe, then go (no small tag stays under the bar). The role banner (YOU'RE
+--   IT! or RUN!) shows only during the first Config.Game.RoleBannerTime seconds of a round's
+--   intro and never again that round, not even when you tag or are tagged: your role is shown
+--   by the red outline and, in first person, the ItTint. ELIMINATED sweeps while your body is
+--   still visible; once you are spectating no banners show.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
+local Config = require(Shared:WaitForChild("Config"))
 local GameState = require(Shared:WaitForChild("GameState"))
 local Ui = require(script.Parent.Menu.Ui)
 
 local Hud = {}
 
-local STRIPE_TIME = 2.2 -- seconds a banner's stripe stays before shrinking to the tag
+local STRIPE_TIME = 2.2 -- seconds a banner's stripe stays before sweeping off
 
-type Banner = { text: string, color: Color3, ink: Color3, sweepOnly: boolean? }
+type Banner = { text: string, color: Color3, ink: Color3, seconds: number? }
 
 local function phaseTag(): string
 	local phase = GameState.getPhase()
@@ -105,21 +108,6 @@ function Hud.start()
 	status.TextWrapped = true
 	Ui.stroke(status, 2)
 
-	-- The small tag that stays under the bar while a banner lasts.
-	local roleTag = Ui.slab(gui, Ui.Colors.Yellow, 8)
-	roleTag.AnchorPoint = Vector2.new(0.5, 0)
-	roleTag.Position = UDim2.new(0.5, 0, 0, 92)
-	roleTag.Size = UDim2.fromOffset(0, 26)
-	roleTag.Visible = false
-	local roleText = Ui.caps(roleTag, "", 14, Ui.Colors.Ink)
-	roleText.Size = UDim2.fromScale(0, 1)
-	roleText.AutomaticSize = Enum.AutomaticSize.X
-	local rolePad = Instance.new("UIPadding")
-	rolePad.PaddingLeft = UDim.new(0, 18)
-	rolePad.PaddingRight = UDim.new(0, 18)
-	rolePad.Parent = roleText
-	Ui.fitWidth(roleTag, roleText)
-
 	-- A stripe across the screen for a new banner.
 	local function sweep(banner: Banner)
 		local band = Ui.frame(gui, banner.color)
@@ -140,11 +128,20 @@ function Hud.start()
 		local label = Ui.title(band, banner.text, 60, banner.ink)
 		label.Size = UDim2.fromScale(1, 1)
 		Ui.popIn(band, 0.25)
-		task.delay(STRIPE_TIME, function()
+		task.delay(banner.seconds or STRIPE_TIME, function()
 			local info = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
 			TweenService:Create(band, info, { Position = UDim2.fromScale(1.6, 0.3) }):Play()
 			task.delay(0.3, band.Destroy, band)
 		end)
+	end
+
+	-- The role banner shows once a round, in the first RoleBannerTime seconds of the intro (the
+	-- intro counts TimeLeft down from IntroTime).
+	local roleBannerRound = -1
+	local function roleBannerDue(): boolean
+		return GameState.getPhase() == "Intro"
+			and roleBannerRound ~= GameState.getRound()
+			and GameState.getTimeLeft() > Config.Game.IntroTime - Config.Game.RoleBannerTime
 	end
 
 	local shown: string? = nil
@@ -154,11 +151,7 @@ function Hud.start()
 			return
 		end
 		shown = text
-		roleTag.Visible = banner ~= nil and not banner.sweepOnly
 		if banner then
-			roleText.Text = Ui.upper(banner.text)
-			roleText.TextColor3 = banner.ink
-			Ui.paint(roleTag, banner.color)
 			sweep(banner)
 		end
 	end
@@ -191,15 +184,22 @@ function Hud.start()
 				})
 		elseif eliminated then
 			showBanner({ text = "Eliminated", color = Ui.Colors.Panel, ink = Ui.Colors.Red })
-		elseif role == "It" then
-			showBanner({
-				text = "You're it!",
-				color = Ui.Colors.Yellow,
-				ink = Ui.Colors.Ink,
-				sweepOnly = true,
-			})
-		elseif role == "Runner" then
-			showBanner({ text = "Run!", color = Ui.Colors.Cyan, ink = Ui.Colors.Ink })
+		elseif role ~= nil and roleBannerDue() then
+			roleBannerRound = GameState.getRound()
+			local seconds = Config.Game.RoleBannerTime
+			showBanner(if role == "It"
+				then {
+					text = "You're it!",
+					color = Ui.Colors.Yellow,
+					ink = Ui.Colors.Ink,
+					seconds = seconds,
+				}
+				else {
+					text = "Run!",
+					color = Ui.Colors.Cyan,
+					ink = Ui.Colors.Ink,
+					seconds = seconds,
+				})
 		else
 			showBanner(nil)
 		end
