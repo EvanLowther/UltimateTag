@@ -41,7 +41,7 @@ local VICTORY_ICONS = {
 	Thunderstorm = "bolt",
 	Throne = "crown",
 	MeteorTouchdown = "meteor",
-	Supernova = "shards",
+	Chrysalis = "butterfly",
 	Rift = "rift",
 }
 

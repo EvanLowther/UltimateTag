@@ -5,12 +5,13 @@
 -- with every beat is docs/polish/victories.md.
 --   Epic: Flex, Backflip, Confetti Storm, Breakdance, Katana, Trophy Lift (Victories/Epic).
 --   Legendary: Podium Rise, Thunderstorm, Throne, Meteor Touchdown (Victories/Legendary).
---   Iridescent: Supernova, Rift (Victories/Iridescent).
+--   Iridescent: Chrysalis (Victories/Chrysalis), Rift (Victories/Iridescent).
 -- Everything runs on this screen only, from the same data, so everyone sees the same thing.
 -- One plays at a time: `stop` clears it (the win screen closing, the Locker switching items).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Catalog = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Catalog"))
+local Chrysalis = require(script.Chrysalis)
 local Epic = require(script.Epic)
 local Iridescent = require(script.Iridescent)
 local Kit = require(script.Kit)
@@ -29,7 +30,7 @@ local PLAYS: { [string]: (Kit.Context) -> () } = {
 	Thunderstorm = Legendary.Thunderstorm,
 	Throne = Legendary.Throne,
 	MeteorTouchdown = Legendary.MeteorTouchdown,
-	Supernova = Iridescent.Supernova,
+	Chrysalis = Chrysalis.play,
 	Rift = Iridescent.Rift,
 }
 

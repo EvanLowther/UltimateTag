@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.55.10",
+	Version = "0.56.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -846,7 +846,7 @@ local Config = {
 			Thunderstorm = { Size = Vector2.new(12, 11), Up = 2 },
 			Throne = { Size = Vector2.new(11, 12), Up = 2 },
 			MeteorTouchdown = { Size = Vector2.new(16, 11), Up = 1 },
-			Supernova = { Size = Vector2.new(16, 18), Up = 5 },
+			Chrysalis = { Size = Vector2.new(20, 16), Up = 4 },
 			Rift = { Size = Vector2.new(16, 13), Up = 2 },
 		} :: { [string]: { Size: Vector2, Up: number } },
 	},

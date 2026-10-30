@@ -208,7 +208,7 @@ their insides and juice flying. Last a bomb with a lit fuse is cut by the big ha
 blows up in front of the podium: 2nd and 3rd's blocks go over onto their sides and the players
 are thrown to the floor like ragdolls. Then the clean sheathe and the petals.
 
-## Chrysalis (replaces Supernova): planned 2026-10-30, not built yet
+## Chrysalis (replaces Supernova): built in 0.56.0 from the approved mockup (https://claude.ai/artifact/YLpPDST1ANzhQQHj9xsVc4)
 
 Supernova is being replaced by **Chrysalis**, an Iridescent victory with its own style: organic
 and graceful (silk, a cocoon, morpho butterfly wings, a stage overgrown with plants), not

@@ -51,6 +51,7 @@ local restores: { () -> () } = {}
 local shakes: { Shake } = {}
 local tiltOf: ((number) -> number)? = nil
 local lookOf: ((number) -> (Vector3?, number))? = nil
+local dollyOf: ((number) -> Vector3)? = nil
 local overlay: ScreenGui? = nil
 local folder: Folder? = nil
 local built: { [{ Key }]: Animation } = {}
@@ -123,6 +124,7 @@ function Kit.stop()
 	table.clear(shakes)
 	tiltOf = nil
 	lookOf = nil
+	dollyOf = nil
 	overlay = nil
 	folder = nil
 	current = nil
@@ -473,6 +475,19 @@ end
 -- 2nd and 3rd place react: "LookUp" (heads up), "Shield" (an arm over the eyes), "Flail" (arms
 -- thrown out) or "Stagger" (Flail, pushed back away from the winner, then back).
 local REACTIONS: { [string]: { Key } } = {
+	-- Glancing round, one way then the other.
+	LookAround = {
+		{ time = 0, angles = {} },
+		{
+			time = 0.3,
+			angles = { Head = Vector3.new(-12, 40, 0), UpperTorso = Vector3.new(0, 12, 0) },
+		},
+		{
+			time = 0.65,
+			angles = { Head = Vector3.new(-12, -35, 0), UpperTorso = Vector3.new(0, -10, 0) },
+		},
+		{ time = 0.95, angles = { Head = Vector3.new(5, 0, 0), UpperTorso = Vector3.zero } },
+	},
 	LookUp = {
 		{ time = 0, angles = {} },
 		{
@@ -991,6 +1006,12 @@ end
 
 -- The win screen's or Locker's camera with the victory's shakes and tilt laid on.
 -- The camera turns toward `look(t)` (a point, and how far toward it: 0-1) while it plays.
+-- The camera moves by `dolly(t)` in its own space (+X right, +Y up, -Z forward) while it plays:
+-- pushing in, backing off, rising with the winner.
+function Kit.dolly(dolly: (number) -> Vector3)
+	dollyOf = dolly
+end
+
 function Kit.lookAt(look: (number) -> (Vector3?, number))
 	lookOf = look
 end
@@ -998,6 +1019,9 @@ end
 function Kit.camera(cframe: CFrame): CFrame
 	if not current then
 		return cframe
+	end
+	if dollyOf then
+		cframe *= CFrame.new(dollyOf(Kit.now()))
 	end
 	if lookOf then
 		local point, weight = lookOf(Kit.now())

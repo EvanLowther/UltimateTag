@@ -504,10 +504,13 @@ add("victory_meteor", "Victory", "Meteor Touchdown", "Legendary", {
 	Length = 8,
 	Colors = { rgb(255, 180, 60), rgb(255, 74, 28) },
 }, { blurb = "Launch out of sight and slam back down, cracking the whole podium" })
-add("victory_supernova", "Victory", "Supernova", "Iridescent", {
-	Victory = "Supernova",
-	Length = 9,
-}, { blurb = "Rise in holo shards and explode: the screen cracks like glass" })
+-- (The id is Supernova's, the victory it replaced, so its owners keep it.)
+add("victory_supernova", "Victory", "Chrysalis", "Iridescent", {
+	Victory = "Chrysalis",
+	Length = 11.7,
+}, {
+	blurb = "The stage overgrows, silk wraps you in a cocoon, and you burst out on huge morpho wings",
+})
 add("victory_rift", "Victory", "Rift", "Iridescent", {
 	Victory = "Rift",
 	Length = 9.5,

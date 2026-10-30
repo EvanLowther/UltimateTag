@@ -642,6 +642,14 @@ local DRAW: { [string]: (Canvas) -> () } = {
 		line(c, 0.2, 0.62, 0.38, 0.8, 0.07, true, true) -- the guard
 		sparkle(c, 0.84, 0.16, 0.1, true)
 	end,
+	butterfly = function(c)
+		-- Two pairs of wings and a body.
+		circle(c, 0.3, 0.36, 0.2)
+		circle(c, 0.7, 0.36, 0.2)
+		circle(c, 0.35, 0.68, 0.14, true)
+		circle(c, 0.65, 0.68, 0.14, true)
+		line(c, 0.5, 0.22, 0.5, 0.84, 0.07, false, true)
+	end,
 	rift = function(c)
 		-- A tear in space with stars.
 		rhombus(c, 0.5, 0.5, 0.17, 0.46, false)
