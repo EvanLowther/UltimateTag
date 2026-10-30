@@ -17,6 +17,16 @@ them on the map folders themselves (every map in rotation and the lobby, or the 
            a wall top) are skipped, and so are the tops of parts named in the map's OutOfBounds
            attribute (comma-separated: roofs, ceilings, tall furniture).
 
+  deaths   Only the Rooftop District (falling off) and the Metro (the train, and the tunnel floor
+           past the platform ends) may kill anyone: any other map with a KillHeight or
+           FallEliminates attribute fails (gameplay rules, docs/polish/gameplay-rules.md).
+  escapes  On a map where nothing may kill you (no KillHeight), no spot you can reach (the same
+           walking, jumping, dropping, ladder and launch pad moves as `reach`: so a gap in a
+           wall, a wall top or a jump onto an outside ledge) has open void at its side to step
+           off into, and no launch pad throws you out of the map or into the void. Tops named in
+           OutOfBounds are skipped, as for `reach`. Wall runs and wall jumps are not modelled
+           beyond the routes a map lists, so a wall climbed by wall running is not caught.
+
 How players get around, for `reach` (keep in step with Config and the character): walk up
 steps of STEP, jump up JUMP_UP, run-and-jump across gaps (jump_reach), drop any height, crouch or
 slide under anything CROUCH or more off the floor (SlideBlocker parts don't stop that), climb
@@ -523,6 +533,8 @@ class Reach:
         self.ignore = tuple(ignore_tops)
         self.spawns = spawns
         self.routes = routes
+        self.lost = []  # scratch: where the launch flight being simulated ended up
+        self.lost_from = []  # launch flights lost to the void: (pad, x, height, z, (x, y, z))
 
     def column(self, x, z):
         key = (round(x * 4), round(z * 4))
@@ -557,6 +569,7 @@ class Reach:
         xs = [self.parts[i].lo[0] for i in self.solid_idx] + [self.parts[i].hi[0] for i in self.solid_idx]
         zs = [self.parts[i].lo[2] for i in self.solid_idx] + [self.parts[i].hi[2] for i in self.solid_idx]
         x0, x1, z0, z1 = min(xs), max(xs), min(zs), max(zs)
+        self.floor_y = min(self.parts[i].lo[1] for i in self.solid_idx)
         self.origin = (math.floor(x0 / CELL) * CELL + CELL / 2, math.floor(z0 / CELL) * CELL + CELL / 2)
         nx = int((x1 - self.origin[0]) / CELL) + 1
         nz = int((z1 - self.origin[1]) / CELL) + 1
@@ -644,7 +657,7 @@ class Reach:
                         if not any((dx * ox + dz * oz) / dist > 0.7 for ox, oz in open_dirs):
                             continue
                         top = max(ha, hb)
-                        steps = int(dist / 1.5)
+                        steps = max(int(dist / 0.5), 1)  # fine enough not to step over a thin wall
                         if not (self.free(xa, za, ha + 0.2, ha + STAND)
                                 and self.free(xb, zb, hb + 0.2, top + 2.0)):
                             continue
@@ -683,6 +696,9 @@ class Reach:
                 landing = self.fly(x, h + ROOT, z, vx, vy, vz)
                 if landing is not None:
                     self.edges[a].add(landing)
+                for end in self.lost:
+                    self.lost_from.append((part.name, x, h, z, end))
+                self.lost = []
 
     def fly(self, x, y, z, vx, vy, vz, dt=1 / 120):
         t = 0.0
@@ -703,6 +719,10 @@ class Reach:
                 return None
             if self.kill is not None and feet < self.kill:
                 return None
+            if feet < self.floor_y - 1:  # below everything solid on the map: lost to the void
+                self.lost.append((x, y, z))
+                return None
+        self.lost.append((x, y, z))  # still airborne after 6 s with nothing in the way
         return None
 
     def swings(self):
@@ -776,6 +796,55 @@ class Reach:
                 problems.append(f"reach: {area:.0f} studs^2 at height {min(hs):.1f}-{max(hs):.1f} "
                                 f"around ({sum(xs) / len(xs):.0f}, {sum(zs) / len(zs):.0f}) "
                                 f"(on {', '.join(names[:3])}) {label}")
+        if self.kill is None:  # nothing here may kill you, so there must be no way out either
+            problems += self.escapes(forward)
+        return problems
+
+    def void_beside(self, x, z, h):
+        """Whether you could walk off the edge into the void from a standing spot at height h:
+        the way to a neighbouring spot is open at body height (a quarter stud at a time, so a
+        thin fence still blocks) and nothing solid is at or below your feet there, so you'd
+        fall for ever. Returns that neighbouring spot, or None."""
+        for di in (-1, 0, 1):
+            for dk in (-1, 0, 1):
+                if di == 0 and dk == 0:
+                    continue
+                if not all(self.free(x + di * CELL * s / 8, z + dk * CELL * s / 8, h + 0.3,
+                                     h + CROUCH) for s in range(1, 9)):
+                    continue
+                nx, nz = x + di * CELL, z + dk * CELL
+                column = self.column(nx, nz)
+                if all(bottom >= h + 0.5 for bottom, _, _, _ in column):
+                    return nx, nz
+                # Level ground that is out of bounds (the lobby's ground beyond its buildings)
+                # is somewhere you're not meant to be, and it ends in the void too.
+                if any(self.parts[index].name in self.ignore and bottom < h + 0.5
+                       and abs(top - h) <= STEP for bottom, top, index, _ in column):
+                    return nx, nz
+        return None
+
+    def escapes(self, forward):
+        """Reachable spots with open void at their side, and launch flights that end in the
+        void: ways out of the map on a map where nothing is meant to kill you."""
+        problems = []
+        edge = {n for n in forward if self.void_beside(*self.nodes[n][:2], self.nodes[n][2])}
+        for cluster in self.clusters(edge):
+            xs = [self.nodes[n][0] for n in cluster]
+            zs = [self.nodes[n][1] for n in cluster]
+            hs = [self.nodes[n][2] for n in cluster]
+            names = sorted({self.parts[self.nodes[n][3]].name for n in cluster})
+            problems.append(f"escapes: you can walk off into the void at {len(cluster)} spots "
+                            f"around ({sum(xs) / len(xs):.0f}, {sum(zs) / len(zs):.0f}) at "
+                            f"height {min(hs):.1f}-{max(hs):.1f} (on {', '.join(names[:3])}); "
+                            f"close it or list the top in OutOfBounds")
+        seen = set()
+        for name, x, h, z, end in self.lost_from:
+            if (name, round(x), round(z)) in seen:
+                continue
+            seen.add((name, round(x), round(z)))
+            problems.append(f"escapes: the launch pad {name} at ({x:.0f}, {h:.1f}, {z:.0f}) "
+                            f"throws you out of the map (lost at ({end[0]:.0f}, {end[1]:.0f}, "
+                            f"{end[2]:.0f}))")
         return problems
 
     @staticmethod
@@ -833,11 +902,26 @@ def parse_routes(text):
     return out
 
 
+# The only maps that may kill anyone (docs/polish/gameplay-rules.md): the Rooftop District by
+# falling off, the Metro by its train (and the tunnel floor past the platform ends).
+MAY_KILL = ("Rooftop District", "The Metro")  # their DisplayName attributes
+KILL_ATTRIBUTES = ("KillHeight", "FallEliminates")
+
+
+def deaths(attributes):
+    """No map but the Rooftop District and the Metro has a KillHeight or FallEliminates."""
+    if attributes.get("DisplayName") in MAY_KILL:
+        return []
+    return [f"deaths: {attributes.get('DisplayName', 'this map')} has the {name} attribute, but "
+            f"only {' and '.join(MAY_KILL)} may kill anyone" for name in KILL_ATTRIBUTES
+            if name in attributes]
+
+
 def check(parts, spawns, attributes, ignore_tops=(), routes=()):
     """All the checks. `parts` from parts_from_nodes (or load_folder); `routes` are extra ways
     across: ((x, y, z) from, (x, y, z) to, both ways?), as well as the map's ReachRoutes."""
     routes = tuple(routes) + tuple(parse_routes(attributes.get("ReachRoutes")))
-    problems = sizes(parts) + flicker(parts) + windows(parts) + ladders(parts)
+    problems = deaths(attributes) + sizes(parts) + flicker(parts) + windows(parts) + ladders(parts)
     # The map's OutOfBounds attribute names parts whose tops aren't play area (roofs, ceilings,
     # tall furniture), comma-separated.
     off = [n.strip() for n in str(attributes.get("OutOfBounds", "")).split(",") if n.strip()]
