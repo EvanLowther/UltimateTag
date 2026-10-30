@@ -104,7 +104,7 @@ function Menu.start()
 	coin.Position = UDim2.fromOffset(16, 7)
 	local coinText = Ui.caps(money, "0", 20, Ui.Colors.Yellow)
 	coinText.Position = UDim2.fromOffset(44, 0)
-	coinText.Size = UDim2.new(1, -52, 1, 0)
+	coinText.Size = UDim2.new(1, -58, 1, 0) -- (clear of the slanted end)
 	coinText.TextXAlignment = Enum.TextXAlignment.Left
 	Ui.shrinkText(coinText, 11, 20) -- seven-digit totals shrink instead of running out of the pill
 
@@ -118,14 +118,17 @@ function Menu.start()
 	levelBar.Parent = root
 	local levelPlate = Ui.slab(levelBar, Ui.Colors.Panel, 8)
 	levelPlate.Position = UDim2.fromOffset(0, 6)
-	levelPlate.Size = UDim2.fromOffset(78, 32)
+	levelPlate.Size = UDim2.fromOffset(92, 32)
 	local levelText = Ui.title(levelPlate, "LV 1", 24, Ui.Colors.Yellow)
 	levelText.Size = UDim2.fromScale(1, 1)
+	Ui.pad(levelText, 12, 0) -- (LV 100 shrinks to fit)
+	Ui.shrinkText(levelText, 14, 24)
 	local segments, setXP = Ui.segments(levelBar, 10, Ui.Colors.Cyan, 24, 14)
-	segments.Position = UDim2.fromOffset(88, 8)
+	segments.Position = UDim2.fromOffset(100, 8)
 	local xpText = Ui.caps(levelBar, "0 / 100 XP", 12, Ui.Colors.Text)
-	xpText.Position = UDim2.fromOffset(88, 24)
+	xpText.Position = UDim2.fromOffset(100, 24)
 	xpText.Size = UDim2.fromOffset(280, 16)
+	Ui.shrinkText(xpText, 11, 12)
 	xpText.TextXAlignment = Enum.TextXAlignment.Left
 	Ui.stroke(xpText, 1.5)
 
@@ -335,9 +338,10 @@ function Menu.start()
 		local label = Ui.caps(button, page.name, 15, Ui.Colors.Text)
 		label.Name = "Label"
 		label.Position = UDim2.fromOffset(52, 0)
-		label.Size = UDim2.new(1, -56, 1, 0)
+		label.Size = UDim2.new(1, -64, 1, 0)
 		label.TextXAlignment = Enum.TextXAlignment.Left
 		label.ZIndex = 3
+		Ui.shrinkText(label, 11, 15)
 		badges[page.name] = Ui.badge(button)
 		local scale = Instance.new("UIScale")
 		scale.Parent = button

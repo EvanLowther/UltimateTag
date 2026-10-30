@@ -17,6 +17,9 @@ local Ui = require(script.Parent.Ui)
 local RewardsTab = {}
 
 local LAST_SHOWN = 8 -- items in the "Last opened" row
+local NARROW_BELOW = 560 -- pages narrower than this (virtual pixels) stack the crate and its odds
+local DAY_HEIGHT = 76 -- a streak day's tile
+local CRATE_HEIGHT = 184 -- the crate panel and the odds panel
 
 -- Can today's streak reward be claimed?
 function RewardsTab.canClaim(profile: { [string]: any }): boolean
@@ -56,19 +59,21 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	flame.Position = UDim2.fromOffset(0, 1)
 	local streakTitle = Ui.caps(streakHead, "", 14, Ui.Colors.Text)
 	streakTitle.Position = UDim2.fromOffset(26, 0)
-	streakTitle.Size = UDim2.new(0.6, -26, 1, 0)
+	streakTitle.Size = UDim2.new(0.6, -30, 1, 0)
 	streakTitle.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(streakTitle, 11, 14)
 	local streakNote = Ui.caps(streakHead, "", 12, Ui.Colors.Dim)
 	streakNote.AnchorPoint = Vector2.new(1, 0)
 	streakNote.Position = UDim2.fromScale(1, 0)
-	streakNote.Size = UDim2.fromScale(0.4, 1)
+	streakNote.Size = UDim2.new(0.4, -4, 1, 0)
 	streakNote.TextXAlignment = Enum.TextXAlignment.Right
+	Ui.shrinkText(streakNote, 11, 12)
 	local days = Ui.frame(scroll)
 	days.LayoutOrder = 2
-	days.Size = UDim2.new(1, -6, 0, 66)
+	days.Size = UDim2.new(1, -6, 0, DAY_HEIGHT)
 	local dayGrid = Instance.new("UIGridLayout")
 	dayGrid.CellSize = UDim2.new(1 / 7, -6, 1, 0)
-	dayGrid.CellPadding = UDim2.fromOffset(6, 0)
+	dayGrid.CellPadding = UDim2.fromOffset(6, 6)
 	dayGrid.SortOrder = Enum.SortOrder.LayoutOrder
 	dayGrid.Parent = days
 
@@ -79,7 +84,10 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	crateHead.TextXAlignment = Enum.TextXAlignment.Left
 	local crateRow = Ui.frame(scroll)
 	crateRow.LayoutOrder = 4
-	crateRow.Size = UDim2.new(1, -6, 0, 176)
+	crateRow.Size = UDim2.new(1, -6, 0, CRATE_HEIGHT)
+	local function narrow(): boolean
+		return Ui.bodySize(page).X < NARROW_BELOW
+	end
 
 	local crate = Ui.panel(crateRow, Ui.Colors.Card, 10)
 	crate.Size = UDim2.new(0, 220, 1, 0)
@@ -90,14 +98,19 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	box.Position = UDim2.new(0.5, 0, 0, 16)
 	local crateName = Ui.title(crate, "Mystery crate", 26, Ui.Colors.Text)
 	crateName.Position = UDim2.fromOffset(0, 100)
-	crateName.Size = UDim2.new(1, 0, 0, 30)
+	crateName.Size = UDim2.new(1, 0, 0, 32)
+	Ui.pad(crateName, 12, 0)
+	Ui.shrinkText(crateName, 16, 26)
 	local crateStatus = Ui.caps(crate, "", 12, Ui.Colors.Dim)
-	crateStatus.Position = UDim2.fromOffset(0, 132)
-	crateStatus.Size = UDim2.new(1, 0, 0, 16)
+	crateStatus.Position = UDim2.fromOffset(0, 134)
+	crateStatus.Size = UDim2.new(1, 0, 0, 20)
+	Ui.pad(crateStatus, 12, 0)
+	Ui.shrinkText(crateStatus, 11, 12)
 	local crateCount = Ui.caps(crate, "", 18, Ui.Colors.Lime)
 	crateCount.AnchorPoint = Vector2.new(1, 0)
 	crateCount.Position = UDim2.new(1, -14, 0, 10)
-	crateCount.Size = UDim2.fromOffset(60, 22)
+	crateCount.Size = UDim2.fromOffset(64, 24)
+	Ui.shrinkText(crateCount, 11, 18)
 	crateCount.TextXAlignment = Enum.TextXAlignment.Right
 
 	local odds = Ui.panel(crateRow, Ui.Colors.Card, 10)
@@ -139,18 +152,20 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		12,
 		Ui.Colors.Dim
 	)
-	oddsNote.Position = UDim2.new(0, 14, 1, -36)
-	oddsNote.Size = UDim2.new(1, -28, 0, 30)
+	oddsNote.Position = UDim2.new(0, 14, 1, -42)
+	oddsNote.Size = UDim2.new(1, -28, 0, 34)
 	oddsNote.TextXAlignment = Enum.TextXAlignment.Left
+	oddsNote.TextYAlignment = Enum.TextYAlignment.Top
 	oddsNote.TextWrapped = true
+	oddsNote.TextTruncate = Enum.TextTruncate.AtEnd
 
 	local buttons = Ui.frame(scroll)
 	buttons.LayoutOrder = 5
-	buttons.Size = UDim2.new(1, -6, 0, 44)
+	buttons.Size = UDim2.new(1, -6, 0, 50)
 	local open = Ui.button(buttons, "Open", Ui.Colors.Lime, function()
 		api.send("OpenCrate", 1)
 	end)
-	open.Size = UDim2.fromOffset(150, 42)
+	open.Size = UDim2.fromOffset(150, Ui.hit(42))
 	Ui.setTextSize(open, 20)
 	local openAll = Ui.button(buttons, "Open all", Ui.Colors.Tab, function()
 		local profile = Profile.get()
@@ -159,21 +174,51 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 	end, Ui.Colors.Text)
 	openAll.Position = UDim2.fromOffset(162, 4)
-	openAll.Size = UDim2.fromOffset(150, 34)
+	openAll.Size = UDim2.fromOffset(160, Ui.hit(34))
 	local more = Ui.caps(
 		buttons,
 		`Get more: <font color="#{Ui.Colors.Yellow:ToHex()}">SHOP, {Config.Shop.CratePrice} COINS</font>  ·  <font color="#{Ui.Colors.Cyan:ToHex()}">FREE EVERY {Config.Progression.CrateEvery} LEVELS</font>  ·  <font color="#{Ui.Colors.Lime:ToHex()}">DAY 7 STREAK</font>`,
 		11,
 		Ui.Colors.Dim
 	)
-	more.Position = UDim2.fromOffset(324, 0)
-	more.Size = UDim2.new(1, -324, 1, 0)
-	more.TextXAlignment = Enum.TextXAlignment.Right
 	more.TextWrapped = true
+	more.TextTruncate = Enum.TextTruncate.AtEnd
+
+	-- Wide: the crate and its odds side by side, the "get more" line beside the buttons. Narrow:
+	-- stacked, and the line under the buttons.
+	local function arrange()
+		if narrow() then
+			crateRow.Size = UDim2.new(1, -6, 0, CRATE_HEIGHT * 2 + 10)
+			crate.Size = UDim2.new(1, 0, 0, CRATE_HEIGHT)
+			odds.Position = UDim2.fromOffset(0, CRATE_HEIGHT + 10)
+			odds.Size = UDim2.new(1, 0, 0, CRATE_HEIGHT)
+			buttons.Size = UDim2.new(1, -6, 0, 50 + 40)
+			more.Position = UDim2.fromOffset(0, 50)
+			more.Size = UDim2.new(1, 0, 0, 40)
+			more.TextXAlignment = Enum.TextXAlignment.Left
+			more.TextYAlignment = Enum.TextYAlignment.Top
+		else
+			crateRow.Size = UDim2.new(1, -6, 0, CRATE_HEIGHT)
+			crate.Size = UDim2.new(0, 220, 1, 0)
+			odds.Position = UDim2.fromOffset(232, 0)
+			odds.Size = UDim2.new(1, -232, 1, 0)
+			buttons.Size = UDim2.new(1, -6, 0, 50)
+			more.Position = UDim2.fromOffset(336, 0)
+			more.Size = UDim2.new(1, -336, 1, 0)
+			more.TextXAlignment = Enum.TextXAlignment.Right
+			more.TextYAlignment = Enum.TextYAlignment.Center
+		end
+	end
 
 	local last = Ui.row(scroll, 6, 24)
 	last.LayoutOrder = 6
 	last.Size = UDim2.new(1, -6, 0, 24)
+	last.AutomaticSize = Enum.AutomaticSize.Y
+	local lastLayout = last:FindFirstChildOfClass("UIListLayout")
+	if lastLayout then
+		lastLayout.Wraps = true -- eight long names would run off the page in one row
+		lastLayout.Padding = UDim.new(0, 6)
+	end
 
 	-- What you opened this session, newest first.
 	local opened: { { id: string, duplicate: boolean } } = {}
@@ -211,11 +256,11 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 						else ""
 				)
 			local name = Ui.caps(chip, text, 11, Ui.Colors.Text)
-			name.Position = UDim2.fromOffset(10, 0)
+			name.Position = UDim2.fromOffset(12, 0)
 			name.Size = UDim2.fromScale(0, 1)
 			name.AutomaticSize = Enum.AutomaticSize.X
 			local pad = Instance.new("UIPadding")
-			pad.PaddingRight = UDim.new(0, 8)
+			pad.PaddingRight = UDim.new(0, 12)
 			pad.Parent = chip
 		end
 	end
@@ -252,6 +297,11 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			then "RESETS IF YOU MISS A DAY"
 			else Ui.upper(`Next in {DayClock.format(DayClock.secondsToNextDay())}`)
 
+		arrange()
+		local columns = if narrow() then 4 else 7
+		local rowCount = math.ceil(7 / columns)
+		dayGrid.CellSize = UDim2.new(1 / columns, -6 * (columns - 1) / columns, 0, DAY_HEIGHT)
+		days.Size = UDim2.new(1, -6, 0, rowCount * DAY_HEIGHT + (rowCount - 1) * 6)
 		Ui.clear(days)
 		local cycleStart = ((count - 1) // 7) * 7
 		for i = 1, 7 do
@@ -284,12 +334,15 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 				if isNext then Ui.Colors.Ink elseif claimed then Ui.Colors.Lime else Ui.Colors.Dim
 			)
 			top.Position = UDim2.fromOffset(0, 8)
-			top.Size = UDim2.new(1, 0, 0, 14)
+			top.Size = UDim2.new(1, 0, 0, 18)
+			Ui.pad(top, 12, 0)
 			top.ZIndex = 2
+			-- The reward under the day: a crate goes on a second line, so it fits a narrow tile.
+			local crateLine = if reward.Crates then "<br/>+ crate" else ""
 			local bottomText = if isNext
-				then `Claim {reward.Coins}`
+				then `Claim<br/>{reward.Coins}{if reward.Crates then " + crate" else ""}`
 				elseif claimed then ""
-				else `{reward.Coins}{if reward.Crates then " + crate" else ""}`
+				else `{reward.Coins}{crateLine}`
 			local bottom = Ui.caps(
 				tile,
 				bottomText,
@@ -297,8 +350,11 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 				if isNext then Ui.Colors.Ink elseif claimed then Ui.Colors.Lime else Ui.Colors.Yellow
 			)
 			bottom.Position = UDim2.fromOffset(0, 26)
-			bottom.Size = UDim2.new(1, 0, 0, 26)
+			bottom.Size = UDim2.new(1, 0, 0, DAY_HEIGHT - 26 - 8)
 			bottom.ZIndex = 2
+			Ui.pad(bottom, 12, 0)
+			Ui.shrinkText(bottom, 11, if isNext then 15 else 13)
+			bottom.TextWrapped = true -- (the <br/> lines)
 			if claimed then
 				local check = Ui.icon(tile, "check", 22, Ui.Colors.Lime)
 				check.AnchorPoint = Vector2.new(0.5, 0)

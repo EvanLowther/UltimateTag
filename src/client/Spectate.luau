@@ -24,6 +24,8 @@ local Spectate = {}
 
 local LOCK = "Spectate"
 local GAME_PHASES = { Intro = true, Playing = true, Results = true }
+local BAR_WIDTH = 340 -- the name bar
+local BUTTON_WIDTH = 104
 local RESTORE_TIMEOUT = 5 -- seconds to wait for the new lobby character before giving up
 local NEXT_KEYS = {
 	[Enum.KeyCode.E] = 1,
@@ -59,17 +61,19 @@ function Spectate.start()
 	gui.Name = "Spectate"
 	gui.ResetOnSpawn = false
 	gui.Enabled = false
-	-- A row above the level bar: prev button, a black slanted bar with a cyan edge, next button
-	-- (Menu/Ui style).
+	-- A row above the level bar: prev button, a black slanted bar with a cyan edge, next button,
+	-- Leave (Menu/Ui style). On a screen too narrow for all of it in one line it wraps: the bar
+	-- on top, the three buttons under it.
 	local row = Ui.frame(gui)
 	row.AnchorPoint = Vector2.new(0.5, 1)
 	row.Position = UDim2.new(0.5, 0, 1, -120)
-	row.Size = UDim2.fromOffset(0, 40)
-	row.AutomaticSize = Enum.AutomaticSize.X
+	row.Size = UDim2.new(1, -24, 0, 40)
+	row.AutomaticSize = Enum.AutomaticSize.Y
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
 	layout.VerticalAlignment = Enum.VerticalAlignment.Center
 	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	layout.Wraps = true
 	layout.Padding = UDim.new(0, 10)
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
 	layout.Parent = row
@@ -92,7 +96,7 @@ function Spectate.start()
 		cycle(-1)
 	end, Ui.Colors.Ink, 8, "play")
 	prev.LayoutOrder = 1
-	prev.Size = UDim2.fromOffset(104, 36)
+	prev.Size = UDim2.fromOffset(104, Ui.hit(36))
 	local prevIcon = prev:FindFirstChild("Icon", true)
 	if prevIcon and prevIcon:IsA("GuiObject") then
 		prevIcon.Rotation = 180 -- the play triangle, pointing left
@@ -100,27 +104,46 @@ function Spectate.start()
 
 	local bar = Ui.slab(row, Ui.Colors.Panel, 10)
 	bar.LayoutOrder = 2
-	bar.Size = UDim2.fromOffset(340, 36)
+	bar.Size = UDim2.fromOffset(BAR_WIDTH, 36)
 	local edge = Ui.slab(bar, Ui.Colors.Cyan, 10)
 	edge.Size = UDim2.new(0, 18, 1, 0)
 	edge.ZIndex = 2
 	local label = Ui.caps(bar, "", 15, Ui.Colors.Text)
 	label.Size = UDim2.fromScale(1, 1)
 	label.ZIndex = 3
+	Ui.pad(label, 14, 0)
+	label.Position = UDim2.fromOffset(22, 0) -- (right of the cyan edge)
+	label.Size = UDim2.new(1, -22, 1, 0)
+	Ui.shrinkText(label, 11, 15) -- "SPECTATING <20-letter name>" shrinks, then is cut off
 
 	local nextButton = Ui.button(row, "Next", Ui.Colors.Cyan, function()
 		cycle(1)
 	end, Ui.Colors.Ink, 8, "play")
 	nextButton.LayoutOrder = 3
-	nextButton.Size = UDim2.fromOffset(104, 36)
+	nextButton.Size = UDim2.fromOffset(104, Ui.hit(36))
 
 	-- Leave: back to the lobby now (only spectators see this bar, so only players who are out).
 	local leave = Ui.button(row, "Leave", Ui.Colors.Pink, function()
 		Remotes.get("LeaveGame"):FireServer()
 	end, Ui.Colors.Ink, 8)
 	leave.LayoutOrder = 4
-	leave.Size = UDim2.fromOffset(104, 36)
+	leave.Size = UDim2.fromOffset(104, Ui.hit(36))
+
+	-- Fit the screen: one line (prev, bar, next, leave) when it fits, else the bar first.
+	local function fitScreen()
+		local width = gui.AbsoluteSize.X
+		if width <= 0 then
+			return
+		end
+		local one = BUTTON_WIDTH * 3 + BAR_WIDTH + 30 <= width - 24
+		prev.LayoutOrder = if one then 1 else 2
+		bar.LayoutOrder = if one then 2 else 1
+		nextButton.LayoutOrder = 3
+		bar.Size = UDim2.fromOffset(math.min(BAR_WIDTH, width - 24), 36)
+	end
+	gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(fitScreen)
 	gui.Parent = player:WaitForChild("PlayerGui")
+	fitScreen()
 
 	local function shouldSpectate(): boolean
 		return GAME_PHASES[GameState.getPhase()] == true

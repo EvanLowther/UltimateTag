@@ -36,6 +36,8 @@ local COVER_FADE = 0.3 -- seconds the backdrop takes to fade in
 local LEAVE_FADE = 0.45 -- seconds everything takes to fade out
 local WIDTH = 440
 local ROW = 30
+local TAG_WIDTH = 120 -- the reason tag at the end of an out row
+local CARD_FIXED = 330 -- the card's height without the out list
 local MAX_LIST = 6 -- rows of the out list before it scrolls
 
 local REASONS: { [string]: { text: string, color: Color3 } } = {
@@ -90,17 +92,19 @@ local function outRow(parent: Instance, order: number, entry: Out)
 	row.LayoutOrder = order
 	row.Size = UDim2.new(1, 0, 0, ROW)
 	local name = Ui.caps(row, entry.DisplayName, 17, Ui.Colors.Text)
-	name.Size = UDim2.fromScale(0.6, 1)
+	name.Size = UDim2.new(1, -TAG_WIDTH - 12, 1, 0) -- (a 20-letter name shrinks, then is cut off)
 	name.TextXAlignment = Enum.TextXAlignment.Left
-	name.TextTruncate = Enum.TextTruncate.AtEnd
+	Ui.shrinkText(name, 11, 17)
 	local why = REASONS[entry.Reason] or REASONS.It
 	local tag = Ui.slab(row, why.color, 6)
 	tag.AnchorPoint = Vector2.new(1, 0.5)
 	tag.Position = UDim2.fromScale(1, 0.5)
-	tag.Size = UDim2.fromOffset(112, 24)
+	tag.Size = UDim2.fromOffset(TAG_WIDTH, 24)
 	local label = Ui.caps(tag, why.text, 13, Ui.Colors.Ink)
 	label.Size = UDim2.fromScale(1, 1)
 	label.ZIndex = 2
+	Ui.pad(label, 12, 0)
+	Ui.shrinkText(label, 11, 13)
 	if why.color == Ui.Colors.Dim then
 		label.TextColor3 = Ui.Colors.Text
 	end
@@ -109,15 +113,17 @@ end
 local function statLine(parent: Instance, order: number, title: string, value: string)
 	local row = Ui.frame(parent)
 	row.LayoutOrder = order
-	row.Size = UDim2.new(1, 0, 0, 24)
+	row.Size = UDim2.new(1, 0, 0, 26)
 	local left = Ui.caps(row, title, 14, Ui.Colors.Dim)
-	left.Size = UDim2.fromScale(0.6, 1)
+	left.Size = UDim2.new(0.6, -4, 1, 0)
 	left.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(left, 11, 14)
 	local right = Ui.caps(row, value, 16, Ui.Colors.Text)
 	right.AnchorPoint = Vector2.new(1, 0)
 	right.Position = UDim2.fromScale(1, 0)
-	right.Size = UDim2.fromScale(0.4, 1)
+	right.Size = UDim2.new(0.4, -4, 1, 0)
 	right.TextXAlignment = Enum.TextXAlignment.Right
+	Ui.shrinkText(right, 11, 16)
 end
 
 -- Fades a gui's whole tree out (frames, text, strokes), then destroys it.
@@ -167,12 +173,24 @@ local function show(info: Info)
 
 	-- The card.
 	local root = scaledRoot(gui)
-	local listRows = math.min(math.max(#info.Out, 1), MAX_LIST)
-	local height = 14 + 40 + 16 + 20 + listRows * ROW + 14 + 50 + 12 + 20 + 3 * 24 + 12 + 30 + 14
+	-- The list gets fewer rows (it scrolls) on a short screen, so the card always fits.
+	local screenScale = root:FindFirstChildOfClass("UIScale")
+	local camera = workspace.CurrentCamera
+	local virtualHeight = if camera and screenScale
+		then camera.ViewportSize.Y / math.max(screenScale.Scale, 0.01)
+		else Config.Ui.Reference.Y
+	local fitRows = math.floor((virtualHeight - 24 - CARD_FIXED) / ROW)
+	local listRows = math.min(math.max(#info.Out, 1), math.max(1, math.min(MAX_LIST, fitRows)))
+	local height = CARD_FIXED + listRows * ROW
 	local card = Ui.panel(root, Ui.Colors.Panel, 16)
 	card.AnchorPoint = Vector2.new(0.5, 0.5)
 	card.Position = UDim2.fromScale(0.5, 0.5)
-	card.Size = UDim2.fromOffset(WIDTH, height)
+	card.Size = UDim2.fromOffset(
+		if camera and screenScale
+			then math.min(WIDTH, camera.ViewportSize.X / math.max(screenScale.Scale, 0.01) - 24)
+			else WIDTH,
+		height
+	)
 	card.ZIndex = 2
 	Ui.popIn(card, 0.3)
 
@@ -183,6 +201,8 @@ local function show(info: Info)
 	local title = Ui.title(header, `ROUND {info.Round} RESULTS`, 28, Ui.Colors.Ink)
 	title.Size = UDim2.fromScale(1, 1)
 	title.ZIndex = 4
+	Ui.pad(title, 18, 2)
+	Ui.shrinkText(title, 16, 28)
 
 	local body = Ui.frame(card)
 	body.ZIndex = 3
@@ -216,13 +236,15 @@ local function show(info: Info)
 	left.LayoutOrder = 3
 	left.Size = UDim2.new(1, 0, 0, 50)
 	local count = Ui.title(left, tostring(info.Left), 46, Ui.Colors.Yellow)
-	count.Size = UDim2.new(0, 70, 1, 0)
+	count.Size = UDim2.new(0, 84, 1, 0)
 	count.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(count, 24, 46)
 	local leftText =
 		Ui.caps(left, if info.Left == 1 then "PLAYER LEFT" else "PLAYERS LEFT", 18, Ui.Colors.Text)
-	leftText.Position = UDim2.fromOffset(70, 0)
-	leftText.Size = UDim2.new(1, -70, 1, 0)
+	leftText.Position = UDim2.fromOffset(92, 0)
+	leftText.Size = UDim2.new(1, -92, 1, 0)
 	leftText.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(leftText, 11, 18)
 
 	local you = Ui.caps(body, "YOUR ROUND", 13, Ui.Colors.Dim)
 	you.LayoutOrder = 4
@@ -236,14 +258,16 @@ local function show(info: Info)
 	end
 	local fared = Ui.caps(body, fateText, 20, fate.color)
 	fared.LayoutOrder = 5
-	fared.Size = UDim2.new(1, 0, 0, 24)
+	fared.Size = UDim2.new(1, 0, 0, 28)
 	fared.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(fared, 11, 20)
 	statLine(body, 6, "YOUR TAGS", tostring(info.Mine.Tags))
 	statLine(body, 7, "TIME AS IT", Ui.clock(info.Mine.ItSeconds))
 
 	local footer = Ui.caps(body, "", 14, Ui.Colors.Pink)
 	footer.LayoutOrder = 8
 	footer.Size = UDim2.new(1, 0, 0, 30)
+	Ui.shrinkText(footer, 11, 14)
 	local function refreshFooter()
 		local seconds = GameState.getTimeLeft()
 		footer.Text = if info.Next
@@ -299,6 +323,20 @@ local function show(info: Info)
 	phaseConnection = GameState.onChanged(maybeEnd)
 	maybeEnd()
 	task.delay(info.Duration + Config.Game.ResultsLoadWait + 5, finish)
+end
+
+-- Shows a results card now (the UI auditor's worst case: a full list of long names).
+function RoundResults.preview(info: Info)
+	show(info)
+end
+
+-- Takes a previewed card away.
+function RoundResults.hide()
+	session += 1
+	if screen then
+		screen:Destroy()
+		screen = nil
+	end
 end
 
 function RoundResults.start()

@@ -188,7 +188,7 @@ end
 function ItemCard.buyHeight(): number
 	return Ui.hit(30)
 end
-ItemCard.SHOP_BODY = 120 -- a standard card's height without its buy button (the well, the lines, the gaps)
+ItemCard.SHOP_BODY = 126 -- a standard card's height without its buy button (the well, the lines, the gaps)
 
 -- A Daily shop card. `oldPrice` (a deal) adds a ribbon and the old price struck out. `tall`
 -- makes the big deal card. `coins` (what you have) adds "Need N more" when you can't afford it.
@@ -215,16 +215,16 @@ function ItemCard.shop(
 	well.Size = UDim2.new(1, -16, 0, wellHeight)
 	ItemCard.preview(well, item, if tall then 1.6 else 1)
 	local y = 12 + wellHeight + 6
+	-- Text keeps TextPadX (12) from the card's edges.
 	local line = ItemCard.rarityLine(card, item, 12)
-	line.Position = UDim2.fromOffset(8, y)
-	line.Size = UDim2.new(1, -16, 0, 16)
+	line.Position = UDim2.fromOffset(12, y)
+	line.Size = UDim2.new(1, -24, 0, 16)
 	local name = if tall
 		then Ui.title(card, item.name, 30, Ui.Colors.Text)
 		else Ui.caps(card, item.name, 15, Ui.Colors.Text)
-	name.Position = UDim2.fromOffset(8, y + 16)
-	name.Size = UDim2.new(1, -16, 0, if tall then 32 else 20)
+	name.Position = UDim2.fromOffset(12, y + 18)
+	name.Size = UDim2.new(1, -24, 0, if tall then 34 else 22)
 	name.TextXAlignment = Enum.TextXAlignment.Left
-	name.TextTruncate = Enum.TextTruncate.AtEnd
 	Ui.shrinkText(name, if tall then 18 else 11, if tall then 30 else 15) -- long names get smaller
 	local buyHeight = ItemCard.buyHeight()
 
@@ -242,8 +242,8 @@ function ItemCard.shop(
 		if owned then "check" else nil
 	)
 	buy.AnchorPoint = Vector2.new(0, 1)
-	buy.Position = UDim2.new(0, 8, 1, -10)
-	buy.Size = UDim2.fromOffset(if tall then 130 else 110, buyHeight)
+	buy.Position = UDim2.new(0, 12, 1, -10)
+	buy.Size = UDim2.fromOffset(if tall then 130 else 100, buyHeight)
 	if not owned then
 		local amount =
 			Ui.coinAmount(buy, price, 15, if canAfford then Ui.Colors.Ink else Ui.Colors.Dim)
@@ -259,30 +259,34 @@ function ItemCard.shop(
 	if not owned and not canAfford and coins then
 		-- What's missing, so a greyed-out price says why.
 		local need = Ui.caps(card, `Need {Ui.number(price - coins)} more`, 11, Ui.Colors.Pink)
-		need.TextWrapped = true
 		need.TextXAlignment = Enum.TextXAlignment.Left
+		need.AnchorPoint = Vector2.new(0, 1)
 		if tall then
-			need.AnchorPoint = Vector2.new(0, 1)
-			need.Position = UDim2.new(0, 10, 1, -(buyHeight + 14))
-			need.Size = UDim2.new(1, -20, 0, 14)
+			need.Position = UDim2.new(0, 12, 1, -(buyHeight + 14))
+			need.Size = UDim2.new(1, -24, 0, 16)
+			Ui.shrinkText(need, 11, 11)
 		else
-			need.AnchorPoint = Vector2.new(0, 1)
-			need.Position = UDim2.new(0, 126, 1, -10)
-			need.Size = UDim2.new(1, -134, 0, buyHeight)
+			-- Beside the button, on up to two lines.
+			need.TextWrapped = true
+			need.TextTruncate = Enum.TextTruncate.AtEnd
+			need.Position = UDim2.new(0, 120, 1, -10)
+			need.Size = UDim2.new(1, -132, 0, buyHeight)
 		end
 	end
 	if oldPrice then
 		local ribbon = Ui.slab(card, Ui.Colors.Pink, 6)
-		ribbon.Position = UDim2.fromOffset(10, 16)
-		ribbon.Size = UDim2.fromOffset(104, 22)
+		ribbon.Position = UDim2.fromOffset(16, 18)
+		ribbon.Size = UDim2.fromOffset(112, 24)
 		ribbon.ZIndex = 3
 		local text = Ui.caps(ribbon, `Deal -{math.floor((1 - price / oldPrice) * 100 + 0.5)}%`, 13)
 		text.Size = UDim2.fromScale(1, 1)
 		text.ZIndex = 4
+		Ui.pad(text, 12, 0)
+		Ui.shrinkText(text, 11, 13)
 		local was = Ui.caps(card, `was <s>{Ui.number(oldPrice)}</s>`, 12, Ui.Colors.Dim)
 		was.AnchorPoint = Vector2.new(0, 1)
-		was.Position = UDim2.new(0, 146, 1, -10)
-		was.Size = UDim2.new(1, -154, 0, buyHeight)
+		was.Position = UDim2.new(0, 150, 1, -10)
+		was.Size = UDim2.new(1, -162, 0, buyHeight)
 		was.TextXAlignment = Enum.TextXAlignment.Left
 		was.TextTruncate = Enum.TextTruncate.AtEnd
 	end
@@ -317,7 +321,7 @@ function ItemCard.tile(
 	local name = Ui.caps(tile, label, 11, Ui.Colors.Text)
 	name.AnchorPoint = Vector2.new(0.5, 1)
 	name.Position = UDim2.new(0.5, 0, 1, -4)
-	name.Size = UDim2.new(1, -6, 0, 14)
+	name.Size = UDim2.new(1, -16, 0, 17)
 	name.TextTruncate = Enum.TextTruncate.AtEnd
 	name.ZIndex = 2
 	if item.kind == "Title" and owned then
@@ -337,8 +341,8 @@ function ItemCard.tile(
 	if equipped then
 		local on = Ui.caps(tile, "On", 11, Ui.Colors.Ink)
 		on.AnchorPoint = Vector2.new(1, 0)
-		on.Position = UDim2.new(1, 0, 0, 4)
-		on.Size = UDim2.fromOffset(24, 14)
+		on.Position = UDim2.new(1, -6, 0, 8)
+		on.Size = UDim2.fromOffset(30, 20)
 		on.BackgroundColor3 = Ui.Colors.Cyan
 		on.BackgroundTransparency = 0
 		on.ZIndex = 4
@@ -360,12 +364,12 @@ function ItemCard.reel(parent: Instance, item: Catalog.Item, width: number, heig
 	well.Size = UDim2.new(1, -16, 0, height - 70)
 	ItemCard.preview(well, item, 1.2)
 	local rarity = Ui.rarity(card, item.rarity, 12)
-	rarity.Position = UDim2.new(0, 8, 1, -52)
-	rarity.Size = UDim2.new(1, -16, 0, 16)
+	rarity.Position = UDim2.new(0, 12, 1, -54)
+	rarity.Size = UDim2.new(1, -24, 0, 18)
 	local name = Ui.caps(card, item.name, 14, Ui.Colors.Text)
-	name.Position = UDim2.new(0, 8, 1, -34)
-	name.Size = UDim2.new(1, -16, 0, 22)
-	name.TextTruncate = Enum.TextTruncate.AtEnd
+	name.Position = UDim2.new(0, 12, 1, -36)
+	name.Size = UDim2.new(1, -24, 0, 24)
+	Ui.shrinkText(name, 11, 14)
 	return card
 end
 

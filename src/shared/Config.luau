@@ -900,6 +900,21 @@ local Config = {
 		MaxScale = 1.5,
 		MinTouchTarget = 44, -- real pixels: buttons and tabs are never smaller on touch screens
 		TouchTargets = true, -- false: no minimum, even on touch screens
+		-- One padding rule for text on a box (Menu/Ui.pad): a label that fills its box gets this
+		-- much room on each side (virtual pixels); labels placed by offsets keep at least the
+		-- same gap from the box's edge.
+		TextPadX = 12,
+		TextPadY = 6,
+		-- Text never shrinks below this (virtual pixels; Ui.shrinkText cuts it off with "..."
+		-- instead), and the UI auditor (client/DevPanel/UiAudit) reports text drawn smaller than
+		-- MinTextSize on screen (MinTouchTextSize on touch devices).
+		MinTextSize = 11,
+		MinTouchTextSize = 14,
+		-- The UI auditor flags text closer than this to the edge of the box it sits on (real
+		-- pixels). Sideways room (MinPadding) is stricter than room above and below (MinPaddingY),
+		-- because a line's measured height already includes leading above and below the letters.
+		MinPadding = 8,
+		MinPaddingY = 4,
 	},
 
 	-- Map gadgets (client/MapGadgets), set up by attributes on map parts:

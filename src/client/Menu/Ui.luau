@@ -181,14 +181,45 @@ function Ui.bodySize(page: GuiObject): Vector2
 end
 
 -- Lets a one-line label shrink to fit its box instead of spilling out of it (from `max` down
--- to `min`); the label's own size is the box.
+-- to `min`, never below Config.Ui.MinTextSize), then cut off with "..." if it still doesn't fit.
+-- The label's own size (less its padding) is the box. Calling it again changes the limits.
 function Ui.shrinkText(label: TextLabel, min: number, max: number?)
 	label.TextScaled = true
 	label.TextWrapped = false
-	local limit = Instance.new("UITextSizeConstraint")
-	limit.MinTextSize = min
-	limit.MaxTextSize = max or label.TextSize
-	limit.Parent = label
+	label.TextTruncate = Enum.TextTruncate.AtEnd
+	local found = label:FindFirstChildOfClass("UITextSizeConstraint")
+	local limit: UITextSizeConstraint
+	if found then
+		limit = found
+	else
+		limit = Instance.new("UITextSizeConstraint")
+		limit.Parent = label
+	end
+	local top = max or label.TextSize
+	limit.MinTextSize = math.min(math.max(min, Config.Ui.MinTextSize), top)
+	limit.MaxTextSize = top
+end
+
+-- The one padding rule for text on a box: room between a label's text and the edge of the box it
+-- sits on (a UIPadding on the label, so the label fills the box and its text keeps clear of the
+-- edges). `x` and `y` default to Config.Ui.TextPadX / TextPadY. Labels placed by offsets instead
+-- keep the same gap in their position. Returns the padding.
+function Ui.pad(object: Instance, x: number?, y: number?): UIPadding
+	local settings = Config.Ui
+	local found = object:FindFirstChildOfClass("UIPadding")
+	local padding: UIPadding
+	if found then
+		padding = found
+	else
+		padding = Instance.new("UIPadding")
+		padding.Parent = object
+	end
+	local px, py = x or settings.TextPadX, y or settings.TextPadY
+	padding.PaddingLeft = UDim.new(0, px)
+	padding.PaddingRight = UDim.new(0, px)
+	padding.PaddingTop = UDim.new(0, py)
+	padding.PaddingBottom = UDim.new(0, py)
+	return padding
 end
 
 local function piece(parent: Instance, name: string, color: Color3): Frame
@@ -524,6 +555,9 @@ function Ui.button(
 		label.Name = "Label"
 		label.Size = UDim2.fromScale(1, 1)
 		label.ZIndex = 2
+		-- Clear of the slanted ends, and a long label shrinks (then is cut off) to fit.
+		Ui.pad(label, math.abs(slant or Ui.Slant) + 6, 2)
+		Ui.shrinkText(label, 11, 15)
 	end
 	touchMin(b)
 	local scale = Instance.new("UIScale")
@@ -577,7 +611,43 @@ function Ui.setTextSize(button: GuiObject, size: number)
 	local label = button:FindFirstChild("Label", true)
 	if label and label:IsA("TextLabel") then
 		label.TextSize = size
+		local limit = label:FindFirstChildOfClass("UITextSizeConstraint")
+		if limit then
+			limit.MaxTextSize = size
+			limit.MinTextSize = math.min(limit.MinTextSize, size)
+		end
 	end
+end
+
+local pickers: { [Instance]: (string) -> () } = setmetatable({}, { __mode = "k" }) :: any
+
+-- Clicks a Ui.tabs row's tab from code (what the UI auditor does to see every tab). Returns
+-- whether the tab exists.
+function Ui.pick(row: Instance, name: string): boolean
+	local pick = pickers[row]
+	if pick and row:FindFirstChild(name) then
+		pick(name)
+		return true
+	end
+	return false
+end
+
+-- The tab names of a Ui.tabs row, in order.
+function Ui.tabNames(row: Instance): { string }
+	local list: { TextButton } = {}
+	for _, child in row:GetChildren() do
+		if child:IsA("TextButton") then
+			table.insert(list, child)
+		end
+	end
+	table.sort(list, function(a, b)
+		return a.LayoutOrder < b.LayoutOrder
+	end)
+	local names = {}
+	for _, tab in list do
+		table.insert(names, tab.Name)
+	end
+	return names
 end
 
 -- A row of slanted tabs. Clicking one calls `onSelect(name)`. Returns the row, a function that
@@ -629,6 +699,16 @@ function Ui.tabs(
 		end
 	end
 
+	local function activate(name: string)
+		-- The row shows the click itself, so a tab is always lit for what's on screen (and
+		-- every other tab stays clickable) even if `onSelect` doesn't call `selectTab`.
+		if current ~= name then
+			selectTab(name)
+			onSelect(name)
+		end
+	end
+	pickers[row] = activate
+
 	for i, name in names do
 		local tab = Instance.new("TextButton")
 		tab.Name = name
@@ -650,12 +730,7 @@ function Ui.tabs(
 		pad.Parent = label
 		Ui.fitWidth(tab, label)
 		tab.Activated:Connect(function()
-			-- The row shows the click itself, so a tab is always lit for what's on screen (and
-			-- every other tab stays clickable) even if `onSelect` doesn't call `selectTab`.
-			if current ~= name then
-				selectTab(name)
-				onSelect(name)
-			end
+			activate(name)
 		end)
 		tab.Parent = row
 		tabs[name] = tab
@@ -710,7 +785,7 @@ function Ui.window(
 	local titleLabel = Ui.title(header, title, 36, Ui.Colors.Ink)
 	titleLabel.Name = "Title"
 	titleLabel.Position = UDim2.fromOffset(52, 2)
-	titleLabel.Size = UDim2.new(0.6, -52, 1, -4)
+	titleLabel.Size = UDim2.new(0.58, -52, 1, -4)
 	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 	titleLabel.ZIndex = 2
 	Ui.shrinkText(titleLabel, 18, 36)
@@ -718,10 +793,10 @@ function Ui.window(
 	info.Name = "Info"
 	info.AnchorPoint = Vector2.new(1, 0)
 	info.Position = UDim2.new(1, -22, 0, 0)
-	info.Size = UDim2.new(0.4, -4, 1, 0)
+	info.Size = UDim2.new(0.42, -30, 1, 0) -- (starts 8 clear of where the title ends)
 	info.TextXAlignment = Enum.TextXAlignment.Right
 	info.ZIndex = 2
-	Ui.shrinkText(info, 9, 15)
+	Ui.shrinkText(info, 11, 15)
 	local closeSize = Ui.hit(36)
 	local close = Ui.button(window, "X", Ui.Colors.Pink, function() end, Ui.Colors.Text, 0)
 	close.Name = "Close"
@@ -806,7 +881,13 @@ function Ui.coin(parent: Instance?, size: number): Frame
 	ring.Color = Color3.fromRGB(170, 120, 0)
 	ring.Thickness = math.max(1, size / 12)
 	ring.Parent = coin
-	local c = Ui.text(coin, "C", math.floor(size * 0.7), Color3.fromRGB(150, 100, 0), Ui.Heavy)
+	local c = Ui.text(
+		coin,
+		"C",
+		math.max(11, math.floor(size * 0.7)),
+		Color3.fromRGB(150, 100, 0),
+		Ui.Heavy
+	)
 	c.Size = UDim2.fromScale(1, 1)
 	return coin
 end
@@ -887,14 +968,14 @@ function Ui.badge(parent: GuiObject): TextLabel
 	badge.Name = "Badge"
 	badge.AnchorPoint = Vector2.new(1, 0.5)
 	badge.Position = UDim2.new(1, 6, 0, 2)
-	badge.Size = UDim2.fromOffset(0, 18)
+	badge.Size = UDim2.fromOffset(0, 20)
 	badge.AutomaticSize = Enum.AutomaticSize.X
 	badge.BackgroundColor3 = Ui.Colors.Pink
 	badge.BackgroundTransparency = 0
 	badge.ZIndex = 5
 	local pad = Instance.new("UIPadding")
-	pad.PaddingLeft = UDim.new(0, 6)
-	pad.PaddingRight = UDim.new(0, 6)
+	pad.PaddingLeft = UDim.new(0, 8)
+	pad.PaddingRight = UDim.new(0, 8)
 	pad.Parent = badge
 	badge.Visible = false
 	badge:GetPropertyChangedSignal("Text"):Connect(function()

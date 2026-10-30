@@ -28,6 +28,7 @@ local showing = false
 local TOP = 50 -- popups sit above the menu window
 local CARD_WIDTH = 380 -- the reward card (narrower on a narrow screen)
 local REEL_WIDTH = 600 -- the crate window (ditto)
+local SHOWN_EXTRA = 5 -- other items named under the prize (the rest are counted)
 local REASONS = {
 	GamePlayed = "Game played",
 	RoundSurvived = "Round survived",
@@ -129,12 +130,13 @@ local function card(title: string, lines: { string }, color: Color3, seconds: nu
 	header.Size = UDim2.new(1, -20, 0, 40)
 	local titleLabel = Ui.title(header, title, 28, Ui.Colors.Ink)
 	titleLabel.Size = UDim2.fromScale(1, 1)
+	Ui.pad(titleLabel, 18, 2) -- (clear of the header's slanted ends)
 	Ui.shrinkText(titleLabel, 14, 28)
 	for i, line in lines do
 		local l = Ui.caps(panel, line, 15, Ui.Colors.Text)
-		l.Position = UDim2.fromOffset(12, 44 + (i - 1) * 26)
-		l.Size = UDim2.new(1, -24, 0, 24)
-		Ui.shrinkText(l, 9, 15) -- one line each; a long item name gets smaller
+		l.Position = UDim2.fromOffset(16, 44 + (i - 1) * 26)
+		l.Size = UDim2.new(1, -32, 0, 24)
+		Ui.shrinkText(l, 11, 15) -- one line each; a long item name gets smaller
 	end
 	Ui.popIn(panel)
 	task.wait(seconds)
@@ -214,7 +216,7 @@ local function crateReel(results: { { [string]: any } })
 	window.AnchorPoint = Vector2.new(0.5, 0.5)
 	window.Position = UDim2.fromScale(0.5, 0.45)
 	local windowWidth = math.min(REEL_WIDTH, Ui.viewport().X - 24)
-	window.Size = UDim2.fromOffset(windowWidth, height + 170)
+	window.Size = UDim2.fromOffset(windowWidth, height + 196)
 	local view = Ui.frame(body)
 	view.ClipsDescendants = true
 	view.Size = UDim2.new(1, 0, 0, height + 10)
@@ -244,11 +246,14 @@ local function crateReel(results: { { [string]: any } })
 	marker.ZIndex = 5
 	local result = Ui.caps(body, "", 20, Ui.Colors.Text)
 	result.Position = UDim2.fromOffset(0, height + 16)
-	result.Size = UDim2.new(1, 0, 0, 28)
+	result.Size = UDim2.new(1, 0, 0, 32)
+	Ui.shrinkText(result, 11, 20) -- a long name and serial number shrink to the window
 	local rest = Ui.caps(body, "", 12, Ui.Colors.Dim)
-	rest.Position = UDim2.fromOffset(0, height + 44)
-	rest.Size = UDim2.new(1, 0, 0, 40)
+	rest.Position = UDim2.fromOffset(0, height + 52)
+	rest.Size = UDim2.new(1, 0, 0, 56)
 	rest.TextWrapped = true
+	rest.TextTruncate = Enum.TextTruncate.AtEnd
+	rest.TextYAlignment = Enum.TextYAlignment.Top
 	Ui.popIn(window, 0.25)
 
 	-- Scroll so the prize card ends up centred under the marker.
@@ -266,15 +271,20 @@ local function crateReel(results: { { [string]: any } })
 	Ui.popIn(result, 0.3)
 	if #results > 1 then
 		local others = {}
+		local more = 0
 		for _, other in results do
 			if other ~= bestResult then
 				local line = itemLine(other.Item)
-				if line then
+				if line and #others < SHOWN_EXTRA then
 					table.insert(others, line .. (if other.Duplicate then " (DUP)" else ""))
+				elseif line then
+					more += 1
 				end
 			end
 		end
-		rest.Text = "ALSO: " .. table.concat(others, "  ·  ")
+		rest.Text = "ALSO: "
+			.. table.concat(others, "  ·  ")
+			.. (if more > 0 then `  ·  +{more} MORE` else "")
 	end
 	task.wait(if #results > 1 then 3 else 2)
 	dismiss(window)
