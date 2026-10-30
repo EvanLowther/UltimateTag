@@ -4,8 +4,13 @@
 --   Leaders), each with a colored edge and a pink count when something is waiting.
 --   Bottom center: your level and a segmented XP bar.
 --   The window: one window whose header takes the open page's color, icon and title. The Locker
---   docks to the left instead, over its 3D preview (Menu/LockerTab, client/LockerStage), and the
---   buttons and level bar step aside while it's open.
+--   docks to the left instead, over its 3D preview (Menu/LockerTab, client/LockerStage; where
+--   everything goes on any screen is Menu/LockerLayout), and the buttons and level bar step
+--   aside while it's open.
+-- Everything is built in a scaled root frame (Ui.scale): layouts are in virtual pixels for a
+-- 1280x720 screen. Pages get their body size (virtual) as the BodyW / BodyH attributes of their
+-- page frame (Ui.bodySize) and are refreshed when it changes, so they can switch to a narrow
+-- layout.
 -- Pages are modules in this folder: build(page, api) -> refresh function, and optionally
 -- badge(profile) -> number (the count on the button), info(profile) -> string (rich text on the
 -- header's right), opened() / closed(), and docked = true. See PAGES.
@@ -24,6 +29,7 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local Icons = require(script.Parent.Icons)
 local Profile = require(script.Parent.Profile)
 local LeadersTab = require(script.LeadersTab)
+local LockerLayout = require(script.LockerLayout)
 local LockerTab = require(script.LockerTab)
 local Popups = require(script.Popups)
 local QuestsTab = require(script.QuestsTab)
@@ -49,7 +55,8 @@ local PAGES: { Page } = {
 }
 
 local WINDOW_MAX = Vector2.new(820, 560)
-local DOCKED_WIDTH = 360
+local WINDOW_SHARE = Vector2.new(0.92, 0.78) -- of the screen, up to WINDOW_MAX
+local BODY_INSET = Vector2.new(32, 78) -- the window's body: its size minus the frame and header
 
 local openPage: ((string?) -> ())? = nil
 
@@ -72,6 +79,7 @@ function Menu.start()
 	gui.ResetOnSpawn = false
 	gui.DisplayOrder = 10
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	local root = Ui.scale(gui)
 
 	-- Left side: coins, then the page buttons.
 	local nav = Instance.new("Frame")
@@ -85,7 +93,7 @@ function Menu.start()
 	column.Padding = UDim.new(0, 6)
 	column.SortOrder = Enum.SortOrder.LayoutOrder
 	column.Parent = nav
-	nav.Parent = gui
+	nav.Parent = root
 
 	local money = Ui.slab(nav, Ui.Colors.Panel, 8)
 	money.Name = "Money"
@@ -97,6 +105,7 @@ function Menu.start()
 	coinText.Position = UDim2.fromOffset(44, 0)
 	coinText.Size = UDim2.new(1, -52, 1, 0)
 	coinText.TextXAlignment = Enum.TextXAlignment.Left
+	Ui.shrinkText(coinText, 11, 20) -- seven-digit totals shrink instead of running out of the pill
 
 	-- Bottom center: the level and XP bar.
 	local levelBar = Instance.new("Frame")
@@ -105,7 +114,7 @@ function Menu.start()
 	levelBar.AnchorPoint = Vector2.new(0.5, 1)
 	levelBar.Position = UDim2.new(0.5, 0, 1, -10)
 	levelBar.Size = UDim2.fromOffset(380, 44)
-	levelBar.Parent = gui
+	levelBar.Parent = root
 	local levelPlate = Ui.slab(levelBar, Ui.Colors.Panel, 8)
 	levelPlate.Position = UDim2.fromOffset(0, 6)
 	levelPlate.Size = UDim2.fromOffset(78, 32)
@@ -125,10 +134,16 @@ function Menu.start()
 	floatAnchor.Position = UDim2.new(1, 12, 0, 2)
 	floatAnchor.Size = UDim2.fromOffset(380, 30)
 	floatAnchor.Parent = money
-	Popups.start(gui, floatAnchor)
+	Popups.start(root, floatAnchor)
+	local function fitFloat(view: Vector2)
+		-- Room from beside the coins to the screen's right edge.
+		floatAnchor.Size = UDim2.fromOffset(math.clamp(view.X - 190, 160, 380), 30)
+	end
+	fitFloat(Ui.viewport())
+	Ui.onViewport(fitFloat)
 
 	-- The window.
-	local window, body, close, header, title, info = Ui.window(gui, "", Ui.Colors.Yellow, "")
+	local window, body, close, header, title, info = Ui.window(root, "", Ui.Colors.Yellow, "")
 	window.Visible = false
 	local sizeLimit = Instance.new("UISizeConstraint")
 	sizeLimit.MaxSize = WINDOW_MAX
@@ -147,22 +162,59 @@ function Menu.start()
 	local badges: { [string]: TextLabel } = {}
 	local current: string? = nil
 
+	-- Tells every page how big its body is (virtual pixels) and refreshes the open one when that
+	-- changed, so it can switch between wide and narrow layouts.
+	local lastBody = Vector2.new(788, 482)
+	local function sizePages(bodySize: Vector2)
+		lastBody = bodySize
+		local changed = false
+		for _, page in pages do
+			if
+				page:GetAttribute("BodyW") ~= bodySize.X
+				or page:GetAttribute("BodyH") ~= bodySize.Y
+			then
+				changed = true
+				page:SetAttribute("BodyW", bodySize.X)
+				page:SetAttribute("BodyH", bodySize.Y)
+			end
+		end
+		local refresh = if current then refreshers[current] else nil
+		if changed and refresh and window.Visible then
+			refresh()
+		end
+	end
+
+	local dockedNow = false
 	local function place(docked: boolean)
+		dockedNow = docked
+		local view = Ui.viewport()
+		local size: Vector2
 		if docked then
-			window.AnchorPoint = Vector2.new(0, 0.5)
-			window.Position = UDim2.new(0, 14, 0.5, 0)
-			window.Size = UDim2.new(0, DOCKED_WIDTH, 1, -40)
-			sizeLimit.MaxSize = Vector2.new(DOCKED_WIDTH, 760)
+			-- Sized in virtual pixels from the Locker's layout (side, column or bottom sheet).
+			local layout = LockerLayout.compute(view).window
+			window.AnchorPoint = Vector2.zero
+			window.Position = UDim2.fromOffset(layout.x, layout.y)
+			window.Size = UDim2.fromOffset(layout.w, layout.h)
+			sizeLimit.MaxSize = Vector2.new(layout.w, layout.h)
+			size = Vector2.new(layout.w, layout.h)
 		else
 			-- Centered a little low, clear of the HUD bar at the top.
 			window.AnchorPoint = Vector2.new(0.5, 0.5)
 			window.Position = UDim2.new(0.5, 0, 0.5, 28)
-			window.Size = UDim2.fromScale(0.92, 0.78)
+			window.Size = UDim2.fromScale(WINDOW_SHARE.X, WINDOW_SHARE.Y)
 			sizeLimit.MaxSize = WINDOW_MAX
+			size = Vector2.new(
+				math.min(WINDOW_MAX.X, view.X * WINDOW_SHARE.X),
+				math.min(WINDOW_MAX.Y, view.Y * WINDOW_SHARE.Y)
+			)
 		end
 		nav.Visible = not docked
 		levelBar.Visible = not docked
+		sizePages(size - BODY_INSET)
 	end
+	Ui.onViewport(function()
+		place(dockedNow)
+	end)
 
 	local function paintButtons()
 		for name, button in buttons do
@@ -196,7 +248,7 @@ function Menu.start()
 	end
 
 	local api = {
-		gui = gui,
+		gui = root,
 		send = function(remoteName: string, ...: any)
 			Remotes.get(remoteName):FireServer(...)
 		end,
@@ -253,6 +305,8 @@ function Menu.start()
 		frame.BackgroundTransparency = 1
 		frame.Size = UDim2.fromScale(1, 1)
 		frame.Visible = false
+		frame:SetAttribute("BodyW", lastBody.X)
+		frame:SetAttribute("BodyH", lastBody.Y)
 		frame.Parent = body
 		pages[page.name] = frame
 		refreshers[page.name] = page.module.build(frame, api)
@@ -263,7 +317,7 @@ function Menu.start()
 		button.BackgroundTransparency = 1
 		button.Text = ""
 		button.LayoutOrder = i
-		button.Size = UDim2.fromOffset(150, 38)
+		button.Size = UDim2.fromOffset(150, Ui.hit(38))
 		local fill = Ui.slab(button, Ui.Colors.Panel, 8)
 		fill.Name = "Fill"
 		fill.Size = UDim2.fromScale(1, 1)
@@ -273,7 +327,8 @@ function Menu.start()
 		edge.ZIndex = 2
 		local pageIcon = Ui.icon(button, page.icon, 22, Ui.Colors.Text, page.color)
 		pageIcon.Name = "PageIcon"
-		pageIcon.Position = UDim2.fromOffset(23, 8)
+		pageIcon.AnchorPoint = Vector2.new(0, 0.5)
+		pageIcon.Position = UDim2.new(0, 23, 0.5, 0)
 		pageIcon.ZIndex = 3
 		local label = Ui.caps(button, page.name, 15, Ui.Colors.Text)
 		label.Name = "Label"

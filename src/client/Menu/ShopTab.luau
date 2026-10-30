@@ -2,9 +2,13 @@
 -- Menu, Shop page: two tabs.
 --   Daily shop: today's offers (shared/ShopRotation: a big deal card and four featured items),
 --   a countdown to tomorrow's shop, and the Mystery crate with its odds (bought crates are
---   opened in Rewards). Buying goes through the server (server/Shop).
+--   opened in Rewards). Buying goes through the server (server/Shop). A price you can't pay is
+--   greyed out and says how many coins are missing; owned items say so.
 --   Coin shop: coin packs and game passes for Robux (Config.Monetization; server/Purchases).
 --   Each one shows "Soon" until it has an ID.
+-- Two layouts, by the page's width (Ui.bodySize): wide (the deal card beside the four offers,
+-- packs in one row) and narrow, under WIDE_FROM (a phone held upright: the deal card above the
+-- offers, packs in two columns, the crate's button below its text).
 local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -20,8 +24,12 @@ local Ui = require(script.Parent.Ui)
 
 local ShopTab = {}
 
-local CARD_HEIGHT = 150
 local ROBUX = "R$"
+local WIDE_FROM = 680 -- pages at least this wide (virtual pixels) get the wide layout
+local SCROLL_PAD = 12 -- the scroll list's padding on the right
+local DEAL_WIDTH = 230 -- the wide layout's deal card
+local DEAL_TALL_NARROW = 220 -- the narrow layout's deal card, plus its buy button
+local HOUR = 3600
 
 -- The header's right side: your coins.
 function ShopTab.info(profile: { [string]: any }): string
@@ -66,13 +74,14 @@ local function header(parent: Instance, text: string, order: number): (Frame, Te
 	row.LayoutOrder = order
 	row.Size = UDim2.new(1, 0, 0, 22)
 	local left = Ui.caps(row, text, 14, Ui.Colors.Text)
-	left.Size = UDim2.fromScale(0.5, 1)
+	left.Size = UDim2.fromScale(0.4, 1)
 	left.TextXAlignment = Enum.TextXAlignment.Left
 	local right = Ui.caps(row, "", 12, Ui.Colors.Dim)
 	right.AnchorPoint = Vector2.new(1, 0)
 	right.Position = UDim2.fromScale(1, 0)
-	right.Size = UDim2.fromScale(0.5, 1)
+	right.Size = UDim2.fromScale(0.6, 1)
 	right.TextXAlignment = Enum.TextXAlignment.Right
+	Ui.shrinkText(right, 9, 12)
 	return row, right
 end
 
@@ -93,24 +102,28 @@ local function priceOf(id: number?, infoType: Enum.InfoType, fallback: number): 
 	return prices[key]
 end
 
-local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
+local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): () -> ()
 	local scroll = Ui.scroll(page, 10)
 	local _, countdown = header(scroll, "Today's drop", 1)
+	local cardHeight = ItemCard.SHOP_BODY + ItemCard.buyHeight()
 
 	local offers = Ui.frame(scroll)
 	offers.Name = "Offers"
 	offers.LayoutOrder = 2
-	offers.Size = UDim2.new(1, 0, 0, CARD_HEIGHT * 2 + 10)
+	offers.Size = UDim2.new(1, 0, 0, cardHeight * 2 + 10)
 	local dealSlot = Ui.frame(offers)
-	dealSlot.Size = UDim2.new(0, 230, 1, 0)
+	dealSlot.Size = UDim2.new(0, DEAL_WIDTH, 1, 0)
 	local featured = Ui.frame(offers)
-	featured.Position = UDim2.fromOffset(240, 0)
-	featured.Size = UDim2.new(1, -240, 1, 0)
+	featured.Position = UDim2.fromOffset(DEAL_WIDTH + 10, 0)
+	featured.Size = UDim2.new(1, -(DEAL_WIDTH + 10), 1, 0)
 	local grid = Instance.new("UIGridLayout")
-	grid.CellSize = UDim2.new(0.5, -5, 0, CARD_HEIGHT)
+	grid.CellSize = UDim2.new(0.5, -5, 0, cardHeight)
 	grid.CellPadding = UDim2.fromOffset(10, 10)
 	grid.SortOrder = Enum.SortOrder.LayoutOrder
 	grid.Parent = featured
+	local empty = Ui.caps(offers, "Nothing in the shop today", 14, Ui.Colors.Dim)
+	empty.Size = UDim2.fromScale(1, 1)
+	empty.Visible = false
 
 	-- The Mystery crate.
 	local crate = Ui.panel(scroll, Ui.Colors.Card, 10)
@@ -121,8 +134,6 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 	local box = Ui.icon(crate, "crate", 64, Ui.Colors.Yellow, Ui.Colors.Ink)
 	box.Position = UDim2.fromOffset(14, 22)
 	local crateName = Ui.caps(crate, "Mystery crate", 16, Ui.Colors.Text)
-	crateName.Position = UDim2.fromOffset(90, 12)
-	crateName.Size = UDim2.new(1, -250, 0, 20)
 	crateName.TextXAlignment = Enum.TextXAlignment.Left
 	local crateNote = Ui.text(
 		crate,
@@ -130,24 +141,20 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 		13,
 		Ui.Colors.Dim
 	)
-	crateNote.Position = UDim2.fromOffset(90, 32)
-	crateNote.Size = UDim2.new(1, -250, 0, 18)
 	crateNote.TextXAlignment = Enum.TextXAlignment.Left
+	crateNote.TextWrapped = true
+	crateNote.TextYAlignment = Enum.TextYAlignment.Top
 	local bar = oddsBar(crate)
-	bar.Position = UDim2.fromOffset(90, 56)
-	bar.Size = UDim2.new(1, -260, 0, 8)
 	local odds = Ui.caps(crate, ShopTab.oddsText(), 11, Ui.Colors.Dim)
-	odds.Position = UDim2.fromOffset(90, 68)
-	odds.Size = UDim2.new(1, -250, 0, 28)
 	odds.TextXAlignment = Enum.TextXAlignment.Left
+	odds.TextYAlignment = Enum.TextYAlignment.Top
 	odds.TextWrapped = true
 	local buyCrate = Ui.button(crate, "", Ui.Colors.Yellow, function()
 		api.send("BuyCrate")
 	end)
-	buyCrate.AnchorPoint = Vector2.new(1, 0.5)
-	buyCrate.Position = UDim2.new(1, -16, 0.5, -8)
-	buyCrate.Size = UDim2.fromOffset(130, 38)
-	local cratePrice = Ui.coinAmount(buyCrate, Config.Shop.CratePrice, 16, Ui.Colors.Ink)
+	local crateButtonHeight = Ui.hit(38)
+	local cratePrice, cratePriceLabel =
+		Ui.coinAmount(buyCrate, Config.Shop.CratePrice, 16, Ui.Colors.Ink)
 	cratePrice.AnchorPoint = Vector2.new(0.5, 0.5)
 	cratePrice.Position = UDim2.fromScale(0.5, 0.5)
 	for _, child in cratePrice:GetDescendants() do
@@ -156,13 +163,73 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 		end
 	end
 	local owned = Ui.caps(crate, "", 11, Ui.Colors.Lime)
-	owned.AnchorPoint = Vector2.new(1, 0)
-	owned.Position = UDim2.new(1, -16, 0.5, 16)
-	owned.Size = UDim2.fromOffset(160, 16)
-	owned.TextXAlignment = Enum.TextXAlignment.Center
+
+	-- Lays the page out for its width. `featuredCount`: how many full-price cards; `hasDeal`.
+	local function arrange(featuredCount: number, hasDeal: boolean)
+		local width = Ui.bodySize(owner).X - SCROLL_PAD
+		local wide = width + SCROLL_PAD >= WIDE_FROM
+		local rows = math.max(1, math.ceil(featuredCount / 2))
+		local featuredHeight = rows * cardHeight + (rows - 1) * 10
+		local dealWidth = if hasDeal then DEAL_WIDTH + 10 else 0
+		if wide then
+			local height = math.max(featuredHeight, if hasDeal then cardHeight * 2 + 10 else 0)
+			offers.Size = UDim2.new(1, 0, 0, math.max(height, 60))
+			dealSlot.Position = UDim2.fromOffset(0, 0)
+			dealSlot.Size = UDim2.new(0, DEAL_WIDTH, 1, 0)
+			featured.Position = UDim2.fromOffset(dealWidth, 0)
+			featured.Size = UDim2.new(1, -dealWidth, 1, 0)
+		else
+			local dealHeight = if hasDeal then DEAL_TALL_NARROW + ItemCard.buyHeight() else 0
+			local gap = if hasDeal and featuredCount > 0 then 10 else 0
+			offers.Size = UDim2.new(1, 0, 0, math.max(dealHeight + gap + featuredHeight, 60))
+			dealSlot.Position = UDim2.fromOffset(0, 0)
+			dealSlot.Size = UDim2.new(1, 0, 0, dealHeight)
+			featured.Position = UDim2.fromOffset(0, dealHeight + gap)
+			featured.Size = UDim2.new(1, 0, 0, featuredHeight)
+		end
+		-- The crate: text beside the button (wide) or the button under the text (narrow).
+		if wide then
+			crate.Size = UDim2.new(1, 0, 0, math.max(104, crateButtonHeight + 36))
+			crateName.Position = UDim2.fromOffset(90, 12)
+			crateName.Size = UDim2.new(1, -250, 0, 20)
+			crateNote.Position = UDim2.fromOffset(90, 32)
+			crateNote.Size = UDim2.new(1, -250, 0, 18)
+			bar.Position = UDim2.fromOffset(90, 56)
+			bar.Size = UDim2.new(1, -260, 0, 8)
+			odds.Position = UDim2.fromOffset(90, 68)
+			odds.Size = UDim2.new(1, -250, 0, 30)
+			buyCrate.AnchorPoint = Vector2.new(1, 0.5)
+			buyCrate.Position = UDim2.new(1, -16, 0.5, -8)
+			buyCrate.Size = UDim2.fromOffset(130, crateButtonHeight)
+			owned.AnchorPoint = Vector2.new(1, 0)
+			owned.Position = UDim2.new(1, -16, 0.5, crateButtonHeight / 2 - 4)
+			owned.Size = UDim2.fromOffset(160, 16)
+			owned.TextXAlignment = Enum.TextXAlignment.Center
+		else
+			crate.Size = UDim2.new(1, 0, 0, 176 + crateButtonHeight)
+			crateName.Position = UDim2.fromOffset(90, 12)
+			crateName.Size = UDim2.new(1, -104, 0, 20)
+			crateNote.Position = UDim2.fromOffset(90, 34)
+			crateNote.Size = UDim2.new(1, -104, 0, 48)
+			bar.Position = UDim2.fromOffset(14, 92)
+			bar.Size = UDim2.new(1, -28, 0, 8)
+			odds.Position = UDim2.fromOffset(14, 106)
+			odds.Size = UDim2.new(1, -28, 0, 44)
+			buyCrate.AnchorPoint = Vector2.new(0, 1)
+			buyCrate.Position = UDim2.new(0, 14, 1, -12)
+			buyCrate.Size = UDim2.new(1, -28, 0, crateButtonHeight)
+			owned.AnchorPoint = Vector2.new(0, 1)
+			owned.Position = UDim2.new(0, 14, 1, -(crateButtonHeight + 16))
+			owned.Size = UDim2.new(1, -28, 0, 16)
+			owned.TextXAlignment = Enum.TextXAlignment.Left
+		end
+	end
 
 	local function tick()
-		countdown.Text = Ui.upper(`New items in {DayClock.format(DayClock.secondsToNextDay())}`)
+		local left = DayClock.secondsToNextDay()
+		countdown.Text = Ui.upper(`New items in {DayClock.format(left)}`)
+		-- Under an hour left: the text turns hot, so the last chance is noticed.
+		countdown.TextColor3 = if left < HOUR then Ui.Colors.Pink else Ui.Colors.Dim
 	end
 
 	local shownDay = -1
@@ -174,13 +241,39 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 		tick()
 		local canBuyCrate = profile.Coins >= Config.Shop.CratePrice
 		Ui.setColor(buyCrate, if canBuyCrate then Ui.Colors.Yellow else Ui.Colors.Track)
-		owned.Text = if profile.Crates > 0 then Ui.upper(`You have {profile.Crates}`) else ""
+		cratePriceLabel.TextColor3 = if canBuyCrate then Ui.Colors.Ink else Ui.Colors.Dim
+		local missing = Config.Shop.CratePrice - profile.Coins
+		local haveText = if profile.Crates > 0 then `You have {profile.Crates}` else ""
+		local needText = if canBuyCrate
+			then ""
+			else `<font color="#{Ui.Colors.Pink:ToHex()}">Need {Ui.number(missing)} more</font>`
+		owned.Text = Ui.upper(
+			if haveText ~= "" and needText ~= ""
+				then `{haveText}  ·  {needText}`
+				else haveText .. needText
+		)
 
 		shownDay = DayClock.day()
 		Ui.clear(dealSlot)
 		Ui.clear(featured)
 		local order = 0
-		for _, offer in ShopRotation.today() do
+		local hasDeal = false
+		local list = ShopRotation.today()
+		for _, offer in list do
+			local item = Catalog.get(offer.id)
+			if not item then
+				continue
+			end
+			if offer.deal then
+				hasDeal = true
+			else
+				order += 1
+			end
+		end
+		arrange(order, hasDeal)
+		empty.Visible = order == 0 and not hasDeal
+		order = 0
+		for _, offer in list do
 			local item = Catalog.get(offer.id)
 			if not item then
 				continue
@@ -198,7 +291,8 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 					has,
 					profile.Coins >= offer.price,
 					buy,
-					true
+					true,
+					profile.Coins
 				)
 				card.Size = UDim2.fromScale(1, 1)
 			else
@@ -210,12 +304,15 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 					nil,
 					has,
 					profile.Coins >= offer.price,
-					buy
+					buy,
+					nil,
+					profile.Coins
 				)
 				card.LayoutOrder = order
 			end
 		end
 	end
+	arrange(Config.Shop.Featured, true)
 
 	-- Keep the countdown ticking (and roll over to tomorrow's shop) while it's open.
 	task.spawn(function()
@@ -233,15 +330,16 @@ local function buildDaily(page: Frame, api: { [string]: any }): () -> ()
 	return refresh
 end
 
-local function buildCoins(page: Frame): () -> ()
+local function buildCoins(page: Frame, owner: Frame): () -> ()
 	local settings = Config.Monetization
 	local player = Players.LocalPlayer
 	local scroll = Ui.scroll(page, 10)
 	header(scroll, "Coin packs", 1)
+	local packHeight = 166 + Ui.hit(30)
 
 	local packs = Ui.frame(scroll)
 	packs.LayoutOrder = 2
-	packs.Size = UDim2.new(1, 0, 0, 196)
+	packs.Size = UDim2.new(1, 0, 0, packHeight)
 	local grid = Instance.new("UIGridLayout")
 	grid.CellSize = UDim2.new(1 / #settings.CoinPacks, -8, 1, 0)
 	grid.CellPadding = UDim2.fromOffset(10, 0)
@@ -271,6 +369,7 @@ local function buildCoins(page: Frame): () -> ()
 		local amount = Ui.title(card, Ui.number(pack.Coins), 28, Ui.Colors.Yellow)
 		amount.Position = UDim2.fromOffset(0, 90)
 		amount.Size = UDim2.new(1, 0, 0, 30)
+		Ui.shrinkText(amount, 16, 28)
 		local bonus = Ui.caps(
 			card,
 			if (pack.Bonus or 0) > 0 then `+{pack.Bonus}% bonus` else "",
@@ -293,16 +392,17 @@ local function buildCoins(page: Frame): () -> ()
 		)
 		buy.AnchorPoint = Vector2.new(0.5, 1)
 		buy.Position = UDim2.new(0.5, 0, 1, -10)
-		buy.Size = UDim2.new(1, -24, 0, 30)
+		buy.Size = UDim2.new(1, -24, 0, Ui.hit(30))
 		if pack.Id then
 			priceLabels[i] = buy
 		end
 	end
 
 	header(scroll, "Game passes", 3)
+	local passHeight = 78
 	local passes = Ui.frame(scroll)
 	passes.LayoutOrder = 4
-	passes.Size = UDim2.new(1, 0, 0, 78)
+	passes.Size = UDim2.new(1, 0, 0, passHeight)
 	local passGrid = Instance.new("UIGridLayout")
 	passGrid.CellSize = UDim2.new(0.5, -5, 1, 0)
 	passGrid.CellPadding = UDim2.fromOffset(10, 0)
@@ -352,6 +452,7 @@ local function buildCoins(page: Frame): () -> ()
 		text.Position = UDim2.fromOffset(68, 36)
 		text.Size = UDim2.new(1, -200, 0, 30)
 		text.TextXAlignment = Enum.TextXAlignment.Left
+		text.TextYAlignment = Enum.TextYAlignment.Top
 		text.TextWrapped = true
 		local buy = Ui.button(
 			card,
@@ -367,11 +468,33 @@ local function buildCoins(page: Frame): () -> ()
 		)
 		buy.AnchorPoint = Vector2.new(1, 0.5)
 		buy.Position = UDim2.new(1, -14, 0.5, 2)
-		buy.Size = UDim2.fromOffset(110, 32)
+		buy.Size = UDim2.fromOffset(110, Ui.hit(32))
 		passButtons[pass] = buy
 	end
 
+	-- Packs in one row (wide) or two columns (narrow); passes side by side or one under the other.
+	local function arrange()
+		local wide = Ui.bodySize(owner).X >= WIDE_FROM
+		local count = #settings.CoinPacks
+		if wide then
+			grid.CellSize = UDim2.new(1 / count, -8, 1, 0)
+			packs.Size = UDim2.new(1, 0, 0, packHeight)
+			passGrid.CellSize = UDim2.new(0.5, -5, 1, 0)
+			passes.Size = UDim2.new(1, 0, 0, passHeight)
+		else
+			local rows = math.ceil(count / 2)
+			grid.CellSize = UDim2.new(0.5, -5, 0, packHeight)
+			grid.CellPadding = UDim2.fromOffset(10, 10)
+			packs.Size = UDim2.new(1, 0, 0, rows * packHeight + (rows - 1) * 10)
+			passGrid.CellSize = UDim2.new(1, 0, 0, passHeight)
+			passGrid.CellPadding = UDim2.fromOffset(0, 10)
+			passes.Size = UDim2.new(1, 0, 0, #passList * passHeight + (#passList - 1) * 10)
+		end
+	end
+	arrange()
+
 	local function refresh()
+		arrange()
 		for pass, button in passButtons do
 			if player:GetAttribute(pass.attribute) then
 				Ui.setText(button, "Owned")
@@ -399,17 +522,18 @@ local function buildCoins(page: Frame): () -> ()
 end
 
 function ShopTab.build(page: Frame, api: { [string]: any }): () -> ()
+	local top = Ui.hit(30) + 12 -- under the tabs
 	local daily = Ui.frame(page)
 	daily.Name = "Daily"
-	daily.Position = UDim2.fromOffset(0, 42)
-	daily.Size = UDim2.new(1, 0, 1, -42)
+	daily.Position = UDim2.fromOffset(0, top)
+	daily.Size = UDim2.new(1, 0, 1, -top)
 	local coins = Ui.frame(page)
 	coins.Name = "Coins"
 	coins.Position = daily.Position
 	coins.Size = daily.Size
 	coins.Visible = false
-	local refreshDaily = buildDaily(daily, api)
-	local refreshCoins = buildCoins(coins)
+	local refreshDaily = buildDaily(daily, api, page)
+	local refreshCoins = buildCoins(coins, page)
 
 	local current = "Daily shop"
 	local selectTab: (string) -> ()

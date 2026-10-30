@@ -774,6 +774,27 @@ local Config = {
 		TagLoop = 2.4, -- seconds between the preview's tags
 		VictoryLoop = 5, -- seconds between victory replays
 		FieldOfView = 50,
+		-- Where the Locker's pieces sit on screen (Menu/LockerLayout), in virtual pixels (see
+		-- Config.Ui). The window docks left; the character is centred in the free space beside it.
+		WindowWidth = 360,
+		WindowMargin = 14, -- the window's gap to the screen edge
+		PlateSize = Vector2.new(310, 168), -- the info plate (top right)
+		ChipSize = Vector2.new(300, 28), -- the "what the preview shows" chip (bottom right)
+		EdgeMargin = 16, -- plate and chip gap to the screen edge
+		FreeGap = 16, -- empty space kept between the character's area and the window and plate
+		SideMinFree = 0.4, -- free width (share of the screen) needed to keep the plate at the side
+		SheetMinColumn = 300, -- under this much room beside the window, the window becomes a bottom sheet
+		SheetHeight = 0.5, -- the bottom sheet's height (share of the screen)
+		SheetMaxWidth = 640,
+		-- What must stay visible in each scene (studs wide and high, centred on the character or
+		-- the subject): the camera backs off until it fits the free space.
+		Frames = {
+			run = Vector2.new(9, 6.5),
+			tag = Vector2.new(10, 8),
+			title = Vector2.new(6, 5.5),
+			victory = Vector2.new(8, 7.5),
+			hologram = Vector2.new(18, 20),
+		} :: { [string]: Vector2 },
 	},
 
 	-- How the Quests window groups achievements into tiered chains (one row per Stat, its
@@ -814,7 +835,17 @@ local Config = {
 	},
 
 	Ui = {
-		Font = Enum.Font.SourceSansBold,
+		Font = Enum.Font.SourceSansBold, -- the dev panel's font
+		-- Screen scaling for the menus and popups (Menu/Ui.scale): everything is laid out for a
+		-- 1280x720 screen in "virtual pixels" and a UIScale (shortest side against Reference,
+		-- kept between Min and Max) maps that to the real screen. Touch devices use TouchMinScale
+		-- as the lowest, so a 44 real-pixel button is at most 52 virtual pixels.
+		Reference = Vector2.new(1280, 720),
+		MinScale = 0.75,
+		TouchMinScale = 0.85,
+		MaxScale = 1.5,
+		MinTouchTarget = 44, -- real pixels: buttons and tabs are never smaller on touch screens
+		TouchTargets = true, -- false: no minimum, even on touch screens
 	},
 
 	-- Map gadgets (client/MapGadgets), set up by attributes on map parts:

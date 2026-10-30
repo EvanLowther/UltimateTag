@@ -9,6 +9,11 @@
 --   Victories: it faces you and plays the victory.
 -- While it's open your controls are off, the camera is scripted (FollowCam and Spectate step
 -- aside, first person is suspended), and it closes by itself if a round needs you.
+-- Framing: each scene has a camera pose (where it looks from and at) and a box that must stay
+-- in view (Config.Locker.Frames). Every frame `frame` moves that pose, without turning the
+-- camera, so the box is centred in the free space beside the menu window and plate
+-- (Menu/LockerLayout, the Locker's layout on this screen) and backs the camera off until the
+-- box fits that space. So the character is fully visible at any window size or aspect ratio.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -21,6 +26,7 @@ local GameState = require(Shared:WaitForChild("GameState"))
 local TitleTag = require(Shared:WaitForChild("TitleTag"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local CosmeticEffects = require(script.Parent.CosmeticEffects)
+local LockerLayout = require(script.Parent.Menu.LockerLayout)
 local Profile = require(script.Parent.Profile)
 local SpeedTrails = require(script.Parent.SpeedTrails)
 local TagSwing = require(script.Parent.TagSwing)
@@ -452,6 +458,43 @@ function LockerStage.show(item: Catalog.Item?)
 	showTitle()
 end
 
+-- A camera that looks the same way as the one at `position` looking at `lookAt`, moved
+-- sideways, up or down and back as needed so the box around `center` (`bounds` studs wide and
+-- high, facing the camera) sits in the middle of the free space on screen, fully inside it.
+-- With the camera's vertical field of view f and a viewport `v` pixels high, one stud at
+-- distance d is v / (2 d tan(f / 2)) pixels. Moving the camera along its right or up vector
+-- moves `center` on screen without changing its distance, so: first push the camera back until
+-- the box fits the free rectangle, then shift it so the box's centre lands at the rectangle's
+-- centre (as a share of half the screen: half the screen is halfH studs high at distance d).
+local function frame(
+	camera: Camera,
+	position: Vector3,
+	lookAt: Vector3,
+	center: Vector3,
+	bounds: Vector2
+): CFrame
+	local free = LockerLayout.freeReal()
+	local view = camera.ViewportSize
+	local look = (lookAt - position).Unit
+	local right = look:Cross(Vector3.yAxis).Unit
+	local up = right:Cross(look)
+	local halfTan = math.tan(math.rad(camera.FieldOfView) / 2)
+	local depth = (center - position):Dot(look)
+	local needed = math.max(bounds.X / free.w, bounds.Y / free.h) * view.Y / (2 * halfTan)
+	if depth < needed then
+		position -= look * (needed - depth)
+		depth = needed
+	end
+	local offset = center - position
+	local halfHeight = depth * halfTan
+	local halfWidth = halfHeight * view.X / view.Y
+	local wantX = ((free.x + free.w / 2) - view.X / 2) / (view.X / 2) -- -1 left .. 1 right
+	local wantY = (view.Y / 2 - (free.y + free.h / 2)) / (view.Y / 2) -- -1 bottom .. 1 top
+	position += right * (offset:Dot(right) - wantX * halfWidth)
+	position += up * (offset:Dot(up) - wantY * halfHeight)
+	return CFrame.lookAt(position, position + look)
+end
+
 local function step(dt: number)
 	local now = os.clock()
 	if now - lastCheck > 0.5 then
@@ -479,7 +522,13 @@ local function step(dt: number)
 		end
 		place(Vector3.new(runX, 0, 0), FACE_RUN)
 		local spot = origin + Vector3.new(runX, rootHeight, 0)
-		camera.CFrame = CFrame.lookAt(spot + Vector3.new(3, 3, 17), spot + Vector3.new(3, 0.5, 0))
+		camera.CFrame = frame(
+			camera,
+			spot + Vector3.new(3, 3, 17),
+			spot + Vector3.new(3, 0.5, 0),
+			spot + Vector3.new(-1.5, -0.25, 0), -- the runner and a little of the trail behind
+			settings.Frames.run
+		)
 	elseif scene == "tag" or scene == "title" then
 		local cycle = t % settings.TagLoop
 		if cycle < lastT then
@@ -512,12 +561,22 @@ local function step(dt: number)
 		local spot = origin + TAG_SPOT + Vector3.new(0, rootHeight, 0)
 		if scene == "title" then
 			local head = spot + Vector3.new(0, 2.6, 0)
-			camera.CFrame =
-				CFrame.lookAt(head + Vector3.new(2.5, 1.2, 13), head + Vector3.new(1.2, 1.4, 0))
+			camera.CFrame = frame(
+				camera,
+				head + Vector3.new(2.5, 1.2, 13),
+				head + Vector3.new(1.2, 1.4, 0),
+				head + Vector3.new(0, 0.4, 0), -- the head and the title over it
+				settings.Frames.title
+			)
 		else
 			local middle = spot + Vector3.new(DUMMY_GAP / 2, 0, 0)
-			camera.CFrame =
-				CFrame.lookAt(middle + Vector3.new(0, 3, 15), middle + Vector3.new(0, 0.5, 0))
+			camera.CFrame = frame(
+				camera,
+				middle + Vector3.new(0, 3, 15),
+				middle + Vector3.new(0, 0.5, 0),
+				middle + Vector3.new(0, 0.5, 0), -- you and the dummy
+				settings.Frames.tag
+			)
 		end
 	else
 		local cycle = t % settings.VictoryLoop
@@ -531,8 +590,20 @@ local function step(dt: number)
 		local spot = origin + WIN_SPOT + Vector3.new(0, rootHeight, 0)
 		local hologram = selected ~= nil and selected.look.Effect == "Hologram"
 		camera.CFrame = if hologram
-			then CFrame.lookAt(spot + Vector3.new(0, 7, 30), spot + Vector3.new(0, 6, -6))
-			else CFrame.lookAt(spot + Vector3.new(0, 2.5, 15), spot + Vector3.new(0, 1.5, 0))
+			then frame(
+				camera,
+				spot + Vector3.new(0, 7, 30),
+				spot + Vector3.new(0, 6, -6),
+				spot + Vector3.new(0, 6, -6), -- the giant statue
+				settings.Frames.hologram
+			)
+			else frame(
+				camera,
+				spot + Vector3.new(0, 2.5, 15),
+				spot + Vector3.new(0, 1.5, 0),
+				spot + Vector3.new(0, 0.5, 0), -- you, arms up
+				settings.Frames.victory
+			)
 	end
 end
 
