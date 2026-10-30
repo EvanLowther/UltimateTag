@@ -413,6 +413,9 @@ function LockerStage.available(): boolean
 	then
 		return false
 	end
+	if player:GetAttribute("Spectating") then
+		return false -- spectators have no body to show
+	end
 	local character = player.Character
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 	return humanoid ~= nil and humanoid.Health > 0
