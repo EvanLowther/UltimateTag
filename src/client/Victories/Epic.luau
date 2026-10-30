@@ -177,6 +177,8 @@ function Epic.Backflip(context: Context)
 		end
 		local squash = math.sin(math.clamp((t - 1.02) / 0.35, 0, 1) * math.pi) * 0.15
 		return CFrame.new(0, -kneel * Kit.span(t, 0.95, 1.02, "Out") - squash, 0)
+	end, function(t)
+		return t >= 1.0 -- the landing rests on the block
 	end)
 	local trails = {}
 	for _, name in { "RightFoot", "LeftFoot" } do
@@ -481,7 +483,8 @@ local BREAKDANCE: { Key } = {
 }
 
 -- A windmill: rolls round over the shoulders and back with the legs in a wide V, four turns,
--- faster and faster, then snaps into a one-hand freeze with a leg out.
+-- faster and faster, then snaps into a one-hand freeze with a leg out. The body's lowest point
+-- is kept on the block the whole time, so it never sinks in or floats.
 function Epic.Breakdance(context: Context)
 	local character = context.character
 	local rootHeight = context.humanoid.HipHeight + context.root.Size.Y / 2
@@ -506,6 +509,8 @@ function Epic.Breakdance(context: Context)
 			return windmill(turns * Kit.span(t, 0.4, 2.6, "Linear") ^ 1.5)
 		end
 		return windmill(turns):Lerp(freeze, Kit.span(t, 2.6, 2.72, "Out"))
+	end, function()
+		return true -- always touching the podium
 	end)
 	local trails = {}
 	for _, name in { "RightFoot", "LeftFoot" } do
@@ -541,59 +546,54 @@ end
 
 ---------------------------------------------------------------------------- Katana
 
-local SWORD_ARM_DRAWN = { RightUpperArm = A(90, 0, 60), RightLowerArm = A(10) }
+-- The body around the right arm (the arms themselves reach for the sword and sheath).
 local KATANA: { Key } = {
 	{ time = 0, angles = {} },
 	{
 		time = 0.25,
 		angles = {
-			RightUpperArm = A(35, 0, -40),
-			RightLowerArm = A(70),
-			LeftUpperArm = A(15),
-			LeftLowerArm = A(40),
-			UpperTorso = A(0, 15, 0),
-			Head = A(-10),
+			UpperTorso = A(0, 18, 0),
+			Head = A(-12),
+			RightUpperLeg = A(0, 0, 8),
+			LeftUpperLeg = A(0, 0, -8),
 		},
 	},
-	{ time = 0.32, angles = {} },
+	{ time = 0.6, angles = { UpperTorso = A(0, -8, 0), Head = A(0) } },
+	{ time = 1.6, angles = { UpperTorso = A(0) } },
+	{ time = 2.0, angles = { UpperTorso = A(0, -25, 0), Head = A(5) } },
+	{ time = 2.32, angles = { UpperTorso = A(0, 30, 0) }, ease = "In" },
+	{ time = 2.6, angles = { UpperTorso = A(0, 20, 0) } },
+	{ time = 3.05, angles = { UpperTorso = A(0, 15, 0), Head = A(-10) } },
+	{ time = 3.7, angles = { UpperTorso = A(0), Head = A(-14) } },
+}
+
+-- Falling to the floor like a ragdoll: arms flung, then limp.
+local SLUMP: { Key } = {
+	{ time = 0, angles = {} },
 	{
-		time = 0.5,
+		time = 0.2,
 		angles = {
-			RightUpperArm = SWORD_ARM_DRAWN.RightUpperArm,
-			RightLowerArm = A(10),
-			UpperTorso = A(0, -10, 0),
-			Head = A(0),
+			RightUpperArm = A(60, 0, 80),
+			LeftUpperArm = A(60, 0, -80),
+			RightUpperLeg = A(20),
+			Head = A(-15),
 		},
 		ease = "Out",
 	},
 	{
-		time = 0.8,
-		angles = { RightUpperArm = A(75, 0, 25), RightLowerArm = A(40), UpperTorso = A(0) },
+		time = 0.75,
+		angles = {
+			RightUpperArm = A(10, 0, 100),
+			LeftUpperArm = A(-10, 0, -70),
+			RightLowerArm = A(20),
+			LeftLowerArm = A(40),
+			RightUpperLeg = A(35, 0, 10),
+			RightLowerLeg = A(-50),
+			LeftUpperLeg = A(10, 0, -5),
+			LeftLowerLeg = A(-15),
+			Head = A(-10, 0, 25),
+		},
 	},
-	{ time = 1.6, angles = {} },
-	{
-		time = 2.0,
-		angles = { RightUpperArm = A(170, 0, 10), RightLowerArm = A(15), UpperTorso = A(0, 20, 0) },
-	},
-	{
-		time = 2.32,
-		angles = { RightUpperArm = A(90, 0, -50), RightLowerArm = A(10), UpperTorso = A(0, -25, 0) },
-		ease = "In",
-	},
-	{
-		time = 2.6,
-		angles = { RightUpperArm = A(70, 0, -20), RightLowerArm = A(30), UpperTorso = A(0, -10, 0) },
-	},
-	{
-		time = 3.0,
-		angles = { RightUpperArm = A(55, 0, -45), RightLowerArm = A(80), UpperTorso = A(0, 10, 0) },
-	},
-	{
-		time = 3.45,
-		angles = { RightUpperArm = A(30, 0, -38), RightLowerArm = A(65) },
-		ease = "Out",
-	},
-	{ time = 3.8, angles = { Head = A(-12), UpperTorso = A(0) } },
 }
 
 -- The sheath on the left hip: its mouth, and the way into it (back and down), in the lower
@@ -601,93 +601,137 @@ local KATANA: { Key } = {
 local MOUTH = A(-1.15, 0.15, -0.55)
 local SHEATH = CFrame.lookAt(MOUTH, MOUTH + A(0, -0.45, 0.89))
 local BLADE = 3.6
--- In the hand: the blade carries on along the forearm (the hand's -Y).
-local GRIP = CFrame.new(0, -0.15, 0)
+local GRIP = 0.5 -- the hilt's middle, behind the guard (the sword's origin)
 
--- Cuts a podium block in two along a slant and slides the top half (and whoever is on it) down
--- the cut. `high` is +1 if the cut is higher on the block's +X side.
-local function slice(block: BasePart, high: number, rider: Model?)
+-- Cuts a podium block in two along a slant: the top half slides down the cut, tips off and
+-- falls to the floor, and whoever stood on it falls with it and flops onto the floor. `high` is
+-- +1 if the cut is higher on the block's +X side (the top slides toward -X).
+local function slice(context: Context, block: BasePart, high: number, rider: Model?)
 	local size = block.Size
 	local w, h, d = size.X, size.Y, size.Z
-	local hi, lo = h * 0.68, h * 0.32
+	local hi, lo = h * 0.66, h * 0.34
 	local base = block.CFrame
-	local function at(offset: CFrame): CFrame
-		return base * offset
-	end
-	-- The cut glows first.
+	local floor = context.floor
 	local front = d / 2 + 0.04
 	local glow = Kit.line(
 		(base * CFrame.new(high * w / 2, hi - h / 2, front)).Position,
 		(base * CFrame.new(-high * w / 2, lo - h / 2, front)).Position,
-		0.12,
+		0.14,
 		WHITE
 	)
 	Kit.tween(glow, 0.5, { Transparency = 1 }, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
-	Kit.at(Kit.now() + 0.18, function()
-		block.LocalTransparencyModifier = 1
-		local guis = {}
-		for _, item in block:GetChildren() do
-			if item:IsA("SurfaceGui") and item.Enabled then
-				item.Enabled = false
-				table.insert(guis, item)
+	block.LocalTransparencyModifier = 1
+	local guis = {}
+	for _, item in block:GetChildren() do
+		if item:IsA("SurfaceGui") and item.Enabled then
+			item.Enabled = false
+			table.insert(guis, item)
+		end
+	end
+	Kit.onStop(function()
+		block.LocalTransparencyModifier = 0
+		for _, gui in guis do
+			gui.Enabled = true
+		end
+	end)
+	local band = hi - lo
+	local middle = lo + band / 2 - h / 2
+	local up, down = A(0, 1, 0), A(0, -1, 0)
+	local toHigh, toLow = A(high, 0, 0), A(-high, 0, 0)
+	-- The lower half stays: a box and a wedge rising to the high side.
+	Kit.block(A(w, lo, d), base * CFrame.new(0, -h / 2 + lo / 2, 0), block.Color, block.Material)
+	Kit.wedge(
+		A(d, band, w),
+		base * CFrame.fromMatrix(A(0, middle, 0), up:Cross(toHigh), up, toHigh),
+		block.Color,
+		block.Material
+	)
+	-- The upper half: an upside-down wedge and the box on top.
+	local top = Kit.prop()
+	local topCenter = A(0, (middle + h / 2) / 2, 0)
+	Kit.add(
+		top,
+		Kit.block(A(w, h - hi, d), base, block.Color, block.Material),
+		CFrame.new(0, -h / 2 + hi + (h - hi) / 2, 0)
+	)
+	Kit.add(
+		top,
+		Kit.wedge(A(d, band, w), base, block.Color, block.Material),
+		CFrame.fromMatrix(A(0, middle, 0), down:Cross(toLow), down, toLow)
+	)
+	top.place(base)
+	local slope = base:VectorToWorldSpace(A(-high * w, lo - hi, 0).Unit)
+	local outward = base:VectorToWorldSpace(toLow)
+	local begun = Kit.now()
+	local landed = false
+	-- Where the top half is `u` seconds after the cut.
+	local function topAt(u: number): CFrame
+		local slid = slope * 1.6 * Kit.span(u, 0.1, 0.45, "In")
+		local fall = math.max(u - 0.45, 0)
+		local tip = math.rad(40) * Kit.span(u, 0.45, 0.95) * -high
+		return (base + slid + outward * 2.2 * fall + A(0, -22 * fall * fall, 0))
+			* Kit.around(topCenter, CFrame.Angles(0, 0, tip))
+	end
+	Kit.every(function(t)
+		if landed then
+			return true
+		end
+		local u = t - begun
+		local frame = topAt(u)
+		top.place(frame)
+		local low = Kit.lowestOf(top.parts)
+		if low < floor then
+			top.place(frame + A(0, floor - low, 0))
+			landed = u > 0.5
+			if landed then
+				Kit.dust(Vector3.new(frame.X, floor + 0.3, frame.Z), 14, 1.4)
+				Kit.shake(0.8, 0.25)
 			end
 		end
-		Kit.onStop(function()
-			block.LocalTransparencyModifier = 0
-			for _, gui in guis do
-				gui.Enabled = true
-			end
-		end)
-		local band = hi - lo
-		local middle = lo + band / 2 - h / 2
-		local up, down = A(0, 1, 0), A(0, -1, 0)
-		local toHigh, toLow = A(high, 0, 0), A(-high, 0, 0)
-		-- Lower half: a box and a wedge rising to the high side.
-		Kit.block(A(w, lo, d), at(CFrame.new(0, -h / 2 + lo / 2, 0)), block.Color, block.Material)
-		Kit.wedge(
-			A(d, band, w),
-			at(CFrame.fromMatrix(A(0, middle, 0), up:Cross(toHigh), up, toHigh)),
-			block.Color,
-			block.Material
-		)
-		-- Upper half: an upside-down wedge and the box on top; this slides.
-		local top = Kit.prop()
-		local topBox = Kit.block(A(w, h - hi, d), base, block.Color, block.Material)
-		local topWedge = Kit.wedge(A(d, band, w), base, block.Color, block.Material)
-		Kit.add(top, topBox, CFrame.new(0, -h / 2 + hi + (h - hi) / 2, 0))
-		Kit.add(top, topWedge, CFrame.fromMatrix(A(0, middle, 0), down:Cross(toLow), down, toLow))
-		top.place(base)
-		local slope = base:VectorToWorldSpace(A(-high * w, lo - hi, 0).Unit)
-		local riderStart = if rider then rider:GetPivot() else nil
-		if rider and riderStart then
-			Kit.onStop(function()
-				if rider.Parent then
-					rider:PivotTo(riderStart)
-				end
-			end)
+		return nil
+	end)
+	if not rider then
+		return
+	end
+	-- The rider rides the slide, then falls off sideways and lies on the floor.
+	local start = rider:GetPivot()
+	Kit.onStop(function()
+		if rider.Parent then
+			rider:PivotTo(start)
 		end
-		local begun = Kit.now()
-		Kit.every(function(t)
-			local move = slope * 2.8 * Kit.span(t, begun + 0.15, begun + 0.85, "In")
-			top.place(base + move)
-			if rider and riderStart then
-				rider:PivotTo(riderStart + move)
-			end
-			return t > begun + 0.9
-		end)
+	end)
+	local lean = if outward:Dot(-start.RightVector) > 0 then 1 else -1
+	Kit.pose(rider, SLUMP, context.hold - begun)
+	Kit.every(function(t)
+		local u = t - begun
+		local slid = slope * 1.6 * Kit.span(u, 0.1, 0.45, "In")
+		local fall = math.max(u - 0.35, 0)
+		local turn = math.rad(90) * Kit.span(u, 0.35, 0.95, "In") * lean
+		local position = start.Position
+			+ slid
+			+ outward * 3 * math.min(fall, 0.6)
+			+ A(0, -26 * fall * fall, 0)
+		local frame = CFrame.new(position) * start.Rotation * CFrame.Angles(0, 0, turn)
+		rider:PivotTo(frame)
+		local low = Kit.lowest(rider)
+		if low < floor then
+			rider:PivotTo(frame + A(0, floor - low, 0))
+		end
+		return u > 1.2
 	end)
 end
 
 -- Draws a katana from a sheath on the hip, spins it, makes one wide cut that hangs in the air,
--- and sheathes it cleanly; on the click the cut scatters into petals and the 2nd and 3rd
--- blocks fall apart along a slant.
+-- and slides it cleanly home: the sword follows one smooth path and the arms reach for it. On
+-- the click the cut scatters into petals and the 2nd and 3rd blocks are sliced: their tops slide
+-- off and fall, and the players on them flop onto the floor.
 function Epic.Katana(context: Context)
 	local character = context.character
 	local lower = Kit.part(character, "LowerTorso")
-	local hand = Kit.part(character, "RightHand")
-	if not lower or not hand then
+	if not lower then
 		return
 	end
+	local home = context.home
 	local colors = context.colors
 	local steel = Color3.fromRGB(226, 232, 240)
 	local ink = Color3.fromRGB(26, 22, 30)
@@ -733,25 +777,53 @@ function Epic.Katana(context: Context)
 		Kit.block(A(0.26, 0.26, 0.12), CFrame.new(), GOLD, Enum.Material.Metal),
 		CFrame.new(0, 0, 1.08)
 	)
-	for _, part in sheath.parts do
-		part.Transparency = 1
-	end
-	for _, part in sword.parts do
-		part.Transparency = 1
-	end
 	local trail =
 		Kit.trail(blade, A(0, 0, -BLADE / 2), A(0, 0, BLADE / 2 - 0.3), Kit.sequence(colors), 0.18)
+	trail.Enabled = false
 
+	-- The sword's path, in the character's space (+X its right, -Z toward the camera).
+	local function at(position: Vector3, toward: Vector3): CFrame
+		return home * CFrame.lookAt(position, position + toward)
+	end
+	local READY = at(A(1.3, 0.5, -1.4), A(0.15, 0.9, -0.6))
+	local OVERHEAD = at(A(0.9, 2.5, -0.3), A(-0.2, 0.5, 1))
+	local LOW = at(A(-1.0, 0.1, -1.4), A(-0.6, -0.5, -0.7))
+	local center, radius = A(0.8, 0.9, 0), 1.8
+	local function arc(angle: number): CFrame
+		local x, z = math.sin(angle), -math.cos(angle)
+		return at(center + A(x, 0, z) * radius, A(x, -0.08, z))
+	end
+	local cutFrom, cutTo = math.rad(60), math.rad(-45)
 	local function sheathed(slide: number): CFrame
 		return (lower :: BasePart).CFrame * SHEATH * CFrame.new(0, 0, slide)
 	end
-	local function held(spin: number): CFrame
-		return (hand :: BasePart).CFrame
-			* GRIP
-			* CFrame.Angles(math.rad(-90) + spin, 0, 0)
-			* CFrame.new(0, 0, -0.5)
+	local function spun(spin: number): CFrame
+		return READY * CFrame.new(0, 0, GRIP) * CFrame.Angles(spin, 0, 0) * CFrame.new(0, 0, -GRIP)
 	end
-	local arc: { BasePart } = {}
+	local function swordAt(t: number): CFrame
+		if t < 0.3 then
+			return sheathed(0)
+		elseif t < 0.5 then
+			return sheathed(BLADE * Kit.span(t, 0.3, 0.5, "In"))
+		elseif t < 0.8 then
+			return sheathed(BLADE):Lerp(READY, Kit.span(t, 0.5, 0.8))
+		elseif t < 1.6 then
+			return spun(-math.pi * 4 * Kit.span(t, 0.8, 1.6))
+		elseif t < 2.0 then
+			return READY:Lerp(OVERHEAD, Kit.span(t, 1.6, 2.0))
+		elseif t < 2.08 then
+			return OVERHEAD:Lerp(arc(cutFrom), Kit.span(t, 2.0, 2.08, "In"))
+		elseif t < 2.32 then
+			return arc(cutFrom + (cutTo - cutFrom) * Kit.span(t, 2.08, 2.32))
+		elseif t < 2.6 then
+			return arc(cutTo):Lerp(LOW, Kit.span(t, 2.32, 2.6, "Out"))
+		elseif t < 3.05 then
+			return LOW:Lerp(sheathed(BLADE), Kit.span(t, 2.6, 3.05))
+		end
+		return sheathed(BLADE * (1 - Kit.span(t, 3.05, 3.45, "Out")))
+	end
+
+	local arcParts: { BasePart } = {}
 	local lastTip: Vector3? = nil
 	Kit.pose(character, KATANA, context.hold)
 	Kit.every(function(t)
@@ -763,28 +835,37 @@ function Epic.Katana(context: Context)
 			part.Transparency = 1 - show
 		end
 		sheath.place((lower :: BasePart).CFrame * SHEATH)
-		local frame: CFrame
-		if t < 0.32 then
-			frame = sheathed(0)
-		elseif t < 0.44 then
-			frame = sheathed(BLADE * Kit.span(t, 0.32, 0.44, "In"))
-		elseif t < 0.52 then
-			frame = sheathed(BLADE):Lerp(held(0), Kit.span(t, 0.44, 0.52))
-		elseif t < 2.95 then
-			frame = held(math.pi * 4 * Kit.span(t, 0.8, 1.6))
-		elseif t < 3.1 then
-			frame = held(0):Lerp(sheathed(BLADE), Kit.span(t, 2.95, 3.1))
-		else
-			frame = sheathed(BLADE * (1 - Kit.span(t, 3.1, 3.45, "Out")))
+		local frame = swordAt(t)
+		-- The right hand holds the hilt; the left steadies the sheath.
+		local grip = (frame * CFrame.new(0, 0, GRIP)).Position
+		local held = Kit.reach(
+			character,
+			"Right",
+			grip,
+			(home * CFrame.new(2.6, -1.2, 1)).Position,
+			Kit.span(t, 0.05, 0.3)
+		)
+		Kit.reach(
+			character,
+			"Left",
+			(sheathed(0) * CFrame.new(0, 0, -0.7)).Position,
+			(home * CFrame.new(-2.6, -1.2, 0.6)).Position,
+			Kit.span(t, 0.1, 0.35)
+		)
+		-- Once it's in the hand, the sword sits exactly in it (even at full stretch).
+		if held and t > 0.3 then
+			frame += held - grip
 		end
 		sword.place(frame)
-		trail.Enabled = t > 0.4 and t < 2.9
+		trail.Enabled = t > 0.45 and t < 2.9
 		-- The wide cut leaves its arc hanging in the air.
 		local tip = (frame * CFrame.new(0, 0, -BLADE)).Position
-		if t >= 2.0 and t <= 2.34 then
+		if t >= 2.08 and t <= 2.34 then
 			if lastTip then
-				local piece = Kit.line(lastTip, tip, 0.22, Kit.gradient(colors, #arc / 14), 0.1)
-				table.insert(arc, piece)
+				table.insert(
+					arcParts,
+					Kit.line(lastTip, tip, 0.22, Kit.gradient(colors, #arcParts / 14), 0.1)
+				)
 			end
 			lastTip = tip
 		end
@@ -796,12 +877,12 @@ function Epic.Katana(context: Context)
 	Kit.at(3.45, function()
 		local mouth = ((lower :: BasePart).CFrame * SHEATH).Position
 		Kit.burst(mouth, 16, WHITE, NumberRange.new(4, 9), 0.3)
-		Kit.shake(0.6, 0.25)
+		Kit.shake(0.8, 0.25)
 		-- The arc scatters into petals.
-		for i, piece in arc do
+		for i, piece in arcParts do
 			for _ = 1, 2 do
 				local petal =
-					Kit.block(A(0.3, 0.04, 0.24), piece.CFrame, Kit.gradient(colors, i / #arc))
+					Kit.block(A(0.3, 0.04, 0.24), piece.CFrame, Kit.gradient(colors, i / #arcParts))
 				local drift = A(Kit.rnd(-3, 3), Kit.rnd(-4, -2), Kit.rnd(-2, 2))
 				local begun = Kit.now()
 				local start = piece.Position
@@ -817,9 +898,8 @@ function Epic.Katana(context: Context)
 			end
 			piece:Destroy()
 		end
-		table.clear(arc)
+		table.clear(arcParts)
 		-- A thin bright line across the backdrop.
-		local home = context.home
 		local streak = Kit.line(
 			(home * CFrame.new(-40, 1.5, 12.4)).Position,
 			(home * CFrame.new(40, 1.5, 12.4)).Position,
@@ -827,11 +907,10 @@ function Epic.Katana(context: Context)
 			WHITE
 		)
 		Kit.tween(streak, 0.7, { Transparency = 1 })
-		-- 2nd and 3rd's blocks fall apart.
-		local home3 = home.Position
+		-- The competition is cut down: 2nd and 3rd's blocks split and fall.
 		for i = 2, #context.blocks do
 			local block = context.blocks[i]
-			local side = if block.Position.X > home3.X then 1 else -1
+			local side = if block.Position.X > home.Position.X then 1 else -1
 			local rider: Model? = nil
 			for _, other in context.others do
 				local spot = block.CFrame:PointToObjectSpace(other:GetPivot().Position)
@@ -843,9 +922,10 @@ function Epic.Katana(context: Context)
 				end
 			end
 			-- High on the side toward the winner, so the top slides away from them.
-			slice(block, -side, rider)
+			Kit.at(3.5 + (i - 2) * 0.12, function()
+				slice(context, block, -side, rider)
+			end)
 		end
-		Kit.react(context, "Flail", 3.75)
 	end)
 end
 
@@ -853,56 +933,22 @@ end
 
 local TROPHY: { Key } = {
 	{ time = 0, angles = {} },
-	{ time = 0.3, angles = { RightUpperArm = A(-50), RightLowerArm = A(60) } },
-	{
-		time = 0.65,
-		angles = {
-			RightUpperArm = A(45, 0, -20),
-			RightLowerArm = A(70),
-			LeftUpperArm = A(45, 0, 20),
-			LeftLowerArm = A(70),
-			Head = A(-20),
-		},
-	},
-	{ time = 1.0, angles = {} },
-	{
-		time = 1.35,
-		angles = {
-			RightUpperArm = A(170, 0, -8),
-			LeftUpperArm = A(170, 0, 8),
-			RightLowerArm = A(0),
-			LeftLowerArm = A(0),
-			Head = A(25),
-		},
-		ease = "Out",
-	},
-	{ time = 2.2, angles = {} },
+	{ time = 0.3, angles = { UpperTorso = A(-6, 10, 0), Head = A(-15, 15, 0) } },
+	{ time = 0.85, angles = { UpperTorso = A(-4), Head = A(-22) } },
+	{ time = 1.2, angles = {} },
+	{ time = 1.6, angles = { UpperTorso = A(6), Head = A(28) }, ease = "Out" },
 }
-for i = 1, 4 do
-	local down = i % 2 == 1
-	table.insert(TROPHY, {
-		time = 2.2 + i * 0.2,
-		angles = {
-			RightUpperArm = if down then A(150, 0, -8) else A(170, 0, -8),
-			LeftUpperArm = if down then A(150, 0, 8) else A(170, 0, 8),
-			RightLowerArm = A(if down then 35 else 0),
-			LeftLowerArm = A(if down then 35 else 0),
-		},
-	})
-end
 
--- Pulls a gold trophy from behind the back, admires it and lifts it high overhead.
+-- Pulls a gold trophy out of a pocket (it grows as it comes out), holds it in both hands,
+-- admires it and lifts it high over the head.
 function Epic.TrophyLift(context: Context)
 	local character = context.character
-	local right = Kit.part(character, "RightHand")
-	local left = Kit.part(character, "LeftHand")
-	if not right or not left then
-		return
-	end
+	local home = context.home
 	local colors = context.colors
+	local head = Kit.part(character, "Head")
 	local wood = Color3.fromRGB(92, 58, 34)
 	local cup = Kit.prop()
-	-- Built upward from the base's middle (where the hands hold it).
+	-- Built up from the base's bottom middle (where the hands hold it).
 	Kit.add(cup, Kit.block(A(1.3, 0.45, 1.3), CFrame.new(), wood), CFrame.new(0, 0.22, 0))
 	Kit.add(
 		cup,
@@ -963,54 +1009,81 @@ function Epic.TrophyLift(context: Context)
 		part.Transparency = 1
 	end
 	local glint = Kit.block(A(0.25, 1.9, 0.1), CFrame.new(), WHITE, Enum.Material.Neon, 1)
-	local rays = Kit.prop()
-	for i = 1, 10 do
-		Kit.add(
-			rays,
-			Kit.block(A(0.35, 16, 0.1), CFrame.new(), GOLD, Enum.Material.Neon, 1),
-			CFrame.Angles(0, 0, i * math.pi / 5) * CFrame.new(0, 8, 0)
-		)
+
+	-- Where the trophy's base goes (the character's space): out of the right pocket, in front of
+	-- the chest, then over the head (clear of it).
+	local headTop = if head then home:PointToObjectSpace(head.Position).Y + head.Size.Y / 2 else 2.8
+	local POCKET = A(0.95, -0.7, -0.5)
+	local CHEST = A(0, 0.35, -1.25)
+	local OVER = A(0, math.max(headTop + 0.15, 2.6), -0.75)
+	local HOLD = 0.45 -- each hand under the base's side
+	local function baseAt(t: number): Vector3
+		if t < 0.8 then
+			return POCKET:Lerp(CHEST + A(0.45, 0, 0), Kit.span(t, 0.35, 0.8))
+		elseif t < 1.05 then
+			return (CHEST + A(0.45, 0, 0)):Lerp(CHEST, Kit.span(t, 0.8, 1.05))
+		elseif t < 2.2 then
+			return CHEST:Lerp(OVER, Kit.span(t, 1.2, 1.6, "Out"))
+		end
+		local pump = math.abs(math.sin((t - 2.2) / 0.8 * math.pi * 2)) * (1 - Kit.span(t, 2.9, 3.0))
+		return OVER - A(0, 0.4 * pump, 0)
 	end
-	local facing = context.home.Rotation
-	local function holdAt(t: number): CFrame
-		local r = ((right :: BasePart).CFrame * CFrame.new(0, -0.35, 0)).Position
-		local l = ((left :: BasePart).CFrame * CFrame.new(0, -0.35, 0)).Position
-		local spot = if t < 0.6 then r else (r + l) / 2
-		return CFrame.new(spot) * facing
+	local function scaleAt(t: number): number
+		return 0.12 + 0.88 * Kit.span(t, 0.38, 0.8, "Out")
 	end
+	local facing = home.Rotation
 	Kit.pose(character, TROPHY, context.hold)
 	Kit.every(function(t)
-		local frame = holdAt(t)
-		cup.place(frame)
-		local show = if t < 0.45 then 1 else 1 - Kit.span(t, 0.45, 0.6)
-		for _, part in cup.parts do
-			part.Transparency = show
+		local scale = scaleAt(t)
+		local spot = home * baseAt(t)
+		local right = spot + facing * A(HOLD * scale, 0, 0)
+		local left = spot - facing * A(HOLD * scale, 0, 0)
+		local rightPole = (home * CFrame.new(2.6, 0, 1)).Position
+		local leftPole = (home * CFrame.new(-2.6, 0, 1)).Position
+		-- Into the pocket first, then holding the trophy.
+		local pocket = (home * POCKET)
+		local rightHand = Kit.reach(
+			character,
+			"Right",
+			if t < 0.35 then pocket else right,
+			rightPole,
+			Kit.span(t, 0, 0.3)
+		)
+		local leftHand = Kit.reach(character, "Left", left, leftPole, Kit.span(t, 0.75, 1.0))
+		-- The trophy sits in the hands (even at full stretch).
+		local base = spot
+		if t >= 1.0 and rightHand and leftHand then
+			base = (rightHand + leftHand) / 2
+		elseif rightHand and t >= 0.35 then
+			base = rightHand - facing * A(HOLD * scale, 0, 0)
 		end
-		local sweep = Kit.span(t, 1.45, 1.8, "Linear")
+		local frame = CFrame.new(base) * facing
+		cup.place(frame, scale)
+		local hidden = if t < 0.38 then 1 else 0
+		for _, part in cup.parts do
+			part.Transparency = hidden
+		end
+		local sweep = Kit.span(t, 1.65, 2.0, "Linear")
 		glint.Transparency = if sweep > 0 and sweep < 1 then 0.15 else 1
 		glint.CFrame = frame
 			* CFrame.new(-1.0 + sweep * 2.0, 2.0, -0.85)
 			* CFrame.Angles(0, 0, math.rad(-25))
-		local glow = Kit.span(t, 1.5, 2.2)
-		for _, part in rays.parts do
-			part.Transparency = 1 - glow * 0.6
-		end
-		rays.place(frame * CFrame.new(0, 2, 1.2) * CFrame.Angles(0, 0, t * 0.4))
 		return nil
 	end)
-	Kit.at(0.5, function()
-		Kit.burst(holdAt(0.5).Position + A(0, 1.5), 18, GOLD, NumberRange.new(3, 6), 0.35)
+	Kit.at(0.4, function()
+		Kit.burst((home * POCKET) + A(0, 0.3, 0), 22, GOLD, NumberRange.new(3, 7), 0.35)
 	end)
-	Kit.at(1.55, function()
+	Kit.at(1.7, function()
 		Kit.burst(
-			holdAt(1.55).Position + A(0, 2),
-			60,
+			(home * OVER) + A(0, 2, 0),
+			70,
 			Kit.sequence({ GOLD, Color3.fromRGB(255, 243, 176) }),
 			NumberRange.new(8, 16),
 			0.5,
 			4,
 			1
 		)
+		Kit.shake(0.6, 0.25)
 	end)
 end
 

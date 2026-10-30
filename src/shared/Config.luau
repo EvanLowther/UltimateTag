@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.55.0",
+	Version = "0.55.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -67,7 +67,10 @@ local Config = {
 	WinScreen = {
 		Position = Vector3.new(-3000, 400, -1500), -- the stage's origin (far from the maps, lobby and Locker)
 		FieldOfView = 50,
-		EmoteDelay = 0.7, -- seconds before the winner's victory plays
+		-- Seconds the screen stays black at the start while the stage's lighting settles (it is
+		-- built far from everything, so the engine needs a moment to light it).
+		WarmTime = 0.6,
+		EmoteDelay = 0.7, -- seconds (after the fade in starts) before the winner's victory plays
 		-- Seconds the win screen stays after the victory ends. It shows for Game.VictoryTime, or
 		-- longer when the winner's victory needs it (Catalog.winScreenTime).
 		EndHold = 1,
@@ -1019,6 +1022,28 @@ local Config = {
 					Contrast = 0.12,
 					Brightness = 0.02,
 					TintColor = Color3.fromRGB(235, 225, 255),
+				},
+			},
+			-- Showcases (the win screen and the Locker's preview, client/WinScreen and
+			-- client/LockerStage): an evening stage lit by its own lamps, low bloom so the
+			-- characters keep their colors.
+			Showcase = {
+				Lighting = {
+					ClockTime = 19.5,
+					Brightness = 0.9,
+					Ambient = Color3.fromRGB(96, 96, 112),
+					OutdoorAmbient = Color3.fromRGB(104, 104, 122),
+					ExposureCompensation = 0,
+					EnvironmentDiffuseScale = 0.35,
+					EnvironmentSpecularScale = 0.2,
+				},
+				Atmosphere = { Density = 0, Haze = 0, Glare = 0 },
+				Bloom = { Intensity = 0.15, Size = 18, Threshold = 2.2 },
+				ColorCorrection = {
+					Saturation = 0.12,
+					Contrast = 0.1,
+					Brightness = 0,
+					TintColor = Color3.fromRGB(255, 252, 248),
 				},
 			},
 			-- The lobby (the Night Market): late at night, cool moonlight and haze, the neon and

@@ -9,6 +9,7 @@
 -- while it plays; it ends after the server's Duration (long enough for the winner's victory,
 -- Catalog.winScreenTime) or as soon as the
 -- game phase leaves Victory (the dev panel skipping it, or switching modes).
+local ContentProvider = game:GetService("ContentProvider")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -22,6 +23,7 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local ControlLock = require(script.Parent.ControlLock)
 local LockerStage = require(script.Parent.LockerStage)
+local MapLighting = require(script.Parent.MapLighting)
 local SpeedTrails = require(script.Parent.SpeedTrails)
 local Ui = require(script.Parent.Menu.Ui)
 local Victories = require(script.Parent.Victories)
@@ -159,6 +161,22 @@ local function buildStage(places: { number }): (Model, { [number]: Vector3 }, { 
 			0.45
 		)
 	end
+	-- A soft key light from the camera's side, so the podium players are lit from the front.
+	local key = part(
+		model,
+		Vector3.new(1, 1, 1),
+		CFrame.lookAt(origin + Vector3.new(0, 18, 30), origin + Vector3.new(0, 6, 0)),
+		Color3.new(1, 1, 1),
+		nil,
+		1
+	)
+	local spot = Instance.new("SpotLight")
+	spot.Face = Enum.NormalId.Front
+	spot.Angle = 70
+	spot.Range = 60
+	spot.Brightness = 1.6
+	spot.Color = Color3.fromRGB(255, 244, 232)
+	spot.Parent = key
 	local tops: { [number]: Vector3 } = {}
 	local blocks: { [number]: Part } = {}
 	for _, place in places do
@@ -181,7 +199,7 @@ local function buildStage(places: { number }): (Model, { [number]: Vector3 }, { 
 		)
 		local light = Instance.new("PointLight")
 		light.Range = 30
-		light.Brightness = if place == 1 then 1.8 else 1.1
+		light.Brightness = if place == 1 then 1.2 else 0.8
 		light.Color = Color3.fromRGB(255, 244, 228)
 		light.Parent = lamp
 	end
@@ -456,6 +474,22 @@ local function closeScreen()
 		stage = nil
 	end
 	showGuis()
+	MapLighting.override(nil)
+	-- Fade back in from black on the lobby, so the jump (and its lighting settling) isn't seen.
+	local back = Instance.new("ScreenGui")
+	back.Name = "WinScreenReturn"
+	back.IgnoreGuiInset = true
+	back.DisplayOrder = 40
+	local black = Ui.frame(back, Color3.new(0, 0, 0))
+	black.Size = UDim2.fromScale(1, 1)
+	black.BackgroundTransparency = 0
+	back.Parent = Players.LocalPlayer:FindFirstChildOfClass("PlayerGui")
+	task.delay(0.35, function()
+		TweenService:Create(black, TweenInfo.new(0.5), { BackgroundTransparency = 1 }):Play()
+	end)
+	task.delay(0.9, function()
+		back:Destroy()
+	end)
 	local camera = workspace.CurrentCamera
 	camera.CameraType = Enum.CameraType.Custom
 	local character = Players.LocalPlayer.Character
@@ -522,7 +556,11 @@ local function openScreen(info: Info)
 	headline(screen, if winner then `{winner.DisplayName} wins!` else "Game over")
 	local plates: { [number]: Frame } = {}
 	for _, entry in podium do
-		plates[entry.Place] = plate(screen, entry)
+		-- The winner's name is in the headline; a plate under the middle block would sit on
+		-- your rewards card.
+		if not entry.Won then
+			plates[entry.Place] = plate(screen, entry)
+		end
 	end
 	local card: Frame? = nil
 	if info.Rewards then
@@ -551,6 +589,7 @@ local function openScreen(info: Info)
 	gui = screen
 
 	hideGuis()
+	MapLighting.override("Showcase")
 	camera.CameraType = Enum.CameraType.Scriptable
 	camera.FieldOfView = settings.FieldOfView
 	ViewMode.suspend(true)
@@ -602,6 +641,7 @@ local function openScreen(info: Info)
 	local emoted = false
 	RunService:BindToRenderStep(STEP, Enum.RenderPriority.Camera.Value + 5, function()
 		local t = os.clock() - started
+		local shown = t - settings.WarmTime -- time since the fade in started
 		if t > 0.5 and not info.Preview and GameState.getPhase() ~= "Victory" then
 			closeScreen()
 			return
@@ -612,7 +652,7 @@ local function openScreen(info: Info)
 		end
 
 		-- The winner's victory, once their copy is there.
-		if not emoted and t >= emoteAt and winnerCopy and winnerItem then
+		if not emoted and shown >= emoteAt and winnerCopy and winnerItem then
 			emoted = true
 			Victories.play(winnerCopy, winnerItem, {
 				hold = math.max(info.Duration - t - 1, 1),
@@ -630,10 +670,10 @@ local function openScreen(info: Info)
 		local aspect = if view.Y > 0 then view.X / view.Y else 16 / 9
 		local halfAcross = math.atan(math.tan(math.rad(settings.FieldOfView) / 2) * aspect)
 		local near = math.max(26, halfWidth / math.tan(halfAcross))
-		local k = math.clamp(t / INTRO_MOVE, 0, 1)
+		local k = math.clamp(shown / INTRO_MOVE, 0, 1)
 		local eased = 1 - (1 - k) ^ 3
 		local distance = near + 20 * (1 - eased)
-		local sway = math.sin(t * 0.6) * 1.2
+		local sway = math.sin(math.max(shown, 0) * 0.6) * 1.2
 		local focus = middle + Vector3.new(0, 6, 0)
 		camera.CFrame = Victories.camera(
 			CFrame.lookAt(
@@ -651,7 +691,7 @@ local function openScreen(info: Info)
 		end
 
 		-- Your rewards slide up after a moment.
-		if card and not cardShown and t >= settings.RewardsDelay then
+		if card and not cardShown and shown >= settings.RewardsDelay then
 			cardShown = true
 			TweenService:Create(
 				card,
@@ -661,7 +701,7 @@ local function openScreen(info: Info)
 		end
 
 		-- Fade in from black, and out to black at the end.
-		local fadeIn = 1 - math.clamp(t / settings.FadeTime, 0, 1)
+		local fadeIn = 1 - math.clamp(shown / settings.FadeTime, 0, 1)
 		local fadeOut = 1 - math.clamp((info.Duration - t) / settings.FadeTime, 0, 1)
 		fade.BackgroundTransparency = 1 - math.max(fadeIn, fadeOut)
 	end)
@@ -695,7 +735,7 @@ function WinScreen.preview(size: number?, victoryId: string?)
 		Duration = Catalog.winScreenTime(
 			item,
 			Config.Game.VictoryTime,
-			Config.WinScreen.EmoteDelay,
+			Config.WinScreen.WarmTime + Config.WinScreen.EmoteDelay,
 			Config.WinScreen.EndHold
 		),
 		Preview = true,
@@ -717,7 +757,26 @@ function WinScreen.isActive(): boolean
 	return active
 end
 
+-- The particle textures the victories use, loaded when the game starts.
+local TEXTURES = {
+	"rbxasset://textures/particles/sparkles_main.dds",
+	"rbxasset://textures/particles/smoke_main.dds",
+	"rbxasset://textures/particles/fire_main.dds",
+}
+
 function WinScreen.start()
+	-- Load what the win screen and the lobby show ahead of time, so neither pops in the first
+	-- time it's seen.
+	task.spawn(function()
+		local list: { any } = table.clone(TEXTURES)
+		local lobby = workspace:FindFirstChild("Lobby")
+		if lobby then
+			table.insert(list, lobby)
+		end
+		pcall(function()
+			ContentProvider:PreloadAsync(list)
+		end)
+	end)
 	Remotes.get("GameOver").OnClientEvent:Connect(function(info)
 		if type(info) == "table" and type(info.Podium) == "table" then
 			openScreen(info :: Info)

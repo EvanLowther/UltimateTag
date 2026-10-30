@@ -26,6 +26,7 @@ local GameState = require(Shared:WaitForChild("GameState"))
 local TitleTag = require(Shared:WaitForChild("TitleTag"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local CosmeticEffects = require(script.Parent.CosmeticEffects)
+local MapLighting = require(script.Parent.MapLighting)
 local LockerLayout = require(script.Parent.Menu.LockerLayout)
 local Profile = require(script.Parent.Profile)
 local SpeedTrails = require(script.Parent.SpeedTrails)
@@ -642,6 +643,7 @@ function LockerStage.open(): boolean
 	trails = SpeedTrails.preview(model)
 	local camera = workspace.CurrentCamera
 	saved = { fov = camera.FieldOfView }
+	MapLighting.override("Showcase")
 	camera.CameraType = Enum.CameraType.Scriptable
 	camera.FieldOfView = Config.Locker.FieldOfView
 	ViewMode.suspend(true)
@@ -663,6 +665,7 @@ function LockerStage.close()
 	active = false
 	RunService:UnbindFromRenderStep(STEP)
 	Victories.stop()
+	MapLighting.override(nil)
 	if baseTrack then
 		baseTrack:Stop(0)
 		baseTrack = nil

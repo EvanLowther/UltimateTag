@@ -5,7 +5,9 @@
 -- of it, the lighting blends to that preset (on top of the normal lighting, so nothing another
 -- preset changed is left behind); anywhere else it blends back to the normal lighting from
 -- default.project.json. Spectators following someone on the map see the map's lighting too,
--- since it follows the camera.
+-- since it follows the camera. A showcase (the win screen, the Locker) sets its own preset with
+-- `override`. When the camera jumps far (a teleport, a respawn, a showcase opening or closing) the
+-- lighting switches at once instead of blending, so nothing is seen half lit.
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
@@ -15,16 +17,24 @@ local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Co
 local MapLighting = {}
 
 local CHECK_EVERY = 0.25 -- seconds between checks
+local JUMP = 150 -- studs the camera moves between checks that count as a jump (switch at once)
 
 type Values = { [string]: { [string]: any } }
+
+-- The game's own lighting instance named `name` (default.project.json), never another effect
+-- added for a moment (the victories add their own).
+local function named(name: string, className: string): Instance?
+	local item = Lighting:FindFirstChild(name)
+	return if item and item:IsA(className) then item else nil
+end
 
 -- The instances a preset can change, by the preset's section names.
 local function targets(): { [string]: Instance? }
 	return {
 		Lighting = Lighting,
-		Atmosphere = Lighting:FindFirstChildOfClass("Atmosphere"),
-		Bloom = Lighting:FindFirstChildOfClass("BloomEffect"),
-		ColorCorrection = Lighting:FindFirstChildOfClass("ColorCorrectionEffect"),
+		Atmosphere = named("Atmosphere", "Atmosphere"),
+		Bloom = named("Bloom", "BloomEffect"),
+		ColorCorrection = named("ColorCorrection", "ColorCorrectionEffect"),
 	}
 end
 
@@ -46,12 +56,27 @@ local function snapshot(): Values
 	return saved
 end
 
+local tweens: { Tween } = {}
+
+-- Moves the lighting to `values` over `seconds` (0: at once).
 local function blend(values: Values, seconds: number)
+	for _, tween in tweens do
+		tween:Cancel()
+	end
+	table.clear(tweens)
 	local info = TweenInfo.new(seconds, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
 	for section, props in values do
 		local instance = targets()[section]
 		if instance then
-			TweenService:Create(instance, info, props):Play()
+			if seconds <= 0 then
+				for name, value in props do
+					(instance :: any)[name] = value
+				end
+			else
+				local tween = TweenService:Create(instance, info, props)
+				tween:Play()
+				table.insert(tweens, tween)
+			end
 		end
 	end
 end
@@ -98,19 +123,46 @@ local function over(normal: Values, preset: Values): Values
 	return values
 end
 
+local normal: Values = {}
+local current: string? = nil
+local overridden: string? = nil
+local lastFocus: Vector3? = nil
+local started = false
+
+-- Picks the preset for where the camera is now (or the override) and moves to it, at once if
+-- `snap` or the camera jumped.
+local function update(snap: boolean)
+	local focus = workspace.CurrentCamera.Focus.Position
+	local jumped = lastFocus == nil or (focus - lastFocus :: Vector3).Magnitude > JUMP
+	lastFocus = focus
+	local wanted = overridden or wantedPreset()
+	if wanted ~= current then
+		current = wanted
+		local values = if wanted
+			then over(normal, Config.MapLighting.Presets[wanted] :: Values)
+			else normal
+		blend(values, if snap or jumped then 0 else Config.MapLighting.FadeTime)
+	end
+end
+
+-- A showcase's own lighting (a preset name) while it's open, switched at once; nil hands the
+-- lighting back to wherever the camera is.
+function MapLighting.override(name: string?)
+	if name and not Config.MapLighting.Presets[name] then
+		return
+	end
+	overridden = name
+	if started then
+		update(true)
+	end
+end
+
 function MapLighting.start()
-	local normal = snapshot()
-	local current: string? = nil
+	normal = snapshot()
+	started = true
 	task.spawn(function()
 		while true do
-			local wanted = wantedPreset()
-			if wanted ~= current then
-				current = wanted
-				local values = if wanted
-					then over(normal, Config.MapLighting.Presets[wanted] :: Values)
-					else normal
-				blend(values, Config.MapLighting.FadeTime)
-			end
+			update(false)
 			task.wait(CHECK_EVERY)
 		end
 	end)

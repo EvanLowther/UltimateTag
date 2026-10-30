@@ -460,7 +460,7 @@ local function playGame(players: { Player })
 	local duration = Catalog.winScreenTime(
 		if winner then Catalog.get(winner:GetAttribute("EquippedVictory") :: string?) else nil,
 		Config.Game.VictoryTime,
-		Config.WinScreen.EmoteDelay,
+		Config.WinScreen.WarmTime + Config.WinScreen.EmoteDelay,
 		Config.WinScreen.EndHold
 	)
 	local screens: { [Player]: { [string]: any } } = {}

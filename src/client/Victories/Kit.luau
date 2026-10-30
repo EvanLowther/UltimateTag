@@ -50,6 +50,7 @@ local connections: { RBXScriptConnection } = {}
 local restores: { () -> () } = {}
 local shakes: { Shake } = {}
 local tiltOf: ((number) -> number)? = nil
+local lookOf: ((number) -> (Vector3?, number))? = nil
 local overlay: ScreenGui? = nil
 local folder: Folder? = nil
 local built: { [{ Key }]: Animation } = {}
@@ -121,6 +122,7 @@ function Kit.stop()
 	table.clear(tracked)
 	table.clear(shakes)
 	tiltOf = nil
+	lookOf = nil
 	overlay = nil
 	folder = nil
 	current = nil
@@ -170,7 +172,61 @@ end
 
 -- Moves the whole character every frame: `offset(t)` is relative to where it started (in its
 -- own space: -Z is toward the camera, +Z behind it). Put back when the victory stops.
-function Kit.move(context: Context, offset: (number) -> CFrame)
+-- The lowest point of `parts` (their box corners; a wedge counts as its box).
+function Kit.lowestOf(parts: { BasePart }): number
+	local low = math.huge
+	for _, part in parts do
+		local frame, half = part.CFrame, part.Size / 2
+		for _, x in { -1, 1 } do
+			for _, y in { -1, 1 } do
+				for _, z in { -1, 1 } do
+					low = math.min(low, (frame * Vector3.new(x * half.X, y * half.Y, z * half.Z)).Y)
+				end
+			end
+		end
+	end
+	return low
+end
+
+-- The lowest point of `model`'s body parts.
+function Kit.lowest(model: Model): number
+	local parts = {}
+	for _, part in model:GetChildren() do
+		if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+			table.insert(parts, part)
+		end
+	end
+	return Kit.lowestOf(parts)
+end
+
+-- Moves the whole character every frame: `offset(t)` is relative to where it started (in its
+-- own space: -Z is toward the camera, +Z behind it). Put back when the victory stops.
+-- The lowest point of `model`'s visible parts (their box corners).
+function Kit.lowest(model: Model): number
+	local low = math.huge
+	for _, part in model:GetChildren() do
+		if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+			local frame, half = part.CFrame, part.Size / 2
+			for _, x in { -1, 1 } do
+				for _, y in { -1, 1 } do
+					for _, z in { -1, 1 } do
+						low = math.min(
+							low,
+							(frame * Vector3.new(x * half.X, y * half.Y, z * half.Z)).Y
+						)
+					end
+				end
+			end
+		end
+	end
+	return low
+end
+
+-- Moves the whole character every frame: `offset(t)` is relative to where it started (in its
+-- own space: -Z is toward the camera, +Z behind it). While `grounded(t)` is true its lowest
+-- point is kept exactly on what it stands on (no floating, no sinking into the block). Put back
+-- when the victory stops.
+function Kit.move(context: Context, offset: (number) -> CFrame, grounded: ((number) -> boolean)?)
 	local character = context.character
 	Kit.onStop(function()
 		if character.Parent then
@@ -178,9 +234,106 @@ function Kit.move(context: Context, offset: (number) -> CFrame)
 		end
 	end)
 	Kit.every(function(t)
-		character:PivotTo(context.home * offset(t))
+		local frame = context.home * offset(t)
+		character:PivotTo(frame)
+		if grounded and grounded(t) then
+			character:PivotTo(frame + Vector3.new(0, context.ground - Kit.lowest(character), 0))
+		end
 		return nil
 	end)
+end
+
+-- The turn that takes direction `from` onto direction `to`.
+local function turnBetween(from: Vector3, to: Vector3): CFrame
+	local u, v = from.Unit, to.Unit
+	local axis = u:Cross(v)
+	if axis.Magnitude < 1e-5 then
+		return CFrame.identity
+	end
+	return CFrame.fromAxisAngle(axis.Unit, math.acos(math.clamp(u:Dot(v), -1, 1)))
+end
+
+-- Turns one joint (after the animation this frame) so the bone from it to `tip` points at
+-- `toward`. Returns the joint's new frame.
+local function aim(joint: Motor6D, tip: Vector3, toward: Vector3): CFrame
+	local base = (joint.Part0 :: BasePart).CFrame * joint.C0
+	local now = base * joint.Transform
+	local turned = CFrame.new(now.Position)
+		* turnBetween(tip - now.Position, toward - now.Position)
+		* now.Rotation
+	joint.Transform = base:Inverse() * turned
+	return turned
+end
+
+-- Bends an arm ("Right" or "Left") so its hand reaches `target`, its elbow toward `pole`, laid
+-- over the animation this frame (call it every frame, after the animation). `weight` (0-1)
+-- blends from where the animation put the hand. Returns where the hand's middle ends up (short
+-- of `target` if it's out of reach).
+function Kit.reach(
+	model: Model,
+	side: string,
+	target: Vector3,
+	pole: Vector3,
+	weight: number?
+): Vector3?
+	local upper = model:FindFirstChild(side .. "UpperArm")
+	local lower = model:FindFirstChild(side .. "LowerArm")
+	local hand = model:FindFirstChild(side .. "Hand")
+	if not upper or not lower or not hand then
+		return nil
+	end
+	local shoulder = upper:FindFirstChild(side .. "Shoulder")
+	local elbow = lower:FindFirstChild(side .. "Elbow")
+	local wrist = hand:FindFirstChild(side .. "Wrist")
+	if
+		not (
+			shoulder
+			and shoulder:IsA("Motor6D")
+			and elbow
+			and elbow:IsA("Motor6D")
+			and wrist
+			and wrist:IsA("Motor6D")
+		)
+	then
+		return nil
+	end
+	local w = math.clamp(weight or 1, 0, 1)
+	if w <= 0 then
+		return (hand :: BasePart).Position
+	end
+	-- Where the joints are now.
+	local shoulderFrame = (shoulder.Part0 :: BasePart).CFrame * shoulder.C0 * shoulder.Transform
+	local upperFrame = shoulderFrame * shoulder.C1:Inverse()
+	local elbowFrame = upperFrame * elbow.C0 * elbow.Transform
+	local lowerFrame = elbowFrame * elbow.C1:Inverse()
+	local wristAt = (lowerFrame * wrist.C0).Position
+	local s, e = shoulderFrame.Position, elbowFrame.Position
+	local l1, l2 = (e - s).Magnitude, (wristAt - e).Magnitude
+	-- The wrist goes a hand's half length short of the target (the hand's middle is on it).
+	local reachFor = target + (s - target).Unit * ((hand :: BasePart).Size.Y / 2)
+	reachFor = wristAt:Lerp(reachFor, w)
+	local toward = reachFor - s
+	local d = math.clamp(toward.Magnitude, 0.05, l1 + l2 - 0.01)
+	local dir = toward.Unit
+	local a = (l1 * l1 - l2 * l2 + d * d) / (2 * d)
+	local h = math.sqrt(math.max(l1 * l1 - a * a, 0))
+	local bend = pole - s
+	bend -= dir * bend:Dot(dir)
+	if bend.Magnitude < 1e-3 then
+		bend = (e - s) - dir * (e - s):Dot(dir)
+	end
+	local elbowTo = s + dir * a + bend.Unit * h
+	local newShoulder = aim(shoulder :: Motor6D, e, elbowTo)
+	local newElbow = (newShoulder * shoulder.C1:Inverse()) * elbow.C0 * elbow.Transform
+	local newWrist = ((newElbow * elbow.C1:Inverse()) * wrist.C0).Position
+	-- The forearm: aimed from the moved elbow (aim reads the moved upper arm through Part0).
+	local base = (newShoulder * shoulder.C1:Inverse()) * elbow.C0
+	local turned = CFrame.new(newElbow.Position)
+		* turnBetween(newWrist - newElbow.Position, s + dir * d - newElbow.Position)
+		* newElbow.Rotation
+	elbow.Transform = base:Inverse() * turned
+	local handFrame = turned * elbow.C1:Inverse() * wrist.C0 * wrist.Transform * wrist.C1:Inverse()
+	return handFrame.Position
 end
 
 -- A turn of `angles` round the point `point` (in the character's space).
@@ -353,12 +506,32 @@ local REACTIONS: { [string]: { Key } } = {
 	},
 }
 
+local function lookToward(turn: number): { Key }
+	return {
+		{ time = 0, angles = {} },
+		{
+			time = 0.45,
+			angles = {
+				Head = Vector3.new(30, turn * 45, 0),
+				UpperTorso = Vector3.new(6, turn * 25, 0),
+			},
+		},
+	}
+end
+local LOOK_LEFT = lookToward(1)
+local LOOK_RIGHT = lookToward(-1)
+
 function Kit.react(context: Context, kind: string, at: number)
 	Kit.at(at, function()
-		local keys = REACTIONS[if kind == "Stagger" then "Flail" else kind]
 		for _, other in context.others do
 			if not other.Parent then
 				continue
+			end
+			local keys = REACTIONS[if kind == "Stagger" then "Flail" else kind]
+			if kind == "LookUp" then
+				-- Turned toward the winner: their left (+ turn) or their right.
+				local winner = other:GetPivot():PointToObjectSpace(context.home.Position)
+				keys = if winner.X < 0 then LOOK_LEFT else LOOK_RIGHT
 			end
 			Kit.pose(other, keys, context.hold - at, true)
 			if kind == "Stagger" then
@@ -492,11 +665,20 @@ end
 export type Prop = { parts: { BasePart }, offsets: { CFrame }, place: (CFrame) -> () }
 
 function Kit.prop(): Prop
-	local prop = { parts = {}, offsets = {} } :: any
-	function prop.place(cframe: CFrame)
+	local prop = { parts = {}, offsets = {}, sizes = {}, scale = 1 } :: any
+	-- `scale` (default 1) grows or shrinks the whole prop round its origin.
+	function prop.place(cframe: CFrame, scale: number?)
+		local k = scale or 1
+		if k ~= prop.scale then
+			prop.scale = k
+			for i, part in prop.parts do
+				part.Size = prop.sizes[i] * k
+			end
+		end
 		local frames = table.create(#prop.parts)
 		for i, offset in prop.offsets do
-			frames[i] = cframe * offset
+			frames[i] = cframe
+				* (if k == 1 then offset else CFrame.new(offset.Position * k) * offset.Rotation)
 		end
 		workspace:BulkMoveTo(prop.parts, frames, Enum.BulkMoveMode.FireCFrameChanged)
 	end
@@ -504,6 +686,7 @@ function Kit.prop(): Prop
 end
 
 function Kit.add(prop: Prop, part: BasePart, offset: CFrame): BasePart
+	table.insert((prop :: any).sizes, part.Size)
 	table.insert(prop.parts, part)
 	table.insert(prop.offsets, offset)
 	return part
@@ -672,6 +855,87 @@ function Kit.lighting(className: string, props: { [string]: any }): PostEffect
 	return Kit.track(effect)
 end
 
+-- Darkens the stage by `amount` (0-1) over `seconds`: the sky and ambient light, the stage's
+-- lamps and its neon, so a victory's own lights stand out. Put back when the victory stops.
+function Kit.darken(context: Context, amount: number, seconds: number)
+	local saved = {
+		Brightness = Lighting.Brightness,
+		Ambient = Lighting.Ambient,
+		OutdoorAmbient = Lighting.OutdoorAmbient,
+		ExposureCompensation = Lighting.ExposureCompensation,
+	}
+	local black = Color3.new(0, 0, 0)
+	Kit.tween(Lighting, seconds, {
+		Brightness = saved.Brightness * (1 - amount),
+		Ambient = saved.Ambient:Lerp(black, amount * 0.85),
+		OutdoorAmbient = saved.OutdoorAmbient:Lerp(black, amount * 0.85),
+		ExposureCompensation = saved.ExposureCompensation - amount * 0.6,
+	})
+	Kit.onStop(function()
+		for name, value in saved do
+			(Lighting :: any)[name] = value
+		end
+	end)
+	if not context.stage then
+		return
+	end
+	for _, item in context.stage:GetDescendants() do
+		if item:IsA("Light") then
+			local brightness = item.Brightness
+			Kit.tween(item, seconds, { Brightness = brightness * (1 - amount) })
+			Kit.onStop(function()
+				item.Brightness = brightness
+			end)
+		elseif item:IsA("BasePart") and item.Material == Enum.Material.Neon then
+			local color = item.Color
+			Kit.tween(item, seconds, { Color = color:Lerp(black, amount * 0.8) })
+			Kit.onStop(function()
+				item.Color = color
+			end)
+		end
+	end
+end
+
+-- Chunks thrown from `position` that tumble and fall; they lie where they land if `stay`.
+function Kit.rubble(
+	context: Context,
+	position: Vector3,
+	count: number,
+	speed: number,
+	color: Color3?,
+	size: number?,
+	stay: boolean?
+)
+	for _ = 1, count do
+		local s = (size or 0.5) * Kit.rnd(0.6, 1.3)
+		local chunk = Kit.block(
+			Vector3.new(s, s * 0.8, s),
+			CFrame.new(position),
+			color or Color3.fromRGB(92, 80, 68),
+			Enum.Material.Slate
+		)
+		local velocity =
+			Vector3.new(Kit.rnd(-1, 1) * speed, Kit.rnd(0.4, 1) * speed, Kit.rnd(-1, 1) * speed)
+		local turn = Vector3.new(Kit.rnd(-8, 8), Kit.rnd(-8, 8), Kit.rnd(-8, 8))
+		local begun = Kit.now()
+		Kit.every(function(t)
+			local u = t - begun
+			local at = position + velocity * u + Vector3.new(0, -30 * u * u, 0)
+			local floorY = context.floor + s * 0.4
+			if at.Y <= floorY and u > 0.1 then
+				if stay then
+					chunk.CFrame = CFrame.new(at.X, floorY, at.Z) * CFrame.Angles(0, turn.Y * u, 0)
+				else
+					chunk:Destroy()
+				end
+				return true
+			end
+			chunk.CFrame = CFrame.new(at) * CFrame.Angles(turn.X * u, turn.Y * u, turn.Z * u)
+			return u > 3
+		end)
+	end
+end
+
 ---------------------------------------------------------------------------- the camera and screen
 
 -- Shakes the camera `strength` degrees, settling over `seconds`.
@@ -685,9 +949,20 @@ function Kit.tilt(tilt: (number) -> number)
 end
 
 -- The win screen's or Locker's camera with the victory's shakes and tilt laid on.
+-- The camera turns toward `look(t)` (a point, and how far toward it: 0-1) while it plays.
+function Kit.lookAt(look: (number) -> (Vector3?, number))
+	lookOf = look
+end
+
 function Kit.camera(cframe: CFrame): CFrame
 	if not current then
 		return cframe
+	end
+	if lookOf then
+		local point, weight = lookOf(Kit.now())
+		if point and weight > 0 then
+			cframe = cframe:Lerp(CFrame.lookAt(cframe.Position, point), math.clamp(weight, 0, 1))
+		end
 	end
 	local now = os.clock()
 	local pitch = if tiltOf then tiltOf(Kit.now()) else 0

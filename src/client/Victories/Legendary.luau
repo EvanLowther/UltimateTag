@@ -27,35 +27,6 @@ local function feet(context: Context): Vector3
 	return Vector3.new(home.X, context.ground, home.Z)
 end
 
--- Chunks thrown from `position` that tumble and fall to the floor.
-local function rubble(
-	context: Context,
-	position: Vector3,
-	count: number,
-	speed: number,
-	color: Color3?,
-	size: number?
-)
-	for _ = 1, count do
-		local s = (size or 0.5) * Kit.rnd(0.6, 1.3)
-		local chunk =
-			Kit.block(A(s, s * 0.8, s), CFrame.new(position), color or ROCK, Enum.Material.Slate)
-		local velocity = A(Kit.rnd(-1, 1) * speed, Kit.rnd(0.4, 1) * speed, Kit.rnd(-1, 1) * speed)
-		local turn = A(Kit.rnd(-8, 8), Kit.rnd(-8, 8), Kit.rnd(-8, 8))
-		local begun = Kit.now()
-		Kit.every(function(t)
-			local u = t - begun
-			local at = position + velocity * u + A(0, -30 * u * u, 0)
-			chunk.CFrame = CFrame.new(at) * CFrame.Angles(turn.X * u, turn.Y * u, turn.Z * u)
-			if at.Y < context.floor - 1 or u > 2 then
-				chunk:Destroy()
-				return true
-			end
-			return nil
-		end)
-	end
-end
-
 -- Glowing cracks on the floor reaching out from `center` to `radius`, each piece lighting up as
 -- something spreading at `speed` studs/s reaches it.
 local function floorCracks(
@@ -64,7 +35,8 @@ local function floorCracks(
 	count: number,
 	radius: number,
 	color: Color3,
-	speed: number
+	speed: number,
+	embers: boolean?
 )
 	local y = context.floor + 0.06
 	for i = 1, count do
@@ -83,6 +55,41 @@ local function floorCracks(
 			from = to
 			distance += step
 		end
+		-- Sparks rising from the far end of each crack.
+		if embers then
+			local tip = from
+			Kit.at(Kit.now() + radius / speed, function()
+				Kit.emitter(Kit.block(A(1, 0.2, 1), CFrame.new(tip), WHITE, nil, 1), {
+					Color = ColorSequence.new(color, WHITE),
+					Size = NumberSequence.new(0.16, 0),
+					Lifetime = NumberRange.new(0.8, 1.6),
+					Speed = NumberRange.new(1.5, 3.5),
+					SpreadAngle = Vector2.new(25, 25),
+					EmissionDirection = Enum.NormalId.Top,
+					Rate = 6,
+				})
+			end)
+		end
+	end
+end
+
+-- A ring of broken floor slabs heaved up round `center`, between `inner` and `outer` studs.
+local function heave(context: Context, center: Vector3, count: number, inner: number, outer: number)
+	for i = 1, count do
+		local angle = i / count * math.pi * 2 + Kit.rnd(-0.15, 0.15)
+		local distance = Kit.rnd(inner, outer)
+		local spot = Vector3.new(
+			center.X + math.cos(angle) * distance,
+			context.floor,
+			center.Z + math.sin(angle) * distance
+		)
+		local size = A(Kit.rnd(2, 3.4), 0.5, Kit.rnd(1.4, 2.4))
+		local rest = CFrame.new(spot + A(0, 0.1, 0))
+			* CFrame.Angles(0, -angle + math.pi / 2, 0)
+			* CFrame.Angles(math.rad(Kit.rnd(14, 34)), 0, math.rad(Kit.rnd(-8, 8)))
+		local slab =
+			Kit.block(size, rest - A(0, 0.8, 0), Color3.fromRGB(44, 44, 50), Enum.Material.Asphalt)
+		Kit.tween(slab, 0.25, { CFrame = rest }, Enum.EasingStyle.Back)
 	end
 end
 
@@ -131,7 +138,8 @@ local PODIUM: { Key } = {
 	},
 }
 
--- The 1st place block erupts out of the ground, lifting the winner into a gold spotlight.
+-- The 1st place block erupts out of the ground, lifting the winner; the stage goes dark and a
+-- gold spotlight shows them off. The camera keeps them in the middle of the screen.
 function Legendary.PodiumRise(context: Context)
 	local base = feet(context)
 	local block = context.block
@@ -150,6 +158,22 @@ function Legendary.PodiumRise(context: Context)
 			podium.Size = startSize
 			podium.CFrame = startFrame
 		end)
+	end
+	-- The place number keeps its size and stays centred on the block's face as it grows.
+	for _, gui in podium:GetChildren() do
+		if gui:IsA("SurfaceGui") then
+			for _, label in gui:GetChildren() do
+				if label:IsA("GuiObject") then
+					local size, position, anchor = label.Size, label.Position, label.AnchorPoint
+					label.AnchorPoint = Vector2.new(0.5, 0.5)
+					label.Position = UDim2.fromScale(0.5, 0.5)
+					label.Size = UDim2.new(1, 0, 0, startSize.Y * gui.PixelsPerStud)
+					Kit.onStop(function()
+						label.Size, label.Position, label.AnchorPoint = size, position, anchor
+					end)
+				end
+			end
+		end
 	end
 	local function lifted(t: number): number
 		return rise * Kit.span(t, 0.8, 1.8, "Back")
@@ -173,13 +197,15 @@ function Legendary.PodiumRise(context: Context)
 		return CFrame.new(0, lifted(t) - 0.6 * crouch, 0)
 	end)
 	Kit.react(context, "LookUp", 0.9)
-	Kit.tilt(function(t)
-		return 9 * Kit.span(t, 0.8, 2.0)
+	-- The camera follows them up, keeping them near the middle of the screen.
+	Kit.lookAt(function(t)
+		return Kit.at3(context, "UpperTorso"), 0.85 * Kit.span(t, 0.8, 2.0)
 	end)
 	-- The rumble.
 	Kit.shake(0.8, 0.9)
 	local half = podium.Size.X / 2
 	local floorY = context.floor
+	local center = Vector3.new(base.X, floorY, base.Z)
 	for i = 0, 6 do
 		Kit.at(i * 0.12, function()
 			local side = if i % 2 == 0 then 1 else -1
@@ -191,54 +217,93 @@ function Legendary.PodiumRise(context: Context)
 		end)
 	end
 	Kit.at(0.5, function()
-		floorCracks(context, base, 10, 10, GOLD, 25)
+		floorCracks(context, center, 16, 14, GOLD, 25, true)
 	end)
+	-- The eruption: slabs heave up round the block, rocks fly and stay where they land, dust
+	-- rolls out low and hangs.
 	Kit.at(0.8, function()
-		Kit.dust(Vector3.new(base.X, floorY + 0.4, base.Z), 30, 2.4)
-		rubble(context, Vector3.new(base.X, floorY + 0.5, base.Z), 18, 14)
+		heave(context, center, 14, half + 0.8, half + 3)
+		Kit.ring(center + A(0, 0.1, 0), DUST, 34, 0.8)
+		Kit.ring(center + A(0, 0.15, 0), GOLD, 22, 0.6)
+		Kit.dust(center + A(0, 0.4, 0), 30, 2.4)
+		Kit.rubble(context, center + A(0, 0.5, 0), 22, 14, ROCK, 0.5, true)
 		Kit.shake(1.6, 1.1)
+		local haze = Kit.block(A(26, 0.4, 22), CFrame.new(center + A(0, 0.3, 0)), WHITE, nil, 1)
+		local low = Kit.emitter(haze, {
+			Texture = "rbxasset://textures/particles/smoke_main.dds",
+			Shape = Enum.ParticleEmitterShape.Box,
+			Color = ColorSequence.new(DUST),
+			LightEmission = 0,
+			Size = NumberSequence.new(3, 6),
+			Transparency = NumberSequence.new(0.55, 1),
+			Lifetime = NumberRange.new(2, 3),
+			Speed = NumberRange.new(0.5, 1.5),
+			EmissionDirection = Enum.NormalId.Top,
+			Rate = 14,
+		})
+		Kit.at(3.2, function()
+			low.Rate = 0
+		end)
 	end)
 	for i = 0, 7 do
 		Kit.at(0.95 + i * 0.11, function()
 			local top = podium.Position.Y + podium.Size.Y / 2
-			rubble(
+			Kit.rubble(
 				context,
 				Vector3.new(base.X + Kit.rnd(-half, half), top, base.Z + Kit.rnd(-3, 3)),
 				1,
 				3,
 				ROCK,
-				0.45
+				0.45,
+				true
 			)
 		end)
 	end
-	-- The spotlight.
+	-- The stage goes dark and the spotlight slams on.
+	Kit.at(1.9, function()
+		Kit.darken(context, 0.85, 0.35)
+	end)
 	Kit.at(2.0, function()
-		Kit.flash(Color3.fromRGB(255, 226, 138), 0.5, 0.5)
+		Kit.flash(Color3.fromRGB(255, 226, 138), 0.45, 0.5)
 		Kit.shake(1.2, 0.35)
 		local top = podium.Position.Y + podium.Size.Y / 2
 		local lamp = Kit.block(A(5, 1, 5), CFrame.new(base.X, top + 26, base.Z), WHITE, nil, 1)
 		local light = Instance.new("SpotLight")
 		light.Face = Enum.NormalId.Bottom
-		light.Angle = 30
-		light.Brightness = 10
-		light.Range = 40
-		light.Color = Color3.fromRGB(255, 226, 150)
+		light.Angle = 32
+		light.Brightness = 24
+		light.Range = 45
+		light.Color = Color3.fromRGB(255, 222, 140)
 		light.Parent = lamp
+		local fill = Instance.new("PointLight")
+		fill.Range = 9
+		fill.Brightness = 1.5
+		fill.Color = Color3.fromRGB(255, 214, 120)
+		fill.Parent = Kit.block(A(1, 1, 1), CFrame.new(base.X, top + 4, base.Z - 3), WHITE, nil, 1)
 		local beam = Instance.new("Beam")
 		beam.Attachment0 = Kit.attach(lamp, A(0, 0, 0))
 		local floorSpot = Kit.block(A(1, 1, 1), CFrame.new(base.X, top, base.Z), WHITE, nil, 1)
 		beam.Attachment1 = Kit.attach(floorSpot, A(0, 0, 0))
 		beam.Width0 = 3
-		beam.Width1 = 9
+		beam.Width1 = 8
 		beam.FaceCamera = true
 		beam.LightEmission = 1
 		beam.Color = ColorSequence.new(Color3.fromRGB(255, 220, 110))
 		beam.Transparency = NumberSequence.new({
-			NumberSequenceKeypoint.new(0, 0.9),
-			NumberSequenceKeypoint.new(1, 0.55),
+			NumberSequenceKeypoint.new(0, 0.85),
+			NumberSequenceKeypoint.new(1, 0.4),
 		})
 		beam.Parent = lamp
 		Kit.track(beam)
+		-- A pool of light on the block top round their feet.
+		Kit.block(
+			A(0.06, 6, 6),
+			CFrame.new(base.X, top + 0.04, base.Z) * CFrame.Angles(0, 0, math.rad(90)),
+			Color3.fromRGB(255, 226, 140),
+			Enum.Material.Neon,
+			0.7,
+			Enum.PartType.Cylinder
+		)
 		Kit.emitter(lamp, {
 			Shape = Enum.ParticleEmitterShape.Box,
 			Color = ColorSequence.new(GOLD),
@@ -246,7 +311,7 @@ function Legendary.PodiumRise(context: Context)
 			Lifetime = NumberRange.new(4, 5),
 			Speed = NumberRange.new(2, 3),
 			EmissionDirection = Enum.NormalId.Bottom,
-			Rate = 30,
+			Rate = 40,
 			Transparency = NumberSequence.new({
 				NumberSequenceKeypoint.new(0, 1),
 				NumberSequenceKeypoint.new(0.15, 0),
@@ -315,6 +380,74 @@ function Legendary.Thunderstorm(context: Context)
 		Kit.tween(cloud, 0.8, { Transparency = 0.15 })
 		table.insert(clouds, { part = cloud, start = cloud.CFrame, speed = Kit.rnd(0.3, 0.8) })
 	end
+	-- Heavy rain, splashing on the floor and the blocks, the floor turning wet.
+	local floorAt = Vector3.new(base.X, context.floor, base.Z)
+	local cloudLayer = Kit.block(
+		A(90, 1, 50),
+		CFrame.new(floorAt + A(0, 34, 0)) * home.Rotation * CFrame.new(0, 0, -6),
+		WHITE,
+		nil,
+		1
+	)
+	local rain = Kit.emitter(cloudLayer, {
+		Texture = "rbxasset://textures/particles/smoke_main.dds",
+		Shape = Enum.ParticleEmitterShape.Box,
+		EmissionDirection = Enum.NormalId.Bottom,
+		Orientation = Enum.ParticleOrientation.VelocityParallel,
+		Squash = NumberSequence.new(3),
+		Color = ColorSequence.new(Color3.fromRGB(205, 220, 240)),
+		LightEmission = 0.3,
+		Size = NumberSequence.new(0.13),
+		Transparency = NumberSequence.new(0.3),
+		Lifetime = NumberRange.new(0.32, 0.36),
+		Speed = NumberRange.new(95, 105),
+		Rate = 0,
+	})
+	local function splashes(part: BasePart, rate: number): ParticleEmitter
+		return Kit.emitter(part, {
+			Shape = Enum.ParticleEmitterShape.Box,
+			EmissionDirection = Enum.NormalId.Top,
+			Color = ColorSequence.new(Color3.fromRGB(215, 230, 250)),
+			LightEmission = 0.4,
+			Size = NumberSequence.new(0.2, 0),
+			Transparency = NumberSequence.new(0.2, 1),
+			Lifetime = NumberRange.new(0.15, 0.3),
+			Speed = NumberRange.new(4, 9),
+			SpreadAngle = Vector2.new(35, 35),
+			Acceleration = A(0, -50, 0),
+			Rate = rate,
+		})
+	end
+	local wet = Kit.block(
+		A(90, 0.05, 50),
+		CFrame.new(floorAt + A(0, 0.08, 0)) * home.Rotation * CFrame.new(0, 0, -6),
+		Color3.fromRGB(30, 40, 60),
+		nil,
+		1
+	)
+	wet.Reflectance = 0.4
+	local splash = { { emitter = splashes(wet, 0), rate = 700 } }
+	for _, block in context.blocks do
+		local top = Kit.block(
+			A(block.Size.X, 0.05, block.Size.Z),
+			block.CFrame * CFrame.new(0, block.Size.Y / 2 + 0.05, 0),
+			WHITE,
+			nil,
+			1
+		)
+		table.insert(splash, { emitter = splashes(top, 0), rate = 90 })
+	end
+	Kit.at(0.25, function()
+		Kit.tween(wet, 1.5, { Transparency = 0.6 })
+	end)
+	Kit.every(function(t)
+		local pour = Kit.span(t, 0.2, 0.9)
+		rain.Rate = 1500 * pour
+		for _, item in splash do
+			item.emitter.Rate = item.rate * Kit.span(t, 0.5, 1.2)
+		end
+		return t > 1.3
+	end)
 	Kit.at(3.0, function()
 		Kit.tween(tint, 0.8, { TintColor = Color3.fromRGB(205, 215, 240), Brightness = -0.08 })
 		Kit.tween(sky, 0.8, { Transparency = 0.55 })
@@ -518,7 +651,7 @@ function Legendary.Throne(context: Context)
 		local floor = spot.Position
 		Kit.dust(floor + A(0, 0.3), 30, 2)
 		Kit.ring(floor + A(0, 0.1), DUST, 18, 0.5)
-		rubble(context, floor + A(0, 0.5), 10, 9, GOLD, 0.35)
+		Kit.rubble(context, floor + A(0, 0.5), 10, 9, GOLD, 0.35)
 		Kit.shake(2.5, 0.5)
 	end)
 	Kit.react(context, "Stagger", 0.6)
@@ -661,15 +794,144 @@ local METEOR: { Key } = {
 	{ time = 2.95, angles = STAND_FISTS, ease = "Out" },
 }
 
--- Launches out of sight, comes back down as a meteor and slams into the podium: the shockwave
--- cracks the floor round the podium, breaks bits off every block and leaves a smoking crater.
+-- Breaks a block into a slightly wrecked one: split into columns, the outer ones knocked lower
+-- and tilted, charred, with glowing seams. The middle columns (where the players stand) keep
+-- their height. Put back when the victory stops.
+local function deform(block: BasePart, wreck: number, glow: Color3)
+	local size, base = block.Size, block.CFrame
+	local w, h, d = size.X, size.Y, size.Z
+	block.LocalTransparencyModifier = 1
+	local guis = {}
+	for _, item in block:GetChildren() do
+		if item:IsA("SurfaceGui") and item.Enabled then
+			item.Enabled = false
+			table.insert(guis, item)
+		end
+	end
+	Kit.onStop(function()
+		block.LocalTransparencyModifier = 0
+		for _, gui in guis do
+			gui.Enabled = true
+		end
+	end)
+	local charred = block.Color:Lerp(Color3.fromRGB(46, 32, 24), 0.25 + 0.3 * wreck)
+	for column = -1, 1 do
+		for row = 0, 1 do
+			local middle = column == 0
+			local drop = if middle then 0 else Kit.rnd(0.3, 0.6 + 0.6 * wreck)
+			local tilt = if middle
+				then CFrame.identity
+				else CFrame.Angles(
+					math.rad(Kit.rnd(-4, 4) * wreck),
+					math.rad(Kit.rnd(-3, 3)),
+					math.rad(Kit.rnd(-5, 5) * wreck)
+				)
+			local piece = Kit.block(
+				A(w / 3 - 0.06, h - drop, d / 2 - 0.06),
+				base * CFrame.new(column * w / 3, -drop / 2, (row - 0.5) * d / 2) * tilt,
+				charred,
+				block.Material
+			)
+			if middle and row == 1 then
+				-- The place number on the front middle piece.
+				for _, gui in guis do
+					local copy = gui:Clone()
+					copy.Enabled = true
+					copy.Parent = piece
+				end
+			end
+		end
+	end
+	-- Glowing seams between the columns, on the top and down the front.
+	for _, x in { -w / 6, w / 6 } do
+		Kit.line(
+			(base * CFrame.new(x, h / 2 + 0.02, -d / 2)).Position,
+			(base * CFrame.new(x, h / 2 + 0.02, d / 2)).Position,
+			0.12,
+			glow
+		)
+		Kit.line(
+			(base * CFrame.new(x, h / 2, d / 2 + 0.03)).Position,
+			(base * CFrame.new(x + Kit.rnd(-0.3, 0.3), h / 2 - h * 0.6, d / 2 + 0.03)).Position,
+			0.1,
+			glow
+		)
+	end
+end
+
+-- Branching glowing cracks down a block's front, and dark scorch patches on it.
+local function scar(block: BasePart, glow: Color3)
+	local size, base = block.Size, block.CFrame
+	local front = size.Z / 2 + 0.05
+	for _ = 1, 3 do
+		local x = Kit.rnd(-size.X / 2.6, size.X / 2.6)
+		local at = (base * CFrame.new(x, size.Y / 2, front)).Position
+		local depth = 0
+		while depth < size.Y * 0.8 do
+			local step = Kit.rnd(0.8, 1.5)
+			x = math.clamp(x + Kit.rnd(-0.8, 0.8), -size.X / 2 + 0.3, size.X / 2 - 0.3)
+			depth += step
+			local to = (base * CFrame.new(x, size.Y / 2 - depth, front)).Position
+			Kit.line(at, to, 0.1, glow)
+			if math.random() < 0.35 then
+				local twig = (base * CFrame.new(
+					x + Kit.rnd(-1, 1),
+					size.Y / 2 - depth - Kit.rnd(0.4, 0.9),
+					front
+				)).Position
+				Kit.line(to, twig, 0.06, glow)
+			end
+			at = to
+		end
+	end
+	for _ = 1, 3 do
+		Kit.block(
+			A(Kit.rnd(1.5, 3), Kit.rnd(1, 2.5), 0.05),
+			base
+				* CFrame.new(
+					Kit.rnd(-size.X / 3, size.X / 3),
+					Kit.rnd(-size.Y / 4, size.Y / 3),
+					front + 0.02
+				),
+			Color3.fromRGB(20, 14, 10),
+			nil,
+			0.45
+		)
+	end
+end
+
+-- A small fire burning at `position`, with its light.
+local function fire(position: Vector3, size: number, colors: ColorSequence)
+	local spot = Kit.block(A(size, 0.2, size), CFrame.new(position), WHITE, nil, 1)
+	Kit.emitter(spot, {
+		Texture = "rbxasset://textures/particles/fire_main.dds",
+		Shape = Enum.ParticleEmitterShape.Box,
+		Color = colors,
+		Size = NumberSequence.new(size * 0.9, size * 0.2),
+		Transparency = NumberSequence.new(0.15, 1),
+		Lifetime = NumberRange.new(0.4, 0.8),
+		Speed = NumberRange.new(2, 4),
+		EmissionDirection = Enum.NormalId.Top,
+		Rate = 22,
+	})
+	local light = Instance.new("PointLight")
+	light.Color = Color3.fromRGB(255, 140, 50)
+	light.Range = size * 5
+	light.Brightness = 1.5
+	light.Parent = spot
+end
+
+-- Launches out of sight, comes back down as a meteor and slams into the podium. The shockwave
+-- runs out across the floor round the podium: it cracks open glowing, scorches, burns in places
+-- and is strewn with smoking debris; every block it reaches is knocked out of shape, charred and
+-- cracked, and the winner's is left with a smoking crater.
 function Legendary.MeteorTouchdown(context: Context)
 	local character = context.character
 	local root = context.root
 	local colors = context.colors
 	local hot = colors[1] or Color3.fromRGB(255, 180, 60)
 	local deep = colors[2] or Color3.fromRGB(255, 74, 28)
-	local fire = Kit.sequence({ Color3.fromRGB(255, 240, 180), hot, deep })
+	local flames = Kit.sequence({ Color3.fromRGB(255, 240, 180), hot, deep })
 	local kneel = Epic.kneelDrop(context)
 	local base = feet(context)
 
@@ -686,6 +948,8 @@ function Legendary.MeteorTouchdown(context: Context)
 			return CFrame.new(0, -kneel, 0)
 		end
 		return CFrame.new(0, -kneel * (1 - Kit.span(t, 2.4, 2.95, "Out")), 0)
+	end, function(t)
+		return t >= 1.8 -- landed: resting in the crater
 	end)
 	Kit.tilt(function(t)
 		return 6 * Kit.span(t, 0.4, 0.9) * (1 - Kit.span(t, 1.1, 1.6))
@@ -693,7 +957,7 @@ function Legendary.MeteorTouchdown(context: Context)
 	end)
 	-- Charging embers, then fire on the way up and down.
 	local embers = Kit.emitter(Kit.attach(root, A(0, -rootHeight(context) + 0.3, 0)), {
-		Color = fire,
+		Color = flames,
 		Size = NumberSequence.new(0.25, 0),
 		Lifetime = NumberRange.new(0.6, 1),
 		Speed = NumberRange.new(3, 6),
@@ -701,9 +965,9 @@ function Legendary.MeteorTouchdown(context: Context)
 		Acceleration = A(0, 4, 0),
 		Rate = 40,
 	})
-	local flames = Kit.emitter(Kit.attach(root, Vector3.zero), {
+	local burning = Kit.emitter(Kit.attach(root, Vector3.zero), {
 		Texture = "rbxasset://textures/particles/fire_main.dds",
-		Color = fire,
+		Color = flames,
 		Size = NumberSequence.new(3, 0.5),
 		Lifetime = NumberRange.new(0.25, 0.45),
 		Speed = NumberRange.new(2, 5),
@@ -711,23 +975,23 @@ function Legendary.MeteorTouchdown(context: Context)
 		Transparency = NumberSequence.new(0.2, 1),
 		Rate = 0,
 	})
-	local trail = Kit.trail(root, A(1, 0, 0), A(-1, 0, 0), fire, 0.45)
+	local trail = Kit.trail(root, A(1, 0, 0), A(-1, 0, 0), flames, 0.45)
 	trail.Enabled = false
 	local ball = Kit.block(A(5, 5, 5), root.CFrame, hot, Enum.Material.Neon, 1, Enum.PartType.Ball)
 	Kit.at(0.4, function()
 		embers.Rate = 0
-		flames.Rate = 120
+		burning.Rate = 120
 		trail.Enabled = true
 		Kit.ring(base + A(0, 0.1), hot, 10, 0.4)
-		Kit.burst(base + A(0, 0.5), 30, fire, NumberRange.new(8, 14), 0.5)
+		Kit.burst(base + A(0, 0.5), 30, flames, NumberRange.new(8, 14), 0.5)
 		Kit.shake(1.2, 0.3)
 	end)
 	Kit.at(0.9, function()
-		flames.Rate = 0
+		burning.Rate = 0
 		trail.Enabled = false
 	end)
 	Kit.at(1.3, function()
-		flames.Rate = 160
+		burning.Rate = 160
 		trail.Enabled = true
 	end)
 	Kit.every(function(t)
@@ -738,29 +1002,87 @@ function Legendary.MeteorTouchdown(context: Context)
 	end)
 	Kit.react(context, "Stagger", 1.85)
 	Kit.at(1.8, function()
-		flames.Rate = 0
+		burning.Rate = 0
 		trail.Enabled = false
 		Kit.flash(Color3.fromRGB(255, 208, 160), 0.85, 0.6)
 		Kit.shake(4, 0.9)
 		local top = base + A(0, 0.1, 0)
 		Kit.ring(top, hot, 20, 0.6)
-		Kit.burst(top + A(0, 1), 70, fire, NumberRange.new(14, 26), 0.6, 12)
+		Kit.burst(top + A(0, 1), 90, flames, NumberRange.new(14, 28), 0.6, 12)
+		Kit.burst(
+			top + A(0, 1),
+			60,
+			Color3.fromRGB(255, 230, 170),
+			NumberRange.new(20, 34),
+			0.3,
+			40,
+			1.2
+		)
 		Kit.dust(top + A(0, 0.4), 24, 2)
-		-- The shockwave runs out across the floor.
+		Kit.rubble(context, top + A(0, 0.6), 14, 12, Color3.fromRGB(70, 46, 30), 0.5, true)
+		-- The shockwave runs out across the floor round the podium.
 		local floorCenter = Vector3.new(base.X, context.floor + 0.1, base.Z)
-		Kit.ring(floorCenter, deep, 60, 1.1)
-		Kit.ring(floorCenter + A(0, 0.05, 0), hot, 44, 0.8)
+		Kit.ring(floorCenter, deep, 64, 1.1)
+		Kit.ring(floorCenter + A(0, 0.05, 0), hot, 46, 0.8)
+		Kit.ring(floorCenter + A(0, 0.1, 0), Color3.fromRGB(255, 240, 200), 30, 0.5)
 		local scorch = Kit.block(
 			A(0.1, 2, 2),
 			CFrame.new(floorCenter) * CFrame.Angles(0, 0, math.rad(90)),
-			Color3.fromRGB(28, 20, 16),
+			Color3.fromRGB(26, 18, 14),
 			nil,
-			0.25,
+			0.2,
 			Enum.PartType.Cylinder
 		)
-		Kit.tween(scorch, 0.9, { Size = A(0.1, 36, 36) })
-		floorCracks(context, floorCenter, 14, 26, deep, 40)
-		-- The crater on the winner's block, and its edges breaking off.
+		Kit.tween(scorch, 0.9, { Size = A(0.1, 40, 40) })
+		local soot = Kit.block(
+			A(0.08, 2, 2),
+			CFrame.new(floorCenter + A(0, 0.02, 0)) * CFrame.Angles(0, 0, math.rad(90)),
+			Color3.fromRGB(12, 8, 6),
+			nil,
+			0.15,
+			Enum.PartType.Cylinder
+		)
+		Kit.tween(soot, 0.6, { Size = A(0.08, 22, 22) })
+		floorCracks(context, floorCenter, 18, 28, deep, 40, true)
+		-- Molten pools, fires and smoking debris strewn round the podium as the wave passes.
+		for _ = 1, 9 do
+			local angle, distance = Kit.rnd(0, math.pi * 2), Kit.rnd(7, 22)
+			local spot = floorCenter + A(math.cos(angle) * distance, 0, math.sin(angle) * distance)
+			Kit.at(Kit.now() + distance / 40, function()
+				local size = Kit.rnd(1.4, 3.4)
+				local pool = Kit.block(
+					A(0.06, size, size),
+					CFrame.new(spot + A(0, 0.04, 0)) * CFrame.Angles(0, 0, math.rad(90)),
+					deep,
+					Enum.Material.Neon,
+					0.15,
+					Enum.PartType.Cylinder
+				)
+				local phase = Kit.rnd(0, 6)
+				Kit.every(function(t)
+					pool.Transparency = 0.15 + 0.25 * math.abs(math.sin(t * 2 + phase))
+					return nil
+				end)
+			end)
+		end
+		for _ = 1, 7 do
+			local angle, distance = Kit.rnd(0, math.pi * 2), Kit.rnd(6, 20)
+			local spot = floorCenter
+				+ A(math.cos(angle) * distance, 0.1, math.sin(angle) * distance)
+			Kit.at(Kit.now() + distance / 40 + 0.05, function()
+				fire(spot, Kit.rnd(1, 2), flames)
+				Kit.rubble(
+					context,
+					spot + A(0, 0.4, 0),
+					3,
+					6,
+					Color3.fromRGB(58, 40, 28),
+					0.5,
+					true
+				)
+			end)
+		end
+		-- The crater on the winner's spot.
 		local crater = Kit.block(
 			A(0.12, 5, 5),
 			CFrame.new(base + A(0, 0.06, 0)) * CFrame.Angles(0, 0, math.rad(90)),
@@ -770,8 +1092,19 @@ function Legendary.MeteorTouchdown(context: Context)
 			Enum.PartType.Cylinder
 		)
 		crater.Material = Enum.Material.Slate
+		for i = 1, 12 do
+			local a = i / 12 * math.pi * 2
+			local s = Kit.rnd(0.35, 0.7)
+			Kit.block(
+				A(s, s * 0.7, s),
+				CFrame.new(base + A(math.cos(a) * 2.6, s * 0.3, math.sin(a) * 2.6))
+					* CFrame.Angles(Kit.rnd(0, 1), Kit.rnd(0, 6), Kit.rnd(0, 1)),
+				Color3.fromRGB(60, 44, 32),
+				Enum.Material.Slate
+			)
+		end
 		Epic.cracks(base, deep, 7, 5, 99)
-		-- Every block in reach: bits fly off its top corners, cracks glow on its front, it jolts.
+		-- Every block it reaches: knocked out of shape, charred, cracked and burning.
 		for i, block in context.blocks do
 			local flat = Vector3.new(block.Position.X, base.Y, block.Position.Z)
 			local distance = (flat - base).Magnitude
@@ -779,47 +1112,44 @@ function Legendary.MeteorTouchdown(context: Context)
 				local size = block.Size
 				local frame = block.CFrame
 				for _, corner in { -1, 1 } do
-					rubble(
+					Kit.rubble(
 						context,
 						(frame * CFrame.new(corner * size.X / 2, size.Y / 2, size.Z / 2)).Position,
-						4,
+						5,
 						8,
 						block.Color,
-						0.6
+						0.6,
+						true
 					)
 				end
-				local front = frame * CFrame.new(0, 0, size.Z / 2 + 0.04)
-				local x = Kit.rnd(-size.X / 4, size.X / 4)
-				local a = (front * CFrame.new(x, size.Y / 2, 0)).Position
-				local b = (front * CFrame.new(x + Kit.rnd(-1.2, 1.2), size.Y / 2 - size.Y * 0.4, 0)).Position
-				local c = (
-					front * CFrame.new(x + Kit.rnd(-1.5, 1.5), size.Y / 2 - size.Y * 0.75, 0)
-				).Position
-				Kit.line(a, b, 0.14, deep)
-				Kit.line(b, c, 0.1, deep)
-				local charred = block.Color
-				local burnt =
-					charred:Lerp(Color3.fromRGB(60, 40, 30), if i == 1 then 0.55 else 0.25)
-				block.Color = burnt
-				Kit.onStop(function()
-					block.Color = charred
-				end)
-				if i > 1 then
-					local start = block.CFrame
-					local begun = Kit.now()
-					Kit.onStop(function()
-						block.CFrame = start
-					end)
-					Kit.every(function(t)
-						local u = t - begun
-						block.CFrame = start
-							+ A(0, math.sin(math.clamp(u / 0.3, 0, 1) * math.pi) * 0.4, 0)
-						return u > 0.3
-					end)
-				end
+				deform(block, if i == 1 then 1 else 0.6, deep)
+				scar(block, deep)
+				fire(
+					(frame * CFrame.new(-size.X / 2 + 0.8, size.Y / 2, size.Z / 2 - 0.8)).Position,
+					1.1,
+					flames
+				)
+				Kit.emitter(
+					Kit.block(
+						A(size.X, 0.2, size.Z),
+						frame * CFrame.new(0, size.Y / 2, 0),
+						WHITE,
+						nil,
+						1
+					),
+					{
+						Shape = Enum.ParticleEmitterShape.Box,
+						Color = flames,
+						Size = NumberSequence.new(0.2, 0),
+						Lifetime = NumberRange.new(1, 2),
+						Speed = NumberRange.new(1.5, 3),
+						EmissionDirection = Enum.NormalId.Top,
+						Rate = 10,
+					}
+				)
 			end)
 		end
-		-- Smoke and embers rising from the crater.
+		-- Smoke rising from the crater and the fires.
 		local smokeSpot = Kit.block(A(4, 0.2, 4), CFrame.new(base + A(0, 0.2, 0)), WHITE, nil, 1)
 		Kit.emitter(smokeSpot, {
 			Texture = "rbxasset://textures/particles/smoke_main.dds",
@@ -831,11 +1161,11 @@ function Legendary.MeteorTouchdown(context: Context)
 			Lifetime = NumberRange.new(2, 3),
 			Speed = NumberRange.new(2, 4),
 			EmissionDirection = Enum.NormalId.Top,
-			Rate = 10,
+			Rate = 12,
 		})
 		Kit.emitter(smokeSpot, {
 			Shape = Enum.ParticleEmitterShape.Box,
-			Color = fire,
+			Color = flames,
 			Size = NumberSequence.new(0.22, 0),
 			Lifetime = NumberRange.new(1.2, 2),
 			Speed = NumberRange.new(2, 4),

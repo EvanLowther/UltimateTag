@@ -178,8 +178,8 @@ function Iridescent.Supernova(context: Context)
 		local bob = if t > 2.7 then math.sin((t - 2.7) * 1.6) * 0.3 else 0
 		return CFrame.new(0, 8 * Kit.span(t, 0, 2.0, "Out") + bob, 0)
 	end)
-	Kit.tilt(function(t)
-		return 8 * Kit.span(t, 0.3, 2.0)
+	Kit.lookAt(function(t)
+		return context.root.Position, 0.8 * Kit.span(t, 0.3, 2.0)
 	end)
 	Kit.react(context, "LookUp", 0.6)
 	Kit.react(context, "Shield", 2.6)
@@ -539,44 +539,99 @@ function Iridescent.Rift(context: Context)
 		stars:Emit(500)
 	end)
 
-	-- A pink shooting star.
+	-- A pink shooting star arcing across the sky, shedding sparkles.
 	Kit.at(2.7, function()
-		local from = (home * CFrame.new(26, 16, 45)).Position
-		local to = (home * CFrame.new(-34, -4, 45)).Position
+		local from = (home * CFrame.new(28, 14, 45)).Position
+		local bend = (home * CFrame.new(2, 26, 45)).Position
+		local to = (home * CFrame.new(-34, -2, 45)).Position
 		local star = Kit.block(
-			A(0.9, 0.9, 0.9),
+			A(1, 1, 1),
 			CFrame.new(from),
-			PALE,
+			WHITE,
 			Enum.Material.Neon,
 			0,
 			Enum.PartType.Ball
 		)
+		local halo = Kit.block(
+			A(3.2, 3.2, 3.2),
+			CFrame.new(from),
+			PINK,
+			Enum.Material.Neon,
+			0.65,
+			Enum.PartType.Ball
+		)
+		local light = Instance.new("PointLight")
+		light.Color = PINK
+		light.Range = 30
+		light.Brightness = 4
+		light.Parent = star
 		local trail =
-			Kit.trail(star, A(0, 0.45, 0), A(0, -0.45, 0), ColorSequence.new(PALE, PINK), 0.8)
-		trail.WidthScale = NumberSequence.new(1, 0)
+			Kit.trail(star, A(0, 0.5, 0), A(0, -0.5, 0), ColorSequence.new(PALE, PINK), 1.3)
+		trail.WidthScale = NumberSequence.new(1.6, 0)
+		trail.Transparency = NumberSequence.new(0, 1)
+		local glowTrail =
+			Kit.trail(star, A(0, 1.4, 0), A(0, -1.4, 0), ColorSequence.new(ROSE, PINK), 0.6)
+		glowTrail.Transparency = NumberSequence.new(0.6, 1)
+		Kit.emitter(star, {
+			Color = ColorSequence.new(WHITE, PINK),
+			Size = NumberSequence.new(0.35, 0),
+			Lifetime = NumberRange.new(0.6, 1.4),
+			Speed = NumberRange.new(0.5, 3),
+			SpreadAngle = Vector2.new(180, 180),
+			Acceleration = A(0, -3, 0),
+			Rate = 500,
+		})
+		Kit.emitter(star, {
+			Orientation = Enum.ParticleOrientation.VelocityParallel,
+			Squash = NumberSequence.new(2),
+			Color = ColorSequence.new(PALE),
+			Size = NumberSequence.new(0.18, 0),
+			Lifetime = NumberRange.new(0.3, 0.6),
+			Speed = NumberRange.new(4, 8),
+			SpreadAngle = Vector2.new(180, 180),
+			Rate = 150,
+		})
 		local begun = Kit.now()
 		Kit.every(function(t)
-			local u = Kit.span(t, begun, begun + 0.8, "In")
-			star.CFrame = CFrame.new(from:Lerp(to, u))
+			local u = Kit.span(t, begun, begun + 1.0, "Linear")
+			local a = from:Lerp(bend, u)
+			local b = bend:Lerp(to, u)
+			local at = a:Lerp(b, u)
+			star.CFrame = CFrame.new(at)
+			halo.CFrame = CFrame.new(at)
 			if u >= 1 then
 				star.Transparency = 1
+				halo.Transparency = 1
+				light.Enabled = false
+				for _, item in star:GetChildren() do
+					if item:IsA("ParticleEmitter") then
+						item.Enabled = false
+					end
+				end
 				return true
 			end
 			return nil
 		end)
 	end)
 
-	-- The supernova erupts behind them.
+	-- The supernova erupts behind them: a blinding flash and shockwaves, plasma flaring out in
+	-- wisps, a glowing pink nebula, streaks of light, and drifting points of light all round them.
 	Kit.at(3.9, function()
 		local nova = (home * CFrame.new(4, 7, 48)).Position
-		Kit.flash(ROSE, 0.85, 0.7)
-		Kit.shake(2.5, 0.8)
-		Kit.ring(nova, PINK, 150, 1.4, facingCamera(nova).Rotation)
+		Kit.flash(ROSE, 0.9, 0.8)
+		Kit.shake(2.8, 0.9)
+		local toCamera = facingCamera(nova).Rotation
+		for i, size in { 160, 120, 90 } do
+			Kit.at(3.9 + (i - 1) * 0.12, function()
+				Kit.ring(nova, if i == 2 then PALE else PINK, size, 1.6, toCamera)
+			end)
+		end
+		-- The core: a bright heart in layered glow.
 		local blast =
 			Kit.block(A(2, 2, 2), CFrame.new(nova), PALE, Enum.Material.Neon, 0, Enum.PartType.Ball)
-		Kit.tween(blast, 0.5, { Size = A(30, 30, 30), Transparency = 0.6 })
+		Kit.tween(blast, 0.5, { Size = A(34, 34, 34), Transparency = 0.6 })
 		Kit.at(4.4, function()
-			Kit.tween(blast, 1.2, { Size = A(9, 9, 9), Transparency = 0.3, Color = PINK })
+			Kit.tween(blast, 1.4, { Size = A(11, 11, 11), Transparency = 0.35, Color = PINK })
 		end)
 		local heart = Kit.block(
 			A(5, 5, 5),
@@ -586,31 +641,55 @@ function Iridescent.Rift(context: Context)
 			0.1,
 			Enum.PartType.Ball
 		)
-		-- Wisps of plasma flaring out of it.
+		local corona = Kit.block(
+			A(18, 18, 18),
+			CFrame.new(nova),
+			PINK,
+			Enum.Material.Neon,
+			0.85,
+			Enum.PartType.Ball
+		)
+		-- A long lens streak across the sky through it.
+		local streak = Kit.block(
+			A(220, 0.5, 0.1),
+			CFrame.new(nova) * toCamera * CFrame.Angles(0, math.pi / 2, 0),
+			PALE,
+			Enum.Material.Neon,
+			0.2
+		)
+		Kit.tween(streak, 2.5, { Transparency = 0.75, Size = A(160, 0.25, 0.1) })
 		local origin = Kit.block(A(1, 1, 1), CFrame.new(nova), WHITE, nil, 1)
 		local center = Kit.attach(origin, Vector3.zero)
+		-- Plasma wisps flaring out (soft, smoky ribbons that sway).
 		type Flare = { beam: Beam, tip: Attachment, toward: Vector3, length: number, phase: number }
 		local flares: { Flare } = {}
-		for i = 1, 18 do
-			local angle = i / 18 * math.pi * 2 + Kit.rnd(-0.15, 0.15)
+		for i = 1, 34 do
+			local angle = i / 34 * math.pi * 2 + Kit.rnd(-0.12, 0.12)
 			local toward = (home.Rotation * Vector3.new(
 				math.cos(angle),
 				math.sin(angle),
-				Kit.rnd(-0.4, 0.2)
+				Kit.rnd(-0.5, 0.3)
 			)).Unit
 			local tip = Kit.attach(origin, Vector3.zero)
 			local beam = Instance.new("Beam")
 			beam.Attachment0 = center
 			beam.Attachment1 = tip
-			beam.Width0 = Kit.rnd(3, 6)
-			beam.Width1 = 0.3
-			beam.Segments = 24
+			beam.Texture = "rbxasset://textures/particles/smoke_main.dds"
+			beam.TextureMode = Enum.TextureMode.Stretch
+			beam.TextureSpeed = Kit.rnd(0.2, 0.6)
+			beam.Width0 = Kit.rnd(4, 10)
+			beam.Width1 = Kit.rnd(0.5, 2)
+			beam.Segments = 30
 			beam.FaceCamera = true
 			beam.LightEmission = 1
-			beam.Color = ColorSequence.new(PALE, PINK)
+			beam.Color = ColorSequence.new({
+				ColorSequenceKeypoint.new(0, PALE),
+				ColorSequenceKeypoint.new(0.4, ROSE),
+				ColorSequenceKeypoint.new(1, PINK),
+			})
 			beam.Transparency = NumberSequence.new({
-				NumberSequenceKeypoint.new(0, 0.15),
-				NumberSequenceKeypoint.new(0.6, 0.55),
+				NumberSequenceKeypoint.new(0, 0.05),
+				NumberSequenceKeypoint.new(0.5, 0.45),
 				NumberSequenceKeypoint.new(1, 1),
 			})
 			beam.Parent = origin
@@ -619,57 +698,118 @@ function Iridescent.Rift(context: Context)
 				beam = beam,
 				tip = tip,
 				toward = toward,
-				length = Kit.rnd(30, 55),
+				length = Kit.rnd(28, 70),
 				phase = Kit.rnd(0, 6),
 			})
 		end
-		-- Drifting points of light filling the space round the winner (soft, out of focus).
+		-- The nebula: big soft glowing clouds billowing out.
+		Kit.emitter(origin, {
+			Texture = "rbxasset://textures/particles/smoke_main.dds",
+			Color = ColorSequence.new(ROSE, PINK),
+			Size = NumberSequence.new(14, 34),
+			Transparency = NumberSequence.new(0.55, 1),
+			Lifetime = NumberRange.new(5, 8),
+			Speed = NumberRange.new(3, 8),
+			SpreadAngle = Vector2.new(180, 180),
+			RotSpeed = NumberRange.new(-15, 15),
+			Rotation = NumberRange.new(0, 360),
+			Drag = 0.5,
+			Rate = 18,
+		}):Emit(30)
+		-- Streaks of light shooting out of it.
+		local streaks = Kit.emitter(origin, {
+			Orientation = Enum.ParticleOrientation.VelocityParallel,
+			Squash = NumberSequence.new(2.5),
+			Color = ColorSequence.new(WHITE, PINK),
+			Size = NumberSequence.new(0.6, 0.1),
+			Lifetime = NumberRange.new(1, 2.2),
+			Speed = NumberRange.new(35, 80),
+			SpreadAngle = Vector2.new(180, 180),
+			Drag = 1.2,
+			Rate = 90,
+		})
+		streaks:Emit(500)
+		-- Glitter filling the space round the winner.
+		local around = Kit.block(A(70, 34, 60), home * CFrame.new(0, 4, 12), WHITE, nil, 1)
+		Kit.emitter(around, {
+			Shape = Enum.ParticleEmitterShape.Box,
+			ShapeStyle = Enum.ParticleEmitterShapeStyle.Volume,
+			Color = ColorSequence.new(PALE, PINK),
+			Size = NumberSequence.new({
+				NumberSequenceKeypoint.new(0, 0),
+				NumberSequenceKeypoint.new(0.5, 0.3),
+				NumberSequenceKeypoint.new(1, 0),
+			}),
+			Lifetime = NumberRange.new(2, 4),
+			Speed = NumberRange.new(0.2, 1),
+			SpreadAngle = Vector2.new(180, 180),
+			Rate = 260,
+		})
+		-- Soft out-of-focus blobs of light drifting.
+		Kit.emitter(around, {
+			Texture = "rbxasset://textures/particles/smoke_main.dds",
+			Shape = Enum.ParticleEmitterShape.Box,
+			ShapeStyle = Enum.ParticleEmitterShapeStyle.Volume,
+			Color = ColorSequence.new(ROSE, PINK),
+			Size = NumberSequence.new(1.2, 3),
+			Transparency = NumberSequence.new({
+				NumberSequenceKeypoint.new(0, 1),
+				NumberSequenceKeypoint.new(0.3, 0.55),
+				NumberSequenceKeypoint.new(1, 1),
+			}),
+			Lifetime = NumberRange.new(4, 6),
+			Speed = NumberRange.new(0.2, 0.6),
+			SpreadAngle = Vector2.new(180, 180),
+			Rate = 45,
+		})
+		-- Points of light thrown out of the blast and drifting round the winner.
 		type Mote = { part: BasePart, to: Vector3, phase: number, base: number }
 		local motes: { Mote } = {}
-		for _ = 1, 140 do
-			local size = Kit.rnd(0.2, 1.8)
+		for _ = 1, 240 do
+			local size = Kit.rnd(0.15, 1.9)
 			local part = Kit.block(
 				A(size, size, size),
 				CFrame.new(nova),
-				PINK:Lerp(PALE, Kit.rnd(0, 0.8)),
+				PINK:Lerp(PALE, Kit.rnd(0, 0.85)),
 				Enum.Material.Neon,
 				0.3,
 				Enum.PartType.Ball
 			)
-			local to = (home * CFrame.new(Kit.rnd(-28, 28), Kit.rnd(-8, 18), Kit.rnd(-14, 42))).Position
+			local to = (home * CFrame.new(Kit.rnd(-30, 30), Kit.rnd(-10, 20), Kit.rnd(-14, 44))).Position
 			table.insert(
 				motes,
-				{ part = part, to = to, phase = Kit.rnd(0, 6), base = Kit.rnd(0.2, 0.7) }
+				{ part = part, to = to, phase = Kit.rnd(0, 6), base = Kit.rnd(0.15, 0.7) }
 			)
 		end
 		local camera = workspace.CurrentCamera
 		Kit.lighting("DepthOfFieldEffect", {
 			FocusDistance = (camera.CFrame.Position - context.root.Position).Magnitude,
 			InFocusRadius = 6,
-			NearIntensity = 0.7,
-			FarIntensity = 0.45,
+			NearIntensity = 0.75,
+			FarIntensity = 0.5,
 		})
-		local glow = Kit.emitter(Kit.attach(context.root, Vector3.zero), {
+		Kit.lighting("BloomEffect", { Intensity = 1.2, Size = 40, Threshold = 0.85 })
+		Kit.emitter(Kit.attach(context.root, Vector3.zero), {
 			Color = ColorSequence.new(PALE, PINK),
-			Size = NumberSequence.new(0.18, 0),
+			Size = NumberSequence.new(0.2, 0),
 			Lifetime = NumberRange.new(1.5, 2.5),
 			Speed = NumberRange.new(0.5, 1.5),
 			SpreadAngle = Vector2.new(180, 180),
-			Rate = 20,
+			Rate = 40,
 		})
-		glow.Enabled = true
 		local begun = Kit.now()
 		Kit.every(function(t)
 			local u = t - begun
-			local grow = Kit.span(u, 0, 0.6, "Out")
+			local grow = Kit.span(u, 0, 0.7, "Out")
 			for _, flare in flares do
 				local sway = math.sin(t * 0.8 + flare.phase)
 				flare.tip.Position = flare.toward * flare.length * grow
-				flare.beam.CurveSize0 = 8 * sway
-				flare.beam.CurveSize1 = -12 * math.cos(t * 0.6 + flare.phase)
+				flare.beam.CurveSize0 = 10 * sway
+				flare.beam.CurveSize1 = -14 * math.cos(t * 0.6 + flare.phase)
 			end
 			heart.Transparency = 0.1 + 0.2 * math.abs(math.sin(t * 2))
-			local spread = Kit.span(u, 0, 1.4, "Out")
+			corona.Size = A(18, 18, 18) * (1 + 0.08 * math.sin(t * 3))
+			local spread = Kit.span(u, 0, 1.6, "Out")
 			local parts = table.create(#motes)
 			local frames = table.create(#motes)
 			for _, mote in motes do

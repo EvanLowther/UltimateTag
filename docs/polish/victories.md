@@ -190,6 +190,17 @@ The 1st place block erupts out of the ground.
   shooting star streaks past, then a supernova erupts behind them: a pink flash, wisps of
   plasma flaring out, and drifting pink points of light all round, soft and out of focus.
 
+## Polish after the first build (2026-10-30, 0.55.1)
+- Characters glowed on the win screen (the lobby's night bloom was still fading out); the win
+  screen now has its own lighting, switched at once behind a short black hold.
+- No name plate under the winner (it covered the rewards card).
+- Breakdance never sinks into or floats over the block; Katana's sword follows one smooth path
+  with the arms reaching for it, and the competition's blocks are sliced and fall, the players
+  flopping to the floor; Trophy Lift comes out of a pocket and goes clear over the head, no rays;
+  Podium Rise keeps its number, follows the winner with the camera, darkens the stage under the
+  spotlight and wrecks the floor round the block; Thunderstorm has heavy rain; Meteor Touchdown
+  deforms every block and wrecks the floor; Rift's star arcs and its supernova is far bigger.
+
 ## Decisions (2026-10-30)
 - **The new set only:** Flex stays. Confetti Pop, Backflip, Fireworks, Hologram and Graduation are
   removed. Owners get the closest new one: Confetti Pop to Confetti Storm, Backflip to the new
