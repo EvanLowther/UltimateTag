@@ -12,6 +12,7 @@ and what the owner should test (agents cannot playtest). The owner's original li
 | [maps.md](maps.md) | New map checks, floating and clipping fixes, art passes | 1 (checks), 2 (art) |
 | [economy.md](economy.md) | Rewards, pricing, XP/coin consistency, redeem codes | 1 (sim, decisions), 2 (rebalance) |
 | [movement.md](movement.md) | Wall-run chains, landing, momentum model, animations | design talk first, code in 2 |
+| [victories.md](victories.md) | The new victory animations (win screen and Locker) | ideas, then previews, then build |
 | [parked.md](parked.md) | Sound (waiting), payments, anti-exploit, tests, dead code | later |
 
 ## Rules for every agent
