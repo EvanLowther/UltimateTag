@@ -68,6 +68,7 @@ local function apply(player: Player)
 		new.Name = HIGHLIGHT_NAME
 		new.FillColor = Config.Colors.It
 		new.FillTransparency = 0.5
+		new.DepthMode = Enum.HighlightDepthMode.Occluded -- hidden behind walls, not through them
 		new.OutlineColor = Config.Colors.Text
 		new.Parent = character
 	elseif role ~= "It" and highlight then

@@ -4,9 +4,11 @@
 -- Each round: pick a map for the number of players still in (MapService), load it, place
 -- everyone on its spawn points, let the game mode assign roles (Modes/HotPotato), freeze
 -- everyone for the intro (Its a little longer), run the timer, then eliminate whoever the mode
--- says lost. Eliminated players go back to the lobby and spectate (client/Spectate). On a map
+-- says lost. Out of the game means camera only: after a short ELIMINATED moment the body is
+-- parked out of sight and the player spectates (server/Spectators, client/Spectate). On a map
 -- with FallEliminates, falling off during the round puts you out at once (server/MapRespawn).
--- Rounds continue until one player is left; they win.
+-- Rounds continue until one player is left; they win. When the game ends everyone is respawned
+-- in the lobby and the win screen plays (client/WinScreen, the GameOver remote).
 -- With Config.Game.Mode = "Sandbox" this runs the free-play test mode instead (server/Sandbox).
 -- The dev panel (server/DevCommands) can switch modes, skip the current timer, change the time
 -- left and start a game early.
@@ -18,12 +20,15 @@ local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
+local GameLog = require(script.Parent.GameLog)
+local GameRewards = require(script.Parent.GameRewards)
 local MapRespawn = require(script.Parent.MapRespawn)
 local MapService = require(script.Parent.MapService)
 local Participants = require(script.Parent.Participants)
 local Progression = require(script.Parent.Progression)
 local Roles = require(script.Parent.Roles)
 local Sandbox = require(script.Parent.Sandbox)
+local Spectators = require(script.Parent.Spectators)
 local WinsStore = require(script.Parent.WinsStore)
 local HotPotato = require(script.Parent.Modes.HotPotato)
 
@@ -82,7 +87,23 @@ end
 -- Respawns a player in the lobby (its spawn ring has the only SpawnLocations in the game).
 local function sendToLobby(player: Player)
 	if player.Parent then
-		player:LoadCharacter()
+		pcall(player.LoadCharacter, player)
+	end
+end
+
+-- Respawns these players in the lobby and waits (up to 5 s) until they have all loaded.
+local function respawnInLobby(players: { Player })
+	local pending = 0
+	for _, player in players do
+		pending += 1
+		task.spawn(function()
+			sendToLobby(player)
+			pending -= 1
+		end)
+	end
+	local waited = 0
+	while pending > 0 and waited < 5 do
+		waited += task.wait(0.1)
 	end
 end
 
@@ -128,8 +149,8 @@ local function roundGoesOn(): boolean
 	return enoughToKeepPlaying() and mode.canContinue(Participants.alive())
 end
 
--- Out mid-round: fell off a map with FallEliminates (server/MapRespawn). They come back in the
--- lobby on their own (the lobby has the only SpawnLocation) and spectate.
+-- Out mid-round: fell off a map with FallEliminates (server/MapRespawn). They are camera only
+-- from now on: the body they respawn with is parked (server/Spectators).
 local function fellOut(player: Player)
 	if GameState.getPhase() ~= "Playing" or not Participants.isAlive(player) then
 		return
@@ -138,8 +159,10 @@ local function fellOut(player: Player)
 	Roles.set(player, nil)
 	Progression.record(player, "GameLost")
 	table.insert(fellThisRound, player)
+	Spectators.fellOut(player)
 	local character = player.Character
 	local hitByTrain = character ~= nil and character:GetAttribute("HitByTrain") == true
+	GameLog.say(`{player.Name} fell out (hit by train: {hitByTrain})`)
 	Remotes.get("Notify"):FireAllClients(
 		if hitByTrain
 			then `{player.DisplayName} was hit by the train and is out!`
@@ -162,6 +185,7 @@ local function playRound(round: number, lastMap: string?): string?
 	placeOnMap(alive, map)
 	task.wait(0.5) -- let the new characters load before roles are applied to them
 	local modeStatus = mode.setup(alive)
+	GameLog.say(`round {round} on {mapName} starts, roles: {GameLog.describe(alive)}`)
 
 	-- Intro: everyone frozen to look around; Its stay frozen a little longer (head start).
 	local intro = Config.Game.IntroTime
@@ -177,12 +201,14 @@ local function playRound(round: number, lastMap: string?): string?
 
 	-- Time's up: the mode decides who's out.
 	alive = Participants.alive()
+	GameLog.say(`timer over, roles: {GameLog.describe(alive)}`)
 	local out = if #alive >= 2 then mode.finish(alive) else {}
 	for _, player in out do
 		Participants.eliminate(player)
 		Roles.set(player, nil)
-		sendToLobby(player)
+		Spectators.eliminated(player) -- the ELIMINATED moment, then parked out of sight
 		Progression.record(player, "GameLost")
+		GameLog.say(`{player.Name} eliminated: still It when time ran out ({mode.Name})`)
 	end
 	if #out > 0 or #fellThisRound > 0 then
 		for _, player in Participants.alive() do
@@ -210,6 +236,7 @@ end
 
 local function playGame(players: { Player })
 	Participants.startGame(players)
+	GameRewards.begin(players)
 	Progression.newGame(#players)
 	for _, player in players do
 		Progression.record(player, "GamePlayed")
@@ -224,33 +251,62 @@ local function playGame(players: { Player })
 		end
 	end
 
-	-- One player left (or nobody, if everyone else left).
-	local alive = Participants.alive()
-	local winner = alive[1]
+	-- One player left (or nobody, if everyone else left or fell).
+	local winner = Participants.alive()[1]
 	if winner then
 		WinsStore.addWin(winner)
 		Progression.record(winner, "Win")
 		GameState.setStatus(`{winner.DisplayName} wins!`)
 		ReplicatedStorage:SetAttribute("Winner", winner.Name)
-		-- Celebrate in the lobby, where everyone else already is (the last map is gone), with the
-		-- winner's equipped victory (client/CosmeticEffects).
-		sendToLobby(winner)
-		task.wait(0.8)
-		Remotes.get("Victory"):FireAllClients(winner)
 	else
 		GameState.setStatus("Nobody won this time.")
 	end
-	countdown("Victory", Config.Game.VictoryTime)
-	ReplicatedStorage:SetAttribute("Winner", nil)
+	GameLog.say(`game over, winner: {if winner then winner.Name else "nobody"}`)
+
+	-- What the win screen shows: the podium, and each player's own place and winnings.
+	local podium = Participants.podium(Config.Game.PodiumSize)
+	local screens: { [Player]: { [string]: any } } = {}
+	for _, player in Players:GetPlayers() do
+		local info: { [string]: any } = {
+			Podium = podium,
+			Duration = Config.Game.VictoryTime,
+		}
+		local earned = GameRewards.earned(player)
+		local place, of = Participants.placeOf(player)
+		if earned and place then
+			info.Rewards = {
+				Coins = earned.Coins,
+				XP = earned.XP,
+				Crates = earned.Crates,
+				Items = earned.Items,
+				LevelFrom = earned.LevelFrom,
+				LevelTo = earned.LevelTo,
+				Place = place,
+				Of = of,
+			}
+		end
+		screens[player] = info
+	end
+
+	-- The game is over: spectating ends at once (Victory is not a spectating phase), everyone is
+	-- respawned in the lobby, the map goes, and the win screen plays on every screen.
+	GameState.setPhase("Victory")
+	Spectators.releaseAll()
 	Roles.clearAll()
-	MapService.unload()
 	Participants.endGame()
-	GameState.setRound(0)
-	for _, player in alive do
-		if player ~= winner then
-			sendToLobby(player)
+	GameRewards.clear()
+	respawnInLobby(Players:GetPlayers())
+	MapService.unload()
+	if #podium > 0 then
+		for player, info in screens do
+			if player.Parent then
+				Remotes.get("GameOver"):FireClient(player, info)
+			end
 		end
 	end
+	countdown("Victory", Config.Game.VictoryTime)
+	ReplicatedStorage:SetAttribute("Winner", nil)
+	GameState.setRound(0)
 end
 
 local function runElimination()
@@ -296,6 +352,8 @@ local function stopAll()
 	Sandbox.stop()
 	counting, skipping, forceStart = false, false, false
 	ReplicatedStorage:SetAttribute("Winner", nil)
+	Spectators.releaseAll()
+	GameRewards.clear()
 	Roles.clearAll()
 	MapService.unload()
 	Participants.endGame()

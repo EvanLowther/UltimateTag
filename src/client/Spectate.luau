@@ -1,7 +1,11 @@
 --!strict
--- Spectating. While a game is on and you're not in it (eliminated, or you joined mid-game),
--- the camera follows a player who is still in. Q / E (or the left / right arrows) switch
--- between them. When the game ends and everyone is back in the lobby, the camera comes back.
+-- Spectating. While a game is being played (Intro, Playing, Results) and you're out of it
+-- (eliminated, fell off the map, or joined late: the server parks your body and sets your
+-- `Spectating` attribute, server/Spectators), the camera follows a player who is still in, in
+-- third person. Your controls are off. Q / E, the left / right arrows or the on-screen
+-- prev / next buttons switch between them.
+-- The moment the game ends (the phase leaves Intro/Playing/Results) it all stops: the camera,
+-- first person and controls come back for your new lobby character.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -9,13 +13,16 @@ local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local GameState = require(Shared:WaitForChild("GameState"))
+local ControlLock = require(script.Parent.ControlLock)
 local LockerStage = require(script.Parent.LockerStage)
 local Ui = require(script.Parent.Menu.Ui)
 local ViewMode = require(script.Parent.ViewMode)
 
 local Spectate = {}
 
-local GAME_PHASES = { Intro = true, Playing = true, Results = true, Victory = true }
+local LOCK = "Spectate"
+local GAME_PHASES = { Intro = true, Playing = true, Results = true }
+local RESTORE_TIMEOUT = 5 -- seconds to wait for the new lobby character before giving up
 local NEXT_KEYS = {
 	[Enum.KeyCode.E] = 1,
 	[Enum.KeyCode.Right] = 1,
@@ -42,32 +49,29 @@ function Spectate.start()
 	local camera = workspace.CurrentCamera
 	local target: Player? = nil
 	local spectating = false
+	local restoreSince: number? = nil -- set after spectating ends, until the camera is given back
+	local lockerWas = false -- the Locker's preview had the camera on the last frame
+	local hint = if UserInputService.KeyboardEnabled then "  ·  Q / E TO SWITCH" else ""
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "Spectate"
 	gui.ResetOnSpawn = false
 	gui.Enabled = false
-	-- A black slanted bar with a cyan edge, above the level bar (Menu/Ui style).
-	local bar = Ui.slab(gui, Ui.Colors.Panel, 10)
-	bar.AnchorPoint = Vector2.new(0.5, 1)
-	bar.Position = UDim2.new(0.5, 0, 1, -120)
-	bar.Size = UDim2.fromOffset(460, 36)
-	local edge = Ui.slab(bar, Ui.Colors.Cyan, 10)
-	edge.Size = UDim2.new(0, 18, 1, 0)
-	edge.ZIndex = 2
-	local label = Ui.caps(bar, "", 15, Ui.Colors.Text)
-	label.Size = UDim2.fromScale(1, 1)
-	label.ZIndex = 3
-	gui.Parent = player:WaitForChild("PlayerGui")
+	-- A row above the level bar: prev button, a black slanted bar with a cyan edge, next button
+	-- (Menu/Ui style).
+	local row = Ui.frame(gui)
+	row.AnchorPoint = Vector2.new(0.5, 1)
+	row.Position = UDim2.new(0.5, 0, 1, -120)
+	row.Size = UDim2.fromOffset(0, 40)
+	row.AutomaticSize = Enum.AutomaticSize.X
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = Enum.FillDirection.Horizontal
+	layout.VerticalAlignment = Enum.VerticalAlignment.Center
+	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	layout.Padding = UDim.new(0, 10)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = row
 
-	local function shouldSpectate(): boolean
-		if not GAME_PHASES[GameState.getPhase()] then
-			return false
-		end
-		return not (player:GetAttribute("InGame") and player:GetAttribute("Alive"))
-	end
-
-	-- Moves to the next (step 1) or previous (step -1) player still in.
 	local function cycle(step: number)
 		local list = alivePlayers()
 		if #list == 0 then
@@ -82,32 +86,95 @@ function Spectate.start()
 		end
 	end
 
+	local prev = Ui.button(row, "Prev", Ui.Colors.Cyan, function()
+		cycle(-1)
+	end, Ui.Colors.Ink, 8, "play")
+	prev.LayoutOrder = 1
+	prev.Size = UDim2.fromOffset(104, 36)
+	local prevIcon = prev:FindFirstChild("Icon", true)
+	if prevIcon and prevIcon:IsA("GuiObject") then
+		prevIcon.Rotation = 180 -- the play triangle, pointing left
+	end
+
+	local bar = Ui.slab(row, Ui.Colors.Panel, 10)
+	bar.LayoutOrder = 2
+	bar.Size = UDim2.fromOffset(340, 36)
+	local edge = Ui.slab(bar, Ui.Colors.Cyan, 10)
+	edge.Size = UDim2.new(0, 18, 1, 0)
+	edge.ZIndex = 2
+	local label = Ui.caps(bar, "", 15, Ui.Colors.Text)
+	label.Size = UDim2.fromScale(1, 1)
+	label.ZIndex = 3
+
+	local nextButton = Ui.button(row, "Next", Ui.Colors.Cyan, function()
+		cycle(1)
+	end, Ui.Colors.Ink, 8, "play")
+	nextButton.LayoutOrder = 3
+	nextButton.Size = UDim2.fromOffset(104, 36)
+	gui.Parent = player:WaitForChild("PlayerGui")
+
+	local function shouldSpectate(): boolean
+		return GAME_PHASES[GameState.getPhase()] == true
+			and player:GetAttribute("Spectating") == true
+	end
+
+	local function begin()
+		spectating = true
+		restoreSince = nil
+		gui.Enabled = true
+		ViewMode.suspend(true) -- third person, and the first-person body steps aside
+		ControlLock.set(LOCK, true)
+	end
+
+	-- Spectating is over: controls back at once; the camera and view mode once the new lobby
+	-- character is here (the parked body is on its way out).
 	local function stop()
 		spectating = false
 		target = nil
 		gui.Enabled = false
+		ControlLock.set(LOCK, false)
+		restoreSince = os.clock()
+	end
+
+	local function restore()
+		local since = restoreSince
+		if not since then
+			return
+		end
 		local character = player.Character
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-		if humanoid then
-			camera.CameraSubject = humanoid
+		local parked = character ~= nil and character:GetAttribute("Parked") == true
+		if (humanoid and not parked) or os.clock() - since > RESTORE_TIMEOUT then
+			if humanoid then
+				camera.CameraSubject = humanoid
+			end
+			ViewMode.suspend(false)
+			restoreSince = nil
 		end
-		ViewMode.apply()
 	end
 
 	RunService.RenderStepped:Connect(function()
 		if LockerStage.isActive() then
+			lockerWas = true
 			return -- the Locker's preview has the camera
+		end
+		if lockerWas then
+			-- Closing the preview gave first person and the controls back: take them again.
+			lockerWas = false
+			if spectating then
+				ViewMode.suspend(true)
+				ControlLock.apply()
+			end
 		end
 		if not shouldSpectate() then
 			if spectating then
 				stop()
 			end
+			restore()
 			return
 		end
 		if not spectating then
-			spectating = true
-			gui.Enabled = true
-			player.CameraMode = Enum.CameraMode.Classic -- spectate in third person
+			begin()
 		end
 		-- Keep watching someone who is still in (they may have been eliminated or left).
 		if not target or not target.Parent or not target:GetAttribute("Alive") then
@@ -119,7 +186,7 @@ function Spectate.start()
 			camera.CameraSubject = humanoid
 		end
 		label.Text = if target
-			then `SPECTATING {Ui.upper(target.DisplayName)}  ·  Q / E TO SWITCH`
+			then `SPECTATING {Ui.upper(target.DisplayName)}{hint}`
 			else "SPECTATING"
 	end)
 

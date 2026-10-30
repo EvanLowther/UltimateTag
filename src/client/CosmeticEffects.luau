@@ -7,10 +7,11 @@
 --   rings). Legendary: big effects (Lightning strike, Meteor; both shake nearby cameras).
 --   Iridescent: Shatter, the tagged player bursts into holo shards that snap back together,
 --   and nearby screens flash.
---   Victories: when a game is won (Victory remote), the winner plays their equipped Victory: a
+--   Victories: on the win screen (client/WinScreen) the winner plays their equipped Victory: a
 --   pose (Flex, Cheer, Backflip, CapToss) and an effect (Sparkle, Confetti, Fireworks with a
 --   spotlight, Stars, or Hologram: a giant holo statue of them rises behind them).
--- playTag and playVictory also work on any model, for the Locker's preview (client/LockerStage).
+-- playTag and playVictory also work on any model, for the Locker's preview (client/LockerStage)
+-- and the win screen's stage.
 local Debris = game:GetService("Debris")
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -824,22 +825,6 @@ function CosmeticEffects.start()
 			local character = (tagged :: Player).Character
 			if character then
 				CosmeticEffects.playTag(item, character)
-			end
-		end
-	end)
-	Remotes.get("Victory").OnClientEvent:Connect(function(winner)
-		if typeof(winner) == "Instance" and winner:IsA("Player") then
-			-- The winner's new lobby character may still be arriving.
-			local waited = 0
-			while not rootOf(winner.Character) and waited < 3 do
-				waited += task.wait(0.1)
-			end
-			local character = winner.Character
-			if character then
-				CosmeticEffects.playVictory(
-					character,
-					Catalog.get(winner:GetAttribute("EquippedVictory") :: string?)
-				)
 			end
 		end
 	end)

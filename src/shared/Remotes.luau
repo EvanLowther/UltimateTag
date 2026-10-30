@@ -17,7 +17,11 @@
 --   TagHit:         server -> clients: (tagger, tagged) a tag landed: play the tagger's effect.
 --   TagKnockback:   server -> the player hit by a swing (tag or shove): (push) their flat push
 --                   velocity; client/Knockback applies it (they own their character's physics).
---   Victory:        server -> clients: (winner) play the winner's victory pose and effect.
+--   GameOver:       server -> clients: the game ended; (info) a table for client/WinScreen:
+--                   Podium = { { UserId, Name, DisplayName, Place, Won } } best first (the winner
+--                   has Won = true; none if nobody won), Duration (seconds the screen lasts),
+--                   and for players who were in the game Rewards = { Coins, XP, Crates, Items,
+--                   LevelFrom, LevelTo, Place, Of } (their own, from server/GameRewards).
 --   ShopBuy:        client -> server: buy today's shop item (its id).
 --   BuyCrate:       client -> server: buy a crate (it goes into your crates).
 --   OpenCrate:      client -> server: (count) open that many of your crates (1 if left out).
@@ -46,7 +50,7 @@ local NAMES = {
 	"Equip",
 	"TagHit",
 	"TagKnockback",
-	"Victory",
+	"GameOver",
 	"ShopBuy",
 	"BuyCrate",
 	"OpenCrate",

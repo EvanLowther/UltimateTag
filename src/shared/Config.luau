@@ -22,6 +22,30 @@ local Config = {
 		-- height within this many studs of it sideways. They respawn on the map (server/MapRespawn),
 		-- unless the map has FallEliminates: then they're out of the game.
 		KillRadius = 1000, -- (the Metro's tunnel loops reach about 760 out)
+		-- Out of the game = camera only. After the ELIMINATED moment the body is parked: anchored,
+		-- invisible, no collision, this far from the lobby's center (under its floor, far from
+		-- every kill height and above the world's fallen-parts line). server/Spectators.
+		PodiumSize = 3, -- players on the win screen's podium
+		EliminatedTime = 1.5, -- seconds an eliminated player stays visible and frozen before parking
+		ParkOffset = Vector3.new(0, -150, 0), -- from Lobby.Position; nobody can reach it
+		-- Prints each round's roles, tags (distance and speeds), swings that missed, eliminations
+		-- and who is in the game, to find wrong eliminations and lag (server/GameLog). Studio only
+		-- by default.
+		DebugLog = game:GetService("RunService"):IsStudio(),
+	},
+
+	-- The win screen (client/WinScreen): a podium stage built on each screen only, shown for
+	-- Game.VictoryTime seconds while the game is over.
+	WinScreen = {
+		Position = Vector3.new(-3000, 400, -1500), -- the stage's origin (far from the maps, lobby and Locker)
+		FieldOfView = 50,
+		EmoteDelay = 0.7, -- seconds before the winner's victory plays
+		RewardsDelay = 3, -- seconds before your coins and XP card slides in
+		FadeTime = 0.35, -- fade in from, and out to, black
+		-- Block heights for 1st, 2nd and 3rd place.
+		StepHeights = { 6, 4.5, 3 },
+		-- Screens hidden while it plays (by ScreenGui name).
+		HideGuis = { "Hud", "Menu", "Notify", "ItTint", "Spectate" },
 	},
 
 	Lobby = {

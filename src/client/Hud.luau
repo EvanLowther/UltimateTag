@@ -5,7 +5,8 @@
 --   pink shadow. The status line sits under it.
 --   Banners: YOU'RE IT!, RUN!, ELIMINATED, YOU WIN! and "<NAME> WINS!" sweep across the screen
 --   as a tilted stripe when they change, then stay as a small tag under the bar (except
---   YOU'RE IT!, which only sweeps: in first person the red ItTint shows you're It).
+--   YOU'RE IT!, which only sweeps: in first person the red ItTint shows you're It). ELIMINATED
+--   sweeps while your body is still visible; once you are spectating no banners show.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
@@ -173,9 +174,12 @@ function Hud.start()
 		left.Text = `{GameState.getAliveCount()} LEFT`
 		status.Text = Ui.upper(GameState.getStatus())
 
-		local role = player:GetAttribute("Role")
+		-- Spectators see the game, not role banners.
+		local spectating = player:GetAttribute("Spectating") == true
+		local role = if spectating then nil else player:GetAttribute("Role")
 		local winner = ReplicatedStorage:GetAttribute("Winner")
-		local eliminated = player:GetAttribute("InGame") == true
+		local eliminated = not spectating
+			and player:GetAttribute("InGame") == true
 			and player:GetAttribute("Alive") == false
 		if phase == "Victory" and winner then
 			showBanner(if winner == player.Name
@@ -203,7 +207,7 @@ function Hud.start()
 
 	GameState.onChanged(refresh)
 	ReplicatedStorage:GetAttributeChangedSignal("Winner"):Connect(refresh)
-	for _, name in { "Role", "InGame", "Alive" } do
+	for _, name in { "Role", "InGame", "Alive", "Spectating" } do
 		player:GetAttributeChangedSignal(name):Connect(refresh)
 	end
 	refresh()
