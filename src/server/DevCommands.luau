@@ -103,8 +103,8 @@ handlers.SetRoundTime = function(player, seconds)
 	if type(seconds) ~= "number" or seconds < 5 or seconds > 3600 then
 		return
 	end
-	Config.Game.RoundTime = math.floor(seconds)
-	tell(player, `Rounds now last {Config.Game.RoundTime}s (from the next round)`)
+	Config.Game.RoundTimeOverride = math.floor(seconds)
+	tell(player, `Rounds now last {Config.Game.RoundTimeOverride}s (from the next round)`)
 end
 
 handlers.SetRole = function(player, role)

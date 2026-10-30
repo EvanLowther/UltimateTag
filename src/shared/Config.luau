@@ -10,13 +10,31 @@ local Config = {
 		Mode = "Elimination",
 		MinPlayers = 2, -- players needed in the lobby to start a game
 		StudioMinPlayers = 2, -- the same when testing in Studio (use Test > Clients and Servers)
-		LobbyCountdown = 15, -- seconds from having enough players to the game starting
-		IntroTime = 5, -- seconds on a new map before the round timer starts
-		ItHeadStart = 3, -- seconds the Its are frozen at the start of a round
-		RoundTime = 60, -- seconds per round
-		ResultsTime = 5, -- seconds to show who was eliminated
+		-- Lobby countdown (shared/RoundPlan): starts at LobbyCountdown when enough players are
+		-- waiting; each player who joins adds JoinExtend, but the clock never goes above
+		-- CountdownCap; leavers add nothing; with BigLobby or more players there are no extensions
+		-- and the time left is cut to BigLobbyCut at most.
+		LobbyCountdown = 20,
+		JoinExtend = 10,
+		CountdownCap = 40,
+		BigLobby = 10,
+		BigLobbyCut = 15,
+		IntroTime = 5, -- seconds everyone is frozen on a new map before the round timer starts
+		RoleBannerTime = 3, -- seconds of the intro the big role banner shows (never again that round)
+		-- Round length by players left, most players first: the first band whose From is reached.
+		RoundTimes = {
+			{ From = 7, Seconds = 120 },
+			{ From = 3, Seconds = 90 },
+			{ From = 2, Seconds = 90 },
+		} :: { { From: number, Seconds: number } },
+		RoundTimeOverride = 0, -- dev panel: seconds for every round, 0 = by players left
+		MaxRounds = 5, -- a game takes at most this many rounds (shared/RoundPlan's schedule)
+		-- The results card (client/RoundResults) is also the loading cover: after ResultsCoverAt
+		-- seconds (once the ELIMINATED moment is over) it hides the world while the next map loads.
+		ResultsTime = 5, -- seconds the results card shows
+		ResultsCoverAt = 1.8,
+		ResultsLoadWait = 15, -- seconds to wait at most for the next map to be ready (loading itself takes 6 at most)
 		VictoryTime = 8, -- seconds to show the winner before going back to the lobby
-		EliminateFraction = 0.45, -- share of the players still in who start a round as It (and lose it)
 		RespawnTime = 3, -- seconds before someone who died (fell off a map) comes back
 		-- Falling off: a map with a KillHeight attribute kills anyone who drops below that world
 		-- height within this many studs of it sideways. They respawn on the map (server/MapRespawn),
@@ -32,6 +50,16 @@ local Config = {
 		-- and who is in the game, to find wrong eliminations and lag (server/GameLog). Studio only
 		-- by default.
 		DebugLog = game:GetService("RunService"):IsStudio(),
+	},
+
+	-- AFK (server/Afk, client/Activity): during the Playing phase, 30 seconds with neither input
+	-- (the client pings the server when you pressed or moved something) nor movement puts you out
+	-- of the game. Never in the intro freeze, and never for players already out.
+	Afk = {
+		Time = 30, -- seconds of nothing before a player is eliminated
+		PingInterval = 4, -- the client tells the server about input at most this often
+		MoveDistance = 2, -- studs your body must travel since the last check to count as activity
+		CheckInterval = 1, -- seconds between the server's checks
 	},
 
 	-- The win screen (client/WinScreen): a podium stage built on each screen only, shown for
@@ -80,7 +108,6 @@ local Config = {
 		-- player in reach.
 		Range = 7, -- studs between the two characters' centers that a swing reaches
 		Cooldown = 0.45, -- seconds between swings
-		FreezeTime = 2, -- seconds the newly tagged player is frozen (also stops instant tag-backs)
 		SwingTime = 0.35, -- seconds the swipe animation lasts
 		-- The swipe: wind the right arm back, then reach forward. Only these parts move; the
 		-- rest keep running.
@@ -362,9 +389,9 @@ local Config = {
 	},
 
 	Camera = {
-		StartFirstPerson = false, -- third person like the reference video (V toggles first person)
+		StartFirstPerson = false, -- Studio only: third person like the reference video (V toggles). Live servers are first person only.
 		FieldOfView = 70, -- third person: degrees top to bottom (Roblox's default)
-		AllowToggle = true, -- testing: ToggleKey switches to third person and back
+		AllowToggle = true, -- Studio only: ToggleKey switches to third person and back (off in live servers)
 		ToggleKey = Enum.KeyCode.V,
 		TurnRate = 18, -- third person: how quickly your body turns to face a move's direction
 		ThirdPersonDistance = 12, -- studs the camera pulls back when switching to third person

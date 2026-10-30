@@ -1,15 +1,18 @@
 --!strict
--- First or third person. The game is first person; Config.Camera.ToggleKey (V) switches to
--- third person and back for testing, if Config.Camera.AllowToggle is on.
+-- First or third person. In a live server the game is first person only. In Studio it starts as
+-- Config.Camera.StartFirstPerson says and Config.Camera.ToggleKey (V) switches to the other view
+-- and back for testing (if Config.Camera.AllowToggle is on).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 
 local ViewMode = {}
 
-local firstPerson = Config.Camera.StartFirstPerson
+local studio = RunService:IsStudio()
+local firstPerson = if studio then Config.Camera.StartFirstPerson else true
 local suspended = false -- something else has the camera (the Locker's preview)
 
 function ViewMode.isFirstPerson(): boolean
@@ -46,7 +49,7 @@ end
 
 function ViewMode.start()
 	apply()
-	if not Config.Camera.AllowToggle then
+	if not studio or not Config.Camera.AllowToggle then
 		return
 	end
 	UserInputService.InputBegan:Connect(function(input, processed)

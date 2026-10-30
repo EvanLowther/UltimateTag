@@ -4,7 +4,8 @@
 -- swipe. It's swing during a round tags the nearest Runner within Config.Tag.Range; any other
 -- swing (a Runner's, It with no Runner in reach, or outside a round) shoves the nearest player in
 -- reach. A hit pushes the player hit (Config.Knockback): harder the faster the swinger was moving
--- at them; their own client applies it (TagKnockback). Misses still swing.
+-- at them; their own client applies it (TagKnockback). Misses still swing. Tags freeze nobody
+-- and there is no tag-back protection: the knockback is what gives space.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -17,6 +18,7 @@ local Leaderstats = require(script.Parent.Leaderstats)
 local Participants = require(script.Parent.Participants)
 local Progression = require(script.Parent.Progression)
 local Roles = require(script.Parent.Roles)
+local RoundStats = require(script.Parent.RoundStats)
 
 local TagService = {}
 
@@ -28,7 +30,9 @@ local lastSwing: { [Player]: number } = {}
 local GAME_PHASES = { Intro = true, Playing = true, Results = true }
 
 local function takesPart(player: Player): boolean
-	return not GAME_PHASES[GameState.getPhase()] or Participants.isAlive(player)
+	return not GAME_PHASES[GameState.getPhase()]
+		or Participants.isAlive(player)
+		or player:GetAttribute("LeftEarly") == true -- back in the lobby: shoves work there
 end
 
 local function flatSpeed(root: BasePart): number
@@ -83,7 +87,7 @@ local function tag(tagger: Player, tagged: Player, distance: number?, taggerSpee
 	end
 	Roles.set(tagger, "Runner")
 	Roles.set(tagged, "It")
-	Roles.freeze(tagged, Config.Tag.FreezeTime)
+	RoundStats.tagged(tagger, tagged)
 	Leaderstats.add(tagger, "Tags", 1)
 	Progression.record(tagger, "Tag")
 	Remotes.get("TagHit"):FireAllClients(tagger, tagged) -- the tagger's tag effect

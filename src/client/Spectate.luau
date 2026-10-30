@@ -3,7 +3,8 @@
 -- (eliminated, fell off the map, or joined late: the server parks your body and sets your
 -- `Spectating` attribute, server/Spectators), the camera follows a player who is still in, in
 -- third person. Your controls are off. Q / E, the left / right arrows or the on-screen
--- prev / next buttons switch between them.
+-- prev / next buttons switch between them. A Leave button takes you back to the lobby early
+-- (you stay out of the game); players still in the game never see this bar.
 -- The moment the game ends (the phase leaves Intro/Playing/Results) it all stops: the camera,
 -- first person and controls come back for your new lobby character.
 local Players = game:GetService("Players")
@@ -13,6 +14,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local GameState = require(Shared:WaitForChild("GameState"))
+local Remotes = require(Shared:WaitForChild("Remotes"))
 local ControlLock = require(script.Parent.ControlLock)
 local LockerStage = require(script.Parent.LockerStage)
 local Ui = require(script.Parent.Menu.Ui)
@@ -111,6 +113,13 @@ function Spectate.start()
 	end, Ui.Colors.Ink, 8, "play")
 	nextButton.LayoutOrder = 3
 	nextButton.Size = UDim2.fromOffset(104, 36)
+
+	-- Leave: back to the lobby now (only spectators see this bar, so only players who are out).
+	local leave = Ui.button(row, "Leave", Ui.Colors.Pink, function()
+		Remotes.get("LeaveGame"):FireServer()
+	end, Ui.Colors.Ink, 8)
+	leave.LayoutOrder = 4
+	leave.Size = UDim2.fromOffset(104, 36)
 	gui.Parent = player:WaitForChild("PlayerGui")
 
 	local function shouldSpectate(): boolean

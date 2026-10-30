@@ -14,9 +14,9 @@ export type Phase =
 	"Sandbox" -- free play for testing movement (Config.Game.Mode = "Sandbox")
 	| "Lobby" -- waiting for enough players
 	| "Countdown" -- enough players, the game starts soon
-	| "Intro" -- a round's map is loaded and players are placed; Its have a head start
+	| "Intro" -- a round's map is loaded and everyone is placed and frozen (5 s)
 	| "Playing" -- the round timer is running
-	| "Results" -- the round is over, eliminations are shown
+	| "Results" -- the round is over, the results card shows (the next map loads behind it)
 	| "Victory" -- the game is over, the winner is shown
 
 local GameState = {}
