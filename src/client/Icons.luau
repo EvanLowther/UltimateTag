@@ -628,6 +628,27 @@ local DRAW: { [string]: (Canvas) -> () } = {
 		box(c, 0.4, 0.1, 0.2, 0.07, true)
 		line(c, 0.68, 0.1, 0.72, 0.24, 0.035, true, true) -- the tassel
 	end,
+	figureSpin = function(c)
+		-- On its back, legs up in a V, with a circling arc (Breakdance).
+		figure(
+			holder(c, 90, 0.72, 0.5, 0.56),
+			{ { 0.42, 0.33, 0.22, 0.52 }, { 0.58, 0.33, 0.78, 0.12 } }
+		)
+		arc(c, 0.5, 0.52, 0.42, 200, 340, 0.06, true)
+	end,
+	katana = function(c)
+		line(c, 0.3, 0.7, 0.86, 0.14, 0.07, false, true) -- the blade
+		line(c, 0.12, 0.88, 0.3, 0.7, 0.1, true) -- the hilt
+		line(c, 0.2, 0.62, 0.38, 0.8, 0.07, true, true) -- the guard
+		sparkle(c, 0.84, 0.16, 0.1, true)
+	end,
+	rift = function(c)
+		-- A tear in space with stars.
+		rhombus(c, 0.5, 0.5, 0.17, 0.46, false)
+		rhombus(c, 0.5, 0.5, 0.07, 0.32, true)
+		sparkle(c, 0.2, 0.24, 0.08, true)
+		sparkle(c, 0.8, 0.76, 0.1, true)
+	end,
 	hologram = function(c)
 		figure(c, CHEER_ARMS)
 		for _, y in { 0.2, 0.36, 0.52, 0.68, 0.84 } do

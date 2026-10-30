@@ -32,9 +32,17 @@ local TAG_ICONS = {
 local VICTORY_ICONS = {
 	None = "dash",
 	Flex = "figureFlex",
-	Cheer = "figureCheer",
 	Backflip = "figureFlip",
-	CapToss = "figureCap",
+	ConfettiStorm = "confetti",
+	Breakdance = "figureSpin",
+	Katana = "katana",
+	TrophyLift = "trophy",
+	PodiumRise = "chart",
+	Thunderstorm = "bolt",
+	Throne = "crown",
+	MeteorTouchdown = "meteor",
+	Supernova = "shards",
+	Rift = "rift",
 }
 
 -- The icon (client/Icons) for a tag effect or victory.
@@ -43,12 +51,7 @@ function ItemCard.icon(item: Catalog.Item): string
 	if item.kind == "TagEffect" then
 		return TAG_ICONS[look.Effect] or "burst"
 	elseif item.kind == "Victory" then
-		if look.Effect == "Fireworks" then
-			return "fireworks"
-		elseif look.Effect == "Hologram" then
-			return "hologram"
-		end
-		return VICTORY_ICONS[look.Pose] or "figureCheer"
+		return VICTORY_ICONS[look.Victory] or "figureCheer"
 	end
 	return "sparkle"
 end

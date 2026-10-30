@@ -7,7 +7,8 @@ local AnimationClipProvider = game:GetService("AnimationClipProvider")
 
 export type Angles = { [string]: Vector3 }
 -- `ease` shapes the motion from this key to the next: "Out" slows into the next pose (absorbing),
--- "In" speeds up into it (exploding), "InOut" (the default) does both. Always cubic.
+-- "In" speeds up into it (exploding), "InOut" (the default) does both, all cubic; "Linear" moves
+-- at a steady pace.
 export type Key = { time: number, angles: Angles, name: string?, ease: string? }
 
 type Tree = { [string]: Tree }
@@ -42,15 +43,17 @@ local function addPoses(
 	tree: Tree,
 	angles: Angles,
 	only: { [string]: boolean }?,
-	ease: Enum.PoseEasingDirection
+	ease: Enum.PoseEasingDirection? -- nil: linear
 )
 	for name, children in tree do
 		local degrees = angles[name] or Vector3.zero
 		local pose = Instance.new("Pose")
 		pose.Name = name
 		pose.CFrame = CFrame.Angles(math.rad(degrees.X), math.rad(degrees.Y), math.rad(degrees.Z))
-		pose.EasingStyle = Enum.PoseEasingStyle.Cubic
-		pose.EasingDirection = ease
+		pose.EasingStyle = if ease == nil
+			then Enum.PoseEasingStyle.Linear
+			else Enum.PoseEasingStyle.Cubic
+		pose.EasingDirection = ease or Enum.PoseEasingDirection.In
 		if only and not only[name] then
 			pose.Weight = 0
 		end
@@ -95,7 +98,8 @@ function AnimationBuilder.make(keys: { Key }, partial: boolean?, looped: boolean
 		local keyframe = Instance.new("Keyframe")
 		keyframe.Time = key.time
 		keyframe.Name = key.name or "Keyframe"
-		addPoses(keyframe, R15, key.angles, only, EASE[key.ease or "InOut"])
+		local ease = if key.ease == "Linear" then nil else EASE[key.ease or "InOut"]
+		addPoses(keyframe, R15, key.angles, only, ease)
 		keyframe.Parent = sequence
 	end
 	local animation = Instance.new("Animation")

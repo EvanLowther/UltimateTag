@@ -16,6 +16,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Shared = ReplicatedStorage.Shared
+local Catalog = require(Shared.Catalog)
 local Config = require(Shared.Config)
 local Remotes = require(Shared.Remotes)
 
@@ -137,6 +138,26 @@ local function migrate(player: Player, data: Profile)
 	data.Migrated = true
 end
 
+-- Swaps items that were replaced (Catalog.Renamed) for their new ones: owned, equipped and
+-- serial numbers.
+local function renameItems(data: Profile)
+	for old, new in Catalog.Renamed do
+		if data.Owned[old] then
+			data.Owned[old] = nil
+			data.Owned[new] = true
+		end
+		for kind, id in data.Equipped do
+			if id == old then
+				data.Equipped[kind] = new
+			end
+		end
+		if data.Serials[old] and not data.Serials[new] then
+			data.Serials[new] = data.Serials[old]
+		end
+		data.Serials[old] = nil
+	end
+end
+
 -- Sends the player their profile and updates the attributes everyone can read. Batched to once
 -- per frame however many changes happen.
 local function sync(player: Player)
@@ -250,6 +271,7 @@ local function onJoin(player: Player)
 	if canSave then
 		migrate(player, profile)
 	end
+	renameItems(profile)
 	profiles[player] = profile
 	saveable[player] = canSave
 	sync(player)

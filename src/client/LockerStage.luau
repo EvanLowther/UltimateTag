@@ -30,6 +30,7 @@ local LockerLayout = require(script.Parent.Menu.LockerLayout)
 local Profile = require(script.Parent.Profile)
 local SpeedTrails = require(script.Parent.SpeedTrails)
 local TagSwing = require(script.Parent.TagSwing)
+local Victories = require(script.Parent.Victories)
 local ViewMode = require(script.Parent.ViewMode)
 
 local LockerStage = {}
@@ -431,6 +432,7 @@ function LockerStage.show(item: Catalog.Item?)
 	if not active or not copy then
 		return
 	end
+	Victories.stop()
 	local kind = if item then item.kind else "Trail"
 	scene = if kind == "Trail"
 		then "run"
@@ -582,31 +584,28 @@ local function step(dt: number)
 			)
 		end
 	else
-		local cycle = t % settings.VictoryLoop
+		-- The victory plays from 0.3 s into each loop, then pauses before it plays again.
+		local length = if selected then tonumber(selected.look.Length) or 4 else 4
+		local cycle = t % (0.3 + length + settings.VictoryPause)
 		if cycle < lastT then
 			lastT = -1
+			Victories.stop()
+			place(WIN_SPOT, FACE_CAMERA)
 		end
 		if lastT < 0.3 and cycle >= 0.3 and selected then
-			CosmeticEffects.playVictory(copy, selected, settings.VictoryLoop - 1.2)
+			Victories.play(copy, selected, { hold = length, floor = origin.Y, stage = stage })
 		end
 		lastT = cycle
 		local spot = origin + WIN_SPOT + Vector3.new(0, rootHeight, 0)
-		local hologram = selected ~= nil and selected.look.Effect == "Hologram"
-		camera.CFrame = if hologram
-			then frame(
-				camera,
-				spot + Vector3.new(0, 7, 30),
-				spot + Vector3.new(0, 6, -6),
-				spot + Vector3.new(0, 6, -6), -- the giant statue
-				settings.Frames.hologram
-			)
-			else frame(
-				camera,
-				spot + Vector3.new(0, 2.5, 15),
-				spot + Vector3.new(0, 1.5, 0),
-				spot + Vector3.new(0, 0.5, 0), -- you, arms up
-				settings.Frames.victory
-			)
+		local room = selected and settings.VictoryFrames[selected.look.Victory]
+		local up = if room then room.Up else 0
+		camera.CFrame = Victories.camera(frame(
+			camera,
+			spot + Vector3.new(0, 2.5 + up, 15),
+			spot + Vector3.new(0, 1.5 + up, 0),
+			spot + Vector3.new(0, 0.5 + up, 0), -- you, arms up (and what the victory needs)
+			if room then room.Size else settings.Frames.victory
+		))
 	end
 end
 
@@ -663,6 +662,7 @@ function LockerStage.close()
 	end
 	active = false
 	RunService:UnbindFromRenderStep(STEP)
+	Victories.stop()
 	if baseTrack then
 		baseTrack:Stop(0)
 		baseTrack = nil

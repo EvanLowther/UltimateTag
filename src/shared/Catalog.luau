@@ -449,58 +449,79 @@ add(
 	{ note = "Play 100 games" }
 )
 
--- Victories: Pose (an animation, client/CosmeticEffects) and Effect (Sparkle, Confetti,
--- Fireworks, Stars, Hologram), tinted by Colors where it uses them.
-add(
-	"victory_none",
-	"Victory",
-	"None",
-	"Common",
-	{ Pose = "None", Effect = "None" },
-	{ blurb = "No celebration" }
-)
+-- Victories (client/Victories): Victory names the celebration, Length is how many seconds it
+-- plays (the win screen grows to fit it, Catalog.winScreenTime), Colors tint its effects.
+add("victory_none", "Victory", "None", "Common", { Victory = "None", Length = 0 }, {
+	blurb = "No celebration",
+})
 add("victory_flex", "Victory", "Flex", "Epic", {
-	Pose = "Flex",
-	Effect = "Sparkle",
+	Victory = "Flex",
+	Length = 3.5,
 	Colors = { rgb(255, 214, 60), rgb(255, 90, 90) },
 }, { blurb = "A big flex and a gradient sparkle burst" })
-add("victory_cheer", "Victory", "Confetti Pop", "Epic", {
-	Pose = "Cheer",
-	Effect = "Confetti",
-	Colors = { rgb(255, 210, 60), rgb(255, 90, 90), rgb(170, 80, 255) },
-}, { blurb = "Arms up, gradient confetti" })
-add(
-	"victory_fireworks",
-	"Victory",
-	"Fireworks",
-	"Legendary",
-	{ Pose = "Cheer", Effect = "Fireworks" },
-	{ blurb = "Fireworks overhead and a spotlight on you" }
-)
-add(
-	"victory_backflip",
-	"Victory",
-	"Backflip",
-	"Legendary",
-	{ Pose = "Backflip", Effect = "Stars" },
-	{ blurb = "A backflip and a shower of stars" }
-)
-add(
-	"victory_hologram",
-	"Victory",
-	"Hologram",
-	"Iridescent",
-	{ Pose = "Cheer", Effect = "Hologram" },
-	{ blurb = "A giant holo statue of you rises behind you" }
-)
-add(
-	"victory_graduation",
-	"Victory",
-	"Graduation",
-	"Exclusive",
-	{ Pose = "CapToss", Effect = "Confetti" },
-	{ note = "Reach level 20", blurb = "A cap toss and confetti" }
-)
+add("victory_backflip", "Victory", "Backflip", "Epic", {
+	Victory = "Backflip",
+	Length = 5,
+	Colors = { rgb(34, 211, 238), rgb(170, 80, 255) },
+}, { blurb = "A tucked backflip into a superhero landing" })
+add("victory_confetti", "Victory", "Confetti Storm", "Epic", {
+	Victory = "ConfettiStorm",
+	Length = 6,
+	Colors = { rgb(255, 210, 60), rgb(255, 90, 90), rgb(170, 80, 255), rgb(34, 211, 238) },
+}, { blurb = "Confetti cannons, then a storm that buries the podium" })
+add("victory_breakdance", "Victory", "Breakdance", "Epic", {
+	Victory = "Breakdance",
+	Length = 5.5,
+	Colors = { rgb(255, 62, 138), rgb(255, 214, 10) },
+}, { blurb = "A windmill into a one-hand freeze" })
+add("victory_katana", "Victory", "Katana", "Epic", {
+	Victory = "Katana",
+	Length = 5.5,
+	Colors = { rgb(255, 143, 194), rgb(255, 255, 255) },
+}, { blurb = "Draw, spin, one clean cut, and the other blocks fall apart" })
+add("victory_trophy", "Victory", "Trophy Lift", "Epic", {
+	Victory = "TrophyLift",
+	Length = 5.5,
+	Colors = { rgb(255, 62, 138), rgb(34, 211, 238) },
+}, { blurb = "A gold trophy lifted high" })
+add("victory_podium", "Victory", "Podium Rise", "Legendary", {
+	Victory = "PodiumRise",
+	Length = 8.3,
+	Colors = { rgb(255, 207, 58), rgb(255, 241, 184) },
+}, { blurb = "Your block erupts from the ground into a gold spotlight" })
+add("victory_thunderstorm", "Victory", "Thunderstorm", "Legendary", {
+	Victory = "Thunderstorm",
+	Length = 8,
+	Colors = { rgb(160, 216, 255), rgb(255, 255, 255) },
+}, { blurb = "The sky darkens and lightning lifts you, crackling" })
+add("victory_throne", "Victory", "Throne", "Legendary", {
+	Victory = "Throne",
+	Length = 8,
+	Colors = { rgb(106, 43, 191), rgb(255, 62, 138) },
+}, { blurb = "A throne crashes down, you lounge under a floating crown" })
+add("victory_meteor", "Victory", "Meteor Touchdown", "Legendary", {
+	Victory = "MeteorTouchdown",
+	Length = 8,
+	Colors = { rgb(255, 180, 60), rgb(255, 74, 28) },
+}, { blurb = "Launch out of sight and slam back down, cracking the whole podium" })
+add("victory_supernova", "Victory", "Supernova", "Iridescent", {
+	Victory = "Supernova",
+	Length = 9,
+}, { blurb = "Rise in holo shards and explode: the screen cracks like glass" })
+add("victory_rift", "Victory", "Rift", "Iridescent", {
+	Victory = "Rift",
+	Length = 9.5,
+	Colors = { rgb(255, 64, 150), rgb(255, 215, 235) },
+}, { blurb = "Tear open space, float in it, and a supernova erupts behind you" })
+
+-- Items that were replaced: anyone who owned (or wore) the old one gets the new one
+-- (server/PlayerData, when a profile loads).
+Catalog.Renamed = {
+	victory_cheer = "victory_confetti",
+	victory_fireworks = "victory_podium",
+	victory_hologram = "victory_supernova",
+	victory_graduation = "victory_trophy",
+} :: { [string]: string }
 
 -- Default items (what a new player has equipped) never appear in the shop or crates.
 for _, item in list do
@@ -524,6 +545,13 @@ Catalog.Items = list
 
 function Catalog.get(id: string?): Item?
 	return if id then byId[id] else nil
+end
+
+-- How long the win screen shows when `item` is the winner's victory: at least `minimum`, or long
+-- enough for the victory to start after `delay` and finish `tail` seconds before the end.
+function Catalog.winScreenTime(item: Item?, minimum: number, delay: number, tail: number): number
+	local length = if item then tonumber(item.look.Length) or 0 else 0
+	return math.max(minimum, delay + length + tail)
 end
 
 -- What an item costs in the shop.

@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.53.1",
+	Version = "0.54.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -40,6 +40,9 @@ local Config = {
 		Position = Vector3.new(-3000, 400, -1500), -- the stage's origin (far from the maps, lobby and Locker)
 		FieldOfView = 50,
 		EmoteDelay = 0.7, -- seconds before the winner's victory plays
+		-- Seconds the win screen stays after the victory ends. It shows for Game.VictoryTime, or
+		-- longer when the winner's victory needs it (Catalog.winScreenTime).
+		EndHold = 1,
 		RewardsDelay = 3, -- seconds before your coins and XP card slides in
 		FadeTime = 0.35, -- fade in from, and out to, black
 		-- Block heights for 1st, 2nd and 3rd place.
@@ -503,7 +506,7 @@ local Config = {
 		LevelRewards = {
 			[5] = { Items = { "title_hallmonitor" } },
 			[10] = { Items = { "trail_honor" } },
-			[20] = { Items = { "victory_graduation" } },
+			[20] = { Items = { "victory_trophy" } },
 			[30] = { Items = { "title_valedictorian" } },
 			[50] = { Items = { "trail_prismatic" } },
 		} :: { [number]: { [string]: any } },
@@ -772,7 +775,7 @@ local Config = {
 		RunLength = 360, -- studs of runway the preview runs along before looping
 		RunSpeed = 30, -- studs/s
 		TagLoop = 2.4, -- seconds between the preview's tags
-		VictoryLoop = 5, -- seconds between victory replays
+		VictoryPause = 1.2, -- seconds between the end of a victory and its replay
 		FieldOfView = 50,
 		-- Where the Locker's pieces sit on screen (Menu/LockerLayout), in virtual pixels (see
 		-- Config.Ui). The window docks left; the character is centred in the free space beside it.
@@ -793,8 +796,22 @@ local Config = {
 			tag = Vector2.new(10, 8),
 			title = Vector2.new(6, 5.5),
 			victory = Vector2.new(8, 7.5),
-			hologram = Vector2.new(18, 20),
 		} :: { [string]: Vector2 },
+		-- Victories that need more room than `Frames.victory`: the box to keep in view, and how
+		-- far above the character's middle its centre is (client/Victories).
+		VictoryFrames = {
+			Backflip = { Size = Vector2.new(9, 11), Up = 2.5 },
+			ConfettiStorm = { Size = Vector2.new(12, 9), Up = 1 },
+			Breakdance = { Size = Vector2.new(10, 8), Up = -0.5 },
+			Katana = { Size = Vector2.new(11, 8), Up = 0.5 },
+			TrophyLift = { Size = Vector2.new(8, 9.5), Up = 1.5 },
+			PodiumRise = { Size = Vector2.new(12, 15), Up = 4 },
+			Thunderstorm = { Size = Vector2.new(12, 11), Up = 2 },
+			Throne = { Size = Vector2.new(11, 12), Up = 2 },
+			MeteorTouchdown = { Size = Vector2.new(16, 11), Up = 1 },
+			Supernova = { Size = Vector2.new(16, 18), Up = 5 },
+			Rift = { Size = Vector2.new(16, 13), Up = 2 },
+		} :: { [string]: { Size: Vector2, Up: number } },
 	},
 
 	-- How the Quests window groups achievements into tiered chains (one row per Stat, its

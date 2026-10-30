@@ -4,9 +4,10 @@
 -- place, coins, XP, crates and new items for it (server/GameRewards). Every screen then builds a
 -- small stage far from everything (like client/LockerStage, on this screen only), with copies of
 -- the podium players' characters on 1st, 2nd and 3rd blocks, the winner playing their equipped
--- Victory (client/CosmeticEffects), a scripted camera, name plates under the blocks, a headline,
+-- Victory (client/Victories), a scripted camera, name plates under the blocks, a headline,
 -- and your own rewards card sliding in. Your controls, first person and the HUD and menu are off
--- while it plays; it ends after the server's Duration (Config.Game.VictoryTime) or as soon as the
+-- while it plays; it ends after the server's Duration (long enough for the winner's victory,
+-- Catalog.winScreenTime) or as soon as the
 -- game phase leaves Victory (the dev panel skipping it, or switching modes).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -20,10 +21,10 @@ local GameState = require(Shared:WaitForChild("GameState"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local ControlLock = require(script.Parent.ControlLock)
-local CosmeticEffects = require(script.Parent.CosmeticEffects)
 local LockerStage = require(script.Parent.LockerStage)
 local SpeedTrails = require(script.Parent.SpeedTrails)
 local Ui = require(script.Parent.Menu.Ui)
+local Victories = require(script.Parent.Victories)
 local ViewMode = require(script.Parent.ViewMode)
 
 local WinScreen = {}
@@ -120,8 +121,8 @@ local function number(block: Part, place: number, color: Color3)
 end
 
 -- The stage: a dark floor, a navy wall with neon slashes, and a block per podium place.
--- Returns it and the middle of each place's block top.
-local function buildStage(places: { number }): (Model, { [number]: Vector3 })
+-- Returns it, the middle of each place's block top, and each place's block.
+local function buildStage(places: { number }): (Model, { [number]: Vector3 }, { [number]: Part })
 	local origin = Config.WinScreen.Position
 	local heights = Config.WinScreen.StepHeights
 	local model = Instance.new("Model")
@@ -159,6 +160,7 @@ local function buildStage(places: { number }): (Model, { [number]: Vector3 })
 		)
 	end
 	local tops: { [number]: Vector3 } = {}
+	local blocks: { [number]: Part } = {}
 	for _, place in places do
 		local height = heights[place] or heights[#heights]
 		local color = PLACE_COLORS[place] or PLACE_COLORS[#PLACE_COLORS]
@@ -166,6 +168,7 @@ local function buildStage(places: { number }): (Model, { [number]: Vector3 })
 		local block =
 			part(model, Vector3.new(BLOCK_WIDTH, height, BLOCK_DEPTH), CFrame.new(center), color)
 		block.Name = `Block{place}`
+		blocks[place] = block
 		number(block, place, Ui.Colors.Ink)
 		tops[place] = origin + Vector3.new(blockX(place), height, 0)
 		local lamp = part(
@@ -183,7 +186,7 @@ local function buildStage(places: { number }): (Model, { [number]: Vector3 })
 		light.Parent = lamp
 	end
 	model.Parent = workspace
-	return model, tops
+	return model, tops, blocks
 end
 
 -- Animation objects from a character's Animate script (it doesn't run on the copy).
@@ -443,6 +446,7 @@ local function closeScreen()
 	active = false
 	session += 1
 	RunService:UnbindFromRenderStep(STEP)
+	Victories.stop()
 	if gui then
 		gui:Destroy()
 		gui = nil
@@ -485,7 +489,13 @@ local function openScreen(info: Info)
 	for _, entry in podium do
 		table.insert(places, entry.Place)
 	end
-	local model, tops = buildStage(places)
+	local model, tops, blocks = buildStage(places)
+	local podiumBlocks: { BasePart } = {}
+	for place = 1, 3 do
+		if blocks[place] then
+			table.insert(podiumBlocks, blocks[place])
+		end
+	end
 	stage = model
 
 	-- The camera aims at the middle of the blocks that are used.
@@ -550,6 +560,7 @@ local function openScreen(info: Info)
 	local emoteAt = settings.EmoteDelay
 	local winnerCopy: Model? = nil
 	local winnerItem: Catalog.Item? = nil
+	local others: { Model } = {} -- 2nd and 3rd, as they arrive
 	for _, entry in podium do
 		task.spawn(function()
 			local owner = Players:GetPlayerByUserId(entry.UserId)
@@ -573,6 +584,9 @@ local function openScreen(info: Info)
 				local track = AnimationBuilder.load(humanoid, animation)
 				track.Looped = true
 				track:Play(0)
+			end
+			if not entry.Won then
+				table.insert(others, copy)
 			end
 			if entry.Won then
 				winnerCopy = copy
@@ -600,7 +614,14 @@ local function openScreen(info: Info)
 		-- The winner's victory, once their copy is there.
 		if not emoted and t >= emoteAt and winnerCopy and winnerItem then
 			emoted = true
-			CosmeticEffects.playVictory(winnerCopy, winnerItem, math.max(info.Duration - t - 1, 1))
+			Victories.play(winnerCopy, winnerItem, {
+				hold = math.max(info.Duration - t - 1, 1),
+				floor = settings.Position.Y,
+				block = blocks[1],
+				blocks = podiumBlocks,
+				others = others,
+				stage = model,
+			})
 		end
 
 		-- The camera pushes in from far back, then holds; wide enough for the blocks on any
@@ -614,9 +635,11 @@ local function openScreen(info: Info)
 		local distance = near + 20 * (1 - eased)
 		local sway = math.sin(t * 0.6) * 1.2
 		local focus = middle + Vector3.new(0, 6, 0)
-		camera.CFrame = CFrame.lookAt(
-			focus + Vector3.new(sway, 2.5 + 3 * (1 - eased), distance),
-			focus + Vector3.new(0, -0.5, 0)
+		camera.CFrame = Victories.camera(
+			CFrame.lookAt(
+				focus + Vector3.new(sway, 2.5 + 3 * (1 - eased), distance),
+				focus + Vector3.new(0, -0.5, 0)
+			)
 		)
 
 		-- Name plates under the blocks follow them on screen.
@@ -666,9 +689,15 @@ function WinScreen.preview(size: number?, victoryId: string?)
 			Won = place == 1,
 		})
 	end
+	local item = Catalog.get(victoryId or player:GetAttribute("EquippedVictory") :: string?)
 	openScreen({
 		Podium = podium,
-		Duration = Config.Game.VictoryTime,
+		Duration = Catalog.winScreenTime(
+			item,
+			Config.Game.VictoryTime,
+			Config.WinScreen.EmoteDelay,
+			Config.WinScreen.EndHold
+		),
 		Preview = true,
 		PreviewVictory = victoryId,
 		Rewards = {

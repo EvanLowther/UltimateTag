@@ -175,11 +175,26 @@ The 1st place block erupts out of the ground.
 
 ---
 
+## Changes after the mockup (2026-10-30, now built)
+- **Backflip** is a real backflip: the body turns backwards a full turn with the knees tucked.
+- **Breakdance** is a real windmill (rolling over the shoulders and back, legs in a V) and ends
+  in a one-hand freeze with one leg sticking straight out.
+- **Katana**: the draw and the sheathe are animated (the blade slides out of and back into the
+  sheath), with the spin in between. When it clicks home, the 2nd and 3rd blocks are cut along a
+  slant and their top halves slide down the cut, with the players on them.
+- **Trophy Lift** is Epic (crates and the shop), and still the level 20 reward.
+- **Meteor Touchdown**'s shockwave reaches round the podium: the floor cracks out to about 26
+  studs, a scorch spreads, and every block chips, cracks and jolts as the wave reaches it.
+- **Rift** has no rainbow and no dragon. The tear is pink. The winner is pulled into it,
+  tumbling, and the stage is gone: they float in deep space (dark blue-black, stars). A pink
+  shooting star streaks past, then a supernova erupts behind them: a pink flash, wisps of
+  plasma flaring out, and drifting pink points of light all round, soft and out of focus.
+
 ## Decisions (2026-10-30)
 - **The new set only:** Flex stays. Confetti Pop, Backflip, Fireworks, Hologram and Graduation are
   removed. Owners get the closest new one: Confetti Pop to Confetti Storm, Backflip to the new
   Backflip, Fireworks to Podium Rise, Hologram to Supernova, Graduation to Trophy Lift.
-- **Trophy Lift** is the level 20 reward (Exclusive) in place of Graduation.
+- **Trophy Lift** is the level 20 reward in place of Graduation (Epic since the mockup).
 - **Length:** Epic and Exclusive keep the 8 s win screen. Legendary and Iridescent stretch it to
   about 10 s (each victory says how long it needs, and the server sets the win screen's length from
   the winner's victory). The Locker's loop follows each victory's length too.
@@ -188,7 +203,7 @@ The 1st place block erupts out of the ground.
 - **2nd and 3rd react:** they look up at Podium Rise, stagger back from Meteor Touchdown and the
   Throne's crash, shield their eyes from the lightning, and get covered in Confetti Storm.
 
-## Build list (after the previews are signed off)
+## Build list (built in 0.54.0)
 1. Victory length and camera hooks: each victory's length (win screen and Locker), camera shake,
    dip and tilt, the runner-up reactions, and a stand-in block in the Locker.
 2. Pose tools: keyframes that also move the whole body (jumps, flips, hovering), and props welded

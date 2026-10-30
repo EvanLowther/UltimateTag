@@ -17,6 +17,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Shared = ReplicatedStorage.Shared
+local Catalog = require(Shared.Catalog)
 local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
@@ -265,11 +266,18 @@ local function playGame(players: { Player })
 
 	-- What the win screen shows: the podium, and each player's own place and winnings.
 	local podium = Participants.podium(Config.Game.PodiumSize)
+	-- Long enough for the winner's victory to play out.
+	local duration = Catalog.winScreenTime(
+		if winner then Catalog.get(winner:GetAttribute("EquippedVictory") :: string?) else nil,
+		Config.Game.VictoryTime,
+		Config.WinScreen.EmoteDelay,
+		Config.WinScreen.EndHold
+	)
 	local screens: { [Player]: { [string]: any } } = {}
 	for _, player in Players:GetPlayers() do
 		local info: { [string]: any } = {
 			Podium = podium,
-			Duration = Config.Game.VictoryTime,
+			Duration = duration,
 		}
 		local earned = GameRewards.earned(player)
 		local place, of = Participants.placeOf(player)
@@ -304,7 +312,7 @@ local function playGame(players: { Player })
 			end
 		end
 	end
-	countdown("Victory", Config.Game.VictoryTime)
+	countdown("Victory", duration)
 	ReplicatedStorage:SetAttribute("Winner", nil)
 	GameState.setRound(0)
 end
