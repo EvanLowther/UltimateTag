@@ -355,6 +355,24 @@ function Iridescent.Rift(context: Context)
 	local hand = Kit.part(character, "RightHand")
 	local riftAt = home * CFrame.new(-4.5, 0.6, 2.5)
 	local facing = CFrame.new(riftAt.Position) * home.Rotation
+	-- The shooting star's long path from far right to the left; it bursts at its end (STRIKE),
+	-- high behind them on the left.
+	local starFrom = (home * CFrame.new(120, 36, 70)).Position
+	local starBend = (home * CFrame.new(50, 48, 70)).Position
+	local starTo = (home * CFrame.new(-14, 20, 70)).Position
+	local function along(u: number): Vector3
+		return starFrom:Lerp(starBend, u):Lerp(starBend:Lerp(starTo, u), u)
+	end
+	local STAR_START, STAR_TIME, BURST_AT = 2.4, 1.4, 1
+	local STRIKE = STAR_START + STAR_TIME * BURST_AT
+	local NOVA = CFrame.new(along(BURST_AT))
+	-- The blast's shockwave pushes them away from it: forward toward the camera, a little down
+	-- and to the right of the screen (their left, -X), into the emptier space.
+	local PUSH = A(-3, -1.6, -4.5)
+	local HOVER = A(0, 2.5, 0)
+	local function pushed(t: number): Vector3
+		return PUSH * Kit.span(t, STRIKE, STRIKE + 2.4, "Out")
+	end
 
 	-- Energy gathering in the raised hand.
 	local energy = Kit.block(A(0.25, 0.25, 2.4), CFrame.new(), PINK, Enum.Material.Neon, 1)
@@ -380,6 +398,7 @@ function Iridescent.Rift(context: Context)
 	end
 	local core = Kit.block(A(1, 5, 0.3), facing * CFrame.new(0, 0, -0.1), WHITE, nil, 1)
 	local riftStars = Kit.emitter(core, {
+		Texture = "rbxasset://textures/particles/smoke_main.dds",
 		Shape = Enum.ParticleEmitterShape.Box,
 		Color = ColorSequence.new(WHITE, ROSE),
 		Size = NumberSequence.new(0.12, 0),
@@ -489,12 +508,15 @@ function Iridescent.Rift(context: Context)
 			return CFrame.new():Lerp(pullTo, u)
 				* CFrame.Angles(math.rad(40) * u, math.pi * 3 * u, math.rad(25) * u)
 		end
-		-- Floating in space, drifting and turning slowly.
-		return CFrame.new(0, 2.5 + math.sin(t * 0.9) * 0.3, 0)
+		-- Floating in space, drifting and turning slowly; the blast shoves them and knocks them
+		-- back a little, then they settle.
+		local kick = Kit.span(t, STRIKE, STRIKE + 0.45, "Out")
+			* (1 - Kit.span(t, STRIKE + 0.45, STRIKE + 3))
+		return CFrame.new(HOVER + pushed(t) + A(0, math.sin(t * 0.9) * 0.3, 0))
 			* CFrame.Angles(
-				math.rad(10 * math.sin(t * 0.5)),
+				math.rad(10 * math.sin(t * 0.5) - 14 * kick),
 				math.rad(20 * math.sin(t * 0.3)),
-				math.rad(14 * math.sin(t * 0.4))
+				math.rad(14 * math.sin(t * 0.4) + 12 * kick)
 			)
 	end)
 	Kit.tilt(function(t)
@@ -503,68 +525,230 @@ function Iridescent.Rift(context: Context)
 
 	-- Deep space: the stage goes, dark blue-black and stars all round.
 	local spaceBloom: BloomEffect? = nil
-	-- A huge green planet fills the view behind them (the reference clip's): swirling toxic
-	-- green with rusty storms, a glowing lime rim along its lit edge, its far side in shadow.
-	type Planet = { surface: BasePart, swirl: BasePart, storms: { BasePart }, rim: Highlight }
+	-- A huge green planet fills the view behind them (the reference clip's): swirling toxic-green
+	-- bands, a rusty storm, darker toward its night side, a glowing lime rim across the top. It's
+	-- painted on one flat disc turned to the camera (so far off it reads as a ball), so nothing
+	-- sticks out of it.
+	type Planet = { gui: SurfaceGui, haze: Frame, flow: Frame }
 	local planet: Planet? = nil
 	local function makePlanet(): Planet
-		local size = 620
-		local center = home * CFrame.new(40, -170, 380)
-		local surface = Kit.block(
-			A(size, size, size),
-			center,
-			Color3.fromRGB(34, 96, 26),
-			Enum.Material.Neon,
-			0,
-			Enum.PartType.Ball
-		)
 		local camera = workspace.CurrentCamera.CFrame.Position
-		local toward = (camera - center.Position).Unit
-		local storms = {}
-		for i = 1, 6 do
-			local r = Kit.rnd(55, 120)
-			local spot = (
-				toward
-				+ center.RightVector * Kit.rnd(0.05, 0.6)
-				+ center.UpVector * Kit.rnd(0.15, 0.7)
-			).Unit
-			local storm = Kit.block(
-				A(r * 2, r * 2, r * 2),
-				CFrame.new(center.Position + spot * (size / 2 - r * 0.62)),
-				if i % 2 == 0 then Color3.fromRGB(150, 62, 22) else Color3.fromRGB(120, 92, 24),
-				Enum.Material.Neon,
-				0.35,
-				Enum.PartType.Ball
-			)
-			table.insert(storms, storm)
+		local spot = (home * CFrame.new(-60, -360, 400)).Position
+		local board = Kit.block(A(1000, 1000, 1), CFrame.lookAt(spot, camera), WHITE, nil, 1)
+		local gui = Instance.new("SurfaceGui")
+		gui.Face = Enum.NormalId.Front
+		gui.SizingMode = Enum.SurfaceGuiSizingMode.FixedSize
+		gui.CanvasSize = Vector2.new(1024, 1024)
+		gui.LightInfluence = 0
+		gui.Brightness = 1.2
+		gui.Parent = board
+		local function circle(
+			parent: Instance,
+			size: Vector2,
+			at: Vector2,
+			color: Color3,
+			transparency: number,
+			rotation: number?
+		): Frame
+			local frame = Instance.new("Frame")
+			frame.AnchorPoint = Vector2.new(0.5, 0.5)
+			frame.Size = UDim2.fromScale(size.X, size.Y)
+			frame.Position = UDim2.fromScale(at.X, at.Y)
+			frame.BackgroundColor3 = color
+			frame.BackgroundTransparency = transparency
+			frame.BorderSizePixel = 0
+			frame.Rotation = rotation or 0
+			local corner = Instance.new("UICorner")
+			corner.CornerRadius = UDim.new(0.5, 0)
+			corner.Parent = frame
+			frame.Parent = parent
+			return frame
 		end
-		local swirl = Kit.block(
-			A(size + 4, size + 4, size + 4),
-			center,
-			Color3.fromRGB(160, 240, 70),
-			Enum.Material.ForceField,
-			0,
-			Enum.PartType.Ball
+		local function gradient(
+			parent: Instance,
+			rotation: number,
+			color: ColorSequence?,
+			transparency: NumberSequence?
 		)
-		-- The night side: a darker ball nudged toward the camera and down-left covers that side.
-		Kit.block(
-			A(size * 1.03, size * 1.03, size * 1.03),
-			center * CFrame.new(-size * 0.3, -size * 0.14, -size * 0.06),
-			Color3.new(0, 0, 0),
+			local g = Instance.new("UIGradient")
+			g.Rotation = rotation
+			if color then
+				g.Color = color
+			end
+			if transparency then
+				g.Transparency = transparency
+			end
+			g.Parent = parent
+		end
+		local function stroke(
+			parent: Instance,
+			thickness: number,
+			transparency: number,
+			rotation: number
+		)
+			local line = Instance.new("UIStroke")
+			line.Color = Color3.fromRGB(184, 255, 72)
+			line.Thickness = thickness
+			line.Transparency = transparency
+			line.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			line.Parent = parent
+			-- Bright along the top (the lit edge), gone toward the bottom.
+			gradient(
+				line,
+				rotation,
+				nil,
+				NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0),
+					NumberSequenceKeypoint.new(0.45, 0.5),
+					NumberSequenceKeypoint.new(0.7, 1),
+					NumberSequenceKeypoint.new(1, 1),
+				})
+			)
+		end
+		local DISC = 0.9 -- of the canvas (room round it for the glow)
+		local middle = Vector2.new(0.5, 0.5)
+		-- The atmosphere's glow just outside the rim.
+		local halo =
+			circle(gui, Vector2.new(DISC + 0.02, DISC + 0.02), middle, Color3.new(0, 0, 0), 1)
+		stroke(halo, 22, 0.55, 100)
+		-- The ground colour: lit lime-green top right, dark green to black bottom left.
+		local base = circle(gui, Vector2.new(DISC, DISC), middle, WHITE, 0)
+		gradient(
+			base,
+			125,
+			ColorSequence.new({
+				ColorSequenceKeypoint.new(0, Color3.fromRGB(128, 206, 48)),
+				ColorSequenceKeypoint.new(0.35, Color3.fromRGB(52, 136, 34)),
+				ColorSequenceKeypoint.new(0.7, Color3.fromRGB(18, 62, 18)),
+				ColorSequenceKeypoint.new(1, Color3.fromRGB(4, 14, 6)),
+			})
+		)
+		-- Swirling cloud bands, drawn as many thin streaks along curves (kept inside the disc).
+		local flow = Instance.new("Frame")
+		flow.BackgroundTransparency = 1
+		flow.AnchorPoint = Vector2.new(0.5, 0.5)
+		flow.Position = UDim2.fromScale(0.5, 0.5)
+		flow.Size = UDim2.fromScale(1, 1)
+		flow.Parent = gui
+		local reach = DISC / 2 - 0.02
+		local function streak(
+			at: Vector2,
+			length: number,
+			width: number,
+			angle: number,
+			color: Color3,
+			transparency: number
+		)
+			if (at - middle).Magnitude + length / 2 > reach then
+				return
+			end
+			circle(flow, Vector2.new(length, width), at, color, transparency, math.deg(angle))
+		end
+		local greens = {
+			Color3.fromRGB(150, 226, 66),
+			Color3.fromRGB(96, 176, 46),
+			Color3.fromRGB(34, 92, 26),
+			Color3.fromRGB(16, 52, 16),
+		}
+		-- Long bands curving round the planet.
+		for band = 1, 22 do
+			local radius = Kit.rnd(0.06, reach - 0.02)
+			local start = Kit.rnd(0, math.pi * 2)
+			local sweep = Kit.rnd(0.6, 1.6)
+			local color = greens[math.random(#greens)]
+			local width = Kit.rnd(0.008, 0.03)
+			for k = 0, 14 do
+				local a = start + sweep * k / 14
+				local wobble = 0.012 * math.sin(k * 0.9 + band)
+				local at = middle + Vector2.new(math.cos(a), math.sin(a)) * (radius + wobble)
+				streak(at, radius * sweep / 10, width, a + math.pi / 2, color, Kit.rnd(0.35, 0.6))
+			end
+		end
+		-- Eddies: tight curls winding inward.
+		for _ = 1, 16 do
+			local center = middle + Vector2.new(Kit.rnd(-0.3, 0.3), Kit.rnd(-0.3, 0.3))
+			local radius = Kit.rnd(0.03, 0.08)
+			local start = Kit.rnd(0, math.pi * 2)
+			local color = greens[math.random(#greens)]
+			for k = 0, 16 do
+				local a = start + k * 0.45
+				local r = radius * (1 - k / 22)
+				local at = center + Vector2.new(math.cos(a), math.sin(a)) * r
+				streak(at, r * 0.7, 0.01, a + math.pi / 2, color, 0.45)
+			end
+		end
+		-- The rusty storm on the right, with darker cores and its own curls.
+		local rustAt = Vector2.new(0.66, 0.5)
+		circle(flow, Vector2.new(0.34, 0.28), rustAt, Color3.fromRGB(146, 70, 26), 0.35, -20)
+		circle(
+			flow,
+			Vector2.new(0.22, 0.17),
+			rustAt + Vector2.new(0.02, 0.02),
+			Color3.fromRGB(118, 44, 20),
+			0.3,
+			-10
+		)
+		circle(
+			flow,
+			Vector2.new(0.12, 0.09),
+			rustAt + Vector2.new(-0.03, 0.04),
+			Color3.fromRGB(82, 30, 16),
+			0.3,
+			15
+		)
+		for _ = 1, 10 do
+			local center = rustAt + Vector2.new(Kit.rnd(-0.12, 0.12), Kit.rnd(-0.1, 0.1))
+			local radius = Kit.rnd(0.025, 0.06)
+			local start = Kit.rnd(0, math.pi * 2)
+			local color = if math.random() < 0.5
+				then Color3.fromRGB(196, 108, 40)
+				else Color3.fromRGB(96, 34, 16)
+			for k = 0, 14 do
+				local a = start + k * 0.5
+				local r = radius * (1 - k / 20)
+				streak(
+					center + Vector2.new(math.cos(a), math.sin(a)) * r,
+					r * 0.7,
+					0.009,
+					a + math.pi / 2,
+					color,
+					0.4
+				)
+			end
+		end
+		-- The night side: darker toward the bottom left.
+		local shade = circle(gui, Vector2.new(DISC, DISC), middle, Color3.new(0, 0, 0), 0)
+		gradient(
+			shade,
+			125,
 			nil,
-			0.2,
-			Enum.PartType.Ball
+			NumberSequence.new({
+				NumberSequenceKeypoint.new(0, 1),
+				NumberSequenceKeypoint.new(0.5, 0.75),
+				NumberSequenceKeypoint.new(0.8, 0.25),
+				NumberSequenceKeypoint.new(1, 0.05),
+			})
 		)
-		local rim = Instance.new("Highlight")
-		rim.Adornee = surface
-		rim.DepthMode = Enum.HighlightDepthMode.Occluded
-		rim.FillTransparency = 1
-		rim.OutlineColor = Color3.fromRGB(176, 255, 70)
-		rim.OutlineTransparency = 0
-		rim.Parent = Kit.folder()
-		Kit.track(rim)
-		return { surface = surface, swirl = swirl, storms = storms, rim = rim }
+		-- The lit rim.
+		local rim = circle(gui, Vector2.new(DISC, DISC), middle, Color3.new(0, 0, 0), 1)
+		stroke(rim, 6, 0, 100)
+		-- A red haze laid over it when the supernova bursts.
+		local haze = circle(
+			gui,
+			Vector2.new(DISC + 0.03, DISC + 0.03),
+			middle,
+			Color3.fromRGB(58, 10, 24),
+			1
+		)
+		return { gui = gui, haze = haze, flow = flow }
 	end
+	Kit.every(function(t)
+		if planet then
+			-- The clouds drift slowly.
+			planet.flow.Rotation = 1.5 * math.sin(t * 0.15)
+		end
+		return nil
+	end)
 	Kit.at(1.95, function()
 		Kit.flash(PALE, 0.9, 0.45)
 		Kit.shake(1.5, 0.35)
@@ -592,6 +776,7 @@ function Iridescent.Rift(context: Context)
 			Kit.lighting("BloomEffect", { Intensity = 0.5, Size = 30, Threshold = 1.1 }) :: BloomEffect
 		local field = Kit.block(A(180, 110, 60), home * CFrame.new(0, 10, 40), WHITE, nil, 1)
 		local stars = Kit.emitter(field, {
+			Texture = "rbxasset://textures/particles/smoke_main.dds",
 			Shape = Enum.ParticleEmitterShape.Box,
 			ShapeStyle = Enum.ParticleEmitterShapeStyle.Volume,
 			Color = ColorSequence.new(WHITE, Color3.fromRGB(190, 210, 255)),
@@ -627,19 +812,14 @@ function Iridescent.Rift(context: Context)
 		light.Range = 12
 		light.Brightness = 2.2
 		light.Parent = key
+		Kit.every(function()
+			key.CFrame = home.Rotation + (home * (HOVER + pushed(Kit.now()) + A(0, 1, -4)))
+			return nil
+		end)
 	end)
 
 	-- A pink shooting star with a bright pointed head arcs across the sky behind them; partway
 	-- across, high behind them, it bursts: the supernova grows from that spot (STRIKE).
-	local starFrom = (home * CFrame.new(28, 14, 45)).Position
-	local starBend = (home * CFrame.new(2, 26, 45)).Position
-	local starTo = (home * CFrame.new(-34, -2, 45)).Position
-	local function along(u: number): Vector3
-		return starFrom:Lerp(starBend, u):Lerp(starBend:Lerp(starTo, u), u)
-	end
-	local STAR_START, STAR_TIME, BURST_AT = 2.7, 1.0, 0.55
-	local STRIKE = STAR_START + STAR_TIME * BURST_AT
-	local NOVA = CFrame.new(along(BURST_AT))
 	Kit.at(STAR_START, function()
 		local star = Kit.prop()
 		-- The head: a hot point leading a stretched glow, pointing the way it flies (-Z).
@@ -679,12 +859,10 @@ function Iridescent.Rift(context: Context)
 			Kit.trail(head, A(0, 0.45, 0), A(0, -0.45, 0), ColorSequence.new(ROSE, PINK), 1.2)
 		trail.WidthScale = NumberSequence.new(1.6, 0)
 		trail.Transparency = NumberSequence.new(0, 1)
-		local glowTrail =
-			Kit.trail(head, A(0, 1.3, 0), A(0, -1.3, 0), ColorSequence.new(PINK, DEEP), 0.6)
-		glowTrail.Transparency = NumberSequence.new(0.6, 1)
 		local sparkles = Kit.emitter(head, {
+			Texture = "rbxasset://textures/particles/smoke_main.dds",
 			Color = ColorSequence.new(ROSE, PINK),
-			Size = NumberSequence.new(0.28, 0),
+			Size = NumberSequence.new(0.3, 0),
 			Lifetime = NumberRange.new(0.6, 1.4),
 			Speed = NumberRange.new(0.5, 3),
 			SpreadAngle = Vector2.new(180, 180),
@@ -714,12 +892,8 @@ function Iridescent.Rift(context: Context)
 		local nova = NOVA.Position
 		Kit.flash(CORAL, 0.6, 0.9)
 		if planet then
-			Kit.tween(planet.surface, 1.2, { Color = Color3.fromRGB(60, 18, 26) })
-			Kit.tween(planet.swirl, 1.2, { Transparency = 0.85 })
-			Kit.tween(planet.rim, 1.2, { OutlineTransparency = 0.75 })
-			for _, storm in planet.storms do
-				Kit.tween(storm, 1.2, { Transparency = 0.85 })
-			end
+			Kit.tween(planet.haze, 1.2, { BackgroundTransparency = 0.2 })
+			Kit.tween(planet.gui, 1.2, { Brightness = 0.6 })
 		end
 		Kit.shake(2.8, 0.9)
 		local toCamera = facingCamera(nova).Rotation
@@ -850,6 +1024,8 @@ function Iridescent.Rift(context: Context)
 		})
 		soft:Emit(4000)
 		local glints = Kit.emitter(origin, {
+			Texture = "rbxasset://textures/particles/smoke_main.dds",
+			LightEmission = 1,
 			Color = palette,
 			Size = grownIn(0.16, 0.08),
 			Transparency = twinkle,
@@ -876,17 +1052,34 @@ function Iridescent.Rift(context: Context)
 		local glows: { Glow } = {}
 		-- Where the winner is on screen (as seen from the camera), with room round them, so
 		-- nothing in front of them covers their face or body.
-		local body = view:PointToObjectSpace(context.root.Position + A(0, 0.6, 0))
-		local bodyDepth = -body.Z
-		local bodyX, bodyY = body.X / bodyDepth, body.Y / bodyDepth
-		local bodyW, bodyH = 2.8 / bodyDepth, 4.2 / bodyDepth
+		-- (Both where they are now and where the blast pushes them to.)
+		type Spot = { x: number, y: number, w: number, h: number, depth: number }
+		local function spotOf(position: Vector3): Spot
+			local here = view:PointToObjectSpace(position + A(0, 0.6, 0))
+			local depth = -here.Z
+			return {
+				x = here.X / depth,
+				y = here.Y / depth,
+				w = 2.8 / depth,
+				h = 4.2 / depth,
+				depth = depth,
+			}
+		end
+		local spots = { spotOf(context.root.Position), spotOf(home * (HOVER + PUSH)) }
+		local final = spots[2]
+		local bodyX, bodyY, bodyW, bodyH = final.x, final.y, final.w, final.h
 		local function covers(x: number, y: number, depth: number, size: number): boolean
-			if depth > bodyDepth + 3 then
-				return false
+			for _, spot in spots do
+				local pad = size / depth
+				if
+					depth <= spot.depth + 3
+					and math.abs(x / depth - spot.x) < spot.w + pad
+					and math.abs(y / depth - spot.y) < spot.h + pad
+				then
+					return true
+				end
 			end
-			local pad = size / depth
-			return math.abs(x / depth - bodyX) < bodyW + pad
-				and math.abs(y / depth - bodyY) < bodyH + pad
+			return false
 		end
 		for i = 1, 520 do
 			local close = i <= 40
@@ -992,12 +1185,16 @@ function Iridescent.Rift(context: Context)
 			1.4,
 			{ TintColor = Color3.fromRGB(255, 172, 186), Saturation = 0.25, Contrast = 0.06 }
 		)
-		Kit.lighting("DepthOfFieldEffect", {
+		local focus = Kit.lighting("DepthOfFieldEffect", {
 			FocusDistance = (view.Position - context.root.Position).Magnitude,
 			InFocusRadius = 7,
 			NearIntensity = 0.8,
 			FarIntensity = 0.5,
-		})
+		}) :: DepthOfFieldEffect
+		Kit.every(function()
+			focus.FocusDistance = (workspace.CurrentCamera.CFrame.Position - context.root.Position).Magnitude
+			return nil
+		end)
 		if spaceBloom then
 			Kit.tween(spaceBloom, 0.4, { Intensity = 0.7 })
 		end
