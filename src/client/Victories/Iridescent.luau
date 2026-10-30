@@ -295,6 +295,10 @@ local ROSE = Color3.fromRGB(255, 140, 200)
 local PALE = Color3.fromRGB(255, 215, 235)
 local SPACE = Color3.fromRGB(5, 7, 18)
 local DEEP = Color3.fromRGB(200, 30, 120)
+-- The burst's pink-reds (the reference: a whole view of pink-red points of light).
+local CORAL = Color3.fromRGB(255, 96, 128)
+local BLUSH = Color3.fromRGB(255, 160, 178)
+local RED = Color3.fromRGB(220, 44, 82)
 
 local FLOAT = {
 	RightUpperArm = A(30, 0, 50),
@@ -562,14 +566,18 @@ function Iridescent.Rift(context: Context)
 		light.Parent = key
 	end)
 
-	-- A pink shooting star with a bright pointed head curves in across the sky and dives into a
-	-- spot behind them: the supernova goes off the moment it hits (STRIKE).
-	local NOVA = home * CFrame.new(4, 7, 48)
-	local STRIKE = 3.7
-	Kit.at(2.75, function()
-		local from = (home * CFrame.new(34, 24, 42)).Position
-		local bend = (home * CFrame.new(22, 26, 46)).Position
-		local to = NOVA.Position
+	-- A pink shooting star with a bright pointed head arcs across the sky behind them; partway
+	-- across, high behind them, it bursts: the supernova grows from that spot (STRIKE).
+	local starFrom = (home * CFrame.new(28, 14, 45)).Position
+	local starBend = (home * CFrame.new(2, 26, 45)).Position
+	local starTo = (home * CFrame.new(-34, -2, 45)).Position
+	local function along(u: number): Vector3
+		return starFrom:Lerp(starBend, u):Lerp(starBend:Lerp(starTo, u), u)
+	end
+	local STAR_START, STAR_TIME, BURST_AT = 2.7, 1.0, 0.55
+	local STRIKE = STAR_START + STAR_TIME * BURST_AT
+	local NOVA = CFrame.new(along(BURST_AT))
+	Kit.at(STAR_START, function()
 		local star = Kit.prop()
 		-- The head: a hot point leading a stretched glow, pointing the way it flies (-Z).
 		Kit.add(
@@ -620,15 +628,10 @@ function Iridescent.Rift(context: Context)
 			Acceleration = A(0, -3, 0),
 			Rate = 500,
 		})
-		local begun = Kit.now()
-		local function along(u: number): Vector3
-			return from:Lerp(bend, u):Lerp(bend:Lerp(to, u), u)
-		end
 		Kit.every(function(t)
-			-- Speeds up as it dives in.
-			local u = Kit.span(t, begun, STRIKE, "In")
-			if u >= 1 then
-				star.place(CFrame.new(to - A(0, 500, 0)))
+			local u = (t - STAR_START) / STAR_TIME
+			if u >= BURST_AT then
+				star.place(CFrame.new(NOVA.Position - A(0, 500, 0)))
 				light.Enabled = false
 				sparkles.Enabled = false
 				return true
@@ -768,9 +771,9 @@ function Iridescent.Rift(context: Context)
 			NumberSequenceKeypoint.new(1, 1),
 		})
 		local palette = ColorSequence.new({
-			ColorSequenceKeypoint.new(0, ROSE),
-			ColorSequenceKeypoint.new(0.5, PINK),
-			ColorSequenceKeypoint.new(1, DEEP),
+			ColorSequenceKeypoint.new(0, BLUSH),
+			ColorSequenceKeypoint.new(0.5, CORAL),
+			ColorSequenceKeypoint.new(1, RED),
 		})
 		local soft = Kit.emitter(origin, {
 			Texture = "rbxasset://textures/particles/smoke_main.dds",
@@ -778,31 +781,67 @@ function Iridescent.Rift(context: Context)
 			Size = grownIn(0.26, 0.14),
 			Transparency = twinkle,
 			Lifetime = NumberRange.new(5, 7),
-			Speed = NumberRange.new(15, 95),
+			Speed = NumberRange.new(15, 120),
 			SpreadAngle = Vector2.new(180, 180),
 			Drag = 1.1,
 			Rate = 0,
 		})
-		soft:Emit(5000)
+		soft:Emit(4000)
 		local glints = Kit.emitter(origin, {
 			Color = palette,
 			Size = grownIn(0.16, 0.08),
 			Transparency = twinkle,
 			Lifetime = NumberRange.new(4, 6),
-			Speed = NumberRange.new(20, 90),
+			Speed = NumberRange.new(20, 120),
 			SpreadAngle = Vector2.new(180, 180),
 			Drag = 1.1,
 			Rate = 0,
 		})
-		glints:Emit(2500)
+		glints:Emit(2000)
 		-- More keep pouring out, so the screen stays full.
 		Kit.at(STRIKE + 0.4, function()
-			soft.Rate = 450
-			glints.Rate = 200
+			soft.Rate = 400
+			glints.Rate = 180
 		end)
-		-- And the space between them and the camera fills with tiny drifting pink points too, so
-		-- the whole screen is dense with them.
-		local near = Kit.block(A(70, 44, 40), home * CFrame.new(0, 4, -6), WHITE, nil, 1)
+		-- The whole view fills: points of light of every size (tiny sharp ones, soft discs, and big
+		-- blurry ones close to the camera, the depth of field turning them into soft discs) fly
+		-- out from the burst in a growing wave to their places all across the screen, then drift.
+		local camera = workspace.CurrentCamera
+		local view = camera.CFrame
+		local tanHalf = math.tan(math.rad(camera.FieldOfView) / 2)
+		local aspect = camera.ViewportSize.X / math.max(camera.ViewportSize.Y, 1)
+		type Glow = { part: BasePart, to: Vector3, arrive: number, phase: number, base: number }
+		local glows: { Glow } = {}
+		for i = 1, 520 do
+			local close = i <= 40
+			local depth = if close then Kit.rnd(6, 18) else Kit.rnd(14, 95)
+			local size = if close
+				then Kit.rnd(1.6, 4)
+				elseif math.random() < 0.25 then Kit.rnd(0.6, 1.4)
+				else Kit.rnd(0.12, 0.5)
+			local high = depth * tanHalf * 1.05
+			local wide = high * aspect
+			local to = (view * CFrame.new(Kit.rnd(-wide, wide), Kit.rnd(-high, high), -depth)).Position
+			local roll = math.random()
+			local color = if roll < 0.2 then RED elseif roll < 0.7 then CORAL else BLUSH
+			local part = Kit.block(
+				A(size, size, size),
+				CFrame.new(nova),
+				color,
+				Enum.Material.Neon,
+				1,
+				Enum.PartType.Ball
+			)
+			table.insert(glows, {
+				part = part,
+				to = to,
+				arrive = (to - nova).Magnitude / 85 + 0.3,
+				phase = Kit.rnd(0, 6),
+				base = if close then Kit.rnd(0.45, 0.7) else Kit.rnd(0.15, 0.55),
+			})
+		end
+		-- And once the wave reaches the camera, tiny points keep appearing all through the view.
+		local near = Kit.block(A(100, 60, 50), view * CFrame.new(0, 0, -30), WHITE, nil, 1)
 		local fill = Kit.emitter(near, {
 			Texture = "rbxasset://textures/particles/smoke_main.dds",
 			Shape = Enum.ParticleEmitterShape.Box,
@@ -815,16 +854,40 @@ function Iridescent.Rift(context: Context)
 			SpreadAngle = Vector2.new(180, 180),
 			Rate = 0,
 		})
-		Kit.at(STRIKE + 0.25, function()
-			fill:Emit(1500)
-			fill.Rate = 350
+		Kit.at(STRIKE + 0.8, function()
+			fill.Rate = 450
 		end)
-		local camera = workspace.CurrentCamera
+		local burstAt = Kit.now()
+		Kit.every(function(t)
+			local u = t - burstAt
+			local parts = table.create(#glows)
+			local frames = table.create(#glows)
+			for _, glow in glows do
+				local k = Kit.span(u, 0, glow.arrive, "Out")
+				local drift = A(math.sin(t * 0.4 + glow.phase), math.cos(t * 0.3 + glow.phase), 0)
+					* 0.5
+					* k
+				table.insert(parts, glow.part)
+				table.insert(frames, CFrame.new(nova:Lerp(glow.to, k) + drift))
+				local shown = Kit.span(u, 0, 0.15)
+				glow.part.Transparency = 1
+					- shown * (1 - glow.base - 0.15 * math.sin(t * 2 + glow.phase))
+			end
+			workspace:BulkMoveTo(parts, frames, Enum.BulkMoveMode.FireCFrameChanged)
+			return nil
+		end)
+		-- Everything takes on the burst's pink-red as the wave spreads.
+		local tint = Kit.lighting("ColorCorrectionEffect", {})
+		Kit.tween(
+			tint,
+			1.4,
+			{ TintColor = Color3.fromRGB(255, 172, 186), Saturation = 0.25, Contrast = 0.06 }
+		)
 		Kit.lighting("DepthOfFieldEffect", {
-			FocusDistance = (camera.CFrame.Position - context.root.Position).Magnitude,
-			InFocusRadius = 9,
-			NearIntensity = 0.6,
-			FarIntensity = 0.3,
+			FocusDistance = (view.Position - context.root.Position).Magnitude,
+			InFocusRadius = 7,
+			NearIntensity = 0.8,
+			FarIntensity = 0.5,
 		})
 		if spaceBloom then
 			Kit.tween(spaceBloom, 0.4, { Intensity = 0.7 })
