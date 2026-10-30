@@ -1,7 +1,7 @@
 # Victories: the new set
 
 Plan for the new victory animations (the winner's celebration on the win screen, also previewed in
-the Locker). Steps: polish the ideas (this file), then a moving preview of each one to look at
+the Locker). Steps: polish the ideas (this file), then a basic moving mockup of each one to look at
 and tweak, then build them in the game.
 
 ## Where they play (what each design has to fit)
@@ -38,7 +38,7 @@ Times below are seconds from when the victory starts.
 ### Flex (kept)
 Unchanged: both arms up in a double bicep, with a gradient sparkle burst.
 
-### Hero Landing (the new backflip)
+### Backflip
 A clean, high backflip that lands in a superhero crouch.
 - **0.0** Quick dip, arms swing back.
 - **0.25** Springs up about 6 studs into a tucked backflip (one full turn), with a short gradient
@@ -60,7 +60,7 @@ The whole scene gets buried in confetti.
 - **3.5** The winner brushes confetti off a shoulder, then throws both arms up again.
 - **End pose:** arms up, standing in a pile of confetti.
 
-### Windmill
+### Breakdance
 A breakdance power move that snaps into a freeze.
 - **0.0** Drops to the floor: hands down, legs kick out.
 - **0.4** Windmill: rolls over the shoulders and back with the legs in a wide V circling over, about
@@ -109,7 +109,7 @@ The 1st place block erupts out of the ground.
 - **2nd and 3rd** look up at them.
 - **End pose:** arms spread wide in the beam, on the risen block.
 
-### Thunderstruck (Lightning Strike)
+### Thunderstorm
 - **0.0** The sky darkens to a stormy blue, the light dims and clouds churn over the backdrop.
 - **0.6, 1.0** Two warning bolts hit the ground near the podium.
 - **1.4** The big bolt hits the winner: a white flash on the screen and a hard camera shake. They're
@@ -177,8 +177,8 @@ The 1st place block erupts out of the ground.
 
 ## Decisions (2026-10-30)
 - **The new set only:** Flex stays. Confetti Pop, Backflip, Fireworks, Hologram and Graduation are
-  removed. Owners get the closest new one: Confetti Pop to Confetti Storm, Backflip to Hero
-  Landing, Fireworks to Podium Rise, Hologram to Supernova, Graduation to Trophy Lift.
+  removed. Owners get the closest new one: Confetti Pop to Confetti Storm, Backflip to the new
+  Backflip, Fireworks to Podium Rise, Hologram to Supernova, Graduation to Trophy Lift.
 - **Trophy Lift** is the level 20 reward (Exclusive) in place of Graduation.
 - **Length:** Epic and Exclusive keep the 8 s win screen. Legendary and Iridescent stretch it to
   about 10 s (each victory says how long it needs, and the server sets the win screen's length from
@@ -193,7 +193,7 @@ The 1st place block erupts out of the ground.
    dip and tilt, the runner-up reactions, and a stand-in block in the Locker.
 2. Pose tools: keyframes that also move the whole body (jumps, flips, hovering), and props welded
    to the hands.
-3. The Epic and Exclusive set: Hero Landing, Confetti Storm, Windmill, Katana, Trophy Lift.
-4. The Legendary set: Podium Rise, Thunderstruck, Throne, Meteor Touchdown.
+3. The Epic and Exclusive set: Backflip, Confetti Storm, Breakdance, Katana, Trophy Lift.
+4. The Legendary set: Podium Rise, Thunderstorm, Throne, Meteor Touchdown.
 5. The Iridescent set: Supernova, Rift.
 6. Catalog: remove the old victories and swap owners to the new ones; level 20 gives Trophy Lift.
