@@ -2945,7 +2945,7 @@ def build():
 
 # ---- the game's copy --------------------------------------------------------------------------------
 
-NEON_STRENGTH = 0.8  # the game's neon: Neon parts' colours and glowing sign text dimmed by this
+NEON_STRENGTH = 0.56  # the game's neon: Neon parts' colours and glowing sign text dimmed by this
 SHOP_PROMPT = {"ActionText": "Shop", "HoldDuration": 0, "MaxActivationDistance": 10,
                "RequiresLineOfSight": False, "KeyboardKeyCode": "E"}
 WORLD_POINTS = ("SpinCenter", "SwingPivot")  # attributes that are places in the world, not directions
