@@ -208,6 +208,112 @@ their insides and juice flying. Last a bomb with a lit fuse is cut by the big ha
 blows up in front of the podium: 2nd and 3rd's blocks go over onto their sides and the players
 are thrown to the floor like ragdolls. Then the clean sheathe and the petals.
 
+## Chrysalis (replaces Supernova): planned 2026-10-30, not built yet
+
+Supernova is being replaced by **Chrysalis**, an Iridescent victory with its own style: organic
+and graceful (silk, a cocoon, morpho butterfly wings, a stage overgrown with plants), not
+explosive, and nothing like Rift (deep space, pink particles, the green planet). The item keeps
+its id `victory_supernova` (owners keep it) but is renamed "Chrysalis". About 10 s long.
+
+**Palette.** Wings and butterflies: morpho blue at the base shifting to violet and teal at the
+tips (deep blue 20,70,220 to electric blue 40,140,255 to violet 140,80,255 to teal 40,220,210),
+dark veins, slowly sliding colours. Silk and cocoon: pearly white with a faint holo sheen (pale
+pinks, mint, lilac sliding across it). The overgrowth: rich greens (moss 60,110,40; grass
+90,160,50; leaves 50,130,45 and 120,190,60) and flowers (white, soft pink, lilac, yellow
+centres). Light: warm, soft, the stage slightly dimmed so the glow stands out.
+
+### The beats (seconds from when the victory starts)
+
+**0.0, Overgrowth (the moment it loads).** All the stage's neon goes dark at once (the
+backdrop's neon slashes, the yellow strip; the lamps dim to soft warm light). Then nature grows
+over the whole stage as an animation, spreading out from the 1st place block:
+- moss creeping across the floor and up the sides of all three blocks (patches growing from
+  nothing and spreading),
+- grass tufts sprouting (blades growing up), clumps along the block bases and the floor,
+- vines climbing the backdrop wall and the block fronts, leaves unfurling along them,
+- small plants and ferns unrolling, flowers blooming (buds opening into petals: white, pink,
+  lilac, yellow centres), a few on the block tops round the players' feet,
+- a few leaves drifting down, pollen and soft light motes floating in the air.
+The growth keeps going lightly for the whole victory (the occasional new flower opening). 2nd
+and 3rd look round at it.
+
+**0.6, Silk rises.** Shimmering silk threads spiral up from the 1st block around the winner,
+catching the light with small glints as they climb. 2nd and 3rd look over at the winner.
+
+**1.2, Wrapping.** The threads tighten and wind round the winner from the feet up while they
+cross their arms over their chest. Layer by layer a pearly cocoon forms round them, its surface
+sliding with a faint holo shimmer, until they're fully hidden.
+
+**2.2, The heartbeat.** The cocoon lifts slightly off the block and hangs there. It pulses with
+light three times like a heartbeat, each pulse brighter (blue-violet light from inside). Light
+leaks through hairline cracks. The camera slowly pushes in.
+
+**3.4, The hush.** The cracks spread across the whole shell. Everything goes still for half a
+beat, the light inside at its brightest.
+
+**3.8, The burst.** The shell breaks into pearly flakes, and each flake turns into a butterfly
+as it flies: hundreds of glowing butterflies (the wings' morpho blue, violet and teal) burst
+outward and fill the screen. 2nd and 3rd shield their eyes.
+
+**3.9, The wings unfold (the signature moment).** Huge wings unfurl from the winner's back,
+about 14 studs across, filling half the screen, opening slowly over about a second: deep blue at
+the base shifting toward violet and teal at the tips, dark veins, an eyespot on each lower wing,
+a glowing edge, a light dust drifting off them. The colours keep sliding as the wings move.
+
+**4.8, The first flap.** One big, slow wing beat sends a soft ring of light rippling out across
+the overgrown stage; flowers and grass sway in the gust. The butterflies sweep into a spiral
+round the winner.
+
+**5.1 to the end, Rising, and the butterflies leave.** The winner floats upward about 5 studs,
+wings beating slowly about once a second, arms open and head up. The camera follows them to keep
+them centred. The butterflies circle in a slow vortex round them. One butterfly lands on the
+winner (a shoulder or a raised hand) and rests there, opening and closing its wings. The rest fly
+round the screen and then, wave after wave, come straight at the camera and fly out of view past
+it until none are left. The butterfly on the winner waits 0.5 s after the last of the others has
+gone, then flies off too.
+
+**End pose:** hovering mid-air, wings fully spread, still beating slowly, the overgrown stage
+below, a few petals and motes drifting.
+
+### Rules for it
+- Keep the winner the focus: nothing covers their face or body (butterflies, flakes and dust
+  avoid the winner's place on screen, as Rift's particles do), and they stay lit.
+- 2nd and 3rd react: look round at the overgrowth, look at the winner, shield their eyes at the
+  burst (with the arm on the winner's side).
+- No emoji, no white glare, no plus-sign sparkle texture (soft round dots).
+- In the Locker preview there's no podium and no other players: the overgrowth grows on the floor
+  round the character instead.
+
+### Step 1: the mockup artifact (first, before any game code)
+A detailed animated mockup page of Chrysalis to review before it's built, like the earlier
+"Victory Mockups" page (https://claude.ai/artifact/4E4KHwTzbB3gLbsjGEKhb4) but for this one
+victory and far more detailed:
+- The win screen front view: the stage (backdrop wall with neon slashes, floor, the three podium
+  blocks 1st, 2nd, 3rd with their numbers, block-rig characters on them; the winner classic
+  yellow head and arms, blue torso, green legs).
+- Every beat above, timed as written and drawn in detail: the neon going dark, the overgrowth
+  growing (moss spreading, grass blades rising, vines climbing with leaves unfurling, flowers
+  blooming petal by petal), the silk threads spiralling, the cocoon building in layers with its
+  sheen, the heartbeat pulses and cracks, the flakes turning into butterflies, the wings
+  unfolding (veins, eyespots, glowing edges, sliding morpho colours), the light ring on the first
+  flap, the rise, the vortex, the butterfly landing, the waves of butterflies flying at the
+  camera and out of view, the last butterfly leaving 0.5 s later.
+- Butterflies must read as butterflies: a body and two pairs of wings that flap.
+- Controls: play and pause, replay, half speed, loop, a timeline scrubber with beat markers, and
+  the beat list under it (click a beat to jump to it).
+- One self-contained HTML file (canvas; three.js from cdnjs is fine if 3D helps), the page in
+  the game's Street sprint look (dark, Bangers and Titillium Web, hazard yellow).
+- Publish it with the Artifact tool, title "Chrysalis Mockup". No game code changes in this
+  step: the owner reviews the mockup first.
+
+### Step 2 (after the owner signs off the mockup): build it
+Replace `Iridescent.Supernova` in `src/client/Victories/Iridescent.luau` with `Chrysalis`
+(`look.Victory` "Chrysalis"; rename the item to "Chrysalis" in `shared/Catalog.luau`, keeping the
+id `victory_supernova`; update the Locker's `VictoryFrames`), built from the Kit (props and prop
+scale, `Kit.reach`, `Kit.lookAt`, `Kit.darken`, `Kit.react`, `Kit.hide`; wing panels painted
+with SurfaceGuis like Rift's planet). Then the usual: AGENTS.md changelog, version bump, checks,
+commit, push.
+
 ## Decisions (2026-10-30)
 - **The new set only:** Flex stays. Confetti Pop, Backflip, Fireworks, Hologram and Graduation are
   removed. Owners get the closest new one: Confetti Pop to Confetti Storm, Backflip to the new
