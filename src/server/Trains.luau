@@ -100,6 +100,9 @@ local function step()
 		if not character or not root or not humanoid or humanoid.Health <= 0 then
 			continue
 		end
+		if character:GetAttribute("Parked") then
+			continue -- out of the game, parked out of sight (server/Spectators)
+		end
 		local p = root.Position
 		local height = p.Y - spec.floorY
 		local inside, u = TrainLine.locate(spec, frames, p.X, p.Z, 0)

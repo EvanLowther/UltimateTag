@@ -12,13 +12,29 @@ local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
+local GameLog = require(script.Parent.GameLog)
 local Leaderstats = require(script.Parent.Leaderstats)
+local Participants = require(script.Parent.Participants)
 local Progression = require(script.Parent.Progression)
 local Roles = require(script.Parent.Roles)
 
 local TagService = {}
 
 local lastSwing: { [Player]: number } = {}
+
+-- While a game is being played only the players still in it take part: swings from, and hits on,
+-- anyone else (eliminated, spectating, joined late) are ignored. Elsewhere (the lobby, the
+-- sandbox, the victory screen) everyone does.
+local GAME_PHASES = { Intro = true, Playing = true, Results = true }
+
+local function takesPart(player: Player): boolean
+	return not GAME_PHASES[GameState.getPhase()] or Participants.isAlive(player)
+end
+
+local function flatSpeed(root: BasePart): number
+	local v = root.AssemblyLinearVelocity
+	return math.floor(Vector3.new(v.X, 0, v.Z).Magnitude * 10 + 0.5) / 10
+end
 
 -- Returns the player's root part only if their character is alive.
 local function aliveRoot(player: Player): BasePart?
@@ -56,7 +72,15 @@ local function knockback(swingerRoot: BasePart, hit: Player, scale: number)
 	end
 end
 
-local function tag(tagger: Player, tagged: Player)
+local function tag(tagger: Player, tagged: Player, distance: number?, taggerSpeed: number?)
+	if GameLog.enabled() then
+		local taggedRoot = aliveRoot(tagged)
+		local distanceText = if distance then string.format("%.1f", distance) else "?"
+		local taggedSpeed = if taggedRoot then flatSpeed(taggedRoot) else "?"
+		GameLog.say(
+			`TAG {tagger.Name} -> {tagged.Name} at {distanceText} studs (range {Config.Tag.Range}); speeds: {tagger.Name} {taggerSpeed or "?"}, {tagged.Name} {taggedSpeed}`
+		)
+	end
 	Roles.set(tagger, "Runner")
 	Roles.set(tagged, "It")
 	Roles.freeze(tagged, Config.Tag.FreezeTime)
@@ -71,7 +95,11 @@ local function nearest(swinger: Player, fromRoot: BasePart, runnersOnly: boolean
 	local best: Player? = nil
 	local bestDistance = Config.Tag.Range
 	for _, other in Players:GetPlayers() do
-		if other ~= swinger and (not runnersOnly or Roles.get(other) == "Runner") then
+		if
+			other ~= swinger
+			and takesPart(other)
+			and (not runnersOnly or Roles.get(other) == "Runner")
+		then
 			local root = aliveRoot(other)
 			local distance = root and (root.Position - fromRoot.Position).Magnitude
 			if distance and distance <= bestDistance then
@@ -82,7 +110,32 @@ local function nearest(swinger: Player, fromRoot: BasePart, runnersOnly: boolean
 	return best
 end
 
+-- For the log: how far the nearest Runner was when It swung and missed (however far away).
+local function logMiss(swinger: Player, fromRoot: BasePart)
+	local best: Player? = nil
+	local bestDistance = math.huge
+	for _, other in Players:GetPlayers() do
+		if other ~= swinger and takesPart(other) and Roles.get(other) == "Runner" then
+			local root = aliveRoot(other)
+			local distance = root and (root.Position - fromRoot.Position).Magnitude
+			if distance and distance < bestDistance then
+				best, bestDistance = other, distance
+			end
+		end
+	end
+	local nearestText = "none"
+	if best then
+		nearestText = `{best.Name} at {string.format("%.1f", bestDistance)}`
+	end
+	GameLog.say(
+		`SWING by It {swinger.Name} hit nobody (speed {flatSpeed(fromRoot)}); nearest Runner: {nearestText} studs, range {Config.Tag.Range}`
+	)
+end
+
 local function onSwing(player: Player)
+	if not takesPart(player) then
+		return
+	end
 	-- Anyone can swing, just not while frozen or faster than the cooldown allows.
 	if Roles.isFrozen(player) then
 		return
@@ -102,9 +155,18 @@ local function onSwing(player: Player)
 	local tagging = Roles.get(player) == "It" and (phase == "Playing" or phase == "Sandbox")
 	local target = if tagging then nearest(player, root, true) else nil
 	if target then
-		tag(player, target)
+		local targetRoot = aliveRoot(target)
+		tag(
+			player,
+			target,
+			if targetRoot then (targetRoot.Position - root.Position).Magnitude else nil,
+			flatSpeed(root)
+		)
 		knockback(root, target, 1)
 		return
+	end
+	if tagging and GameLog.enabled() then
+		logMiss(player, root)
 	end
 	local shoved = nearest(player, root, false)
 	if shoved then

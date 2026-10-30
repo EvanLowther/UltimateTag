@@ -5,8 +5,8 @@
 -- who die on the map during a round (or in Sandbox) come back on one of its spawn points instead
 -- of in the lobby, keeping their role. Respawn delay: Config.Game.RespawnTime.
 -- A map with the FallEliminates attribute (the Rooftop District) is different: dying on it while
--- a round is being played puts you out of the game (GameLoop listens with onFellOut), and you
--- come back in the lobby to spectate.
+-- a round is being played puts you out of the game (GameLoop listens with onFellOut): you are
+-- camera only from then on (server/Spectators parks the body you respawn with).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -106,6 +106,9 @@ function MapRespawn.start()
 			local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 			if not root or not humanoid or humanoid.Health <= 0 then
 				continue
+			end
+			if character:GetAttribute("Parked") then
+				continue -- out of the game: nothing on the map touches them
 			end
 			local position = root.Position
 			local sideways = Vector2.new(position.X - center.X, position.Z - center.Z).Magnitude
