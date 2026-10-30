@@ -476,9 +476,9 @@ add("victory_breakdance", "Victory", "Breakdance", "Epic", {
 }, { blurb = "A windmill into a one-hand freeze" })
 add("victory_katana", "Victory", "Katana", "Epic", {
 	Victory = "Katana",
-	Length = 5.5,
+	Length = 6.2,
 	Colors = { rgb(255, 143, 194), rgb(255, 255, 255) },
-}, { blurb = "Draw, spin, one clean cut, and the other blocks fall apart" })
+}, { blurb = "Fruit Ninja with a katana, and a bomb that blows the competition off their podiums" })
 add("victory_trophy", "Victory", "Trophy Lift", "Epic", {
 	Victory = "TrophyLift",
 	Length = 5.5,

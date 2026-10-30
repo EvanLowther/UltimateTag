@@ -201,6 +201,13 @@ The 1st place block erupts out of the ground.
   spotlight and wrecks the floor round the block; Thunderstorm has heavy rain; Meteor Touchdown
   deforms every block and wrecks the floor; Rift's star arcs and its supernova is far bigger.
 
+## Katana becomes Fruit Ninja (0.55.5)
+A longer, sharper blade. After the draw and the spin: an apple (diagonal slash), a banana (a
+sweep) and a watermelon (a two-handed chop) are tossed up and sliced mid-air, the halves showing
+their insides and juice flying. Last a bomb with a lit fuse is cut by the big hanging cut and
+blows up in front of the podium: 2nd and 3rd's blocks go over onto their sides and the players
+are thrown to the floor like ragdolls. Then the clean sheathe and the petals.
+
 ## Decisions (2026-10-30)
 - **The new set only:** Flex stays. Confetti Pop, Backflip, Fireworks, Hologram and Graduation are
   removed. Owners get the closest new one: Confetti Pop to Confetti Storm, Backflip to the new

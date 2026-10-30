@@ -546,7 +546,8 @@ end
 
 ---------------------------------------------------------------------------- Katana
 
--- The body around the right arm (the arms themselves reach for the sword and sheath).
+-- The body round the arms (the arms themselves reach for the sword and sheath): a wide stance,
+-- the torso twisting into each cut.
 local KATANA: { Key } = {
 	{ time = 0, angles = {} },
 	{
@@ -554,20 +555,26 @@ local KATANA: { Key } = {
 		angles = {
 			UpperTorso = A(0, 18, 0),
 			Head = A(-12),
-			RightUpperLeg = A(0, 0, 8),
-			LeftUpperLeg = A(0, 0, -8),
+			RightUpperLeg = A(0, 0, 10),
+			LeftUpperLeg = A(0, 0, -10),
 		},
 	},
-	{ time = 0.6, angles = { UpperTorso = A(0, -8, 0), Head = A(0) } },
-	{ time = 1.6, angles = { UpperTorso = A(0) } },
-	{ time = 2.0, angles = { UpperTorso = A(0, -25, 0), Head = A(5) } },
-	{ time = 2.32, angles = { UpperTorso = A(0, 30, 0) }, ease = "In" },
-	{ time = 2.6, angles = { UpperTorso = A(0, 20, 0) } },
-	{ time = 3.05, angles = { UpperTorso = A(0, 15, 0), Head = A(-10) } },
-	{ time = 3.7, angles = { UpperTorso = A(0), Head = A(-14) } },
+	{ time = 0.6, angles = { UpperTorso = A(0, -8, 0), Head = A(8) } },
+	{ time = 1.3, angles = { UpperTorso = A(0) } },
+	{ time = 1.45, angles = { UpperTorso = A(0, -22, 0) } }, -- the apple: wind up right
+	{ time = 1.62, angles = { UpperTorso = A(-8, 25, 0) }, ease = "In" },
+	{ time = 1.85, angles = { UpperTorso = A(0, 30, 0) } }, -- the banana: wind up left
+	{ time = 2.05, angles = { UpperTorso = A(0, -28, 0) }, ease = "In" },
+	{ time = 2.35, angles = { UpperTorso = A(12, 0, 0), Head = A(15) } }, -- the watermelon: raise
+	{ time = 2.55, angles = { UpperTorso = A(-22, 0, 0), Head = A(-5) }, ease = "In" },
+	{ time = 2.85, angles = { UpperTorso = A(0, -25, 0), Head = A(8) } }, -- the bomb: wind up
+	{ time = 3.12, angles = { UpperTorso = A(0, 30, 0) }, ease = "In" },
+	{ time = 3.4, angles = { UpperTorso = A(0, 20, 0) } },
+	{ time = 3.9, angles = { UpperTorso = A(0, 15, 0), Head = A(-10) } },
+	{ time = 4.5, angles = { UpperTorso = A(0), Head = A(-14) } },
 }
 
--- Falling to the floor like a ragdoll: arms flung, then limp.
+-- Thrown by a blast and landing like a ragdoll: arms flung, then limp.
 local SLUMP: { Key } = {
 	{ time = 0, angles = {} },
 	{
@@ -609,131 +616,320 @@ end
 -- torso's space. -Z of this frame points into the sheath.
 local MOUTH = A(-1.15, 0.15, -0.55)
 local SHEATH = CFrame.lookAt(MOUTH, MOUTH + A(0, -0.45, 0.89))
-local BLADE = 3.6
+local BLADE = 4.4 -- guard to tip
 local GRIP = 0.5 -- the hilt's middle, behind the guard (the sword's origin)
+local FLIGHT = 0.8 -- seconds a fruit flies before the blade meets it
+local GRAVITY = 30
 
--- Cuts a podium block in two along a slant: the top half slides down the cut, tips off and
--- falls to the floor, and whoever stood on it falls with it and flops onto the floor. `high` is
--- +1 if the cut is higher on the block's +X side (the top slides toward -X).
-local function slice(context: Context, block: BasePart, high: number, rider: Model?)
-	local size = block.Size
-	local w, h, d = size.X, size.Y, size.Z
-	local hi, lo = h * 0.66, h * 0.34
-	local base = block.CFrame
-	local floor = context.floor
-	local front = d / 2 + 0.04
-	local glow = Kit.line(
-		(base * CFrame.new(high * w / 2, hi - h / 2, front)).Position,
-		(base * CFrame.new(-high * w / 2, lo - h / 2, front)).Position,
-		0.14,
-		WHITE
+-- An egg shape (a stretched ball) in `prop`.
+local function egg(
+	prop: Kit.Prop,
+	size: Vector3,
+	offset: CFrame,
+	color: Color3,
+	material: Enum.Material?,
+	transparency: number?
+): BasePart
+	local part = Kit.block(size, CFrame.new(), color, material, transparency)
+	local mesh = Instance.new("SpecialMesh")
+	mesh.MeshType = Enum.MeshType.Sphere
+	mesh.Parent = part
+	return Kit.add(prop, part, offset)
+end
+
+local function stick(
+	prop: Kit.Prop,
+	size: Vector3,
+	offset: CFrame,
+	color: Color3,
+	material: Enum.Material?
+): BasePart
+	return Kit.add(prop, Kit.block(size, CFrame.new(), color, material), offset)
+end
+
+-- Half of a round fruit, cut face up (+Y) at its origin: a rounded skin below and a flat face
+-- of `faces` (outer first: rind, flesh...) on top.
+local function dome(diameter: number, skin: Color3, faces: { Color3 }): Kit.Prop
+	local half = Kit.prop()
+	local rim = diameter * 0.22
+	Kit.add(
+		half,
+		Kit.block(A(rim, diameter, diameter), CFrame.new(), skin, nil, 0, Enum.PartType.Cylinder),
+		CFrame.new(0, -rim / 2, 0) * CFrame.Angles(0, 0, math.rad(90))
 	)
-	Kit.tween(glow, 0.5, { Transparency = 1 }, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
-	block.LocalTransparencyModifier = 1
-	local guis = {}
-	for _, item in block:GetChildren() do
-		if item:IsA("SurfaceGui") and item.Enabled then
-			item.Enabled = false
-			table.insert(guis, item)
+	egg(half, A(diameter, diameter * 0.58, diameter), CFrame.new(0, -rim, 0), skin)
+	for i, color in faces do
+		local width = diameter * (0.93 - (i - 1) * 0.12)
+		egg(half, A(width, 0.05, width), CFrame.new(0, diameter * 0.075 + i * 0.025, 0), color)
+	end
+	return half
+end
+
+type Fruit = {
+	whole: Kit.Prop,
+	halves: { Kit.Prop },
+	across: boolean, -- halves split along the fruit's own X (a banana) rather than the cut
+	juice: { Color3 },
+	face: number, -- how high the top of a half's face is (for the seeds)
+	spark: BasePart?, -- a bomb's fuse
+}
+
+local function apple(): Fruit
+	local whole = Kit.prop()
+	local red = Color3.fromRGB(190, 24, 36)
+	egg(whole, A(1.4, 1.3, 1.4), CFrame.new(), red)
+	egg(whole, A(1.0, 0.95, 1.0), CFrame.new(0.24, 0.1, -0.3), Color3.fromRGB(222, 70, 42))
+	egg(whole, A(0.5, 0.2, 0.5), CFrame.new(0, 0.6, 0), Color3.fromRGB(120, 16, 24))
+	stick(
+		whole,
+		A(0.08, 0.42, 0.08),
+		CFrame.new(0.03, 0.78, 0) * CFrame.Angles(0, 0, math.rad(-10)),
+		Color3.fromRGB(92, 62, 34)
+	)
+	egg(
+		whole,
+		A(0.48, 0.05, 0.22),
+		CFrame.new(0.24, 0.84, 0) * CFrame.Angles(0, 0.4, math.rad(28)),
+		Color3.fromRGB(70, 150, 50)
+	)
+	egg(whole, A(0.34, 0.16, 0.22), CFrame.new(-0.32, 0.36, -0.52), WHITE, nil, 0.45)
+	local flesh, core, seed =
+		Color3.fromRGB(246, 234, 196), Color3.fromRGB(230, 206, 150), Color3.fromRGB(70, 40, 20)
+	local halves = {}
+	for _ = 1, 2 do
+		local half = dome(1.4, red, { red, flesh })
+		egg(half, A(0.5, 0.05, 0.62), CFrame.new(0, 0.2, 0), core)
+		for _, x in { -0.11, 0.11 } do
+			egg(half, A(0.12, 0.06, 0.2), CFrame.new(x, 0.23, 0), seed)
+		end
+		table.insert(halves, half)
+	end
+	return { whole = whole, halves = halves, across = false, juice = { flesh, WHITE }, face = 0.2 }
+end
+
+local function watermelon(): Fruit
+	local whole = Kit.prop()
+	local skin, stripe = Color3.fromRGB(96, 164, 62), Color3.fromRGB(30, 86, 36)
+	egg(whole, A(2.7, 2.0, 2.0), CFrame.new(), skin)
+	for k = 0, 5 do
+		egg(whole, A(2.72, 2.02, 0.3), CFrame.Angles(k * math.pi / 6, 0, 0), stripe)
+	end
+	stick(whole, A(0.18, 0.16, 0.16), CFrame.new(1.38, 0, 0), Color3.fromRGB(110, 90, 50))
+	egg(whole, A(0.8, 0.3, 0.5), CFrame.new(-0.4, 0.6, -0.75), WHITE, nil, 0.6)
+	local halves = {}
+	for _ = 1, 2 do
+		local half =
+			dome(2.0, stripe, { Color3.fromRGB(226, 242, 204), Color3.fromRGB(232, 46, 60) })
+		for k = 1, 9 do
+			local a = k / 9 * math.pi * 2
+			egg(
+				half,
+				A(0.1, 0.05, 0.17),
+				CFrame.new(math.cos(a) * 0.5, 0.28, math.sin(a) * 0.5) * CFrame.Angles(0, -a, 0),
+				Color3.fromRGB(20, 16, 14)
+			)
+		end
+		table.insert(halves, half)
+	end
+	return {
+		whole = whole,
+		halves = halves,
+		across = false,
+		juice = { Color3.fromRGB(235, 40, 55), Color3.fromRGB(255, 130, 130) },
+		face = 0.25,
+	}
+end
+
+local function banana(): Fruit
+	local yellow, end_ = Color3.fromRGB(250, 214, 60), Color3.fromRGB(210, 176, 40)
+	local function segments(prop: Kit.Prop, from: number, to: number)
+		for a = from, to, 20 do
+			local r = math.rad(a)
+			local tip = math.abs(a) >= 50
+			egg(
+				prop,
+				if tip then A(0.52, 0.32, 0.32) else A(0.64, 0.42, 0.42),
+				CFrame.new(1.5 * math.sin(r), 1.5 * math.cos(r) - 1.5, 0) * CFrame.Angles(0, 0, -r),
+				if tip then end_ else yellow
+			)
 		end
 	end
+	local function stem(prop: Kit.Prop)
+		local r = math.rad(64)
+		stick(
+			prop,
+			A(0.36, 0.13, 0.13),
+			CFrame.new(1.5 * math.sin(r), 1.5 * math.cos(r) - 1.5, 0) * CFrame.Angles(0, 0, -r),
+			Color3.fromRGB(110, 92, 40)
+		)
+	end
+	local function nub(prop: Kit.Prop)
+		local r = math.rad(-62)
+		egg(
+			prop,
+			A(0.16, 0.16, 0.16),
+			CFrame.new(1.5 * math.sin(r), 1.5 * math.cos(r) - 1.5, 0),
+			Color3.fromRGB(60, 44, 24)
+		)
+	end
+	local whole = Kit.prop()
+	segments(whole, -50, 50)
+	stem(whole)
+	nub(whole)
+	local flesh = Color3.fromRGB(250, 240, 200)
+	local left, right = Kit.prop(), Kit.prop()
+	segments(left, -50, -10)
+	nub(left)
+	egg(left, A(0.05, 0.38, 0.38), CFrame.new(-0.18, -0.01, 0), flesh)
+	segments(right, 10, 50)
+	stem(right)
+	egg(right, A(0.05, 0.38, 0.38), CFrame.new(0.18, -0.01, 0), flesh)
+	return {
+		whole = whole,
+		halves = { left, right },
+		across = true,
+		juice = { flesh, Color3.fromRGB(255, 236, 150) },
+		face = 0,
+	}
+end
+
+local function bomb(): Fruit
+	local whole = Kit.prop()
+	local black = Color3.fromRGB(26, 26, 32)
+	local body = egg(whole, A(1.7, 1.7, 1.7), CFrame.new(), black)
+	body.Reflectance = 0.15
+	egg(whole, A(0.5, 0.28, 0.3), CFrame.new(-0.42, 0.45, -0.62), WHITE, nil, 0.35)
+	Kit.add(
+		whole,
+		Kit.block(
+			A(0.3, 0.75, 0.75),
+			CFrame.new(),
+			Color3.fromRGB(70, 70, 78),
+			Enum.Material.Metal,
+			0,
+			Enum.PartType.Cylinder
+		),
+		CFrame.new(0, 0.9, 0) * CFrame.Angles(0, 0, math.rad(90))
+	)
+	stick(
+		whole,
+		A(0.09, 0.45, 0.09),
+		CFrame.new(0.06, 1.25, 0) * CFrame.Angles(0, 0, math.rad(-15)),
+		Color3.fromRGB(140, 110, 70)
+	)
+	stick(
+		whole,
+		A(0.09, 0.35, 0.09),
+		CFrame.new(0.22, 1.55, 0) * CFrame.Angles(0, 0, math.rad(-45)),
+		Color3.fromRGB(140, 110, 70)
+	)
+	local spark = Kit.add(
+		whole,
+		Kit.block(
+			A(0.26, 0.26, 0.26),
+			CFrame.new(),
+			Color3.fromRGB(255, 170, 60),
+			Enum.Material.Neon,
+			0,
+			Enum.PartType.Ball
+		),
+		CFrame.new(0.36, 1.7, 0)
+	)
+	local halves = {}
+	for _ = 1, 2 do
+		table.insert(
+			halves,
+			dome(1.7, black, { Color3.fromRGB(46, 46, 52), Color3.fromRGB(70, 66, 60) })
+		)
+	end
+	return {
+		whole = whole,
+		halves = halves,
+		across = false,
+		juice = { Color3.fromRGB(255, 190, 90), WHITE },
+		face = 0.2,
+		spark = spark,
+	}
+end
+
+-- A turn whose up (+Y) is `up`.
+local function upward(up: Vector3): CFrame
+	local right = up:Cross(Vector3.zAxis)
+	if right.Magnitude < 1e-3 then
+		right = up:Cross(Vector3.xAxis)
+	end
+	return CFrame.fromMatrix(Vector3.zero, right.Unit, up.Unit)
+end
+
+-- A block knocked over by a blast: it hops, tips over outward onto its side and slides; whoever
+-- stood on it is thrown off and lands on the floor like a ragdoll. `out` is +1 or -1 (world X).
+local function topple(context: Context, block: BasePart, out: number, rider: Model?)
+	local size, base = block.Size, block.CFrame
+	local edge = (base * CFrame.new(out * size.X / 2, -size.Y / 2, 0)).Position
 	Kit.onStop(function()
-		block.LocalTransparencyModifier = 0
-		for _, gui in guis do
-			gui.Enabled = true
-		end
+		block.CFrame = base
 	end)
-	local band = hi - lo
-	local middle = lo + band / 2 - h / 2
-	local up, down = A(0, 1, 0), A(0, -1, 0)
-	local toHigh, toLow = A(high, 0, 0), A(-high, 0, 0)
-	-- The lower half stays: a box and a wedge rising to the high side.
-	Kit.block(A(w, lo, d), base * CFrame.new(0, -h / 2 + lo / 2, 0), block.Color, block.Material)
-	Kit.wedge(
-		A(d, band, w),
-		base * CFrame.fromMatrix(A(0, middle, 0), up:Cross(toHigh), up, toHigh),
-		block.Color,
-		block.Material
-	)
-	-- The upper half: an upside-down wedge and the box on top.
-	local top = Kit.prop()
-	local topCenter = A(0, (middle + h / 2) / 2, 0)
-	Kit.add(
-		top,
-		Kit.block(A(w, h - hi, d), base, block.Color, block.Material),
-		CFrame.new(0, -h / 2 + hi + (h - hi) / 2, 0)
-	)
-	Kit.add(
-		top,
-		Kit.wedge(A(d, band, w), base, block.Color, block.Material),
-		CFrame.fromMatrix(A(0, middle, 0), down:Cross(toLow), down, toLow)
-	)
-	top.place(base)
-	local slope = base:VectorToWorldSpace(A(-high * w, lo - hi, 0).Unit)
-	local outward = base:VectorToWorldSpace(toLow)
+	for _, corner in { -1, 1 } do
+		Kit.rubble(
+			context,
+			(base * CFrame.new(corner * size.X / 2, size.Y / 2, size.Z / 2)).Position,
+			4,
+			9,
+			block.Color,
+			0.5,
+			true
+		)
+	end
 	local begun = Kit.now()
 	local landed = false
-	-- Where the top half is `u` seconds after the cut.
-	local function topAt(u: number): CFrame
-		local slid = slope * 1.6 * Kit.span(u, 0.1, 0.45, "In")
-		local fall = math.max(u - 0.45, 0)
-		local tip = math.rad(40) * Kit.span(u, 0.45, 0.95) * -high
-		return (base + slid + outward * 2.2 * fall + A(0, -22 * fall * fall, 0))
-			* Kit.around(topCenter, CFrame.Angles(0, 0, tip))
-	end
 	Kit.every(function(t)
-		if landed then
-			return true
-		end
 		local u = t - begun
-		local frame = topAt(u)
-		top.place(frame)
-		local low = Kit.lowestOf(top.parts)
-		if low < floor then
-			top.place(frame + A(0, floor - low, 0))
-			landed = u > 0.5
-			if landed then
-				Kit.dust(Vector3.new(frame.X, floor + 0.3, frame.Z), 14, 1.4)
-				Kit.shake(0.8, 0.25)
-			end
+		local fall = Kit.span(u, 0, 0.75, "In")
+		local hop = math.sin(math.clamp(u / 0.3, 0, 1) * math.pi) * 0.7
+		local slide = A(out * 1.8 * Kit.span(u, 0, 1.0, "Out"), hop, 0)
+		block.CFrame = CFrame.new(edge + slide)
+			* CFrame.Angles(0, 0, -out * math.rad(90) * fall)
+			* CFrame.new(-edge)
+			* base
+		if u >= 0.75 and not landed then
+			landed = true
+			Kit.dust(Vector3.new(edge.X + out * size.Y / 2, context.floor + 0.3, edge.Z), 18, 1.6)
+			Kit.shake(1.4, 0.3)
 		end
-		return nil
+		return u > 1.05
 	end)
 	if not rider then
 		return
 	end
-	-- The rider rides the slide, then falls off sideways and lies on the floor.
 	local start = rider:GetPivot()
 	Kit.onStop(function()
 		if rider.Parent then
 			rider:PivotTo(start)
 		end
 	end)
-	local lean = if outward:Dot(-start.RightVector) > 0 then 1 else -1
-	Kit.pose(rider, SLUMP, context.hold - begun)
+	Kit.pose(rider, SLUMP, context.hold)
+	local velocity = A(out * 9, 13, Kit.rnd(-1, 1))
+	local spin = Kit.rnd(-1, 1)
 	Kit.every(function(t)
 		local u = t - begun
-		local slid = slope * 1.6 * Kit.span(u, 0.1, 0.45, "In")
-		local fall = math.max(u - 0.35, 0)
-		local turn = math.rad(90) * Kit.span(u, 0.35, 0.95, "In") * lean
-		local position = start.Position
-			+ slid
-			+ outward * 3 * math.min(fall, 0.6)
-			+ A(0, -26 * fall * fall, 0)
-		local frame = CFrame.new(position) * start.Rotation * CFrame.Angles(0, 0, turn)
+		local position = start.Position + velocity * math.min(u, 1.2) + A(0, -18 * u * u, 0)
+		local frame = CFrame.new(position)
+			* CFrame.Angles(0, spin * u, -out * math.rad(100) * Kit.span(u, 0, 0.7))
+			* start.Rotation
 		rider:PivotTo(frame)
 		local low = Kit.lowest(rider)
-		if low < floor then
-			rider:PivotTo(frame + A(0, floor - low, 0))
+		if low < context.floor then
+			rider:PivotTo(frame + A(0, context.floor - low, 0))
 		end
-		return u > 1.2
+		return u > 1.6
 	end)
 end
 
--- Draws a katana from a sheath on the hip, spins it, makes one wide cut that hangs in the air,
--- and slides it cleanly home: the sword follows one smooth path and the arms reach for it. On
--- the click the cut scatters into petals and the 2nd and 3rd blocks are sliced: their tops slide
--- off and fall, and the players on them flop onto the floor.
+-- Fruit Ninja with a katana: draws it from the hip, spins it, then slices an apple, a banana
+-- and a watermelon tossed up into the air, one cut each, with juice flying. The last thing up
+-- is a bomb: the wide cut that hangs in the air splits it, it blows up in front of the podium,
+-- knocking 2nd and 3rd's blocks over and throwing them to the floor. Then the blade slides home
+-- and the hanging cut scatters into petals.
 function Epic.Katana(context: Context)
 	local character = context.character
 	local lower = Kit.part(character, "LowerTorso")
@@ -746,28 +942,53 @@ function Epic.Katana(context: Context)
 	local ink = Color3.fromRGB(26, 22, 30)
 
 	local sheath = Kit.prop()
-	Kit.add(sheath, Kit.block(A(0.32, 0.36, 3.8), CFrame.new(), ink), CFrame.new(0, 0, -1.9))
 	Kit.add(
 		sheath,
-		Kit.block(A(0.4, 0.44, 0.25), CFrame.new(), GOLD, Enum.Material.Metal),
+		Kit.block(A(0.3, 0.36, BLADE + 0.2), CFrame.new(), ink),
+		CFrame.new(0, 0, -(BLADE + 0.2) / 2)
+	)
+	Kit.add(
+		sheath,
+		Kit.block(A(0.38, 0.44, 0.25), CFrame.new(), GOLD, Enum.Material.Metal),
 		CFrame.new(0, 0, -0.12)
 	)
 	Kit.add(
 		sheath,
-		Kit.block(A(0.36, 0.4, 0.2), CFrame.new(), GOLD, Enum.Material.Metal),
-		CFrame.new(0, 0, -3.75)
+		Kit.block(A(0.34, 0.4, 0.2), CFrame.new(), GOLD, Enum.Material.Metal),
+		CFrame.new(0, 0, -BLADE - 0.1)
 	)
+	-- A long, thin blade with a bright edge and a pointed tip.
 	local sword = Kit.prop()
+	local length = BLADE - 0.55
 	local blade = Kit.add(
 		sword,
-		Kit.block(A(0.08, 0.3, BLADE), CFrame.new(), steel, Enum.Material.Metal),
-		CFrame.new(0, 0, -BLADE / 2)
+		Kit.block(A(0.06, 0.26, length), CFrame.new(), steel, Enum.Material.Metal),
+		CFrame.new(0, 0, -length / 2 - 0.05)
 	)
-	blade.Reflectance = 0.35
+	blade.Reflectance = 0.4
 	Kit.add(
 		sword,
 		Kit.block(
-			A(0.12, 0.55, 0.55),
+			A(0.03, 0.04, length),
+			CFrame.new(),
+			Color3.fromRGB(240, 248, 255),
+			Enum.Material.Neon,
+			0.3
+		),
+		CFrame.new(0, -0.13, -length / 2 - 0.05)
+	)
+	local tip = Kit.wedge(A(0.06, 0.26, 0.55), CFrame.new(), steel, Enum.Material.Metal)
+	tip.Reflectance = 0.4
+	Kit.add(sword, tip, CFrame.new(0, 0, -length - 0.05 - 0.275))
+	Kit.add(
+		sword,
+		Kit.block(A(0.12, 0.32, 0.2), CFrame.new(), GOLD, Enum.Material.Metal),
+		CFrame.new(0, 0, -0.1)
+	)
+	Kit.add(
+		sword,
+		Kit.block(
+			A(0.12, 0.6, 0.6),
 			CFrame.new(),
 			GOLD,
 			Enum.Material.Metal,
@@ -778,16 +999,29 @@ function Epic.Katana(context: Context)
 	)
 	Kit.add(
 		sword,
-		Kit.block(A(0.22, 0.22, 1.0), CFrame.new(), Color3.fromRGB(70, 20, 34)),
+		Kit.block(A(0.22, 0.24, 1.0), CFrame.new(), Color3.fromRGB(70, 20, 34)),
 		CFrame.new(0, 0, 0.55)
 	)
+	for k = 0, 3 do
+		Kit.add(
+			sword,
+			Kit.block(A(0.24, 0.26, 0.06), CFrame.new(), ink),
+			CFrame.new(0, 0, 0.18 + k * 0.24)
+				* CFrame.Angles(0, 0, math.rad(if k % 2 == 0 then 30 else -30))
+		)
+	end
 	Kit.add(
 		sword,
-		Kit.block(A(0.26, 0.26, 0.12), CFrame.new(), GOLD, Enum.Material.Metal),
-		CFrame.new(0, 0, 1.08)
+		Kit.block(A(0.26, 0.28, 0.12), CFrame.new(), GOLD, Enum.Material.Metal),
+		CFrame.new(0, 0, 1.1)
 	)
-	local trail =
-		Kit.trail(blade, A(0, 0, -BLADE / 2), A(0, 0, BLADE / 2 - 0.3), Kit.sequence(colors), 0.18)
+	local trail = Kit.trail(
+		blade,
+		A(0, 0, -length / 2),
+		A(0, 0, length / 2 - 0.3),
+		Kit.sequence(colors),
+		0.18
+	)
 	trail.Enabled = false
 
 	-- The sword's path, in the character's space (+X its right, -Z toward the camera).
@@ -795,14 +1029,20 @@ function Epic.Katana(context: Context)
 		return home * CFrame.lookAt(position, position + toward)
 	end
 	local READY = at(A(1.3, 0.5, -1.4), A(0.15, 0.9, -0.6))
-	local OVERHEAD = at(A(0.9, 2.5, -0.3), A(-0.2, 0.5, 1))
+	local HIGH_RIGHT = at(A(1.6, 2.3, -0.8), A(0.5, 0.8, 0.2))
+	local ACROSS = at(A(0.6, 1.2, -1.6), A(0.1, 0.1, -1))
+	local LOW_LEFT = at(A(-0.6, -0.1, -1.6), A(-0.6, -0.6, -0.5))
+	local OVERHEAD = at(A(0.6, 2.6, -0.4), A(0, 0.5, 1))
+	local UPRIGHT = at(A(0.5, 2.4, -1.1), A(0, 1, -0.1))
+	local DOWN = at(A(0.4, 0.1, -1.7), A(0, -0.7, -0.7))
 	local LOW = at(A(-1.0, 0.1, -1.4), A(-0.6, -0.5, -0.7))
 	local center, radius = A(0.8, 0.9, 0), 1.8
 	local function arc(angle: number): CFrame
 		local x, z = math.sin(angle), -math.cos(angle)
 		return at(center + A(x, 0, z) * radius, A(x, -0.08, z))
 	end
-	local cutFrom, cutTo = math.rad(60), math.rad(-45)
+	local swingFrom, swingTo = math.rad(-50), math.rad(65) -- the banana, left to right
+	local cutFrom, cutTo = math.rad(60), math.rad(-45) -- the bomb, right to left
 	local function sheathed(slide: number): CFrame
 		return (lower :: BasePart).CFrame * SHEATH * CFrame.new(0, 0, slide)
 	end
@@ -814,22 +1054,36 @@ function Epic.Katana(context: Context)
 			return sheathed(0)
 		elseif t < 0.5 then
 			return sheathed(BLADE * Kit.span(t, 0.3, 0.5, "In"))
-		elseif t < 0.8 then
-			return sheathed(BLADE):Lerp(READY, Kit.span(t, 0.5, 0.8))
-		elseif t < 1.6 then
-			return spun(-math.pi * 4 * Kit.span(t, 0.8, 1.6))
-		elseif t < 2.0 then
-			return READY:Lerp(OVERHEAD, Kit.span(t, 1.6, 2.0))
-		elseif t < 2.08 then
-			return OVERHEAD:Lerp(arc(cutFrom), Kit.span(t, 2.0, 2.08, "In"))
-		elseif t < 2.32 then
-			return arc(cutFrom + (cutTo - cutFrom) * Kit.span(t, 2.08, 2.32))
-		elseif t < 2.6 then
-			return arc(cutTo):Lerp(LOW, Kit.span(t, 2.32, 2.6, "Out"))
-		elseif t < 3.05 then
-			return LOW:Lerp(sheathed(BLADE), Kit.span(t, 2.6, 3.05))
+		elseif t < 0.75 then
+			return sheathed(BLADE):Lerp(READY, Kit.span(t, 0.5, 0.75))
+		elseif t < 1.3 then
+			return spun(-math.pi * 4 * Kit.span(t, 0.75, 1.3))
+		elseif t < 1.45 then
+			return READY:Lerp(HIGH_RIGHT, Kit.span(t, 1.3, 1.45))
+		elseif t < 1.535 then
+			return HIGH_RIGHT:Lerp(ACROSS, Kit.span(t, 1.45, 1.535, "In"))
+		elseif t < 1.62 then
+			return ACROSS:Lerp(LOW_LEFT, Kit.span(t, 1.535, 1.62, "Out"))
+		elseif t < 1.85 then
+			return LOW_LEFT:Lerp(arc(swingFrom), Kit.span(t, 1.62, 1.85))
+		elseif t < 2.05 then
+			return arc(swingFrom + (swingTo - swingFrom) * Kit.span(t, 1.85, 2.05))
+		elseif t < 2.35 then
+			return arc(swingTo):Lerp(OVERHEAD, Kit.span(t, 2.05, 2.35))
+		elseif t < 2.45 then
+			return OVERHEAD:Lerp(UPRIGHT, Kit.span(t, 2.35, 2.45, "In"))
+		elseif t < 2.55 then
+			return UPRIGHT:Lerp(DOWN, Kit.span(t, 2.45, 2.55, "Out"))
+		elseif t < 2.85 then
+			return DOWN:Lerp(arc(cutFrom), Kit.span(t, 2.55, 2.85))
+		elseif t < 3.12 then
+			return arc(cutFrom + (cutTo - cutFrom) * Kit.span(t, 2.85, 3.12))
+		elseif t < 3.4 then
+			return arc(cutTo):Lerp(LOW, Kit.span(t, 3.12, 3.4, "Out"))
+		elseif t < 3.9 then
+			return LOW:Lerp(sheathed(BLADE), Kit.span(t, 3.4, 3.9))
 		end
-		return sheathed(BLADE * (1 - Kit.span(t, 3.05, 3.45, "Out")))
+		return sheathed(BLADE * (1 - Kit.span(t, 3.9, 4.3, "Out")))
 	end
 
 	local arcParts: { BasePart } = {}
@@ -840,8 +1094,8 @@ function Epic.Katana(context: Context)
 		for _, part in sheath.parts do
 			part.Transparency = 1 - show
 		end
-		for _, part in sword.parts do
-			part.Transparency = 1 - show
+		for i, part in sword.parts do
+			part.Transparency = if i == 2 then 1 - 0.7 * show else 1 - show
 		end
 		sheath.place((lower :: BasePart).CFrame * SHEATH)
 		local frame = swordAt(t)
@@ -864,13 +1118,13 @@ function Epic.Katana(context: Context)
 		if held and t > 0.3 then
 			frame += held - grip
 		end
-		-- The left hand steadies the sheath, lets go for the spin, then joins the right on the
-		-- hilt for the overhead and the cut (a two-handed strike), and goes back to the sheath to
-		-- take the blade home.
+		-- The left hand steadies the sheath, lets go for the spin and the quick cuts, then joins
+		-- the right on the hilt for the two-handed chop and the big cut, and goes back to the
+		-- sheath to take the blade home.
 		local sheathHold = (sheathed(0) * CFrame.new(0, 0, -0.7)).Position
 		local pommel = (frame * CFrame.new(0, 0, GRIP + 0.42)).Position
-		local twoHands = Kit.span(t, 1.6, 1.85) * (1 - Kit.span(t, 2.6, 2.85))
-		local free = Kit.span(t, 0.75, 0.85) * (1 - Kit.span(t, 1.6, 1.85))
+		local twoHands = Kit.span(t, 2.05, 2.25) * (1 - Kit.span(t, 3.15, 3.35))
+		local free = Kit.span(t, 0.7, 0.8) * (1 - Kit.span(t, 2.05, 2.25))
 		Kit.reach(
 			character,
 			"Left",
@@ -880,28 +1134,230 @@ function Epic.Katana(context: Context)
 			if twoHands > 0.5 then gripTurn(edge, forearm("Left")) else nil
 		)
 		sword.place(frame)
-		trail.Enabled = t > 0.45 and t < 2.9
-		-- The wide cut leaves its arc hanging in the air.
-		local tip = (frame * CFrame.new(0, 0, -BLADE)).Position
-		if t >= 2.08 and t <= 2.34 then
+		trail.Enabled = t > 0.45 and t < 3.4
+		-- The big cut leaves its arc hanging in the air.
+		local point = (frame * CFrame.new(0, 0, -BLADE)).Position
+		if t >= 2.85 and t <= 3.14 then
 			if lastTip then
 				table.insert(
 					arcParts,
-					Kit.line(lastTip, tip, 0.22, Kit.gradient(colors, #arcParts / 14), 0.1)
+					Kit.line(lastTip, point, 0.22, Kit.gradient(colors, #arcParts / 16), 0.1)
 				)
 			end
-			lastTip = tip
+			lastTip = point
 		end
 		return nil
 	end)
 	Kit.at(0.5, function()
-		Kit.burst((sword.parts[1] :: BasePart).Position, 14, WHITE, NumberRange.new(4, 8), 0.35)
+		Kit.burst((blade :: BasePart).Position, 14, WHITE, NumberRange.new(4, 8), 0.35)
 	end)
-	Kit.at(3.45, function()
+
+	-- The fruit: each one tossed up from below the stage so the blade meets it mid-cut.
+	local floorBelow = context.floor - home.Position.Y - 1.2
+	local throws = {
+		{ make = apple, hit = 1.535, from = A(2.6, floorBelow, -5) },
+		{ make = banana, hit = 1.95, from = A(-3, floorBelow, -5.5) },
+		{ make = watermelon, hit = 2.5, from = A(0.6, floorBelow, -6) },
+		{ make = bomb, hit = 2.985, from = A(-1.6, floorBelow, -5) },
+	}
+	for _, throw in throws do
+		local fruit = throw.make()
+		local cutFrame = swordAt(throw.hit)
+		local hitAt = (cutFrame * CFrame.new(0, 0, -BLADE * 0.66)).Position
+		local from = (home * throw.from)
+		local launch = (hitAt - from) / FLIGHT + A(0, GRAVITY / 2 * FLIGHT, 0)
+		local tumble = A(Kit.rnd(-4, 4), Kit.rnd(-4, 4), Kit.rnd(-4, 4))
+		local normal = cutFrame.RightVector -- the blade's flat: the halves fly apart along it
+		local hidden = CFrame.new(from - A(0, 60, 0))
+		local wholeAt = CFrame.new(from)
+		local cut = false
+		local resting = { false, false }
+		local rests: { CFrame } = {}
+		local isBomb = fruit.spark ~= nil
+		for _, half in fruit.halves do
+			half.place(hidden)
+		end
+		if fruit.spark then
+			Kit.emitter(fruit.spark, {
+				Color = ColorSequence.new(
+					Color3.fromRGB(255, 230, 140),
+					Color3.fromRGB(255, 120, 40)
+				),
+				Size = NumberSequence.new(0.18, 0),
+				Lifetime = NumberRange.new(0.2, 0.45),
+				Speed = NumberRange.new(3, 7),
+				SpreadAngle = Vector2.new(180, 180),
+				Rate = 70,
+			})
+			local glow = Instance.new("PointLight")
+			glow.Color = Color3.fromRGB(255, 160, 60)
+			glow.Range = 6
+			glow.Parent = fruit.spark
+		end
+		Kit.every(function(t)
+			local u = t - (throw.hit - FLIGHT)
+			if u < 0 then
+				fruit.whole.place(CFrame.new(from))
+				return nil
+			end
+			if t < throw.hit then
+				wholeAt = CFrame.new(from + launch * u + A(0, -GRAVITY / 2 * u * u, 0))
+					* CFrame.Angles(tumble.X * u, tumble.Y * u, tumble.Z * u)
+				fruit.whole.place(wholeAt)
+				return nil
+			end
+			if not cut then
+				cut = true
+				fruit.whole.place(hidden)
+				Kit.burst(
+					hitAt,
+					if isBomb then 25 else 50,
+					Kit.sequence(fruit.juice),
+					NumberRange.new(6, 15),
+					0.35,
+					30,
+					0.9
+				)
+				local streak = Kit.line(
+					hitAt - cutFrame.LookVector * 1.8,
+					hitAt + cutFrame.LookVector * 1.8,
+					0.12,
+					WHITE
+				)
+				Kit.tween(streak, 0.25, { Transparency = 1 })
+				Kit.shake(0.5, 0.15)
+			end
+			-- The halves fly apart, tumbling, and lie where they land (a bomb's drift apart
+			-- slowly until it goes off).
+			local w = t - throw.hit
+			local velocity = launch + A(0, -GRAVITY * FLIGHT, 0)
+			local apart = if isBomb then 1.5 else 5
+			for i, half in fruit.halves do
+				if isBomb and t >= 3.4 then
+					half.place(hidden)
+					continue
+				end
+				if resting[i] then
+					half.place(rests[i])
+					continue
+				end
+				local side = if i == 1 then 1 else -1
+				local away = if fruit.across then wholeAt.RightVector * -side else normal * side
+				local position = hitAt
+					+ away * (0.15 + apart * w)
+					+ (velocity * 0.35 + A(0, 4, 0)) * w
+					+ A(0, -GRAVITY / 2 * 1.15 * w * w, 0)
+				local turn = if fruit.across
+					then wholeAt.Rotation * CFrame.Angles(0, 0, side * w * 3)
+					else upward(-away) * CFrame.Angles(w * 2.5 * side, 0, 0)
+				local frame = CFrame.new(position) * turn
+				if position.Y <= context.floor + 0.45 then
+					frame = CFrame.new(position.X, context.floor + 0.45, position.Z) * turn
+					resting[i] = true
+					rests[i] = frame
+				end
+				half.place(frame)
+			end
+			return (resting[1] and resting[2]) or (isBomb and t >= 3.4)
+		end)
+		if isBomb then
+			-- The bomb goes off between its halves, in front of the podium.
+			Kit.at(3.4, function()
+				local w = 3.4 - throw.hit
+				local velocity = (launch + A(0, -GRAVITY * FLIGHT, 0)) * 0.35 + A(0, 4, 0)
+				local blast = hitAt + velocity * w + A(0, -GRAVITY / 2 * 1.15 * w * w, 0)
+				Kit.flash(Color3.fromRGB(255, 222, 170), 0.95, 0.7)
+				Kit.shake(4.5, 1)
+				local fireball = Kit.block(
+					A(1, 1, 1),
+					CFrame.new(blast),
+					Color3.fromRGB(255, 150, 40),
+					Enum.Material.Neon,
+					0,
+					Enum.PartType.Ball
+				)
+				Kit.tween(fireball, 0.35, { Size = A(16, 16, 16), Transparency = 0.6 })
+				Kit.at(3.75, function()
+					Kit.tween(
+						fireball,
+						0.6,
+						{ Transparency = 1, Color = Color3.fromRGB(80, 40, 20) }
+					)
+				end)
+				local core = Kit.block(
+					A(0.5, 0.5, 0.5),
+					CFrame.new(blast),
+					WHITE,
+					Enum.Material.Neon,
+					0,
+					Enum.PartType.Ball
+				)
+				Kit.tween(core, 0.25, { Size = A(9, 9, 9), Transparency = 1 })
+				Kit.burst(
+					blast,
+					120,
+					Kit.sequence({
+						Color3.fromRGB(255, 240, 180),
+						Color3.fromRGB(255, 140, 40),
+						Color3.fromRGB(200, 50, 20),
+					}),
+					NumberRange.new(18, 36),
+					0.7,
+					10,
+					1.1
+				)
+				Kit.dust(blast, 30, 3, Color3.fromRGB(70, 64, 60))
+				Kit.ring(
+					Vector3.new(blast.X, context.floor + 0.1, blast.Z),
+					Color3.fromRGB(255, 140, 40),
+					40,
+					0.8
+				)
+				Kit.rubble(context, blast, 14, 16, Color3.fromRGB(40, 36, 34), 0.4, true)
+				local smoke = Kit.block(A(4, 4, 4), CFrame.new(blast), WHITE, nil, 1)
+				local puffs = Kit.emitter(smoke, {
+					Texture = "rbxasset://textures/particles/smoke_main.dds",
+					Shape = Enum.ParticleEmitterShape.Box,
+					Color = ColorSequence.new(Color3.fromRGB(60, 56, 54)),
+					LightEmission = 0,
+					Size = NumberSequence.new(3, 8),
+					Transparency = NumberSequence.new(0.35, 1),
+					Lifetime = NumberRange.new(2, 3),
+					Speed = NumberRange.new(2, 5),
+					SpreadAngle = Vector2.new(180, 180),
+					Acceleration = A(0, 3, 0),
+					Rate = 30,
+				})
+				Kit.at(4.6, function()
+					puffs.Rate = 0
+				end)
+				-- 2nd and 3rd go over.
+				for i = 2, #context.blocks do
+					local block = context.blocks[i]
+					local out = if block.Position.X > home.Position.X then 1 else -1
+					local rider: Model? = nil
+					for _, other in context.others do
+						local spot = block.CFrame:PointToObjectSpace(other:GetPivot().Position)
+						if
+							math.abs(spot.X) <= block.Size.X / 2
+							and math.abs(spot.Z) <= block.Size.Z / 2
+						then
+							rider = other
+						end
+					end
+					Kit.at(3.42 + (i - 2) * 0.05, function()
+						topple(context, block, out, rider)
+					end)
+				end
+			end)
+		end
+	end
+
+	Kit.at(4.3, function()
 		local mouth = ((lower :: BasePart).CFrame * SHEATH).Position
 		Kit.burst(mouth, 16, WHITE, NumberRange.new(4, 9), 0.3)
 		Kit.shake(0.8, 0.25)
-		-- The arc scatters into petals.
+		-- The hanging cut scatters into petals.
 		for i, piece in arcParts do
 			for _ = 1, 2 do
 				local petal =
@@ -922,7 +1378,6 @@ function Epic.Katana(context: Context)
 			piece:Destroy()
 		end
 		table.clear(arcParts)
-		-- A thin bright line across the backdrop.
 		local streak = Kit.line(
 			(home * CFrame.new(-40, 1.5, 12.4)).Position,
 			(home * CFrame.new(40, 1.5, 12.4)).Position,
@@ -930,25 +1385,6 @@ function Epic.Katana(context: Context)
 			WHITE
 		)
 		Kit.tween(streak, 0.7, { Transparency = 1 })
-		-- The competition is cut down: 2nd and 3rd's blocks split and fall.
-		for i = 2, #context.blocks do
-			local block = context.blocks[i]
-			local side = if block.Position.X > home.Position.X then 1 else -1
-			local rider: Model? = nil
-			for _, other in context.others do
-				local spot = block.CFrame:PointToObjectSpace(other:GetPivot().Position)
-				if
-					math.abs(spot.X) <= block.Size.X / 2
-					and math.abs(spot.Z) <= block.Size.Z / 2
-				then
-					rider = other
-				end
-			end
-			-- High on the side toward the winner, so the top slides away from them.
-			Kit.at(3.5 + (i - 2) * 0.12, function()
-				slice(context, block, -side, rider)
-			end)
-		end
 	end)
 end
 
