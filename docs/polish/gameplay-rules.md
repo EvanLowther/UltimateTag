@@ -20,9 +20,9 @@ check them when building.
    (tagger becomes a Runner, tagged becomes It). **Nobody is ever frozen by a tag** and there is no
    tag-back protection: the knockback is what gives space.
 6. **Elimination.** Each round has a target number out (below). Its left at the timer are
-   eliminated; **falling off any map, or any other death (the train), eliminates at once** on
-   every map. Falls count toward the target and the round **ends early the moment the target is
-   reached**. If every It is out or dead mid-round, a new It is picked at random from the
+   eliminated. The **only** other ways out are falling off the Rooftop District and being hit
+   by the Metro's train: **no other map can kill anyone**. Those deaths eliminate at once, count
+   toward the target, and the round **ends early the moment the target is reached**. If every It is out or dead mid-round, a new It is picked at random from the
    Runners.
 7. **Results (about 5 s).** A card with who was eliminated (and how), how many are left, and
    your own round stats. It doubles as the loading cover: the next map loads and warms up while
@@ -78,15 +78,17 @@ The final 1v1 is a normal round: whoever is It at the end loses.
   intro stays 5 s; remove `Config.Tag.FreezeTime` use (tags freeze nobody).
 - `GameLoop`: the countdown rule; the elimination target schedule (`Modes/HotPotato.itCount`
   becomes the schedule above); end the round when the target is reached; a new random It if
-  none is left; fall and train deaths eliminate on every map (drop `FallEliminates` as a map
-  switch; every map needs a `KillHeight`: check School, Clocktower, Playroom, Tag Mart); results
-  card with stats while the next map loads; AFK check; Leave button for eliminated players.
+  none is left; fall deaths (Rooftop District, `FallEliminates`) and train deaths (Metro)
+  eliminate as today and count toward the target (no other map kills anyone, and none needs a
+  `KillHeight`); results card with stats while the next map loads; AFK check; Leave button for
+  eliminated players.
 - `Roles`/`TagService`: no freeze after a tag.
 - `Hud`: the role banner only for the first 3 s of the intro; remove the small role tag.
 - `ViewMode`: first person only outside Studio.
 - Players left / target counters feed the results card.
-**Maps agent:** every map needs a working `KillHeight` and no safe pits; check that
-fall-elimination feels fair (railings, recovery moves) as part of the map checks.
+**Maps agent (small job):** confirm that only the Rooftop District (falling) and the Metro (the
+train) can kill, and that no other map has any way to die (no void to fall into, no kill
+volumes); add a check so that stays true.
 **Economy agent:** nothing new, but rewards must follow the new round counts and game lengths.
 **Movement agent:** knockback is the only tag-back defence: its distance matters (see
 `movement.md`).
