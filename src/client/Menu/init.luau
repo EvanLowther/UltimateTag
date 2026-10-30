@@ -26,6 +26,7 @@ local UserInputService = game:GetService("UserInputService")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
+local Cursor = require(script.Parent.Cursor)
 local Icons = require(script.Parent.Icons)
 local Profile = require(script.Parent.Profile)
 local LeadersTab = require(script.LeadersTab)
@@ -270,6 +271,7 @@ function Menu.start()
 		end
 		current = name
 		window.Visible = name ~= nil
+		Cursor.hold("Menu", name ~= nil) -- the mouse stays free while a page is open
 		for pageName, page in pages do
 			page.Visible = pageName == name
 		end

@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.55.1",
+	Version = "0.55.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -392,6 +392,13 @@ local Config = {
 		HoloCycle = 2.5, -- Iridescent: seconds for the holo colors to go round once
 		AfterimageEvery = 0.09, -- Iridescent: seconds between afterimages while the trail is on
 		AfterimageLife = 0.45, -- seconds an afterimage takes to fade
+	},
+
+	-- The mouse in first person (client/Cursor).
+	Cursor = {
+		Key = Enum.KeyCode.LeftAlt, -- hold to free the mouse (Option on a Mac)
+		KeyName = "ALT", -- as shown in the reminder
+		FreeInLobby = true, -- the mouse is free while you wait in the lobby (locked in rounds)
 	},
 
 	Camera = {

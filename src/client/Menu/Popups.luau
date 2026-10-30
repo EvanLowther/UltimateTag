@@ -14,6 +14,7 @@ local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
+local Cursor = require(script.Parent.Parent.Cursor)
 local ItemCard = require(script.Parent.ItemCard)
 local Ui = require(script.Parent.Ui)
 
@@ -93,11 +94,13 @@ local function enqueue(show: () -> ())
 		return
 	end
 	showing = true
+	Cursor.hold("Popups", true) -- the mouse stays free while popups are up
 	task.spawn(function()
 		while #queue > 0 do
 			table.remove(queue, 1)()
 		end
 		showing = false
+		Cursor.hold("Popups", false)
 	end)
 end
 
