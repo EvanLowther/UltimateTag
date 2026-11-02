@@ -8,7 +8,6 @@
 local Lighting = game:GetService("Lighting")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -46,7 +45,7 @@ local SPARK = "rbxasset://textures/particles/sparkles_main.dds"
 local session = 0
 local current: Context? = nil
 local tracked: { Instance } = {}
-local connections: { RBXScriptConnection } = {}
+local connections: { { Disconnect: (any) -> () } } = {}
 local restores: { () -> () } = {}
 local shakes: { Shake } = {}
 local tiltOf: ((number) -> number)? = nil
@@ -158,11 +157,11 @@ function Kit.at(at: number, callback: () -> ())
 	end)
 end
 
--- Runs `callback(t, dt)` every frame after the animations (so body parts are where they're
--- drawn this frame) until it returns true or the victory stops.
+-- Runs `callback(t, dt)` every frame after the animations (the code-built ones included, so
+-- body parts are where they're drawn this frame) until it returns true or the victory stops.
 function Kit.every(callback: (number, number) -> boolean?)
-	local connection: RBXScriptConnection
-	connection = RunService.PreSimulation:Connect(function(dt)
+	local connection: { Disconnect: (any) -> () }
+	connection = AnimationBuilder.afterAnimation(function(dt)
 		if callback(Kit.now(), dt) == true then
 			connection:Disconnect()
 		end

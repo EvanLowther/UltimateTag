@@ -85,8 +85,11 @@ function Sprint.start()
 		hum.WalkSpeed = baseSpeed * Config.Sprint.Multiplier
 	end
 
-	UserInputService.InputBegan:Connect(function(input, processed)
-		if not processed and input.KeyCode == Config.Sprint.Key then
+	-- Not skipped when Roblox has already handled the key: in live servers a player's Shift Lock
+	-- setting claims Left Shift and marks it handled, which would make sprinting (and so sliding)
+	-- impossible. Only typing in a text box is ignored.
+	UserInputService.InputBegan:Connect(function(input)
+		if input.KeyCode == Config.Sprint.Key and not UserInputService:GetFocusedTextBox() then
 			begin()
 		end
 	end)

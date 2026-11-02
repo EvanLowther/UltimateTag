@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.56.3",
+	Version = "0.56.4",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -113,6 +113,12 @@ local Config = {
 		-- swing (a Runner's, It hitting another It, swings in the lobby) just shoves the nearest
 		-- player in reach.
 		Range = 7, -- studs between the two characters' centers that a swing reaches
+		-- Live servers: the server sees everyone a moment late (each player's ping), so a swing
+		-- that reached on your screen can look out of reach there. Range grows by how fast the
+		-- two are moving relative to each other times both pings (at most LagTime seconds), up
+		-- to LagMaxExtra studs. Studio has no ping, so nothing changes there.
+		LagTime = 0.25,
+		LagMaxExtra = 4,
 		Cooldown = 0.45, -- seconds between swings
 		SwingTime = 0.35, -- seconds the swipe animation lasts
 		-- The swipe: wind the right arm back, then reach forward. Only these parts move; the
@@ -396,12 +402,13 @@ local Config = {
 
 	-- Animations built in code (client/AnimationBuilder).
 	Animation = {
-		-- Roblox only registers code-built animations in Studio, so published games use the
-		-- software animator automatically. true: use it in Studio too (to test what a live server does).
-		ForceSoftware = false,
-		-- Prints what the software animator found and what the slide key decided, so a look that
-		-- differs in a live server can be tracked down from the Client log (F9). Turn off later.
-		Debug = true,
+		-- Roblox can only play code-built animations through its Animator in Studio, so they're
+		-- played by the software animator everywhere and Studio looks exactly like a live server.
+		-- true: Studio plays them through the Animator instead (only to compare; live can't).
+		NativeInStudio = false,
+		-- Prints what the software animator found and what the slide key decided (Client log,
+		-- F9), to track down a look that differs in a live server.
+		Debug = false,
 	},
 
 	-- The mouse in first person (client/Cursor).

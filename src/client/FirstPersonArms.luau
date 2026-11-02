@@ -7,9 +7,9 @@
 -- drags its hand along the wall (WallHand). Only on your screen: joint changes made on your
 -- client aren't sent to anyone, so other players see your normal animations.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local MoveState = require(script.Parent.MoveState)
 local ViewMode = require(script.Parent.ViewMode)
 
@@ -51,14 +51,9 @@ function FirstPersonArms.start()
 		end
 	end
 
-	RunService.PreAnimation:Connect(function()
-		for motor, transform in saved do
-			motor.Transform = transform
-		end
-		table.clear(saved)
-	end)
-
-	RunService.PreSimulation:Connect(function(dt)
+	-- After the code-built animations (AnimationBuilder runs this step after its own tracks, and
+	-- undoes it before putting their joints back).
+	AnimationBuilder.afterAnimation(function(dt)
 		local parts = MoveState.parts()
 		if not parts or not ViewMode.isFirstPerson() then
 			wallBlend = 0
@@ -118,6 +113,11 @@ function FirstPersonArms.start()
 			end
 			shoulder.Transform = pose
 		end
+	end, function()
+		for motor, transform in saved do
+			motor.Transform = transform
+		end
+		table.clear(saved)
 	end)
 end
 

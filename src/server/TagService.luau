@@ -94,10 +94,28 @@ local function tag(tagger: Player, tagged: Player, distance: number?, taggerSpee
 	GameState.setStatus(`{tagger.DisplayName} tagged {tagged.DisplayName}!`)
 end
 
+-- How much further than Config.Tag.Range a swing reaches `other` in a live server: the server
+-- sees both players a ping late, so they can be further apart here than on the swinger's screen
+-- (their speed relative to each other times both pings). Nothing in Studio (no ping).
+local function lagExtra(swinger: Player, fromRoot: BasePart, other: Player, root: BasePart): number
+	local settings = Config.Tag
+	local ok, ping = pcall(function()
+		return swinger:GetNetworkPing() + other:GetNetworkPing()
+	end)
+	if not ok or type(ping) ~= "number" then
+		return 0
+	end
+	local relative = root.AssemblyLinearVelocity - fromRoot.AssemblyLinearVelocity
+	return math.min(
+		relative.Magnitude * math.clamp(ping, 0, settings.LagTime),
+		settings.LagMaxExtra
+	)
+end
+
 -- The nearest other player within reach of `fromRoot` (only Runners with `runnersOnly`), if any.
 local function nearest(swinger: Player, fromRoot: BasePart, runnersOnly: boolean): Player?
 	local best: Player? = nil
-	local bestDistance = Config.Tag.Range
+	local bestDistance = math.huge
 	for _, other in Players:GetPlayers() do
 		if
 			other ~= swinger
@@ -105,9 +123,12 @@ local function nearest(swinger: Player, fromRoot: BasePart, runnersOnly: boolean
 			and (not runnersOnly or Roles.get(other) == "Runner")
 		then
 			local root = aliveRoot(other)
-			local distance = root and (root.Position - fromRoot.Position).Magnitude
-			if distance and distance <= bestDistance then
-				best, bestDistance = other, distance
+			if root then
+				local distance = (root.Position - fromRoot.Position).Magnitude
+				local reach = Config.Tag.Range + lagExtra(swinger, fromRoot, other, root)
+				if distance <= reach and distance < bestDistance then
+					best, bestDistance = other, distance
+				end
 			end
 		end
 	end

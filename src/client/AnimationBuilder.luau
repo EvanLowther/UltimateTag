@@ -1,14 +1,19 @@
 --!strict
--- Builds keyframed animations in code and loads them on a character's Animator.
+-- Builds keyframed animations in code and plays them on a character.
 -- A pose is degrees of rotation per R15 body part, relative to standing (see Config.Slide.Poses
 -- for which way each axis turns). Animations are on this client only, so other players don't
 -- see them yet.
 -- Roblox only lets a script register an animation it built in code (RegisterAnimationClip) inside
--- Studio, so in a published game that call throws. Then (or with Config.Animation.ForceSoftware)
--- the same keys are played by a small software animator that turns the body's Motor6D joints
--- itself every frame, behind the same track calls (Play, Stop, AdjustSpeed, IsPlaying, Looped,
--- KeyframeReached, Destroy). Animations that are real Roblox assets (the Animate script's idle
--- and run) always go through the Animator.
+-- Studio, so a published game can't play them through the Animator. So they're played by a small
+-- software animator here, in Studio and live servers alike (so Studio shows exactly what a live
+-- server does): it turns the body's Motor6D joints itself every frame, behind the same track calls
+-- (Play, Stop, AdjustSpeed, AdjustWeight, IsPlaying, Looped, KeyframeReached, Destroy). Tracks
+-- playing at once on a joint blend by weight, laid over what the Animator wrote, the way Roblox
+-- blends tracks of one priority. Config.Animation.NativeInStudio plays them through the Animator
+-- instead (Studio only, to compare). Animations that are real Roblox assets (the Animate script's
+-- idle and run) always go through the Animator.
+-- Code that changes joints after the animations (first-person arms, a victory's arm reach) runs
+-- through `afterAnimation`, so it always runs after this animator and is undone before it.
 local AnimationClipProvider = game:GetService("AnimationClipProvider")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -91,7 +96,7 @@ type SoftKey = { time: number, name: string?, ease: string, poses: { [string]: C
 type Clip = { keys: { SoftKey }, length: number, looped: boolean }
 
 local clips: { [Animation]: Clip } = setmetatable({}, { __mode = "k" }) :: any
-local nativeWorks = true -- false once RegisterAnimationClip has thrown (it only works in Studio)
+local nativeWorks = RunService:IsStudio() -- false once RegisterAnimationClip has thrown
 
 local PARTS: { string } = {}
 local function collectParts(tree: Tree)
@@ -154,7 +159,7 @@ function AnimationBuilder.make(keys: { Key }, partial: boolean?, looped: boolean
 		only = used
 	end
 	local animation = Instance.new("Animation")
-	if nativeWorks and not Config.Animation.ForceSoftware then
+	if nativeWorks and Config.Animation.NativeInStudio then
 		local sequence = Instance.new("KeyframeSequence")
 		sequence.Loop = looped == true
 		sequence.Priority = Enum.AnimationPriority.Action4
@@ -187,8 +192,9 @@ type Track = {
 
 local playing: { Track } = {} -- tracks that are on or fading out, in the order they started
 local savedBase: { [Motor6D]: CFrame } = {} -- what the Animator wrote, put back before it runs
-local preAnimation: RBXScriptConnection? = nil
-local preSimulation: RBXScriptConnection? = nil
+
+type Hook = { step: (number) -> (), undo: (() -> ())?, connected: boolean }
+local hooks: { Hook } = {}
 
 local function sample(clip: Clip, time: number, name: string): CFrame?
 	local keys = clip.keys
@@ -215,14 +221,22 @@ local function fireKeys(track: Track, from: number, to: number)
 	local clip: Clip = track.clip
 	for _, key in clip.keys do
 		if key.name and key.name ~= "Keyframe" and key.time > from and key.time <= to then
-			for _, callback in track.listeners do
-				callback(key.name)
+			for _, callback in table.clone(track.listeners) do
+				task.spawn(callback, key.name)
 			end
 		end
 	end
 end
 
+-- Before the Animator runs: undo the after-animation steps (last first), then put back what the
+-- Animator wrote last frame, so a joint no animation touches doesn't keep turning further.
 local function restore()
+	for i = #hooks, 1, -1 do
+		local undo = hooks[i].undo
+		if undo then
+			pcall(undo)
+		end
+	end
 	for joint, base in savedBase do
 		if joint.Parent then
 			joint.Transform = base
@@ -231,7 +245,7 @@ local function restore()
 	table.clear(savedBase)
 end
 
-local function stepTracks(dt: number)
+local function advance(dt: number)
 	for i = #playing, 1, -1 do
 		local track = playing[i]
 		local humanoid: Humanoid = track.humanoid
@@ -272,40 +286,78 @@ local function stepTracks(dt: number)
 			table.remove(playing, i)
 		end
 	end
+end
+
+-- Each joint gets the weighted average of the poses of the tracks moving it, laid over what the
+-- Animator wrote with their total weight (at most 1).
+local function apply()
+	local poses: { [Motor6D]: CFrame } = {}
+	local weights: { [Motor6D]: number } = {}
 	for _, track in playing do
-		local clip: Clip = track.clip
-		local weight: number = track.weight
-		if weight > 0 then
-			for name, joint in track.joints :: { [string]: Motor6D } do
-				local pose = sample(clip, track.time, name)
-				if pose and joint.Parent then
-					if savedBase[joint] == nil then
-						savedBase[joint] = joint.Transform
-					end
-					joint.Transform = joint.Transform:Lerp(pose, weight)
-				end
+		local weight = track.weight * track.trackWeight
+		if weight <= 0 then
+			continue
+		end
+		for name, joint in track.joints :: { [string]: Motor6D } do
+			local pose = sample(track.clip, track.time, name)
+			if pose and joint.Parent then
+				local total = (weights[joint] or 0) + weight
+				local current = poses[joint]
+				poses[joint] = if current then current:Lerp(pose, weight / total) else pose
+				weights[joint] = total
 			end
 		end
 	end
-	if #playing == 0 and preSimulation then
-		if preAnimation then
-			preAnimation:Disconnect()
-			preAnimation = nil
+	for joint, pose in poses do
+		local base = joint.Transform
+		if savedBase[joint] == nil then
+			savedBase[joint] = base
 		end
-		preSimulation:Disconnect()
-		preSimulation = nil
-		restore()
+		joint.Transform = base:Lerp(pose, math.min(weights[joint], 1))
 	end
+end
+
+-- After the Animator has run: the software tracks, then the after-animation steps in order.
+local function step(dt: number)
+	advance(dt)
+	apply()
+	for _, hook in table.clone(hooks) do
+		if hook.connected then
+			-- One broken step (a victory's, say) mustn't stop the others.
+			local ok, err = pcall(hook.step, dt)
+			if not ok then
+				warn(`[AnimationBuilder] after-animation step failed: {err}`)
+			end
+		end
+	end
+end
+
+RunService.PreAnimation:Connect(restore)
+RunService.PreSimulation:Connect(step)
+
+-- Runs `stepFn(dt)` every frame after the animations have posed every body (and after any
+-- step added before it), and `undo()` (if given) before the animations run again, so it can
+-- put back the joints it changed. Returns a connection to stop it.
+function AnimationBuilder.afterAnimation(
+	stepFn: (number) -> (),
+	undo: (() -> ())?
+): { Disconnect: (any) -> () }
+	local hook: Hook = { step = stepFn, undo = undo, connected = true }
+	table.insert(hooks, hook)
+	return {
+		Disconnect = function()
+			hook.connected = false
+			local at = table.find(hooks, hook)
+			if at then
+				table.remove(hooks, at)
+			end
+		end,
+	}
 end
 
 local function register(track: Track)
 	if not table.find(playing, track) then
 		table.insert(playing, track)
-	end
-	if not preSimulation then
-		-- Put back what the Animator wrote last frame before it runs again; turn the joints after.
-		preAnimation = RunService.PreAnimation:Connect(restore)
-		preSimulation = RunService.PreSimulation:Connect(stepTracks)
 	end
 end
 
@@ -335,7 +387,8 @@ local function softTrack(humanoid: Humanoid, clip: Clip): AnimationTrack
 		listeners = {},
 		time = 0,
 		speed = 1,
-		weight = 0,
+		weight = 0, -- the fade, 0 to 1
+		trackWeight = 1, -- Play's or AdjustWeight's weight
 		target = 0,
 		fade = 0.1,
 		destroyed = false,
@@ -357,7 +410,7 @@ local function softTrack(humanoid: Humanoid, clip: Clip): AnimationTrack
 			}
 		end,
 	}
-	function track.Play(self: Track, fade: number?)
+	function track.Play(self: Track, fade: number?, weight: number?, speed: number?)
 		if not self.joints then
 			self.joints = findJoints(humanoid.Parent or humanoid)
 			if Config.Animation.Debug then
@@ -381,6 +434,12 @@ local function softTrack(humanoid: Humanoid, clip: Clip): AnimationTrack
 		if self.fade <= 0 then
 			self.weight = 1
 		end
+		if weight then
+			self.trackWeight = weight
+		end
+		if speed then
+			self.speed = speed
+		end
 		register(self)
 	end
 	function track.Stop(self: Track, fade: number?)
@@ -393,6 +452,9 @@ local function softTrack(humanoid: Humanoid, clip: Clip): AnimationTrack
 	end
 	function track.AdjustSpeed(self: Track, speed: number?)
 		self.speed = speed or 1
+	end
+	function track.AdjustWeight(self: Track, weight: number?)
+		self.trackWeight = weight or 1
 	end
 	function track.Destroy(self: Track)
 		self.destroyed = true
