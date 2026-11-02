@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.56.0",
+	Version = "0.56.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1101,7 +1101,7 @@ local Config = {
 	DevPanel = {
 		Enabled = true,
 		Key = Enum.KeyCode.Backquote, -- opens and closes the panel (the ` key)
-		UserIds = {} :: { number }, -- extra people allowed in live servers (Studio always is)
+		UserIds = { 2371363134 } :: { number }, -- SurfyAlmond12: the only person allowed in live servers (Studio always is)
 		TeleportKey = Enum.KeyCode.T, -- with "Teleport key" on: jump to where the mouse points
 		FlySpeed = 60, -- studs/s while flying (WASD, E up, Q down)
 		FlyBoost = 3, -- hold Shift while flying to go this many times faster
