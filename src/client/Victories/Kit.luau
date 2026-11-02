@@ -13,6 +13,7 @@ local TweenService = game:GetService("TweenService")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local AnimationBuilder = require(script.Parent.Parent.AnimationBuilder)
+local Joints = require(script.Parent.Parent.Joints)
 
 export type Context = {
 	character: Model, -- the winner's copy (or the Locker's)
@@ -264,12 +265,12 @@ local function frameOf(model: Model, name: string, depth: number?): CFrame?
 	if name == "HumanoidRootPart" or (depth or 0) > 8 then
 		return part.CFrame
 	end
-	for _, motor in part:GetChildren() do
-		if motor:IsA("Motor6D") and motor.Part1 == part and motor.Part0 then
-			local parent = frameOf(model, motor.Part0.Name, (depth or 0) + 1)
-			if parent then
-				return parent * motor.C0 * motor.Transform * motor.C1:Inverse()
-			end
+	local joint = Joints.of(model)[name]
+	local part0 = joint and Joints.part0(joint)
+	if joint and part0 then
+		local parent = frameOf(model, part0.Name, (depth or 0) + 1)
+		if parent then
+			return parent * Joints.offset(joint)
 		end
 	end
 	return part.CFrame
@@ -294,36 +295,30 @@ function Kit.reach(
 	if not upper or not lower or not hand then
 		return nil
 	end
-	local shoulder = upper:FindFirstChild(side .. "Shoulder")
-	local elbow = lower:FindFirstChild(side .. "Elbow")
-	local wrist = hand:FindFirstChild(side .. "Wrist")
-	if
-		not (
-			shoulder
-			and shoulder:IsA("Motor6D")
-			and elbow
-			and elbow:IsA("Motor6D")
-			and wrist
-			and wrist:IsA("Motor6D")
-			and shoulder.Part0
-		)
-	then
+	-- The joints that move the arm (Motor6Ds or AnimationConstraints, client/Joints).
+	local joints = Joints.of(model)
+	local shoulder, elbow, wrist = joints[upper.Name], joints[lower.Name], joints[hand.Name]
+	local torsoPart = shoulder and Joints.part0(shoulder)
+	if not (shoulder and elbow and wrist and torsoPart) then
 		return nil
 	end
-	local torso = frameOf(model, (shoulder.Part0 :: BasePart).Name)
+	local torso = frameOf(model, torsoPart.Name)
 	if not torso then
 		return nil
 	end
 	local w = math.clamp(weight or 1, 0, 1)
+	local shoulderC0, shoulderC1 = Joints.c0(shoulder), Joints.c1(shoulder)
+	local elbowC0, elbowC1 = Joints.c0(elbow), Joints.c1(elbow)
+	local wristC0, wristC1 = Joints.c0(wrist), Joints.c1(wrist)
 	-- Where the joints are this frame.
-	local shoulderBase = torso * shoulder.C0
+	local shoulderBase = torso * shoulderC0
 	local shoulderFrame = shoulderBase * shoulder.Transform
-	local upperFrame = shoulderFrame * shoulder.C1:Inverse()
-	local elbowFrame = upperFrame * elbow.C0 * elbow.Transform
-	local lowerFrame = elbowFrame * elbow.C1:Inverse()
-	local wristFrame = lowerFrame * wrist.C0 * wrist.Transform
+	local upperFrame = shoulderFrame * shoulderC1:Inverse()
+	local elbowFrame = upperFrame * elbowC0 * elbow.Transform
+	local lowerFrame = elbowFrame * elbowC1:Inverse()
+	local wristFrame = lowerFrame * wristC0 * wrist.Transform
 	if w <= 0 then
-		return (wristFrame * wrist.C1:Inverse()).Position
+		return (wristFrame * wristC1:Inverse()).Position
 	end
 	local s, e, wristAt = shoulderFrame.Position, elbowFrame.Position, wristFrame.Position
 	local l1, l2 = (e - s).Magnitude, (wristAt - e).Magnitude
@@ -345,22 +340,22 @@ function Kit.reach(
 	local newShoulder = CFrame.new(s) * turnBetween(e - s, elbowTo - s) * shoulderFrame.Rotation
 	shoulder.Transform = shoulderBase:Inverse() * newShoulder
 	-- The forearm points from it at the wrist's spot.
-	local elbowBase = newShoulder * shoulder.C1:Inverse() * elbow.C0
+	local elbowBase = newShoulder * shoulderC1:Inverse() * elbowC0
 	local elbowNow = elbowBase * elbow.Transform
-	local wristNow = (elbowNow * elbow.C1:Inverse() * wrist.C0).Position
+	local wristNow = (elbowNow * elbowC1:Inverse() * wristC0).Position
 	local newElbow = CFrame.new(elbowNow.Position)
 		* turnBetween(wristNow - elbowNow.Position, s + dir * d - elbowNow.Position)
 		* elbowNow.Rotation
 	elbow.Transform = elbowBase:Inverse() * newElbow
 	-- The hand: turned to grip, blended in with the reach.
-	local wristBase = newElbow * elbow.C1:Inverse() * wrist.C0
+	local wristBase = newElbow * elbowC1:Inverse() * wristC0
 	local handJoint = wristBase * wrist.Transform
 	if turn then
-		local gripping = CFrame.new(wristBase.Position) * (turn * wrist.C1).Rotation
+		local gripping = CFrame.new(wristBase.Position) * (turn * wristC1).Rotation
 		handJoint = handJoint:Lerp(gripping, w)
 		wrist.Transform = wristBase:Inverse() * handJoint
 	end
-	return (handJoint * wrist.C1:Inverse()).Position
+	return (handJoint * wristC1:Inverse()).Position
 end
 
 -- A turn of `angles` round the point `point` (in the character's space).

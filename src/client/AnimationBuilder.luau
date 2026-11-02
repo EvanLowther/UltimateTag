@@ -6,7 +6,8 @@
 -- Roblox only lets a script register an animation it built in code (RegisterAnimationClip) inside
 -- Studio, so a published game can't play them through the Animator. So they're played by a small
 -- software animator here, in Studio and live servers alike (so Studio shows exactly what a live
--- server does): it turns the body's Motor6D joints itself every frame, behind the same track calls
+-- server does): it turns the body's joints itself every frame (Motor6Ds, or the AnimationConstraints
+-- the Avatar Joint Upgrade puts in their place: client/Joints), behind the same track calls
 -- (Play, Stop, AdjustSpeed, AdjustWeight, IsPlaying, Looped, KeyframeReached, Destroy). Tracks
 -- playing at once on a joint blend by weight, laid over what the Animator wrote, the way Roblox
 -- blends tracks of one priority. Config.Animation.NativeInStudio plays them through the Animator
@@ -19,6 +20,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+local Joints = require(script.Parent.Joints)
 
 export type Angles = { [string]: Vector3 }
 -- `ease` shapes the motion from this key to the next: "Out" slows into the next pose (absorbing),
@@ -191,7 +193,7 @@ type Track = {
 }
 
 local playing: { Track } = {} -- tracks that are on or fading out, in the order they started
-local savedBase: { [Motor6D]: CFrame } = {} -- what the Animator wrote, put back before it runs
+local savedBase: { [Joints.Joint]: CFrame } = {} -- what the Animator wrote, put back before it runs
 
 type Hook = { step: (number) -> (), undo: (() -> ())?, connected: boolean }
 local hooks: { Hook } = {}
@@ -291,14 +293,16 @@ end
 -- Each joint gets the weighted average of the poses of the tracks moving it, laid over what the
 -- Animator wrote with their total weight (at most 1).
 local function apply()
-	local poses: { [Motor6D]: CFrame } = {}
-	local weights: { [Motor6D]: number } = {}
+	local poses: { [Joints.Joint]: CFrame } = {}
+	local weights: { [Joints.Joint]: number } = {}
 	for _, track in playing do
 		local weight = track.weight * track.trackWeight
 		if weight <= 0 then
 			continue
 		end
-		for name, joint in track.joints :: { [string]: Motor6D } do
+		-- Looked up each frame (cached), so a rig whose joints are swapped after it spawns still
+		-- moves.
+		for name, joint in Joints.of(track.model) do
 			local pose = sample(track.clip, track.time, name)
 			if pose and joint.Parent then
 				local total = (weights[joint] or 0) + weight
@@ -361,29 +365,11 @@ local function register(track: Track)
 	end
 end
 
--- The joint that moves each body part (the Motor6D whose Part1 it is).
-local function findJoints(character: Instance): { [string]: Motor6D }
-	local wanted: { [string]: boolean } = {}
-	for _, name in PARTS do
-		wanted[name] = true
-	end
-	local joints: { [string]: Motor6D } = {}
-	for _, descendant in character:GetDescendants() do
-		if descendant:IsA("Motor6D") then
-			local part = descendant.Part1
-			if part and wanted[part.Name] and not joints[part.Name] then
-				joints[part.Name] = descendant
-			end
-		end
-	end
-	return joints
-end
-
 local function softTrack(humanoid: Humanoid, clip: Clip): AnimationTrack
 	local track: Track = {
 		clip = clip,
 		humanoid = humanoid,
-		joints = nil,
+		model = humanoid.Parent or humanoid,
 		listeners = {},
 		time = 0,
 		speed = 1,
@@ -411,19 +397,18 @@ local function softTrack(humanoid: Humanoid, clip: Clip): AnimationTrack
 		end,
 	}
 	function track.Play(self: Track, fade: number?, weight: number?, speed: number?)
-		if not self.joints then
-			self.joints = findJoints(humanoid.Parent or humanoid)
-			if Config.Animation.Debug then
-				local count = 0
-				for _ in self.joints do
-					count += 1
-				end
-				print(
-					`[Anim] software track: {#clip.keys} keys, {clip.length} s, {if clip.looped
-						then "looped"
-						else "once"}, {count} joints found`
-				)
+		self.model = humanoid.Parent or humanoid
+		if Config.Animation.Debug then
+			local count, kind = 0, "none"
+			for _, joint in Joints.of(self.model) do
+				count += 1
+				kind = joint.ClassName
 			end
+			print(
+				`[Anim] software track: {#clip.keys} keys, {clip.length} s, {if clip.looped
+					then "looped"
+					else "once"}, {count} joints found ({kind})`
+			)
 		end
 		if not self.IsPlaying then
 			self.IsPlaying = true

@@ -10,12 +10,14 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
+local Joints = require(script.Parent.Joints)
 local MoveState = require(script.Parent.MoveState)
 local ViewMode = require(script.Parent.ViewMode)
 
 local FirstPersonArms = {}
 
 local DOWN = Vector3.new(0, -1, 0)
+local offset = Joints.offset
 
 local function angles(degrees: Vector3, sign: number): CFrame
 	-- sign -1 mirrors a pose written for the right side onto the left (Y and Z flip)
@@ -26,30 +28,13 @@ local function angles(degrees: Vector3, sign: number): CFrame
 	)
 end
 
--- Where a joint puts its part relative to the part it hangs from, animation included.
-local function offset(motor: Motor6D): CFrame
-	return motor.C0 * motor.Transform * motor.C1:Inverse()
-end
-
 function FirstPersonArms.start()
 	local settings = Config.FirstPerson
-	local character: Model? = nil
-	local motors: { [string]: Motor6D } = {} -- by the name of the part each one moves
 	-- The animation's own Transform for each joint we changed this frame, put back before the
 	-- animations run again (so a joint no animation touches doesn't keep turning further).
-	local saved: { [Motor6D]: CFrame } = {}
+	local saved: { [Joints.Joint]: CFrame } = {}
 	local wallBlend = 0
 	local wallSide = "Right"
-
-	local function findMotors(model: Model)
-		character = model
-		table.clear(motors)
-		for _, motor in model:GetDescendants() do
-			if motor:IsA("Motor6D") and motor.Part1 then
-				motors[motor.Part1.Name] = motor
-			end
-		end
-	end
 
 	-- After the code-built animations (AnimationBuilder runs this step after its own tracks, and
 	-- undoes it before putting their joints back).
@@ -59,9 +44,8 @@ function FirstPersonArms.start()
 			wallBlend = 0
 			return
 		end
-		if parts.character ~= character or not motors.UpperTorso then
-			findMotors(parts.character)
-		end
+		-- The joints by the part each one moves (Motor6Ds or AnimationConstraints).
+		local motors = Joints.of(parts.character)
 		local root, waist = motors.LowerTorso, motors.UpperTorso
 		if not root or not waist then
 			return
@@ -86,14 +70,15 @@ function FirstPersonArms.start()
 			saved[shoulder] = base
 
 			-- How far forward of straight down the animation points this arm, seen from the side.
-			local arm = torso * shoulder.C0 * base * shoulder.C1:Inverse()
+			local c0, c1 = Joints.c0(shoulder), Joints.c1(shoulder)
+			local arm = torso * c0 * base * c1:Inverse()
 			local down = arm:VectorToWorldSpace(DOWN)
 			local pitch = math.deg(math.atan2(-down.Z, -down.Y))
 			local lifted =
 				math.clamp(pitch + settings.ArmLift, settings.MinArmAngle, settings.MaxArmAngle)
 
 			-- Shoulders in: the arm's center moves toward the middle of the chest.
-			local width = shoulder.C0.Position.X - shoulder.C1.Position.X
+			local width = c0.Position.X - c1.Position.X
 			local inward = CFrame.new(-width * (1 - settings.ShoulderWidth), 0, 0)
 			local pose = inward
 				* CFrame.Angles(math.rad(lifted - pitch), 0, math.rad(-settings.ArmTuck * sign))
