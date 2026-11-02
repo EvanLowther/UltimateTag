@@ -360,6 +360,17 @@ local function softTrack(humanoid: Humanoid, clip: Clip): AnimationTrack
 	function track.Play(self: Track, fade: number?)
 		if not self.joints then
 			self.joints = findJoints(humanoid.Parent or humanoid)
+			if Config.Animation.Debug then
+				local count = 0
+				for _ in self.joints do
+					count += 1
+				end
+				print(
+					`[Anim] software track: {#clip.keys} keys, {clip.length} s, {if clip.looped
+						then "looped"
+						else "once"}, {count} joints found`
+				)
+			end
 		end
 		if not self.IsPlaying then
 			self.IsPlaying = true

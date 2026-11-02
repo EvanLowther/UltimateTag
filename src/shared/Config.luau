@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.56.2",
+	Version = "0.56.3",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -399,6 +399,9 @@ local Config = {
 		-- Roblox only registers code-built animations in Studio, so published games use the
 		-- software animator automatically. true: use it in Studio too (to test what a live server does).
 		ForceSoftware = false,
+		-- Prints what the software animator found and what the slide key decided, so a look that
+		-- differs in a live server can be tracked down from the Client log (F9). Turn off later.
+		Debug = true,
 	},
 
 	-- The mouse in first person (client/Cursor).

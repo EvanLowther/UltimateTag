@@ -320,6 +320,15 @@ function Slide.start()
 		end
 
 		local moving = flat.Magnitude >= hum.WalkSpeed * 0.5
+		if Config.Animation.Debug then
+			print(
+				`[Slide] key: speed {string.format("%.1f", flat.Magnitude)}, walk speed {hum.WalkSpeed}, sprinting {Sprint.isSprinting()}, fast {fast}, moving {moving}, grounded {grounded} -> {if moving
+						and (Sprint.isSprinting() or fast)
+					then "slide"
+					elseif grounded then "crouch"
+					else "nothing"}`
+			)
+		end
 		if moving and (Sprint.isSprinting() or fast) then
 			slide(parts, flat, not grounded)
 		elseif grounded then
