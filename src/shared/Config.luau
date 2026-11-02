@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.56.1",
+	Version = "0.56.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -392,6 +392,13 @@ local Config = {
 		HoloCycle = 2.5, -- Iridescent: seconds for the holo colors to go round once
 		AfterimageEvery = 0.09, -- Iridescent: seconds between afterimages while the trail is on
 		AfterimageLife = 0.45, -- seconds an afterimage takes to fade
+	},
+
+	-- Animations built in code (client/AnimationBuilder).
+	Animation = {
+		-- Roblox only registers code-built animations in Studio, so published games use the
+		-- software animator automatically. true: use it in Studio too (to test what a live server does).
+		ForceSoftware = false,
 	},
 
 	-- The mouse in first person (client/Cursor).
