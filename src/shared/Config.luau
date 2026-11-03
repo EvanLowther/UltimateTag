@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.56.5",
+	Version = "0.57.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -415,7 +415,18 @@ local Config = {
 	Cursor = {
 		Key = Enum.KeyCode.LeftAlt, -- hold to free the mouse (Option on a Mac)
 		KeyName = "ALT", -- as shown in the reminder
-		FreeInLobby = true, -- the mouse is free while you wait in the lobby (locked in rounds)
+		FreeInLobby = false, -- true: the mouse is free while you wait in the lobby (always locked in rounds)
+		-- The aim ring at the screen centre while the mouse is locked in first person (the mouse
+		-- arrow is hidden then): a hollow white circle with a thin dark edge inside and out so it
+		-- shows on any background. Pixels.
+		Crosshair = {
+			Size = 10, -- across the inside of the ring
+			Thickness = 2, -- the white ring
+			Color = Color3.fromRGB(255, 255, 255),
+			Edge = Color3.fromRGB(0, 0, 0),
+			EdgeThickness = 1,
+			EdgeTransparency = 0.45,
+		},
 	},
 
 	Camera = {

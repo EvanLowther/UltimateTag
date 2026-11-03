@@ -11,6 +11,7 @@ local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
 local DevAccess = require(Shared:WaitForChild("DevAccess"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
+local Cursor = require(script.Parent.Cursor)
 local DebugTab = require(script.DebugTab)
 local DebugTools = require(script.DebugTools)
 local GameTab = require(script.GameTab)
@@ -85,6 +86,10 @@ function DevPanel.start()
 	modal.Size = UDim2.fromOffset(0, 0)
 	modal.Modal = true
 	modal.Parent = window
+	-- And tells Cursor, so the aim ring steps aside and the arrow shows.
+	window:GetPropertyChangedSignal("Visible"):Connect(function()
+		Cursor.hold("DevPanel", window.Visible)
+	end)
 
 	-- Title bar (drag to move).
 	local title = Instance.new("TextLabel")

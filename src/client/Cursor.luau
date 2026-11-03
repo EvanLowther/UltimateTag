@@ -1,14 +1,15 @@
 --!strict
--- The mouse in first person. First person locks the mouse to the screen centre, so the side
--- menu buttons can't be clicked. The mouse is freed (a Modal button, the trick Roblox uses to
--- unlock it) when:
+-- The mouse in first person. First person locks the mouse to the screen centre (so it can't wander
+-- off the game window onto another monitor), and while it's locked the arrow is hidden and a
+-- small hollow aim ring sits at the centre instead (Config.Cursor.Crosshair). The mouse is freed
+-- (a Modal button, the trick Roblox uses to unlock it) only when:
 --   - you hold Config.Cursor.Key (Left Alt), for as long as you hold it;
---   - you're in the lobby waiting (phase Lobby or Countdown), if Config.Cursor.FreeInLobby;
---   - something holds it: the menu window while it's open, and popups while any are showing
---     (Cursor.hold). So clicking a side panel keeps the mouse free until you close it and no
---     popup is left, even if you let go of Alt.
--- In a round it's locked again as soon as none of those apply. While the mouse is free, the
--- first-person camera turns with the right mouse button held (Roblox's usual free-mouse look).
+--   - something holds it: the menu window while it's open (Cursor.hold). So clicking a side
+--     button keeps the mouse free until you close the page, even if you let go of Alt;
+--   - you're in the lobby waiting (phase Lobby or Countdown), if Config.Cursor.FreeInLobby (off).
+-- While the mouse is free, the first-person camera turns with the right mouse button held
+-- (Roblox's usual free-mouse look). A free mouse can still leave a windowed game; only the lock
+-- keeps it in.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -25,7 +26,7 @@ local Cursor = {}
 local holds: { [string]: boolean } = {}
 local keyHeld = false
 
--- Something (a window, popups) needs the mouse while `on`.
+-- Something (a window) needs the mouse while `on`.
 function Cursor.hold(name: string, on: boolean)
 	holds[name] = if on then true else nil
 end
@@ -40,6 +41,42 @@ function Cursor.isFree(): boolean
 		return phase == "Lobby" or phase == "Countdown"
 	end
 	return false
+end
+
+-- A ring of `thickness` round a hole `size` across, centred on its parent.
+local function ring(parent: Instance, size: number, thickness: number, color: Color3, fade: number)
+	local frame = Instance.new("Frame")
+	frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	frame.Position = UDim2.fromScale(0.5, 0.5)
+	frame.Size = UDim2.fromOffset(size, size)
+	frame.BackgroundTransparency = 1
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(1, 0)
+	corner.Parent = frame
+	local stroke = Instance.new("UIStroke") -- drawn just outside the frame
+	stroke.Thickness = thickness
+	stroke.Color = color
+	stroke.Transparency = fade
+	stroke.Parent = frame
+	frame.Parent = parent
+	return frame
+end
+
+-- The aim ring: white, with a thin dark edge just inside and just outside it.
+local function crosshair(player: Player): ScreenGui
+	local look = Config.Cursor.Crosshair
+	local gui = Instance.new("ScreenGui")
+	gui.Name = "Crosshair"
+	gui.ResetOnSpawn = false
+	gui.IgnoreGuiInset = true -- the centre of the whole screen, where the locked mouse is
+	gui.DisplayOrder = 5
+	gui.Enabled = false
+	local edge = look.EdgeThickness
+	ring(gui, look.Size - 2 * edge, edge, look.Edge, look.EdgeTransparency)
+	ring(gui, look.Size, look.Thickness, look.Color, 0)
+	ring(gui, look.Size + 2 * look.Thickness, edge, look.Edge, look.EdgeTransparency)
+	gui.Parent = player:WaitForChild("PlayerGui")
+	return gui
 end
 
 function Cursor.start()
@@ -65,6 +102,7 @@ function Cursor.start()
 	hint.TextXAlignment = Enum.TextXAlignment.Left
 	hint.Visible = false
 	gui.Parent = player:WaitForChild("PlayerGui")
+	local aim = crosshair(player)
 
 	UserInputService.InputBegan:Connect(function(input)
 		if input.KeyCode == settings.Key then
@@ -81,12 +119,21 @@ function Cursor.start()
 		keyHeld = false
 	end)
 
+	local iconHidden = false
 	RunService.Heartbeat:Connect(function()
 		local free = Cursor.isFree()
 		if modal.Modal ~= free then
 			modal.Modal = free
 		end
-		hint.Visible = not free and ViewMode.isFirstPerson() and not UserInputService.TouchEnabled
+		local locked = not free and ViewMode.isFirstPerson()
+		aim.Enabled = locked
+		hint.Visible = locked and not UserInputService.TouchEnabled
+		-- The arrow hides while the ring stands in for it, and comes back the moment it's free
+		-- (or anything else has the camera: spectating, the win screen, the Locker).
+		if iconHidden ~= locked then
+			iconHidden = locked
+			UserInputService.MouseIconEnabled = not locked
+		end
 	end)
 end
 
