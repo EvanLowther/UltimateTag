@@ -9,6 +9,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
+local Contestant = require(Shared.Contestant)
 local Remotes = require(Shared.Remotes)
 local GameLog = require(script.Parent.GameLog)
 local Participants = require(script.Parent.Participants)
@@ -22,7 +23,7 @@ local lastPosition: { [Player]: Vector3 } = {}
 local listeners: { (Player) -> () } = {}
 
 local function rootOf(player: Player): BasePart?
-	local character = player.Character
+	local character = Contestant.character(player)
 	return if character then character:FindFirstChild("HumanoidRootPart") :: BasePart? else nil
 end
 
@@ -56,6 +57,9 @@ end
 local function check()
 	local now = os.clock()
 	for _, player in Participants.alive() do
+		if Contestant.isBot(player) then
+			continue -- bots are never away
+		end
 		if Roles.isFrozen(player) then
 			touch(player) -- frozen (the dev panel): they can't do anything
 			continue

@@ -1,5 +1,5 @@
 --!strict
--- Who is in the current game, as player attributes clients can read:
+-- Who is in the current game (players and bots, shared/Contestant), as attributes clients can read:
 --   InGame  true for everyone who started this game
 --   Alive   true while they're still in it (false once eliminated)
 -- Players who join mid-game have neither, so they spectate until the next game.
@@ -8,7 +8,9 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local Contestant = require(ReplicatedStorage.Shared.Contestant)
 local GameState = require(ReplicatedStorage.Shared.GameState)
+local Bots = require(script.Parent.Bots)
 local GameLog = require(script.Parent.GameLog)
 
 local Participants = {}
@@ -25,6 +27,7 @@ export type Podium = {
 	DisplayName: string,
 	Place: number,
 	Won: boolean,
+	Bot: boolean?, -- a bot (server/Bots)
 }
 
 local placements: { Placement } = {}
@@ -38,7 +41,7 @@ end
 function Participants.startGame(players: { Player })
 	gameId += 1
 	table.clear(placements)
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		local playing = table.find(players, player) ~= nil
 		player:SetAttribute("InGame", if playing then true else nil)
 		player:SetAttribute("Alive", if playing then true else nil)
@@ -57,7 +60,7 @@ end
 -- Everyone still in the game (leavers drop out on their own).
 function Participants.alive(): { Player }
 	local list = {}
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		if player:GetAttribute("InGame") and player:GetAttribute("Alive") then
 			table.insert(list, player)
 		end
@@ -71,16 +74,17 @@ end
 
 -- Puts a player out of the game and remembers when (once: a second call changes nothing).
 function Participants.eliminate(player: Player)
+	local userId = Contestant.userId(player)
 	for _, placement in placements do
-		if placement.UserId == player.UserId then
+		if placement.UserId == userId then
 			return
 		end
 	end
 	player:SetAttribute("Alive", false)
 	table.insert(placements, {
-		UserId = player.UserId,
+		UserId = userId,
 		Name = player.Name,
-		DisplayName = player.DisplayName,
+		DisplayName = Contestant.displayName(player),
 		Round = GameState.getRound(),
 		Order = #placements + 1,
 	})
@@ -101,11 +105,12 @@ function Participants.podium(limit: number): { Podium }
 	local function add(player: Player, won: boolean)
 		if #list < limit then
 			table.insert(list, {
-				UserId = player.UserId,
+				UserId = Contestant.userId(player),
 				Name = player.Name,
-				DisplayName = player.DisplayName,
+				DisplayName = Contestant.displayName(player),
 				Place = #list + 1,
 				Won = won,
+				Bot = Contestant.isBot(player),
 			})
 		end
 	end
@@ -113,7 +118,7 @@ function Participants.podium(limit: number): { Podium }
 		add(player, i == 1)
 	end
 	for i = #placements, 1, -1 do
-		local player = Players:GetPlayerByUserId(placements[i].UserId)
+		local player = Contestant.byUserId(placements[i].UserId)
 		if player and player.Parent and not Participants.isAlive(player) then
 			add(player, false)
 		end
@@ -129,13 +134,14 @@ function Participants.placeOf(player: Player): (number?, number)
 	local present = 0 -- eliminated players still in the server
 	local outAfter = 0 -- of those, the ones who went out after this player
 	local mine: number? = nil
+	local userId = Contestant.userId(player)
 	for i, placement in placements do
-		if placement.UserId == player.UserId then
+		if placement.UserId == userId then
 			mine = i
 		end
 	end
 	for i, placement in placements do
-		local other = Players:GetPlayerByUserId(placement.UserId)
+		local other = Contestant.byUserId(placement.UserId)
 		if other and other.Parent then
 			present += 1
 			if mine and i > mine then
@@ -154,7 +160,7 @@ end
 
 -- Clears the game from everyone (back to the lobby).
 function Participants.endGame()
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		player:SetAttribute("InGame", nil)
 		player:SetAttribute("Alive", nil)
 		player:SetAttribute("LeftEarly", nil)
@@ -173,6 +179,9 @@ function Participants.start()
 			)
 		end
 		task.defer(refreshCount) -- the leaver is still listed until the next frame
+	end)
+	Bots.onRemoved(function()
+		task.defer(refreshCount)
 	end)
 end
 

@@ -16,8 +16,10 @@ local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
+local Contestant = require(Shared.Contestant)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
+local Bots = require(script.Parent.Bots)
 local GameLog = require(script.Parent.GameLog)
 local Participants = require(script.Parent.Participants)
 local Roles = require(script.Parent.Roles)
@@ -41,7 +43,7 @@ end
 
 -- Where this player's body goes: under the lobby, spread out a little.
 local function parkSpot(player: Player): CFrame
-	local spread = (player.UserId % 40) * 6
+	local spread = (Contestant.userId(player) % 40) * 6
 	return CFrame.new(Config.Lobby.Position + Config.Game.ParkOffset + Vector3.new(spread, 0, 0))
 end
 
@@ -82,7 +84,7 @@ end
 -- replacement spawns) and tells their client to start spectating.
 function Spectators.park(player: Player)
 	player:SetAttribute("Spectating", true)
-	local character = player.Character
+	local character = Contestant.character(player)
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 	if character and humanoid and humanoid.Health > 0 then
 		hide(player, character)
@@ -113,7 +115,7 @@ function Spectators.eliminated(player: Player)
 	local seconds = Config.Game.EliminatedTime
 	local gameNumber = Participants.gameId()
 	Roles.freeze(player, seconds + 1)
-	local character = player.Character
+	local character = Contestant.character(player)
 	if character then
 		flash(character, seconds)
 	end
@@ -146,7 +148,7 @@ end
 -- Everyone back to normal (the game is over): nobody is spectating. Their parked characters are
 -- replaced by the respawn that follows.
 function Spectators.releaseAll()
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		player:SetAttribute("Spectating", nil)
 		player:SetAttribute("LeftEarly", nil)
 	end
@@ -171,17 +173,21 @@ function Spectators.leaveEarly(player: Player): boolean
 	return true
 end
 
+-- A body that spawns while its player is out of a running game (a late joiner, or the respawn
+-- after falling off) goes straight to the park spot.
+local function spawned(player: Player, character: Model)
+	if not Spectators.shouldPark(player) then
+		return
+	end
+	character:WaitForChild("HumanoidRootPart", 5)
+	if Spectators.shouldPark(player) and character.Parent then
+		Spectators.park(player)
+	end
+end
+
 local function watch(player: Player)
 	player.CharacterAdded:Connect(function(character)
-		if not Spectators.shouldPark(player) then
-			return
-		end
-		-- A body that spawns while its player is out of a running game (a late joiner, or the
-		-- respawn after falling off) goes straight to the park spot.
-		character:WaitForChild("HumanoidRootPart", 5)
-		if Spectators.shouldPark(player) and character.Parent then
-			Spectators.park(player)
-		end
+		spawned(player, character)
 	end)
 end
 
@@ -193,6 +199,9 @@ function Spectators.start()
 	for _, player in Players:GetPlayers() do
 		watch(player)
 	end
+	Bots.onCharacterAdded(function(bot, character)
+		spawned(bot :: any, character)
+	end)
 end
 
 return Spectators

@@ -2,13 +2,13 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.57.3",
+	Version = "0.58.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
 		-- "Sandbox": free play on the test map, one It, nothing ends (for testing movement).
 		Mode = "Elimination",
-		MinPlayers = 2, -- players needed in the lobby to start a game
+		MinPlayers = 2, -- players needed in the lobby to start a game (1 while Bots.Enabled: bots fill in)
 		StudioMinPlayers = 2, -- the same when testing in Studio (use Test > Clients and Servers)
 		-- Lobby countdown (shared/RoundPlan): starts at LobbyCountdown when enough players are
 		-- waiting; each player who joins adds JoinExtend, but the clock never goes above
@@ -60,6 +60,66 @@ local Config = {
 		PingInterval = 4, -- the client tells the server about input at most this often
 		MoveDistance = 2, -- studs your body must travel since the last check to count as activity
 		CheckInterval = 1, -- seconds between the server's checks
+	},
+
+	-- Bots (server/Bots, server/BotBrain): when fewer than FillTo real players are waiting as the
+	-- lobby countdown runs, bots join to make the game up to FillTo (one player alone can play).
+	-- They play by the same rules (tagged, eliminated, on the podium), wear a BOT tag and are
+	-- removed when the game is over. Each bot in a game cuts the coins and XP the real players
+	-- earn in it by RewardCutPerBot.
+	Bots = {
+		Enabled = true,
+		FillTo = 6,
+		Names = { "Bob Bot", "Bender", "404 Brain", "Aggressive Toaster", "NotABot" },
+		RewardCutPerBot = 0.1, -- 10% less coins and XP per bot (5 bots: half)
+		TagText = "BOT", -- the tag over their heads
+		-- Body colors per bot, in the order of Names (torso, arms, legs; the head stays yellow).
+		Colors = {
+			{
+				Color3.fromRGB(52, 142, 64),
+				Color3.fromRGB(245, 205, 48),
+				Color3.fromRGB(39, 70, 45),
+			},
+			{
+				Color3.fromRGB(163, 162, 165),
+				Color3.fromRGB(99, 95, 98),
+				Color3.fromRGB(27, 42, 53),
+			},
+			{
+				Color3.fromRGB(255, 0, 191),
+				Color3.fromRGB(245, 205, 48),
+				Color3.fromRGB(40, 20, 60),
+			},
+			{
+				Color3.fromRGB(255, 102, 0),
+				Color3.fromRGB(196, 40, 28),
+				Color3.fromRGB(60, 30, 20),
+			},
+			{
+				Color3.fromRGB(4, 175, 236),
+				Color3.fromRGB(245, 205, 48),
+				Color3.fromRGB(13, 105, 172),
+			},
+		},
+		-- How they play. They sprint like players and react a beat late, so they can be beaten.
+		Think = 0.1, -- seconds between decisions
+		Reaction = { 0.12, 0.28 }, -- seconds before they notice a change (random in this range)
+		SwingReach = 0.85, -- It swings once a Runner is this much of Config.Tag.Range away
+		SwingMiss = 0.2, -- chance an It's swing is mistimed (swung a beat early, out of reach)
+		Lead = 0.3, -- seconds ahead It aims at where a Runner is running to
+		FleeDistance = 34, -- a Runner runs from an It closer than this...
+		CalmDistance = 55, -- ...and once every It is further than this, roams
+		DodgeDistance = 10, -- an It closing in this near gets dodged (a sidestep, jump or slide)
+		DodgeChance = 0.65, -- chance they try a dodge when they could
+		SlideChance = 0.35, -- chance a chase or escape in a straight line becomes a slide
+		SlideCooldown = 2.5, -- seconds between a bot's slides
+		SlideBoost = 1.25, -- a slide's speed over sprinting, fading to running over SlideTime
+		SlideTime = 0.9,
+		PathRefresh = 0.5, -- seconds between path updates while chasing or fleeing
+		StuckTime = 1.2, -- seconds barely moving while trying to: jump, then try another way
+		KnockbackStun = 0.35, -- seconds a hit takes away their control
+		LaunchCheck = 0.15, -- seconds between checks for a launch pad under them
+		DangerDrop = 3.5, -- on maps that can kill (falls, the train), never step off more than this
 	},
 
 	-- The win screen (client/WinScreen): a podium stage built on each screen only, shown for

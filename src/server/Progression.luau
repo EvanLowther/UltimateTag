@@ -30,6 +30,7 @@ local tagsThisRound: { [Player]: number } = {}
 local lastMove: { [Player]: { [string]: number } } = {}
 local friendInServer: { [Player]: boolean } = {}
 local gameSize = 2 -- players who started the current game (win rewards scale with it)
+local gameBots = 0 -- bots in the game being played (each cuts its coins and XP)
 local topFiveGiven: { [Player]: boolean } = {} -- who got this game's Top 5 bonus
 
 local function popup(player: Player, payload: { [string]: any })
@@ -195,6 +196,12 @@ function Progression.record(player: Player, event: string, amount: number?)
 		if player:GetAttribute("DoubleCoins") then
 			coins *= 2
 		end
+		-- A game with bots pays less: Config.Bots.RewardCutPerBot for each.
+		if gameBots > 0 and event ~= "StreakDay" then
+			local keep = math.max(1 - Config.Bots.RewardCutPerBot * gameBots, 0)
+			coins = math.floor(coins * keep + 0.5)
+			xp = math.floor(xp * keep + 0.5)
+		end
 		reached = addCoinsAndXP(p, coins, xp)
 	end)
 	if coins > 0 or xp > 0 then
@@ -211,10 +218,17 @@ function Progression.onRecord(listener: (Player, string, number) -> ())
 	table.insert(recordListeners, listener)
 end
 
--- A game starts with `players` players: wins in it are rewarded for that many.
-function Progression.newGame(players: number)
+-- A game starts with `players` players, `bots` of them bots: wins in it are rewarded for that
+-- many, and everything earned in it is cut for each bot (until `endGame`).
+function Progression.newGame(players: number, bots: number?)
 	gameSize = math.max(players, 2)
+	gameBots = bots or 0
 	table.clear(topFiveGiven)
+end
+
+-- The game is over: rewards are paid in full again.
+function Progression.endGame()
+	gameBots = 0
 end
 
 -- After a round: in a big game (TopFiveMinPlayers+ at the start), everyone still in once

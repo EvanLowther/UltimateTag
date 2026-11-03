@@ -16,6 +16,10 @@
 -- while the next map loads behind a full-screen cover (client/RoundResults).
 -- Rounds continue until one player is left; they win. When the game ends everyone is respawned
 -- in the lobby and the win screen plays (client/WinScreen, the GameOver remote).
+-- Bots (server/Bots, Config.Bots): while fewer than FillTo real players wait, bots join the lobby
+-- during the countdown to make the game up to FillTo, so one player alone can play. They play
+-- like anyone else (contestants: shared/Contestant) and stay in the lobby between games while
+-- they're still needed.
 -- With Config.Game.Mode = "Sandbox" this runs the free-play test mode instead (server/Sandbox).
 -- The dev panel (server/DevCommands) can switch modes, skip the current timer, change the time
 -- left and start a game early.
@@ -26,10 +30,12 @@ local RunService = game:GetService("RunService")
 local Shared = ReplicatedStorage.Shared
 local Catalog = require(Shared.Catalog)
 local Config = require(Shared.Config)
+local Contestant = require(Shared.Contestant)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
 local RoundPlan = require(Shared.RoundPlan)
 local Afk = require(script.Parent.Afk)
+local Bots = require(script.Parent.Bots)
 local GameLog = require(script.Parent.GameLog)
 local GameRewards = require(script.Parent.GameRewards)
 local MapRespawn = require(script.Parent.MapRespawn)
@@ -64,7 +70,19 @@ local roundOut: { Out } = {}
 local activeRound: { Target: number, StartAlive: number }? = nil
 
 local function minPlayers(): number
+	if Config.Bots.Enabled then
+		return 1 -- bots make up the rest
+	end
 	return if RunService:IsStudio() then Config.Game.StudioMinPlayers else Config.Game.MinPlayers
+end
+
+-- How many bots a lobby of `players` real players needs (none once it's big enough).
+local function botsWanted(players: number): number
+	local settings = Config.Bots
+	if not settings.Enabled or players <= 0 then
+		return 0
+	end
+	return math.clamp(settings.FillTo - players, 0, #settings.Names)
 end
 
 -- Counts down `seconds` in `phase`, checking `keepGoing` ten times a second. Stops early and
@@ -100,9 +118,11 @@ local function countdown(
 	return finished
 end
 
--- Respawns a player in the lobby (its spawn ring has the only SpawnLocations in the game).
+-- Respawns a player (or bot) in the lobby (its spawn ring has the only SpawnLocations in the game).
 local function sendToLobby(player: Player)
-	if player.Parent then
+	if Contestant.isBot(player) then
+		Bots.loadCharacter(player :: any)
+	elseif player.Parent then
 		pcall(player.LoadCharacter, player)
 	end
 end
@@ -150,10 +170,15 @@ local function placeOnMap(players: { Player }, map: Model)
 		local point = points[((i - 1) % math.max(#points, 1)) + 1]
 		pending += 1
 		task.spawn(function()
-			pcall(player.LoadCharacter, player)
-			local character = player.Character
-			if character and point then
-				character:PivotTo(point.CFrame + Vector3.new(0, 3, 0))
+			local at = if point then point.CFrame + Vector3.new(0, 3, 0) else nil
+			if Contestant.isBot(player) then
+				Bots.loadCharacter(player :: any, at)
+			else
+				pcall(player.LoadCharacter, player)
+				local character = player.Character
+				if character and at then
+					character:PivotTo(at)
+				end
 			end
 			pending -= 1
 		end)
@@ -192,7 +217,7 @@ local function ensureIt()
 	local chosen = runners[math.random(#runners)]
 	Roles.set(chosen, "It")
 	GameLog.say(`no It left, {chosen.Name} is the new It (random Runner of {#runners})`)
-	GameState.setStatus(`{chosen.DisplayName} is the new It!`)
+	GameState.setStatus(`{Contestant.displayName(chosen)} is the new It!`)
 end
 
 -- Out mid-round (the Playing phase): fell off a FallEliminates map or hit by the Metro's train
@@ -206,10 +231,11 @@ local function outMidRound(player: Player, reason: string, body: boolean)
 	Participants.eliminate(player)
 	Roles.set(player, nil)
 	Progression.record(player, "GameLost")
+	local displayName = Contestant.displayName(player)
 	table.insert(roundOut, {
-		UserId = player.UserId,
+		UserId = Contestant.userId(player),
 		Name = player.Name,
-		DisplayName = player.DisplayName,
+		DisplayName = displayName,
 		Reason = reason,
 	})
 	if body then
@@ -225,15 +251,15 @@ local function outMidRound(player: Player, reason: string, body: boolean)
 	)
 	Remotes.get("Notify"):FireAllClients(
 		if reason == "Train"
-			then `{player.DisplayName} was hit by the train and is out!`
-			elseif reason == "Afk" then `{player.DisplayName} was away and is out!`
-			else `{player.DisplayName} fell and is out!`
+			then `{displayName} was hit by the train and is out!`
+			elseif reason == "Afk" then `{displayName} was away and is out!`
+			else `{displayName} fell and is out!`
 	)
 	ensureIt()
 end
 
 local function fellOut(player: Player)
-	local character = player.Character
+	local character = Contestant.character(player)
 	local hitByTrain = character ~= nil and character:GetAttribute("HitByTrain") == true
 	outMidRound(player, if hitByTrain then "Train" else "Fell", false)
 end
@@ -277,7 +303,7 @@ local function sendResults(round: number, hasNext: boolean)
 			fate = "Safe"
 		else
 			for _, out in roundOut do
-				if out.UserId == player.UserId then
+				if out.UserId == player.UserId then -- (real players only: bots get no card)
 					fate = "Out"
 					reason = out.Reason
 				end
@@ -366,9 +392,9 @@ local function playRound(round: number, mapName: string): string?
 		Spectators.eliminated(player) -- the ELIMINATED moment, then parked out of sight
 		Progression.record(player, "GameLost")
 		table.insert(roundOut, {
-			UserId = player.UserId,
+			UserId = Contestant.userId(player),
 			Name = player.Name,
-			DisplayName = player.DisplayName,
+			DisplayName = Contestant.displayName(player),
 			Reason = "It",
 		})
 		GameLog.say(`{player.Name} eliminated: still It when time ran out ({mode.Name})`)
@@ -429,9 +455,15 @@ local function playRound(round: number, mapName: string): string?
 end
 
 local function playGame(players: { Player })
+	local bots = 0
+	for _, player in players do
+		if Contestant.isBot(player) then
+			bots += 1
+		end
+	end
 	Participants.startGame(players)
 	GameRewards.begin(players)
-	Progression.newGame(#players)
+	Progression.newGame(#players, bots)
 	for _, player in players do
 		Progression.record(player, "GamePlayed")
 	end
@@ -445,9 +477,11 @@ local function playGame(players: { Player })
 	-- One player left (or nobody, if everyone else left or fell).
 	local winner = if round > 0 then Participants.alive()[1] else nil
 	if winner then
-		WinsStore.addWin(winner)
-		Progression.record(winner, "Win")
-		GameState.setStatus(`{winner.DisplayName} wins!`)
+		if not Contestant.isBot(winner) then
+			WinsStore.addWin(winner)
+			Progression.record(winner, "Win")
+		end
+		GameState.setStatus(`{Contestant.displayName(winner)} wins!`)
 		ReplicatedStorage:SetAttribute("Winner", winner.Name)
 	else
 		GameState.setStatus("Nobody won this time.")
@@ -493,7 +527,8 @@ local function playGame(players: { Player })
 	Roles.clearAll()
 	Participants.endGame()
 	GameRewards.clear()
-	respawnInLobby(Players:GetPlayers())
+	Progression.endGame()
+	respawnInLobby(Contestant.all())
 	MapService.unload()
 	if #podium > 0 then
 		for player, info in screens do
@@ -512,8 +547,10 @@ local function runElimination()
 		local players = Players:GetPlayers()
 		if forceStart then
 			forceStart = false
-			playGame(players)
+			Bots.fill(botsWanted(#players))
+			playGame(Contestant.all())
 		elseif #players < minPlayers() then
+			Bots.fill(0)
 			GameState.setPhase("Lobby")
 			GameState.setTimeLeft(0)
 			GameState.setStatus(`Waiting for players ({#players}/{minPlayers()})`)
@@ -521,6 +558,7 @@ local function runElimination()
 		else
 			GameState.setStatus("Game starting soon!")
 			joinsSinceStart = 0
+			Bots.fill(botsWanted(#players))
 			local bigLobbyCut = false -- the big lobby's cut is made once (the dev panel can then set more)
 			local ready = countdown(
 				"Countdown",
@@ -530,6 +568,7 @@ local function runElimination()
 					if count < minPlayers() then
 						return false
 					end
+					Bots.fill(botsWanted(count)) -- players joining or leaving: fewer or more bots
 					local joins = joinsSinceStart
 					joinsSinceStart = 0
 					local big = count >= Config.Game.BigLobby
@@ -549,7 +588,8 @@ local function runElimination()
 				end
 			)
 			if ready then
-				playGame(Players:GetPlayers())
+				Bots.fill(botsWanted(#Players:GetPlayers()))
+				playGame(Contestant.all())
 			end
 		end
 	end
@@ -579,6 +619,8 @@ local function stopAll()
 	end
 	Afk.stop()
 	RoundStats.finish()
+	Progression.endGame()
+	Bots.removeAll()
 	activeRound = nil
 	table.clear(roundOut)
 	counting, skipping, forceStart = false, false, false
@@ -644,7 +686,7 @@ function GameLoop.startNow(): string?
 	if phase ~= "Lobby" and phase ~= "Countdown" then
 		return "A game is already running"
 	end
-	if #Players:GetPlayers() < 2 then
+	if #Players:GetPlayers() < minPlayers() then
 		return "A game needs 2 players (Test > Clients and Servers)"
 	end
 	if phase == "Countdown" then

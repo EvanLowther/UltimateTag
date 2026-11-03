@@ -19,6 +19,7 @@ local TweenService = game:GetService("TweenService")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local Config = require(Shared:WaitForChild("Config"))
+local Contestant = require(Shared:WaitForChild("Contestant"))
 local GameState = require(Shared:WaitForChild("GameState"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
@@ -50,7 +51,14 @@ local PLATE_WIDTH = 230 -- a name plate; it shrinks when the blocks are close to
 local HEADLINE_SIZE = 52
 local CARD_WIDTH = 360 -- the rewards card (narrower on a narrow screen)
 
-type Entry = { UserId: number, Name: string, DisplayName: string, Place: number, Won: boolean }
+type Entry = {
+	UserId: number, -- negative for a bot (shared/Contestant)
+	Name: string,
+	DisplayName: string,
+	Place: number,
+	Won: boolean,
+	Bot: boolean?,
+}
 type Rewards = {
 	Coins: number,
 	XP: number,
@@ -269,7 +277,7 @@ end
 local function waitForCharacter(player: Player): Model?
 	local waited = 0
 	while waited < WAIT_FOR_CHARACTER do
-		local character = player.Character
+		local character = Contestant.character(player) -- a player's or a bot's
 		if
 			character
 			and character:GetAttribute("Parked") ~= true
@@ -628,7 +636,7 @@ local function openScreen(info: Info)
 	local others: { Model } = {} -- 2nd and 3rd, as they arrive
 	for _, entry in podium do
 		task.spawn(function()
-			local owner = Players:GetPlayerByUserId(entry.UserId)
+			local owner = Contestant.byUserId(entry.UserId)
 			local character = if owner then waitForCharacter(owner) else nil
 			if not character or session ~= mine or not model.Parent then
 				return

@@ -1,11 +1,14 @@
 --!strict
--- Who is It and who is a Runner. Stored as the "Role" attribute on each Player so clients can read it.
+-- Who is It and who is a Runner. Stored as the "Role" attribute on each Player (or bot,
+-- shared/Contestant) so clients can read it.
 -- Also applies each role's speed and look to the character, again after every respawn.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPlayer = game:GetService("StarterPlayer")
 
 local Config = require(ReplicatedStorage.Shared.Config)
+local Contestant = require(ReplicatedStorage.Shared.Contestant)
+local Bots = require(script.Parent.Bots)
 
 export type Role = "It" | "Runner"
 
@@ -23,7 +26,7 @@ end
 
 -- The first It found (the sandbox only ever has one).
 function Roles.getIt(): Player?
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		if Roles.get(player) == "It" then
 			return player
 		end
@@ -34,7 +37,7 @@ end
 -- Every player who is It right now (a game round can have several).
 function Roles.getIts(): { Player }
 	local its = {}
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		if Roles.get(player) == "It" then
 			table.insert(its, player)
 		end
@@ -49,7 +52,7 @@ end
 
 -- Pushes the player's current role and frozen state onto their character.
 local function apply(player: Player)
-	local character = player.Character
+	local character = Contestant.character(player)
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 	if not character or not humanoid then
 		return
@@ -123,13 +126,13 @@ end
 
 -- Re-applies everyone's role (after Config.Speed changes, from the dev panel).
 function Roles.refreshAll()
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		apply(player)
 	end
 end
 
 function Roles.clearAll()
-	for _, player in Players:GetPlayers() do
+	for _, player in Contestant.all() do
 		frozenUntil[player] = nil
 		Roles.set(player, nil)
 	end
@@ -149,6 +152,15 @@ function Roles.start()
 	Players.PlayerRemoving:Connect(function(player)
 		frozenUntil[player] = nil
 		roleSince[player] = nil
+	end)
+	-- Bots: the same on every new body, forgotten when they go.
+	Bots.onCharacterAdded(function(bot, character)
+		character:WaitForChild("Humanoid", 5)
+		apply(bot :: any)
+	end)
+	Bots.onRemoved(function(bot)
+		frozenUntil[bot :: any] = nil
+		roleSince[bot :: any] = nil
 	end)
 end
 

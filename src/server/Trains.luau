@@ -15,12 +15,12 @@
 --     the nearest door (client/Trains pushes riders out first; this makes sure nobody rides round
 --     again).
 -- The train's parts never move on the server: only the timetable runs here.
-local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
+local Contestant = require(Shared.Contestant)
 local TrainLine = require(Shared.TrainLine)
 
 local Trains = {}
@@ -93,8 +93,8 @@ local function step()
 			aboard[character] = nil
 		end
 	end
-	for _, player in Players:GetPlayers() do
-		local character = player.Character
+	for _, player in Contestant.all() do
+		local character = Contestant.character(player)
 		local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 		if not character or not root or not humanoid or humanoid.Health <= 0 then

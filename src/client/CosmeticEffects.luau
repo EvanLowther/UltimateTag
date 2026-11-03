@@ -17,6 +17,7 @@ local TweenService = game:GetService("TweenService")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local Config = require(Shared:WaitForChild("Config"))
+local Contestant = require(Shared:WaitForChild("Contestant"))
 local CosmeticLook = require(Shared:WaitForChild("CosmeticLook"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local CameraKick = require(script.Parent.CameraKick)
@@ -486,7 +487,7 @@ function CosmeticEffects.start()
 		if typeof(tagger) == "Instance" and typeof(tagged) == "Instance" then
 			local item =
 				Catalog.get((tagger :: Player):GetAttribute("EquippedTagEffect") :: string?)
-			local character = (tagged :: Player).Character
+			local character = Contestant.character(tagged) -- a player's or a bot's
 			if character then
 				CosmeticEffects.playTag(item, character)
 			end

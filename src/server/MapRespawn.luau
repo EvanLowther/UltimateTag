@@ -13,7 +13,9 @@ local RunService = game:GetService("RunService")
 
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
+local Contestant = require(Shared.Contestant)
 local GameState = require(Shared.GameState)
+local Bots = require(script.Parent.Bots)
 local MapService = require(script.Parent.MapService)
 local Participants = require(script.Parent.Participants)
 
@@ -45,34 +47,36 @@ local function placeOnMap(character: Model)
 	character:PivotTo(point.CFrame + Vector3.new(0, 3, 0))
 end
 
+-- A new body (a player's or a bot's): back on the map if they died there, and watched.
+local function spawned(player: Player, character: Model)
+	if diedOnMap[player] then
+		diedOnMap[player] = nil
+		if belongsOnMap(player) then
+			character:WaitForChild("HumanoidRootPart", 5)
+			placeOnMap(character)
+		end
+	end
+	local humanoid = character:WaitForChild("Humanoid", 5) :: Humanoid?
+	if humanoid then
+		humanoid.Died:Connect(function()
+			local map = MapService.active()
+			if not map or not belongsOnMap(player) then
+				return
+			end
+			if map:GetAttribute("FallEliminates") == true and GameState.getPhase() == "Playing" then
+				for _, listener in fellOutListeners do
+					task.spawn(listener, player)
+				end
+				return -- out of the game: they come back in the lobby
+			end
+			diedOnMap[player] = true
+		end)
+	end
+end
+
 local function watch(player: Player)
 	player.CharacterAdded:Connect(function(character)
-		if diedOnMap[player] then
-			diedOnMap[player] = nil
-			if belongsOnMap(player) then
-				character:WaitForChild("HumanoidRootPart", 5)
-				placeOnMap(character)
-			end
-		end
-		local humanoid = character:WaitForChild("Humanoid", 5) :: Humanoid?
-		if humanoid then
-			humanoid.Died:Connect(function()
-				local map = MapService.active()
-				if not map or not belongsOnMap(player) then
-					return
-				end
-				if
-					map:GetAttribute("FallEliminates") == true
-					and GameState.getPhase() == "Playing"
-				then
-					for _, listener in fellOutListeners do
-						task.spawn(listener, player)
-					end
-					return -- out of the game: they come back in the lobby
-				end
-				diedOnMap[player] = true
-			end)
-		end
+		spawned(player, character)
 	end)
 end
 
@@ -90,8 +94,14 @@ function MapRespawn.start()
 	Players.PlayerRemoving:Connect(function(player)
 		diedOnMap[player] = nil
 	end)
+	Bots.onCharacterAdded(function(bot, character)
+		spawned(bot :: any, character)
+	end)
+	Bots.onRemoved(function(bot)
+		diedOnMap[bot :: any] = nil
+	end)
 
-	-- Kill anyone who fell below the map's KillHeight.
+	-- Kill anyone who fell below the map's KillHeight (bots too).
 	RunService.Heartbeat:Connect(function()
 		local map = MapService.active()
 		local killHeight = map and map:GetAttribute("KillHeight")
@@ -100,8 +110,8 @@ function MapRespawn.start()
 		end
 		local center = map:GetPivot().Position
 		local radius = Config.Game.KillRadius
-		for _, player in Players:GetPlayers() do
-			local character = player.Character
+		for _, player in Contestant.all() do
+			local character = Contestant.character(player)
 			local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
 			local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 			if not root or not humanoid or humanoid.Health <= 0 then

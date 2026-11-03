@@ -11,8 +11,10 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
+local Contestant = require(Shared.Contestant)
 local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
+local Bots = require(script.Parent.Bots)
 local GameLog = require(script.Parent.GameLog)
 local Leaderstats = require(script.Parent.Leaderstats)
 local Participants = require(script.Parent.Participants)
@@ -42,7 +44,7 @@ end
 
 -- Returns the player's root part only if their character is alive.
 local function aliveRoot(player: Player): BasePart?
-	local character = player.Character
+	local character = Contestant.character(player)
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 	if not character or not humanoid or humanoid.Health <= 0 then
 		return nil
@@ -72,7 +74,11 @@ local function knockback(swingerRoot: BasePart, hit: Player, scale: number)
 	local closing = math.max(Vector3.new(v.X, 0, v.Z):Dot(direction), 0)
 	local strength = math.min(settings.Base + settings.PerSpeed * closing, settings.Max) * scale
 	if strength > 0 then
-		Remotes.get("TagKnockback"):FireClient(hit, direction * strength)
+		if Contestant.isBot(hit) then
+			Bots.knockback(hit :: any, direction * strength) -- the server runs a bot's body
+		else
+			Remotes.get("TagKnockback"):FireClient(hit, direction * strength)
+		end
 	end
 end
 
@@ -91,7 +97,7 @@ local function tag(tagger: Player, tagged: Player, distance: number?, taggerSpee
 	Leaderstats.add(tagger, "Tags", 1)
 	Progression.record(tagger, "Tag")
 	Remotes.get("TagHit"):FireAllClients(tagger, tagged) -- the tagger's tag effect
-	GameState.setStatus(`{tagger.DisplayName} tagged {tagged.DisplayName}!`)
+	GameState.setStatus(`{Contestant.displayName(tagger)} tagged {Contestant.displayName(tagged)}!`)
 end
 
 -- How much further than Config.Tag.Range a swing reaches `other` in a live server: the server
@@ -99,8 +105,12 @@ end
 -- (their speed relative to each other times both pings). Nothing in Studio (no ping).
 local function lagExtra(swinger: Player, fromRoot: BasePart, other: Player, root: BasePart): number
 	local settings = Config.Tag
+	-- (A bot has no ping: the server runs it.)
 	local ok, ping = pcall(function()
-		return swinger:GetNetworkPing() + other:GetNetworkPing()
+		local function pingOf(contestant: any): number
+			return if Contestant.isBot(contestant) then 0 else contestant:GetNetworkPing()
+		end
+		return pingOf(swinger) + pingOf(other)
 	end)
 	if not ok or type(ping) ~= "number" then
 		return 0
@@ -116,7 +126,7 @@ end
 local function nearest(swinger: Player, fromRoot: BasePart, runnersOnly: boolean): Player?
 	local best: Player? = nil
 	local bestDistance = math.huge
-	for _, other in Players:GetPlayers() do
+	for _, other in Contestant.all() do
 		if
 			other ~= swinger
 			and takesPart(other)
@@ -139,7 +149,7 @@ end
 local function logMiss(swinger: Player, fromRoot: BasePart)
 	local best: Player? = nil
 	local bestDistance = math.huge
-	for _, other in Players:GetPlayers() do
+	for _, other in Contestant.all() do
 		if other ~= swinger and takesPart(other) and Roles.get(other) == "Runner" then
 			local root = aliveRoot(other)
 			local distance = root and (root.Position - fromRoot.Position).Magnitude
@@ -197,6 +207,11 @@ local function onSwing(player: Player)
 	if shoved then
 		knockback(root, shoved, Config.Knockback.Shove)
 	end
+end
+
+-- A bot's swing (server/BotBrain): the same as a player's left click.
+function TagService.swing(bot: any)
+	onSwing(bot)
 end
 
 function TagService.start()

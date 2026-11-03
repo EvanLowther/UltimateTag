@@ -11,6 +11,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
+local Contestant = require(Shared:WaitForChild("Contestant"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 
@@ -42,9 +43,9 @@ function TagSwing.swipe(humanoid: Humanoid)
 	end)
 end
 
--- Plays the swipe on any player's character.
+-- Plays the swipe on any player's (or bot's) character.
 local function playSwipe(player: Player)
-	local character = player.Character
+	local character = Contestant.character(player)
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 	if not humanoid or humanoid.Health <= 0 then
 		return

@@ -13,6 +13,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+local Contestant = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Contestant"))
 local ViewMode = require(script.Parent.ViewMode)
 
 local FollowCam = {}
@@ -67,9 +68,10 @@ function FollowCam.start()
 
 		-- Characters never block the camera.
 		local ignore = {}
-		for _, other in Players:GetPlayers() do
-			if other.Character then
-				table.insert(ignore, other.Character)
+		for _, other in Contestant.all() do -- bots too
+			local character = Contestant.character(other)
+			if character then
+				table.insert(ignore, character)
 			end
 		end
 		params.FilterDescendantsInstances = ignore

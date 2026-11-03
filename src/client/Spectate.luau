@@ -13,6 +13,7 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
+local Contestant = require(Shared:WaitForChild("Contestant"))
 local GameState = require(Shared:WaitForChild("GameState"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local ControlLock = require(script.Parent.ControlLock)
@@ -37,13 +38,13 @@ local NEXT_KEYS = {
 -- Everyone still in the game, in a stable order (so switching goes round the same way).
 local function alivePlayers(): { Player }
 	local list = {}
-	for _, other in Players:GetPlayers() do
+	for _, other in Contestant.all() do -- players and bots
 		if other:GetAttribute("InGame") and other:GetAttribute("Alive") then
 			table.insert(list, other)
 		end
 	end
 	table.sort(list, function(a, b)
-		return a.UserId < b.UserId
+		return Contestant.userId(a) < Contestant.userId(b)
 	end)
 	return list
 end
@@ -212,13 +213,13 @@ function Spectate.start()
 		if not target or not target.Parent or not target:GetAttribute("Alive") then
 			cycle(1)
 		end
-		local character = target and target.Character
+		local character = target and Contestant.character(target)
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 		if humanoid and camera.CameraSubject ~= humanoid then
 			camera.CameraSubject = humanoid
 		end
 		label.Text = if target
-			then `SPECTATING {Ui.upper(target.DisplayName)}{hint}`
+			then `SPECTATING {Ui.upper(Contestant.displayName(target))}{hint}`
 			else "SPECTATING"
 	end)
 
