@@ -109,7 +109,7 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local crateCount = Ui.caps(crate, "", 18, Ui.Colors.Lime)
 	crateCount.AnchorPoint = Vector2.new(1, 0)
 	crateCount.Position = UDim2.new(1, -14, 0, 10)
-	crateCount.Size = UDim2.fromOffset(64, 24)
+	crateCount.Size = UDim2.fromOffset(104, 24)
 	Ui.shrinkText(crateCount, 11, 18)
 	crateCount.TextXAlignment = Enum.TextXAlignment.Right
 
@@ -327,39 +327,57 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			underline.AnchorPoint = Vector2.new(0, 1)
 			underline.Position = UDim2.fromScale(0, 1)
 			underline.Size = UDim2.new(1, -8, 0, 4)
+			-- Which day, then exactly what it gives: the coins (a coin, the amount, the word
+			-- COINS) and any crate. Claimed days keep showing what they gave, with a check.
+			local ink = if isNext
+				then Ui.Colors.Ink
+				elseif claimed then Ui.Colors.Lime
+				else Ui.Colors.Dim
 			local top = Ui.caps(
 				tile,
-				if isNext or (day == count and claimed) then "Today" else `Day {day}`,
+				if isNext
+					then "Claim today"
+					elseif day == count and claimed then "Today"
+					else `Day {day}`,
 				11,
-				if isNext then Ui.Colors.Ink elseif claimed then Ui.Colors.Lime else Ui.Colors.Dim
+				ink
 			)
-			top.Position = UDim2.fromOffset(0, 8)
-			top.Size = UDim2.new(1, 0, 0, 18)
+			top.Position = UDim2.fromOffset(0, 6)
+			top.Size = UDim2.new(1, 0, 0, 16)
 			Ui.pad(top, 12, 0)
+			Ui.shrinkText(top, 9, 11)
 			top.ZIndex = 2
-			-- The reward under the day: a crate goes on a second line, so it fits a narrow tile.
-			local crateLine = if reward.Crates then "<br/>+ crate" else ""
-			local bottomText = if isNext
-				then `Claim<br/>{reward.Coins}{if reward.Crates then " + crate" else ""}`
-				elseif claimed then ""
-				else `{reward.Coins}{crateLine}`
-			local bottom = Ui.caps(
+			local amountColor = if isNext
+				then Ui.Colors.Ink
+				elseif claimed then Ui.Colors.Lime
+				else Ui.Colors.Yellow
+			local amount = Ui.coinAmount(tile, reward.Coins, if isNext then 16 else 14, amountColor)
+			amount.AnchorPoint = Vector2.new(0.5, 0)
+			amount.Position = UDim2.new(0.5, 0, 0, 23)
+			amount.ZIndex = 2
+			for _, item in amount:GetDescendants() do
+				if item:IsA("GuiObject") then
+					item.ZIndex = 2
+				end
+			end
+			local what = Ui.caps(
 				tile,
-				bottomText,
-				if isNext then 15 else 13,
-				if isNext then Ui.Colors.Ink elseif claimed then Ui.Colors.Lime else Ui.Colors.Yellow
+				if reward.Crates
+					then `Coins + {reward.Crates} crate{if reward.Crates == 1 then "" else "s"}`
+					else "Coins",
+				10,
+				if isNext then Ui.Colors.Ink else Ui.Colors.Dim
 			)
-			bottom.Position = UDim2.fromOffset(0, 26)
-			bottom.Size = UDim2.new(1, 0, 0, DAY_HEIGHT - 26 - 8)
-			bottom.ZIndex = 2
-			Ui.pad(bottom, 12, 0)
-			Ui.shrinkText(bottom, 11, if isNext then 15 else 13)
-			bottom.TextWrapped = true -- (the <br/> lines)
+			what.Position = UDim2.fromOffset(0, 45)
+			what.Size = UDim2.new(1, 0, 0, 16)
+			Ui.pad(what, 10, 0)
+			Ui.shrinkText(what, 9, 10)
+			what.ZIndex = 2
 			if claimed then
-				local check = Ui.icon(tile, "check", 22, Ui.Colors.Lime)
-				check.AnchorPoint = Vector2.new(0.5, 0)
-				check.Position = UDim2.new(0.5, 0, 0, 28)
-				check.ZIndex = 2
+				local check = Ui.icon(tile, "check", 16, Ui.Colors.Lime)
+				check.AnchorPoint = Vector2.new(1, 0)
+				check.Position = UDim2.new(1, -10, 0, 5)
+				check.ZIndex = 3
 			end
 			if isNext then
 				tile.Activated:Connect(function()
@@ -370,7 +388,7 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			tile.Parent = days
 		end
 
-		crateCount.Text = `x{profile.Crates}`
+		crateCount.Text = `{profile.Crates} CRATE{if profile.Crates == 1 then "" else "S"}`
 		crateStatus.Text = if profile.Crates > 0
 			then "READY TO OPEN"
 			else "NONE LEFT: BUY ONE IN THE SHOP"

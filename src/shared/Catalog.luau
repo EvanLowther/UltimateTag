@@ -51,7 +51,7 @@ Catalog.CrateOrder = { "Common", "Rare", "Epic", "Legendary", "Iridescent" }
 
 Catalog.Kinds = { "Trail", "TagEffect", "Title", "Victory" }
 Catalog.KindNames =
-	{ Trail = "Trails", TagEffect = "Tags", Title = "Titles", Victory = "Victories" }
+	{ Trail = "Trails", TagEffect = "Tag effects", Title = "Titles", Victory = "Victories" }
 Catalog.KindSingular =
 	{ Trail = "trail", TagEffect = "tag effect", Title = "title", Victory = "victory" }
 

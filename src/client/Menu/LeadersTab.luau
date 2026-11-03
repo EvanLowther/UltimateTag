@@ -34,8 +34,24 @@ local PODIUM_COLORS = {
 local PERIODS = { "All time", "This week" }
 local NARROW_BELOW = 560 -- pages narrower than this (virtual pixels) get the narrow layout
 local SCROLL_PAD = 12 -- the scroll lists' padding on the right
-local FOOTER = 64 -- room kept under the list for your rank and the footer line
+local FOOTER = 68 -- room kept under the list for your rank and the footer line
 local PODIUM_HEIGHT = 196 -- the podium's frame: crown, face, name, then the block
+local HEADING = 34 -- the board's heading over the podium ("MOST WINS · ALL TIME")
+local ROW = 38 -- a list row
+-- What each board ranks, said plainly: its heading, and the unit after every score.
+local WORDS: { [string]: { title: string, unit: string, one: string } } = {
+	Wins = { title = "Most wins", unit = "wins", one = "win" },
+	Tags = { title = "Most tags", unit = "tags", one = "tag" },
+	Level = { title = "Highest level", unit = "level", one = "level" },
+	WallRuns = { title = "Most wall runs", unit = "wall runs", one = "wall run" },
+}
+local function unitOf(id: string, value: number): string
+	local words = WORDS[id]
+	if not words then
+		return ""
+	end
+	return Ui.upper(if value == 1 then words.one else words.unit)
+end
 
 -- Puts a player's headshot on an ImageLabel (Roblox's thumbnail URL loads it in the background).
 local function headshot(image: ImageLabel, userId: number)
@@ -124,7 +140,7 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local mine = Ui.frame(boardsFrame)
 	mine.AnchorPoint = Vector2.new(0, 1)
 	mine.Position = UDim2.new(0, 0, 1, -22)
-	mine.Size = UDim2.new(1, 0, 0, 36)
+	mine.Size = UDim2.new(1, 0, 0, 40)
 	local footer = Ui.caps(boardsFrame, "", 11, Ui.Colors.Dim)
 	footer.AnchorPoint = Vector2.new(0, 1)
 	footer.Position = UDim2.fromScale(0, 1)
@@ -136,12 +152,13 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		userId: number?,
 		name: string,
 		value: string,
+		unit: string,
 		highlight: boolean
 	)
 		local parent = if highlight then mine else list
 		local r = Ui.slab(parent, if highlight then Ui.Colors.Orange else Ui.Colors.Card, 6)
 		r.LayoutOrder = if highlight then order else 10 + order -- (after the podium)
-		r.Size = if highlight then UDim2.fromScale(1, 1) else UDim2.new(1, -6, 0, 30)
+		r.Size = if highlight then UDim2.fromScale(1, 1) else UDim2.new(1, -6, 0, ROW)
 		local text = if highlight then Ui.Colors.Ink else Ui.Colors.Text
 		local rankLabel = Ui.caps(r, rank, 14, if highlight then Ui.Colors.Ink else Ui.Colors.Dim)
 		rankLabel.Position = UDim2.fromOffset(14, 0)
@@ -158,15 +175,23 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		face.Position = UDim2.new(0, 70, 0.5, 0)
 		local nameLabel = Ui.caps(r, name, 13, text)
 		nameLabel.Position = UDim2.fromOffset(104, 0)
-		nameLabel.Size = UDim2.new(1, -244, 1, 0)
+		nameLabel.Size = UDim2.new(1, -(104 + 176), 1, 0)
 		nameLabel.TextXAlignment = Enum.TextXAlignment.Left
 		Ui.shrinkText(nameLabel, 11, 13) -- 20-letter names shrink, then are cut off
-		local valueLabel = Ui.caps(r, value, 14, text)
+		-- The score, big, with what it counts after it ("12 WINS").
+		local unitLabel = Ui.caps(r, unit, 11, if highlight then Ui.Colors.Ink else Ui.Colors.Dim)
+		unitLabel.AnchorPoint = Vector2.new(1, 0)
+		unitLabel.Position = UDim2.new(1, -16, 0, 0)
+		unitLabel.Size = UDim2.new(0, 70, 1, 0)
+		unitLabel.TextXAlignment = Enum.TextXAlignment.Left
+		Ui.shrinkText(unitLabel, 9, 11)
+		local valueLabel =
+			Ui.title(r, value, 24, if highlight then Ui.Colors.Ink else Ui.Colors.Yellow)
 		valueLabel.AnchorPoint = Vector2.new(1, 0)
-		valueLabel.Position = UDim2.new(1, -18, 0, 0)
-		valueLabel.Size = UDim2.new(0, 112, 1, 0)
+		valueLabel.Position = UDim2.new(1, -92, 0, 0)
+		valueLabel.Size = UDim2.new(0, 80, 1, 0)
 		valueLabel.TextXAlignment = Enum.TextXAlignment.Right
-		Ui.shrinkText(valueLabel, 11, 14)
+		Ui.shrinkText(valueLabel, 14, 24)
 	end
 
 	local function podiumBlock(rank: number, entry: { [string]: any }?, x: number, height: number)
@@ -182,13 +207,17 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		block.Position = UDim2.fromScale(0.5, 1)
 		block.Size = UDim2.new(1, -16, 0, height)
 		-- The value sits at the foot of the block, the rank number fills the space above it.
-		local value =
-			Ui.caps(block, if entry then Ui.number(entry.Value) else "-", 13, Ui.Colors.Ink)
+		local value = Ui.caps(
+			block,
+			if entry then `{Ui.number(entry.Value)} {unitOf(boardId, entry.Value)}` else "-",
+			16,
+			Ui.Colors.Ink
+		)
 		value.AnchorPoint = Vector2.new(0, 1)
 		value.Position = UDim2.new(0, 0, 1, -4)
-		value.Size = UDim2.new(1, 0, 0, 22)
+		value.Size = UDim2.new(1, 0, 0, 24)
 		Ui.pad(value, 12, 0)
-		Ui.shrinkText(value, 11, 13)
+		Ui.shrinkText(value, 11, 16)
 		local number = Ui.title(block, tostring(rank), if rank == 1 then 32 else 26, Ui.Colors.Ink)
 		number.Size = UDim2.new(1, 0, 0, height - 28)
 		local nameLabel =
@@ -221,6 +250,35 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		local key = `{boardId}:{if weekly then "Week" else "All"}`
 		Ui.clear(list)
 		Ui.clear(mine)
+		-- What this board is, in big letters: "MOST WINS · ALL TIME".
+		local words = WORDS[boardId]
+		local heading = Ui.frame(list)
+		heading.LayoutOrder = 0
+		heading.Size = UDim2.new(1, -6, 0, HEADING)
+		local title = Ui.title(
+			heading,
+			Ui.upper(if words then words.title else boardId),
+			30,
+			Ui.Colors.Orange
+		)
+		title.Size = UDim2.fromScale(0.62, 1)
+		title.TextXAlignment = Enum.TextXAlignment.Left
+		Ui.shrinkText(title, 16, 30)
+		local when = Ui.caps(
+			heading,
+			if def ~= nil
+					and def.Weekly == true
+					and period == "This week"
+				then "This week"
+				else "All time",
+			13,
+			Ui.Colors.Dim
+		)
+		when.AnchorPoint = Vector2.new(1, 0)
+		when.Position = UDim2.fromScale(1, 0)
+		when.Size = UDim2.new(0.38, -8, 1, 0)
+		when.TextXAlignment = Enum.TextXAlignment.Right
+		Ui.shrinkText(when, 11, 13)
 		podium = Ui.frame(middle)
 		podium.LayoutOrder = 1
 		podium.Size = UDim2.new(1, -6, 0, PODIUM_HEIGHT)
@@ -240,11 +298,28 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 		for i = 4, math.min(#entries, Config.Leaderboards.ShowCount) do
 			local entry = entries[i]
-			listRow(i, `#{i}`, entry.UserId, entry.Name or "?", Ui.number(entry.Value), false)
+			listRow(
+				i,
+				`#{i}`,
+				entry.UserId,
+				entry.Name or "?",
+				Ui.number(entry.Value),
+				unitOf(boardId, entry.Value),
+				false
+			)
 		end
 		local me = data.Me and data.Me[key]
 		local rank = if me and me.Rank then `#{me.Rank}` else `{Config.Leaderboards.TopCount}+`
-		listRow(0, rank, player.UserId, "You", Ui.number(if me then me.Value else 0), true)
+		local mineValue = if me then me.Value else 0
+		listRow(
+			0,
+			rank,
+			player.UserId,
+			"You",
+			Ui.number(mineValue),
+			unitOf(boardId, mineValue),
+			true
+		)
 		footer.Text = if data.Source ~= "global"
 			then "SAVING IS OFF: SHOWING THIS SERVER'S PLAYERS"
 			elseif weekly then Ui.upper(

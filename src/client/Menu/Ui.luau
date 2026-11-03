@@ -394,18 +394,31 @@ function Ui.caps(parent: Instance?, text: string, size: number?, color: Color3?)
 	return label
 end
 
+-- How much the UIScales on `object` and above it scale it on screen (the menu's root scale, a
+-- hovered button's pop). AbsoluteSize is on-screen pixels; divide by this for the virtual pixels
+-- that Size offsets use.
+function Ui.screenScale(object: Instance): number
+	local scale = 1
+	local current: Instance? = object
+	while current do
+		local found = current:FindFirstChildOfClass("UIScale")
+		if found then
+			scale *= found.Scale
+		end
+		current = current.Parent
+	end
+	return if scale > 0 then scale else 1
+end
+
 -- Keeps `frame` as wide as `content` (an auto-sized label inside it) plus `extra` pixels. A
 -- frame can't size itself to its children (AutomaticSize) while it also holds children sized
--- by Scale, like a slab's pieces: those stretch it to fill its parent instead.
+-- by Scale, like a slab's pieces: those stretch it to fill its parent instead. (The content's
+-- on-screen width is turned back into virtual pixels, so it fits on any screen size.)
 function Ui.fitWidth(frame: GuiObject, content: GuiObject, extra: number?)
 	local function fit()
 		local size = frame.Size
-		frame.Size = UDim2.new(
-			0,
-			math.ceil(content.AbsoluteSize.X) + (extra or 0),
-			size.Y.Scale,
-			size.Y.Offset
-		)
+		local width = content.AbsoluteSize.X / Ui.screenScale(content)
+		frame.Size = UDim2.new(0, math.ceil(width) + (extra or 0), size.Y.Scale, size.Y.Offset)
 	end
 	content:GetPropertyChangedSignal("AbsoluteSize"):Connect(fit)
 	task.defer(fit)
@@ -670,11 +683,17 @@ function Ui.tabs(
 	layout.FillDirection = Enum.FillDirection.Horizontal
 	layout.Padding = UDim.new(0, 6)
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.VerticalAlignment = Enum.VerticalAlignment.Center
 	layout.Parent = row
 	local tabs: { [string]: TextButton } = {}
 	local labels: { [string]: TextLabel } = {}
 	local badges: { [string]: number } = {}
 	local current: string? = nil
+	local SLANT = 7
+	local GAP = 6
+	-- Each label keeps a bumper on both sides, clear of the slanted ends, its text centred.
+	local bumper = math.max(sidePadding or 14, SLANT + 9)
+	local baseSize = textSize or 13
 
 	local function draw(name: string)
 		local label = labels[name]
@@ -717,16 +736,18 @@ function Ui.tabs(
 		tab.Text = ""
 		tab.LayoutOrder = i
 		tab.Size = UDim2.fromScale(0, 1)
-		local fill = Ui.slab(tab, Ui.Colors.Tab, 7)
+		local fill = Ui.slab(tab, Ui.Colors.Tab, SLANT)
 		fill.Name = "Fill"
 		fill.Size = UDim2.fromScale(1, 1)
-		local label = Ui.caps(tab, name, textSize or 13, Ui.Colors.Dim)
+		local label = Ui.caps(tab, name, baseSize, Ui.Colors.Dim)
 		label.Size = UDim2.fromScale(0, 1)
 		label.AutomaticSize = Enum.AutomaticSize.X
+		label.TextXAlignment = Enum.TextXAlignment.Center
+		label.TextWrapped = false
 		label.ZIndex = 2
 		local pad = Instance.new("UIPadding")
-		pad.PaddingLeft = UDim.new(0, sidePadding or 14)
-		pad.PaddingRight = UDim.new(0, sidePadding or 14)
+		pad.PaddingLeft = UDim.new(0, bumper)
+		pad.PaddingRight = UDim.new(0, bumper)
 		pad.Parent = label
 		Ui.fitWidth(tab, label)
 		tab.Activated:Connect(function()
@@ -738,6 +759,47 @@ function Ui.tabs(
 		draw(name)
 	end
 	row.Parent = parent
+
+	-- On a window too narrow for the whole row, the labels shrink together (never below the
+	-- smallest readable size) so every tab still shows its whole name. The text's share of the
+	-- row scales with the text size, so the size that fits is worked out in one go (no back and
+	-- forth as the row resizes).
+	local size = baseSize
+	local smallest = math.min(baseSize, Config.Ui.MinTextSize)
+	local function squeeze()
+		local holder = row.Parent
+		if not holder or not holder:IsA("GuiObject") then
+			return
+		end
+		local room = holder.AbsoluteSize.X / Ui.screenScale(holder) - row.Position.X.Offset
+		local width = row.AbsoluteSize.X / Ui.screenScale(row)
+		local count = #names
+		local fixed = count * 2 * bumper + (count - 1) * GAP
+		local text = width - fixed
+		if room <= 0 or text <= 0 then
+			return
+		end
+		local atBase = text * baseSize / size
+		local fits = math.clamp(math.floor(baseSize * (room - fixed) / atBase), smallest, baseSize)
+		if fits ~= size then
+			size = fits
+			for _, label in labels do
+				label.TextSize = size
+			end
+		end
+	end
+	row:GetPropertyChangedSignal("AbsoluteSize"):Connect(squeeze)
+	row:GetPropertyChangedSignal("Parent"):Connect(function()
+		local holder = row.Parent
+		if holder and holder:IsA("GuiObject") then
+			holder:GetPropertyChangedSignal("AbsoluteSize"):Connect(squeeze)
+		end
+		task.defer(squeeze)
+	end)
+	if parent and parent:IsA("GuiObject") then
+		parent:GetPropertyChangedSignal("AbsoluteSize"):Connect(squeeze)
+	end
+	task.defer(squeeze)
 
 	local function badge(name: string, count: number?)
 		if tabs[name] then
