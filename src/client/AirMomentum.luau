@@ -47,9 +47,14 @@ function AirMomentum.start()
 					else math.sqrt(2 * workspace.Gravity * drop)
 				local landed = air
 				if air.Magnitude >= momentum.MinMoving then
-					local speed = air.Magnitude + momentum.LandCarry * impact
-					landed = air.Unit
-						* math.min(speed, math.max(momentum.MaxGroundSpeed, air.Magnitude))
+					-- Every landing costs part of the speed you carried above your run speed
+					-- (LandKeep), so hopping or slide-jumping over and over winds back down.
+					local run = parts.humanoid.WalkSpeed
+					local kept = if air.Magnitude > run
+						then run + (air.Magnitude - run) * momentum.LandKeep
+						else air.Magnitude
+					local speed = kept + momentum.LandCarry * impact
+					landed = air.Unit * math.min(speed, math.max(momentum.MaxGroundSpeed, kept))
 				end
 				MoveState.landVelocity = landed
 				MoveState.landImpact = impact
@@ -67,6 +72,17 @@ function AirMomentum.start()
 
 		-- Start from your takeoff speed. If a wall stopped you, carry the slower speed instead.
 		local current = MoveState.airVelocity or actual
+		local landed = MoveState.landVelocity
+		if
+			not MoveState.airVelocity
+			and landed
+			and os.clock() - MoveState.landTime < momentum.LandRebound
+			and actual.Magnitude > landed.Magnitude
+			and actual.Magnitude > 0
+		then
+			-- Bounced straight back up off a landing (jump held): no faster than the landing kept.
+			current = actual.Unit * landed.Magnitude
+		end
 		if actual.Magnitude < current.Magnitude * settings.WallStop then
 			current = actual
 		end

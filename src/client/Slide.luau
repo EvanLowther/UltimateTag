@@ -174,12 +174,17 @@ function Slide.start()
 		MoveState.landVelocity = nil
 
 		local dir = flat.Unit
-		-- No boost for a dead slide (too soon after the last one) or an air slide.
-		local dead = os.clock() - lastEnd < settings.DeadSlideTime
-		local boost = if dead or airborne then 1 else settings.StartMultiplier
-		local startSpeed = math.min(flat.Magnitude * boost, settings.MaxSpeed)
 		local endSpeed = hum.WalkSpeed
 			/ (if Sprint.isSprinting() then Config.Sprint.Multiplier else 1)
+		-- No boost for a dead slide (too soon after the last one) or an air slide. The boost only
+		-- ever takes you up to a fresh slide's speed from a sprint (sprint speed x StartMultiplier):
+		-- speed you're carrying above that is kept but never multiplied, so chaining slides and
+		-- jumps can't build speed.
+		local dead = os.clock() - lastEnd < settings.DeadSlideTime
+		local boost = if dead or airborne then 1 else settings.StartMultiplier
+		local boostCap = endSpeed * Config.Sprint.Multiplier * settings.StartMultiplier
+		local boosted = math.max(flat.Magnitude, math.min(flat.Magnitude * boost, boostCap))
+		local startSpeed = math.min(boosted, settings.MaxSpeed)
 		local elapsed = 0 -- only counts while on the ground, so air slides keep their speed
 		local age = 0 -- how long the slide has run
 		local slopeSpeed = 0 -- speed slopes have added (less on the way uphill)

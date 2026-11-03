@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.57.0",
+	Version = "0.57.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -184,7 +184,8 @@ local Config = {
 
 	Slide = {
 		Key = Enum.KeyCode.C, -- sprinting (or moving fast in the air): slide. Otherwise: crouch.
-		StartMultiplier = 1.25, -- slide starts at your current speed x this
+		StartMultiplier = 1.25, -- slide starts at your current speed x this, but the boost never takes
+		-- you past sprint speed x this (faster carried speed is kept, not multiplied)
 		Duration = 0.9, -- seconds for the slide to fade back to walk speed
 		DeadSlideTime = 1.75, -- sliding again within this many seconds gives no speed boost
 		LandingGrace = 0.3, -- seconds after landing that a slide still gets your air speed
@@ -318,6 +319,9 @@ local Config = {
 		FallGain = 0.12, -- falling, this much of gravity's pull goes into your speed across
 		-- (about 24 studs/s more per second of falling). Not on launch pad flights.
 		MaxAirSpeed = 90, -- falling never takes you faster than this across
+		LandKeep = 0.6, -- every landing keeps this much of the speed you carried above your run
+		-- speed (the rest is lost), so hopping or slide-jumping over and over winds back down
+		LandRebound = 0.25, -- seconds: a jump this soon after landing starts no faster than the landing kept
 		LandCarry = 0.3, -- landing while moving adds this much of the speed you hit the ground with
 		LandSlideCarry = 0.5, -- ...this much if you slide as you land (hold the slide key)
 		GroundDecay = 30, -- studs/s per second extra speed fades on the ground, back to run speed
@@ -1155,6 +1159,7 @@ local Config = {
 			{ "WallRun", "RunLift", 0, 30, 0.5 },
 			{ "Jump", "CoyoteTime", 0, 0.5, 0.01 },
 			{ "Momentum", "FallGain", 0, 0.5, 0.01 },
+			{ "Momentum", "LandKeep", 0, 1, 0.01 },
 			{ "Momentum", "LandCarry", 0, 1, 0.01 },
 			{ "Momentum", "LandSlideCarry", 0, 1, 0.01 },
 			{ "Momentum", "GroundDecay", 5, 120, 1 },
