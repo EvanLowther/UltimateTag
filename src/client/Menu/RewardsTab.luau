@@ -300,7 +300,10 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		arrange()
 		local columns = if narrow() then 4 else 7
 		local rowCount = math.ceil(7 / columns)
-		dayGrid.CellSize = UDim2.new(1 / columns, -6 * (columns - 1) / columns, 0, DAY_HEIGHT)
+		-- Exactly `columns` a row (a pixel spare so rounding never pushes the last day onto a
+		-- line of its own).
+		dayGrid.FillDirectionMaxCells = columns
+		dayGrid.CellSize = UDim2.new(1 / columns, -6 * (columns - 1) / columns - 1, 0, DAY_HEIGHT)
 		days.Size = UDim2.new(1, -6, 0, rowCount * DAY_HEIGHT + (rowCount - 1) * 6)
 		Ui.clear(days)
 		local cycleStart = ((count - 1) // 7) * 7
