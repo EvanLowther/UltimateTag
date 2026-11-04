@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.59.1",
+	Version = "0.59.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -127,6 +127,10 @@ local Config = {
 		-- Runners spread out: spots this near another Runner score lower (SpreadWeight per stud).
 		SpreadDistance = 24,
 		SpreadWeight = 1.5,
+		-- No camping: a Runner that stays within CampRadius of one spot for CampTime seconds moves
+		-- on somewhere out of that area.
+		CampTime = 5,
+		CampRadius = 16,
 	},
 
 	-- The win screen (client/WinScreen): a podium stage built on each screen only, shown for

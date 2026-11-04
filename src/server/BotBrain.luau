@@ -12,7 +12,8 @@
 --   Runner:  roams while every It is far (CalmDistance). Once one comes close (FleeDistance) it
 --            runs for the open spot furthest from every It (launch pads count, and throw it
 --            clear); spots near other Runners score lower (SpreadDistance), so they spread out
---            over the map. And when an It closes in (DodgeDistance) it dodges: a sidestep, a jump or a
+--            over the map, and one that has stayed in one area (CampRadius) for CampTime moves
+--            on somewhere else. And when an It closes in (DodgeDistance) it dodges: a sidestep, a jump or a
 --            slide.
 --   Lobby, countdown, results: wanders round where it is at a walk. The intro and the win
 --            screen: stands still.
@@ -79,6 +80,9 @@ type Brain = {
 	dodgeThreat: any?, -- the It it last decided about dodging
 	flight: LinearVelocity?, -- holds a launch pad's throw across until it lands
 	launchCheck: number,
+	-- Not camping (a Runner): where it has been hanging about, and since when.
+	campFrom: Vector3,
+	campSince: number,
 	-- Unsticking.
 	progressAt: number,
 	progressFrom: Vector3,
@@ -433,7 +437,8 @@ local function escapeSpot(
 	brain: Brain,
 	threats: { { contestant: any, root: BasePart } },
 	params: RaycastParams,
-	panicking: boolean
+	panicking: boolean,
+	avoid: Vector3?
 ): Vector3?
 	local position = brain.root.Position
 	local settings = Config.Bots
@@ -466,6 +471,10 @@ local function escapeSpot(
 			if gap < settings.SpreadDistance then
 				penalty += (settings.SpreadDistance - gap) * settings.SpreadWeight
 			end
+		end
+		-- Camping: somewhere else, out of the area it has been hanging about in.
+		if avoid and flat(spot - avoid).Magnitude < settings.CampRadius then
+			penalty += 80
 		end
 		local value = nearest - penalty + bonus + rnd(0, 6)
 		if clearLine(position, spot, params) then
@@ -521,6 +530,25 @@ local function roamSpot(brain: Brain, params: RaycastParams, near: Vector3?): Ve
 		end
 	end
 	return nil
+end
+
+-- Somewhere across the map from `from`: a spawn point well out of the area (they're spread over
+-- the map), for a Runner that has been hanging about in one place.
+local function farSpot(from: Vector3): Vector3?
+	local map = MapService.active()
+	if not map then
+		return nil
+	end
+	local choices = {}
+	for _, point in MapService.spawnPoints(map) do
+		if flat(point.Position - from).Magnitude > Config.Bots.CampRadius * 2 then
+			table.insert(choices, point.Position)
+		end
+	end
+	if #choices == 0 then
+		return nil
+	end
+	return choices[random:NextInteger(1, #choices)]
 end
 
 -- Switches mode a reaction time after it would have.
@@ -698,6 +726,20 @@ local function run(brain: Brain, params: RaycastParams)
 		brain.dodgeThreat = nil -- a new approach can be dodged again
 	end
 
+	-- No camping: a Runner that has stayed within CampRadius of one place for CampTime moves
+	-- on, somewhere out of that area (and tries again a moment later if it didn't get out).
+	if flat(position - brain.campFrom).Magnitude > settings.CampRadius then
+		brain.campFrom = position
+		brain.campSince = now
+	end
+	local camping = now - brain.campSince > settings.CampTime
+	local avoid = if camping then brain.campFrom else nil
+	if camping then
+		brain.campSince = now - settings.CampTime + 1.5
+		brain.goal = nil
+		brain.waypoints = nil
+	end
+
 	-- Running from an It: from FleeDistance until every It is past CalmDistance.
 	local fleeing = nearest ~= nil
 		and (
@@ -710,8 +752,10 @@ local function run(brain: Brain, params: RaycastParams)
 			local reached = brain.goal and (flat(brain.goal - position)).Magnitude < 4
 			local stale = now - brain.pathAt > settings.PathRefresh * 2
 			if not brain.goal or reached or stale then
+				-- (An It right on it: getting away comes first, wherever that is.)
+				local panicking = nearestDistance < settings.FleeDistance * 0.6
 				local spot =
-					escapeSpot(brain, its, params, nearestDistance < settings.FleeDistance * 0.6)
+					escapeSpot(brain, its, params, panicking, if panicking then nil else avoid)
 				if spot then
 					goTo(brain, spot, params)
 					brain.pathAt = math.max(brain.pathAt, now - settings.PathRefresh) -- keep it a while
@@ -728,10 +772,19 @@ local function run(brain: Brain, params: RaycastParams)
 		end
 	else
 		if want(brain, "Roam") then
-			brain.sprint = nearest ~= nil and nearestDistance < settings.CalmDistance
+			brain.sprint = camping or (nearest ~= nil and nearestDistance < settings.CalmDistance)
+			-- Keeps on the move: a short look round where it got to, then somewhere new.
+			local reached = brain.goal and flat(brain.goal - position).Magnitude < 4
+			if reached and brain.roamUntil > now + 1.2 then
+				brain.roamUntil = now + rnd(0.3, 1.2)
+			end
 			if not brain.goal or now > brain.roamUntil then
 				brain.roamUntil = now + rnd(3, 6)
-				local spot = escapeSpot(brain, its, params, false) or roamSpot(brain, params, nil)
+				local spot = escapeSpot(brain, its, params, false, avoid)
+				if avoid and (not spot or flat(spot - avoid).Magnitude < settings.CampRadius) then
+					spot = farSpot(avoid) or spot
+				end
+				spot = spot or roamSpot(brain, params, nil)
 				if spot then
 					goTo(brain, spot, params)
 				end
@@ -979,6 +1032,8 @@ local function attach(bot: ObjectValue, character: Model)
 		dodgeThreat = nil,
 		flight = nil,
 		launchCheck = 0,
+		campFrom = root.Position,
+		campSince = now,
 		progressAt = now,
 		progressFrom = root.Position,
 		stuckTries = 0,
