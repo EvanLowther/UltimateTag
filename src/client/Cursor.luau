@@ -1,7 +1,8 @@
 --!strict
 -- The mouse in first person. First person locks the mouse to the screen centre (so it can't wander
 -- off the game window onto another monitor), and while it's locked the arrow is hidden and a
--- small hollow aim ring sits at the centre instead (Config.Cursor.Crosshair). The mouse is freed
+-- small hollow aim ring sits at the centre instead (Config.Cursor.Crosshair; red while you're It
+-- and a Runner is in reach, client/TagSwing). The mouse is freed
 -- (a Modal button, the trick Roblox uses to unlock it) only when:
 --   - you hold Config.Cursor.Key (Left Alt), for as long as you hold it;
 --   - something holds it: the menu window while it's open (Cursor.hold). So clicking a side
@@ -25,10 +26,24 @@ local Cursor = {}
 
 local holds: { [string]: boolean } = {}
 local keyHeld = false
+local mainRing: UIStroke? = nil -- the aim ring's white stroke
+local hot = false
 
 -- Something (a window) needs the mouse while `on`.
 function Cursor.hold(name: string, on: boolean)
 	holds[name] = if on then true else nil
+end
+
+-- Turns the aim ring Config.Tag.AimHotColor while `on` (client/TagSwing: you're It and a Runner
+-- is in reach).
+function Cursor.setHot(on: boolean)
+	if on == hot then
+		return
+	end
+	hot = on
+	if mainRing then
+		mainRing.Color = if on then Config.Tag.AimHotColor else Config.Cursor.Crosshair.Color
+	end
 end
 
 -- Is the mouse free right now?
@@ -73,7 +88,8 @@ local function crosshair(player: Player): ScreenGui
 	gui.Enabled = false
 	local edge = look.EdgeThickness
 	ring(gui, look.Size - 2 * edge, edge, look.Edge, look.EdgeTransparency)
-	ring(gui, look.Size, look.Thickness, look.Color, 0)
+	local main = ring(gui, look.Size, look.Thickness, look.Color, 0)
+	mainRing = main:FindFirstChildOfClass("UIStroke")
 	ring(gui, look.Size + 2 * look.Thickness, edge, look.Edge, look.EdgeTransparency)
 	gui.Parent = player:WaitForChild("PlayerGui")
 	return gui

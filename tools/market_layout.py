@@ -29,7 +29,7 @@ from maplib import Map  # noqa: E402
 
 DESIGN = "tools/designs/market_v1.json"
 OUT = "src/maps/TagMart"
-ATTRIBUTES = {"DisplayName": "Tag Mart", "MinPlayers": 2, "MaxPlayers": 6, "InRotation": True,
+ATTRIBUTES = {"DisplayName": "Tag Mart", "MinPlayers": 2, "MaxPlayers": 6, "InRotation": False,
               "Lighting": "Indoor", "OutOfBounds": "Ceiling,WallTop"}
 BELT_BOOST = 40  # studs/s off a checkout belt (the export doesn't keep the value: tune in game)
 SILL_DROP = 0.1  # window sill strips sit this much lower than the design (clear of the glass)

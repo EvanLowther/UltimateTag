@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.58.0",
+	Version = "0.59.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -120,6 +120,13 @@ local Config = {
 		KnockbackStun = 0.35, -- seconds a hit takes away their control
 		LaunchCheck = 0.15, -- seconds between checks for a launch pad under them
 		DangerDrop = 3.5, -- on maps that can kill (falls, the train), never step off more than this
+		TaggedPause = 1.5, -- seconds a bot that was just tagged stands still before it chases or swings
+		-- Its share the Runners: a bot leaves a Runner to another It (a bot or a player) that is
+		-- nearer to them, if that It is within ShareDistance of them, unless nobody else is left.
+		ShareDistance = 40,
+		-- Runners spread out: spots this near another Runner score lower (SpreadWeight per stud).
+		SpreadDistance = 24,
+		SpreadWeight = 1.5,
 	},
 
 	-- The win screen (client/WinScreen): a podium stage built on each screen only, shown for
@@ -180,6 +187,18 @@ local Config = {
 		LagTime = 0.25,
 		LagMaxExtra = 4,
 		Cooldown = 0.45, -- seconds between swings
+		-- Players' swings are easier than Range (bots keep Range): your screen picks who you hit
+		-- (what you see, not what the server sees a ping late) and the server checks it.
+		PlayerRange = 10, -- a player's swing reaches anyone this near, whichever way you face...
+		AimRange = 14, -- ...and anyone this near within AimAngle of the aim ring
+		AimAngle = 30, -- degrees off the centre of the screen
+		-- A swing that hits nobody stays live this long: a Runner who comes into reach meanwhile
+		-- is still tagged (you don't have to time the click exactly).
+		Window = 0.25,
+		-- The server takes your screen's hit if they were this much further than your reach on
+		-- its side too (positions differ a little between screens).
+		Tolerance = 3,
+		AimHotColor = Color3.fromRGB(255, 45, 85), -- the aim ring while It and a Runner is in reach
 		SwingTime = 0.35, -- seconds the swipe animation lasts
 		-- The swipe: wind the right arm back, then reach forward. Only these parts move; the
 		-- rest keep running.
@@ -1230,6 +1249,10 @@ local Config = {
 			{ "WallRun", "JumpAwayAngle", 0, 80, 1 },
 			{ "WallRun", "ChainMaxRise", 0, 30, 0.5 },
 			{ "Tag", "Range", 2, 20, 0.5 },
+			{ "Tag", "PlayerRange", 2, 30, 0.5 },
+			{ "Tag", "AimRange", 2, 30, 0.5 },
+			{ "Tag", "AimAngle", 0, 90, 1 },
+			{ "Tag", "Window", 0, 1, 0.05 },
 			{ "Tag", "Cooldown", 0, 2, 0.05 },
 			{ "Knockback", "Base", 0, 80, 1 },
 			{ "Knockback", "PerSpeed", 0, 2, 0.05 },

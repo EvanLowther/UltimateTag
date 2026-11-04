@@ -2,14 +2,17 @@
 -- What the bots (server/Bots) do, on the server. Every frame each bot steers toward where it's
 -- going (a path's next point, or straight at a spot it can see), sprinting like a player; every
 -- Config.Bots.Think seconds it decides where that is:
---   It:      chases the nearest Runner, aiming a little ahead of where they're running (Lead),
+--   It:      chases the nearest Runner no other It is nearer to (ShareDistance: two Its don't
+--            chase one Runner), aiming a little ahead of where they're running (Lead),
 --            straight at them when it can see them on the same level, by a path otherwise
 --            (round walls, up ladders and stairs). Once a Runner is in reach it swings a beat
 --            later (Reaction); now and then a swing is mistimed (SwingMiss). It slides into a
---            straight chase now and then.
+--            straight chase now and then. A bot that was just tagged stands still for
+--            TaggedPause first.
 --   Runner:  roams while every It is far (CalmDistance). Once one comes close (FleeDistance) it
 --            runs for the open spot furthest from every It (launch pads count, and throw it
---            clear), and when an It closes in (DodgeDistance) it dodges: a sidestep, a jump or a
+--            clear); spots near other Runners score lower (SpreadDistance), so they spread out
+--            over the map. And when an It closes in (DodgeDistance) it dodges: a sidestep, a jump or a
 --            slide.
 --   Lobby, countdown, results: wanders round where it is at a walk. The intro and the win
 --            screen: stands still.
@@ -61,6 +64,8 @@ type Brain = {
 	nextThink: number,
 	roamUntil: number,
 	-- Chasing.
+	role: string?, -- its role when it last thought (a change to It is a tag)
+	pauseUntil: number, -- just tagged: stands still until then (Config.Bots.TaggedPause)
 	target: any?, -- the Runner it's after
 	targetSince: number,
 	inReachSince: number?,
@@ -431,6 +436,8 @@ local function escapeSpot(
 	panicking: boolean
 ): Vector3?
 	local position = brain.root.Position
+	local settings = Config.Bots
+	local mates = if Roles.get(brain.bot) == "Runner" then others(brain.bot, "Runner") else {}
 	local danger = dangerous()
 	local myFloor = floorAt(position, params, 8)
 	local best: Vector3? = nil
@@ -453,6 +460,13 @@ local function escapeSpot(
 		if #threats == 0 then
 			nearest = rnd(20, 60)
 		end
+		-- Away from the other Runners too, so they spread over the map instead of bunching up.
+		for _, mate in mates do
+			local gap = (mate.root.Position - spot).Magnitude
+			if gap < settings.SpreadDistance then
+				penalty += (settings.SpreadDistance - gap) * settings.SpreadWeight
+			end
+		end
 		local value = nearest - penalty + bonus + rnd(0, 6)
 		if clearLine(position, spot, params) then
 			value += 12
@@ -464,11 +478,11 @@ local function escapeSpot(
 	for i = 1, 16 do
 		local angle = (i / 16) * math.pi * 2 + rnd(-0.15, 0.15)
 		local dir = Vector3.new(math.cos(angle), 0, math.sin(angle))
-		for _, distance in { 14, 28 } do
+		for _, distance in { 14, 28, 42 } do
 			local spot = floorAt(position + dir * distance, params)
 			if spot then
 				local drop = (if myFloor then myFloor.Y else position.Y - 3) - spot.Y
-				if not (danger and drop > Config.Bots.DangerDrop) and math.abs(drop) < 20 then
+				if not (danger and drop > settings.DangerDrop) and math.abs(drop) < 20 then
 					score(spot, 0)
 				end
 			end
@@ -538,23 +552,48 @@ local function chase(brain: Brain, params: RaycastParams)
 	end
 	local now = os.clock()
 	local position = brain.root.Position
+	-- Its share the Runners: a Runner another It is nearer to (a bot after them, or a player It
+	-- close by) is theirs, so two Its don't chase one Runner while others run free.
+	local its = others(brain.bot, "It")
+	local function takenBy(runner: { contestant: any, root: BasePart }, mine: number): boolean
+		for _, it in its do
+			local theirs = (it.root.Position - runner.root.Position).Magnitude
+			if theirs < mine then
+				local other = brains[it.contestant]
+				if other then
+					if other.target == runner.contestant then
+						return true
+					end
+				elseif theirs < Config.Bots.ShareDistance then
+					return true
+				end
+			end
+		end
+		return false
+	end
 	-- Stick with a target for a moment unless another is much closer.
 	local current = nil
 	local best, bestDistance = nil, math.huge
+	local free, freeDistance = nil, math.huge
 	for _, runner in runners do
 		local distance = (runner.root.Position - position).Magnitude
-		if runner.contestant == brain.target then
+		local taken = takenBy(runner, distance)
+		if runner.contestant == brain.target and not taken then
 			current = runner
 		end
 		if distance < bestDistance then
 			best, bestDistance = runner, distance
 		end
+		if not taken and distance < freeDistance then
+			free, freeDistance = runner, distance
+		end
 	end
-	local chosen = best
+	-- (Every Runner taken: the nearest anyway.)
+	local chosen = free or best
 	if
 		current
 		and now - brain.targetSince < 2
-		and (current.root.Position - position).Magnitude < bestDistance + 12
+		and (current.root.Position - position).Magnitude < freeDistance + 12
 	then
 		chosen = current
 	end
@@ -724,6 +763,19 @@ local function think(brain: Brain)
 	local params = rayParams()
 	local phase = GameState.getPhase()
 	local frozen = Roles.isFrozen(brain.bot)
+	-- Just tagged (Runner to It mid-round): it stands still a moment before it chases or swings.
+	local role = Roles.get(brain.bot)
+	if role ~= brain.role then
+		if role == "It" and brain.role == "Runner" and phase == "Playing" then
+			brain.pauseUntil = os.clock() + Config.Bots.TaggedPause
+			brain.swingAt = nil
+			brain.inReachSince = nil
+		end
+		brain.role = role
+	end
+	if os.clock() < brain.pauseUntil then
+		frozen = true
+	end
 	if phase == "Intro" or phase == "Victory" or frozen then
 		brain.goal = nil
 		brain.waypoints = nil
@@ -732,7 +784,6 @@ local function think(brain: Brain)
 	end
 	checkLaunch(brain, params)
 	if phase == "Playing" and Participants.isAlive(brain.bot) then
-		local role = Roles.get(brain.bot)
 		if role == "It" then
 			brain.mode = "Chase"
 			chase(brain, params)
@@ -917,6 +968,8 @@ local function attach(bot: ObjectValue, character: Model)
 		sprint = false,
 		nextThink = now + rnd(0, Config.Bots.Think),
 		roamUntil = 0,
+		role = Roles.get(bot), -- (a respawn on the map keeps the role: no pause)
+		pauseUntil = 0,
 		target = nil,
 		targetSince = 0,
 		inReachSince = nil,
