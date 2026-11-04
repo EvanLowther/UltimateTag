@@ -102,7 +102,10 @@ local function countdown(
 		GameState.setTimeLeft(remaining)
 		local waited = 0
 		while waited < 1 and not skipping and finished do
-			waited += task.wait(0.1)
+			local step = task.wait(0.1)
+			if not GameState.isPaused() then -- (the dev panel's pause: the clock stands still)
+				waited += step
+			end
 			if keepGoing and not keepGoing() then
 				finished = false
 			end
@@ -668,6 +671,12 @@ function GameLoop.skip(): boolean
 	end
 	skipping = true
 	return true
+end
+
+-- Dev panel: pauses or resumes every phase timer (the lobby countdown, intro, round, results,
+-- victory). The game goes on while paused; only the clocks stand still (and nobody goes AFK).
+function GameLoop.setPaused(paused: boolean)
+	GameState.setPaused(paused)
 end
 
 -- Dev panel: sets the seconds left on the running timer. Returns false if none is running.

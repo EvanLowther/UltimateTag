@@ -1,6 +1,6 @@
 --!strict
 -- Dev panel, Game tab: what the server is doing (mode, phase, timer, round, players left) and
--- controls for it: switch mode, start now, skip the timer, set the time left and round length,
+-- controls for it: switch mode, start now, skip or pause the timers, set the time left and round length,
 -- pick your own role, freeze, respawn.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -39,6 +39,9 @@ function GameTab.build(page: Instance, send: (string, ...any) -> ())
 	end)
 	Widgets.button(flow, "Skip timer", function()
 		send("Skip")
+	end)
+	local pauseButton = Widgets.button(flow, "Pause timers", function()
+		send("PauseTimers", not GameState.isPaused())
 	end)
 
 	Widgets.label(page, "Time left on the running timer (s), then Enter")
@@ -113,8 +116,13 @@ function GameTab.build(page: Instance, send: (string, ...any) -> ())
 		for name, button in roleButtons do
 			Widgets.select(button, name == role, Config.Colors.It)
 		end
+		local paused = GameState.isPaused()
+		pauseButton.Text = if paused then "Resume timers" else "Pause timers"
+		Widgets.select(pauseButton, paused)
 		status.Text = table.concat({
-			`Mode <b>{mode}</b>   Phase <b>{GameState.getPhase()}</b>`,
+			`Mode <b>{mode}</b>   Phase <b>{GameState.getPhase()}</b>{if paused
+				then "   <b>PAUSED</b>"
+				else ""}`,
 			`Time left <b>{GameState.getTimeLeft()}</b>   Round <b>{GameState.getRound()}</b>   Alive <b>{GameState.getAliveCount()}</b>`,
 			GameState.getStatus(),
 		}, "\n")

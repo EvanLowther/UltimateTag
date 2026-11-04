@@ -10,6 +10,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local Contestant = require(Shared.Contestant)
+local GameState = require(Shared.GameState)
 local Remotes = require(Shared.Remotes)
 local GameLog = require(script.Parent.GameLog)
 local Participants = require(script.Parent.Participants)
@@ -60,8 +61,8 @@ local function check()
 		if Contestant.isBot(player) then
 			continue -- bots are never away
 		end
-		if Roles.isFrozen(player) then
-			touch(player) -- frozen (the dev panel): they can't do anything
+		if Roles.isFrozen(player) or GameState.isPaused() then
+			touch(player) -- frozen, or the timers paused (the dev panel): nobody is away
 			continue
 		end
 		local root = rootOf(player)

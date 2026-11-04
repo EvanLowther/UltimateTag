@@ -8,6 +8,7 @@
 --   Status:     a line of text for the HUD.
 --   Mode:       how the server runs: "Elimination" or "Sandbox" (Config.Game.Mode, switchable
 --               from the dev panel).
+--   Paused:     the dev panel has paused the timers (every phase timer stands still).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 export type Phase =
@@ -21,8 +22,15 @@ export type Phase =
 
 local GameState = {}
 
-local FIELDS =
-	{ Phase = true, TimeLeft = true, Round = true, AliveCount = true, Status = true, Mode = true }
+local FIELDS = {
+	Phase = true,
+	TimeLeft = true,
+	Round = true,
+	AliveCount = true,
+	Status = true,
+	Mode = true,
+	Paused = true,
+}
 
 function GameState.getPhase(): Phase
 	return (ReplicatedStorage:GetAttribute("Phase") or "Lobby") :: Phase
@@ -46,6 +54,14 @@ end
 
 function GameState.getMode(): string
 	return (ReplicatedStorage:GetAttribute("Mode") or "Elimination") :: string
+end
+
+function GameState.isPaused(): boolean
+	return ReplicatedStorage:GetAttribute("Paused") == true
+end
+
+function GameState.setPaused(paused: boolean)
+	ReplicatedStorage:SetAttribute("Paused", if paused then true else nil)
 end
 
 function GameState.setMode(mode: string)

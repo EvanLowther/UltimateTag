@@ -190,6 +190,7 @@ function Hud.start()
 		local timed = phase == "Countdown" or phase == "Intro" or phase == "Playing"
 		timer.Visible = timed
 		timer.Text = Ui.clock(GameState.getTimeLeft())
+			.. (if GameState.isPaused() then " II" else "")
 		local inGame = phase == "Intro" or phase == "Playing" or phase == "Results"
 		left.Visible = inGame
 		left.Text = `{GameState.getAliveCount()} LEFT`

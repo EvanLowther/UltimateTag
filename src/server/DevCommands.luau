@@ -1,7 +1,7 @@
 --!strict
 -- The server side of the dev panel (client/DevPanel). Handles the DevCommand remote; every
 -- request is checked with DevAccess first, so only developers can use it.
---   Game flow: SetMode, StartNow, Skip, SetTimeLeft, SetRoundTime, SetRole, Freeze, Unfreeze,
+--   Game flow: SetMode, StartNow, Skip, PauseTimers, SetTimeLeft, SetRoundTime, SetRole, Freeze, Unfreeze,
 --              Respawn
 --   Maps:      ListMaps (replies "Maps"), PlayMap, NextMap, UnloadMap
 --   Movement:  SetTunable (only the values listed in Config.DevPanel.Tunables)
@@ -87,6 +87,14 @@ end
 
 handlers.Skip = function(player)
 	tell(player, if GameLoop.skip() then `Skipped {GameState.getPhase()}` else "No timer to skip")
+end
+
+handlers.PauseTimers = function(player, paused)
+	if type(paused) ~= "boolean" then
+		paused = not GameState.isPaused()
+	end
+	GameLoop.setPaused(paused)
+	tell(player, if paused then "Timers paused" else "Timers running")
 end
 
 handlers.SetTimeLeft = function(player, seconds)
