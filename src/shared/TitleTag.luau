@@ -22,7 +22,10 @@ local DISPLAY = Font.new("rbxasset://fonts/families/Bangers.json")
 local HEAVY = Font.new("rbxasset://fonts/families/TitilliumWeb.json", Enum.FontWeight.Heavy)
 local INK = Color3.fromRGB(17, 17, 17)
 local CYAN = Color3.fromRGB(25, 227, 255)
-local HEIGHT = 3 -- studs above the head
+-- The tag's bottom edge sits this many studs over the head's middle (just over the top of the
+-- head), so however small client/HeadTags makes it with distance it stays right above the head.
+local HEIGHT = 1.4
+local SPARKLE_HEIGHT = 2.4 -- the sparkles round a Legendary or Iridescent title
 
 local function outline(label: TextLabel, thickness: number)
 	local stroke = Instance.new("UIStroke")
@@ -49,6 +52,7 @@ local function build(head: BasePart): BillboardGui
 	gui.Name = TitleTag.Name
 	gui.Size = UDim2.fromOffset(300, 78)
 	gui.StudsOffset = Vector3.new(0, HEIGHT, 0)
+	gui.SizeOffset = Vector2.new(0, 0.5) -- (up by half its height: its bottom edge on that point)
 	gui.LightInfluence = 0
 	gui.MaxDistance = 90
 	local content = Instance.new("Frame")
@@ -119,7 +123,7 @@ local function setSparkles(head: BasePart, colors: ColorSequence?)
 	end
 	local attachment = Instance.new("Attachment")
 	attachment.Name = SPARKLES
-	attachment.Position = Vector3.new(0, HEIGHT + 0.3, 0)
+	attachment.Position = Vector3.new(0, SPARKLE_HEIGHT, 0)
 	local emitter = Instance.new("ParticleEmitter")
 	emitter.Texture = SPARKLE_TEXTURE
 	emitter.Color = colors

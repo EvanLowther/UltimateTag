@@ -94,7 +94,10 @@ local function nameTag(head: BasePart, name: string)
 	local gui = Instance.new("BillboardGui")
 	gui.Name = "BotTag"
 	gui.Size = UDim2.fromOffset(220, 54)
-	gui.StudsOffset = Vector3.new(0, 2.6, 0)
+	-- Its bottom edge just over the top of the head (up by half its height from that point), so
+	-- however small client/HeadTags makes it with distance it stays right above the head.
+	gui.StudsOffset = Vector3.new(0, 1.4, 0)
+	gui.SizeOffset = Vector2.new(0, 0.5)
 	gui.LightInfluence = 0
 	gui.MaxDistance = 90
 	local content = Instance.new("Frame")
