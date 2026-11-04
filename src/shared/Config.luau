@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.62.2",
+	Version = "0.63.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -997,6 +997,11 @@ local Config = {
 	Avatar = {
 		UseOwnAvatar = false, -- false = everyone is the classic block avatar (easier to see animations)
 		UseOwnColors = true, -- the block avatar wears each player's own Roblox body colors
+		-- Everyone keeps the same blocky body (its shape, size and the game's animations, so every
+		-- move looks and fits the same) but wears their own Roblox look on it: clothes,
+		-- accessories, face and body colors. Their body parts, scales and animation pack are
+		-- left out (they broke the block body's run, idle and the moves).
+		UseOwnLook = true,
 		-- Classic 2012 colors, used when UseOwnAvatar is false.
 		HeadColor = Color3.fromRGB(245, 205, 48), -- Bright yellow
 		TorsoColor = Color3.fromRGB(13, 105, 172), -- Bright blue

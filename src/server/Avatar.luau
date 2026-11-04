@@ -3,7 +3,9 @@
 -- BodyRig (Config.Body). With Config.Body.Enabled off it's a classic R15 block rig instead, and
 -- if Config.Avatar.UseOwnAvatar is on, those are dressed in the player's own avatar. With
 -- Config.Avatar.UseOwnColors (and not UseOwnAvatar) the block body keeps its shape but takes the
--- player's own Roblox body colors.
+-- player's own Roblox body colors. With Config.Avatar.UseOwnLook it also wears their own clothes,
+-- accessories and face, still on the block body: their body parts, scales and animation pack are
+-- left out of what's applied.
 -- Any character that spawns without R15 joints is respawned (the moves need them).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -47,6 +49,62 @@ local function paint(player: Player, character: Model)
 	colors.RightLegColor3 = description.RightLegColor
 end
 
+-- The animations a HumanoidDescription can carry (an animation pack): left out, so the block
+-- body keeps the game's Animate animations.
+local ANIMATIONS = {
+	"ClimbAnimation",
+	"FallAnimation",
+	"IdleAnimation",
+	"JumpAnimation",
+	"MoodAnimation",
+	"RunAnimation",
+	"SwimAnimation",
+	"WalkAnimation",
+}
+local BODY_PARTS = { "Head", "Torso", "LeftArm", "RightArm", "LeftLeg", "RightLeg" }
+
+-- The player's look on the block body: their clothes, accessories, face and colors; the body
+-- parts back to the block ones (0), standard size and proportions, no animation pack.
+local function blockLook(player: Player): HumanoidDescription?
+	local own = ownDescription(player)
+	if not own then
+		return nil
+	end
+	local look = own:Clone()
+	for _, field in BODY_PARTS do
+		(look :: any)[field] = 0
+	end
+	for _, field in ANIMATIONS do
+		(look :: any)[field] = 0
+	end
+	look.HeightScale = 1
+	look.WidthScale = 1
+	look.DepthScale = 1
+	look.HeadScale = 1
+	look.BodyTypeScale = 0
+	look.ProportionScale = 0
+	return look
+end
+
+local function wearOwnLook(player: Player, character: Model)
+	local humanoid = character:WaitForChild("Humanoid") :: Humanoid
+	if not character.Parent then
+		character.AncestryChanged:Wait()
+	end
+	local look = blockLook(player)
+	if not look or not humanoid.Parent then
+		paint(player, character) -- (no description: at least their colors)
+		return
+	end
+	local ok, problem = pcall(function()
+		humanoid:ApplyDescription(look)
+	end)
+	if not ok then
+		warn(`[Avatar] {player.Name}'s look didn't apply: {problem}`)
+		paint(player, character)
+	end
+end
+
 local function dress(player: Player, character: Model)
 	local humanoid = character:WaitForChild("Humanoid") :: Humanoid
 	if not character.Parent then
@@ -75,6 +133,8 @@ local function check(player: Player, character: Model)
 	end
 	if Config.Avatar.UseOwnAvatar and not Config.Body.Enabled then
 		dress(player, character)
+	elseif Config.Avatar.UseOwnLook and not Config.Body.Enabled then
+		wearOwnLook(player, character)
 	elseif Config.Avatar.UseOwnColors and not Config.Body.Enabled then
 		paint(player, character)
 	end
