@@ -103,6 +103,8 @@ function PlayerData.defaults(): Profile
 		Weekly = { Week = -1, Wins = 0, Tags = 0, WallRuns = 0 },
 		FirstWinDay = -1,
 		Migrated = false,
+		-- The player's sound settings (server/Settings, client/Sounds).
+		Settings = table.clone(Config.Sounds.Defaults),
 	}
 end
 

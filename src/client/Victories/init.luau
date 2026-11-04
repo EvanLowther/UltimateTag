@@ -16,6 +16,7 @@ local Epic = require(script.Epic)
 local Iridescent = require(script.Iridescent)
 local Kit = require(script.Kit)
 local Legendary = require(script.Legendary)
+local Sounds = require(script.Parent.Parent.Sounds)
 
 local Victories = {}
 
@@ -52,6 +53,7 @@ export type Options = {
 -- Plays `item` on `character` (a posed copy with an anchored root, facing the camera).
 function Victories.play(character: Model, item: Catalog.Item?, options: Options)
 	Kit.stop()
+	Sounds.stopVictory()
 	if not item then
 		return
 	end
@@ -80,10 +82,12 @@ function Victories.play(character: Model, item: Catalog.Item?, options: Options)
 	}
 	Kit.begin(context)
 	play(context)
+	Sounds.victory(item.look.Victory) -- its one track (Config.Sounds.Victories)
 end
 
 function Victories.stop()
 	Kit.stop()
+	Sounds.stopVictory()
 end
 
 -- The win screen's or Locker's camera with the playing victory's shakes and tilt laid on.

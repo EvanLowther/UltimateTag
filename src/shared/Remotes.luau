@@ -43,6 +43,8 @@
 --                   springs it for everyone if it's ready.
 --   Leaderboard:    client -> server (no arguments): "send me the boards". Server -> client:
 --                   the cached boards and this player's ranks (server/Leaderboards).
+--   SaveSettings:   client -> server: ({ Music, Sfx, Muted }) the sound settings, kept in the
+--                   profile (server/Settings).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Remotes = {}
@@ -72,6 +74,7 @@ local NAMES = {
 	"Announce",
 	"Leaderboard",
 	"PopUp",
+	"SaveSettings",
 }
 
 -- Server only: creates the folder and every RemoteEvent.

@@ -18,6 +18,7 @@ local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
 local MoveState = require(script.Parent.MoveState)
+local Sounds = require(script.Parent.Sounds)
 local PopUps = require(script.Parent.PopUps)
 local Slide = require(script.Parent.Slide)
 
@@ -52,6 +53,7 @@ local function launch(parts: MoveState.Parts, velocity: Vector3)
 	local settings = Config.Gadgets
 	local root, hum = parts.root, parts.humanoid
 	MoveState.busy = "Launch"
+	Sounds.at("launch", root.Position)
 	hum:ChangeState(Enum.HumanoidStateType.Freefall)
 	local drive, remove = MoveState.drive(root, false)
 	drive.VectorVelocity = velocity

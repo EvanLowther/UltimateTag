@@ -27,6 +27,7 @@ local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Co
 
 local Knockback = require(script.Parent.Knockback)
 local MoveState = require(script.Parent.MoveState)
+local Sounds = require(script.Parent.Sounds)
 
 local MapAmbience = {}
 
@@ -51,6 +52,7 @@ type Mover = {
 	carry: boolean,
 	level: boolean,
 	knockback: number?,
+	across: number?, -- a spinning hazard: how far across its bar you were last frame
 }
 
 local flickers: { Flicker } = {}
@@ -196,6 +198,24 @@ local function touching(part: BasePart, at: CFrame, root: Vector3, reach: number
 		and p.Y > -half.Y - 2
 end
 
+-- A spinning hazard's whoosh: as its bar sweeps in to within Config.Sounds.SpinnerReach of you,
+-- from the point on the bar nearest you.
+local function whoosh(mover: Mover, at: CFrame, root: Vector3)
+	local p = at:PointToObjectSpace(root)
+	local half = mover.part.Size / 2
+	local alongX = half.X >= half.Z
+	local length = if alongX then half.X else half.Z
+	local along = if alongX then p.X else p.Z
+	local across = math.abs(if alongX then p.Z else p.X)
+	local near = math.abs(along) <= length + 2 and p.Y > -half.Y - 4 and p.Y < half.Y + 6
+	local reach = Config.Sounds.SpinnerReach
+	if near and across <= reach and (mover.across or math.huge) > reach then
+		local spot = if alongX then Vector3.new(p.X, 0, 0) else Vector3.new(0, 0, p.Z)
+		Sounds.at("spinner", at:PointToWorldSpace(spot))
+	end
+	mover.across = if near then across else math.huge
+end
+
 -- The hit: how hard and which way a hazard knocks you (see Knockback at the top).
 local function hit(mover: Mover, at: CFrame, parts: MoveState.Parts): boolean
 	local C = Config.MapHits
@@ -274,6 +294,9 @@ function MapAmbience.start()
 					local moved = after:PointToWorldSpace(before:PointToObjectSpace(root.Position))
 					root.CFrame += moved - root.Position
 				end
+			end
+			if mover.spin and mover.knockback and parts then
+				whoosh(mover, after, parts.root.Position)
 			end
 			-- Hit by a moving hazard (the reach grows by how far it swept this frame, so a fast
 			-- one can't pass through you between frames).

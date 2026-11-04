@@ -29,12 +29,14 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 local Cursor = require(script.Parent.Cursor)
 local Icons = require(script.Parent.Icons)
 local Profile = require(script.Parent.Profile)
+local Sounds = require(script.Parent.Sounds)
 local LeadersTab = require(script.LeadersTab)
 local LockerLayout = require(script.LockerLayout)
 local LockerTab = require(script.LockerTab)
 local Popups = require(script.Popups)
 local QuestsTab = require(script.QuestsTab)
 local RewardsTab = require(script.RewardsTab)
+local SettingsTab = require(script.SettingsTab)
 local ShopTab = require(script.ShopTab)
 local Ui = require(script.Ui)
 
@@ -53,6 +55,15 @@ local PAGES: { Page } = {
 		color = Ui.Colors.Orange,
 		module = LeadersTab,
 	},
+	{ name = "Settings", icon = "sound", color = Ui.Colors.Purple, module = SettingsTab },
+}
+
+-- The sound a request makes when it's sent (buying checks your coins first, in Menu/ShopTab).
+local SEND_SOUNDS: { [string]: string } = {
+	Equip = "equip",
+	ClaimStreak = "claim",
+	ClaimQuest = "claim",
+	ClaimAchievement = "claim",
 }
 
 local WINDOW_MAX = Vector2.new(820, 560)
@@ -254,6 +265,10 @@ function Menu.start()
 	local api = {
 		gui = root,
 		send = function(remoteName: string, ...: any)
+			local sound = SEND_SOUNDS[remoteName]
+			if sound then
+				Sounds.ui(sound)
+			end
 			Remotes.get(remoteName):FireServer(...)
 		end,
 		open = function(name: string?)

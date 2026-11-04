@@ -23,6 +23,7 @@ local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local TrainLine = require(Shared.TrainLine)
 local MoveState = require(script.Parent.MoveState)
+local Sounds = require(script.Parent.Sounds)
 
 local Trains = {}
 
@@ -55,6 +56,11 @@ type Line = {
 	boardAt: number,
 	lastFrames: { TrainLine.Frame }?,
 	shown: { [string]: any }, -- what the lights, arrows and gates were last set to
+	cars: { BasePart }, -- a part of each car, 1 = the front (its sounds come from these)
+	runs: { Sound }, -- each car's running loop
+	topSpeed: number, -- the fastest it has gone (the loop's volume follows speed against it)
+	cues: { [string]: boolean }, -- this cycle's one-off sounds already played
+	cueCycle: number,
 }
 
 local line: Line? = nil
@@ -171,6 +177,11 @@ local function setup(map: Model)
 		boardAt = 0,
 		lastFrames = nil,
 		shown = {},
+		cars = {},
+		runs = {},
+		topSpeed = 1,
+		cues = {},
+		cueCycle = -1,
 	}
 	for _, item in map:GetDescendants() do
 		if not item:IsA("BasePart") then
@@ -190,6 +201,9 @@ local function setup(map: Model)
 			})
 			table.insert(new.parts, item)
 			table.insert(new.cframes, item.CFrame)
+			if type(car) == "number" and type(door) ~= "number" and not new.cars[car] then
+				new.cars[car] = item
+			end
 		end
 		local warn, fx = item:GetAttribute("TrainWarn"), item:GetAttribute("TrainFx")
 		if warn == "A" then
@@ -209,7 +223,72 @@ local function setup(map: Model)
 			makeBoard(item, new.boards)
 		end
 	end
+	for _, part in new.cars do
+		local run = Sounds.make("train_run", part, true)
+		if run then
+			table.insert(new.runs, run)
+		end
+	end
 	line = new
+end
+
+-- The train's sounds (Config.Sounds): the horn as it comes in (with the edge lights), the
+-- brakes just before it stops, the doors on every car, the chime before they shut, and each
+-- car's running loop, louder and faster with its speed.
+local function trainSounds(l: Line, state: TrainLine.State)
+	local front = l.cars[1]
+	if not front then
+		return
+	end
+	local S = Config.Sounds
+	if l.cueCycle ~= state.cycle.k then
+		l.cueCycle = state.cycle.k
+		table.clear(l.cues)
+	end
+	local function once(key: string, play: () -> ())
+		if not l.cues[key] then
+			l.cues[key] = true
+			play()
+		end
+	end
+	local name = state.phase.name
+	local left = state.phase.dur - state.into
+	if state.warnA or state.warnB then
+		once(if state.warnA then "hornA" else "hornB", function()
+			Sounds.at("train_horn", front)
+		end)
+	end
+	if (name == "approach" or name == "ride") and left <= S.TrainBrakeLead then
+		once("brakes" .. name, function()
+			Sounds.at("train_brakes", l.cars[math.ceil(#l.cars / 2)] or front)
+		end)
+	end
+	if name == "doorsOpen" or name == "doorsClose" or name == "exitOpen" or name == "exitClose" then
+		once(name, function()
+			for _, car in l.cars do
+				Sounds.at("train_doors", car)
+			end
+		end)
+	end
+	if (name == "board" or name == "exitPush") and left <= S.TrainChimeLead then
+		once("chime" .. name, function()
+			Sounds.at("train_chime", l.cars[math.ceil(#l.cars / 2)] or front)
+		end)
+	end
+	l.topSpeed = math.max(l.topSpeed, state.speed)
+	local pace = math.clamp(state.speed / l.topSpeed, 0, 1)
+	local base = (S.List.train_run and S.List.train_run.Volume) or 0.5
+	for _, run in l.runs do
+		if pace > 0.02 then
+			run.Volume = base * pace
+			run.PlaybackSpeed = 0.75 + 0.35 * pace
+			if not run.IsPlaying then
+				run:Play()
+			end
+		elseif run.IsPlaying then
+			run:Stop()
+		end
+	end
 end
 
 -- The gangway slice's change from where it was built.
@@ -358,6 +437,7 @@ local function step()
 			part.Color = if state.push and flash then C.ArrowColor else C.ArrowDim
 		end
 	end)
+	trainSounds(l, state)
 	if os.clock() >= l.boardAt then
 		l.boardAt = os.clock() + C.BoardRefresh
 		local text = TrainLine.boardText(l.timetable, state)

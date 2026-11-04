@@ -17,6 +17,7 @@ local RunService = game:GetService("RunService")
 local Shared = ReplicatedStorage.Shared
 local Config = require(Shared.Config)
 local Remotes = require(Shared.Remotes)
+local Sounds = require(script.Parent.Sounds)
 
 local PopUps = {}
 
@@ -156,6 +157,9 @@ function PopUps.start()
 			local popAt = toy.pad:GetAttribute("PopAt")
 			local p = if type(popAt) == "number" then now - popAt else math.huge
 			if p >= 0 and p < number(toy.pad, "PopCooldown", 2) then
+				if toy.resting and p < 0.5 then
+					Sounds.at("popup", toy.pad.Position) -- it just sprang
+				end
 				toy.resting = false
 				place(toy, amounts(toy.pad, p))
 			elseif not toy.resting then

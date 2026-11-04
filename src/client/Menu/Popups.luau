@@ -10,12 +10,14 @@
 -- Big popups take turns. They are built in the menu's scaled root frame (Ui.scale), so sizes
 -- are virtual pixels; widths follow the screen (Ui.viewport) so nothing runs off a narrow one.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Catalog = require(Shared:WaitForChild("Catalog"))
 local ItemCard = require(script.Parent.ItemCard)
 local Ui = require(script.Parent.Ui)
+local Sounds = require(script.Parent.Parent.Sounds)
 
 local Popups = {}
 
@@ -272,7 +274,18 @@ local function crateReel(results: { { [string]: any } })
 	local target = -((stopAt - 1) * (width + 10) + width / 2 - viewWidth / 2)
 	local spin = TweenInfo.new(3.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
 	TweenService:Create(strip, spin, { Position = UDim2.fromOffset(target, 5) }):Play()
+	-- A tick each time a card passes the marker, slowing with the reel.
+	local passed = 0
+	local ticking = RunService.RenderStepped:Connect(function()
+		local under = math.floor((viewWidth / 2 - strip.Position.X.Offset) / (width + 10))
+		if under > passed then
+			passed = under
+			Sounds.play("crate_tick")
+		end
+	end)
 	task.wait(3.3)
+	ticking:Disconnect()
+	Sounds.play("crate_reveal")
 	local color = hex(Catalog.Rarities[prize.rarity].color)
 	local label = `<font color="#{color}">{Ui.upper(prize.name)}</font>`
 	result.Text = if bestResult.Duplicate
@@ -310,6 +323,7 @@ function Popups.show(payload: { [string]: any })
 		)
 	elseif kind == "LevelUp" then
 		enqueue(function()
+			Sounds.play("level_up")
 			stripe(`LEVEL {payload.Level}!`, Ui.Colors.Cyan, Ui.Colors.Ink, 1.6)
 			local lines = { amounts(payload.Coins, nil) }
 			if payload.Crates and payload.Crates > 0 then

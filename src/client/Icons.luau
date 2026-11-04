@@ -336,6 +336,14 @@ local DRAW: { [string]: (Canvas) -> () } = {
 		box(c, 0.66, 0.62, 0.28, 0.3, false)
 		sparkle(c, 0.5, 0.17, 0.11, true)
 	end,
+	sound = function(c) -- a speaker with two sound waves (the Settings page)
+		box(c, 0.08, 0.37, 0.16, 0.26, false, 0.2)
+		box(c, 0.23, 0.37, 0.2, 0.26, false)
+		tri(c, 0.23, 0.15, 0.2, 0.22, "BR")
+		tri(c, 0.23, 0.63, 0.2, 0.22, "TR")
+		arc(c, 0.46, 0.5, 0.17, -55, 55, 0.08, true, 4)
+		arc(c, 0.46, 0.5, 0.33, -50, 50, 0.08, true, 5)
+	end,
 	-- Small marks.
 	check = function(c)
 		line(c, 0.2, 0.52, 0.42, 0.74, 0.15, false, true)

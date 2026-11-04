@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.60.2",
+	Version = "0.61.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1098,6 +1098,97 @@ local Config = {
 	-- preset name here) switches your lighting to that preset, laid over the normal lighting,
 	-- while your camera is within Radius studs of it. Other places use the normal lighting from
 	-- default.project.json.
+	-- Sounds (client/Sounds). Every one is made in code (tools/sounds) and uploaded to Roblox
+	-- (tools/sounds/upload.py writes tools/sounds/asset_ids.json; copy the ids here). Volume is
+	-- the sound's own level before the player's sliders; an Id of 0 is silent.
+	Sounds = {
+		List = {
+			amb_clocktower = { Id = 111592356143735, Volume = 0.35 },
+			amb_lobby = { Id = 139553987822008, Volume = 0.4 },
+			amb_metro = { Id = 123040840279039, Volume = 0.4 },
+			buy = { Id = 94026775629391, Volume = 0.6 },
+			claim = { Id = 70877640813087, Volume = 0.6 },
+			countdown = { Id = 87775351108468, Volume = 0.55 },
+			crate_reveal = { Id = 93251333297506, Volume = 0.7 },
+			crate_tick = { Id = 113249989094514, Volume = 0.35 },
+			eliminated = { Id = 70757279648525, Volume = 0.6 },
+			equip = { Id = 130091032482457, Volume = 0.5 },
+			launch = { Id = 75167164978777, Volume = 0.6 },
+			level_up = { Id = 95372971939380, Volume = 0.6 },
+			lobby_beep_beep = { Id = 74158030346237, Volume = 0.45 },
+			lobby_beep_last = { Id = 82192299819473, Volume = 0.5 },
+			music_lobby = { Id = 81119105344835, Volume = 0.35 },
+			music_round = { Id = 84308500528871, Volume = 0.16 },
+			no_coins = { Id = 125977458213449, Volume = 0.5 },
+			popup = { Id = 88862052360524, Volume = 0.7 },
+			round_start_beep = { Id = 86266684929184, Volume = 0.6 },
+			round_start_go = { Id = 131113177054046, Volume = 0.7 },
+			spinner = { Id = 99433930848581, Volume = 0.75 },
+			swing = { Id = 77744064105268, Volume = 0.35 },
+			tag_hit = { Id = 81765611304617, Volume = 0.8 },
+			tagged = { Id = 84719602100377, Volume = 0.75 },
+			time_up = { Id = 73158738860069, Volume = 0.6 },
+			train_brakes = { Id = 119873698302811, Volume = 0.7 },
+			train_chime = { Id = 93558042291764, Volume = 0.7 },
+			train_doors = { Id = 107390904159177, Volume = 0.6 },
+			train_horn = { Id = 105629926894902, Volume = 0.9 },
+			train_run = { Id = 115020791426285, Volume = 0.7 },
+			ui_click = { Id = 81100901515131, Volume = 0.4 },
+			ui_hover = { Id = 88411026698965, Volume = 0.25 },
+			victory_backflip = { Id = 117997881335711, Volume = 0.8 },
+			victory_chrysalis = { Id = 136157171675821, Volume = 0.8 },
+			victory_confetti = { Id = 136897755915114, Volume = 0.8 },
+			victory_flex = { Id = 130783206056343, Volume = 0.8 },
+			victory_katana = { Id = 74978249320554, Volume = 0.8 },
+			victory_meteor = { Id = 121260983598174, Volume = 0.8 },
+			victory_podium = { Id = 136074679980141, Volume = 0.8 },
+			victory_rift = { Id = 119436345449662, Volume = 0.8 },
+			victory_throne = { Id = 96352824640081, Volume = 0.8 },
+			victory_thunder = { Id = 124855261784679, Volume = 0.8 },
+			victory_trophy = { Id = 109103518800539, Volume = 0.8 },
+		} :: { [string]: { Id: number, Volume: number } },
+		-- The player's settings (saved in the profile's Settings): the two sliders' starting
+		-- values and mute. Ambience and victories count as sound effects.
+		Defaults = { Music = 0.6, Sfx = 0.8, Muted = false },
+		SaveDelay = 0.8, -- seconds after the last slider change before it's saved
+		-- 3D sounds (swings, tags, the train, gadgets): full volume within MinDistance, gone past
+		-- MaxDistance.
+		MinDistance = 10,
+		MaxDistance = 140,
+		OthersVolume = 0.6, -- other players' swings and tags, against your own
+		-- Where you are decides the background: the lobby gets its rain and music; a map gets its
+		-- own ambience if it has one here (by MapName), and the quiet round music if not. Within
+		-- Config.MapLighting.Radius of the place, like the lighting. Fades over FadeTime.
+		LobbyAmbience = "amb_lobby",
+		LobbyMusic = "music_lobby",
+		RoundMusic = "music_round",
+		MapAmbience = { Clocktower = "amb_clocktower", Metro = "amb_metro" } :: { [string]: string },
+		FadeTime = 1.5,
+		CountdownFrom = 10, -- the last seconds of a round that beep (a semitone higher each)
+		CountdownDoubled = 3, -- the last few beep twice, louder
+		CountdownDoubleGap = 0.1,
+		CountdownLoud = 1.4,
+		IntroBeepFrom = 3, -- the intro's 3-2-1 (then GO when the round starts)
+		LobbyBeepFrom = 5, -- the lobby countdown's last seconds (the last one held)
+		HoverGap = 0.05, -- hovers closer together than this don't tick again
+		SpinnerReach = 7, -- the spinner bar whooshes as it comes within this of you
+		TrainBrakeLead = 2.0, -- seconds before the train stops that its brakes squeal
+		TrainChimeLead = 1.6, -- seconds before its doors start to shut that the chime plays
+		-- Each victory's one track, by its look.Victory (Breakdance has none yet).
+		Victories = {
+			Flex = "victory_flex",
+			Backflip = "victory_backflip",
+			ConfettiStorm = "victory_confetti",
+			Katana = "victory_katana",
+			TrophyLift = "victory_trophy",
+			PodiumRise = "victory_podium",
+			Thunderstorm = "victory_thunder",
+			Throne = "victory_throne",
+			MeteorTouchdown = "victory_meteor",
+			Rift = "victory_rift",
+			Chrysalis = "victory_chrysalis",
+		} :: { [string]: string },
+	},
 	MapLighting = {
 		Radius = 1000, -- (the Metro's tunnel loops reach about 760 out)
 		FadeTime = 1.2, -- seconds to blend between lightings

@@ -22,6 +22,7 @@ local GameState = require(Shared:WaitForChild("GameState"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local AnimationBuilder = require(script.Parent.AnimationBuilder)
 local Cursor = require(script.Parent.Cursor)
+local Sounds = require(script.Parent.Sounds)
 
 local GAME_PHASES = { Intro = true, Playing = true, Results = true }
 
@@ -145,6 +146,7 @@ function TagSwing.start()
 		end
 		lastSwing = now
 		playSwipe(player) -- right away, no waiting for the server
+		Sounds.play("swing")
 		local tags = tagging(player)
 		local target = pick(player, tags)
 		swingRemote:FireServer(target)
@@ -176,6 +178,7 @@ function TagSwing.start()
 	Remotes.get("TagSwingPlayed").OnClientEvent:Connect(function(swinger: Player)
 		if swinger ~= player then
 			playSwipe(swinger)
+			Sounds.swingOf(swinger)
 		end
 	end)
 end

@@ -19,6 +19,7 @@ local Config = require(Shared:WaitForChild("Config"))
 local DayClock = require(Shared:WaitForChild("DayClock"))
 local ShopRotation = require(Shared:WaitForChild("ShopRotation"))
 local Profile = require(script.Parent.Parent.Profile)
+local Sounds = require(script.Parent.Parent.Sounds)
 local ItemCard = require(script.Parent.ItemCard)
 local Ui = require(script.Parent.Ui)
 
@@ -37,6 +38,13 @@ function ShopTab.info(profile: { [string]: any }): string
 end
 
 -- The crate odds as a row of colored segments, widths by chance.
+
+-- Whether you have the coins for something right now (the buy and not-enough sounds).
+local function canAfford(price: number): boolean
+	local profile = Profile.get()
+	return profile ~= nil and (profile.Coins or 0) >= price
+end
+
 local function oddsBar(parent: Instance): Frame
 	local bar = Ui.frame(parent)
 	bar.Name = "Odds"
@@ -153,6 +161,7 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 	odds.TextWrapped = true
 	odds.TextTruncate = Enum.TextTruncate.AtEnd
 	local buyCrate = Ui.button(crate, "", Ui.Colors.Yellow, function()
+		Sounds.ui(if canAfford(Config.Shop.CratePrice) then "buy" else "no_coins")
 		api.send("BuyCrate")
 	end)
 	local crateButtonHeight = Ui.hit(38)
@@ -289,6 +298,9 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 			end
 			local has = profile.Owned[offer.id] == true
 			local function buy()
+				if not has then
+					Sounds.ui(if canAfford(offer.price) then "buy" else "no_coins")
+				end
 				api.send("ShopBuy", offer.id)
 			end
 			if offer.deal then
