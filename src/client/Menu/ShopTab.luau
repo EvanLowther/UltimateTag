@@ -80,17 +80,17 @@ end
 local function header(parent: Instance, text: string, order: number): (Frame, TextLabel)
 	local row = Ui.frame(parent)
 	row.LayoutOrder = order
-	row.Size = UDim2.new(1, 0, 0, 22)
-	local left = Ui.caps(row, text, 14, Ui.Colors.Text)
+	row.Size = UDim2.new(1, 0, 0, 32)
+	local left = Ui.caps(row, text, 18, Ui.Colors.Text)
 	left.Size = UDim2.new(0.4, -4, 1, 0)
 	left.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(left, 11, 14)
-	local right = Ui.caps(row, "", 12, Ui.Colors.Dim)
+	Ui.shrinkText(left, 15, 18)
+	local right = Ui.caps(row, "", 15, Ui.Colors.Dim)
 	right.AnchorPoint = Vector2.new(1, 0)
 	right.Position = UDim2.fromScale(1, 0)
 	right.Size = UDim2.new(0.6, -4, 1, 0)
 	right.TextXAlignment = Enum.TextXAlignment.Right
-	Ui.shrinkText(right, 11, 12)
+	Ui.shrinkText(right, 15, 15)
 	return row, right
 end
 
@@ -142,12 +142,12 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 	crateStrip.Size = UDim2.new(1, -10, 0, 4)
 	local box = Ui.icon(crate, "crate", 64, Ui.Colors.Yellow, Ui.Colors.Ink)
 	box.Position = UDim2.fromOffset(14, 22)
-	local crateName = Ui.caps(crate, "Mystery crate", 16, Ui.Colors.Text)
+	local crateName = Ui.caps(crate, "Mystery crate", 20, Ui.Colors.Text)
 	crateName.TextXAlignment = Enum.TextXAlignment.Left
 	local crateNote = Ui.text(
 		crate,
 		"Any trail, tag effect, title or victory. Open it in Rewards.",
-		13,
+		15,
 		Ui.Colors.Dim
 	)
 	crateNote.TextXAlignment = Enum.TextXAlignment.Left
@@ -155,7 +155,7 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 	crateNote.TextTruncate = Enum.TextTruncate.AtEnd
 	crateNote.TextYAlignment = Enum.TextYAlignment.Top
 	local bar = oddsBar(crate)
-	local odds = Ui.caps(crate, ShopTab.oddsText(), 11, Ui.Colors.Dim)
+	local odds = Ui.caps(crate, ShopTab.oddsText(), 14, Ui.Colors.Dim)
 	odds.TextXAlignment = Enum.TextXAlignment.Left
 	odds.TextYAlignment = Enum.TextYAlignment.Top
 	odds.TextWrapped = true
@@ -164,9 +164,9 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 		Sounds.ui(if canAfford(Config.Shop.CratePrice) then "buy" else "no_coins")
 		api.send("BuyCrate")
 	end)
-	local crateButtonHeight = Ui.hit(38)
+	local crateButtonHeight = Ui.hit(44)
 	local cratePrice, cratePriceLabel =
-		Ui.coinAmount(buyCrate, Config.Shop.CratePrice, 16, Ui.Colors.Ink)
+		Ui.coinAmount(buyCrate, Config.Shop.CratePrice, 18, Ui.Colors.Ink)
 	cratePrice.AnchorPoint = Vector2.new(0.5, 0.5)
 	cratePrice.Position = UDim2.fromScale(0.5, 0.5)
 	for _, child in cratePrice:GetDescendants() do
@@ -174,7 +174,7 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 			child.ZIndex = 3
 		end
 	end
-	local owned = Ui.caps(crate, "", 11, Ui.Colors.Lime)
+	local owned = Ui.caps(crate, "", 14, Ui.Colors.Lime)
 	owned.TextWrapped = true
 	owned.TextTruncate = Enum.TextTruncate.AtEnd
 
@@ -205,39 +205,39 @@ local function buildDaily(page: Frame, api: { [string]: any }, owner: Frame): ()
 		if wide then
 			-- Text on the left, the button on the right with what you have / what's missing
 			-- under it (two lines of its own, so a long line can't run into the odds).
-			crate.Size = UDim2.new(1, 0, 0, math.max(116, crateButtonHeight + 76))
+			crate.Size = UDim2.new(1, 0, 0, math.max(156, crateButtonHeight + 96))
 			crateName.Position = UDim2.fromOffset(90, 12)
-			crateName.Size = UDim2.new(1, -330, 0, 22)
-			crateNote.Position = UDim2.fromOffset(90, 36)
-			crateNote.Size = UDim2.new(1, -330, 0, 32)
-			bar.Position = UDim2.fromOffset(90, 74)
+			crateName.Size = UDim2.new(1, -330, 0, 28)
+			crateNote.Position = UDim2.fromOffset(90, 42)
+			crateNote.Size = UDim2.new(1, -330, 0, 44)
+			bar.Position = UDim2.fromOffset(90, 92)
 			bar.Size = UDim2.new(1, -340, 0, 8)
-			odds.Position = UDim2.fromOffset(90, 86)
-			odds.Size = UDim2.new(1, -330, 0, 28)
+			odds.Position = UDim2.fromOffset(90, 106)
+			odds.Size = UDim2.new(1, -330, 0, 44)
 			buyCrate.AnchorPoint = Vector2.new(1, 0)
 			buyCrate.Position = UDim2.new(1, -16, 0, 16)
-			buyCrate.Size = UDim2.fromOffset(130, crateButtonHeight)
+			buyCrate.Size = UDim2.fromOffset(150, crateButtonHeight)
 			owned.AnchorPoint = Vector2.new(1, 0)
 			owned.Position = UDim2.new(1, -16, 0, 16 + crateButtonHeight + 6)
-			owned.Size = UDim2.fromOffset(190, 30)
+			owned.Size = UDim2.fromOffset(210, 44)
 			owned.TextXAlignment = Enum.TextXAlignment.Center
 			owned.TextYAlignment = Enum.TextYAlignment.Top
 		else
-			crate.Size = UDim2.new(1, 0, 0, 184 + crateButtonHeight)
+			crate.Size = UDim2.new(1, 0, 0, 250 + crateButtonHeight)
 			crateName.Position = UDim2.fromOffset(90, 12)
-			crateName.Size = UDim2.new(1, -106, 0, 22)
-			crateNote.Position = UDim2.fromOffset(90, 36)
-			crateNote.Size = UDim2.new(1, -106, 0, 48)
-			bar.Position = UDim2.fromOffset(14, 96)
+			crateName.Size = UDim2.new(1, -106, 0, 28)
+			crateNote.Position = UDim2.fromOffset(90, 44)
+			crateNote.Size = UDim2.new(1, -106, 0, 66)
+			bar.Position = UDim2.fromOffset(14, 120)
 			bar.Size = UDim2.new(1, -28, 0, 8)
-			odds.Position = UDim2.fromOffset(14, 110)
-			odds.Size = UDim2.new(1, -28, 0, 44)
+			odds.Position = UDim2.fromOffset(14, 134)
+			odds.Size = UDim2.new(1, -28, 0, 66)
 			buyCrate.AnchorPoint = Vector2.new(0, 1)
 			buyCrate.Position = UDim2.new(0, 14, 1, -12)
 			buyCrate.Size = UDim2.new(1, -28, 0, crateButtonHeight)
 			owned.AnchorPoint = Vector2.new(0, 1)
 			owned.Position = UDim2.new(0, 14, 1, -(crateButtonHeight + 18))
-			owned.Size = UDim2.new(1, -28, 0, 18)
+			owned.Size = UDim2.new(1, -28, 0, 26)
 			owned.TextXAlignment = Enum.TextXAlignment.Left
 			owned.TextYAlignment = Enum.TextYAlignment.Center
 		end
@@ -356,7 +356,7 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 	local player = Players.LocalPlayer
 	local scroll = Ui.scroll(page, 10)
 	header(scroll, "Coin packs", 1)
-	local packHeight = 176 + Ui.hit(30)
+	local packHeight = 196 + Ui.hit(36)
 
 	local packs = Ui.frame(scroll)
 	packs.LayoutOrder = 2
@@ -373,36 +373,37 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 		card.LayoutOrder = i
 		local tagColor = if pack.Tag == "Best value" then Ui.Colors.Cyan else Ui.Colors.Pink
 		local strip = Ui.frame(card, if pack.Tag then tagColor else Ui.Colors.Yellow)
-		strip.Size = UDim2.new(1, -10, 0, if pack.Tag then 22 else 4)
+		strip.Size = UDim2.new(1, -10, 0, if pack.Tag then 28 else 4)
 		if pack.Tag then
 			local tag = Ui.caps(
 				strip,
 				pack.Tag,
-				11,
+				14,
 				if pack.Tag == "Best value" then Ui.Colors.Ink else Ui.Colors.Text
 			)
 			tag.Size = UDim2.fromScale(1, 1)
 			Ui.pad(tag, 12, 0)
+			Ui.shrinkText(tag, 15, 14)
 		end
 		local well = Ui.frame(card, Ui.Colors.Well)
-		well.Position = UDim2.fromOffset(8, 28)
+		well.Position = UDim2.fromOffset(8, 34)
 		well.Size = UDim2.new(1, -16, 0, 60)
 		Ui.centerIcon(well, pack.Icon or "coin", 50, Ui.Colors.Cyan, Ui.Colors.Text)
-		local amount = Ui.title(card, Ui.number(pack.Coins), 28, Ui.Colors.Yellow)
-		amount.Position = UDim2.fromOffset(0, 94)
-		amount.Size = UDim2.new(1, 0, 0, 34)
+		local amount = Ui.title(card, Ui.number(pack.Coins), 32, Ui.Colors.Yellow)
+		amount.Position = UDim2.fromOffset(0, 100)
+		amount.Size = UDim2.new(1, 0, 0, 38)
 		Ui.pad(amount, 12, 0)
-		Ui.shrinkText(amount, 16, 28)
+		Ui.shrinkText(amount, 18, 32)
 		local bonus = Ui.caps(
 			card,
 			if (pack.Bonus or 0) > 0 then `+{pack.Bonus}% bonus` else "",
-			11,
+			15,
 			Ui.Colors.Lime
 		)
-		bonus.Position = UDim2.fromOffset(0, 128)
-		bonus.Size = UDim2.new(1, 0, 0, 18)
+		bonus.Position = UDim2.fromOffset(0, 140)
+		bonus.Size = UDim2.new(1, 0, 0, 26)
 		Ui.pad(bonus, 12, 0)
-		Ui.shrinkText(bonus, 11, 11)
+		Ui.shrinkText(bonus, 15, 15)
 		local buy = Ui.button(
 			card,
 			if pack.Id then `{ROBUX} {pack.Robux}` else "Soon",
@@ -417,14 +418,15 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 		)
 		buy.AnchorPoint = Vector2.new(0.5, 1)
 		buy.Position = UDim2.new(0.5, 0, 1, -10)
-		buy.Size = UDim2.new(1, -24, 0, Ui.hit(30))
+		buy.Size = UDim2.new(1, -24, 0, Ui.hit(36))
+		Ui.setTextSize(buy, 18)
 		if pack.Id then
 			priceLabels[i] = buy
 		end
 	end
 
 	header(scroll, "Game passes", 3)
-	local passHeight = 88
+	local passHeight = 108
 	local passes = Ui.frame(scroll)
 	passes.LayoutOrder = 4
 	passes.Size = UDim2.new(1, 0, 0, passHeight)
@@ -469,14 +471,14 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 		strip.Size = UDim2.new(1, -10, 0, 4)
 		local icon = Ui.icon(card, pass.icon, 44, Ui.Colors.Gold, Ui.Colors.Ink)
 		icon.Position = UDim2.fromOffset(14, 22)
-		local name = Ui.caps(card, pass.name, 16, Ui.Colors.Text)
-		name.Position = UDim2.fromOffset(68, 14)
-		name.Size = UDim2.new(1, -184, 0, 22)
+		local name = Ui.caps(card, pass.name, 20, Ui.Colors.Text)
+		name.Position = UDim2.fromOffset(68, 12)
+		name.Size = UDim2.new(1, -200, 0, 28)
 		name.TextXAlignment = Enum.TextXAlignment.Left
-		Ui.shrinkText(name, 11, 16)
-		local text = Ui.text(card, pass.text, 13, Ui.Colors.Dim)
-		text.Position = UDim2.fromOffset(68, 36)
-		text.Size = UDim2.new(1, -184, 0, 44)
+		Ui.shrinkText(name, 15, 20)
+		local text = Ui.text(card, pass.text, 15, Ui.Colors.Dim)
+		text.Position = UDim2.fromOffset(68, 42)
+		text.Size = UDim2.new(1, -200, 0, 56)
 		text.TextTruncate = Enum.TextTruncate.AtEnd
 		text.TextXAlignment = Enum.TextXAlignment.Left
 		text.TextYAlignment = Enum.TextYAlignment.Top
@@ -495,7 +497,8 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 		)
 		buy.AnchorPoint = Vector2.new(1, 0.5)
 		buy.Position = UDim2.new(1, -14, 0.5, 2)
-		buy.Size = UDim2.fromOffset(110, Ui.hit(32))
+		buy.Size = UDim2.fromOffset(120, Ui.hit(38))
+		Ui.setTextSize(buy, 18)
 		passButtons[pass] = buy
 	end
 
@@ -549,7 +552,7 @@ local function buildCoins(page: Frame, owner: Frame): () -> ()
 end
 
 function ShopTab.build(page: Frame, api: { [string]: any }): () -> ()
-	local top = Ui.hit(30) + 12 -- under the tabs
+	local top = Ui.hit(36) + 12 -- under the tabs
 	local daily = Ui.frame(page)
 	daily.Name = "Daily"
 	daily.Position = UDim2.fromOffset(0, top)

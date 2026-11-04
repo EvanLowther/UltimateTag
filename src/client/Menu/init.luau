@@ -99,7 +99,7 @@ function Menu.start()
 	nav.BackgroundTransparency = 1
 	nav.AnchorPoint = Vector2.new(0, 0.5)
 	nav.Position = UDim2.new(0, 14, 0.5, 0)
-	nav.Size = UDim2.fromOffset(160, 0)
+	nav.Size = UDim2.fromOffset(186, 0)
 	nav.AutomaticSize = Enum.AutomaticSize.Y
 	local column = Instance.new("UIListLayout")
 	column.Padding = UDim.new(0, 6)
@@ -110,14 +110,14 @@ function Menu.start()
 	local money = Ui.slab(nav, Ui.Colors.Panel, 8)
 	money.Name = "Money"
 	money.LayoutOrder = 0
-	money.Size = UDim2.fromOffset(150, 34)
-	local coin = Ui.coin(money, 20)
-	coin.Position = UDim2.fromOffset(16, 7)
-	local coinText = Ui.caps(money, "0", 20, Ui.Colors.Yellow)
-	coinText.Position = UDim2.fromOffset(44, 0)
+	money.Size = UDim2.fromOffset(176, 42)
+	local coin = Ui.coin(money, 24)
+	coin.Position = UDim2.fromOffset(16, 9)
+	local coinText = Ui.caps(money, "0", 24, Ui.Colors.Yellow)
+	coinText.Position = UDim2.fromOffset(48, 0)
 	coinText.Size = UDim2.new(1, -58, 1, 0) -- (clear of the slanted end)
 	coinText.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(coinText, 11, 20) -- seven-digit totals shrink instead of running out of the pill
+	Ui.shrinkText(coinText, 15, 24) -- seven-digit totals shrink instead of running out of the pill
 
 	-- Bottom center: the level and XP bar.
 	local levelBar = Instance.new("Frame")
@@ -337,7 +337,7 @@ function Menu.start()
 		button.BackgroundTransparency = 1
 		button.Text = ""
 		button.LayoutOrder = i
-		button.Size = UDim2.fromOffset(150, Ui.hit(38))
+		button.Size = UDim2.fromOffset(176, Ui.hit(44))
 		local fill = Ui.slab(button, Ui.Colors.Panel, 8)
 		fill.Name = "Fill"
 		fill.Size = UDim2.fromScale(1, 1)
@@ -345,18 +345,18 @@ function Menu.start()
 		edge.Name = "Edge"
 		edge.Size = UDim2.new(0, 16, 1, 0)
 		edge.ZIndex = 2
-		local pageIcon = Ui.icon(button, page.icon, 22, Ui.Colors.Text, page.color)
+		local pageIcon = Ui.icon(button, page.icon, 26, Ui.Colors.Text, page.color)
 		pageIcon.Name = "PageIcon"
 		pageIcon.AnchorPoint = Vector2.new(0, 0.5)
 		pageIcon.Position = UDim2.new(0, 23, 0.5, 0)
 		pageIcon.ZIndex = 3
-		local label = Ui.caps(button, page.name, 15, Ui.Colors.Text)
+		local label = Ui.caps(button, page.name, 17, Ui.Colors.Text)
 		label.Name = "Label"
-		label.Position = UDim2.fromOffset(52, 0)
-		label.Size = UDim2.new(1, -64, 1, 0)
+		label.Position = UDim2.fromOffset(58, 0)
+		label.Size = UDim2.new(1, -70, 1, 0)
 		label.TextXAlignment = Enum.TextXAlignment.Left
 		label.ZIndex = 3
-		Ui.shrinkText(label, 11, 15)
+		Ui.shrinkText(label, 15, 17)
 		badges[page.name] = Ui.badge(button)
 		local scale = Instance.new("UIScale")
 		scale.Parent = button

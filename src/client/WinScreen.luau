@@ -344,7 +344,7 @@ local function plate(parent: Instance, entry: Entry): Frame
 	name.Size = UDim2.new(1, -96, 1, 0)
 	name.TextXAlignment = Enum.TextXAlignment.Left
 	name.ZIndex = 3
-	Ui.shrinkText(name, 11, 17) -- a 20-letter name shrinks, then is cut off
+	Ui.shrinkText(name, 15, 17) -- a 20-letter name shrinks, then is cut off
 	return back
 end
 
@@ -390,7 +390,7 @@ end
 local function line(parent: Instance, order: number): Frame
 	local row = Ui.frame(parent)
 	row.LayoutOrder = order
-	row.Size = UDim2.new(1, 0, 0, 28)
+	row.Size = UDim2.new(1, 0, 0, 34)
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
 	layout.VerticalAlignment = Enum.VerticalAlignment.Center
@@ -455,31 +455,31 @@ local function rewardsCard(parent: Instance, rewards: Rewards, screenWidth: numb
 	end
 
 	local width = math.min(CARD_WIDTH, screenWidth - 24)
-	local height = 20 + 38 + #rows * 28 + 16
+	local height = 20 + 44 + #rows * 34 + 16
 	local card = Ui.panel(parent, Ui.Colors.Panel, 14)
 	card.AnchorPoint = Vector2.new(0.5, 1)
 	card.Position = UDim2.new(0.5, 0, 1, height + 40) -- off the bottom
 	card.Size = UDim2.fromOffset(width, height)
 	local header = Ui.slab(card, Ui.Colors.Yellow, 8)
 	header.Position = UDim2.fromOffset(14, 14)
-	header.Size = UDim2.new(1, -28, 0, 34)
+	header.Size = UDim2.new(1, -28, 0, 40)
 	header.ZIndex = 2
 	local title = Ui.caps(header, "YOUR REWARDS", 16, Ui.Colors.Ink)
 	title.Position = UDim2.fromOffset(20, 0)
 	title.Size = UDim2.new(0.55, -20, 1, 0)
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.ZIndex = 3
-	Ui.shrinkText(title, 11, 16)
+	Ui.shrinkText(title, 15, 16)
 	local finish = Ui.caps(header, `{ordinal(rewards.Place)} OF {rewards.Of}`, 16, Ui.Colors.Ink)
 	finish.AnchorPoint = Vector2.new(1, 0)
 	finish.Position = UDim2.new(1, -20, 0, 0)
 	finish.Size = UDim2.new(0.45, -24, 1, 0)
 	finish.TextXAlignment = Enum.TextXAlignment.Right
 	finish.ZIndex = 3
-	Ui.shrinkText(finish, 11, 16)
+	Ui.shrinkText(finish, 15, 16)
 	local list = Ui.frame(card)
 	list.ZIndex = 2
-	list.Position = UDim2.fromOffset(28, 58)
+	list.Position = UDim2.fromOffset(28, 64)
 	list.Size = UDim2.new(1, -56, 1, -70)
 	local layout = Instance.new("UIListLayout")
 	layout.SortOrder = Enum.SortOrder.LayoutOrder

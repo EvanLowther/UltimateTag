@@ -114,7 +114,7 @@ function Cursor.start()
 	local hint = Ui.caps(gui, `HOLD {settings.KeyName} FOR MOUSE`, 12, Ui.Colors.Dim)
 	hint.AnchorPoint = Vector2.new(0, 1)
 	hint.Position = UDim2.new(0, 16, 1, -14)
-	hint.Size = UDim2.fromOffset(220, 16)
+	hint.Size = UDim2.fromOffset(280, 22)
 	hint.TextXAlignment = Enum.TextXAlignment.Left
 	hint.Visible = false
 	gui.Parent = player:WaitForChild("PlayerGui")

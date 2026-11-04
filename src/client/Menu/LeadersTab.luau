@@ -34,10 +34,10 @@ local PODIUM_COLORS = {
 local PERIODS = { "All time", "This week" }
 local NARROW_BELOW = 560 -- pages narrower than this (virtual pixels) get the narrow layout
 local SCROLL_PAD = 12 -- the scroll lists' padding on the right
-local FOOTER = 68 -- room kept under the list for your rank and the footer line
-local PODIUM_HEIGHT = 196 -- the podium's frame: crown, face, name, then the block
-local HEADING = 34 -- the board's heading over the podium ("MOST WINS · ALL TIME")
-local ROW = 38 -- a list row
+local FOOTER = 92 -- room kept under the list for your rank and the footer line
+local PODIUM_HEIGHT = 222 -- the podium's frame: crown, face, name, then the block
+local HEADING = 44 -- the board's heading over the podium ("MOST WINS · ALL TIME")
+local ROW = 54 -- a list row
 -- What each board ranks, said plainly: its heading, and the unit after every score.
 local WORDS: { [string]: { title: string, unit: string, one: string } } = {
 	Wins = { title = "Most wins", unit = "wins", one = "win" },
@@ -83,8 +83,8 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 	end
 
-	local top = Ui.hit(30) + 12 -- under the Leaderboards / My stats tabs
-	local chipHeight = Ui.hit(24)
+	local top = Ui.hit(36) + 12 -- under the Leaderboards / My stats tabs
+	local chipHeight = Ui.hit(36)
 	local function narrow(): boolean
 		return Ui.bodySize(page).X < NARROW_BELOW
 	end
@@ -108,12 +108,12 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local boardChips, selectBoard = Ui.tabs(boardsFrame, boardNames, Ui.Colors.Text, function(name)
 		boardId = nameToId[name]
 		redraw()
-	end, 24, 11, 9)
+	end, 36, 14, 10)
 	boardChips.Position = UDim2.fromOffset(0, 0)
 	local periodChips, selectPeriod = Ui.tabs(boardsFrame, PERIODS, Ui.Colors.Text, function(name)
 		period = name
 		redraw()
-	end, 24, 11, 9)
+	end, 36, 14, 10)
 	selectBoard(boardDefs[1].Name)
 	selectPeriod(period)
 
@@ -139,12 +139,13 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	arrangeChips()
 	local mine = Ui.frame(boardsFrame)
 	mine.AnchorPoint = Vector2.new(0, 1)
-	mine.Position = UDim2.new(0, 0, 1, -22)
-	mine.Size = UDim2.new(1, 0, 0, 40)
-	local footer = Ui.caps(boardsFrame, "", 11, Ui.Colors.Dim)
+	mine.Position = UDim2.new(0, 0, 1, -30)
+	mine.Size = UDim2.new(1, 0, 0, ROW)
+	local footer = Ui.caps(boardsFrame, "", 13, Ui.Colors.Dim)
 	footer.AnchorPoint = Vector2.new(0, 1)
 	footer.Position = UDim2.fromScale(0, 1)
-	footer.Size = UDim2.new(1, 0, 0, 18)
+	footer.Size = UDim2.new(1, 0, 0, 26)
+	Ui.shrinkText(footer, 15, 13)
 
 	local function listRow(
 		order: number,
@@ -160,38 +161,38 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		r.LayoutOrder = if highlight then order else 10 + order -- (after the podium)
 		r.Size = if highlight then UDim2.fromScale(1, 1) else UDim2.new(1, -6, 0, ROW)
 		local text = if highlight then Ui.Colors.Ink else Ui.Colors.Text
-		local rankLabel = Ui.caps(r, rank, 14, if highlight then Ui.Colors.Ink else Ui.Colors.Dim)
+		local rankLabel = Ui.caps(r, rank, 20, if highlight then Ui.Colors.Ink else Ui.Colors.Dim)
 		rankLabel.Position = UDim2.fromOffset(14, 0)
-		rankLabel.Size = UDim2.new(0, 52, 1, 0)
+		rankLabel.Size = UDim2.new(0, 64, 1, 0)
 		rankLabel.TextXAlignment = Enum.TextXAlignment.Left
-		Ui.shrinkText(rankLabel, 11, 14)
+		Ui.shrinkText(rankLabel, 15, 20)
 		local face = avatar(
 			r,
 			userId,
-			if highlight then 26 else 22,
+			if highlight then 38 else 34,
 			if highlight then Ui.Colors.Ink else Ui.Colors.Tab
 		)
 		face.AnchorPoint = Vector2.new(0, 0.5)
-		face.Position = UDim2.new(0, 70, 0.5, 0)
-		local nameLabel = Ui.caps(r, name, 13, text)
-		nameLabel.Position = UDim2.fromOffset(104, 0)
-		nameLabel.Size = UDim2.new(1, -(104 + 176), 1, 0)
+		face.Position = UDim2.new(0, 82, 0.5, 0)
+		local nameLabel = Ui.caps(r, name, 21, text)
+		nameLabel.Position = UDim2.fromOffset(128, 0)
+		nameLabel.Size = UDim2.new(1, -(128 + 222), 1, 0)
 		nameLabel.TextXAlignment = Enum.TextXAlignment.Left
-		Ui.shrinkText(nameLabel, 11, 13) -- 20-letter names shrink, then are cut off
+		Ui.shrinkText(nameLabel, 15, 21) -- 20-letter names shrink, then are cut off
 		-- The score, big, with what it counts after it ("12 WINS").
-		local unitLabel = Ui.caps(r, unit, 11, if highlight then Ui.Colors.Ink else Ui.Colors.Dim)
+		local unitLabel = Ui.caps(r, unit, 17, if highlight then Ui.Colors.Ink else Ui.Colors.Dim)
 		unitLabel.AnchorPoint = Vector2.new(1, 0)
-		unitLabel.Position = UDim2.new(1, -16, 0, 0)
-		unitLabel.Size = UDim2.new(0, 70, 1, 0)
+		unitLabel.Position = UDim2.new(1, -14, 0, 0)
+		unitLabel.Size = UDim2.new(0, 100, 1, 0)
 		unitLabel.TextXAlignment = Enum.TextXAlignment.Left
-		Ui.shrinkText(unitLabel, 9, 11)
+		Ui.shrinkText(unitLabel, 15, 17)
 		local valueLabel =
-			Ui.title(r, value, 24, if highlight then Ui.Colors.Ink else Ui.Colors.Yellow)
+			Ui.title(r, value, 32, if highlight then Ui.Colors.Ink else Ui.Colors.Yellow)
 		valueLabel.AnchorPoint = Vector2.new(1, 0)
-		valueLabel.Position = UDim2.new(1, -92, 0, 0)
-		valueLabel.Size = UDim2.new(0, 80, 1, 0)
+		valueLabel.Position = UDim2.new(1, -120, 0, 0)
+		valueLabel.Size = UDim2.new(0, 96, 1, 0)
 		valueLabel.TextXAlignment = Enum.TextXAlignment.Right
-		Ui.shrinkText(valueLabel, 14, 24)
+		Ui.shrinkText(valueLabel, 18, 32)
 	end
 
 	local function podiumBlock(rank: number, entry: { [string]: any }?, x: number, height: number)
@@ -210,30 +211,30 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		local value = Ui.caps(
 			block,
 			if entry then `{Ui.number(entry.Value)} {unitOf(boardId, entry.Value)}` else "-",
-			16,
+			18,
 			Ui.Colors.Ink
 		)
 		value.AnchorPoint = Vector2.new(0, 1)
 		value.Position = UDim2.new(0, 0, 1, -4)
-		value.Size = UDim2.new(1, 0, 0, 24)
+		value.Size = UDim2.new(1, 0, 0, 30)
 		Ui.pad(value, 12, 0)
-		Ui.shrinkText(value, 11, 16)
-		local number = Ui.title(block, tostring(rank), if rank == 1 then 32 else 26, Ui.Colors.Ink)
-		number.Size = UDim2.new(1, 0, 0, height - 28)
+		Ui.shrinkText(value, 15, 18)
+		local number = Ui.title(block, tostring(rank), if rank == 1 then 36 else 30, Ui.Colors.Ink)
+		number.Size = UDim2.new(1, 0, 0, height - 32)
 		local nameLabel =
-			Ui.caps(column, if entry then entry.Name or "?" else "-", 13, Ui.Colors.Text)
+			Ui.caps(column, if entry then entry.Name or "?" else "-", 18, Ui.Colors.Text)
 		nameLabel.AnchorPoint = Vector2.new(0.5, 1)
 		nameLabel.Position = UDim2.new(0.5, 0, 1, -height - 6)
-		nameLabel.Size = UDim2.new(1, -8, 0, 20)
-		Ui.shrinkText(nameLabel, 11, 13)
-		local faceSize = if rank == 1 then 44 else 38
+		nameLabel.Size = UDim2.new(1, -4, 0, 28)
+		Ui.shrinkText(nameLabel, 15, 18)
+		local faceSize = if rank == 1 then 46 else 40
 		local face = avatar(column, if entry then entry.UserId else nil, faceSize, color)
 		face.AnchorPoint = Vector2.new(0.5, 1)
-		face.Position = UDim2.new(0.5, 0, 1, -height - 30)
+		face.Position = UDim2.new(0.5, 0, 1, -height - 38)
 		if rank == 1 then
 			local crown = Ui.icon(column, "crown", 28, Ui.Colors.Yellow, Ui.Colors.Ink)
 			crown.AnchorPoint = Vector2.new(0.5, 1)
-			crown.Position = UDim2.new(0.5, 0, 1, -height - 30 - faceSize - 4)
+			crown.Position = UDim2.new(0.5, 0, 1, -height - 38 - faceSize - 4)
 		end
 	end
 
@@ -271,14 +272,14 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 					and period == "This week"
 				then "This week"
 				else "All time",
-			13,
+			16,
 			Ui.Colors.Dim
 		)
 		when.AnchorPoint = Vector2.new(1, 0)
 		when.Position = UDim2.fromScale(1, 0)
 		when.Size = UDim2.new(0.38, -8, 1, 0)
 		when.TextXAlignment = Enum.TextXAlignment.Right
-		Ui.shrinkText(when, 11, 13)
+		Ui.shrinkText(when, 15, 16)
 		podium = Ui.frame(middle)
 		podium.LayoutOrder = 1
 		podium.Size = UDim2.new(1, -6, 0, PODIUM_HEIGHT)
@@ -292,9 +293,9 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		podiumBlock(3, entries[3], 0.8, 56)
 		if #entries == 0 then
 			-- Nothing recorded yet (a new week, or saving is off and nobody has a score).
-			local none = Ui.caps(list, "No scores yet", 12, Ui.Colors.Dim)
+			local none = Ui.caps(list, "No scores yet", 16, Ui.Colors.Dim)
 			none.LayoutOrder = 10
-			none.Size = UDim2.new(1, -6, 0, 30)
+			none.Size = UDim2.new(1, -6, 0, 36)
 		end
 		for i = 4, math.min(#entries, Config.Leaderboards.ShowCount) do
 			local entry = entries[i]
@@ -345,19 +346,19 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local statsScroll = Ui.scroll(statsFrame, 8)
 	local tiles = Ui.frame(statsScroll)
 	tiles.LayoutOrder = 1
-	tiles.Size = UDim2.new(1, 0, 0, 152)
+	tiles.Size = UDim2.new(1, 0, 0, 176)
 	local tileGrid = Instance.new("UIGridLayout")
-	tileGrid.CellSize = UDim2.new(0.25, -6, 0, 72)
+	tileGrid.CellSize = UDim2.new(0.25, -6, 0, 84)
 	tileGrid.CellPadding = UDim2.fromOffset(8, 8)
 	tileGrid.SortOrder = Enum.SortOrder.LayoutOrder
 	tileGrid.Parent = tiles
-	local movesTitle = Ui.caps(statsScroll, "Moves", 13, Ui.Colors.Text)
+	local movesTitle = Ui.caps(statsScroll, "Moves", 18, Ui.Colors.Text)
 	movesTitle.LayoutOrder = 2
-	movesTitle.Size = UDim2.new(1, 0, 0, 20)
+	movesTitle.Size = UDim2.new(1, 0, 0, 28)
 	movesTitle.TextXAlignment = Enum.TextXAlignment.Left
 	local moves = Ui.frame(statsScroll)
 	moves.LayoutOrder = 3
-	moves.Size = UDim2.new(1, 0, 0, 64)
+	moves.Size = UDim2.new(1, 0, 0, 80)
 
 	local function drawStats()
 		local profile = Profile.get()
@@ -368,8 +369,8 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 		-- Four tiles across, or two on a narrow page.
 		local columns = if narrow() then 2 else 4
 		local rows = math.ceil(8 / columns)
-		tileGrid.CellSize = UDim2.new(1 / columns, -(8 * (columns - 1)) / columns, 0, 72)
-		tiles.Size = UDim2.new(1, 0, 0, rows * 72 + (rows - 1) * 8)
+		tileGrid.CellSize = UDim2.new(1 / columns, -(8 * (columns - 1)) / columns, 0, 84)
+		tiles.Size = UDim2.new(1, 0, 0, rows * 84 + (rows - 1) * 8)
 		Ui.clear(tiles)
 		local games = math.max(stats.GamesPlayed, 0)
 		local minutes = stats.PlayMinutes or 0
@@ -392,16 +393,16 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 			card.LayoutOrder = i
 			local strip = Ui.frame(card, tile[3])
 			strip.Size = UDim2.new(1, -8, 0, 4)
-			local label = Ui.caps(card, tile[1], 11, Ui.Colors.Dim)
+			local label = Ui.caps(card, tile[1], 14, Ui.Colors.Dim)
 			label.Position = UDim2.fromOffset(12, 10)
-			label.Size = UDim2.new(1, -24, 0, 16)
+			label.Size = UDim2.new(1, -24, 0, 22)
 			label.TextXAlignment = Enum.TextXAlignment.Left
-			local value = Ui.title(card, tile[2], 30, tile[3])
-			value.Position = UDim2.fromOffset(12, 28)
-			value.Size = UDim2.new(1, -24, 0, 38)
+			local value = Ui.title(card, tile[2], 34, tile[3])
+			value.Position = UDim2.fromOffset(12, 34)
+			value.Size = UDim2.new(1, -24, 0, 42)
 			value.TextXAlignment = Enum.TextXAlignment.Left
-			Ui.shrinkText(value, 16, 30)
-			Ui.shrinkText(label, 11, 11)
+			Ui.shrinkText(value, 18, 34)
+			Ui.shrinkText(label, 15, 14)
 		end
 		Ui.clear(moves)
 		local moveList = {
@@ -413,24 +414,24 @@ function LeadersTab.build(page: Frame, api: { [string]: any }): () -> ()
 			most = math.max(most, move[3])
 		end
 		for i, move in moveList do
-			local y = (i - 1) * 30
-			local icon = Ui.icon(moves, move[1], 22, move[4], Ui.Colors.Text)
-			icon.Position = UDim2.fromOffset(2, y + 1)
-			local name = Ui.caps(moves, move[2], 12, Ui.Colors.Text)
-			name.Position = UDim2.fromOffset(32, y)
-			name.Size = UDim2.fromOffset(100, 24)
+			local y = (i - 1) * 38
+			local icon = Ui.icon(moves, move[1], 28, move[4], Ui.Colors.Text)
+			icon.Position = UDim2.fromOffset(2, y + 2)
+			local name = Ui.caps(moves, move[2], 16, Ui.Colors.Text)
+			name.Position = UDim2.fromOffset(38, y)
+			name.Size = UDim2.fromOffset(140, 32)
 			name.TextXAlignment = Enum.TextXAlignment.Left
-			Ui.shrinkText(name, 11, 12)
+			Ui.shrinkText(name, 15, 16)
 			local bar, set = Ui.bar(moves, move[4], 4)
-			bar.Position = UDim2.fromOffset(136, y + 6)
-			bar.Size = UDim2.new(1, -136 - 80, 0, 12)
+			bar.Position = UDim2.fromOffset(184, y + 9)
+			bar.Size = UDim2.new(1, -184 - 96, 0, 14)
 			set(move[3] / most)
-			local value = Ui.caps(moves, Ui.number(move[3]), 13, Ui.Colors.Text)
+			local value = Ui.caps(moves, Ui.number(move[3]), 18, Ui.Colors.Text)
 			value.AnchorPoint = Vector2.new(1, 0)
 			value.Position = UDim2.new(1, 0, 0, y)
-			value.Size = UDim2.fromOffset(72, 24)
+			value.Size = UDim2.fromOffset(88, 32)
 			value.TextXAlignment = Enum.TextXAlignment.Right
-			Ui.shrinkText(value, 11, 13)
+			Ui.shrinkText(value, 15, 18)
 		end
 	end
 

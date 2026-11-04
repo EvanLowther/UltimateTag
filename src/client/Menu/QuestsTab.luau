@@ -149,55 +149,55 @@ local function row(
 ): (Frame, Frame)
 	local r = Ui.slab(parent, back, 6)
 	r.LayoutOrder = order
-	local barY = if line then 46 else 30
+	local barY = if line then 64 else 40
 	-- Narrow: the right side moves under the bar, so the row is taller and the texts get the
 	-- whole width (less the count beside the bar). Wide: from the right edge, 12 margin, the
 	-- reward or button (132), a gap, the count (96), a gap, then the texts and bar.
 	local rightHeight = Ui.hit(34) + 2
-	local textRight = if narrow then 12 else 256
+	local textRight = if narrow then 12 else 296
 	r.Size =
-		UDim2.new(1, -6, 0, if narrow then barY + 20 + rightHeight + 8 else if line then 68 else 56)
+		UDim2.new(1, -6, 0, if narrow then barY + 24 + rightHeight + 8 else if line then 88 else 66)
 	local edge = Ui.slab(r, accent, 6)
 	edge.Size = UDim2.new(0, 12, 1, 0)
 	edge.ZIndex = 1
 	local box = Ui.frame(r, Ui.Colors.Panel)
-	box.Position = UDim2.fromOffset(18, 9)
-	box.Size = UDim2.fromOffset(38, 38)
-	Ui.centerIcon(box, icon, 28, accent, Ui.Colors.Text)
-	local title = Ui.caps(r, titleText, 14, Ui.Colors.Text)
-	title.Position = UDim2.fromOffset(66, 5)
-	title.Size = UDim2.new(1, -66 - textRight, 0, 20)
+	box.Position = UDim2.fromOffset(18, 10)
+	box.Size = UDim2.fromOffset(44, 44)
+	Ui.centerIcon(box, icon, 32, accent, Ui.Colors.Text)
+	local title = Ui.caps(r, titleText, 17, Ui.Colors.Text)
+	title.Position = UDim2.fromOffset(72, 6)
+	title.Size = UDim2.new(1, -72 - textRight, 0, 26)
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.TextTruncate = Enum.TextTruncate.AtEnd
 	if line then
-		local sub = Ui.text(r, line, 12, Ui.Colors.Dim)
-		sub.Position = UDim2.fromOffset(66, 25)
-		sub.Size = UDim2.new(1, -66 - textRight, 0, 18)
+		local sub = Ui.text(r, line, 15, Ui.Colors.Dim)
+		sub.Position = UDim2.fromOffset(72, 33)
+		sub.Size = UDim2.new(1, -72 - textRight, 0, 24)
 		sub.TextXAlignment = Enum.TextXAlignment.Left
 		sub.TextTruncate = Enum.TextTruncate.AtEnd
 	end
 	local bar, set = Ui.bar(r, accent, 4)
-	bar.Position = UDim2.fromOffset(66, barY)
-	bar.Size = UDim2.new(1, -66 - textRight - (if narrow then 96 else 0), 0, 12)
+	bar.Position = UDim2.fromOffset(72, barY)
+	bar.Size = UDim2.new(1, -72 - textRight - (if narrow then 120 else 0), 0, 14)
 	set(progress)
-	local count = Ui.caps(r, countText, 13, Ui.Colors.Text)
+	local count = Ui.caps(r, countText, 16, Ui.Colors.Text)
 	count.AnchorPoint = Vector2.new(1, 0)
 	count.TextXAlignment = Enum.TextXAlignment.Right
 	local right = Ui.frame(r)
 	if narrow then
-		count.Position = UDim2.new(1, -12, 0, barY - 4)
-		count.Size = UDim2.fromOffset(88, 20)
+		count.Position = UDim2.new(1, -12, 0, barY - 6)
+		count.Size = UDim2.fromOffset(112, 26)
 		right.AnchorPoint = Vector2.new(1, 0)
-		right.Position = UDim2.new(1, -12, 0, barY + 20)
-		right.Size = UDim2.new(1, -66 - 12, 0, rightHeight)
+		right.Position = UDim2.new(1, -12, 0, barY + 24)
+		right.Size = UDim2.new(1, -72 - 12, 0, rightHeight)
 	else
-		count.Position = UDim2.new(1, -156, 0, 0)
-		count.Size = UDim2.new(0, 96, 1, 0)
+		count.Position = UDim2.new(1, -172, 0, 0)
+		count.Size = UDim2.new(0, 112, 1, 0)
 		right.AnchorPoint = Vector2.new(1, 0)
 		right.Position = UDim2.new(1, -12, 0, 0)
-		right.Size = UDim2.new(0, 132, 1, 0)
+		right.Size = UDim2.new(0, 152, 1, 0)
 	end
-	Ui.shrinkText(count, 11, 13) -- 12,345/50,000 shrinks, then is cut off
+	Ui.shrinkText(count, 15, 16) -- 12,345/50,000 shrinks, then is cut off
 	return r, right
 end
 
@@ -205,20 +205,20 @@ local function claimButton(parent: Frame, onClick: () -> ())
 	local claim = Ui.button(parent, "Claim", Ui.Colors.Lime, onClick, Ui.Colors.Ink, 7)
 	claim.AnchorPoint = Vector2.new(1, 0.5)
 	claim.Position = UDim2.fromScale(1, 0.5)
-	claim.Size = UDim2.fromOffset(104, Ui.hit(34))
-	Ui.setTextSize(claim, 16)
+	claim.Size = UDim2.fromOffset(124, Ui.hit(40))
+	Ui.setTextSize(claim, 18)
 	Ui.pulse(claim)
 end
 
 -- A done mark on the right of a row: an icon and a word.
 local function rightMark(parent: Frame, icon: string, text: string, color: Color3)
-	local mark = Ui.iconText(parent, icon, text, 12, color)
+	local mark = Ui.iconText(parent, icon, text, 15, color)
 	mark.AnchorPoint = Vector2.new(1, 0.5)
 	mark.Position = UDim2.fromScale(1, 0.5)
 end
 
 local function rightText(parent: Frame, text: string, color: Color3?)
-	local label = Ui.caps(parent, text, 12, color or Ui.Colors.Text)
+	local label = Ui.caps(parent, text, 14, color or Ui.Colors.Text)
 	label.Size = UDim2.fromScale(1, 1)
 	label.TextXAlignment = Enum.TextXAlignment.Right
 	label.TextWrapped = true
@@ -229,30 +229,30 @@ end
 local function emptyRow(parent: Instance, order: number, text: string)
 	local frame = Ui.frame(parent)
 	frame.LayoutOrder = order
-	frame.Size = UDim2.new(1, -6, 0, 36)
-	local label = Ui.caps(frame, text, 12, Ui.Colors.Dim)
+	frame.Size = UDim2.new(1, -6, 0, 44)
+	local label = Ui.caps(frame, text, 16, Ui.Colors.Dim)
 	label.Size = UDim2.fromScale(1, 1)
 end
 
 local function heading(parent: Instance, order: number, text: string, timer: string)
 	local frame = Ui.frame(parent)
 	frame.LayoutOrder = order
-	frame.Size = UDim2.new(1, -6, 0, 22)
-	local left = Ui.caps(frame, text, 14, Ui.Colors.Text)
+	frame.Size = UDim2.new(1, -6, 0, 32)
+	local left = Ui.caps(frame, text, 18, Ui.Colors.Text)
 	left.Size = UDim2.new(0.5, -4, 1, 0)
 	left.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(left, 11, 14)
-	local right = Ui.caps(frame, timer, 12, Ui.Colors.Dim)
+	Ui.shrinkText(left, 15, 18)
+	local right = Ui.caps(frame, timer, 15, Ui.Colors.Dim)
 	right.AnchorPoint = Vector2.new(1, 0)
 	right.Position = UDim2.fromScale(1, 0)
 	right.Size = UDim2.new(0.5, -4, 1, 0)
 	right.TextXAlignment = Enum.TextXAlignment.Right
-	Ui.shrinkText(right, 11, 12)
+	Ui.shrinkText(right, 15, 15)
 end
 
 function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
-	local top = Ui.hit(30) + 12 -- under the Daily / Achievements tabs
-	local chipHeight = Ui.hit(24)
+	local top = Ui.hit(36) + 12 -- under the Daily / Achievements tabs
+	local chipHeight = Ui.hit(36)
 	local function narrow(): boolean
 		return Ui.bodySize(page).X < NARROW_BELOW
 	end
@@ -270,7 +270,7 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	local chipRow, selectChip = Ui.tabs(achievements, CATEGORIES, Ui.Colors.Text, function(name)
 		category = name
 		refresh()
-	end, 24, 11, 9)
+	end, 36, 14, 10)
 	chipRow.Position = UDim2.fromOffset(0, 0)
 	selectChip(category)
 	local chainHolder = Ui.frame(achievements)
@@ -369,11 +369,11 @@ function QuestsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		end
 		local noteRow = Ui.frame(dailyList)
 		noteRow.LayoutOrder = order + 1
-		noteRow.Size = UDim2.new(1, -6, 0, 40)
+		noteRow.Size = UDim2.new(1, -6, 0, 56)
 		local note = Ui.caps(
 			noteRow,
 			"Progress tracks on its own. Claim each reward here when it's done.",
-			11,
+			14,
 			Ui.Colors.Dim
 		)
 		note.Size = UDim2.fromScale(1, 1)

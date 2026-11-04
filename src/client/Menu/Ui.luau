@@ -195,7 +195,7 @@ function Ui.shrinkText(label: TextLabel, min: number, max: number?)
 		limit = Instance.new("UITextSizeConstraint")
 		limit.Parent = label
 	end
-	local top = max or label.TextSize
+	local top = if max then Ui.readable(max) else label.TextSize
 	limit.MinTextSize = math.min(math.max(min, Config.Ui.MinTextSize), top)
 	limit.MaxTextSize = top
 end
@@ -346,6 +346,22 @@ function Ui.frame(parent: Instance?, color: Color3?): Frame
 end
 
 -- Text (no background), bold Titillium unless `font` says otherwise. Rich text allowed.
+-- The size a label's text is really drawn at: small sizes are raised so everyone can read them
+-- (11 becomes 16, 13 becomes 18, 16 becomes 20, 20 becomes 23; 24 and up stay as they are).
+-- Ui.text (so Ui.caps and Ui.title), Ui.shrinkText, Ui.setTextSize and Ui.tabs all use it, so
+-- layouts keep writing the sizes they were designed with. Never pass its result back into
+-- those (it would be raised twice).
+function Ui.readable(size: number): number
+	if size >= 24 then
+		return size
+	elseif size <= 14 then
+		return math.max(16, size + 5)
+	elseif size <= 18 then
+		return size + 4
+	end
+	return math.min(size + 3, 24)
+end
+
 function Ui.text(
 	parent: Instance?,
 	text: string,
@@ -356,7 +372,7 @@ function Ui.text(
 	local l = Instance.new("TextLabel")
 	l.BackgroundTransparency = 1
 	l.FontFace = font or Ui.Bold
-	l.TextSize = size or 16
+	l.TextSize = Ui.readable(size or 16)
 	l.TextColor3 = color or Ui.Colors.Text
 	l.RichText = true
 	l.Text = text
@@ -476,18 +492,19 @@ function Ui.iconText(
 	iconColor: Color3?,
 	accent: Color3?
 ): (Frame, TextLabel)
+	local shown = Ui.readable(size)
 	local row = Instance.new("Frame")
 	row.Name = "IconText"
 	row.BackgroundTransparency = 1
-	row.Size = UDim2.fromOffset(0, size + 6)
+	row.Size = UDim2.fromOffset(0, shown + 6)
 	row.AutomaticSize = Enum.AutomaticSize.X
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
 	layout.VerticalAlignment = Enum.VerticalAlignment.Center
-	layout.Padding = UDim.new(0, math.max(4, math.floor(size / 3)))
+	layout.Padding = UDim.new(0, math.max(4, math.floor(shown / 3)))
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
 	layout.Parent = row
-	local mark = Icons.draw(row, icon, size + 2, iconColor or color, accent)
+	local mark = Icons.draw(row, icon, shown + 2, iconColor or color, accent)
 	mark.LayoutOrder = 1
 	local label = Ui.caps(row, text, size, color)
 	label.Name = "Label"
@@ -623,11 +640,12 @@ end
 function Ui.setTextSize(button: GuiObject, size: number)
 	local label = button:FindFirstChild("Label", true)
 	if label and label:IsA("TextLabel") then
-		label.TextSize = size
+		local shown = Ui.readable(size)
+		label.TextSize = shown
 		local limit = label:FindFirstChildOfClass("UITextSizeConstraint")
 		if limit then
-			limit.MaxTextSize = size
-			limit.MinTextSize = math.min(limit.MinTextSize, size)
+			limit.MaxTextSize = shown
+			limit.MinTextSize = math.min(limit.MinTextSize, shown)
 		end
 	end
 end
@@ -677,7 +695,7 @@ function Ui.tabs(
 	local row = Instance.new("Frame")
 	row.Name = "Tabs"
 	row.BackgroundTransparency = 1
-	row.Size = UDim2.fromOffset(0, Ui.hit(height or 30))
+	row.Size = UDim2.fromOffset(0, Ui.hit(math.max(height or 36, 36)))
 	row.AutomaticSize = Enum.AutomaticSize.X
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
@@ -693,7 +711,7 @@ function Ui.tabs(
 	local GAP = 6
 	-- Each label keeps a bumper on both sides, clear of the slanted ends, its text centred.
 	local bumper = math.max(sidePadding or 14, SLANT + 9)
-	local baseSize = textSize or 13
+	local baseSize = Ui.readable(textSize or 13)
 
 	local function draw(name: string)
 		local label = labels[name]
@@ -739,7 +757,8 @@ function Ui.tabs(
 		local fill = Ui.slab(tab, Ui.Colors.Tab, SLANT)
 		fill.Name = "Fill"
 		fill.Size = UDim2.fromScale(1, 1)
-		local label = Ui.caps(tab, name, baseSize, Ui.Colors.Dim)
+		local label = Ui.caps(tab, name, 0, Ui.Colors.Dim)
+		label.TextSize = baseSize -- (already readable)
 		label.Size = UDim2.fromScale(0, 1)
 		label.AutomaticSize = Enum.AutomaticSize.X
 		label.TextXAlignment = Enum.TextXAlignment.Center
@@ -950,6 +969,7 @@ function Ui.coin(parent: Instance?, size: number): Frame
 		Color3.fromRGB(150, 100, 0),
 		Ui.Heavy
 	)
+	c.TextSize = math.max(8, math.floor(size * 0.7)) -- (the coin's own letter keeps to the coin)
 	c.Size = UDim2.fromScale(1, 1)
 	return coin
 end
@@ -965,7 +985,7 @@ function Ui.coinAmount(
 	local holder = Instance.new("Frame")
 	holder.Name = "CoinAmount"
 	holder.BackgroundTransparency = 1
-	holder.Size = UDim2.fromOffset(0, h + 4)
+	holder.Size = UDim2.fromOffset(0, Ui.readable(h + 2) + 2)
 	holder.AutomaticSize = Enum.AutomaticSize.X
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
@@ -1030,7 +1050,7 @@ function Ui.badge(parent: GuiObject): TextLabel
 	badge.Name = "Badge"
 	badge.AnchorPoint = Vector2.new(1, 0.5)
 	badge.Position = UDim2.new(1, 6, 0, 2)
-	badge.Size = UDim2.fromOffset(0, 20)
+	badge.Size = UDim2.fromOffset(0, 24)
 	badge.AutomaticSize = Enum.AutomaticSize.X
 	badge.BackgroundColor3 = Ui.Colors.Pink
 	badge.BackgroundTransparency = 0

@@ -27,7 +27,7 @@ local queue: { () -> () } = {}
 local showing = false
 
 local TOP = 50 -- popups sit above the menu window
-local CARD_WIDTH = 380 -- the reward card (narrower on a narrow screen)
+local CARD_WIDTH = 440 -- the reward card (narrower on a narrow screen)
 local REEL_WIDTH = 600 -- the crate window (ditto)
 local SHOWN_EXTRA = 5 -- other items named under the prize (the rest are counted)
 local REASONS = {
@@ -138,7 +138,7 @@ local function card(title: string, lines: { string }, color: Color3, seconds: nu
 	onTop(panel)
 	panel.AnchorPoint = Vector2.new(0.5, 0)
 	panel.Position = UDim2.new(0.5, 0, 0, 110)
-	panel.Size = UDim2.fromOffset(math.min(CARD_WIDTH, Ui.viewport().X - 24), 58 + #lines * 26)
+	panel.Size = UDim2.fromOffset(math.min(CARD_WIDTH, Ui.viewport().X - 24), 62 + #lines * 32)
 	local header = Ui.slab(panel, color, 10)
 	header.Size = UDim2.new(1, -20, 0, 40)
 	local titleLabel = Ui.title(header, title, 28, Ui.Colors.Ink)
@@ -146,10 +146,10 @@ local function card(title: string, lines: { string }, color: Color3, seconds: nu
 	Ui.pad(titleLabel, 18, 2) -- (clear of the header's slanted ends)
 	Ui.shrinkText(titleLabel, 14, 28)
 	for i, line in lines do
-		local l = Ui.caps(panel, line, 15, Ui.Colors.Text)
-		l.Position = UDim2.fromOffset(16, 44 + (i - 1) * 26)
-		l.Size = UDim2.new(1, -32, 0, 24)
-		Ui.shrinkText(l, 11, 15) -- one line each; a long item name gets smaller
+		local l = Ui.caps(panel, line, 18, Ui.Colors.Text)
+		l.Position = UDim2.fromOffset(16, 46 + (i - 1) * 32)
+		l.Size = UDim2.new(1, -32, 0, 30)
+		Ui.shrinkText(l, 15, 18) -- one line each; a long item name gets smaller
 	end
 	Ui.popIn(panel)
 	task.wait(seconds)
@@ -221,7 +221,7 @@ local function crateReel(results: { { [string]: any } })
 		return
 	end
 	local prize = best :: Catalog.Item
-	local width, height = 128, 170
+	local width, height = 140, 190
 	local count, stopAt = 26, 22
 	local window, body, close = Ui.window(gui, "Mystery crate", Ui.Colors.Yellow, "crate")
 	onTop(window)
@@ -229,7 +229,7 @@ local function crateReel(results: { { [string]: any } })
 	window.AnchorPoint = Vector2.new(0.5, 0.5)
 	window.Position = UDim2.fromScale(0.5, 0.45)
 	local windowWidth = math.min(REEL_WIDTH, Ui.viewport().X - 24)
-	window.Size = UDim2.fromOffset(windowWidth, height + 196)
+	window.Size = UDim2.fromOffset(windowWidth, height + 214)
 	local view = Ui.frame(body)
 	view.ClipsDescendants = true
 	view.Size = UDim2.new(1, 0, 0, height + 10)
@@ -261,9 +261,9 @@ local function crateReel(results: { { [string]: any } })
 	result.Position = UDim2.fromOffset(0, height + 16)
 	result.Size = UDim2.new(1, 0, 0, 32)
 	Ui.shrinkText(result, 11, 20) -- a long name and serial number shrink to the window
-	local rest = Ui.caps(body, "", 12, Ui.Colors.Dim)
+	local rest = Ui.caps(body, "", 15, Ui.Colors.Dim)
 	rest.Position = UDim2.fromOffset(0, height + 52)
-	rest.Size = UDim2.new(1, 0, 0, 56)
+	rest.Size = UDim2.new(1, 0, 0, 70)
 	rest.TextWrapped = true
 	rest.TextTruncate = Enum.TextTruncate.AtEnd
 	rest.TextYAlignment = Enum.TextYAlignment.Top

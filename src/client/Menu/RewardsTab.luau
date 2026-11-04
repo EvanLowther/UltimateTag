@@ -3,7 +3,8 @@
 --   The daily login streak (server/DailyStreak): a row of the 7 days, today's with a Claim
 --   button (claimed by hand, once per UTC day; missing a day starts it over).
 --   Your crates: the Mystery crate with how many you have, its odds (shared/Catalog), Open and
---   Open all (server/Shop; the reel plays in Menu/Popups), and what you opened last.
+--   Open all (server/Shop; the reel plays in Menu/Popups), and beside them the last few things
+--   you opened (the newest LAST_SHOWN, in a strip no taller than the Open button).
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
@@ -16,10 +17,10 @@ local Ui = require(script.Parent.Ui)
 
 local RewardsTab = {}
 
-local LAST_SHOWN = 8 -- items in the "Last opened" row
+local LAST_SHOWN = 5 -- items in the "Last opened" strip (the newest)
 local NARROW_BELOW = 560 -- pages narrower than this (virtual pixels) stack the crate and its odds
-local DAY_HEIGHT = 76 -- a streak day's tile
-local CRATE_HEIGHT = 184 -- the crate panel and the odds panel
+local DAY_HEIGHT = 100 -- a streak day's tile
+local CRATE_HEIGHT = 236 -- the crate panel and the odds panel
 
 -- Can today's streak reward be claimed?
 function RewardsTab.canClaim(profile: { [string]: any }): boolean
@@ -54,20 +55,20 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	-- The streak.
 	local streakHead = Ui.frame(scroll)
 	streakHead.LayoutOrder = 1
-	streakHead.Size = UDim2.new(1, -6, 0, 22)
-	local flame = Ui.icon(streakHead, "flame", 20, Ui.Colors.Orange, Ui.Colors.Yellow)
-	flame.Position = UDim2.fromOffset(0, 1)
-	local streakTitle = Ui.caps(streakHead, "", 14, Ui.Colors.Text)
-	streakTitle.Position = UDim2.fromOffset(26, 0)
-	streakTitle.Size = UDim2.new(0.6, -30, 1, 0)
+	streakHead.Size = UDim2.new(1, -6, 0, 32)
+	local flame = Ui.icon(streakHead, "flame", 28, Ui.Colors.Orange, Ui.Colors.Yellow)
+	flame.Position = UDim2.fromOffset(0, 2)
+	local streakTitle = Ui.caps(streakHead, "", 19, Ui.Colors.Text)
+	streakTitle.Position = UDim2.fromOffset(36, 0)
+	streakTitle.Size = UDim2.new(0.6, -40, 1, 0)
 	streakTitle.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(streakTitle, 11, 14)
-	local streakNote = Ui.caps(streakHead, "", 12, Ui.Colors.Dim)
+	Ui.shrinkText(streakTitle, 15, 19)
+	local streakNote = Ui.caps(streakHead, "", 15, Ui.Colors.Dim)
 	streakNote.AnchorPoint = Vector2.new(1, 0)
 	streakNote.Position = UDim2.fromScale(1, 0)
 	streakNote.Size = UDim2.new(0.4, -4, 1, 0)
 	streakNote.TextXAlignment = Enum.TextXAlignment.Right
-	Ui.shrinkText(streakNote, 11, 12)
+	Ui.shrinkText(streakNote, 15, 15)
 	local days = Ui.frame(scroll)
 	days.LayoutOrder = 2
 	days.Size = UDim2.new(1, -6, 0, DAY_HEIGHT)
@@ -78,9 +79,9 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	dayGrid.Parent = days
 
 	-- The crates.
-	local crateHead = Ui.caps(scroll, "Your crates", 14, Ui.Colors.Text)
+	local crateHead = Ui.caps(scroll, "Your crates", 19, Ui.Colors.Text)
 	crateHead.LayoutOrder = 3
-	crateHead.Size = UDim2.new(1, -6, 0, 22)
+	crateHead.Size = UDim2.new(1, -6, 0, 30)
 	crateHead.TextXAlignment = Enum.TextXAlignment.Left
 	local crateRow = Ui.frame(scroll)
 	crateRow.LayoutOrder = 4
@@ -90,46 +91,47 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 	end
 
 	local crate = Ui.panel(crateRow, Ui.Colors.Card, 10)
-	crate.Size = UDim2.new(0, 220, 1, 0)
+	crate.Size = UDim2.new(0, 250, 1, 0)
 	local crateStrip = Ui.frame(crate, Ui.Colors.Yellow)
 	crateStrip.Size = UDim2.new(1, -10, 0, 4)
-	local box = Ui.icon(crate, "crate", 80, Ui.Colors.Yellow, Ui.Colors.Ink)
+	local box = Ui.icon(crate, "crate", 92, Ui.Colors.Yellow, Ui.Colors.Ink)
 	box.AnchorPoint = Vector2.new(0.5, 0)
-	box.Position = UDim2.new(0.5, 0, 0, 16)
-	local crateName = Ui.title(crate, "Mystery crate", 26, Ui.Colors.Text)
-	crateName.Position = UDim2.fromOffset(0, 100)
-	crateName.Size = UDim2.new(1, 0, 0, 32)
+	box.Position = UDim2.new(0.5, 0, 0, 40)
+	local crateName = Ui.title(crate, "Mystery crate", 32, Ui.Colors.Text)
+	crateName.Position = UDim2.fromOffset(0, 140)
+	crateName.Size = UDim2.new(1, 0, 0, 38)
 	Ui.pad(crateName, 12, 0)
-	Ui.shrinkText(crateName, 16, 26)
-	local crateStatus = Ui.caps(crate, "", 12, Ui.Colors.Dim)
-	crateStatus.Position = UDim2.fromOffset(0, 134)
-	crateStatus.Size = UDim2.new(1, 0, 0, 20)
+	Ui.shrinkText(crateName, 18, 32)
+	local crateStatus = Ui.caps(crate, "", 16, Ui.Colors.Text)
+	crateStatus.Position = UDim2.fromOffset(0, 182)
+	crateStatus.Size = UDim2.new(1, 0, 0, 44)
+	crateStatus.TextWrapped = true
 	Ui.pad(crateStatus, 12, 0)
-	Ui.shrinkText(crateStatus, 11, 12)
-	local crateCount = Ui.caps(crate, "", 18, Ui.Colors.Lime)
+	local crateCount = Ui.caps(crate, "", 20, Ui.Colors.Lime)
 	crateCount.AnchorPoint = Vector2.new(1, 0)
 	crateCount.Position = UDim2.new(1, -14, 0, 10)
-	crateCount.Size = UDim2.fromOffset(104, 24)
-	Ui.shrinkText(crateCount, 11, 18)
+	crateCount.Size = UDim2.fromOffset(160, 30)
+	Ui.shrinkText(crateCount, 15, 20)
 	crateCount.TextXAlignment = Enum.TextXAlignment.Right
 
 	local odds = Ui.panel(crateRow, Ui.Colors.Card, 10)
-	odds.Position = UDim2.fromOffset(232, 0)
-	odds.Size = UDim2.new(1, -232, 1, 0)
-	local oddsTitle = Ui.caps(odds, "Mystery crate odds", 12, Ui.Colors.Text)
+	odds.Position = UDim2.fromOffset(262, 0)
+	odds.Size = UDim2.new(1, -262, 1, 0)
+	local oddsTitle = Ui.caps(odds, "Mystery crate odds", 16, Ui.Colors.Text)
 	oddsTitle.Position = UDim2.fromOffset(14, 10)
-	oddsTitle.Size = UDim2.new(1, -28, 0, 18)
+	oddsTitle.Size = UDim2.new(1, -28, 0, 26)
 	oddsTitle.TextXAlignment = Enum.TextXAlignment.Left
 	for i, name in Catalog.CrateOrder do
 		local rarity = Catalog.Rarities[name]
-		local y = 34 + (i - 1) * 22
-		local label = Ui.rarity(odds, name, 12)
+		local y = 44 + (i - 1) * 28
+		local label = Ui.rarity(odds, name, 15)
 		label.Position = UDim2.fromOffset(14, y)
-		label.Size = UDim2.fromOffset(84, 16)
+		label.Size = UDim2.fromOffset(124, 24)
 		label.TextXAlignment = Enum.TextXAlignment.Left
+		Ui.shrinkText(label, 15, 15)
 		local bar, set = Ui.bar(odds, rarity.color, 4)
-		bar.Position = UDim2.fromOffset(104, y + 3)
-		bar.Size = UDim2.new(1, -190, 0, 10)
+		bar.Position = UDim2.fromOffset(144, y + 6)
+		bar.Size = UDim2.new(1, -144 - 104, 0, 12)
 		set(math.max(rarity.weight / 50, 0.03)) -- scaled so Common (45%) nearly fills it
 		if name == "Iridescent" then
 			-- Its sliver shimmers (the middle piece; the slanted ends keep their cut).
@@ -140,98 +142,105 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 				Ui.holo(middle)
 			end
 		end
-		local percent = Ui.caps(odds, `{rarity.weight}%`, 12, Ui.Colors.Text)
+		local percent = Ui.caps(odds, `{rarity.weight}%`, 15, Ui.Colors.Text)
 		percent.AnchorPoint = Vector2.new(1, 0)
 		percent.Position = UDim2.new(1, -14, 0, y)
-		percent.Size = UDim2.fromOffset(64, 16)
+		percent.Size = UDim2.fromOffset(84, 24)
 		percent.TextXAlignment = Enum.TextXAlignment.Right
 	end
 	local oddsNote = Ui.text(
 		odds,
 		"Any trail, tag effect, title or victory. Iridescent is about 1 in 2,000. Duplicates can happen.",
-		12,
+		14,
 		Ui.Colors.Dim
 	)
-	oddsNote.Position = UDim2.new(0, 14, 1, -42)
-	oddsNote.Size = UDim2.new(1, -28, 0, 34)
+	oddsNote.Position = UDim2.new(0, 14, 1, -50)
+	oddsNote.Size = UDim2.new(1, -28, 0, 44)
 	oddsNote.TextXAlignment = Enum.TextXAlignment.Left
 	oddsNote.TextYAlignment = Enum.TextYAlignment.Top
 	oddsNote.TextWrapped = true
 	oddsNote.TextTruncate = Enum.TextTruncate.AtEnd
 
+	-- Open and Open all, and right beside them the last things you opened: a strip no taller
+	-- than the Open button, the newest LAST_SHOWN (it scrolls sideways if they don't all fit).
+	local BUTTON_HEIGHT = Ui.hit(46)
 	local buttons = Ui.frame(scroll)
 	buttons.LayoutOrder = 5
-	buttons.Size = UDim2.new(1, -6, 0, 50)
+	buttons.Size = UDim2.new(1, -6, 0, BUTTON_HEIGHT)
 	local open = Ui.button(buttons, "Open", Ui.Colors.Lime, function()
 		api.send("OpenCrate", 1)
 	end)
-	open.Size = UDim2.fromOffset(150, Ui.hit(42))
-	Ui.setTextSize(open, 20)
+	open.Size = UDim2.fromOffset(150, BUTTON_HEIGHT)
+	Ui.setTextSize(open, 22)
 	local openAll = Ui.button(buttons, "Open all", Ui.Colors.Tab, function()
 		local profile = Profile.get()
 		if profile and profile.Crates > 1 then
 			api.send("OpenCrate", math.min(profile.Crates, Config.Shop.OpenAllMax))
 		end
 	end, Ui.Colors.Text)
-	openAll.Position = UDim2.fromOffset(162, 4)
-	openAll.Size = UDim2.fromOffset(160, Ui.hit(34))
-	local more = Ui.caps(
-		buttons,
-		`Get more: <font color="#{Ui.Colors.Yellow:ToHex()}">SHOP, {Config.Shop.CratePrice} COINS</font>  ·  <font color="#{Ui.Colors.Cyan:ToHex()}">FREE EVERY {Config.Progression.CrateEvery} LEVELS</font>  ·  <font color="#{Ui.Colors.Lime:ToHex()}">DAY 7 STREAK</font>`,
-		11,
-		Ui.Colors.Dim
-	)
-	more.TextWrapped = true
-	more.TextTruncate = Enum.TextTruncate.AtEnd
+	openAll.Position = UDim2.fromOffset(162, 0)
+	openAll.Size = UDim2.fromOffset(170, BUTTON_HEIGHT)
+	Ui.setTextSize(openAll, 18)
 
-	-- Wide: the crate and its odds side by side, the "get more" line beside the buttons. Narrow:
-	-- stacked, and the line under the buttons.
+	local last = Instance.new("ScrollingFrame")
+	last.Name = "LastOpened"
+	last.BackgroundTransparency = 1
+	last.BorderSizePixel = 0
+	last.ScrollingDirection = Enum.ScrollingDirection.X
+	last.AutomaticCanvasSize = Enum.AutomaticSize.X
+	last.CanvasSize = UDim2.new()
+	last.ScrollBarThickness = 4
+	last.ScrollBarImageColor3 = Ui.Colors.Dim
+	last.ElasticBehavior = Enum.ElasticBehavior.Never
+	last.Parent = buttons
+	local lastLayout = Instance.new("UIListLayout")
+	lastLayout.FillDirection = Enum.FillDirection.Horizontal
+	lastLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	lastLayout.Padding = UDim.new(0, 6)
+	lastLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	lastLayout.Parent = last
+
+	-- Wide: the strip fills the rest of the buttons' row (after Open all, or after Open when
+	-- Open all is hidden). Narrow: under the buttons, as tall as them. Wide: the crate and its
+	-- odds side by side; narrow: stacked.
 	local function arrange()
+		local after = if openAll.Visible then 344 else 162
 		if narrow() then
 			crateRow.Size = UDim2.new(1, -6, 0, CRATE_HEIGHT * 2 + 10)
 			crate.Size = UDim2.new(1, 0, 0, CRATE_HEIGHT)
 			odds.Position = UDim2.fromOffset(0, CRATE_HEIGHT + 10)
 			odds.Size = UDim2.new(1, 0, 0, CRATE_HEIGHT)
-			buttons.Size = UDim2.new(1, -6, 0, 50 + 40)
-			more.Position = UDim2.fromOffset(0, 50)
-			more.Size = UDim2.new(1, 0, 0, 40)
-			more.TextXAlignment = Enum.TextXAlignment.Left
-			more.TextYAlignment = Enum.TextYAlignment.Top
+			buttons.Size = UDim2.new(1, -6, 0, BUTTON_HEIGHT * 2 + 8)
+			last.Position = UDim2.fromOffset(0, BUTTON_HEIGHT + 8)
+			last.Size = UDim2.new(1, 0, 0, BUTTON_HEIGHT)
 		else
 			crateRow.Size = UDim2.new(1, -6, 0, CRATE_HEIGHT)
-			crate.Size = UDim2.new(0, 220, 1, 0)
-			odds.Position = UDim2.fromOffset(232, 0)
-			odds.Size = UDim2.new(1, -232, 1, 0)
-			buttons.Size = UDim2.new(1, -6, 0, 50)
-			more.Position = UDim2.fromOffset(336, 0)
-			more.Size = UDim2.new(1, -336, 1, 0)
-			more.TextXAlignment = Enum.TextXAlignment.Right
-			more.TextYAlignment = Enum.TextYAlignment.Center
+			crate.Size = UDim2.new(0, 250, 1, 0)
+			odds.Position = UDim2.fromOffset(262, 0)
+			odds.Size = UDim2.new(1, -262, 1, 0)
+			buttons.Size = UDim2.new(1, -6, 0, BUTTON_HEIGHT)
+			last.Position = UDim2.fromOffset(after, 0)
+			last.Size = UDim2.new(1, -after, 0, BUTTON_HEIGHT)
 		end
-	end
-
-	local last = Ui.row(scroll, 6, 24)
-	last.LayoutOrder = 6
-	last.Size = UDim2.new(1, -6, 0, 24)
-	last.AutomaticSize = Enum.AutomaticSize.Y
-	local lastLayout = last:FindFirstChildOfClass("UIListLayout")
-	if lastLayout then
-		lastLayout.Wraps = true -- eight long names would run off the page in one row
-		lastLayout.Padding = UDim.new(0, 6)
 	end
 
 	-- What you opened this session, newest first.
 	local opened: { { id: string, duplicate: boolean } } = {}
 	local function drawLast()
-		Ui.clear(last)
-		local title = Ui.caps(last, "Last opened", 11, Ui.Colors.Dim)
+		for _, child in last:GetChildren() do
+			if child:IsA("GuiObject") then
+				child:Destroy()
+			end
+		end
+		local chipHeight = BUTTON_HEIGHT - 8 -- (room for the sideways scroll bar)
+		local title = Ui.caps(last, "Last opened", 14, Ui.Colors.Dim)
 		title.LayoutOrder = 0
-		title.Size = UDim2.fromScale(0, 1)
+		title.Size = UDim2.fromOffset(0, chipHeight)
 		title.AutomaticSize = Enum.AutomaticSize.X
 		if #opened == 0 then
-			local none = Ui.caps(last, "Nothing yet", 11, Ui.Colors.Dim)
+			local none = Ui.caps(last, "Nothing yet", 14, Ui.Colors.Dim)
 			none.LayoutOrder = 1
-			none.Size = UDim2.fromScale(0, 1)
+			none.Size = UDim2.fromOffset(0, chipHeight)
 			none.AutomaticSize = Enum.AutomaticSize.X
 		end
 		for i, entry in opened do
@@ -241,7 +250,7 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			end
 			local chip = Ui.frame(last, Ui.Colors.Card)
 			chip.LayoutOrder = i
-			chip.Size = UDim2.fromScale(0, 1)
+			chip.Size = UDim2.fromOffset(0, chipHeight)
 			chip.AutomaticSize = Enum.AutomaticSize.X
 			local edge = Ui.frame(chip, Ui.rarityColor(item.rarity))
 			edge.Size = UDim2.new(0, 4, 1, 0)
@@ -255,7 +264,7 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 						then ` <font color="#{Ui.Colors.Dim:ToHex()}">DUP</font>`
 						else ""
 				)
-			local name = Ui.caps(chip, text, 11, Ui.Colors.Text)
+			local name = Ui.caps(chip, text, 15, Ui.Colors.Text)
 			name.Position = UDim2.fromOffset(12, 0)
 			name.Size = UDim2.fromScale(0, 1)
 			name.AutomaticSize = Enum.AutomaticSize.X
@@ -342,21 +351,21 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 					then "Claim today"
 					elseif day == count and claimed then "Today"
 					else `Day {day}`,
-				11,
+				14,
 				ink
 			)
-			top.Position = UDim2.fromOffset(0, 6)
-			top.Size = UDim2.new(1, 0, 0, 16)
-			Ui.pad(top, 12, 0)
-			Ui.shrinkText(top, 9, 11)
+			top.Position = UDim2.fromOffset(0, 8)
+			top.Size = UDim2.new(1, 0, 0, 24)
+			Ui.pad(top, 10, 0)
+			Ui.shrinkText(top, 15, 14)
 			top.ZIndex = 2
 			local amountColor = if isNext
 				then Ui.Colors.Ink
 				elseif claimed then Ui.Colors.Lime
 				else Ui.Colors.Yellow
-			local amount = Ui.coinAmount(tile, reward.Coins, if isNext then 16 else 14, amountColor)
+			local amount = Ui.coinAmount(tile, reward.Coins, if isNext then 20 else 18, amountColor)
 			amount.AnchorPoint = Vector2.new(0.5, 0)
-			amount.Position = UDim2.new(0.5, 0, 0, 23)
+			amount.Position = UDim2.new(0.5, 0, 0, 34)
 			amount.ZIndex = 2
 			for _, item in amount:GetDescendants() do
 				if item:IsA("GuiObject") then
@@ -366,18 +375,18 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 			local what = Ui.caps(
 				tile,
 				if reward.Crates
-					then `Coins + {reward.Crates} crate{if reward.Crates == 1 then "" else "s"}`
+					then `+{reward.Crates} crate{if reward.Crates == 1 then "" else "s"}` -- (the coins show above)
 					else "Coins",
-				10,
-				if isNext then Ui.Colors.Ink else Ui.Colors.Dim
+				14,
+				if isNext then Ui.Colors.Ink else Ui.Colors.Text
 			)
-			what.Position = UDim2.fromOffset(0, 45)
-			what.Size = UDim2.new(1, 0, 0, 16)
-			Ui.pad(what, 10, 0)
-			Ui.shrinkText(what, 9, 10)
+			what.Position = UDim2.fromOffset(0, 66)
+			what.Size = UDim2.new(1, 0, 0, 24)
+			Ui.pad(what, 8, 0)
+			Ui.shrinkText(what, 15, 14)
 			what.ZIndex = 2
 			if claimed then
-				local check = Ui.icon(tile, "check", 16, Ui.Colors.Lime)
+				local check = Ui.icon(tile, "check", 20, Ui.Colors.Lime)
 				check.AnchorPoint = Vector2.new(1, 0)
 				check.Position = UDim2.new(1, -10, 0, 5)
 				check.ZIndex = 3
@@ -398,6 +407,7 @@ function RewardsTab.build(page: Frame, api: { [string]: any }): () -> ()
 		Ui.setColor(open, if profile.Crates > 0 then Ui.Colors.Lime else Ui.Colors.Track)
 		Ui.setText(openAll, `Open all ({math.min(profile.Crates, Config.Shop.OpenAllMax)})`)
 		openAll.Visible = profile.Crates > 1
+		arrange()
 	end
 end
 

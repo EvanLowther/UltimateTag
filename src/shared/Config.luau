@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.61.3",
+	Version = "0.62.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -939,8 +939,8 @@ local Config = {
 		-- Config.Ui). The window docks left; the character is centred in the free space beside it.
 		WindowWidth = 360,
 		WindowMargin = 14, -- the window's gap to the screen edge
-		PlateSize = Vector2.new(310, 168), -- the info plate (top right)
-		ChipSize = Vector2.new(300, 28), -- the "what the preview shows" chip (bottom right)
+		PlateSize = Vector2.new(340, 200), -- the info plate (top right)
+		ChipSize = Vector2.new(320, 36), -- the "what the preview shows" chip (bottom right)
 		EdgeMargin = 16, -- plate and chip gap to the screen edge
 		FreeGap = 16, -- empty space kept between the character's area and the window and plate
 		SideMinFree = 0.4, -- free width (share of the screen) needed to keep the plate at the side
@@ -1029,8 +1029,8 @@ local Config = {
 		-- Text never shrinks below this (virtual pixels; Ui.shrinkText cuts it off with "..."
 		-- instead), and the UI auditor (client/DevPanel/UiAudit) reports text drawn smaller than
 		-- MinTextSize on screen (MinTouchTextSize on touch devices).
-		MinTextSize = 11,
-		MinTouchTextSize = 14,
+		MinTextSize = 15,
+		MinTouchTextSize = 16,
 		-- The UI auditor flags text closer than this to the edge of the box it sits on (real
 		-- pixels). Sideways room (MinPadding) is stricter than room above and below (MinPaddingY),
 		-- because a line's measured height already includes leading above and below the letters.

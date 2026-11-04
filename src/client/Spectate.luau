@@ -105,7 +105,7 @@ function Spectate.start()
 
 	local bar = Ui.slab(row, Ui.Colors.Panel, 10)
 	bar.LayoutOrder = 2
-	bar.Size = UDim2.fromOffset(BAR_WIDTH, 36)
+	bar.Size = UDim2.fromOffset(BAR_WIDTH, 42)
 	local edge = Ui.slab(bar, Ui.Colors.Cyan, 10)
 	edge.Size = UDim2.new(0, 18, 1, 0)
 	edge.ZIndex = 2
@@ -115,7 +115,7 @@ function Spectate.start()
 	Ui.pad(label, 14, 0)
 	label.Position = UDim2.fromOffset(22, 0) -- (right of the cyan edge)
 	label.Size = UDim2.new(1, -22, 1, 0)
-	Ui.shrinkText(label, 11, 15) -- "SPECTATING <20-letter name>" shrinks, then is cut off
+	Ui.shrinkText(label, 15, 15) -- "SPECTATING <20-letter name>" shrinks, then is cut off
 
 	local nextButton = Ui.button(row, "Next", Ui.Colors.Cyan, function()
 		cycle(1)

@@ -45,7 +45,7 @@ function Notify.start()
 	local toast = Ui.slab(gui, Ui.Colors.Panel, 10)
 	toast.AnchorPoint = Vector2.new(0.5, 1)
 	toast.Position = UDim2.new(0.5, 0, 1, -70)
-	toast.Size = UDim2.fromOffset(0, 44)
+	toast.Size = UDim2.fromOffset(0, 50)
 	toast.Visible = false
 	local edge = Ui.slab(toast, Ui.Colors.Yellow, 10)
 	edge.Size = UDim2.new(0, 18, 1, 0)

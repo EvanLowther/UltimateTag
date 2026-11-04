@@ -35,7 +35,7 @@ local chip: Frame? = nil
 local show: (() -> ())? = nil -- redraws the plate and the preview for the selection
 local arrange: (() -> ())? = nil -- puts the plate and the chip where the screen has room
 
-local TILE_WIDTH = 100 -- the tile grid's columns are at least this wide
+local TILE_WIDTH = 116 -- the tile grid's columns are at least this wide
 
 -- The header's right side: how much you own.
 function LockerTab.info(profile: { [string]: any }): string
@@ -99,21 +99,21 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 		nameToKind[name] = k
 	end
 	local refresh: () -> ()
-	local tabHeight = Ui.hit(28)
+	local tabHeight = Ui.hit(36)
 	local _, selectTab = Ui.tabs(page, tabNames, Ui.Colors.Cyan, function(name)
 		kind = nameToKind[name]
 		refresh()
-	end, 28, 11, 10)
+	end, 36, 14, 10)
 
-	local count = Ui.caps(page, "", 11, Ui.Colors.Dim)
+	local count = Ui.caps(page, "", 14, Ui.Colors.Dim)
 	count.Position = UDim2.fromOffset(2, tabHeight + 6)
-	count.Size = UDim2.new(1, -4, 0, 16)
+	count.Size = UDim2.new(1, -4, 0, 24)
 	count.TextXAlignment = Enum.TextXAlignment.Left
 	count.TextTruncate = Enum.TextTruncate.AtEnd
 
 	local holder = Ui.frame(page)
-	holder.Position = UDim2.fromOffset(0, tabHeight + 28)
-	holder.Size = UDim2.new(1, 0, 1, -(tabHeight + 28))
+	holder.Position = UDim2.fromOffset(0, tabHeight + 36)
+	holder.Size = UDim2.new(1, 0, 1, -(tabHeight + 36))
 	local scroll = Instance.new("ScrollingFrame")
 	scroll.BackgroundTransparency = 1
 	scroll.BorderSizePixel = 0
@@ -124,7 +124,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	scroll.ScrollBarImageColor3 = Ui.Colors.Dim
 	scroll.Parent = holder
 	local grid = Instance.new("UIGridLayout")
-	grid.CellSize = UDim2.new(1 / 3, -6, 0, 76) -- (columns follow the window's width, below)
+	grid.CellSize = UDim2.new(1 / 3, -6, 0, 92) -- (columns follow the window's width, below)
 	grid.CellPadding = UDim2.fromOffset(6, 6)
 	grid.SortOrder = Enum.SortOrder.LayoutOrder
 	grid.Parent = scroll
@@ -141,29 +141,29 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	plate = info
 	local infoRarity = Ui.frame(info)
 	infoRarity.Position = UDim2.fromOffset(14, 12)
-	infoRarity.Size = UDim2.new(1, -28, 0, 16)
+	infoRarity.Size = UDim2.new(1, -28, 0, 22)
 	local infoName = Ui.title(info, "", 34, Ui.Colors.Text)
-	infoName.Position = UDim2.fromOffset(14, 28)
+	infoName.Position = UDim2.fromOffset(14, 34)
 	infoName.Size = UDim2.new(1, -28, 0, 38)
 	infoName.TextXAlignment = Enum.TextXAlignment.Left
 	infoName.TextTruncate = Enum.TextTruncate.AtEnd
 	Ui.shrinkText(infoName, 18, 34) -- a long name gets smaller instead of being cut off
-	local infoText = Ui.text(info, "", 13, Ui.Colors.Dim)
-	infoText.Position = UDim2.fromOffset(14, 66)
-	infoText.Size = UDim2.new(1, -28, 0, 42)
+	local infoText = Ui.text(info, "", 15, Ui.Colors.Dim)
+	infoText.Position = UDim2.fromOffset(14, 74)
+	infoText.Size = UDim2.new(1, -28, 0, 66)
 	infoText.TextXAlignment = Enum.TextXAlignment.Left
 	infoText.TextYAlignment = Enum.TextYAlignment.Top
 	infoText.TextWrapped = true
 	infoText.TextTruncate = Enum.TextTruncate.AtEnd
 	local action = Ui.frame(info)
-	action.Position = UDim2.fromOffset(14, 112)
-	action.Size = UDim2.new(1, -28, 0, 36)
-	local serial = Ui.caps(info, "", 12, Ui.Colors.Text)
+	action.Position = UDim2.fromOffset(14, 146)
+	action.Size = UDim2.new(1, -28, 0, 40)
+	local serial = Ui.caps(info, "", 14, Ui.Colors.Text)
 	serial.AnchorPoint = Vector2.new(1, 0)
 	serial.Position = UDim2.new(1, -16, 0, 12)
-	serial.Size = UDim2.fromOffset(100, 18)
+	serial.Size = UDim2.fromOffset(110, 22)
 	serial.TextXAlignment = Enum.TextXAlignment.Right
-	Ui.shrinkText(serial, 11, 12)
+	Ui.shrinkText(serial, 15, 14)
 	Ui.holo(serial)
 
 	local scene = Ui.slab(api.gui, Ui.Colors.Panel, 8)
@@ -171,12 +171,12 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	scene.Size = UDim2.fromOffset(Config.Locker.ChipSize.X, Config.Locker.ChipSize.Y)
 	scene.Visible = false
 	chip = scene
-	local scenePlay = Ui.icon(scene, "play", 14, Ui.Colors.Yellow)
-	scenePlay.Position = UDim2.fromOffset(18, 7)
+	local scenePlay = Ui.icon(scene, "play", 18, Ui.Colors.Yellow)
+	scenePlay.Position = UDim2.fromOffset(18, 9)
 	scenePlay.ZIndex = 2
-	local sceneText = Ui.caps(scene, "", 12, Ui.Colors.Yellow)
-	sceneText.Position = UDim2.fromOffset(40, 0)
-	sceneText.Size = UDim2.new(1, -56, 1, 0)
+	local sceneText = Ui.caps(scene, "", 14, Ui.Colors.Yellow)
+	sceneText.Position = UDim2.fromOffset(44, 0)
+	sceneText.Size = UDim2.new(1, -60, 1, 0)
 	sceneText.TextXAlignment = Enum.TextXAlignment.Left
 	sceneText.TextTruncate = Enum.TextTruncate.AtEnd
 
@@ -189,7 +189,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 		scene.Position = UDim2.fromOffset(layout.chip.x, layout.chip.y)
 		scene.Size = UDim2.fromOffset(layout.chip.w, layout.chip.h)
 		local columns = math.max(3, math.floor((Ui.bodySize(page).X - 8) / TILE_WIDTH))
-		grid.CellSize = UDim2.new(1 / columns, -6, 0, 76)
+		grid.CellSize = UDim2.new(1 / columns, -6, 0, 92)
 	end
 	arrange = arrangeNow
 	Ui.onViewport(arrangeNow)
@@ -214,7 +214,7 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 			serial.Text = ""
 			return
 		end
-		local line = ItemCard.rarityLine(infoRarity, item, 12)
+		local line = ItemCard.rarityLine(infoRarity, item, 14)
 		line.Size = UDim2.fromScale(1, 1)
 		infoName.Text = item.name
 		infoText.Text = Catalog.describe(item)
@@ -232,21 +232,21 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 				nil,
 				"check"
 			)
-			done.Size = UDim2.fromOffset(150, Ui.hit(34))
+			done.Size = UDim2.fromOffset(170, Ui.hit(40))
 		elseif owned then
 			local equip = Ui.button(action, "Equip", Ui.Colors.Cyan, function()
 				api.send("Equip", item.id)
 			end)
-			equip.Size = UDim2.fromOffset(150, Ui.hit(34))
-			Ui.setTextSize(equip, 17)
+			equip.Size = UDim2.fromOffset(170, Ui.hit(40))
+			Ui.setTextSize(equip, 19)
 		else
 			local how = Ui.button(action, source(item), Ui.Colors.Tab, function()
 				if ShopRotation.offer(item.id) then
 					api.open("Shop")
 				end
 			end, Ui.Colors.Dim, nil, "lock")
-			how.Size = UDim2.new(1, 0, 0, Ui.hit(34))
-			Ui.setTextSize(how, 13)
+			how.Size = UDim2.new(1, 0, 0, Ui.hit(40))
+			Ui.setTextSize(how, 15)
 		end
 		local live = LockerStage.isActive()
 		sceneText.Text = if live
