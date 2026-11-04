@@ -16,7 +16,7 @@ local Epic = require(script.Epic)
 local Iridescent = require(script.Iridescent)
 local Kit = require(script.Kit)
 local Legendary = require(script.Legendary)
-local Sounds = require(script.Parent.Parent.Sounds)
+local Sounds = require(script.Parent.Sounds) -- (this is Client.Victories: its parent is Client)
 
 local Victories = {}
 
