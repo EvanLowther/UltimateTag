@@ -30,6 +30,8 @@ function Hud.preview(text: string, seconds: number?)
 end
 
 local STRIPE_TIME = 2.2 -- seconds a banner's stripe stays before sweeping off
+local STATUS_SIZE = 24 -- the status line's text in a game
+local LOBBY_STATUS_SIZE = 36 -- and in the lobby and countdown ("GAME STARTING SOON!")
 
 type Banner = { text: string, color: Color3, ink: Color3, seconds: number? }
 
@@ -62,7 +64,7 @@ function Hud.start()
 	bar.Name = "Bar"
 	bar.AnchorPoint = Vector2.new(0.5, 0)
 	bar.Position = UDim2.new(0.5, 0, 0, 10)
-	bar.Size = UDim2.fromOffset(0, 54)
+	bar.Size = UDim2.fromOffset(0, 66)
 	local shadow = Ui.slab(bar, Ui.Colors.Pink, 14)
 	shadow.Position = UDim2.fromOffset(5, 5)
 	shadow.Size = UDim2.fromScale(1, 1)
@@ -91,7 +93,7 @@ function Hud.start()
 	local tag = Ui.slab(content, Ui.Colors.Pink, 14)
 	tag.LayoutOrder = 1
 	tag.Size = UDim2.fromScale(0, 1)
-	local tagText = Ui.caps(tag, "", 14, Ui.Colors.Text)
+	local tagText = Ui.caps(tag, "", 20, Ui.Colors.Text)
 	tagText.Size = UDim2.fromScale(0, 1)
 	tagText.AutomaticSize = Enum.AutomaticSize.X
 	tagText.ZIndex = 2
@@ -100,26 +102,27 @@ function Hud.start()
 	tagPad.PaddingRight = UDim.new(0, 14)
 	tagPad.Parent = tagText
 	Ui.fitWidth(tag, tagText)
-	local timer = Ui.title(content, "", 36, Ui.Colors.Yellow)
+	local timer = Ui.title(content, "", 46, Ui.Colors.Yellow)
 	timer.LayoutOrder = 2
 	timer.Size = UDim2.fromScale(0, 1)
 	timer.AutomaticSize = Enum.AutomaticSize.X
-	local left = Ui.caps(content, "", 14, Ui.Colors.Text)
+	local left = Ui.caps(content, "", 20, Ui.Colors.Text)
 	left.LayoutOrder = 3
 	left.Size = UDim2.fromScale(0, 1)
 	left.AutomaticSize = Enum.AutomaticSize.X
 	Ui.fitWidth(bar, content)
 
-	-- The status line: up to 560 wide, narrower on a narrow screen, and as tall as its lines.
-	local status = Ui.caps(gui, "", 14, Ui.Colors.Text)
+	-- The status line: up to 820 wide, narrower on a narrow screen, and as tall as its lines;
+	-- bigger in the lobby ("GAME STARTING SOON!").
+	local status = Ui.caps(gui, "", STATUS_SIZE, Ui.Colors.Text)
 	status.AnchorPoint = Vector2.new(0.5, 0)
-	status.Position = UDim2.new(0.5, 0, 0, 74)
-	status.Size = UDim2.new(1, -24, 0, 20)
+	status.Position = UDim2.new(0.5, 0, 0, 88)
+	status.Size = UDim2.new(1, -24, 0, 30)
 	status.AutomaticSize = Enum.AutomaticSize.Y
 	status.TextWrapped = true
-	Ui.stroke(status, 2)
+	Ui.stroke(status, 3)
 	local statusLimit = Instance.new("UISizeConstraint")
-	statusLimit.MaxSize = Vector2.new(560, math.huge)
+	statusLimit.MaxSize = Vector2.new(820, math.huge)
 	statusLimit.Parent = status
 
 	-- A stripe across the screen for a new banner.
@@ -191,6 +194,9 @@ function Hud.start()
 		left.Visible = inGame
 		left.Text = `{GameState.getAliveCount()} LEFT`
 		status.Text = Ui.upper(GameState.getStatus())
+		status.TextSize = if phase == "Lobby" or phase == "Countdown"
+			then LOBBY_STATUS_SIZE
+			else STATUS_SIZE
 
 		-- Spectators see the game, not role banners.
 		local spectating = player:GetAttribute("Spectating") == true

@@ -101,8 +101,7 @@ local function tag(tagger: Player, tagged: Player, distance: number?, taggerSpee
 	RoundStats.tagged(tagger, tagged)
 	Leaderstats.add(tagger, "Tags", 1)
 	Progression.record(tagger, "Tag")
-	Remotes.get("TagHit"):FireAllClients(tagger, tagged) -- the tagger's tag effect
-	GameState.setStatus(`{Contestant.displayName(tagger)} tagged {Contestant.displayName(tagged)}!`)
+	Remotes.get("TagHit"):FireAllClients(tagger, tagged) -- the tagger's tag effect (no status line)
 end
 
 -- How much further than Config.Tag.Range a swing reaches `other` in a live server: the server

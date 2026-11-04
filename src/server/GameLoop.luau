@@ -371,6 +371,10 @@ local function playRound(round: number, mapName: string): string?
 		end)
 		Afk.stop()
 	end
+	-- The round is over the moment the timer hits 0 (or the target is out): out of Playing at
+	-- once, so no swing that arrives after this tags anyone (server/TagService only tags while
+	-- Playing). Who is out is decided from the roles as they are now.
+	GameState.setPhase("Results")
 	RoundStats.finish()
 
 	-- Time's up (or the target was reached early): the mode decides who else is out, up to what

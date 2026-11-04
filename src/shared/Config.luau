@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.59.2",
+	Version = "0.60.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -32,6 +32,7 @@ local Config = {
 		-- The results card (client/RoundResults) is also the loading cover: after ResultsCoverAt
 		-- seconds (once the ELIMINATED moment is over) it hides the world while the next map loads.
 		ResultsTime = 5, -- seconds the results card shows
+		ResultsCard = false, -- show the results card (who went out, your round); off: only the cover
 		ResultsCoverAt = 1.8,
 		ResultsLoadWait = 15, -- seconds to wait at most for the next map to be ready (loading itself takes 6 at most)
 		VictoryTime = 8, -- seconds to show the winner before going back to the lobby

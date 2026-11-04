@@ -71,19 +71,31 @@ local function onTop(object: GuiObject)
 	object.ZIndex = TOP
 end
 
--- Text that floats up from beside your coins and fades.
+-- Text that pops in beside your coins, holds still (sharp: moving text blurs) for FLOAT_HOLD,
+-- then floats up and fades. Big, at a fixed size (scaled text blurs): a long line wraps instead
+-- of shrinking.
+local FLOAT_SIZE = 30
+local FLOAT_HOLD = 1.4
+local FLOAT_FADE = 0.8
 local function float(text: string)
-	local label = Ui.caps(floatAnchor, text, 18, Ui.Colors.Text)
-	label.Size = UDim2.new(1, 0, 0, 26)
+	local label = Ui.caps(floatAnchor, text, FLOAT_SIZE, Ui.Colors.Text)
+	label.Size = UDim2.new(1, 0, 0, FLOAT_SIZE + 6)
+	label.AutomaticSize = Enum.AutomaticSize.Y
+	label.TextWrapped = true
 	label.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(label, 10, 18) -- long lines shrink instead of leaving the screen
-	local stroke = Ui.stroke(label, 2)
-	local info = TweenInfo.new(2.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-	TweenService:Create(label, info, { Position = UDim2.fromOffset(0, -50), TextTransparency = 1 })
-		:Play()
-	TweenService:Create(stroke, info, { Transparency = 1 }):Play()
-	task.delay(2.3, function()
-		label:Destroy()
+	label.TextYAlignment = Enum.TextYAlignment.Top
+	local stroke = Ui.stroke(label, 3)
+	Ui.popIn(label, 0.2)
+	task.delay(FLOAT_HOLD, function()
+		if not label.Parent then
+			return
+		end
+		local info = TweenInfo.new(FLOAT_FADE, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+		TweenService
+			:Create(label, info, { Position = UDim2.fromOffset(0, -40), TextTransparency = 1 })
+			:Play()
+		TweenService:Create(stroke, info, { Transparency = 1 }):Play()
+		task.delay(FLOAT_FADE + 0.1, label.Destroy, label)
 	end)
 end
 

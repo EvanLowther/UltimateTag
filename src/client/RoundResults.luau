@@ -1,5 +1,6 @@
 --!strict
--- The results card, in the Ui style. When a round ends the server sends RoundResults
+-- The results card, in the Ui style (shown only with Config.Game.ResultsCard, off since 0.60.0:
+-- then only the loading cover below shows). When a round ends the server sends RoundResults
 -- (server/GameLoop): who went out and how (still It at the buzzer, fell, the train, AFK), how
 -- many players are left, and your own numbers for the round (how you fared, your tags, your
 -- time as It). The card shows for the Results phase (Config.Game.ResultsTime).
@@ -155,6 +156,9 @@ local function show(info: Info)
 		screen:Destroy()
 		screen = nil
 	end
+	if not Config.Game.ResultsCard and not info.Next then
+		return -- no card and no next map to cover: nothing to show
+	end
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "RoundResults"
 	gui.ResetOnSpawn = false
@@ -171,111 +175,118 @@ local function show(info: Info)
 	backdrop.ZIndex = 0
 	backdrop.Active = info.Next -- (swallows clicks on the covered world)
 
-	-- The card.
-	local root = scaledRoot(gui)
-	-- The list gets fewer rows (it scrolls) on a short screen, so the card always fits.
-	local screenScale = root:FindFirstChildOfClass("UIScale")
-	local camera = workspace.CurrentCamera
-	local virtualHeight = if camera and screenScale
-		then camera.ViewportSize.Y / math.max(screenScale.Scale, 0.01)
-		else Config.Ui.Reference.Y
-	local fitRows = math.floor((virtualHeight - 24 - CARD_FIXED) / ROW)
-	local listRows = math.min(math.max(#info.Out, 1), math.max(1, math.min(MAX_LIST, fitRows)))
-	local height = CARD_FIXED + listRows * ROW
-	local card = Ui.panel(root, Ui.Colors.Panel, 16)
-	card.AnchorPoint = Vector2.new(0.5, 0.5)
-	card.Position = UDim2.fromScale(0.5, 0.5)
-	card.Size = UDim2.fromOffset(
-		if camera and screenScale
-			then math.min(WIDTH, camera.ViewportSize.X / math.max(screenScale.Scale, 0.01) - 24)
-			else WIDTH,
-		height
-	)
-	card.ZIndex = 2
-	Ui.popIn(card, 0.3)
+	-- The card (only with Config.Game.ResultsCard: off since 0.60.0, the cover alone shows).
+	local function buildCard(): RBXScriptConnection
+		local root = scaledRoot(gui)
+		-- The list gets fewer rows (it scrolls) on a short screen, so the card always fits.
+		local screenScale = root:FindFirstChildOfClass("UIScale")
+		local camera = workspace.CurrentCamera
+		local virtualHeight = if camera and screenScale
+			then camera.ViewportSize.Y / math.max(screenScale.Scale, 0.01)
+			else Config.Ui.Reference.Y
+		local fitRows = math.floor((virtualHeight - 24 - CARD_FIXED) / ROW)
+		local listRows = math.min(math.max(#info.Out, 1), math.max(1, math.min(MAX_LIST, fitRows)))
+		local height = CARD_FIXED + listRows * ROW
+		local card = Ui.panel(root, Ui.Colors.Panel, 16)
+		card.AnchorPoint = Vector2.new(0.5, 0.5)
+		card.Position = UDim2.fromScale(0.5, 0.5)
+		card.Size = UDim2.fromOffset(
+			if camera and screenScale
+				then math.min(WIDTH, camera.ViewportSize.X / math.max(screenScale.Scale, 0.01) - 24)
+				else WIDTH,
+			height
+		)
+		card.ZIndex = 2
+		Ui.popIn(card, 0.3)
 
-	local header = Ui.slab(card, Ui.Colors.Cyan, 8)
-	header.Position = UDim2.fromOffset(14, 14)
-	header.Size = UDim2.new(1, -28, 0, 40)
-	header.ZIndex = 3
-	local title = Ui.title(header, `ROUND {info.Round} RESULTS`, 28, Ui.Colors.Ink)
-	title.Size = UDim2.fromScale(1, 1)
-	title.ZIndex = 4
-	Ui.pad(title, 18, 2)
-	Ui.shrinkText(title, 16, 28)
+		local header = Ui.slab(card, Ui.Colors.Cyan, 8)
+		header.Position = UDim2.fromOffset(14, 14)
+		header.Size = UDim2.new(1, -28, 0, 40)
+		header.ZIndex = 3
+		local title = Ui.title(header, `ROUND {info.Round} RESULTS`, 28, Ui.Colors.Ink)
+		title.Size = UDim2.fromScale(1, 1)
+		title.ZIndex = 4
+		Ui.pad(title, 18, 2)
+		Ui.shrinkText(title, 16, 28)
 
-	local body = Ui.frame(card)
-	body.ZIndex = 3
-	body.Position = UDim2.fromOffset(28, 14 + 40 + 16)
-	body.Size = UDim2.new(1, -56, 1, -(14 + 40 + 16 + 14))
-	local layout = Instance.new("UIListLayout")
-	layout.Padding = UDim.new(0, 4)
-	layout.SortOrder = Enum.SortOrder.LayoutOrder
-	layout.Parent = body
+		local body = Ui.frame(card)
+		body.ZIndex = 3
+		body.Position = UDim2.fromOffset(28, 14 + 40 + 16)
+		body.Size = UDim2.new(1, -56, 1, -(14 + 40 + 16 + 14))
+		local layout = Instance.new("UIListLayout")
+		layout.Padding = UDim.new(0, 4)
+		layout.SortOrder = Enum.SortOrder.LayoutOrder
+		layout.Parent = body
 
-	local outTitle = Ui.caps(body, "WENT OUT", 13, Ui.Colors.Dim)
-	outTitle.LayoutOrder = 1
-	outTitle.Size = UDim2.new(1, 0, 0, 20)
-	outTitle.TextXAlignment = Enum.TextXAlignment.Left
+		local outTitle = Ui.caps(body, "WENT OUT", 13, Ui.Colors.Dim)
+		outTitle.LayoutOrder = 1
+		outTitle.Size = UDim2.new(1, 0, 0, 20)
+		outTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-	local listHolder = Ui.frame(body)
-	listHolder.LayoutOrder = 2
-	listHolder.Size = UDim2.new(1, 0, 0, listRows * ROW)
-	if #info.Out == 0 then
-		local none = Ui.caps(listHolder, "NOBODY WAS ELIMINATED", 16, Ui.Colors.Dim)
-		none.Size = UDim2.fromScale(1, 1)
-		none.TextXAlignment = Enum.TextXAlignment.Left
-	else
-		local list = Ui.scroll(listHolder, 0)
-		for i, entry in info.Out do
-			outRow(list, i, entry)
+		local listHolder = Ui.frame(body)
+		listHolder.LayoutOrder = 2
+		listHolder.Size = UDim2.new(1, 0, 0, listRows * ROW)
+		if #info.Out == 0 then
+			local none = Ui.caps(listHolder, "NOBODY WAS ELIMINATED", 16, Ui.Colors.Dim)
+			none.Size = UDim2.fromScale(1, 1)
+			none.TextXAlignment = Enum.TextXAlignment.Left
+		else
+			local list = Ui.scroll(listHolder, 0)
+			for i, entry in info.Out do
+				outRow(list, i, entry)
+			end
 		end
-	end
 
-	local left = Ui.frame(body)
-	left.LayoutOrder = 3
-	left.Size = UDim2.new(1, 0, 0, 50)
-	local count = Ui.title(left, tostring(info.Left), 46, Ui.Colors.Yellow)
-	count.Size = UDim2.new(0, 84, 1, 0)
-	count.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(count, 24, 46)
-	local leftText =
-		Ui.caps(left, if info.Left == 1 then "PLAYER LEFT" else "PLAYERS LEFT", 18, Ui.Colors.Text)
-	leftText.Position = UDim2.fromOffset(92, 0)
-	leftText.Size = UDim2.new(1, -92, 1, 0)
-	leftText.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(leftText, 11, 18)
+		local left = Ui.frame(body)
+		left.LayoutOrder = 3
+		left.Size = UDim2.new(1, 0, 0, 50)
+		local count = Ui.title(left, tostring(info.Left), 46, Ui.Colors.Yellow)
+		count.Size = UDim2.new(0, 84, 1, 0)
+		count.TextXAlignment = Enum.TextXAlignment.Left
+		Ui.shrinkText(count, 24, 46)
+		local leftText = Ui.caps(
+			left,
+			if info.Left == 1 then "PLAYER LEFT" else "PLAYERS LEFT",
+			18,
+			Ui.Colors.Text
+		)
+		leftText.Position = UDim2.fromOffset(92, 0)
+		leftText.Size = UDim2.new(1, -92, 1, 0)
+		leftText.TextXAlignment = Enum.TextXAlignment.Left
+		Ui.shrinkText(leftText, 11, 18)
 
-	local you = Ui.caps(body, "YOUR ROUND", 13, Ui.Colors.Dim)
-	you.LayoutOrder = 4
-	you.Size = UDim2.new(1, 0, 0, 20)
-	you.TextXAlignment = Enum.TextXAlignment.Left
-	local fate = FATES[info.Mine.Fate] or FATES.Watching
-	local fateText = fate.text
-	local reason = info.Mine.Reason
-	if info.Mine.Fate == "Out" and reason and REASONS[reason] then
-		fateText = `YOU'RE OUT: {REASONS[reason].text}`
-	end
-	local fared = Ui.caps(body, fateText, 20, fate.color)
-	fared.LayoutOrder = 5
-	fared.Size = UDim2.new(1, 0, 0, 28)
-	fared.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.shrinkText(fared, 11, 20)
-	statLine(body, 6, "YOUR TAGS", tostring(info.Mine.Tags))
-	statLine(body, 7, "TIME AS IT", Ui.clock(info.Mine.ItSeconds))
+		local you = Ui.caps(body, "YOUR ROUND", 13, Ui.Colors.Dim)
+		you.LayoutOrder = 4
+		you.Size = UDim2.new(1, 0, 0, 20)
+		you.TextXAlignment = Enum.TextXAlignment.Left
+		local fate = FATES[info.Mine.Fate] or FATES.Watching
+		local fateText = fate.text
+		local reason = info.Mine.Reason
+		if info.Mine.Fate == "Out" and reason and REASONS[reason] then
+			fateText = `YOU'RE OUT: {REASONS[reason].text}`
+		end
+		local fared = Ui.caps(body, fateText, 20, fate.color)
+		fared.LayoutOrder = 5
+		fared.Size = UDim2.new(1, 0, 0, 28)
+		fared.TextXAlignment = Enum.TextXAlignment.Left
+		Ui.shrinkText(fared, 11, 20)
+		statLine(body, 6, "YOUR TAGS", tostring(info.Mine.Tags))
+		statLine(body, 7, "TIME AS IT", Ui.clock(info.Mine.ItSeconds))
 
-	local footer = Ui.caps(body, "", 14, Ui.Colors.Pink)
-	footer.LayoutOrder = 8
-	footer.Size = UDim2.new(1, 0, 0, 30)
-	Ui.shrinkText(footer, 11, 14)
-	local function refreshFooter()
-		local seconds = GameState.getTimeLeft()
-		footer.Text = if info.Next
-			then `NEXT ROUND IN {math.max(seconds, 0)}`
-			else "THE WINNER IS NEXT"
+		local footer = Ui.caps(body, "", 14, Ui.Colors.Pink)
+		footer.LayoutOrder = 8
+		footer.Size = UDim2.new(1, 0, 0, 30)
+		Ui.shrinkText(footer, 11, 14)
+		local function refreshFooter()
+			local seconds = GameState.getTimeLeft()
+			footer.Text = if info.Next
+				then `NEXT ROUND IN {math.max(seconds, 0)}`
+				else "THE WINNER IS NEXT"
+		end
+		refreshFooter()
+		return GameState.onChanged(refreshFooter)
 	end
-	refreshFooter()
-	local timerConnection = GameState.onChanged(refreshFooter)
+	local timerConnection = if Config.Game.ResultsCard then buildCard() else nil
 
 	gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -301,7 +312,9 @@ local function show(info: Info)
 			return
 		end
 		ended = true
-		timerConnection:Disconnect()
+		if timerConnection then
+			timerConnection:Disconnect()
+		end
 		if phaseConnection then
 			phaseConnection:Disconnect()
 		end

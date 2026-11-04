@@ -114,34 +114,34 @@ function Menu.start()
 	levelBar.BackgroundTransparency = 1
 	levelBar.AnchorPoint = Vector2.new(0.5, 1)
 	levelBar.Position = UDim2.new(0.5, 0, 1, -10)
-	levelBar.Size = UDim2.fromOffset(380, 44)
+	levelBar.Size = UDim2.fromOffset(476, 64)
 	levelBar.Parent = root
-	local levelPlate = Ui.slab(levelBar, Ui.Colors.Panel, 8)
+	local levelPlate = Ui.slab(levelBar, Ui.Colors.Panel, 10)
 	levelPlate.Position = UDim2.fromOffset(0, 6)
-	levelPlate.Size = UDim2.fromOffset(92, 32)
-	local levelText = Ui.title(levelPlate, "LV 1", 24, Ui.Colors.Yellow)
+	levelPlate.Size = UDim2.fromOffset(124, 52)
+	local levelText = Ui.title(levelPlate, "LV 1", 38, Ui.Colors.Yellow)
 	levelText.Size = UDim2.fromScale(1, 1)
-	Ui.pad(levelText, 12, 0) -- (LV 100 shrinks to fit)
-	Ui.shrinkText(levelText, 14, 24)
-	local segments, setXP = Ui.segments(levelBar, 10, Ui.Colors.Cyan, 24, 14)
-	segments.Position = UDim2.fromOffset(100, 8)
-	local xpText = Ui.caps(levelBar, "0 / 100 XP", 12, Ui.Colors.Text)
-	xpText.Position = UDim2.fromOffset(100, 24)
-	xpText.Size = UDim2.fromOffset(280, 16)
-	Ui.shrinkText(xpText, 11, 12)
+	Ui.pad(levelText, 14, 0) -- (LV 100 shrinks to fit)
+	Ui.shrinkText(levelText, 20, 38)
+	local segments, setXP = Ui.segments(levelBar, 10, Ui.Colors.Cyan, 30, 18)
+	segments.Position = UDim2.fromOffset(134, 6)
+	local xpText = Ui.caps(levelBar, "0 / 100 XP", 22, Ui.Colors.Text)
+	xpText.Position = UDim2.fromOffset(134, 28)
+	xpText.Size = UDim2.fromOffset(336, 30)
 	xpText.TextXAlignment = Enum.TextXAlignment.Left
-	Ui.stroke(xpText, 1.5)
+	xpText.TextTruncate = Enum.TextTruncate.AtEnd
+	Ui.stroke(xpText, 2.5)
 
 	-- Floating "+coins" text rises from beside the money.
 	local floatAnchor = Instance.new("Frame")
 	floatAnchor.BackgroundTransparency = 1
 	floatAnchor.Position = UDim2.new(1, 12, 0, 2)
-	floatAnchor.Size = UDim2.fromOffset(380, 30)
+	floatAnchor.Size = UDim2.fromOffset(560, 36)
 	floatAnchor.Parent = money
 	Popups.start(root, floatAnchor)
 	local function fitFloat(view: Vector2)
 		-- Room from beside the coins to the screen's right edge.
-		floatAnchor.Size = UDim2.fromOffset(math.clamp(view.X - 190, 160, 380), 30)
+		floatAnchor.Size = UDim2.fromOffset(math.clamp(view.X - 190, 160, 560), 36)
 	end
 	fitFloat(Ui.viewport())
 	Ui.onViewport(fitFloat)
