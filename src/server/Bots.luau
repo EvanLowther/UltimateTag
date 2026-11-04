@@ -97,6 +97,13 @@ local function nameTag(head: BasePart, name: string)
 	gui.StudsOffset = Vector3.new(0, 2.6, 0)
 	gui.LightInfluence = 0
 	gui.MaxDistance = 90
+	local content = Instance.new("Frame")
+	content.Name = "Content" -- (client/HeadTags scales this with distance, from its bottom)
+	content.BackgroundTransparency = 1
+	content.AnchorPoint = Vector2.new(0.5, 1)
+	content.Position = UDim2.fromScale(0.5, 1)
+	content.Size = UDim2.fromScale(1, 1)
+	content.Parent = gui
 	local pill = Instance.new("TextLabel")
 	pill.Name = "Bot"
 	pill.AnchorPoint = Vector2.new(0.5, 0)
@@ -108,7 +115,7 @@ local function nameTag(head: BasePart, name: string)
 	pill.TextSize = 14
 	pill.TextColor3 = INK
 	pill.Text = Config.Bots.TagText
-	pill.Parent = gui
+	pill.Parent = content
 	local label = Instance.new("TextLabel")
 	label.Name = "Name"
 	label.Position = UDim2.fromOffset(0, 20)
@@ -118,7 +125,7 @@ local function nameTag(head: BasePart, name: string)
 	label.TextSize = 26
 	label.TextColor3 = Color3.new(1, 1, 1)
 	label.Text = name
-	label.Parent = gui
+	label.Parent = content
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = INK
 	stroke.Thickness = 2

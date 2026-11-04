@@ -4,6 +4,7 @@
 -- Shine (a moving shine and sparkles) or Holo (holo colors on a framed plate, with the item's
 -- serial number). The server builds one for every player (server/Cosmetics); the Locker builds
 -- one on its preview character. Moving gradients are animated on each client (client/GradientFx).
+-- Everything sits in a "Content" frame that client/HeadTags shrinks with distance.
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -50,8 +51,15 @@ local function build(head: BasePart): BillboardGui
 	gui.StudsOffset = Vector3.new(0, HEIGHT, 0)
 	gui.LightInfluence = 0
 	gui.MaxDistance = 90
+	local content = Instance.new("Frame")
+	content.Name = "Content" -- (client/HeadTags scales this with distance, from its bottom)
+	content.BackgroundTransparency = 1
+	content.AnchorPoint = Vector2.new(0.5, 1)
+	content.Position = UDim2.fromScale(0.5, 1)
+	content.Size = UDim2.fromScale(1, 1)
+	content.Parent = gui
 
-	local level = label(gui, "Level", HEAVY, 15)
+	local level = label(content, "Level", HEAVY, 15)
 	level.Position = UDim2.fromOffset(0, 0)
 	level.Size = UDim2.new(1, 0, 0, 18)
 	level.TextColor3 = CYAN
@@ -67,7 +75,7 @@ local function build(head: BasePart): BillboardGui
 	plate.BackgroundColor3 = INK
 	plate.BackgroundTransparency = 1
 	plate.BorderSizePixel = 0
-	plate.Parent = gui
+	plate.Parent = content
 	local pad = Instance.new("UIPadding")
 	pad.PaddingLeft = UDim.new(0, 10)
 	pad.PaddingRight = UDim.new(0, 10)
@@ -89,7 +97,7 @@ local function build(head: BasePart): BillboardGui
 	title.AutomaticSize = Enum.AutomaticSize.X
 	outline(title, 2.5)
 
-	local serial = label(gui, "Serial", HEAVY, 13)
+	local serial = label(content, "Serial", HEAVY, 13)
 	serial.AnchorPoint = Vector2.new(0.5, 0)
 	serial.Position = UDim2.new(0.5, 0, 0, 60)
 	serial.Size = UDim2.new(1, 0, 0, 16)
@@ -134,11 +142,12 @@ end
 -- `serial` its serial number (Iridescent).
 function TitleTag.apply(head: BasePart, item: Catalog.Item?, level: number, serial: number?)
 	local gui = (head:FindFirstChild(TitleTag.Name) :: BillboardGui?) or build(head)
-	local levelLabel = gui:FindFirstChild("Level") :: TextLabel
-	local plate = gui:FindFirstChild("Plate") :: Frame
+	local root = gui:FindFirstChild("Content") or gui
+	local levelLabel = root:FindFirstChild("Level") :: TextLabel
+	local plate = root:FindFirstChild("Plate") :: Frame
 	local title = plate:FindFirstChild("Title") :: TextLabel
 	local frame = plate:FindFirstChild("Frame") :: UIStroke
-	local serialLabel = gui:FindFirstChild("Serial") :: TextLabel
+	local serialLabel = root:FindFirstChild("Serial") :: TextLabel
 
 	levelLabel.Text = `LV {level}`
 	local old = title:FindFirstChildOfClass("UIGradient")

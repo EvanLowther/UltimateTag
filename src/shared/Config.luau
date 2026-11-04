@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.62.0",
+	Version = "0.62.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -505,6 +505,15 @@ local Config = {
 	},
 
 	-- The mouse in first person (client/Cursor).
+	-- The tags over heads (titles, the bots' BOT name tags; client/HeadTags): their design size
+	-- is the biggest they get. Further than FullSizeWithin studs from the camera they shrink with
+	-- distance, like the character does, down to Smallest of that size.
+	HeadTags = {
+		Names = { TitleTag = true, BotTag = true },
+		FullSizeWithin = 18,
+		Smallest = 0.35,
+	},
+
 	Cursor = {
 		Key = Enum.KeyCode.LeftAlt, -- hold to free the mouse (Option on a Mac)
 		KeyName = "ALT", -- as shown in the reminder
