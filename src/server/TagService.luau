@@ -242,26 +242,27 @@ local function onLateHit(player: Player, aimed: any)
 end
 
 -- `aimed`: who the player's screen says they hit (nil for bots, or if their screen saw nobody).
-local function onSwing(player: Player, aimed: any?, late: any?)
+-- Returns who was tagged, if anyone.
+local function onSwing(player: Player, aimed: any?, late: any?): Player?
 	if late == true then
 		onLateHit(player, aimed)
-		return
+		return nil
 	end
 	if not takesPart(player) then
-		return
+		return nil
 	end
 	-- Anyone can swing, just not while frozen or faster than the cooldown allows.
 	if Roles.isFrozen(player) then
-		return
+		return nil
 	end
 	local now = os.clock()
 	if now - (lastSwing[player] or -math.huge) < Config.Tag.Cooldown then
-		return
+		return nil
 	end
 	lastSwing[player] = now
 	local root = aliveRoot(player)
 	if not root then
-		return
+		return nil
 	end
 	Remotes.get("TagSwingPlayed"):FireAllClients(player)
 	-- It tags a Runner during a round; every other hit is a shove.
@@ -271,7 +272,7 @@ local function onSwing(player: Player, aimed: any?, late: any?)
 		else nil
 	if target then
 		tagWith(player, root, target)
-		return
+		return target
 	end
 	if tagging then
 		liveSwing[player] = now -- still live for Config.Tag.Window
@@ -285,9 +286,9 @@ local function onSwing(player: Player, aimed: any?, late: any?)
 	end
 end
 
--- A bot's swing (server/BotBrain): the same as a player's left click.
-function TagService.swing(bot: any)
-	onSwing(bot)
+-- A bot's swing (server/BotBrain): the same as a player's left click. Returns who it tagged.
+function TagService.swing(bot: any): Player?
+	return onSwing(bot)
 end
 
 function TagService.start()

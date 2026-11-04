@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.60.1",
+	Version = "0.60.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -126,6 +126,10 @@ local Config = {
 		-- Its share the Runners: a bot leaves a Runner to another It (a bot or a player) that is
 		-- nearer to them, if that It is within ShareDistance of them, unless nobody else is left.
 		ShareDistance = 40,
+		-- Its go for real players first: a player counts PreferPlayers studs nearer than they are.
+		-- A bot Runner within CloseBot that the It hasn't tagged yet this round counts the same.
+		PreferPlayers = 12,
+		CloseBot = 12,
 		-- Runners spread out: spots this near another Runner score lower (SpreadWeight per stud).
 		SpreadDistance = 24,
 		SpreadWeight = 1.5,

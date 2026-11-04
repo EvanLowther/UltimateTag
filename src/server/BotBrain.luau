@@ -3,7 +3,8 @@
 -- going (a path's next point, or straight at a spot it can see), sprinting like a player; every
 -- Config.Bots.Think seconds it decides where that is:
 --   It:      chases the nearest Runner no other It is nearer to (ShareDistance: two Its don't
---            chase one Runner), aiming a little ahead of where they're running (Lead),
+--            chase one Runner), real players first (PreferPlayers studs nearer; a bot Runner
+--            within CloseBot it hasn't tagged yet this round counts the same), aiming a little ahead of where they're running (Lead),
 --            straight at them when it can see them on the same level, by a path otherwise
 --            (to the floor right under them when they're on another level, so it goes up the
 --            ladder, ramp or stairs that leads there however far round that is; a Runner it
@@ -93,6 +94,24 @@ type Brain = {
 }
 
 local brains: { [ObjectValue]: Brain } = {}
+-- Who each bot has tagged this round (it prefers real players, but a bot Runner close by that
+-- it hasn't tagged yet this round is fair game).
+local taggedBy: { [ObjectValue]: { round: number, who: { [any]: boolean } } } = {}
+
+local function hasTagged(bot: ObjectValue, contestant: any): boolean
+	local record = taggedBy[bot]
+	return record ~= nil and record.round == GameState.getRound() and record.who[contestant] == true
+end
+
+local function rememberTag(bot: ObjectValue, contestant: any)
+	local round = GameState.getRound()
+	local record = taggedBy[bot]
+	if not record or record.round ~= round then
+		record = { round = round, who = {} }
+		taggedBy[bot] = record
+	end
+	record.who[contestant] = true
+end
 local random = Random.new()
 
 local agent = {
@@ -654,10 +673,23 @@ local function chase(brain: Brain, params: RaycastParams)
 		end
 		return false
 	end
-	-- Stick with a target for a moment unless another is much closer.
-	local current = nil
-	local best, bestDistance = nil, math.huge
-	local free, freeDistance = nil, math.huge
+	-- Real players come first: they count PreferPlayers studs nearer than they are. A bot
+	-- Runner within CloseBot that this It hasn't tagged yet this round counts the same as a
+	-- player, so it goes for one right next to it (unless a player is nearer still).
+	local settings = Config.Bots
+	local function score(runner: { contestant: any, root: BasePart }, distance: number): number
+		if not Contestant.isBot(runner.contestant) then
+			return distance - settings.PreferPlayers
+		end
+		if distance < settings.CloseBot and not hasTagged(brain.bot, runner.contestant) then
+			return distance - settings.PreferPlayers
+		end
+		return distance
+	end
+	-- Stick with a target for a moment unless another scores much better.
+	local current, currentScore = nil, math.huge
+	local best, bestScore = nil, math.huge
+	local free, freeScore = nil, math.huge
 	-- Runners it found no way to are left be for a while, unless nobody else is left.
 	local reachable = {}
 	for _, runner in runners do
@@ -671,23 +703,20 @@ local function chase(brain: Brain, params: RaycastParams)
 	for _, runner in runners do
 		local distance = (runner.root.Position - position).Magnitude
 		local taken = takenBy(runner, distance)
+		local value = score(runner, distance)
 		if runner.contestant == brain.target and not taken then
-			current = runner
+			current, currentScore = runner, value
 		end
-		if distance < bestDistance then
-			best, bestDistance = runner, distance
+		if value < bestScore then
+			best, bestScore = runner, value
 		end
-		if not taken and distance < freeDistance then
-			free, freeDistance = runner, distance
+		if not taken and value < freeScore then
+			free, freeScore = runner, value
 		end
 	end
-	-- (Every Runner taken: the nearest anyway.)
+	-- (Every Runner taken: the best anyway.)
 	local chosen = free or best
-	if
-		current
-		and now - brain.targetSince < 2
-		and (current.root.Position - position).Magnitude < freeDistance + 12
-	then
+	if current and now - brain.targetSince < 2 and currentScore < freeScore + 12 then
 		chosen = current
 	end
 	if not chosen then
@@ -738,7 +767,10 @@ local function chase(brain: Brain, params: RaycastParams)
 	if brain.swingAt and now >= brain.swingAt and now >= brain.pauseUntil then
 		brain.swingAt = nil
 		brain.inReachSince = nil
-		TagService.swing(brain.bot)
+		local tagged = TagService.swing(brain.bot)
+		if tagged then
+			rememberTag(brain.bot, tagged)
+		end
 	end
 
 	-- A slide into a straight chase.
@@ -1121,6 +1153,7 @@ function BotBrain.start()
 	Bots.onCharacterAdded(attach)
 	Bots.onRemoved(function(bot)
 		brains[bot] = nil
+		taggedBy[bot] = nil
 	end)
 	RunService.Heartbeat:Connect(function()
 		local now = os.clock()
