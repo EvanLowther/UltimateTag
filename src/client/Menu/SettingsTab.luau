@@ -1,7 +1,7 @@
 --!strict
 -- Menu, Settings page: the sound. A Music slider (the lobby's music and the quiet round music),
--- a Sound effects slider (everything else: the game, the menus, the maps' ambience, victories)
--- and a Mute all button. Changes apply at once and are saved in your profile (client/Sounds,
+-- a Sound effects slider (the game, the maps' ambience, victories), a UI slider (the menus'
+-- clicks, buys, claims, the crate reel, level ups) and a Mute all button. Changes apply at once and are saved in your profile (client/Sounds,
 -- server/Settings).
 local UserInputService = game:GetService("UserInputService")
 
@@ -80,8 +80,10 @@ local function slider(parent: Instance, text: string, field: string): Slider
 			)
 		then
 			dragging = false
-			if field == "Sfx" then
+			if field == "Ui" then
 				Sounds.play("ui_click") -- hear the new level
+			elseif field == "Sfx" then
+				Sounds.play("swing")
 			end
 		end
 	end)
@@ -93,12 +95,13 @@ function SettingsTab.build(page: Frame, _api: { [string]: any }): () -> ()
 	heading.TextXAlignment = Enum.TextXAlignment.Left
 	local music = slider(page, "Music", "Music")
 	local sfx = slider(page, "Sound effects", "Sfx")
+	local ui = slider(page, "UI", "Ui")
 	local mute = Ui.button(page, "Mute all sound", Ui.Colors.Pink, function()
 		Sounds.set("Muted", not Sounds.settings().Muted)
 	end, Ui.Colors.Text)
 	local note = Ui.caps(
 		page,
-		"Music plays in the lobby and on maps without their own sounds. Sound effects are everything else: the game, the menus, the maps and the victories.",
+		"Music plays in the lobby and on maps without their own sounds. UI is the menus: clicks, buying, claiming, crates and level ups. Sound effects are everything else: the game, the maps and the victories.",
 		13,
 		Ui.Colors.Dim
 	)
@@ -107,7 +110,7 @@ function SettingsTab.build(page: Frame, _api: { [string]: any }): () -> ()
 	note.TextWrapped = true
 
 	local function show(settings: Sounds.Settings)
-		for _, pair in { { music, settings.Music }, { sfx, settings.Sfx } } do
+		for _, pair in { { music, settings.Music }, { sfx, settings.Sfx }, { ui, settings.Ui } } do
 			local s, level = pair[1] :: Slider, pair[2] :: number
 			s.fill.Size = UDim2.fromScale(level, 1)
 			s.fill.Visible = level > 0.005
@@ -130,7 +133,7 @@ function SettingsTab.build(page: Frame, _api: { [string]: any }): () -> ()
 		local labelWidth = if narrow then 0 else math.min(200, width * 0.32)
 		heading.Size = UDim2.new(1, 0, 0, 36)
 		local y = 46
-		for _, s in { music, sfx } do
+		for _, s in { music, sfx, ui } do
 			local height = if narrow then ROW + 20 else ROW
 			s.row.Position = UDim2.fromOffset(0, y)
 			s.row.Size = UDim2.new(1, 0, 0, height)
@@ -148,7 +151,7 @@ function SettingsTab.build(page: Frame, _api: { [string]: any }): () -> ()
 		mute.Position = UDim2.fromOffset(0, y + 6)
 		mute.Size = UDim2.fromOffset(220, Ui.hit(40))
 		note.Position = UDim2.fromOffset(0, y + 6 + Ui.hit(40) + 16)
-		note.Size = UDim2.new(1, 0, 0, 60)
+		note.Size = UDim2.new(1, 0, 0, 80)
 		show(Sounds.settings())
 	end
 	layout()

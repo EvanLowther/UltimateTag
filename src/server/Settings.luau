@@ -1,6 +1,6 @@
 --!strict
 -- The player's sound settings (the menu's Settings page, client/Sounds): the SaveSettings remote
--- ({ Music, Sfx, Muted }) checked and kept in the profile's Settings.
+-- ({ Music, Sfx, Ui, Muted }) checked and kept in the profile's Settings.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Shared = ReplicatedStorage.Shared
@@ -28,6 +28,7 @@ function Settings.start()
 			profile.Settings = {
 				Music = level(saved.Music, defaults.Music),
 				Sfx = level(saved.Sfx, defaults.Sfx),
+				Ui = level(saved.Ui, defaults.Ui),
 				Muted = saved.Muted == true,
 			}
 		end)

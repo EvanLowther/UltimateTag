@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.61.2",
+	Version = "0.61.3",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1104,8 +1104,8 @@ local Config = {
 	Sounds = {
 		List = {
 			amb_clocktower = { Id = 111592356143735, Volume = 0.35 },
-			amb_lobby = { Id = 139553987822008, Volume = 0.4 },
-			amb_metro = { Id = 123040840279039, Volume = 0.4 },
+			amb_lobby = { Id = 139553987822008, Volume = 0.2 }, -- (the rain hiss: halved in 0.61.3)
+			amb_metro = { Id = 123040840279039, Volume = 0.2 }, -- (its vents hiss the same: halved)
 			buy = { Id = 94026775629391, Volume = 0.6 },
 			claim = { Id = 70877640813087, Volume = 0.6 },
 			countdown = { Id = 87775351108468, Volume = 0.55 },
@@ -1147,9 +1147,24 @@ local Config = {
 			victory_thunder = { Id = 124855261784679, Volume = 0.8 },
 			victory_trophy = { Id = 109103518800539, Volume = 0.8 },
 		} :: { [string]: { Id: number, Volume: number } },
-		-- The player's settings (saved in the profile's Settings): the two sliders' starting
-		-- values and mute. Ambience and victories count as sound effects.
-		Defaults = { Music = 0.6, Sfx = 0.8, Muted = false },
+		-- The player's settings (saved in the profile's Settings): the sliders' starting values
+		-- and mute. Ambience and victories count as sound effects; the menus have their own (Ui).
+		Defaults = { Music = 0.6, Sfx = 0.8, Ui = 1, Muted = false },
+		-- The menu sounds, on the UI slider instead of Sound effects.
+		UiSounds = {
+			ui_click = true,
+			ui_hover = true,
+			buy = true,
+			no_coins = true,
+			equip = true,
+			claim = true,
+			crate_tick = true,
+			crate_reveal = true,
+			level_up = true,
+		} :: { [string]: boolean },
+		-- The UI slider at 100% is this loud: twice what the menu sounds were under the Sound
+		-- effects slider's default (0.8).
+		UiGain = 1.6,
 		SaveDelay = 0.8, -- seconds after the last slider change before it's saved
 		-- 3D sounds (swings, tags, the train, gadgets): full volume within MinDistance, gone past
 		-- MaxDistance.

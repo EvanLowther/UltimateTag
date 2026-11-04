@@ -14,7 +14,8 @@
 --   (Config.Sounds.MapAmbience) or else the quiet round music; fades between them, silent on
 --   the win screen, and left as it is anywhere else (the Locker's stage).
 --   Victories: one track each (Sounds.victory(look) from client/Victories, stopVictory).
---   Two SoundGroups, Music and Sfx, follow the player's sliders and mute (the menu's Settings
+--   Three SoundGroups, Music, Sfx and Ui (the menu sounds, Config.Sounds.UiSounds, at UiGain),
+--   follow the player's sliders and mute (the menu's Settings
 --   page), kept in their profile's Settings through the SaveSettings remote.
 local ContentProvider = game:GetService("ContentProvider")
 local Players = game:GetService("Players")
@@ -31,7 +32,7 @@ local Profile = require(script.Parent.Profile)
 
 local Sounds = {}
 
-export type Settings = { Music: number, Sfx: number, Muted: boolean }
+export type Settings = { Music: number, Sfx: number, Ui: number, Muted: boolean }
 export type Options = { volume: number?, speed: number? }
 
 local C = Config.Sounds
@@ -39,7 +40,8 @@ local MUSIC = { [C.LobbyMusic] = true, [C.RoundMusic] = true }
 
 local folder: Folder? = nil
 local templates: { [string]: Sound } = {}
-local groups: { Music: SoundGroup?, Sfx: SoundGroup? } = { Music = nil, Sfx = nil }
+local groups: { Music: SoundGroup?, Sfx: SoundGroup?, Ui: SoundGroup? } =
+	{ Music = nil, Sfx = nil, Ui = nil }
 local settings: Settings = table.clone(C.Defaults) :: Settings
 local editedAt = -math.huge -- when this client last changed the settings (the profile waits)
 local settingsListeners: { (Settings) -> () } = {}
@@ -48,7 +50,10 @@ local hoverAt = -math.huge
 local victoryTrack: Sound? = nil
 
 local function group(name: string): SoundGroup?
-	return if MUSIC[name] then groups.Music else groups.Sfx
+	if MUSIC[name] then
+		return groups.Music
+	end
+	return if C.UiSounds[name] then groups.Ui else groups.Sfx
 end
 
 -- The template for a sound (nil if it has no id).
@@ -179,6 +184,9 @@ local function applySettings()
 	if groups.Sfx then
 		groups.Sfx.Volume = if settings.Muted then 0 else settings.Sfx
 	end
+	if groups.Ui then
+		groups.Ui.Volume = if settings.Muted then 0 else settings.Ui * C.UiGain
+	end
 	for _, listener in settingsListeners do
 		task.spawn(listener, settings)
 	end
@@ -193,9 +201,9 @@ function Sounds.onSettings(listener: (Settings) -> ())
 end
 
 local saveQueued = false
--- Changes a setting ("Music" or "Sfx" 0-1, "Muted"), applies it now and saves it shortly.
+-- Changes a setting ("Music", "Sfx" or "Ui" 0-1, "Muted"), applies it now and saves it shortly.
 function Sounds.set(field: string, value: number | boolean)
-	if field == "Music" or field == "Sfx" then
+	if field == "Music" or field == "Sfx" or field == "Ui" then
 		(settings :: any)[field] = math.clamp(value :: number, 0, 1)
 	elseif field == "Muted" then
 		settings.Muted = value == true
@@ -417,7 +425,10 @@ function Sounds.start()
 	local sfx = Instance.new("SoundGroup")
 	sfx.Name = "Sfx"
 	sfx.Parent = SoundService
-	groups.Music, groups.Sfx = music, sfx
+	local ui = Instance.new("SoundGroup")
+	ui.Name = "Ui"
+	ui.Parent = SoundService
+	groups.Music, groups.Sfx, groups.Ui = music, sfx, ui
 	applySettings()
 
 	-- Load them all now so the first play isn't late.
@@ -441,6 +452,7 @@ function Sounds.start()
 			settings = {
 				Music = math.clamp(tonumber(saved.Music) or C.Defaults.Music, 0, 1),
 				Sfx = math.clamp(tonumber(saved.Sfx) or C.Defaults.Sfx, 0, 1),
+				Ui = math.clamp(tonumber(saved.Ui) or C.Defaults.Ui, 0, 1),
 				Muted = saved.Muted == true,
 			}
 			applySettings()
