@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.60.0",
+	Version = "0.60.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -117,6 +117,7 @@ local Config = {
 		SlideBoost = 1.25, -- a slide's speed over sprinting, fading to running over SlideTime
 		SlideTime = 0.9,
 		PathRefresh = 0.5, -- seconds between path updates while chasing or fleeing
+		NoPathTime = 4, -- seconds an It leaves a Runner it found no way up (or down) to
 		StuckTime = 1.2, -- seconds barely moving while trying to: jump, then try another way
 		KnockbackStun = 0.35, -- seconds a hit takes away their control
 		LaunchCheck = 0.15, -- seconds between checks for a launch pad under them

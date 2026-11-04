@@ -5,7 +5,9 @@
 --   It:      chases the nearest Runner no other It is nearer to (ShareDistance: two Its don't
 --            chase one Runner), aiming a little ahead of where they're running (Lead),
 --            straight at them when it can see them on the same level, by a path otherwise
---            (round walls, up ladders and stairs). Once a Runner is in reach it swings a beat
+--            (to the floor right under them when they're on another level, so it goes up the
+--            ladder, ramp or stairs that leads there however far round that is; a Runner it
+--            finds no way to is left be for NoPathTime). Once a Runner is in reach it swings a beat
 --            later (Reaction); now and then a swing is mistimed (SwingMiss). It slides into a
 --            straight chase now and then. A bot that was just tagged can't swing for
 --            TaggedPause (it chases meanwhile).
@@ -68,6 +70,7 @@ type Brain = {
 	role: string?, -- its role when it last thought (a change to It is a tag)
 	pauseUntil: number, -- just tagged: can't swing until then (Config.Bots.TaggedPause)
 	target: any?, -- the Runner it's after
+	noPath: { [any]: number }, -- Runners it found no way to (until when it leaves them be)
 	targetSince: number,
 	inReachSince: number?,
 	swingAt: number?,
@@ -93,7 +96,7 @@ local brains: { [ObjectValue]: Brain } = {}
 local random = Random.new()
 
 local agent = {
-	AgentRadius = 2,
+	AgentRadius = 1.5, -- (2 was as wide as a ladder's rails: no path went up one)
 	AgentHeight = 5,
 	AgentCanJump = true,
 	AgentCanClimb = true,
@@ -370,41 +373,91 @@ local function safePath(waypoints: { PathWaypoint }): boolean
 	return true
 end
 
+-- How high the bot's middle stands over its feet (standing).
+local function rootHeight(brain: Brain): number
+	return brain.standingHip + brain.root.Size.Y / 2
+end
+
+-- A path from `from` to `goal` it can take (nil: none).
+local function computePath(from: Vector3, goal: Vector3): { PathWaypoint }?
+	local path = PathfindingService:CreatePath(agent)
+	local ok = pcall(function()
+		path:ComputeAsync(from, goal)
+	end)
+	if ok and path.Status == Enum.PathStatus.Success then
+		local waypoints = path:GetWaypoints()
+		if #waypoints >= 2 and safePath(waypoints) then
+			return waypoints
+		end
+	end
+	return nil
+end
+
+-- Spots to try when there's no path to `goal` itself: round it on the same floor (the goal can
+-- sit right against a wall, a rail or a ledge's edge, where the agent doesn't fit).
+local NEARBY = {
+	Vector3.new(3, 0, 0),
+	Vector3.new(-3, 0, 0),
+	Vector3.new(0, 0, 3),
+	Vector3.new(0, 0, -3),
+	Vector3.new(5, 0, 5),
+	Vector3.new(-5, 0, -5),
+}
+
+-- Works out a path to `goal` in the background. Another level that the path can't reach right
+-- at the goal tries spots round it; a goal with no way there at all is never run at in a
+-- straight line from below (that only works on its own level): a chase leaves that Runner be
+-- for a while (`noPath`), anything else picks somewhere new.
 local function requestPath(brain: Brain, goal: Vector3)
 	if brain.computing then
 		return
 	end
 	brain.computing = true
 	local from = brain.root.Position
+	local feet = from.Y - rootHeight(brain)
+	local level = math.abs(goal.Y - feet) < 2.5
+	local target = if brain.mode == "Chase" then brain.target else nil
 	task.spawn(function()
-		local path = PathfindingService:CreatePath(agent)
-		local ok = pcall(function()
-			path:ComputeAsync(from, goal)
-		end)
+		local waypoints = computePath(from, goal)
+		if not waypoints and not level then
+			local params = rayParams()
+			for _, offset in NEARBY do
+				local spot = floorAt(goal + offset, params, 4)
+				if spot and math.abs(spot.Y - goal.Y) < 2 then
+					waypoints = computePath(from, spot)
+					if waypoints then
+						break
+					end
+				end
+			end
+		end
 		brain.computing = false
 		if not brains[brain.bot] or brain.character ~= brain.bot.Value then
 			return
 		end
 		brain.pathAt = os.clock()
 		brain.pathFor = goal
-		if ok and path.Status == Enum.PathStatus.Success then
-			local waypoints = path:GetWaypoints()
-			if safePath(waypoints) then
-				brain.waypoints = waypoints
-				brain.waypoint = 2
-				brain.direct = false
-				return
+		if waypoints then
+			brain.waypoints = waypoints
+			brain.waypoint = 2
+			brain.direct = false
+			if target then
+				brain.noPath[target] = nil
 			end
+			return
 		end
-		-- No way there: straight at it if it can, otherwise pick somewhere else next time.
 		brain.waypoints = nil
-		brain.direct = true
+		if level then
+			brain.direct = true -- its own level: straight at it (round small things)
+		elseif target then
+			brain.noPath[target] = os.clock() + Config.Bots.NoPathTime
+			brain.direct = false
+		else
+			brain.goal = nil -- somewhere else next time
+			brain.roamUntil = 0
+			brain.direct = false
+		end
 	end)
-end
-
--- How high the bot's middle stands over its feet (standing).
-local function rootHeight(brain: Brain): number
-	return brain.standingHip + brain.root.Size.Y / 2
 end
 
 -- Heads for `goal` (a spot on the floor): straight there if it's on its level and nothing is in
@@ -421,7 +474,9 @@ local function goTo(brain: Brain, goal: Vector3, params: RaycastParams)
 	end
 	local stale = os.clock() - brain.pathAt > Config.Bots.PathRefresh
 	local moved = brain.pathFor == nil or (brain.pathFor - goal).Magnitude > 6
-	if stale or moved then
+	-- (Mid-climb it keeps the path it's on: a path from halfway up a ladder rarely works out.)
+	local climbing = brain.humanoid:GetState() == Enum.HumanoidStateType.Climbing
+	if (stale or moved) and not (climbing and brain.waypoints) then
 		requestPath(brain, goal)
 	end
 	if brain.waypoints then
@@ -603,6 +658,16 @@ local function chase(brain: Brain, params: RaycastParams)
 	local current = nil
 	local best, bestDistance = nil, math.huge
 	local free, freeDistance = nil, math.huge
+	-- Runners it found no way to are left be for a while, unless nobody else is left.
+	local reachable = {}
+	for _, runner in runners do
+		if (brain.noPath[runner.contestant] or 0) < now then
+			table.insert(reachable, runner)
+		end
+	end
+	if #reachable > 0 then
+		runners = reachable
+	end
 	for _, runner in runners do
 		local distance = (runner.root.Position - position).Magnitude
 		local taken = takenBy(runner, distance)
@@ -636,9 +701,20 @@ local function chase(brain: Brain, params: RaycastParams)
 	end
 	local targetRoot = chosen.root
 	local distance = (targetRoot.Position - position).Magnitude
-	local lead = flat(targetRoot.AssemblyLinearVelocity) * Config.Bots.Lead
-	-- (Goals are floor spots: the target's feet.)
-	local aim = targetRoot.Position + lead - UP * rootHeight(brain)
+	-- (Goals are floor spots: the target's feet.) On its own level it aims ahead of where the
+	-- Runner is running; on another (up a ladder, a ramp, stairs) it heads for the floor right
+	-- under them, so the path goes up to where they are (aiming ahead could put the goal off the
+	-- edge of their ledge, or in the air while they jump).
+	local feet = targetRoot.Position - UP * rootHeight(brain)
+	local myFeet = position.Y - rootHeight(brain)
+	local aim
+	if math.abs(feet.Y - myFeet) < 2.5 then
+		aim = feet + flat(targetRoot.AssemblyLinearVelocity) * Config.Bots.Lead
+	else
+		-- (Straight down from their middle: a ray from above could land on a ceiling.)
+		local below = workspace:Raycast(targetRoot.Position, -UP * 14, params)
+		aim = if below then below.Position else feet
+	end
 	goTo(brain, aim, params)
 	brain.sprint = true
 
@@ -1021,6 +1097,7 @@ local function attach(bot: ObjectValue, character: Model)
 		role = Roles.get(bot), -- (a respawn on the map keeps the role: no pause)
 		pauseUntil = 0,
 		target = nil,
+		noPath = {},
 		targetSince = 0,
 		inReachSince = nil,
 		swingAt = nil,
