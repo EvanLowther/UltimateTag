@@ -200,18 +200,31 @@ def v_cf_cannon():
 
 @vsound("v_cf_rain", "Confetti: falling", "Confetti raining down for the rest of the victory.", level=-6)
 def v_cf_rain():
+    """Lots of paper drifting down: a continuous, fine flutter that never pumps.
+
+    Twelve layers of soft band-passed noise, each fluttering at its own slowly wandering rate
+    (a piece of paper flapping as it falls), so together they shimmer evenly; under them a dense
+    sprinkle of tiny, quiet paper ticks (pieces brushing each other and landing)."""
     seed(82)
     seconds = 5.5
+    sr_t = times(seconds)
     rng = np.random.default_rng(82)
-    out = silence(seconds)
-    # Soft paper: lower, rounder rustles with slow edges, over a faint airy bed (no hiss on top).
-    for _ in range(int(seconds * 34)):
-        length = rng.uniform(0.05, 0.14)
-        u = np.linspace(0, 1, n_of(length))
-        r = lp(bp(noise(length), 700, 3200), 2600) * np.sin(np.pi * u) ** 2 * rng.uniform(0.2, 1)
-        out = place(out, r, rng.uniform(0, seconds - 0.2))
-    bed = lp(bp(noise(seconds), 400, 2000), 1500) * 0.08
-    return lp(mix(out[: n_of(seconds)], bed), 3500) * adsr(seconds, 0.8, 0.1, 0.9, 1.4) * 0.8
+    out = np.zeros(len(sr_t))
+    for k in range(12):
+        lo = rng.uniform(1400, 2600)
+        layer = bp(noise(seconds), lo, lo * rng.uniform(2.0, 2.8))
+        drift = np.interp(sr_t, np.linspace(0, seconds, 8), rng.uniform(7, 15, 8))
+        phase = 2 * np.pi * np.cumsum(drift) / len(sr_t) * seconds
+        flap = (0.55 + 0.45 * np.sin(phase + rng.uniform(0, 6.28))) ** 2
+        swell = np.interp(sr_t, np.linspace(0, seconds, 6), rng.uniform(0.6, 1.0, 6))
+        out += layer * flap * swell
+    out /= 12 ** 0.5
+    ticks = np.zeros(len(sr_t))
+    hits = rng.random(len(sr_t)) < 220 / 44100
+    ticks[hits] = rng.uniform(-1, 1, int(hits.sum())) * rng.uniform(0.2, 1, int(hits.sum()))
+    ticks = lp(bp(ticks, 2500, 7000), 6000) * 0.5
+    paper = lp(mix(out, ticks), 6500)
+    return paper * adsr(seconds, 0.9, 0.2, 0.85, 1.6) * 0.9
 
 
 victory("victory_confetti", "Confetti Storm", "Epic", 6.0,
