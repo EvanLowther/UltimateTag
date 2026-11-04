@@ -73,7 +73,9 @@ def main() -> None:
         OUT = sys.argv[1]
     only = set(sys.argv[2:])
     os.makedirs(os.path.join(OUT, "web"), exist_ok=True)
-    indices = [i for i, s in enumerate(SOUNDS) if not only or s.id in only]
+    used = {c[0] for v in VICTORIES if not v.skip for c in v.cues}
+    skipped = {c[0] for v in VICTORIES if v.skip for c in v.cues} - used
+    indices = [i for i, s in enumerate(SOUNDS) if s.id not in skipped and (not only or s.id in only)]
     started = time.time()
     with mp.get_context("fork").Pool(min(8, os.cpu_count() or 4)) as pool:
         results = pool.map(render, indices)
@@ -92,12 +94,13 @@ def main() -> None:
                      "files": rendered[i]}
         else:
             entry = old.get(s.id)
-        if entry:
+        if entry and s.id not in skipped:
             sounds.append(entry)
     manifest = {
         "sounds": sounds,
         "victories": [{"id": v.id, "name": v.name, "rarity": v.rarity, "length": v.length,
-                       "cues": [{"sound": c[0], "at": c[1], "gain": c[2]} for c in v.cues]} for v in VICTORIES],
+                       "cues": [{"sound": c[0], "at": c[1], "gain": c[2]} for c in v.cues]}
+                      for v in VICTORIES if not v.skip],
     }
     with open(manifest_path, "w") as f:
         json.dump(manifest, f, indent=1)

@@ -32,6 +32,7 @@ class Victory:
     rarity: str
     length: float
     cues: list[tuple[str, float, float]] = field(default_factory=list)  # (sound id, at, gain)
+    skip: bool = False  # kept out for now
 
 
 SOUNDS: list[Sound] = []

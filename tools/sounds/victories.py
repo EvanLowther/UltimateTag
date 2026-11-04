@@ -19,8 +19,9 @@ def vsound(id: str, name: str, desc: str, level: float = -1.0):
     return deco
 
 
-def victory(id, name, rarity, length, cues):
-    VICTORIES.append(Victory(id, name, rarity, length, cues))
+def victory(id, name, rarity, length, cues, skip=False):
+    """skip: kept out of the game for now (not rendered or shown on the board)."""
+    VICTORIES.append(Victory(id, name, rarity, length, cues, skip))
 
 
 # ---- Building blocks -------------------------------------------------------------------
@@ -203,24 +204,18 @@ def v_cf_rain():
     seconds = 5.5
     rng = np.random.default_rng(82)
     out = silence(seconds)
-    for _ in range(int(seconds * 60)):
-        length = rng.uniform(0.02, 0.06)
-        r = bp(noise(length), 2500, 8000) * env(length, 0.002, length) * rng.uniform(0.2, 1)
-        out = place(out, r, rng.uniform(0, seconds - 0.1))
-    return out[: n_of(seconds)] * adsr(seconds, 0.6, 0.1, 0.9, 1.2) * 0.8
-
-
-@vsound("v_cf_horn", "Confetti: party horn", "A party horn blowout as the arms go up again.")
-def v_cf_horn():
-    seconds = 0.7
-    t = times(seconds)
-    f = glide(330, 420, seconds) * (1 + 0.02 * np.sin(2 * np.pi * 9 * t))
-    reed = drive(lp(osc(f, seconds, "pulse") + 0.5 * osc(f * 1.01, seconds, "saw"), 3000), 1.6)
-    return reed * adsr(seconds, 0.02, 0.1, 0.8, 0.15) * 0.4
+    # Soft paper: lower, rounder rustles with slow edges, over a faint airy bed (no hiss on top).
+    for _ in range(int(seconds * 34)):
+        length = rng.uniform(0.05, 0.14)
+        u = np.linspace(0, 1, n_of(length))
+        r = lp(bp(noise(length), 700, 3200), 2600) * np.sin(np.pi * u) ** 2 * rng.uniform(0.2, 1)
+        out = place(out, r, rng.uniform(0, seconds - 0.2))
+    bed = lp(bp(noise(seconds), 400, 2000), 1500) * 0.08
+    return lp(mix(out[: n_of(seconds)], bed), 3500) * adsr(seconds, 0.8, 0.1, 0.9, 1.4) * 0.8
 
 
 victory("victory_confetti", "Confetti Storm", "Epic", 6.0,
-        [("v_cf_cannon", 0.12, 0.9), ("v_cf_cannon", 0.2, 0.8), ("v_cf_rain", 0.5, 0.6), ("v_cf_horn", 3.55, 0.7)])
+        [("v_cf_cannon", 0.12, 0.9), ("v_cf_cannon", 0.2, 0.8), ("v_cf_rain", 0.5, 0.6)])
 
 
 # ---- Epic: Breakdance ------------------------------------------------------------------
@@ -251,7 +246,7 @@ def v_bd_freeze():
     return reverb(mix(hit, metal_ring(note("A5"), 1.0, 0.12)), 1.0, 0.18)
 
 
-victory("victory_breakdance", "Breakdance", "Epic", 5.5,
+victory("victory_breakdance", "Breakdance", "Epic", 5.5, skip=True, cues=
         [("v_bd_drop", 0.0, 0.9)] + [("v_bd_spin", 0.45 + i * 0.18, 0.35 + 0.04 * i) for i in range(0, 12, 2)]
         + [("v_bd_scratch", 2.36, 0.6), ("v_bd_freeze", 2.66, 1.0)])
 

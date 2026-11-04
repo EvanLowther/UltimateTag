@@ -19,7 +19,7 @@ AMB_LEN = 12.0
 
 @sound("train_horn", "Maps", "Train horn", "The Metro's train sounds its horn as it comes into the station.",
        [("A", "Two-tone horn"), ("B", "Three-note chord horn"), ("C", "Two short toots")],
-       where="3D on the train's front car")
+       level=-6, where="3D on the train's front car")
 def train_horn(v):
     def horn(freqs, seconds):
         t = times(seconds)
@@ -70,7 +70,7 @@ def train_doors(v):
 
 
 @sound("train_brakes", "Maps", "Brakes", "The train slowing into the platform: a squeal, then an air hiss.",
-       [("A", "Long squeal + air hiss"), ("B", "Short squeal, softer")], where="3D on the train")
+       [("A", "Long squeal + air hiss"), ("B", "Short squeal, softer")], level=-8, where="3D on the train")
 def train_brakes(v):
     seed(42)
     seconds = 2.2 if v == 0 else 1.2
@@ -223,18 +223,6 @@ def amb_clocktower(v, s, sr):
     return reverb(out, 2.2, 0.35, sr=sr, tail=False)
 
 
-@sound("amb_rooftop", "Ambience", "Rooftop District", "High above the city: wind and far-off traffic.",
-       [("A", "Gusty wind with a whistle"), ("B", "Calmer breeze, city hum")],
-       loop=True, sr=AMB_SR, level=-4, where="2D while you're on the Rooftops")
-@amb
-def amb_rooftop(v, s, sr):
-    g = gusts(s, sr, 0.35 if v == 0 else 0.2, 13, 0.25, 1.0)
-    wind = svf(noise(s, "pink", sr), 300 + 900 * g, 0.9, "bp", sr) * (0.4 + 0.6 * g) * (1.6 if v == 0 else 0.9)
-    whistle = svf(noise(s, sr=sr), 900 + 300 * g, 9, "bp", sr) * g ** 2 * (0.25 if v == 0 else 0.05)
-    city = lp(noise(s, "brown", sr), 250, sr=sr) * (0.4 if v == 0 else 0.7)
-    return mix(wind, whistle, city)
-
-
 @sound("amb_metro", "Ambience", "Metro", "The underground station: electrical hum, vents, a far-off rumble.",
        [("A", "Hum, vents, distant rumble"), ("B", "Emptier, echoing drips")],
        loop=True, sr=AMB_SR, level=-5, where="2D while you're on the Metro")
@@ -248,52 +236,6 @@ def amb_metro(v, s, sr):
     if v == 0:
         return mix(hum, vent, rumble)
     return reverb(mix(hum * 0.6, vent * 0.4, drips(s, sr, 0.8, 900, 2200, 0.12, 15)), 2.5, 0.4, sr=sr, tail=False)
-
-
-@sound("amb_school", "Ambience", "School", "An empty school: air conditioning, fluorescent lights, a door far off.",
-       [("A", "AC hum, light buzz, distant door"), ("B", "Quiet hall, clock ticking")],
-       loop=True, sr=AMB_SR, level=-6, where="2D while you're in the School")
-@amb
-def amb_school(v, s, sr):
-    hvac = lp(noise(s, "pink", sr), 700, sr=sr) * 0.4
-    buzz = hp(osc(120, s, "saw", sr), 1500, sr=sr) * 0.012
-    out = mix(hvac, buzz)
-    if v == 0:
-        door = reverb(mix(thump(110, 60, 0.2, 0.5), lp(noise(0.1, sr=sr), 1200, sr=sr) * env(0.1, 0.001, 0.08, sr=sr) * 0.4), 2.5, 0.6, sr=sr)
-        out = place(out, door * 0.5, 4.0, sr=sr)
-        return out
-    for i in range(int(s)):
-        tick = bp(noise(0.02, sr=sr), 2000, 5000, sr=sr) * env(0.02, 0.001, 0.018, sr=sr) * 0.6
-        out = place(out, tick, i + 0.3, sr=sr)
-    return reverb(out, 1.5, 0.3, sr=sr, tail=False)
-
-
-def chirp(sr, f0, f1, seconds=0.07, gain=0.1):
-    return osc(glide(f0, f1, seconds, sr=sr), seconds, sr=sr) * np.sin(np.linspace(0, np.pi, n_of(seconds, sr))) * gain
-
-
-@sound("amb_playroom", "Ambience", "Playroom", "A kid's bedroom: a wall clock, birds outside.",
-       [("A", "Soft clock tick, birds outside"), ("B", "Quiet room, wind chimes")],
-       loop=True, sr=AMB_SR, level=-7, where="2D while you're in the Playroom")
-@amb
-def amb_playroom(v, s, sr):
-    room = lp(noise(s, "brown", sr), 350, sr=sr) * 0.25
-    out = room
-    rng = np.random.default_rng(20 + v)
-    if v == 0:
-        for i in range(int(s)):
-            out = place(out, bp(noise(0.02, sr=sr), 1500, 4000, sr=sr) * env(0.02, 0.001, 0.015, sr=sr) * 0.35, i + 0.5, sr=sr)
-        for _ in range(9):
-            at = rng.uniform(0, s - 1)
-            base = rng.uniform(2800, 4200)
-            for k in range(rng.integers(2, 5)):
-                out = place(out, chirp(sr, base, base * rng.uniform(1.2, 1.6), 0.06, 0.05), at + k * 0.11, sr=sr)
-        return out
-    pent = [note(n) for n in ("C6", "D6", "E6", "G6", "A6", "C7")]
-    for _ in range(10):
-        f = pent[rng.integers(0, len(pent))]
-        out = place(out, bell(f, 2.0, 0.6, 3.01, sr) * 0.05, rng.uniform(0, s - 2), sr=sr)
-    return reverb(out, 1.5, 0.25, sr=sr, tail=False)
 
 
 # ---- Lobby music -----------------------------------------------------------------------
@@ -403,4 +345,118 @@ def music_lobby(v):
     crackle = hp(crackle, 1500, sr=sr) * 0.35 + hp(noise(n / sr, "pink", sr), 2000, sr=sr)[:n] * 0.02
     music = music + crackle[:, None]
     music = drive(music * 1.2, 1.3)
+    return loop_seam(music, total, sr)
+
+
+# ---- Background music for rounds (maps without their own ambience) ---------------------
+
+def pluck(freq, seconds, sr, bright=1.0):
+    """A soft marimba-like pluck."""
+    t = times(seconds, sr)
+    tone = osc(freq, seconds, sr=sr) + 0.35 * osc(freq * 4, seconds, sr=sr) * np.exp(-t * 40) * bright
+    return tone * env(seconds, 0.002, seconds, sr=sr)
+
+
+def soft_pad(names, seconds, sr, attack=0.4, release=0.8, cut=1400, gain=0.1):
+    tone = sum(osc(note(n) * d, seconds, "saw", sr) for n in names for d in (0.994, 1.006))
+    tone = lp(tone, cut, sr=sr) + sum(osc(note(n), seconds, sr=sr) for n in names) * 0.4
+    return tone * adsr(seconds, attack, 0.3, 0.85, release, sr) * gain
+
+
+def duck(n, beat_len, sr, depth=0.5):
+    """Sidechain pumping: dips on every beat and swells back."""
+    t = np.arange(n) / sr
+    phase = np.mod(t, beat_len) / beat_len
+    return 1 - depth * np.exp(-phase * 7)
+
+
+ROUND_SONGS = [
+    # bpm, chords (bass root, notes) for 4 bars, arp/melody scale
+    (100, [("A1", ("A3", "C4", "E4", "G4")), ("F1", ("F3", "A3", "C4", "E4")),
+           ("C2", ("G3", "C4", "E4", "B4")), ("G1", ("G3", "B3", "D4", "E4"))]),
+    (84, [("D2", ("D3", "F#3", "A3", "C#4", "E4")), ("B1", ("B2", "D3", "F#3", "A3", "C#4")),
+          ("G1", ("G3", "B3", "D4", "F#4", "A4")), ("A1", ("A3", "C#4", "E4", "B4"))]),
+    (112, [("F2", ("F3", "A3", "C4")), ("D2", ("D3", "F3", "A3", "C4")),
+           ("Bb1", ("Bb3", "D4", "F4", "A4")), ("C2", ("C4", "F4", "G4", "Bb4"))]),
+]
+
+
+@sound("music_round", "Music", "Round music (quiet)",
+       "Quiet background music during rounds on the maps with no ambience of their own (Rooftop District, School, Playroom). It sits low under the game.",
+       [("A", "Soft synth pulse"), ("B", "Ambient drift, almost no drums"), ("C", "Light, playful plucks")],
+       loop=True, sr=MUS_SR, level=-3, where="2D during rounds on maps without ambience (the music slider)")
+def music_round(v):
+    sr = MUS_SR
+    seed(400 + v)
+    bpm, prog = ROUND_SONGS[v]
+    beat = 60 / bpm
+    bar = beat * 4
+    bars = 16
+    total = bar * bars
+    n = n_of(total + 4, sr)
+    pads = np.zeros((n, 2))
+    bass = np.zeros(n)
+    drums = np.zeros(n)
+    arp = np.zeros(n)
+    rng = np.random.default_rng(60 + v)
+    for b in range(bars):
+        root, chord = prog[b % 4]
+        start = b * bar
+        r = note(root)
+        if v == 0:
+            pads = place(pads, soft_pad(chord, bar + 0.4, sr, 0.3, 0.6, 1300, 0.09), start, sr=sr)
+            for e in range(8):  # an eighth-note bass pulse
+                tone = lp(osc(r, beat * 0.45, "saw", sr), 420, sr=sr) * env(beat * 0.45, 0.004, beat * 0.4, sr=sr) * 0.5
+                bass = place(bass, tone, start + e * beat / 2, sr=sr)
+            for k in range(4):
+                drums = place(drums, kick(sr) * 0.45, start + k * beat, sr=sr)
+                drums = place(drums, hat(sr, 0.08 * rng.uniform(0.7, 1.1)), start + k * beat + beat / 2, sr=sr)
+            if b >= 4:  # an arpeggio of the chord comes in after four bars
+                tones = [note(x) * 2 for x in chord]
+                for s16 in range(16):
+                    f = tones[(s16 * 3) % len(tones)] * (2 if s16 % 8 == 7 else 1)
+                    arp = place(arp, pluck(f, 0.3, sr, 0.6) * 0.07, start + s16 * beat / 4, sr=sr)
+        elif v == 1:
+            pads = place(pads, soft_pad(chord, bar * 1.15, sr, 1.2, 1.4, 1000, 0.1), start, sr=sr)
+            bass = place(bass, osc(r, bar, sr=sr) * adsr(bar, 0.5, 0.3, 0.8, 0.8, sr) * 0.4, start, sr=sr)
+            drums = place(drums, lp(kick(sr), 1200, sr=sr) * 0.35, start, sr=sr)
+            if b % 2 == 1:
+                drums = place(drums, lp(kick(sr), 1200, sr=sr) * 0.2, start + beat * 2.5, sr=sr)
+            tones = [note(x) * 2 for x in chord]
+            pattern = [0, 2, 1, 3, 2, 4, 3, 1]
+            for s8 in range(8 if b >= 2 else 0):
+                f = tones[pattern[s8] % len(tones)]
+                arp = place(arp, pluck(f, 0.6, sr, 0.3) * 0.06, start + s8 * beat / 2, sr=sr)
+        else:
+            pads = place(pads, soft_pad(chord, bar + 0.2, sr, 0.05, 0.3, 2200, 0.035), start, sr=sr)
+            for at, f in ((0, r), (beat * 1.5, r), (beat * 2, r * 1.5), (beat * 3, r * 2), (beat * 3.5, r * 1.5)):
+                tone = (osc(f, beat * 0.4, "tri", sr) + 0.5 * osc(f, beat * 0.4, sr=sr)) * env(beat * 0.4, 0.003, beat * 0.35, sr=sr) * 0.5
+                bass = place(bass, tone, start + at, sr=sr)
+            for s16 in range(16):
+                g = (0.05 if s16 % 2 else 0.03) * rng.uniform(0.7, 1.1)
+                drums = place(drums, bp(noise(0.04, sr=sr), 5000, 11000, sr=sr) * env(0.04, 0.004, 0.03, sr=sr) * g * 3, start + s16 * beat / 4, sr=sr)
+            for k in (1, 3):
+                clap = bp(noise(0.08, sr=sr), 900, 4000, sr=sr) * env(0.08, 0.001, 0.07, sr=sr) * 0.35
+                drums = place(drums, clap, start + k * beat, sr=sr)
+            drums = place(drums, kick(sr) * 0.4, start, sr=sr)
+            drums = place(drums, kick(sr) * 0.3, start + beat * 2, sr=sr)
+            # A little marimba tune, two bars of question and two of answer.
+            tones = [note(x) * 2 for x in chord]
+            rhythm = [(0, 0), (0.75, 1), (1.5, 2), (2.5, 1), (3, 3)] if b % 2 == 0 else [(0, 2), (1, 1), (2, 0), (3.5, 1)]
+            if b >= 4:
+                for at, i in rhythm:
+                    arp = place(arp, pluck(tones[i % len(tones)], 0.45, sr) * 0.12, start + at * beat, sr=sr)
+    if v == 0:
+        pads = pads * duck(len(pads), beat, sr, 0.45)[:, None]
+    arp_st = np.stack([arp, np.concatenate([np.zeros(n_of(beat * 0.75, sr)), arp[: -n_of(beat * 0.75, sr)]]) * 0.6], axis=1)
+    if v == 1:  # a dotted-eighth echo trailing off
+        d = n_of(beat * 0.75, sr)
+        echoes = np.zeros_like(arp)
+        for k in range(1, 5):
+            echoes[d * k:] += arp[: len(arp) - d * k] * 0.45 ** k
+        arp_st = arp_st + np.stack([echoes * 0.6, echoes], axis=1)
+    music = mix(pads, bass, lp(drums, 6000, sr=sr), arp_st)
+    music = reverb_stereo(music, 1.8 if v == 1 else 1.2, 0.3 if v == 1 else 0.2, 0.7, sr)
+    music = np.stack([lp(music[:, c], 7000, sr=sr) for c in range(2)], axis=1)
+    music = drive(music * 1.1, 1.2)
     return loop_seam(music, total, sr)

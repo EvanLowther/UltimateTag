@@ -164,18 +164,27 @@ def eliminated(v):
 @sound("lobby_beep", "Core game", "Lobby countdown", "A soft beep for each of the last 5 s before a game starts.",
        [("A", "Soft blip"), ("B", "Woody tick"), ("C", "Two-tone bell blip")],
        where="everyone in the lobby",
-       demo={"type": "sequence", "steps": [["main", 0], ["main", 1], ["main", 2], ["main", 3], ["main", 4]]})
+       demo={"type": "sequence", "steps": [["beep", 0], ["beep", 1], ["beep", 2], ["beep", 3], ["last", 4]]})
 def lobby_beep(v):
+    """A beep for 5, 4, 3, 2, and a held one for the last second."""
     seed(12)
     if v == 0:
-        return reverb(osc(note("G5"), 0.12) * env(0.12, 0.003, 0.11), 0.6, 0.2)
+        def blip(seconds, hold):
+            return reverb(osc(note("G5"), seconds) * env(seconds, 0.003, seconds - hold, hold), 0.6, 0.2)
+        return {"beep": blip(0.12, 0.0), "last": blip(0.75, 0.35)}
     if v == 1:
         tick = mix(bp(noise(0.03), 1200, 3000) * env(0.03, 0.001, 0.025) * 2,
                    osc(note("D6"), 0.05) * env(0.05, 0.001, 0.04) * 0.5)
-        return reverb(tick, 0.4, 0.15)
-    a = bell(note("E6"), 0.35, 1.2, 2.0)
-    b = bell(note("A6"), 0.35, 1.2, 2.0)
-    return reverb(place(a * 0.5, b * 0.5, 0.07), 0.6, 0.2)
+        held = osc(note("D6"), 0.7) * env(0.7, 0.003, 0.35, 0.3) * 0.5
+        return {"beep": reverb(tick, 0.4, 0.15), "last": reverb(mix(tick, held), 0.5, 0.18)}
+
+    def two(seconds, bright):
+        a = bell(note("E6"), 0.35, bright, 2.0)
+        b = bell(note("A6"), seconds, bright, 2.0)
+        return place(a * 0.5, b * 0.5, 0.07)
+    t = times(0.9)
+    held = (osc(note("A6"), 0.9) + 0.3 * osc(note("E7"), 0.9)) * np.clip(t / 0.02, 0, 1) * np.where(t < 0.5, 1.0, np.exp(-(t - 0.5) * 9)) * 0.22
+    return {"beep": reverb(two(0.35, 1.2), 0.6, 0.2), "last": reverb(place(two(0.9, 1.2), held, 0.07), 0.7, 0.22)}
 
 
 # ---- UI --------------------------------------------------------------------------------
@@ -273,7 +282,7 @@ def sparkle(seconds=1.0, count=14, lo=4000, hi=9000, gain=0.12, start=0.0, seed_
 
 @sound("level_up", "UI and rewards", "Level up", "The level-up popup.",
        [("A", "Bell arpeggio + chord + sparkle"), ("B", "Synth brass rising"), ("C", "Fast chiptune arpeggio")],
-       where="you")
+       level=-5, where="you")
 def level_up(v):
     seed(25)
     if v == 0:
