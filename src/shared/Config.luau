@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.59.0",
+	Version = "0.59.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -120,7 +120,7 @@ local Config = {
 		KnockbackStun = 0.35, -- seconds a hit takes away their control
 		LaunchCheck = 0.15, -- seconds between checks for a launch pad under them
 		DangerDrop = 3.5, -- on maps that can kill (falls, the train), never step off more than this
-		TaggedPause = 1.5, -- seconds a bot that was just tagged stands still before it chases or swings
+		TaggedPause = 1.5, -- seconds a bot that was just tagged can't swing (it still chases)
 		-- Its share the Runners: a bot leaves a Runner to another It (a bot or a player) that is
 		-- nearer to them, if that It is within ShareDistance of them, unless nobody else is left.
 		ShareDistance = 40,

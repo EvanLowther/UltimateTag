@@ -7,8 +7,8 @@
 --            straight at them when it can see them on the same level, by a path otherwise
 --            (round walls, up ladders and stairs). Once a Runner is in reach it swings a beat
 --            later (Reaction); now and then a swing is mistimed (SwingMiss). It slides into a
---            straight chase now and then. A bot that was just tagged stands still for
---            TaggedPause first.
+--            straight chase now and then. A bot that was just tagged can't swing for
+--            TaggedPause (it chases meanwhile).
 --   Runner:  roams while every It is far (CalmDistance). Once one comes close (FleeDistance) it
 --            runs for the open spot furthest from every It (launch pads count, and throw it
 --            clear); spots near other Runners score lower (SpreadDistance), so they spread out
@@ -65,7 +65,7 @@ type Brain = {
 	roamUntil: number,
 	-- Chasing.
 	role: string?, -- its role when it last thought (a change to It is a tag)
-	pauseUntil: number, -- just tagged: stands still until then (Config.Bots.TaggedPause)
+	pauseUntil: number, -- just tagged: can't swing until then (Config.Bots.TaggedPause)
 	target: any?, -- the Runner it's after
 	targetSince: number,
 	inReachSince: number?,
@@ -631,7 +631,7 @@ local function chase(brain: Brain, params: RaycastParams)
 			brain.swingAt = now + reaction() * 0.5 -- mistimed: swings before it's in reach
 		end
 	end
-	if brain.swingAt and now >= brain.swingAt then
+	if brain.swingAt and now >= brain.swingAt and now >= brain.pauseUntil then
 		brain.swingAt = nil
 		brain.inReachSince = nil
 		TagService.swing(brain.bot)
@@ -763,7 +763,7 @@ local function think(brain: Brain)
 	local params = rayParams()
 	local phase = GameState.getPhase()
 	local frozen = Roles.isFrozen(brain.bot)
-	-- Just tagged (Runner to It mid-round): it stands still a moment before it chases or swings.
+	-- Just tagged (Runner to It mid-round): it can't swing for a moment (it still chases).
 	local role = Roles.get(brain.bot)
 	if role ~= brain.role then
 		if role == "It" and brain.role == "Runner" and phase == "Playing" then
@@ -772,9 +772,6 @@ local function think(brain: Brain)
 			brain.inReachSince = nil
 		end
 		brain.role = role
-	end
-	if os.clock() < brain.pauseUntil then
-		frozen = true
 	end
 	if phase == "Intro" or phase == "Victory" or frozen then
 		brain.goal = nil
