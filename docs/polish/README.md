@@ -19,10 +19,10 @@ and what the owner should test (agents cannot playtest). The owner's original li
 ## Rules for every agent
 - Work in your own git worktree on its own branch:
   `git worktree add ../UltimateTag-<area> -b polish/<area>`. Never work in the shared checkout.
-- Do not bump `Config.Version` or edit the changelog in `AGENTS.md`. Write your changelog lines
+- Do not bump `Config.Version` or edit `CHANGELOG.md`. Write your changelog lines
   in `docs/polish/notes/<area>.md` (create it) and the overseer merges them and bumps the version.
-- Run the checks before every commit (see `AGENTS.md`): stylua, selene, check-syntax, mapcheck,
-  `rojo build -o build/check.rbxlx`. Never build to `UltimateTag.rbxlx`.
+- Run the checks before every commit: `tools/check.sh` (stylua, selene, check-syntax, mapcheck,
+  `rojo build -o build/check.rbxlx`). Never build to `UltimateTag.rbxlx`.
 - Commit with explicit paths only, `area: what changed`, no co-author or AI lines.
 - Nobody playtests. Finish each task with a short "what to test" list for the owner.
 - Anything that changes a number or behaviour owned by another area (see "Touches" in each plan)

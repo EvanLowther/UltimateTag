@@ -1,0 +1,15 @@
+---
+paths:
+  - "tools/sounds/**"
+  - "src/client/Sounds.luau"
+  - "src/client/Victories/**"
+  - "src/client/Menu/SettingsTab.luau"
+  - "src/server/Settings.luau"
+---
+# Sounds
+
+Moved out of AGENTS.md. Read it before working on any file listed in `paths` above.
+
+Every sound is made in code: `tools/sounds/` (`synth.py` the oscillators, noise, envelopes, filters and reverb; `core.py` the core game and UI sounds; `maps.py` the train, gadgets, the ambience loops, the lobby's lo-fi music and the quiet round music; `victories.py` each victory's sounds with their cue times from `client/Victories`; `registry.py` the list). `python3 tools/sounds/make_sounds.py build/sounds [id ...]` writes every variant as OGG, MP3 copies in `web/` and a `manifest.json`; `tools/sounds/board.html` is the audition page (the manifest goes in at `/*MANIFEST*/`), published as the "Ultimate Tag Sound Board" artifact, where the owner picked a variant of each (`tools/sounds/picks.json`). `python3 tools/sounds/export.py build/sounds build/sounds/upload` gathers the picks as `UT_<id>.ogg` and mixes each victory into one track (`UT_victory_<name>.ogg`, from its cues): 43 files. `tools/sounds/upload.py` uploads them with Open Cloud (the owner runs it with their own API key) and writes `tools/sounds/asset_ids.json`; the ids are copied into `Config.Sounds.List` (with each sound's volume). A redone sound: remake, export, delete its line from `asset_ids.json`, upload again, copy the new id.
+In the game (`client/Sounds`): swing whoosh (3D for others), the tag hitmarker (tagger only), one hit when tagged (3D for anyone near), 3-2-1-GO, the last 10 s beeps rising a semitone a second (the last 3 doubled and louder), a referee whistle when the timer runs out, a buzzer when you're out, the lobby countdown's last 5 s (the last beep held); UI hover and click on every button, buy, not enough coins, equip, level up, claim, crate ticks and the reveal; the Metro's train (horn with the edge lights, brakes, doors, the chime before they shut, a running loop per car that follows its speed), launch pads, the jack-in-the-box, the spinner bar's whoosh; ambience loops for the lobby (rain), the Clocktower and the Metro, the lobby's lo-fi music, and quiet round music on the maps without ambience (Rooftop District, School, Playroom); each victory's track (Breakdance has none yet). No movement sounds. Three SoundGroups follow the Settings page's Music, Sound effects and UI sliders (the menu sounds, `UiSounds`, at `UiGain`) and Mute (saved in the profile's `Settings`).
+
