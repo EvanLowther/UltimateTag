@@ -17,6 +17,7 @@
 local CollectionService = game:GetService("CollectionService")
 local GuiService = game:GetService("GuiService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TextService = game:GetService("TextService")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
@@ -780,26 +781,59 @@ function Ui.tabs(
 	row.Parent = parent
 
 	-- On a window too narrow for the whole row, the labels shrink together (never below the
-	-- smallest readable size) so every tab still shows its whole name. The text's share of the
-	-- row scales with the text size, so the size that fits is worked out in one go (no back and
-	-- forth as the row resizes).
+	-- smallest readable size) so every tab still shows its whole name. The words are measured
+	-- once at the full size (TextService), so the size that fits depends only on the room the
+	-- row has. It never measures the row itself: that changes when the labels resize, which set
+	-- this off again and made the tabs flicker between two sizes.
 	local size = baseSize
 	local smallest = math.min(baseSize, Config.Ui.MinTextSize)
-	local function squeeze()
+	local measured: { [string]: number } = {}
+	local measuring: { [string]: boolean } = {}
+	local squeeze: () -> ()
+	local function textWidth(label: TextLabel): number?
+		local text = label.Text
+		local width = measured[text]
+		if width then
+			return width
+		end
+		if not measuring[text] then
+			measuring[text] = true
+			local font = label.FontFace
+			task.spawn(function()
+				local params = Instance.new("GetTextBoundsParams")
+				params.Text = text
+				params.Font = font
+				params.Size = baseSize
+				params.RichText = true
+				params.Width = 100000
+				local ok, bounds = pcall(TextService.GetTextBoundsAsync, TextService, params)
+				measured[text] = if ok then math.ceil(bounds.X) else 0
+				measuring[text] = nil
+				squeeze()
+			end)
+		end
+		return nil
+	end
+	function squeeze()
 		local holder = row.Parent
 		if not holder or not holder:IsA("GuiObject") then
 			return
 		end
+		local text = 0
+		for _, label in labels do
+			local width = textWidth(label)
+			if not width then
+				return -- squeeze runs again once it's measured
+			end
+			text += width
+		end
 		local room = holder.AbsoluteSize.X / Ui.screenScale(holder) - row.Position.X.Offset
-		local width = row.AbsoluteSize.X / Ui.screenScale(row)
 		local count = #names
-		local fixed = count * 2 * bumper + (count - 1) * GAP
-		local text = width - fixed
+		local fixed = count * 2 * bumper + (count - 1) * GAP + 2
 		if room <= 0 or text <= 0 then
 			return
 		end
-		local atBase = text * baseSize / size
-		local fits = math.clamp(math.floor(baseSize * (room - fixed) / atBase), smallest, baseSize)
+		local fits = math.clamp(math.floor(baseSize * (room - fixed) / text), smallest, baseSize)
 		if fits ~= size then
 			size = fits
 			for _, label in labels do
@@ -807,23 +841,27 @@ function Ui.tabs(
 			end
 		end
 	end
-	row:GetPropertyChangedSignal("AbsoluteSize"):Connect(squeeze)
-	row:GetPropertyChangedSignal("Parent"):Connect(function()
+	local watched: Instance? = nil
+	local function watch()
 		local holder = row.Parent
-		if holder and holder:IsA("GuiObject") then
-			holder:GetPropertyChangedSignal("AbsoluteSize"):Connect(squeeze)
+		if holder ~= watched and holder and holder:IsA("GuiObject") then
+			watched = holder
+			holder:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+				if row.Parent == holder then
+					squeeze()
+				end
+			end)
 		end
 		task.defer(squeeze)
-	end)
-	if parent and parent:IsA("GuiObject") then
-		parent:GetPropertyChangedSignal("AbsoluteSize"):Connect(squeeze)
 	end
-	task.defer(squeeze)
+	row:GetPropertyChangedSignal("Parent"):Connect(watch)
+	watch()
 
 	local function badge(name: string, count: number?)
 		if tabs[name] then
 			badges[name] = count or 0
 			draw(name)
+			squeeze()
 		end
 	end
 	return row, selectTab, badge
