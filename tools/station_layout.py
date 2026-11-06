@@ -62,9 +62,12 @@ COLORS = {
     "panel": (232, 236, 241), "trim": (246, 248, 250), "floor": (198, 204, 212),
     "darkfloor": (92, 100, 110), "metal": (118, 128, 140), "grate": (72, 80, 90),
     "rail": (226, 231, 236), "hazy": (242, 194, 48), "hazk": (26, 28, 31),
-    "band": (16, 30, 42), "cyan": (95, 230, 255), "orange": (255, 159, 58),
-    "purple": (198, 139, 255), "red": (255, 70, 70), "lamp": (240, 248, 255),
-    "screen": (44, 155, 214), "glass": (190, 228, 255), "padrim": (125, 136, 148),
+    "band": (16, 30, 42), "cyan": (58, 150, 172), "orange": (196, 112, 48),
+    "purple": (132, 98, 178), "red": (170, 48, 48), "lamp": (222, 228, 236),
+    "screen": (28, 62, 98), "glass": (190, 228, 255), "padrim": (125, 136, 148),
+    "rib": (204, 210, 218), "kick": (96, 104, 114), "vent": (58, 64, 72), "crate": (150, 128, 92),
+    "seam": (150, 156, 164), "foil": (214, 172, 74), "panelblue": (34, 66, 140),
+    "white": (236, 238, 240), "dish": (210, 214, 220),
     "earth": (42, 104, 184), "land": (78, 138, 63), "air": (126, 200, 255),
     "gold": (215, 180, 90), "solar": (26, 53, 112), "pipe": (141, 152, 163),
     "redpipe": (176, 36, 44),
@@ -72,11 +75,15 @@ COLORS = {
 MATERIALS = {
     "panel": "SmoothPlastic", "trim": "SmoothPlastic", "floor": "SmoothPlastic",
     "darkfloor": "DiamondPlate", "metal": "Metal", "grate": "DiamondPlate", "rail": "Metal",
-    "band": "SmoothPlastic", "cyan": "Neon", "orange": "Neon", "purple": "Neon", "red": "Neon",
-    "lamp": "Neon", "screen": "Neon", "glass": "Glass", "padrim": "Metal", "pipe": "Metal",
-    "redpipe": "Metal", "gold": "Foil", "solar": "Glass",
+    "band": "SmoothPlastic", "cyan": "SmoothPlastic", "orange": "SmoothPlastic",
+    "purple": "SmoothPlastic", "red": "SmoothPlastic", "lamp": "SmoothPlastic",
+    "screen": "Glass", "glass": "Glass", "padrim": "Metal", "pipe": "Metal",
+    "redpipe": "Metal", "gold": "Foil", "solar": "Glass", "rib": "SmoothPlastic", "kick": "Metal",
+    "vent": "DiamondPlate", "crate": "WoodPlanks", "seam": "SmoothPlastic", "foil": "Foil",
+    "panelblue": "Glass", "white": "SmoothPlastic", "dish": "Metal",
 }
 DETAIL = dict(NO_HIT, CastShadow=False)
+RIBS = [-38.5 + 11 * k for k in range(8)]  # wall ribs, in line with the ceiling beams
 
 
 def vec(x, y, z):
@@ -95,6 +102,15 @@ def between(m, group, name, a, b, width, thick, color, **props):
     rows = [[x[i], y[i], z[i]] for i in range(3)]
     mid = [(a[i] + b[i]) / 2 for i in range(3)]
     return m.part(group, name, (length, thick, width), mid, color, rows, **props)
+
+
+def glow(node, color, brightness=0.5, reach=12, kind="PointLight", face=None):
+    """Gives a part a soft light of its own (no Neon in this map: lights do the glowing)."""
+    props = {"Brightness": brightness, "Range": reach, "Color": color, "Shadows": False}
+    if face:
+        props["Face"] = face
+    node.setdefault("children", []).append({"name": "Glow", "className": kind, "properties": props})
+    return node
 
 
 def surface_light(m, group, name, x0, x1, y0, y1, z0, z1, color, face="Bottom", reach=40,
@@ -156,8 +172,6 @@ def build_shell(m):
         z1 = -L - 0.1 - 0.1 * i
         m.part(g, "WindowFrame", (2 * R_IN, 0.7, 0.5), (0, WCY, z1 - 0.25), "trim",
                rows_z(60 * i), **DETAIL)
-    for x in (-19.5, 19.5):
-        m.block(g, "LightStrip", x - 0.25, x + 0.25, 4, 26, -L + 0.05, -L + 0.15, "cyan", **DETAIL)
 
 
 def rows_z(deg):
@@ -223,13 +237,14 @@ def build_trench(m):
             if side < 0 and TUN0 - 1.5 < z < TUN1 + 1.5:
                 continue
             a, b = sorted((x + side * 0.05, x + side * 0.2))
-            m.block(g, "WarningLight", a, b, -2.0, -1.4, z - 0.5, z + 0.5, "red", **DETAIL)
+            glow(m.block(g, "WarningLight", a, b, -2.0, -1.4, z - 0.5, z + 0.5, "red", **DETAIL),
+                 m.rgb((255, 70, 60)), 0.6, 12)
     for z, side in ((-24, 1), (-6, -1), (8, 1)):
         x = TX0 + 0.25 if side > 0 else TX1 - 0.25
         a, b = sorted((x + side * 0.05, x + side * 0.25))
         node = m.block(g, "Lamp", a, b, -3.2, -2.6, z - 0.6, z + 0.6, "lamp", **DETAIL)
         node["children"] = [{"name": "Glow", "className": "PointLight", "properties": {
-            "Brightness": 0.9, "Range": 26, "Color": m.rgb((235, 245, 255)), "Shadows": False}}]
+            "Brightness": 0.5, "Range": 22, "Color": m.rgb((215, 230, 255)), "Shadows": False}}]
     # Stairs out at the front end: 14 steps, each 1 up and 1.6 deep, a yellow nose on each.
     for k in range(STEPS):
         top = -1 - k
@@ -256,7 +271,7 @@ def build_trench(m):
     for x in (4, 16, 28):
         node = m.block(g, "Lamp", x - 1, x + 1, TUN_TOP - 0.2, TUN_TOP, 0.5, 2.3, "lamp", **DETAIL)
         node["children"] = [{"name": "Glow", "className": "PointLight", "properties": {
-            "Brightness": 0.8, "Range": 18, "Color": m.rgb((235, 245, 255)), "Shadows": False}}]
+            "Brightness": 0.5, "Range": 16, "Color": m.rgb((215, 230, 255)), "Shadows": False}}]
 
 
 def railing(m, g, a, b):
@@ -298,8 +313,10 @@ def build_upper(m):
     m.block(g, "LightStrip", -W, CW_IN, UPY - 0.65, UPY - 0.15, CW_END - 0.15, CW_END - 0.05, "cyan", **DETAIL)
     m.block(g, "LightStrip", BR_END + 0.05, BR_END + 0.15, UPY - 0.65, UPY - 0.15, BR_IN, L, "cyan", **DETAIL)
     # Brackets from the walls up to the decks' undersides.
-    for z in (-26, -16, -6, 14, 24, 34):
-        between(m, g, "Bracket", (-W + 0.2, 11.5, z), (CW_IN - 0.8, UPY - DT - 0.2, z), 0.4, 0.4,
+    for z in RIBS:
+        if z < CW_END or abs(z - LADDER_Z) < 3:
+            continue
+        between(m, g, "Bracket", (-W + 0.6, 11.5, z), (CW_IN - 0.8, UPY - DT - 0.2, z), 0.4, 0.4,
                 "metal", **DETAIL)
     for x in (-16, -4, 8):
         between(m, g, "Bracket", (x, 11.5, L - 0.2), (x, UPY - DT - 0.2, BR_IN + 0.8), 0.4, 0.4,
@@ -308,7 +325,7 @@ def build_upper(m):
         node = m.block(g, "Lamp", -29, -27, UPY - DT - 0.15, UPY - DT, z - 0.6, z + 0.6, "lamp", **DETAIL)
         if z in (-12, 24):
             node["children"] = [{"name": "Glow", "className": "SpotLight", "properties": {
-                "Face": "Bottom", "Range": 22, "Angle": 100, "Brightness": 1.2,
+                "Face": "Bottom", "Range": 22, "Angle": 100, "Brightness": 0.7,
                 "Color": m.rgb((240, 248, 255)), "Shadows": False}}]
     railing(m, g, (CW_IN, CW_END), (CW_IN, LADDER_Z - 1.5))
     railing(m, g, (CW_IN, LADDER_Z + 1.5), (CW_IN, BR_IN))
@@ -323,7 +340,8 @@ def build_pads(m):
     for name, ((x, y, z), velocity) in PADS.items():
         m.cylinder(g, name, 0.4, 5.4, (x, y + 0.2, z), "padrim",
                    attributes={"LaunchVelocity": vec(*velocity)})
-        m.cylinder(g, "PadGlow", 0.1, 4.2, (x, y + 0.45, z), "cyan", **DETAIL)
+        glow(m.cylinder(g, "PadGlow", 0.1, 4.2, (x, y + 0.45, z), "cyan", **DETAIL),
+             m.rgb((90, 200, 230)), 0.7, 14)
 
 
 def build_walls_detail(m):
@@ -334,13 +352,10 @@ def build_walls_detail(m):
         m.block(g, "LightStrip", -W + 0.25, -W + 0.35, y0, y0 + 0.2, -30, 30, "cyan", **DETAIL)
     for i in range(8):
         z = -26.25 + 7.5 * i
-        m.block(g, "RunLight", -W + 0.25, -W + 0.35, 5.2, 6.8, z - 0.8, z + 0.8, "cyan", **DETAIL)
+        node = m.block(g, "RunLight", -W + 0.25, -W + 0.35, 5.2, 6.8, z - 0.8, z + 0.8, "cyan", **DETAIL)
+        if i % 2 == 0:
+            glow(node, m.rgb((90, 200, 230)), 0.45, 12)
     # Light strips along the walls.
-    m.block(g, "LightStrip", -W + 0.05, -W + 0.15, 22.4, 22.65, -L, L, "cyan", **DETAIL)
-    m.block(g, "LightStrip", W - 0.15, W - 0.05, 22.4, 22.65, -L, L, "cyan", **DETAIL)
-    for z0, z1 in ((-36, DOORS[0][1] - DW / 2 - 1.2), (DOORS[0][1] + DW / 2 + 1.2, DOORS[1][1] - DW / 2 - 1.2),
-                   (DOORS[1][1] + DW / 2 + 1.2, L)):
-        m.block(g, "LightStrip", W - 0.15, W - 0.05, 4.4, 4.6, z0, z1, "orange", **DETAIL)
     # The airlock in the front wall (closed: a panel on the wall), under the bridge.
     m.block(g, "Airlock", 4, 16, 0, 11.2, L - 0.2, L - 0.05, "metal", **DETAIL)
     m.block(g, "AirlockSeam", 9.9, 10.1, 0.2, 11, L - 0.3, L - 0.2, "orange", **DETAIL)
@@ -356,17 +371,70 @@ def build_walls_detail(m):
         z = -33 + 11 * k
         for x in (-16, 0, 16):
             if x == 0:
-                surface_light(m, g, "CeilingLight", x - 3.5, x + 3.5, CEIL - 0.2, CEIL, z - 1.5,
-                              z + 1.5, "lamp", reach=48, brightness=1.4)
+                node = surface_light(m, g, "CeilingLight", x - 3.5, x + 3.5, CEIL - 0.2, CEIL,
+                                     z - 1.5, z + 1.5, "lamp", reach=44, brightness=0.75)
+                node["children"][0]["properties"]["Color"] = m.rgb((205, 222, 255))
             else:
                 m.block(g, "CeilingLight", x - 3.5, x + 3.5, CEIL - 0.2, CEIL, z - 1.5, z + 1.5,
                         "lamp", **DETAIL)
     # Props: a console and a crate on the step, a crate on the floor.
     m.block(g, "Console", 20, 26, 1, 4, -42.6, -40.4, "trim")
-    m.block(g, "ConsoleScreen", 20.5, 25.5, 2.7, 3.9, -40.35, -40.25, "screen", **DETAIL)
     m.block(g, "Crate", 27, 30, 1, 4, -41.5, -38.5, "metal")
     m.block(g, "Crate", 8.5, 11.5, 0, 3, -11.5, -8.5, "metal")
     m.block(g, "CrateStripe", 8.6, 11.4, 3, 3.1, -10.2, -9.8, "orange", **DETAIL)
+
+
+def build_more_detail(m):
+    g = "Detail"
+    near_door = lambda z: any(abs(z - dz) < 4.6 for _, dz, _ in DOORS)  # noqa: E731
+    # Ribs up the side walls, in line with the ceiling beams (not over the wall-run band, the
+    # catwalk or the doors), and a dark kick plate along the foot of each wall.
+    for z in RIBS:
+        cuts = []
+        if -30 < z < 30:
+            cuts.append((3.7, 8.3))
+        if z > CW_END:
+            cuts.append((UPY - DT - 0.1, UPY + 0.1))
+        y = 1.2
+        for c0, c1 in cuts + [(CEIL - 1.2, CEIL)]:
+            m.block(g, "Rib", -W + 0.05, -W + 0.55, y, c0, z - 0.6, z + 0.6, "rib", **DETAIL)
+            y = c1
+        if not near_door(z):
+            m.block(g, "Rib", W - 0.55, W - 0.05, 1.2, CEIL - 1.2, z - 0.6, z + 0.6, "rib", **DETAIL)
+    m.block(g, "KickPlate", -W + 0.05, -W + 0.3, 0, 1.2, -L, L, "kick", **DETAIL)
+    z = -L
+    for _, dz, _ in DOORS:
+        m.block(g, "KickPlate", W - 0.3, W - 0.05, 0, 1.2, z, dz - DW / 2 - 0.7, "kick", **DETAIL)
+        z = dz + DW / 2 + 0.7
+    m.block(g, "KickPlate", W - 0.3, W - 0.05, 0, 1.2, z, L, "kick", **DETAIL)
+    # Floor seams every 8 across the right floor and the left walkway.
+    for z in range(-32, 44, 8):
+        m.block(g, "Seam", TX1 + 1.1, W - 0.35, 0, 0.06, z - 0.1, z + 0.1, "seam", **DETAIL)
+        m.block(g, "Seam", -W + 0.35, TX0 - 1.1, 0, 0.06, z - 0.1, z + 0.1, "seam", **DETAIL)
+    # Pipes along the ceiling, hanging from the beams.
+    for x, radius, color in ((-11, 0.45, "pipe"), (-9.9, 0.3, "redpipe"), (21, 0.5, "pipe")):
+        m.part(g, "Pipe", (2 * L - 0.1, 2 * radius, 2 * radius), (x, CEIL - 1.2 - radius, 0),
+               color, rot_y(90), Shape="Cylinder", **DETAIL)
+    # Vents high on the end walls.
+    for x0 in (-26, 20):
+        m.block(g, "Vent", x0, x0 + 6, 24, 27, L - 0.25, L - 0.05, "vent", **DETAIL)
+        m.block(g, "Vent", x0, x0 + 6, 24, 27, -L + 0.05, -L + 0.25, "vent", **DETAIL)
+    # Cargo: a stack of crates on the right floor (jump up them), one more by the front.
+    for x0, y0, z0 in ((19, 0, 14), (23.2, 0, 14), (21.1, 4, 14), (11, 0, 24)):
+        m.block(g, "Cargo", x0, x0 + 4, y0, y0 + 4, z0, z0 + 4, "metal")
+        m.block(g, "CargoStripe", x0 + 0.3, x0 + 3.7, y0 + 1.6, y0 + 2.2, z0 - 0.15, z0 - 0.05,
+                "orange", **DETAIL)
+    # A terminal against the left wall by the front, its screen softly lit.
+    m.block(g, "Terminal", -W, -28.5, 0, 3.6, 31, 36, "trim")
+    glow(m.block(g, "TerminalScreen", -28.45, -28.35, 1.8, 3.2, 31.5, 35.5, "screen", **DETAIL),
+         m.rgb((90, 160, 230)), 0.4, 10)
+    # A bench on the step, facing the window.
+    m.block(g, "Bench", 4, 16, 1, 2.6, -39.6, -38.2, "kick")
+    glow(m.block(g, "ConsoleScreen", 20.5, 25.5, 2.7, 3.9, -40.35, -40.25, "screen", **DETAIL),
+         m.rgb((90, 160, 230)), 0.4, 10)
+    for x in (-19.5, 19.5):
+        glow(m.block(g, "LightStrip", x - 0.25, x + 0.25, 4, 26, -L + 0.05, -L + 0.15, "cyan",
+                     **DETAIL), m.rgb((90, 200, 230)), 0.5, 14)
 
 
 def build_doors(m):
@@ -386,7 +454,8 @@ def build_doors(m):
             m.block(g, "DoorFrame", x0, x1, 0, DH + 0.6, dz + DW / 2, dz + DW / 2 + 0.6, "trim", **DETAIL)
             m.block(g, "DoorFrame", x0, x1, DH, DH + 0.6, dz - DW / 2, dz + DW / 2, "trim", **DETAIL)
             gx0, gx1 = (x0 - 0.1, x0) if face < 0 else (x1, x1 + 0.1)
-            m.block(g, "DoorLight", gx0, gx1, DH + 0.15, DH + 0.45, dz - DW / 2, dz + DW / 2, color, **DETAIL)
+            glow(m.block(g, "DoorLight", gx0, gx1, DH + 0.15, DH + 0.45, dz - DW / 2, dz + DW / 2, color, **DETAIL),
+                 m.rgb(COLORS[color]), 0.6, 12)
 
 
 def build_hallway(m):
@@ -412,8 +481,9 @@ def build_hallway(m):
             between(m, g, "LightStrip", (x, 0.6, z_hi), (x, TD + 0.6, z_lo), 0.1, 0.2, "purple", **DETAIL)
     for k in range(6):
         z = HZ0 + 5 + 11 * k
-        surface_light(m, g, "CeilingLight", mid_x - 1.2, mid_x + 1.2, HH - 0.2, HH, z - 1, z + 1,
-                      "lamp", reach=30, brightness=1.0)
+        node = surface_light(m, g, "CeilingLight", mid_x - 1.2, mid_x + 1.2, HH - 0.2, HH, z - 1,
+                             z + 1, "lamp", reach=26, brightness=0.55)
+        node["children"][0]["properties"]["Color"] = m.rgb((205, 222, 255))
 
 
 def build_space(m):
@@ -427,13 +497,36 @@ def build_space(m):
         d = 102 - 3 * (i % 2)
         m.part(g, "Land", (120, 120, 120), (dx / n * d, -135 + dy / n * d, -330 + dz / n * d),
                "land", Shape="Ball", **DETAIL)
-    for x, y, z, s in ((-14, 24, -110, 1.0), (8, 10, -140, 1.3), (-4, 34, -190, 1.6)):
-        m.block(g, "Satellite", x - 0.7 * s, x + 0.7 * s, y - 0.7 * s, y + 0.7 * s, z - 1.1 * s,
-                z + 1.1 * s, "gold", **DETAIL)
-        for side in (-1, 1):
-            a, b = sorted((x + side * 1.5 * s, x + side * 5.1 * s))
-            m.block(g, "SolarPanel", a, b, y - 0.05 * s, y + 0.05 * s, z - 0.9 * s, z + 0.9 * s,
-                    "solar", **DETAIL)
+    # Satellites: big, light-coloured and lit by a lamp of their own so they read against space.
+    for x, y, z, k in ((-8, 36, -130, 1.0), (26, 10, -175, 0.7), (-32, 4, -215, 0.5),
+                       (112, 20, 6, 0.8)):
+        satellite(m, g, x, y, z, k)
+
+
+def satellite(m, g, x, y, z, k):
+    """A satellite centred at (x, y, z), `k` times full size (full: about 66 across): a gold
+    body, two wings of three solar panels in white frames, a dish and an antenna."""
+    def box(name, x0, x1, y0, y1, z0, z1, color):
+        m.block(g, name, x + x0 * k, x + x1 * k, y + y0 * k, y + y1 * k, z + z0 * k, z + z1 * k,
+                color, **DETAIL)
+    box("Satellite", -4, 4, -3, 3, -4, 4, "foil")
+    box("Satellite", -4.2, 4.2, -0.5, 0.5, -4.2, 4.2, "white")
+    for side in (-1, 1):
+        a, b = sorted((side * 4, side * 6))
+        box("SatelliteArm", a, b, -0.4, 0.4, -0.4, 0.4, "white")
+        for i in range(3):
+            p0 = 6 + i * 9.4
+            a, b = sorted((side * p0, side * (p0 + 9)))
+            box("SolarPanel", a, b, -0.15, 0.15, -6, 6, "panelblue")
+            fa, fb = sorted((side * (p0 + 9), side * (p0 + 9.4)))
+            box("SolarFrame", fa, fb, -0.25, 0.25, -6.2, 6.2, "white")
+            box("SolarFrame", a, b, -0.25, 0.25, -6.2, -6.0, "white")
+            box("SolarFrame", a, b, -0.25, 0.25, 6.0, 6.2, "white")
+    m.part(g, "SatelliteDish", (0.8 * k, 9 * k, 9 * k), (x, y + 1 * k, z + 4.4 * k), "dish",
+           [[0, 0, 1], [0, 1, 0], [-1, 0, 0]], Shape="Cylinder", **DETAIL)
+    box("SatelliteAntenna", -0.25, 0.25, 3, 9, -0.25, 0.25, "white")
+    glow(m.block(g, "SatelliteLamp", x - 0.5, x + 0.5, y + 10 * k, y + 11 * k, z + 18 * k,
+                 z + 19 * k, "white", Transparency=1, **DETAIL), m.rgb((255, 250, 240)), 2, 60)
 
 
 def build():
@@ -445,6 +538,7 @@ def build():
     build_upper(m)
     build_pads(m)
     build_walls_detail(m)
+    build_more_detail(m)
     build_doors(m)
     build_hallway(m)
     build_space(m)

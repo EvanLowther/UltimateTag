@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.67.1",
+	Version = "0.67.2",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1319,25 +1319,26 @@ local Config = {
 					TintColor = Color3.fromRGB(235, 225, 255),
 				},
 			},
-			-- A station in orbit (the Space Station): night sky with stars through the windows, no
-			-- haze, the hall lit by its own lamps.
+			-- A station in orbit (the Space Station): dark and calm inside, lit in pools by its
+			-- own dim lamps (the map has no Neon); stars outside, and Earth and the satellites lit
+			-- well enough to see (outdoor light is kept brighter than indoor).
 			Space = {
 				Lighting = {
 					ClockTime = 0,
-					Brightness = 0.6,
-					Ambient = Color3.fromRGB(118, 122, 134),
-					OutdoorAmbient = Color3.fromRGB(110, 116, 132),
-					ExposureCompensation = 0,
-					EnvironmentDiffuseScale = 0.2,
-					EnvironmentSpecularScale = 0.3,
+					Brightness = 0.35,
+					Ambient = Color3.fromRGB(52, 56, 66),
+					OutdoorAmbient = Color3.fromRGB(125, 135, 165),
+					ExposureCompensation = -0.1,
+					EnvironmentDiffuseScale = 0.15,
+					EnvironmentSpecularScale = 0.25,
 				},
 				Atmosphere = { Density = 0, Haze = 0, Glare = 0 },
-				Bloom = { Intensity = 0.35, Size = 22, Threshold = 1.4 },
+				Bloom = { Intensity = 0.12, Size = 18, Threshold = 2.2 },
 				ColorCorrection = {
-					Saturation = 0.15,
-					Contrast = 0.1,
-					Brightness = 0.02,
-					TintColor = Color3.fromRGB(245, 250, 255),
+					Saturation = 0.1,
+					Contrast = 0.12,
+					Brightness = -0.02,
+					TintColor = Color3.fromRGB(235, 242, 255),
 				},
 			},
 			-- Showcases (the win screen and the Locker's preview, client/WinScreen and

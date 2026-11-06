@@ -75,11 +75,11 @@
      0.2
     ],
     "Color": [
-     1.0,
-     0.624,
-     0.227
+     0.769,
+     0.439,
+     0.188
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -142,11 +142,11 @@
      0.2
     ],
     "Color": [
-     1.0,
-     0.624,
-     0.227
+     0.769,
+     0.439,
+     0.188
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -272,11 +272,11 @@
      0.2
     ],
     "Color": [
-     1.0,
-     0.624,
-     0.227
+     0.769,
+     0.439,
+     0.188
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -339,11 +339,11 @@
      0.2
     ],
     "Color": [
-     1.0,
-     0.624,
-     0.227
+     0.769,
+     0.439,
+     0.188
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -556,11 +556,11 @@
      5.0
     ],
     "Color": [
-     1.0,
-     0.624,
-     0.227
+     0.769,
+     0.439,
+     0.188
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -593,7 +593,23 @@
     "CanQuery": false,
     "CanTouch": false,
     "CastShadow": false
-   }
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.6,
+      "Range": 12,
+      "Color": [
+       0.769,
+       0.439,
+       0.188
+      ],
+      "Shadows": false
+     }
+    }
+   ]
   },
   {
    "name": "DoorFrame4",
@@ -756,11 +772,11 @@
      5.0
     ],
     "Color": [
-     1.0,
-     0.624,
-     0.227
+     0.769,
+     0.439,
+     0.188
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -793,7 +809,23 @@
     "CanQuery": false,
     "CanTouch": false,
     "CastShadow": false
-   }
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.6,
+      "Range": 12,
+      "Color": [
+       0.769,
+       0.439,
+       0.188
+      ],
+      "Shadows": false
+     }
+    }
+   ]
   },
   {
    "name": "DoorLeaf3",
@@ -869,11 +901,11 @@
      0.2
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -936,11 +968,11 @@
      0.2
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1066,11 +1098,11 @@
      0.2
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1133,11 +1165,11 @@
      0.2
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1350,11 +1382,11 @@
      5.0
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1387,7 +1419,23 @@
     "CanQuery": false,
     "CanTouch": false,
     "CastShadow": false
-   }
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.6,
+      "Range": 12,
+      "Color": [
+       0.227,
+       0.588,
+       0.675
+      ],
+      "Shadows": false
+     }
+    }
+   ]
   },
   {
    "name": "DoorFrame10",
@@ -1550,11 +1598,11 @@
      5.0
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1587,7 +1635,23 @@
     "CanQuery": false,
     "CanTouch": false,
     "CastShadow": false
-   }
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.6,
+      "Range": 12,
+      "Color": [
+       0.227,
+       0.588,
+       0.675
+      ],
+      "Shadows": false
+     }
+    }
+   ]
   }
  ]
 }

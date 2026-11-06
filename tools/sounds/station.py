@@ -114,7 +114,7 @@ def clank(f, sr, gain=1.0):
 
 @sound("amb_station", GROUP, "Station hum",
        "Inside the station: a low engine hum and air through the vents, with the odd far-off knock or beep.",
-       [("A", "Engine hum, air vents, distant clanks"), ("B", "Softer hum, airy, faint radio beeps")],
+       [("A", "Engine hum, air vents, distant clanks, faint radio"), ("B", "Softer hum, airy, faint radio beeps")],
        loop=True, sr=AMB_SR, level=-5, where="2D while you're on the Space Station (under its music)")
 @amb
 def amb_station(v, s, sr):
@@ -127,6 +127,14 @@ def amb_station(v, s, sr):
     if v == 0:
         for at in (2.3, 7.1, 10.4):
             out = place(out, clank(rng.uniform(180, 320), sr, 0.35), at, sr=sr)
+        # Faint radio chatter far off: a few soft beeps and a breath of static (the owner's pick
+        # asked for it).
+        for at, f in ((4.6, 1180), (9.2, 990)):
+            beep = osc(f, 0.08, sr=sr) * env(0.08, 0.003, 0.07, sr=sr) * 0.035
+            out = place(out, beep, at, sr=sr)
+            out = place(out, beep, at + 0.15, sr=sr)
+            hiss = bp(noise(0.5, sr=sr), 1200, 3200, sr=sr) * env(0.5, 0.05, 0.4, sr=sr) * 0.03
+            out = place(out, hiss, at + 0.3, sr=sr)
     else:
         for at in (1.5, 6.8):
             f = rng.choice([1180, 1320, 990])

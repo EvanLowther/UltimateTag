@@ -94,7 +94,7 @@
    }
   },
   {
-   "name": "LightStrip6",
+   "name": "LightStrip4",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -104,11 +104,11 @@
      35.5
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -144,7 +144,7 @@
    }
   },
   {
-   "name": "LightStrip7",
+   "name": "LightStrip5",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -154,11 +154,11 @@
      28.5
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -194,7 +194,7 @@
    }
   },
   {
-   "name": "LightStrip8",
+   "name": "LightStrip6",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -204,11 +204,11 @@
      0.1
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -244,7 +244,7 @@
    }
   },
   {
-   "name": "LightStrip9",
+   "name": "LightStrip7",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -254,11 +254,11 @@
      0.1
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -294,7 +294,7 @@
    }
   },
   {
-   "name": "LightStrip10",
+   "name": "LightStrip8",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -304,11 +304,11 @@
      7
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -349,7 +349,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6.946,
+     6.604,
      0.4,
      0.4
     ],
@@ -364,19 +364,19 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.3,
+       -28.1,
        13.25,
-       -26.0
+       -27.5
       ],
       "orientation": [
        [
-        0.864,
-        -0.504,
+        0.848,
+        -0.53,
         0.0
        ],
        [
-        0.504,
-        0.864,
+        0.53,
+        0.848,
         0.0
        ],
        [
@@ -399,7 +399,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6.946,
+     6.604,
      0.4,
      0.4
     ],
@@ -414,19 +414,19 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.3,
+       -28.1,
        13.25,
-       -16.0
+       -16.5
       ],
       "orientation": [
        [
-        0.864,
-        -0.504,
+        0.848,
+        -0.53,
         0.0
        ],
        [
-        0.504,
-        0.864,
+        0.53,
+        0.848,
         0.0
        ],
        [
@@ -449,7 +449,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6.946,
+     6.604,
      0.4,
      0.4
     ],
@@ -464,19 +464,19 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.3,
+       -28.1,
        13.25,
-       -6.0
+       -5.5
       ],
       "orientation": [
        [
-        0.864,
-        -0.504,
+        0.848,
+        -0.53,
         0.0
        ],
        [
-        0.504,
-        0.864,
+        0.53,
+        0.848,
         0.0
        ],
        [
@@ -499,7 +499,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6.946,
+     6.604,
      0.4,
      0.4
     ],
@@ -514,19 +514,19 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.3,
+       -28.1,
        13.25,
-       14.0
+       16.5
       ],
       "orientation": [
        [
-        0.864,
-        -0.504,
+        0.848,
+        -0.53,
         0.0
        ],
        [
-        0.504,
-        0.864,
+        0.53,
+        0.848,
         0.0
        ],
        [
@@ -549,7 +549,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6.946,
+     6.604,
      0.4,
      0.4
     ],
@@ -564,19 +564,19 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.3,
+       -28.1,
        13.25,
-       24.0
+       27.5
       ],
       "orientation": [
        [
-        0.864,
-        -0.504,
+        0.848,
+        -0.53,
         0.0
        ],
        [
-        0.504,
-        0.864,
+        0.53,
+        0.848,
         0.0
        ],
        [
@@ -599,7 +599,7 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     6.946,
+     6.604,
      0.4,
      0.4
     ],
@@ -614,19 +614,19 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       -28.3,
+       -28.1,
        13.25,
-       34.0
+       38.5
       ],
       "orientation": [
        [
-        0.864,
-        -0.504,
+        0.848,
+        -0.53,
         0.0
        ],
        [
-        0.504,
-        0.864,
+        0.53,
+        0.848,
         0.0
        ],
        [
@@ -804,11 +804,11 @@
      1.2
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -854,11 +854,11 @@
      1.2
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -900,7 +900,7 @@
       "Face": "Bottom",
       "Range": 22,
       "Angle": 100,
-      "Brightness": 1.2,
+      "Brightness": 0.7,
       "Color": [
        0.941,
        0.973,
@@ -922,11 +922,11 @@
      1.2
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -972,11 +972,11 @@
      1.2
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1022,11 +1022,11 @@
      1.2
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1068,7 +1068,7 @@
       "Face": "Bottom",
       "Range": 22,
       "Angle": 100,
-      "Brightness": 1.2,
+      "Brightness": 0.7,
       "Color": [
        0.941,
        0.973,
@@ -1090,11 +1090,11 @@
      1.2
     ],
     "Color": [
-     0.941,
-     0.973,
-     1.0
+     0.871,
+     0.894,
+     0.925
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {

@@ -462,7 +462,7 @@
    }
   },
   {
-   "name": "LightStrip3",
+   "name": "LightStrip",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -472,11 +472,11 @@
      0.1
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {

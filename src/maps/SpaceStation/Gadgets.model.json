@@ -68,11 +68,11 @@
      4.2
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -106,7 +106,23 @@
     "CanQuery": false,
     "CanTouch": false,
     "CastShadow": false
-   }
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 14,
+      "Color": [
+       0.353,
+       0.784,
+       0.902
+      ],
+      "Shadows": false
+     }
+    }
+   ]
   },
   {
    "name": "BridgePad",
@@ -175,11 +191,11 @@
      4.2
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -213,7 +229,23 @@
     "CanQuery": false,
     "CanTouch": false,
     "CastShadow": false
-   }
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 14,
+      "Color": [
+       0.353,
+       0.784,
+       0.902
+      ],
+      "Shadows": false
+     }
+    }
+   ]
   },
   {
    "name": "TrenchPad",
@@ -282,11 +314,11 @@
      4.2
     ],
     "Color": [
-     0.373,
-     0.902,
-     1.0
+     0.227,
+     0.588,
+     0.675
     ],
-    "Material": "Neon",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -320,7 +352,23 @@
     "CanQuery": false,
     "CanTouch": false,
     "CastShadow": false
-   }
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 0.7,
+      "Range": 14,
+      "Color": [
+       0.353,
+       0.784,
+       0.902
+      ],
+      "Shadows": false
+     }
+    }
+   ]
   }
  ]
 }
