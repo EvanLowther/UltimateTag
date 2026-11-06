@@ -1,6 +1,9 @@
 """Uploads the rendered icons to Roblox with Open Cloud and writes their image ids for the game.
 
-Run it yourself, with your own API key in the environment (never paste the key anywhere else):
+Run it yourself. The first time it asks for your API key (typing hidden) and keeps it in your
+Mac's Keychain (tools/roblox_key.py), so after that it just runs; ROBLOX_API_KEY and
+ROBLOX_USER_ID still override, and `--forget-key` removes the saved key. Never paste the key
+anywhere else. The old way, with the environment:
 
     export ROBLOX_API_KEY=...        # create.roblox.com > Open Cloud > API Keys (see below)
     export ROBLOX_USER_ID=...        # your user id (the number in your profile's URL)
@@ -30,6 +33,9 @@ import time
 import urllib.error
 import urllib.request
 import uuid
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import roblox_key  # noqa: E402  (tools/roblox_key.py: the saved API key)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -113,11 +119,12 @@ def write_luau(ids: dict) -> None:
 
 
 def main() -> None:
+    if "--forget-key" in sys.argv:
+        roblox_key.forget_key()
+        return
     folder = sys.argv[1] if len(sys.argv) > 1 else "build/icons"
-    key = os.environ.get("ROBLOX_API_KEY")
-    user = os.environ.get("ROBLOX_USER_ID")
-    if not key or not user:
-        sys.exit("Set ROBLOX_API_KEY and ROBLOX_USER_ID first (see the top of this file).")
+    key = roblox_key.api_key()
+    user = roblox_key.user_id()
     ids: dict = {}
     if os.path.exists(IDS):
         with open(IDS) as f:

@@ -188,7 +188,11 @@ function Menu.start()
 	back.Size = UDim2.fromOffset(backSize, backSize)
 	back.ZIndex = 3
 	back.Visible = false
-	local backIcon = Ui.centerIcon(back, "arrowLeft", 26, Ui.Colors.Cyan, Ui.Colors.Ink)
+	local backFill = back:FindFirstChild("Fill")
+	if backFill and backFill:IsA("GuiObject") then
+		backFill.Visible = false -- just the arrow on the header, no box behind it
+	end
+	local backIcon = Ui.centerIcon(back, "arrowLeft", 30, Ui.Colors.Ink, Ui.Colors.Text)
 	backIcon.ZIndex = 4
 	local iconHolder = header:FindFirstChild("IconHolder") :: GuiObject
 	local titleAt = title.Position

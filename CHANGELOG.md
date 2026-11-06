@@ -2,6 +2,7 @@
 
 Newest first. From 0.64.0 on, each entry is one to three sentences: what changed for the player (or the tools), the key Config names, and "Untested in game." when it is. The detail lives in the commit and the code.
 
+- 0.66.3: The Locker's Back arrow sits straight on the header (no dark box behind it). The upload scripts (icons and sounds) keep the owner's API key in the Mac's Keychain after asking once (`tools/roblox_key.py`, `--forget-key`); the two arrows are uploaded. Untested in game.
 - 0.66.2: Fix: the Locker's title was cut off ("LO..."): its Back button took too much of the narrow docked header. Back is now a left arrow button at the left of the header, in place of the page icon. The left and right arrows are drawn in the new icon style too (`tools/icons/objects.mjs`), shown once uploaded. Untested in game.
 - 0.66.1: Fix: the Locker's info text and preview chip were cut off at the raised text size (the plate is taller with room for four lines, the chip wider: `Config.Locker.PlateSize`, `ChipSize`). The side tab and the Locker's Back button now use real arrows (new `arrowLeft` and `arrowRight` icons, drawn in code, never turned) pointing the way the panel will go. Untested in game.
 - 0.66.0: The Locker has a Back button (beside close) to the page you opened it from, or out of the menu. In a game or spectating, the coins and page buttons slide off to the left behind a small arrow tab that pulls them back out (the +coins text moves beside the tab); in the lobby they're always out (`Config.Ui.SideTab`). Untested in game.
