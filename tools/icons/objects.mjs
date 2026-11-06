@@ -146,6 +146,18 @@ export const ICONS = {
     a.sh("M15 7 Q12 7 12 11 V53 Q12 57 15.5 55.5 L56 34.5 Q59 32 56 29.5 L15.5 8.5 Z", "front");
     a.plain("M17 13 L49 30 L17 22 Z", "top");
   } },
+  // Thick arrows for the menu's side tab and the Locker's Back button: a head and a shaft, the
+  // lit edge along the top. Two drawings, never turned, so the light stays on top.
+  arrowLeft: { c: "C", speed: false, draw: (a) => {
+    a.sh("M5 32 L29 8 Q31 6.5 31 9 V21 H55 Q59 21 59 25 V39 Q59 43 55 43 H31 V55 Q31 57.5 29 56 Z", "front");
+    a.plain("M10 31 L27 14 V17 L13 31 Z", "top");
+    a.plain("M31 24 H55 V27 H31 Z", "top");
+  } },
+  arrowRight: { c: "C", speed: false, draw: (a) => {
+    a.sh("M59 32 L35 8 Q33 6.5 33 9 V21 H9 Q5 21 5 25 V39 Q5 43 9 43 H33 V55 Q33 57.5 35 56 Z", "front");
+    a.plain("M54 31 L37 14 V17 L51 31 Z", "top");
+    a.plain("M33 24 H9 V27 H33 Z", "top");
+  } },
   dash: { c: "G", speed: false, draw: (a) => {
     a.ln(ell(32, 32, 22, 22), "front", 6);
     a.ln("M17 47 L47 17", "front", 6);

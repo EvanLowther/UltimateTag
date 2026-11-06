@@ -181,17 +181,15 @@ function Menu.start()
 	local backSize = close.Size.X.Offset
 	local back = Ui.button(window, "", Ui.Colors.Ink, function()
 		Menu.open(cameFrom)
-	end, Ui.Colors.Text, 0, "play")
+	end, Ui.Colors.Text, 0)
 	back.Name = "Back"
 	back.AnchorPoint = Vector2.new(0, 0.5)
 	back.Position = UDim2.fromOffset(10, 26)
 	back.Size = UDim2.fromOffset(backSize, backSize)
 	back.ZIndex = 3
 	back.Visible = false
-	local backIcon = back:FindFirstChild("Icon", true)
-	if backIcon and backIcon:IsA("GuiObject") then
-		backIcon.Rotation = 180 -- the play triangle, pointing left
-	end
+	local backIcon = Ui.centerIcon(back, "arrowLeft", 26, Ui.Colors.Cyan, Ui.Colors.Ink)
+	backIcon.ZIndex = 4
 	local iconHolder = header:FindFirstChild("IconHolder") :: GuiObject
 	local titleAt = title.Position
 	local function showBack(visible: boolean)
