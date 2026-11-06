@@ -174,25 +174,32 @@ function Menu.start()
 	modal.Modal = true
 	modal.Parent = window
 
-	-- The docked Locker hides the page buttons, so it gets a Back button beside the close button:
-	-- to the page it was opened from, or out of the menu.
+	-- The docked Locker hides the page buttons, so it gets a Back button: an arrow at the left of
+	-- the header, where the page icon sits (the narrow docked window needs the rest of the header
+	-- for its title). It goes to the page the Locker was opened from, or out of the menu.
 	local cameFrom: string? = nil
-	local closeSize = close.Size.X.Offset
-	local backWidth = Config.Ui.BackWidth
-	local back = Ui.button(window, "Back", Ui.Colors.Tab, function()
+	local backSize = close.Size.X.Offset
+	local back = Ui.button(window, "", Ui.Colors.Ink, function()
 		Menu.open(cameFrom)
-	end, Ui.Colors.Text, 0, "arrowLeft")
+	end, Ui.Colors.Text, 0, "play")
 	back.Name = "Back"
-	back.AnchorPoint = Vector2.new(1, 0)
-	back.Position = UDim2.new(1, -(22 + closeSize + 8), 0, close.Position.Y.Offset)
-	back.Size = UDim2.fromOffset(backWidth, closeSize)
+	back.AnchorPoint = Vector2.new(0, 0.5)
+	back.Position = UDim2.fromOffset(10, 26)
+	back.Size = UDim2.fromOffset(backSize, backSize)
+	back.ZIndex = 3
 	back.Visible = false
-	local headerSize = header.Size
+	local backIcon = back:FindFirstChild("Icon", true)
+	if backIcon and backIcon:IsA("GuiObject") then
+		backIcon.Rotation = 180 -- the play triangle, pointing left
+	end
+	local iconHolder = header:FindFirstChild("IconHolder") :: GuiObject
+	local titleAt = title.Position
 	local function showBack(visible: boolean)
 		back.Visible = visible
-		header.Size = if visible
-			then UDim2.new(1, -(22 + closeSize + 8 + backWidth + 8), 0, headerSize.Y.Offset)
-			else headerSize
+		iconHolder.Visible = not visible
+		title.Position = if visible
+			then UDim2.fromOffset(10 + backSize + 6, titleAt.Y.Offset)
+			else titleAt
 	end
 
 	local pages: { [string]: Frame } = {}

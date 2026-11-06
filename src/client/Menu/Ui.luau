@@ -512,6 +512,7 @@ function Ui.iconText(
 	label.LayoutOrder = 2
 	label.Size = UDim2.fromScale(0, 1)
 	label.AutomaticSize = Enum.AutomaticSize.X
+	label.Visible = text ~= "" -- an icon-only button keeps its icon centred (no gap after it)
 	row.Parent = parent
 	return row, label
 end

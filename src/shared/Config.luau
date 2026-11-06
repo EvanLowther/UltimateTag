@@ -1029,8 +1029,6 @@ local Config = {
 		-- left behind a small tab with an arrow that pulls it back out (Menu); in the lobby it's
 		-- always out. Virtual pixels and seconds.
 		SideTab = { Width = 34, Height = 84, SlideTime = 0.25 },
-		-- The docked Locker's Back button (to the page you came from).
-		BackWidth = 104,
 		-- Screen scaling for the menus and popups (Menu/Ui.scale): everything is laid out for a
 		-- 1280x720 screen in "virtual pixels" and a UIScale (shortest side against Reference,
 		-- kept between Min and Max) maps that to the real screen. Touch devices use TouchMinScale
