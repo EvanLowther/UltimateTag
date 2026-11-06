@@ -6,7 +6,9 @@
 --   The window: one window whose header takes the open page's color, icon and title. The Locker
 --   docks to the left instead, over its 3D preview (Menu/LockerTab, client/LockerStage; where
 --   everything goes on any screen is Menu/LockerLayout), and the buttons and level bar step
---   aside while it's open.
+--   aside while it's open; its Back button goes to the page it was opened from.
+--   In a game (or spectating) the coins and page buttons slide off to the left behind a small
+--   arrow tab that pulls them back out; in the lobby they're always out (Config.Ui.SideTab).
 -- Everything is built in a scaled root frame (Ui.scale): layouts are in virtual pixels for a
 -- 1280x720 screen. Pages get their body size (virtual) as the BodyW / BodyH attributes of their
 -- page frame (Ui.bodySize) and are refreshed when it changes, so they can switch to a narrow
@@ -21,10 +23,12 @@ local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local ProximityPromptService = game:GetService("ProximityPromptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Config = require(Shared:WaitForChild("Config"))
+local GameState = require(Shared:WaitForChild("GameState"))
 local Remotes = require(Shared:WaitForChild("Remotes"))
 local Cursor = require(script.Parent.Cursor)
 local Icons = require(script.Parent.Icons)
@@ -170,6 +174,31 @@ function Menu.start()
 	modal.Modal = true
 	modal.Parent = window
 
+	-- The docked Locker hides the page buttons, so it gets a Back button beside the close button:
+	-- to the page it was opened from, or out of the menu.
+	local cameFrom: string? = nil
+	local closeSize = close.Size.X.Offset
+	local backWidth = Config.Ui.BackWidth
+	local back = Ui.button(window, "Back", Ui.Colors.Tab, function()
+		Menu.open(cameFrom)
+	end, Ui.Colors.Text, 0, "play")
+	back.Name = "Back"
+	back.AnchorPoint = Vector2.new(1, 0)
+	back.Position = UDim2.new(1, -(22 + closeSize + 8), 0, close.Position.Y.Offset)
+	back.Size = UDim2.fromOffset(backWidth, closeSize)
+	back.Visible = false
+	local backIcon = back:FindFirstChild("Icon", true)
+	if backIcon and backIcon:IsA("GuiObject") then
+		backIcon.Rotation = 180 -- the play triangle, pointing left
+	end
+	local headerSize = header.Size
+	local function showBack(visible: boolean)
+		back.Visible = visible
+		header.Size = if visible
+			then UDim2.new(1, -(22 + closeSize + 8 + backWidth + 8), 0, headerSize.Y.Offset)
+			else headerSize
+	end
+
 	local pages: { [string]: Frame } = {}
 	local refreshers: { [string]: () -> () } = {}
 	local byName: { [string]: Page } = {}
@@ -288,6 +317,10 @@ function Menu.start()
 			end
 		end
 		current = name
+		if name and byName[name].module.docked then
+			cameFrom = previous
+		end
+		showBack(name ~= nil and byName[name].module.docked == true)
 		window.Visible = name ~= nil
 		Cursor.hold("Menu", name ~= nil) -- the mouse stays free while a page is open
 		for pageName, page in pages do
@@ -377,6 +410,62 @@ function Menu.start()
 		buttons[page.name] = button
 	end
 	paintButtons()
+
+	-- In a game (or spectating) the side panel slides off to the left, leaving a small tab with an
+	-- arrow that pulls it back out (and tucks it away again); in the lobby it's always out. The
+	-- floating "+coins" text moves with it so it stays on screen beside the tab.
+	local sideTab = Config.Ui.SideTab
+	local OPEN_X = 14
+	local HIDDEN_X = -(nav.Size.X.Offset + 20)
+	local FLOAT_OPEN = floatAnchor.Position.X.Offset
+	local FLOAT_HIDDEN = sideTab.Width + 12 - (HIDDEN_X + money.Size.X.Offset)
+	local tab = Ui.button(root, "", Ui.Colors.Panel, function() end, Ui.Colors.Text, 0, "play")
+	tab.Name = "SideTab"
+	tab.AnchorPoint = Vector2.new(0, 0.5)
+	tab.Position = UDim2.fromScale(0, 0.5)
+	tab.Size = UDim2.fromOffset(sideTab.Width, Ui.hit(sideTab.Height))
+	tab.Visible = false
+	local tabEdge = Ui.slab(tab, Ui.Colors.Cyan, 0)
+	tabEdge.Size = UDim2.new(0, 4, 1, 0)
+	tabEdge.ZIndex = 2
+	local tabIcon = tab:FindFirstChild("Icon", true)
+	local tucked = false -- the side panel is tucked away
+	local inGameNow = false
+	local function slide(hidden: boolean, instant: boolean?)
+		tucked = hidden
+		local motion =
+			TweenInfo.new(if instant then 0 else sideTab.SlideTime, Enum.EasingStyle.Quad)
+		TweenService:Create(nav, motion, {
+			Position = UDim2.new(0, if hidden then HIDDEN_X else OPEN_X, 0.5, 0),
+		}):Play()
+		TweenService:Create(floatAnchor, motion, {
+			Position = UDim2.new(1, if hidden then FLOAT_HIDDEN else FLOAT_OPEN, 0, 2),
+		}):Play()
+		if tabIcon and tabIcon:IsA("GuiObject") then
+			tabIcon.Rotation = if hidden then 0 else 180 -- points the way the panel will go
+		end
+	end
+	tab.Activated:Connect(function()
+		slide(not tucked)
+	end)
+	local function inGame(): boolean
+		local phase = GameState.getPhase()
+		local running = phase == "Intro" or phase == "Playing" or phase == "Results"
+		return running
+			and (player:GetAttribute("InGame") == true or player:GetAttribute("Spectating") == true)
+	end
+	local function checkGame()
+		local now = inGame()
+		if now ~= inGameNow then
+			inGameNow = now
+			tab.Visible = now
+			slide(now) -- tucked away as a game starts, out again in the lobby
+		end
+	end
+	GameState.onChanged(checkGame)
+	player:GetAttributeChangedSignal("InGame"):Connect(checkGame)
+	player:GetAttributeChangedSignal("Spectating"):Connect(checkGame)
+	checkGame()
 
 	Profile.onChanged(function(profile)
 		for name, badge in badges do

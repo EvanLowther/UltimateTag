@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.65.1",
+	Version = "0.66.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1025,6 +1025,12 @@ local Config = {
 
 	Ui = {
 		Font = Enum.Font.SourceSansBold, -- the dev panel's font
+		-- In a game (or spectating) the menu's side panel (coins and page buttons) slides off to the
+		-- left behind a small tab with an arrow that pulls it back out (Menu); in the lobby it's
+		-- always out. Virtual pixels and seconds.
+		SideTab = { Width = 34, Height = 84, SlideTime = 0.25 },
+		-- The docked Locker's Back button (to the page you came from).
+		BackWidth = 104,
 		-- Screen scaling for the menus and popups (Menu/Ui.scale): everything is laid out for a
 		-- 1280x720 screen in "virtual pixels" and a UIScale (shortest side against Reference,
 		-- kept between Min and Max) maps that to the real screen. Touch devices use TouchMinScale
