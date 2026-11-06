@@ -150,13 +150,13 @@ function LockerTab.build(page: Frame, api: { [string]: any }): () -> ()
 	Ui.shrinkText(infoName, 18, 34) -- a long name gets smaller instead of being cut off
 	local infoText = Ui.text(info, "", 15, Ui.Colors.Dim)
 	infoText.Position = UDim2.fromOffset(14, 74)
-	infoText.Size = UDim2.new(1, -28, 0, 66)
+	infoText.Size = UDim2.new(1, -28, 0, 92) -- room for four lines at the raised text size
 	infoText.TextXAlignment = Enum.TextXAlignment.Left
 	infoText.TextYAlignment = Enum.TextYAlignment.Top
 	infoText.TextWrapped = true
 	infoText.TextTruncate = Enum.TextTruncate.AtEnd
 	local action = Ui.frame(info)
-	action.Position = UDim2.fromOffset(14, 146)
+	action.Position = UDim2.fromOffset(14, 176)
 	action.Size = UDim2.new(1, -28, 0, 40)
 	local serial = Ui.caps(info, "", 14, Ui.Colors.Text)
 	serial.AnchorPoint = Vector2.new(1, 0)

@@ -373,6 +373,18 @@ local DRAW: { [string]: (Canvas) -> () } = {
 		tri(c, 0.24, 0.12, 0.58, 0.38, "BL")
 		tri(c, 0.24, 0.5, 0.58, 0.38, "TL")
 	end,
+	-- A thick arrow (shaft and head), pointing right or left: separate drawings, never turned,
+	-- so they read the right way round wherever they're used (the side tab, the Locker's Back).
+	arrowRight = function(c)
+		box(c, 0.1, 0.4, 0.46, 0.2, false)
+		tri(c, 0.46, 0.12, 0.44, 0.38, "BL")
+		tri(c, 0.46, 0.5, 0.44, 0.38, "TL")
+	end,
+	arrowLeft = function(c)
+		box(c, 0.44, 0.4, 0.46, 0.2, false)
+		tri(c, 0.1, 0.12, 0.44, 0.38, "BR")
+		tri(c, 0.1, 0.5, 0.44, 0.38, "TR")
+	end,
 	dash = function(c)
 		box(c, 0.2, 0.44, 0.6, 0.12, false, 1)
 	end,

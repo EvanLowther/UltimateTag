@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.66.0",
+	Version = "0.66.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -948,8 +948,8 @@ local Config = {
 		-- Config.Ui). The window docks left; the character is centred in the free space beside it.
 		WindowWidth = 360,
 		WindowMargin = 14, -- the window's gap to the screen edge
-		PlateSize = Vector2.new(340, 200), -- the info plate (top right)
-		ChipSize = Vector2.new(320, 36), -- the "what the preview shows" chip (bottom right)
+		PlateSize = Vector2.new(360, 232), -- the info plate (top right)
+		ChipSize = Vector2.new(380, 40), -- the "what the preview shows" chip (bottom right)
 		EdgeMargin = 16, -- plate and chip gap to the screen edge
 		FreeGap = 16, -- empty space kept between the character's area and the window and plate
 		SideMinFree = 0.4, -- free width (share of the screen) needed to keep the plate at the side

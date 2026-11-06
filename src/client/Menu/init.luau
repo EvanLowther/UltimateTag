@@ -181,16 +181,12 @@ function Menu.start()
 	local backWidth = Config.Ui.BackWidth
 	local back = Ui.button(window, "Back", Ui.Colors.Tab, function()
 		Menu.open(cameFrom)
-	end, Ui.Colors.Text, 0, "play")
+	end, Ui.Colors.Text, 0, "arrowLeft")
 	back.Name = "Back"
 	back.AnchorPoint = Vector2.new(1, 0)
 	back.Position = UDim2.new(1, -(22 + closeSize + 8), 0, close.Position.Y.Offset)
 	back.Size = UDim2.fromOffset(backWidth, closeSize)
 	back.Visible = false
-	local backIcon = back:FindFirstChild("Icon", true)
-	if backIcon and backIcon:IsA("GuiObject") then
-		backIcon.Rotation = 180 -- the play triangle, pointing left
-	end
 	local headerSize = header.Size
 	local function showBack(visible: boolean)
 		back.Visible = visible
@@ -419,7 +415,7 @@ function Menu.start()
 	local HIDDEN_X = -(nav.Size.X.Offset + 20)
 	local FLOAT_OPEN = floatAnchor.Position.X.Offset
 	local FLOAT_HIDDEN = sideTab.Width + 12 - (HIDDEN_X + money.Size.X.Offset)
-	local tab = Ui.button(root, "", Ui.Colors.Panel, function() end, Ui.Colors.Text, 0, "play")
+	local tab = Ui.button(root, "", Ui.Colors.Panel, function() end, Ui.Colors.Text, 0)
 	tab.Name = "SideTab"
 	tab.AnchorPoint = Vector2.new(0, 0.5)
 	tab.Position = UDim2.fromScale(0, 0.5)
@@ -428,7 +424,24 @@ function Menu.start()
 	local tabEdge = Ui.slab(tab, Ui.Colors.Cyan, 0)
 	tabEdge.Size = UDim2.new(0, 4, 1, 0)
 	tabEdge.ZIndex = 2
-	local tabIcon = tab:FindFirstChild("Icon", true)
+	local tabIcon: Frame? = nil
+	-- The arrow shows the way the panel will go: left to tuck it away, right to pull it out.
+	local function setArrow(toLeft: boolean)
+		if tabIcon then
+			tabIcon:Destroy()
+		end
+		local icon = Ui.centerIcon(
+			tab,
+			if toLeft then "arrowLeft" else "arrowRight",
+			26,
+			Ui.Colors.Cyan,
+			Ui.Colors.Ink
+		)
+		icon.Position = UDim2.new(0.5, 2, 0.5, 0)
+		icon.ZIndex = 3
+		tabIcon = icon
+	end
+	setArrow(true)
 	local tucked = false -- the side panel is tucked away
 	local inGameNow = false
 	local function slide(hidden: boolean, instant: boolean?)
@@ -441,9 +454,7 @@ function Menu.start()
 		TweenService:Create(floatAnchor, motion, {
 			Position = UDim2.new(1, if hidden then FLOAT_HIDDEN else FLOAT_OPEN, 0, 2),
 		}):Play()
-		if tabIcon and tabIcon:IsA("GuiObject") then
-			tabIcon.Rotation = if hidden then 0 else 180 -- points the way the panel will go
-		end
+		setArrow(not hidden)
 	end
 	tab.Activated:Connect(function()
 		slide(not tucked)
