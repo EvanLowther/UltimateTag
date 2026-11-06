@@ -45,12 +45,18 @@ local VICTORY_ICONS = {
 	Rift = "rift",
 }
 
--- The icon (client/Icons) for a tag effect or victory.
+-- The icon (client/Icons) for a tag effect or victory: its own picture ("tag" .. Effect,
+-- "victory" .. Victory) once that's uploaded, else the old drawn icon.
 function ItemCard.icon(item: Catalog.Item): string
 	local look = item.look
 	if item.kind == "TagEffect" then
-		return TAG_ICONS[look.Effect] or "burst"
+		local picture = "tag" .. tostring(look.Effect)
+		return if Icons.hasImage(picture) then picture else TAG_ICONS[look.Effect] or "burst"
 	elseif item.kind == "Victory" then
+		local picture = "victory" .. tostring(look.Victory)
+		if look.Victory ~= "None" and Icons.hasImage(picture) then
+			return picture
+		end
 		return VICTORY_ICONS[look.Victory] or "figureCheer"
 	end
 	return "sparkle"
@@ -150,7 +156,11 @@ function ItemCard.preview(parent: GuiObject, item: Catalog.Item, scale: number?)
 		inner.Position = UDim2.fromScale(0.5, 0.5)
 		inner.Size = UDim2.new(1, -8, 0, math.floor(24 * s))
 		titleText(inner, item, math.floor(20 * s))
-	elseif item.kind == "TagEffect" and item.look.Effect == "Pow" then
+	elseif
+		item.kind == "TagEffect"
+		and item.look.Effect == "Pow"
+		and not Icons.hasImage("tagPow")
+	then
 		-- The comic burst with TAG! across it, as it pops up in the game.
 		local main, accent = iconColors(item)
 		Ui.centerIcon(parent, "burst", math.floor(40 * s), main, accent)
@@ -163,8 +173,13 @@ function ItemCard.preview(parent: GuiObject, item: Catalog.Item, scale: number?)
 		Ui.stroke(tag, 2, accent)
 	else
 		local main, accent = iconColors(item)
-		local icon = Ui.centerIcon(parent, ItemCard.icon(item), math.floor(32 * s), main, accent)
-		if item.rarity == "Iridescent" then
+		local name = ItemCard.icon(item)
+		local icon = Ui.centerIcon(parent, name, math.floor(32 * s), main, accent)
+		if Icons.hasImage(name) and (item.kind == "TagEffect" or item.kind == "Victory") then
+			-- The pictures fill their well: a square as tall as it.
+			icon.SizeConstraint = Enum.SizeConstraint.RelativeYY
+			icon.Size = UDim2.fromScale(0.96, 0.96)
+		elseif item.rarity == "Iridescent" then
 			Icons.holo(icon)
 		end
 	end

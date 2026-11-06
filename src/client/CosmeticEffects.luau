@@ -143,6 +143,8 @@ local function fadeOut(root: Instance, seconds: number)
 	for _, item in root:GetDescendants() do
 		if item:IsA("TextLabel") then
 			TweenService:Create(item, info, { TextTransparency = 1 }):Play()
+		elseif item:IsA("ImageLabel") then
+			TweenService:Create(item, info, { ImageTransparency = 1 }):Play()
 		elseif item:IsA("Frame") and item.BackgroundTransparency < 1 then
 			TweenService:Create(item, info, { BackgroundTransparency = 1 }):Play()
 		elseif item:IsA("UIStroke") then

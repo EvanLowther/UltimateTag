@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.64.0",
+	Version = "0.65.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1112,6 +1112,13 @@ local Config = {
 	-- preset name here) switches your lighting to that preset, laid over the normal lighting,
 	-- while your camera is within Radius studs of it. Other places use the normal lighting from
 	-- default.project.json.
+	-- Icons (client/Icons): each icon's uploaded image, by icon name. Drawn in tools/icons, rendered
+	-- with tools/icons/render.mjs and uploaded with tools/icons/upload.py, which writes
+	-- shared/IconImages. An icon with no image yet is drawn in code as before.
+	Icons = {
+		Images = require(script.Parent.IconImages),
+	},
+
 	-- Sounds (client/Sounds). Every one is made in code (tools/sounds) and uploaded to Roblox
 	-- (tools/sounds/upload.py writes tools/sounds/asset_ids.json; copy the ids here). Volume is
 	-- the sound's own level before the player's sliders; an Id of 0 is silent.

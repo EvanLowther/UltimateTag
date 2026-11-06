@@ -1,15 +1,23 @@
 --!strict
--- The game's icons, drawn in code from flat shapes (no images, no emoji), in the Street sprint
--- style: bold and geometric, a main color plus an accent. Icons.draw(parent, name, size,
--- color, accent) returns a square Frame holding the icon; it works anywhere a GuiObject can go:
--- menus, buttons, and BillboardGuis in the world (the Hearts, Stars and Pow tag effects, the
--- victory stars). Icons.paint recolors one.
---   Shapes: boxes (optionally rounded or turned), circles, rings, lines, arcs (short
---   round-ended lines), right triangles (a box cut along its diagonal by a UIGradient with a
---   hard transparency step, like the menu's slanted edges) which build peaks, arrowheads,
---   diamonds, sparkle stars and teardrops, and a Bangers glyph (the crate's question mark).
---   Turned shapes are drawn inside a turned holder frame.
+-- The game's icons. Each one is an uploaded image (Config.Icons.Images, drawn in tools/icons in
+-- the Street sprint style: three-quarter view objects with ink outlines, a forward lean and a
+-- hard shadow, each in its own colours). Icons.draw(parent, name, size, color, accent) returns a
+-- square Frame holding the icon; it works anywhere a GuiObject can go: menus, buttons, and
+-- BillboardGuis in the world (the Hearts, Stars and Pow tag effects). An image icon keeps its
+-- own colours, so `color`/`accent`, Icons.paint and Icons.holo only change the fallback.
+-- The fallback, for an icon with no image yet, is the old drawing in code from flat shapes (no
+-- emoji): boxes (optionally rounded or turned), circles, rings, lines, arcs (short round-ended
+-- lines), right triangles (a box cut along its diagonal by a UIGradient with a hard
+-- transparency step, like the menu's slanted edges) which build peaks, arrowheads, diamonds,
+-- sparkle stars and teardrops, and a Bangers glyph (the crate's question mark). Turned shapes
+-- are drawn inside a turned holder frame.
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+
 local Icons = {}
+
+local IMAGES: { [string]: number } = Config.Icons.Images
 
 local WHITE = Color3.new(1, 1, 1)
 local INK = Color3.fromRGB(17, 17, 17)
@@ -674,15 +682,26 @@ local DRAW: { [string]: (Canvas) -> () } = {
 	end,
 }
 
--- Every icon's name.
+-- Every icon's name (drawn or uploaded).
 Icons.Names = {}
 for name in DRAW do
 	table.insert(Icons.Names, name)
 end
+for name in IMAGES do
+	if not DRAW[name] then
+		table.insert(Icons.Names, name)
+	end
+end
 table.sort(Icons.Names)
 
 function Icons.has(name: string?): boolean
-	return name ~= nil and DRAW[name] ~= nil
+	return name ~= nil and (DRAW[name] ~= nil or IMAGES[name] ~= nil)
+end
+
+-- Whether icon `name` has its uploaded image (the tag effect and victory pictures exist only
+-- as images: "tag" .. Effect, "victory" .. Victory).
+function Icons.hasImage(name: string?): boolean
+	return name ~= nil and IMAGES[name] ~= nil
 end
 
 -- Draws icon `name` in a `size` pixel square Frame (main `color`, white by default, and an
@@ -698,8 +717,18 @@ function Icons.draw(
 	frame.Name = "Icon"
 	frame.BackgroundTransparency = 1
 	frame.Size = UDim2.fromOffset(size, size)
+	local image = IMAGES[name]
 	local draw = DRAW[name]
-	if draw then
+	if image then
+		local label = Instance.new("ImageLabel")
+		label.Name = "Image"
+		label.BackgroundTransparency = 1
+		label.Size = UDim2.fromScale(1, 1)
+		label.ScaleType = Enum.ScaleType.Fit
+		label.Image = "rbxassetid://" .. image
+		label.Parent = frame
+		frame:SetAttribute("IconImage", true)
+	elseif draw then
 		draw({ frame = frame, size = size, color = color or WHITE, accent = accent or INK })
 	end
 	frame.Parent = parent

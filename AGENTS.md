@@ -16,7 +16,7 @@ This file is the always-loaded core: what every change needs. The detail is in f
 | `docs/polish/` | The polish plans and the agreed rules (`gameplay-rules.md`) | On demand |
 
 ## Style rules
-- **Look:** the test map is studded classic plastic; real maps and the lobby use real materials and lots of non-colliding detail; the UI is the "Street sprint" style built from `client/Menu/Ui.luau` helpers, with **no emoji anywhere** (icons are drawn in code by `client/Icons`). Full rules: `docs/agents/maps.md` and `docs/agents/ui.md`.
+- **Look:** the test map is studded classic plastic; real maps and the lobby use real materials and lots of non-colliding detail; the UI is the "Street sprint" style built from `client/Menu/Ui.luau` helpers, with **no emoji anywhere** (icons are uploaded images drawn in `tools/icons`, shown by `client/Icons`). Full rules: `docs/agents/maps.md` and `docs/agents/ui.md`.
 - Keep it simple. Prefer one small module per feature over big scripts.
 
 ## Layout (Rojo: `default.project.json`)
