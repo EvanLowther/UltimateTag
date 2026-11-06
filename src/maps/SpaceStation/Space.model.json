@@ -1,0 +1,813 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Earth",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     320,
+     320,
+     320
+    ],
+    "Color": [
+     0.165,
+     0.408,
+     0.722
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       -135,
+       -330
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Atmosphere",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     332,
+     332,
+     332
+    ],
+    "Color": [
+     0.494,
+     0.784,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       -135,
+       -330
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "Transparency": 0.82,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Land",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     120,
+     120,
+     120
+    ],
+    "Color": [
+     0.306,
+     0.541,
+     0.247
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.543,
+       -48.152,
+       -283.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Land2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     120,
+     120,
+     120
+    ],
+    "Color": [
+     0.306,
+     0.541,
+     0.247
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -39.551,
+       -55.899,
+       -285.506
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Land3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     120,
+     120,
+     120
+    ],
+    "Color": [
+     0.306,
+     0.541,
+     0.247
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       5.109,
+       -63.478,
+       -257.457
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Land4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     120,
+     120,
+     120
+    ],
+    "Color": [
+     0.306,
+     0.541,
+     0.247
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       54.576,
+       -70.501,
+       -278.401
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Land5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     120,
+     120,
+     120
+    ],
+    "Color": [
+     0.306,
+     0.541,
+     0.247
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.316,
+       -37.998,
+       -302.431
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Satellite",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     1.4,
+     2.2
+    ],
+    "Color": [
+     0.843,
+     0.706,
+     0.353
+    ],
+    "Material": "Foil",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -14.0,
+       24.0,
+       -110.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SolarPanel",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.6,
+     0.1,
+     1.8
+    ],
+    "Color": [
+     0.102,
+     0.208,
+     0.439
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.3,
+       24.0,
+       -110.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SolarPanel2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.6,
+     0.1,
+     1.8
+    ],
+    "Color": [
+     0.102,
+     0.208,
+     0.439
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -10.7,
+       24.0,
+       -110.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Satellite2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.82,
+     1.82,
+     2.86
+    ],
+    "Color": [
+     0.843,
+     0.706,
+     0.353
+    ],
+    "Material": "Foil",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       8.0,
+       10.0,
+       -140.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SolarPanel3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.68,
+     0.13,
+     2.34
+    ],
+    "Color": [
+     0.102,
+     0.208,
+     0.439
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3.71,
+       10.0,
+       -140.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SolarPanel4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.68,
+     0.13,
+     2.34
+    ],
+    "Color": [
+     0.102,
+     0.208,
+     0.439
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.29,
+       10.0,
+       -140.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "Satellite3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.24,
+     2.24,
+     3.52
+    ],
+    "Color": [
+     0.843,
+     0.706,
+     0.353
+    ],
+    "Material": "Foil",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -4.0,
+       34.0,
+       -190.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SolarPanel5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.76,
+     0.16,
+     2.88
+    ],
+    "Color": [
+     0.102,
+     0.208,
+     0.439
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9.28,
+       34.0,
+       -190.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "SolarPanel6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.76,
+     0.16,
+     2.88
+    ],
+    "Color": [
+     0.102,
+     0.208,
+     0.439
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       1.28,
+       34.0,
+       -190.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  }
+ ]
+}

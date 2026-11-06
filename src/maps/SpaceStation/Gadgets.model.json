@@ -1,0 +1,326 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "CatwalkPad",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     5.4,
+     5.4
+    ],
+    "Color": [
+     0.49,
+     0.533,
+     0.58
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28,
+       0.2,
+       -36
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      0,
+      78,
+      16.5
+     ]
+    }
+   }
+  },
+  {
+   "name": "PadGlow",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     4.2,
+     4.2
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28,
+       0.45,
+       -36
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BridgePad",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     5.4,
+     5.4
+    ],
+    "Color": [
+     0.49,
+     0.533,
+     0.58
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25,
+       0.2,
+       40.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      -16.5,
+      78,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "name": "PadGlow2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     4.2,
+     4.2
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25,
+       0.45,
+       40.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TrenchPad",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     5.4,
+     5.4
+    ],
+    "Color": [
+     0.49,
+     0.533,
+     0.58
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       -14.8,
+       -29
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      0,
+      100,
+      -12
+     ]
+    }
+   }
+  },
+  {
+   "name": "PadGlow3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     4.2,
+     4.2
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       -14.55,
+       -29
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  }
+ ]
+}

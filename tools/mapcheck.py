@@ -29,7 +29,8 @@ them on the map folders themselves (every map in rotation and the lobby, or the 
 
 How players get around, for `reach` (keep in step with Config and the character): walk up
 steps of STEP, jump up JUMP_UP, run-and-jump across gaps (jump_reach), drop any height, crouch or
-slide under anything CROUCH or more off the floor (SlideBlocker parts don't stop that), climb
+slide under anything CROUCH or more off the floor (SlideBlocker parts don't stop that, nor do
+sliding doors, DoorSlide, which open as you come), climb
 Roblox ladders (TrussParts) both ways, ride launch pads (LaunchVelocity) and level swinging
 platforms (SwingLevel + Carry) from one end of their swing to the other. Spinning parts count
 where they are built. Wall runs and any other route a map needs are passed in as `routes`, or
@@ -115,7 +116,8 @@ class Part:
     def solid(self):
         """Blocks players (slide gates don't count: you can always crouch through them)."""
         return (self.collide is not False and self.cls in SOLID_CLASSES
-                and not self.attrs.get("SlideBlocker") and "SwingPivot" not in self.attrs)
+                and not self.attrs.get("SlideBlocker") and "SwingPivot" not in self.attrs
+                and "DoorSlide" not in self.attrs)  # sliding doors open as you come
 
     @property
     def opaque(self):

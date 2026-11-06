@@ -1,0 +1,1593 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "DoorLeaf",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     8,
+     2.5
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.0,
+       4.0,
+       -25.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Door": "Orange",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      -2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      -24
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.624,
+     0.227
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.775,
+       4.0,
+       -24.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Orange",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      -2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      -24
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.624,
+     0.227
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.225,
+       4.0,
+       -24.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Orange",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      -2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      -24
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLeaf2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     8,
+     2.5
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.0,
+       4.0,
+       -22.75
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Door": "Orange",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      -24
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.624,
+     0.227
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.775,
+       4.0,
+       -23.65
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Orange",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      -24
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     1.0,
+     0.624,
+     0.227
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.225,
+       4.0,
+       -23.65
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Orange",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      -24
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorFrame",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.325,
+       4.3,
+       -26.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.325,
+       4.3,
+       -21.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     0.6,
+     5.0
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.325,
+       8.3,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorLight5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.3,
+     5.0
+    ],
+    "Color": [
+     1.0,
+     0.624,
+     0.227
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.15,
+       8.3,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.675,
+       4.3,
+       -26.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.675,
+       4.3,
+       -21.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     0.6,
+     5.0
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.675,
+       8.3,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorLight6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.3,
+     5.0
+    ],
+    "Color": [
+     1.0,
+     0.624,
+     0.227
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.85,
+       8.3,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorLeaf3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     8,
+     2.5
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.0,
+       4.0,
+       28.75
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Door": "Blue",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      -2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      30
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.775,
+       4.0,
+       29.65
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Blue",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      -2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      30
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.225,
+       4.0,
+       29.65
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Blue",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      -2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      30
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLeaf4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.3,
+     8,
+     2.5
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.0,
+       4.0,
+       31.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "Door": "Blue",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      30
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.775,
+       4.0,
+       30.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Blue",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      30
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorLight10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.05,
+     5.6,
+     0.2
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.225,
+       4.0,
+       30.35
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "Door": "Blue",
+    "DoorSlide": {
+     "Vector3": [
+      0,
+      0,
+      2.5
+     ]
+    },
+    "DoorCenter": {
+     "Vector3": [
+      32.0,
+      4.0,
+      30
+     ]
+    }
+   }
+  },
+  {
+   "name": "DoorFrame7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.325,
+       4.3,
+       27.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.325,
+       4.3,
+       32.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     0.6,
+     5.0
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.325,
+       8.3,
+       30.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorLight11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.3,
+     5.0
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.15,
+       8.3,
+       30.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.675,
+       4.3,
+       27.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     8.6,
+     0.6
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.675,
+       4.3,
+       32.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorFrame12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.25,
+     0.6,
+     5.0
+    ],
+    "Color": [
+     0.965,
+     0.973,
+     0.98
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.675,
+       8.3,
+       30.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "DoorLight12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     0.3,
+     5.0
+    ],
+    "Color": [
+     0.373,
+     0.902,
+     1.0
+    ],
+    "Material": "Neon",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.85,
+       8.3,
+       30.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   }
+  }
+ ]
+}

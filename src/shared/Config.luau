@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.66.3",
+	Version = "0.67.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1077,6 +1077,15 @@ local Config = {
 	-- Pop-ups (the Playroom's jack-in-the-box; client/PopUps, server/PopUps): a launch pad that
 	-- springs a toy open for everyone when someone launches off it. Each toy's own timing and
 	-- sizes are attributes on its parts (PopTime, PopCooldown, PopBack, PopRise, PopAngle...).
+	-- Sliding doors (the Space Station's hallway doors; server/Doors, client/Doors): a door opens
+	-- while anyone, player or bot, is this near its middle on either side.
+	Doors = {
+		Range = 8, -- studs from the doorway's middle that open it
+		CloseDelay = 1, -- seconds after the last one leaves before it shuts
+		CheckEvery = 0.1, -- seconds between the server's checks
+		SlideTime = 0.35, -- seconds for the leaves to slide open or shut
+	},
+
 	PopUps = {
 		TriggerRange = 10, -- studs from the pad a player can be when they say they launched off it
 		LidLead = 0.6, -- the lid is fully open this share of the way through the spring
@@ -1296,6 +1305,27 @@ local Config = {
 					Contrast = 0.12,
 					Brightness = 0.02,
 					TintColor = Color3.fromRGB(235, 225, 255),
+				},
+			},
+			-- A station in orbit (the Space Station): night sky with stars through the windows, no
+			-- haze, the hall lit by its own lamps.
+			Space = {
+				Lighting = {
+					ClockTime = 0,
+					Brightness = 0.6,
+					Ambient = Color3.fromRGB(118, 122, 134),
+					OutdoorAmbient = Color3.fromRGB(110, 116, 132),
+					ExposureCompensation = 0,
+					EnvironmentDiffuseScale = 0.2,
+					EnvironmentSpecularScale = 0.3,
+				},
+				Atmosphere = { Density = 0, Haze = 0, Glare = 0 },
+				Bloom = { Intensity = 0.35, Size = 22, Threshold = 1.4 },
+				ColorCorrection = {
+					Saturation = 0.15,
+					Contrast = 0.1,
+					Brightness = 0.02,
+					TintColor = Color3.fromRGB(245, 250, 255),
 				},
 			},
 			-- Showcases (the win screen and the Locker's preview, client/WinScreen and
