@@ -12795,6 +12795,230 @@
    }
   },
   {
+   "name": "BuzzSound",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       -12.0,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_trench",
+    "SoundNear": 5,
+    "SoundRange": 24
+   }
+  },
+  {
+   "name": "BuzzSound2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       -12.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_trench",
+    "SoundNear": 5,
+    "SoundRange": 24
+   }
+  },
+  {
+   "name": "BuzzSound3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       -11.0,
+       18.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_trench",
+    "SoundNear": 5,
+    "SoundRange": 24
+   }
+  },
+  {
+   "name": "BuzzSound4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.463,
+     0.502,
+     0.549
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       14.0,
+       -11.0,
+       3.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_trench",
+    "SoundNear": 5,
+    "SoundRange": 24
+   }
+  },
+  {
    "name": "LightStrip5",
    "className": "Part",
    "properties": {

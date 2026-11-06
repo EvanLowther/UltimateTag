@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.67.0",
+	Version = "0.67.1",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1140,6 +1140,11 @@ local Config = {
 			amb_clocktower = { Id = 111592356143735, Volume = 0.35 },
 			amb_lobby = { Id = 139553987822008, Volume = 0.2 }, -- (the rain hiss: halved in 0.61.3)
 			amb_metro = { Id = 123040840279039, Volume = 0.2 }, -- (its vents hiss the same: halved)
+			amb_station = { Id = 0, Volume = 0.3 }, -- (the Space Station's: not uploaded yet)
+			amb_trench = { Id = 0, Volume = 0.6 },
+			door_close = { Id = 0, Volume = 0.5 },
+			door_open = { Id = 0, Volume = 0.55 },
+			music_station = { Id = 0, Volume = 0.18 },
 			buy = { Id = 94026775629391, Volume = 0.6 },
 			claim = { Id = 70877640813087, Volume = 0.6 },
 			countdown = { Id = 87775351108468, Volume = 0.55 },
@@ -1211,7 +1216,14 @@ local Config = {
 		LobbyAmbience = "amb_lobby",
 		LobbyMusic = "music_lobby",
 		RoundMusic = "music_round",
-		MapAmbience = { Clocktower = "amb_clocktower", Metro = "amb_metro" } :: { [string]: string },
+		MapAmbience = {
+			Clocktower = "amb_clocktower",
+			Metro = "amb_metro",
+			SpaceStation = "amb_station",
+		} :: { [string]: string },
+		-- A map's own music, played with its ambience in place of the round music (by MapName).
+		-- Until a map's sounds are uploaded (Id 0) it falls back to the round music.
+		MapMusic = { SpaceStation = "music_station" } :: { [string]: string },
 		FadeTime = 1.5,
 		CountdownFrom = 10, -- the last seconds of a round that beep (a semitone higher each)
 		CountdownDoubled = 3, -- the last few beep twice, louder

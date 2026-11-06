@@ -11,7 +11,8 @@
 --   countdown's last 5 s (the last beep held). Tags: the hitmarker for the tagger, the hit for
 --   whoever is tagged, and in 3D for anyone near.
 --   The background: near the lobby its rain and lo-fi music, near the loaded map its ambience
---   (Config.Sounds.MapAmbience) or else the quiet round music; fades between them, silent on
+--   (Config.Sounds.MapAmbience) and its own music (MapMusic), or else the quiet round music;
+--   loops placed on the map (a part's SoundLoop attribute) play in 3D; fades between them, silent on
 --   the win screen, and left as it is anywhere else (the Locker's stage).
 --   Victories: one track each (Sounds.victory(look) from client/Victories, stopVictory).
 --   Three SoundGroups, Music, Sfx and Ui (the menu sounds, Config.Sounds.UiSounds, at UiGain),
@@ -37,6 +38,9 @@ export type Options = { volume: number?, speed: number? }
 
 local C = Config.Sounds
 local MUSIC = { [C.LobbyMusic] = true, [C.RoundMusic] = true }
+for _, name in C.MapMusic do
+	MUSIC[name] = true
+end
 
 local folder: Folder? = nil
 local templates: { [string]: Sound } = {}
@@ -260,6 +264,65 @@ local function setBackground(wanted: { [string]: boolean })
 	end
 end
 
+local function uploaded(name: string): boolean
+	local entry = C.List[name]
+	return entry ~= nil and entry.Id ~= 0
+end
+
+-- Looping sounds placed on the map: a part with a SoundLoop attribute (a sound's name) plays it
+-- in 3D from there, heard from SoundNear studs at full volume out to SoundRange (the Space
+-- Station's trench buzz).
+local mapLoops: { Sound } = {}
+
+local function addMapLoop(item: Instance)
+	if not item:IsA("BasePart") then
+		return
+	end
+	local name = item:GetAttribute("SoundLoop")
+	if type(name) ~= "string" then
+		return
+	end
+	local sound = Sounds.make(name, item, true)
+	if not sound then
+		return
+	end
+	local near, range = item:GetAttribute("SoundNear"), item:GetAttribute("SoundRange")
+	if type(near) == "number" then
+		sound.RollOffMinDistance = near
+	end
+	if type(range) == "number" then
+		sound.RollOffMaxDistance = range
+	end
+	sound:Play()
+	table.insert(mapLoops, sound)
+end
+
+local function watchMapLoops()
+	local watching: RBXScriptConnection? = nil
+	local function load(map: Instance)
+		for _, sound in mapLoops do
+			sound:Destroy()
+		end
+		table.clear(mapLoops)
+		if watching then
+			watching:Disconnect()
+		end
+		for _, item in map:GetDescendants() do
+			addMapLoop(item)
+		end
+		watching = map.DescendantAdded:Connect(addMapLoop)
+	end
+	workspace.ChildAdded:Connect(function(child)
+		if child.Name == "ActiveMap" then
+			load(child)
+		end
+	end)
+	local current = workspace:FindFirstChild("ActiveMap")
+	if current then
+		load(current)
+	end
+end
+
 -- What should be playing for where the camera is: nil keeps what's on.
 local function wantedBackground(): { [string]: boolean }?
 	if GameState.getPhase() == "Victory" then
@@ -279,9 +342,21 @@ local function wantedBackground(): { [string]: boolean }?
 	if lobbyDistance <= mapDistance and lobbyDistance <= radius then
 		return { [C.LobbyAmbience] = true, [C.LobbyMusic] = true }
 	elseif map and mapDistance <= radius then
+		-- The map's own ambience and music where it has them (and they're uploaded), else the
+		-- quiet round music.
 		local mapName = map:GetAttribute("MapName")
 		local ambience = type(mapName) == "string" and C.MapAmbience[mapName]
-		return { [if ambience then ambience else C.RoundMusic] = true }
+		local music = type(mapName) == "string" and C.MapMusic[mapName]
+		local wanted: { [string]: boolean } = {}
+		if ambience and uploaded(ambience) then
+			wanted[ambience] = true
+		end
+		if music and uploaded(music) then
+			wanted[music] = true
+		elseif not next(wanted) then
+			wanted[C.RoundMusic] = true
+		end
+		return wanted
 	end
 	return nil
 end
@@ -461,6 +536,7 @@ function Sounds.start()
 
 	watchRound(player)
 	watchTags(player)
+	watchMapLoops()
 
 	local playerGui = player:WaitForChild("PlayerGui")
 	for _, gui in playerGui:GetChildren() do

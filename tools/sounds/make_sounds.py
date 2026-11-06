@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 import core  # noqa: E402,F401  (registers sounds)
 import maps  # noqa: E402,F401
+import station  # noqa: E402,F401
 import victories  # noqa: E402,F401
 from registry import SOUNDS, VICTORIES  # noqa: E402
 import numpy as np  # noqa: E402

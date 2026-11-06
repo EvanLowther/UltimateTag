@@ -246,6 +246,11 @@ def build_trench(m):
     stripes(m, g, "Z", TZ0, TZ1, TX1, TX1 + 1, 0)
     stripes(m, g, "X", TX0, TX1, TZ1, TZ1 + 1, 0)
     stripes(m, g, "X", TX0, TX1, TZ0 - 1, TZ0, 0)
+    # The electrical buzz (client/Sounds plays a part's SoundLoop in 3D): you hear it down here.
+    for x, y, z in ((TC, TD + 3, -24), (TC, TD + 3, 0), (TC, TD + 4, 18), (14, TD + 4, 3)):
+        m.block(g, "BuzzSound", x - 0.5, x + 0.5, y - 0.5, y + 0.5, z - 0.5, z + 0.5, "metal",
+                Transparency=1, attributes={"SoundLoop": "amb_trench", "SoundNear": 5,
+                                            "SoundRange": 24}, **DETAIL)
     # The tunnel's ceiling lights.
     m.block(g, "LightStrip", TX1, W, TUN_TOP - 0.2, TUN_TOP, 2.7, 3.3, "purple", **DETAIL)
     for x in (4, 16, 28):

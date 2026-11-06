@@ -2,17 +2,20 @@
 -- Slides the sliding doors on this screen (server/Doors decides when they open and turns their
 -- collision off): each part with `DoorSlide` moves that far from where it was built while its
 -- `DoorOpen` attribute is true, easing over Config.Doors.SlideTime, and slides back when it
--- closes. Parts that stream in later are picked up too.
+-- closes, with an air hiss as it opens and a thunk as it shuts (3D at the doorway). Parts that
+-- stream in later are picked up too.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Config"))
+local Sounds = require(script.Parent.Sounds)
 
 local Doors = {}
 
 type Leaf = { part: BasePart, base: CFrame, slide: Vector3, amount: number }
 
 local leaves: { Leaf } = {}
+local heard: { [string]: boolean } = {} -- each door's state when its sound last played
 local watching: RBXScriptConnection? = nil
 
 local function add(item: Instance)
@@ -30,6 +33,7 @@ local function watch(map: Instance)
 	if watching then
 		watching:Disconnect()
 	end
+	table.clear(heard)
 	for _, item in map:GetDescendants() do
 		add(item)
 	end
@@ -63,7 +67,18 @@ function Doors.start()
 				table.remove(leaves, i)
 				continue
 			end
-			local target = if leaf.part:GetAttribute("DoorOpen") == true then 1 else 0
+			local open = leaf.part:GetAttribute("DoorOpen") == true
+			local name, center =
+				leaf.part:GetAttribute("Door"), leaf.part:GetAttribute("DoorCenter")
+			if type(name) == "string" and typeof(center) == "Vector3" then
+				if heard[name] == nil then
+					heard[name] = open -- (no sound for the state it was in when it loaded)
+				elseif heard[name] ~= open then
+					heard[name] = open
+					Sounds.at(if open then "door_open" else "door_close", center)
+				end
+			end
+			local target = if open then 1 else 0
 			if leaf.amount ~= target then
 				leaf.amount = if target > leaf.amount
 					then math.min(target, leaf.amount + step)
