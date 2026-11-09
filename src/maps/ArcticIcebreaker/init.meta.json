@@ -1,0 +1,14 @@
+{
+ "className": "Model",
+ "attributes": {
+  "DisplayName": "Arctic Icebreaker",
+  "MinPlayers": 4,
+  "MaxPlayers": 8,
+  "InRotation": true,
+  "Lighting": "Arctic",
+  "KillHeight": 4,
+  "FallEliminates": true,
+  "ShipRoll": true,
+  "OutOfBounds": "Bridge,UpperContainer,CranePedestal,BowCap"
+ }
+}

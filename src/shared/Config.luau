@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.69.0",
+	Version = "0.70.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1103,6 +1103,38 @@ local Config = {
 		WarnOff = Color3.fromRGB(96, 92, 80),
 	},
 
+	-- The Arctic Icebreaker (shared/ShipRoll, client/ShipWorld, server/ShipWorld): the ship stays
+	-- still while the sea and the camera roll round it and everyone is pushed downhill.
+	ShipRoll = {
+		MaxRoll = 45, -- degrees at the worst of a big tip
+		TipEvery = 25, -- a big tip this often, and up to TipJitter later
+		TipJitter = 10,
+		Warn = 3, -- seconds of warning (the lamps) before it starts
+		Rise = 2.5,
+		Hold = 2,
+		Fall = 3.5,
+		Sway = 5.5, -- degrees of the gentle sway
+		SwayRate = 0.95,
+		Jolt = 9, -- degrees of a sudden jolt
+		JoltEvery = 9,
+		JoltDecay = 1.6,
+		PivotY = 6, -- the height the sea turns round
+		PushFrom = 9, -- no push below this roll (degrees)
+		PushSpeed = 26, -- studs/s downhill at the full tip (a sprint is about 30)
+		PushClear = 1.7, -- stops this far from anything solid
+		CameraRange = 700,
+		SlideStart = 0.9, -- seconds into the rise that the loose containers start to slide
+		SlideTime = 1.6, -- and how long they take to cross
+		Lane = 27, -- the loose containers' middles stop this far from the ship's centre
+		Pair = 12.5, -- the two on a lane stay this far apart
+		HitSpeed = 8, -- a container moving this fast knocks you back
+		HitPush = 80,
+		HitPop = 18,
+		HitCooldown = 0.8,
+		WarnOn = Color3.fromRGB(242, 162, 58),
+		WarnOff = Color3.fromRGB(106, 111, 115),
+	},
+
 	-- Ziplines (the Desert Mine; client/Ziplines): press E at either end to grab the line.
 	Ziplines = {
 		StartSpeed = 22, -- studs/s as you grab it
@@ -1306,6 +1338,26 @@ local Config = {
 		Presets = {
 			-- Inside buildings (the School): the outdoor sun settings and bloom wash an enclosed,
 			-- lamp-lit space out to white, so turn exposure, bloom and ambient down.
+			-- The Arctic Icebreaker: overcast, cold and a bit dim, with snow haze.
+			Arctic = {
+				Lighting = {
+					ClockTime = 11,
+					Brightness = 1.1,
+					Ambient = Color3.fromRGB(118, 128, 142),
+					OutdoorAmbient = Color3.fromRGB(150, 164, 180),
+					ExposureCompensation = -0.05,
+					EnvironmentDiffuseScale = 0.4,
+					EnvironmentSpecularScale = 0.2,
+				},
+				Atmosphere = { Density = 0.46, Haze = 2.2, Glare = 0 },
+				Bloom = { Intensity = 0.1, Size = 16, Threshold = 2.2 },
+				ColorCorrection = {
+					Saturation = 0.04,
+					Contrast = 0.06,
+					Brightness = 0,
+					TintColor = Color3.fromRGB(234, 243, 255),
+				},
+			},
 			-- The Desert Mine and Canyon Express: bright midday, warm stone, a clear sky.
 			Desert = {
 				Lighting = {

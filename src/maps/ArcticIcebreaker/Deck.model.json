@@ -1,0 +1,7191 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "CargoDeck",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     70,
+     0.6,
+     16
+    ],
+    "Color": [
+     0.91,
+     0.933,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       19.7,
+       -62.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "CargoDeck2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     70,
+     0.6,
+     27
+    ],
+    "Color": [
+     0.91,
+     0.933,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       19.7,
+       1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "CargoDeck3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     15,
+     0.6,
+     42
+    ],
+    "Color": [
+     0.91,
+     0.933,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.5,
+       19.7,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "CargoDeck4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     15,
+     0.6,
+     42
+    ],
+    "Color": [
+     0.91,
+     0.933,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.5,
+       19.7,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LaneMark",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.06,
+     14
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.7,
+       20.06,
+       -62.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LaneMark2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.06,
+     14
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.7,
+       20.06,
+       -62.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LaneMark3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.06,
+     10
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.7,
+       20.06,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "LaneMark4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.06,
+     10
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.7,
+       20.06,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "HatchPlate",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     0.06,
+     42
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.3,
+       20.07,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "HatchPlate2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     0.06,
+     42
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.3,
+       20.07,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5,
+     0.7,
+     12
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.5,
+       20.2,
+       -62.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.014,
+        0
+       ],
+       [
+        0.014,
+        1.0,
+        -0.014
+       ],
+       [
+        0.0,
+        0.014,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5,
+     0.7,
+     12
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.5,
+       20.2,
+       -62.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.024,
+        0
+       ],
+       [
+        0.024,
+        1.0,
+        -0.011
+       ],
+       [
+        0.0,
+        0.011,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5,
+     0.7,
+     8
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.5,
+       20.2,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.014,
+        0
+       ],
+       [
+        0.014,
+        1.0,
+        -0.026
+       ],
+       [
+        0.0,
+        0.026,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5,
+     0.7,
+     6
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.5,
+       20.2,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.024,
+        0
+       ],
+       [
+        0.024,
+        1.0,
+        -0.011
+       ],
+       [
+        0.0,
+        0.011,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     0.7,
+     9
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -29.0,
+       20.2,
+       -24.5
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.025,
+        0
+       ],
+       [
+        0.025,
+        1.0,
+        -0.012
+       ],
+       [
+        0.0,
+        0.012,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     0.7,
+     4
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       29.0,
+       20.2,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.012,
+        0
+       ],
+       [
+        0.012,
+        1.0,
+        -0.016
+       ],
+       [
+        0.0,
+        0.016,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     28,
+     0.7,
+     1.2
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       20.2,
+       -13.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.02,
+        0
+       ],
+       [
+        0.02,
+        0.999,
+        -0.025
+       ],
+       [
+        0.0,
+        0.025,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SnowDrift8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     0.7,
+     1.0
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       20.2,
+       -54.9
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.014,
+        0
+       ],
+       [
+        0.014,
+        1.0,
+        -0.028
+       ],
+       [
+        0.0,
+        0.028,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Step",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     1,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       8.5,
+       -43.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     2,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       9.0,
+       -41.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     3,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       9.5,
+       -39.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     4,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       10.0,
+       -38.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     5,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       10.5,
+       -36.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     6,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       11.0,
+       -34.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     7,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       11.5,
+       -33.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     8,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       12.0,
+       -31.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     9,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       12.5,
+       -29.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     10,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       13.0,
+       -28.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     11,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       13.5,
+       -26.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     12,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.0,
+       14.0,
+       -24.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     1,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       8.5,
+       -22.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     2,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       9.0,
+       -24.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     3,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       9.5,
+       -26.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     4,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       10.0,
+       -27.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     5,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       10.5,
+       -29.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     6,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       11.0,
+       -31.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     7,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       11.5,
+       -32.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     8,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       12.0,
+       -34.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     9,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       12.5,
+       -36.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     10,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       13.0,
+       -37.833
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     11,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       13.5,
+       -39.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Step24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     12,
+     1.667
+    ],
+    "Color": [
+     0.588,
+     0.62,
+     0.651
+    ],
+    "Material": "DiamondPlate",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.0,
+       14.0,
+       -41.167
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RingWall",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     11.4,
+     42
+    ],
+    "Color": [
+     0.353,
+     0.396,
+     0.439
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.2,
+       13.7,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RingWall2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     11.4,
+     42
+    ],
+    "Color": [
+     0.353,
+     0.396,
+     0.439
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.2,
+       13.7,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RingWall3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40.8,
+     11.4,
+     0.4
+    ],
+    "Color": [
+     0.353,
+     0.396,
+     0.439
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       13.7,
+       -54.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RingWall4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40.8,
+     11.4,
+     0.4
+    ],
+    "Color": [
+     0.353,
+     0.396,
+     0.439
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       13.7,
+       -11.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Engine",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     18,
+     10,
+     18
+    ],
+    "Color": [
+     0.486,
+     0.533,
+     0.58
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       13.0,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "EngineTop",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     4.5,
+     10
+    ],
+    "Color": [
+     0.408,
+     0.451,
+     0.498
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       20.25,
+       -33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     17.4,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.549,
+     0.596,
+     0.643
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       15.4,
+       -40
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.471,
+     0.51,
+     0.557
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9,
+       11.5,
+       -40
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     17.4,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.549,
+     0.596,
+     0.643
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       15.4,
+       -36.5
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.471,
+     0.51,
+     0.557
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9,
+       11.5,
+       -36.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     17.4,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.549,
+     0.596,
+     0.643
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       15.4,
+       -33
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.471,
+     0.51,
+     0.557
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9,
+       11.5,
+       -33
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     17.4,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.549,
+     0.596,
+     0.643
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       15.4,
+       -29.5
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.471,
+     0.51,
+     0.557
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9,
+       11.5,
+       -29.5
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     17.4,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.549,
+     0.596,
+     0.643
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       15.4,
+       -26
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Pipe10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     0.471,
+     0.51,
+     0.557
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -9,
+       11.5,
+       -26
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Light",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     0.3,
+     1.6
+    ],
+    "Color": [
+     0.91,
+     0.925,
+     0.894
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       17.6,
+       -48
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 1.0,
+      "Range": 28,
+      "Color": [
+       0.91,
+       0.925,
+       0.894
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Light2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     0.3,
+     1.6
+    ],
+    "Color": [
+     0.91,
+     0.925,
+     0.894
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       17.6,
+       -18
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Glow",
+     "className": "PointLight",
+     "properties": {
+      "Brightness": 1.0,
+      "Range": 28,
+      "Color": [
+       0.91,
+       0.925,
+       0.894
+      ],
+      "Shadows": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "RailGuard",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     42
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.6,
+       -49.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     41.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       23.1,
+       -49.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     41.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.67,
+       -49.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -69.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -61.42
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -53.14
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -44.86
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -36.58
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -28.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     33
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.6,
+       -1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     32.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       23.1,
+       -1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     32.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.67,
+       -1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -17.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -9.6
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       6.6
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       14.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     20
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.6,
+       -60.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     19.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       23.1,
+       -60.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     19.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.67,
+       -60.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -69.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -60.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -50.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     55
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.6,
+       -12.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     54.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       23.1,
+       -12.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     54.4
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.67,
+       -12.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -39.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -31.929
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -24.157
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -16.386
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -8.614
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -0.843
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       6.929
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       14.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     70,
+     3.2,
+     0.28
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       21.6,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     70,
+     0.2,
+     0.18
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       23.1,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     70,
+     0.14,
+     0.34
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       21.67,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -35.0,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.222,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.444,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.667,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -3.889,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3.889,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.667,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.444,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.222,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       35.0,
+       21.5,
+       -70.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     3.2,
+     0.28
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       21.6,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     0.2,
+     0.18
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       23.1,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     0.14,
+     0.34
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       21.67,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.5,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       21.5,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -4.0,
+       21.5,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       4.0,
+       21.5,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost37",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.0,
+       21.5,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -54.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     3.2,
+     0.28
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       21.6,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     0.2,
+     0.18
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       23.1,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     40,
+     0.14,
+     0.34
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       21.67,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost39",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       21.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -4.0,
+       21.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       4.0,
+       21.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.0,
+       21.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost44",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     10
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.6,
+       -49.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     9.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       23.1,
+       -49.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     9.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.67,
+       -49.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost45",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.5,
+       -53.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost46",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.5,
+       -44.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     20
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.6,
+       -22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     19.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       23.1,
+       -22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     19.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.67,
+       -22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost47",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.5,
+       -31.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost48",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.5,
+       -22.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost49",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.0,
+       21.5,
+       -12.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     22
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.6,
+       -43.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     21.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       23.1,
+       -43.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     21.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.67,
+       -43.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost50",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -53.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost51",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -46.567
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost52",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -39.433
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost53",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -32.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailGuard11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.28,
+     3.2,
+     10
+    ],
+    "Color": [
+     0.788,
+     0.824,
+     0.855
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.6,
+       -17.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "TopRail11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.18,
+     0.2,
+     9.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       23.1,
+       -17.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "MidRail11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.34,
+     0.14,
+     9.4
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.67,
+       -17.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost54",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -21.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailPost55",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     3.0,
+     0.2
+    ],
+    "Color": [
+     0.788,
+     0.455,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.0,
+       21.5,
+       -12.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,2704 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Bridge",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     36,
+     25
+    ],
+    "Color": [
+     0.561,
+     0.184,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       48.0,
+       57.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RoofCap",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     60,
+     1.5,
+     28
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       66.75,
+       57.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BridgePane",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.3,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.9,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.5,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.1,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.7,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.3,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.1,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.5,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.9,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.3,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.7,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     5,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.1,
+       58.5,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       58.5,
+       48.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       58.5,
+       53.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       58.5,
+       58.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       58.5,
+       63.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       58.5,
+       68.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       58.5,
+       48.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       58.5,
+       53.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       58.5,
+       58.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       58.5,
+       63.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     5,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       58.5,
+       68.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.3,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.9,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.5,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.1,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -6.7,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -2.3,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2.1,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.5,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.9,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.3,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.7,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.4,
+     4,
+     0.08
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.1,
+       47.0,
+       44.94
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       47.0,
+       48.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       47.0,
+       53.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane37",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       47.0,
+       58.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       47.0,
+       63.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane39",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.04,
+       47.0,
+       68.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       47.0,
+       48.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       47.0,
+       53.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       47.0,
+       58.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       47.0,
+       63.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "BridgePane44",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     4,
+     3.4
+    ],
+    "Color": [
+     0.588,
+     0.729,
+     0.816
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.04,
+       47.0,
+       68.7
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "Reflectance": 0.15
+   }
+  },
+  {
+   "name": "Band",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56.28,
+     1,
+     25.28
+    ],
+    "Color": [
+     0.91,
+     0.925,
+     0.941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       53.5,
+       57.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "WarnLamp",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.0,
+     2.5,
+     5
+    ],
+    "Color": [
+     0.416,
+     0.435,
+     0.451
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       68.75,
+       56.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ShipWarnLamp": true
+   }
+  },
+  {
+   "name": "WarnLamp2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.5,
+     1.5,
+     2
+    ],
+    "Color": [
+     0.416,
+     0.435,
+     0.451
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.75,
+       68.25,
+       45.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ShipWarnLamp": true
+   }
+  },
+  {
+   "name": "WarnLamp3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.5,
+     1.5,
+     2
+    ],
+    "Color": [
+     0.416,
+     0.435,
+     0.451
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.75,
+       68.25,
+       45.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ShipWarnLamp": true
+   }
+  },
+  {
+   "name": "Mast",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     12,
+     1.0,
+     1.0
+    ],
+    "Color": [
+     0.353,
+     0.396,
+     0.439
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       73.5,
+       62
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Radar",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10,
+     1,
+     1.4
+    ],
+    "Color": [
+     0.914,
+     0.937,
+     0.957
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       79.5,
+       62.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Funnel",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     4,
+     4
+    ],
+    "Color": [
+     0.157,
+     0.173,
+     0.196
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -10,
+       71.5,
+       64
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Funnel2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     4,
+     4
+    ],
+    "Color": [
+     0.157,
+     0.173,
+     0.196
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10,
+       71.5,
+       64
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,489 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "CranePedestal",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     12,
+     4
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.0,
+       36.0,
+       41.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "CraneArm",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.641,
+     1.801,
+     37.148
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.929,
+       47.044,
+       25.062
+      ],
+      "orientation": [
+       [
+        -0.889,
+        -0.153,
+        0.431
+       ],
+       [
+        -0.035,
+        0.962,
+        0.269
+       ],
+       [
+        -0.456,
+        0.224,
+        -0.861
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "CraneTie",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.529,
+     0.5,
+     20.494
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.103,
+       47.015,
+       32.994
+      ],
+      "orientation": [
+       [
+        -0.89,
+        -0.235,
+        0.39
+       ],
+       [
+        -0.016,
+        0.873,
+        0.488
+       ],
+       [
+        -0.455,
+        0.428,
+        -0.781
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "CraneCable",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.193,
+     0.2,
+     19.0
+    ],
+    "Color": [
+     0.157,
+     0.157,
+     0.173
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.051,
+       41.467,
+       8.898
+      ],
+      "orientation": [
+       [
+        -0.03,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -1.0,
+        -0.03,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "CraneHook",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     2,
+     0.8
+    ],
+    "Color": [
+     0.235,
+     0.243,
+     0.259
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12.0,
+       31.0,
+       9.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "CranePedestal2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     12,
+     4
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.0,
+       36.0,
+       41.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "CraneArm2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.642,
+     1.852,
+     37.148
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.916,
+       47.037,
+       24.988
+      ],
+      "orientation": [
+       [
+        -0.89,
+        0.15,
+        -0.431
+       ],
+       [
+        0.032,
+        0.963,
+        0.269
+       ],
+       [
+        0.455,
+        0.226,
+        -0.861
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "CraneTie2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.554,
+     0.542,
+     20.494
+    ],
+    "Color": [
+     0.871,
+     0.706,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       23.991,
+       46.979,
+       33.019
+      ],
+      "orientation": [
+       [
+        -0.897,
+        0.208,
+        -0.39
+       ],
+       [
+        -0.01,
+        0.873,
+        0.488
+       ],
+       [
+        0.442,
+        0.441,
+        -0.781
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "CraneCable2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.144,
+     0.197,
+     19.0
+    ],
+    "Color": [
+     0.157,
+     0.157,
+     0.173
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       11.899,
+       41.529,
+       8.974
+      ],
+      "orientation": [
+       [
+        0.012,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -1.0,
+        0.012,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "CraneHook2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.4,
+     2,
+     0.8
+    ],
+    "Color": [
+     0.235,
+     0.243,
+     0.259
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.0,
+       31.0,
+       9.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

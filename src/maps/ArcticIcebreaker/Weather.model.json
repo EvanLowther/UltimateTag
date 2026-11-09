@@ -1,0 +1,146 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "SnowCloud",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     220,
+     1,
+     240
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       92.5,
+       -10.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Snow",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 90,
+      "Lifetime": {
+       "NumberRange": [
+        4,
+        7
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        12,
+        20
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.28,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 0.28,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.05,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 0.45,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           1.0,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           1.0,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Bottom",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        14
+       ]
+      },
+      "Acceleration": [
+       6,
+       0,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  }
+ ]
+}
