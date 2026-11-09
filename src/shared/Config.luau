@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.67.2",
+	Version = "0.68.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1074,6 +1074,27 @@ local Config = {
 		SlipCooldown = 1.5, -- seconds after getting up before you can slip again
 	},
 
+	-- Ziplines (the Desert Mine; client/Ziplines): press E at either end to grab the line.
+	Ziplines = {
+		StartSpeed = 22, -- studs/s as you grab it
+		Speed = 50, -- top speed (about 1.5 times a sprint)
+		Accel = 45, -- studs/s per second
+		Hang = 5, -- studs your middle hangs below the cable
+		DropDelay = 0.25, -- seconds after grabbing before a jump can let go
+		TrolleySize = Vector3.new(1.4, 1.2, 2.4),
+		TrolleyColor = Color3.fromRGB(70, 66, 60),
+		Pose = {
+			LeftUpperArm = Vector3.new(168, 0, 6),
+			RightUpperArm = Vector3.new(168, 0, -6),
+			LeftLowerArm = Vector3.new(10, 0, 0),
+			RightLowerArm = Vector3.new(10, 0, 0),
+			LeftUpperLeg = Vector3.new(14, 0, 0),
+			RightUpperLeg = Vector3.new(-8, 0, 0),
+			LeftLowerLeg = Vector3.new(-18, 0, 0),
+			RightLowerLeg = Vector3.new(-12, 0, 0),
+		},
+	},
+
 	-- Pop-ups (the Playroom's jack-in-the-box; client/PopUps, server/PopUps): a launch pad that
 	-- springs a toy open for everyone when someone launches off it. Each toy's own timing and
 	-- sizes are attributes on its parts (PopTime, PopCooldown, PopBack, PopRise, PopAngle...).
@@ -1256,6 +1277,26 @@ local Config = {
 		Presets = {
 			-- Inside buildings (the School): the outdoor sun settings and bloom wash an enclosed,
 			-- lamp-lit space out to white, so turn exposure, bloom and ambient down.
+			-- The Desert Mine and Canyon Express: bright midday, warm stone, a clear sky.
+			Desert = {
+				Lighting = {
+					ClockTime = 13.5,
+					Brightness = 2.6,
+					Ambient = Color3.fromRGB(150, 128, 104),
+					OutdoorAmbient = Color3.fromRGB(190, 166, 136),
+					ExposureCompensation = 0,
+					EnvironmentDiffuseScale = 0.5,
+					EnvironmentSpecularScale = 0.3,
+				},
+				Atmosphere = { Density = 0.22, Haze = 1.1, Glare = 0.1 },
+				Bloom = { Intensity = 0.12, Size = 16, Threshold = 2 },
+				ColorCorrection = {
+					Saturation = 0.14,
+					Contrast = 0.08,
+					Brightness = 0,
+					TintColor = Color3.fromRGB(255, 247, 236),
+				},
+			},
 			Indoor = {
 				Lighting = {
 					Brightness = 1,

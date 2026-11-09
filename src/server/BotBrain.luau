@@ -212,6 +212,7 @@ local function launchPads(): { BasePart }
 				part:IsA("BasePart")
 				and typeof(part:GetAttribute("LaunchVelocity")) == "Vector3"
 				and part:GetAttribute("PopUp") == nil
+				and part:GetAttribute("GeyserPeriod") == nil
 			then
 				table.insert(pads, part)
 			end
@@ -355,7 +356,12 @@ local function checkLaunch(brain: Brain, params: RaycastParams)
 	local hit = workspace:Raycast(brain.root.Position, -UP * 5, params)
 	local pad = hit and hit.Instance
 	local velocity = pad and pad:GetAttribute("LaunchVelocity")
-	if not pad or typeof(velocity) ~= "Vector3" or pad:GetAttribute("PopUp") ~= nil then
+	if
+		not pad
+		or typeof(velocity) ~= "Vector3"
+		or pad:GetAttribute("PopUp") ~= nil
+		or pad:GetAttribute("GeyserPeriod") ~= nil
+	then
 		return
 	end
 	if pad:GetAttribute("LaunchAnyDirection") == true then

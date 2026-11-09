@@ -74,6 +74,7 @@ local NAMES = {
 	"Announce",
 	"Leaderboard",
 	"PopUp",
+	"ZiplineRide",
 	"SaveSettings",
 }
 

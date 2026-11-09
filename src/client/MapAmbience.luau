@@ -52,6 +52,9 @@ type Mover = {
 	carry: boolean,
 	level: boolean,
 	knockback: number?,
+	stops: { number }?, -- a lift: heights above where it's built
+	liftMove: number,
+	liftWait: number,
 	across: number?, -- a spinning hazard: how far across its bar you were last frame
 }
 
@@ -80,6 +83,15 @@ local function flick(flicker: Flicker)
 end
 
 -- Picks up a part's ambience attributes (under `root`: the loaded map or the lobby).
+-- A lift's stops, as heights above where it's built: "0,24,48".
+local function parseStops(text: string): { number }
+	local stops = {}
+	for piece in string.gmatch(text, "[^,]+") do
+		table.insert(stops, tonumber(piece) or 0)
+	end
+	return stops
+end
+
 local function consider(item: Instance, root: Instance)
 	if not item:IsA("BasePart") then
 		return
@@ -102,7 +114,13 @@ local function consider(item: Instance, root: Instance)
 	local spin = item:GetAttribute("Spin")
 	local pivot = item:GetAttribute("SwingPivot")
 	local knockback = item:GetAttribute("Knockback")
-	if type(spin) == "number" or typeof(pivot) == "Vector3" or type(knockback) == "number" then
+	local lift = item:GetAttribute("LiftStops")
+	if
+		type(spin) == "number"
+		or typeof(pivot) == "Vector3"
+		or type(knockback) == "number"
+		or type(lift) == "string"
+	then
 		local center = item:GetAttribute("SpinCenter")
 		local spinAxis = item:GetAttribute("SpinAxis")
 		local axis = item:GetAttribute("SwingAxis")
@@ -120,6 +138,9 @@ local function consider(item: Instance, root: Instance)
 			carry = item:GetAttribute("SpinCarry") == true or item:GetAttribute("Carry") == true,
 			level = item:GetAttribute("SwingLevel") == true,
 			knockback = if type(knockback) == "number" then knockback else nil,
+			stops = if type(lift) == "string" then parseStops(lift) else nil,
+			liftMove = (item:GetAttribute("LiftMove") or 3) :: number,
+			liftWait = (item:GetAttribute("LiftWait") or 4) :: number,
 		})
 	end
 end
@@ -175,6 +196,21 @@ local function placeAt(mover: Mover, t: number): CFrame
 			* cframe
 		-- A level part keeps its orientation and only follows the arc.
 		cframe = if mover.level then cframe.Rotation + swung.Position else swung
+	end
+	if mover.stops then
+		-- A lift: up through its stops and back, waiting liftWait at each, liftMove between.
+		local stops = mover.stops
+		local legs = 2 * (#stops - 1)
+		local leg = mover.liftWait + mover.liftMove
+		local at = (t % (legs * leg)) / leg
+		local index = math.floor(at)
+		local into = (at - index) * leg - mover.liftWait
+		local function height(i: number): number
+			return stops[if i < #stops then i + 1 else legs - i + 1]
+		end
+		local from, to = height(index), height((index + 1) % legs)
+		local k = math.clamp(into / mover.liftMove, 0, 1)
+		cframe += Vector3.new(0, from + (to - from) * k * k * (3 - 2 * k), 0)
 	end
 	return cframe
 end
@@ -280,7 +316,7 @@ function MapAmbience.start()
 			end
 			local before = part.CFrame
 			local after = placeAt(mover, t)
-			if mover.spin or mover.pivot then
+			if mover.spin or mover.pivot or mover.stops then
 				part.CFrame = after
 			end
 			-- Ride along on a moving platform you're standing on (once per frame): a spinning one

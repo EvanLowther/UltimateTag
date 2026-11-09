@@ -20,6 +20,7 @@ local Config = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Co
 local MoveState = require(script.Parent.MoveState)
 local Sounds = require(script.Parent.Sounds)
 local PopUps = require(script.Parent.PopUps)
+local GeyserState = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Geysers"))
 local Slide = require(script.Parent.Slide)
 
 local MapGadgets = {}
@@ -151,6 +152,11 @@ function MapGadgets.start()
 				and (not busy or busy == "Slide" or busy == "Crouch")
 				-- A pop-up's pad does nothing while its toy is still out.
 				and not (floor:GetAttribute("PopUp") ~= nil and PopUps.sprung(floor))
+				-- A geyser only throws during its blast.
+				and not (
+					GeyserState.isGeyser(floor)
+					and GeyserState.state(floor, workspace:GetServerTimeNow()) ~= "Blow"
+				)
 			then
 				lastLaunch = now
 				boostSpeed = nil

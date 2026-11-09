@@ -1,0 +1,11 @@
+{
+ "className": "Model",
+ "attributes": {
+  "DisplayName": "Desert Mine",
+  "MinPlayers": 6,
+  "MaxPlayers": 12,
+  "InRotation": true,
+  "Lighting": "Desert",
+  "OutOfBounds": "BoundaryWall,RuinWall,Cart,MineCrane,ShedRoof"
+ }
+}

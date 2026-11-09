@@ -1,0 +1,519 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "PitFloor",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     56,
+     2,
+     140
+    ],
+    "Color": [
+     0.886,
+     0.745,
+     0.518
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       -1.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LedgeWest",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32,
+     25,
+     140
+    ],
+    "Color": [
+     0.91,
+     0.784,
+     0.573
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -44.0,
+       11.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RimWest",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     49.5,
+     200
+    ],
+    "Color": [
+     0.91,
+     0.784,
+     0.573
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -75.0,
+       23.25,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "LedgeEast",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     32,
+     25,
+     140
+    ],
+    "Color": [
+     0.91,
+     0.784,
+     0.573
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       44.0,
+       11.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RimEast",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     49.5,
+     200
+    ],
+    "Color": [
+     0.91,
+     0.784,
+     0.573
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       75.0,
+       23.25,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RimNorth",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     120,
+     49.2,
+     30
+    ],
+    "Color": [
+     0.91,
+     0.784,
+     0.573
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       23.4,
+       -85.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "RimSouth",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     120,
+     49.3,
+     30
+    ],
+    "Color": [
+     0.91,
+     0.784,
+     0.573
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       23.35,
+       85.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "BoundaryWall",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     130,
+     204
+    ],
+    "Color": [
+     0.886,
+     0.745,
+     0.518
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -91.0,
+       65.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BoundaryWall2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2,
+     130,
+     204
+    ],
+    "Color": [
+     0.886,
+     0.745,
+     0.518
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       91.0,
+       65.0,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BoundaryWall3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     180,
+     130,
+     2
+    ],
+    "Color": [
+     0.886,
+     0.745,
+     0.518
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       65.0,
+       -101.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  },
+  {
+   "name": "BoundaryWall4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     180,
+     130,
+     2
+    ],
+    "Color": [
+     0.886,
+     0.745,
+     0.518
+    ],
+    "Material": "Sand",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       65.0,
+       101.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CastShadow": false
+   }
+  }
+ ]
+}
