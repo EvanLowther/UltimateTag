@@ -1,0 +1,890 @@
+{
+ "className": "Model",
+ "children": [
+  {
+   "name": "Ballast24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     240,
+     1.8,
+     60.0
+    ],
+    "Color": [
+     0.549,
+     0.486,
+     0.416
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2760.0,
+       0.3,
+       37.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BallastSide47",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     239.3,
+     1.0,
+     12
+    ],
+    "Color": [
+     0.588,
+     0.525,
+     0.439
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2760.0,
+       0.15,
+       2.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.988,
+        0.156
+       ],
+       [
+        0,
+        -0.156,
+        0.988
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BallastSide48",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     239.3,
+     1.0,
+     12
+    ],
+    "Color": [
+     0.588,
+     0.525,
+     0.439
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2760.0,
+       0.15,
+       71.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.988,
+        -0.156
+       ],
+       [
+        0,
+        0.156,
+        0.988
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper254",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.412,
+     0.278,
+     0.161
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2648,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.006
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.006,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper255",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.439,
+     0.306,
+     0.188
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2670,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.004
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.004,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper256",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.412,
+     0.278,
+     0.161
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2692,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.004
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.004,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper257",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.439,
+     0.306,
+     0.188
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2714,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.009
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.009,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper258",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.427,
+     0.294,
+     0.176
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2736,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.003
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.003,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper259",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.42,
+     0.286,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2758,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.001
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.001,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper260",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.443,
+     0.31,
+     0.192
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2780,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.0,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper261",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.392,
+     0.259,
+     0.141
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2802,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.008
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.008,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper262",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.4,
+     0.267,
+     0.149
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2824,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.002
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.002,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper263",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.396,
+     0.263,
+     0.145
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2846,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        -0.005
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.005,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Sleeper264",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7,
+     1.6,
+     40
+    ],
+    "Color": [
+     0.396,
+     0.263,
+     0.145
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2868,
+       1.75,
+       37.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0,
+        0.008
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.008,
+        0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailFoot47",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     240,
+     0.3,
+     2.6
+    ],
+    "Color": [
+     0.376,
+     0.376,
+     0.384
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2760.0,
+       2.65,
+       24.6
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Rail47",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     240,
+     1.2,
+     1.4
+    ],
+    "Color": [
+     0.494,
+     0.51,
+     0.533
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2760.0,
+       3.4,
+       24.6
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "RailFoot48",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     240,
+     0.3,
+     2.6
+    ],
+    "Color": [
+     0.376,
+     0.376,
+     0.384
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2760.0,
+       2.65,
+       49.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Rail48",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     240,
+     1.2,
+     1.4
+    ],
+    "Color": [
+     0.494,
+     0.51,
+     0.533
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       2760.0,
+       3.4,
+       49.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ],
+ "properties": {
+  "ModelStreamingMode": "Persistent"
+ }
+}

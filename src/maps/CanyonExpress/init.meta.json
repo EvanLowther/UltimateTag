@@ -5,10 +5,10 @@
   "MinPlayers": 4,
   "MaxPlayers": 8,
   "InRotation": true,
-  "Lighting": "Desert",
-  "KillHeight": 2,
+  "Lighting": "Dusk",
+  "KillHeight": 4,
   "FallEliminates": true,
   "ScrollWorld": true,
-  "OutOfBounds": "CabRoof,Stack"
+  "OutOfBounds": "CabTop,CabTopTop,NoseTop,NoseTopTop,BigCargo,RoofVent"
  }
 }

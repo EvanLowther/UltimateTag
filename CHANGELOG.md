@@ -2,6 +2,7 @@
 
 Newest first. From 0.64.0 on, each entry is one to three sentences: what changed for the player (or the tools), the key Config names, and "Untested in game." when it is. The detail lives in the commit and the code.
 
+- 0.71.0: Canyon Express rebuilt at 4x scale with trains closer to the reference (rounded locomotives, ribbed containers, a cream coach, real wheels on rails), solid ground, one low-arch tunnel per train, signs facing the trains, a warm dusk, and a track that winds out of sight in both directions. Untested in game.
 - 0.70.0: New map: the Arctic Icebreaker (4-8 players): the sea and camera roll round a still ship, up to 45 degrees, pushing everyone downhill, and loose containers slide across the deck; over the side is out. Same clean look as the Space Station. Untested in game.
 - 0.69.0: New map: Canyon Express (4-8 players): the world slides past two trains, Train B drifts and the gap between them changes, and gantries, tunnels and signs knock you back; falling off is out. The Desert Mine is simplified to the Space Station's clean look (about 1,000 parts, smooth colours). Untested in game.
 - 0.68.0: New map: the Desert Mine (6-12 players), a sandstone mine with ziplines (press E, jump to let go), a timed lift and timed geysers that throw you up a level (`tools/mine_layout.py`, `client/Ziplines`, `shared/Geysers`, `LiftStops`). Untested in game.

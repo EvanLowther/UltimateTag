@@ -78,7 +78,7 @@ function ScrollWorld.start()
 					continue
 				end
 				local dx = obstacle.x - built[obstacle.kind][obstacle.pool]
-				local dz = if obstacle.kind == "SignB" then driftZ else 0
+				local dz = if string.sub(obstacle.kind, -1) == "B" then driftZ else 0
 				for _, box in list do
 					if
 						math.abs(p.X - (box.center.X + dx)) <= box.half.X + s.HitReach

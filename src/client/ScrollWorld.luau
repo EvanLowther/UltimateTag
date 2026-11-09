@@ -1,7 +1,7 @@
 --!strict
 -- Canyon Express on your screen (shared/ScrollLine). The trains stand still so moving on them is
--- as solid as the ground; instead the map's `Scroll<n>` folders slide past and wrap round, `TrackB<n>`
--- and `RailB` follow Train B's gap, `TrainB` drifts and carries whoever stands on it, and each
+-- as solid as the ground; instead the map's `Scroll<n>` folders slide past, bending away ahead of and
+-- behind the trains so the line winds out of sight, `TrackB<n>` follows Train B's gap, `TrainB` drifts and carries whoever stands on it, and each
 -- obstacle is one of the `Obstacle_<Kind>_<n>` folders brought down the line. A part with
 -- `ObstacleHit` knocks you back if your body is in it (duck under a beam: only your standing height
 -- reaches it). Lamps with `WarnLamp` flash while an obstacle is close.
@@ -22,7 +22,6 @@ type Pool = { group: Group, hits: { Hit }, at: number, shown: boolean }
 
 local chunks: { [number]: Group } = {}
 local tracks: { [number]: Group } = {}
-local railB: Group? = nil
 local trainB: Group? = nil
 local trainParts: { [BasePart]: boolean } = {}
 local pools: { [string]: { [number]: Pool } } = {}
@@ -52,7 +51,7 @@ local function scan(target: Instance)
 	table.clear(pools)
 	table.clear(lamps)
 	table.clear(trainParts)
-	railB, trainB, chunkCount = nil, nil, 0
+	trainB, chunkCount = nil, 0
 	lastDrift = Vector3.zero
 	for _, child in target:GetChildren() do
 		local name = child.Name
@@ -64,8 +63,6 @@ local function scan(target: Instance)
 			chunkCount = math.max(chunkCount, (tonumber(chunk) :: number) + 1)
 		elseif track then
 			tracks[tonumber(track) :: number] = collect(child)
-		elseif name == "RailB" then
-			railB = collect(child)
 		elseif name == "TrainB" then
 			local group = collect(child)
 			trainB = group
@@ -99,6 +96,15 @@ local function move(group: Group, delta: Vector3)
 	workspace:BulkMoveTo(group.parts, group.frames, Enum.BulkMoveMode.FireCFrameChanged)
 end
 
+-- Places a group built round `origin` along the track at `place` (a point and turn on the bend).
+local function moveTo(group: Group, origin: number, place: CFrame)
+	local inverse = CFrame.new(-origin, 0, 0)
+	for i, base in group.base do
+		group.frames[i] = place * inverse * base
+	end
+	workspace:BulkMoveTo(group.parts, group.frames, Enum.BulkMoveMode.FireCFrameChanged)
+end
+
 local function hitCheck(parts: MoveState.Parts, pool: Pool): boolean
 	local root = parts.root.Position
 	local head = parts.character:FindFirstChild("Head") :: BasePart?
@@ -119,6 +125,8 @@ local function hitCheck(parts: MoveState.Parts, pool: Pool): boolean
 	end
 	return false
 end
+
+local frame = 0
 
 local function step()
 	local current = workspace:FindFirstChild("ActiveMap")
@@ -149,23 +157,25 @@ local function step()
 	if chunkCount == 0 then
 		return
 	end
+	frame += 1
 	local s = Config.ScrollWorld
 	local t = workspace:GetServerTimeNow()
 	local slid = ScrollLine.distance(t)
 	local total = chunkCount * s.ChunkLength
 	local drift = ScrollLine.trainB(t)
-	local gapShift = Vector3.new(0, 0, drift.Z)
 	for index, group in chunks do
-		local built = index * s.ChunkLength
-		local shift = (built - slid) % total - built - total / 2 -- centred on the trains
-		move(group, Vector3.new(shift, 0, 0))
+		local built = (index + 0.5) * s.ChunkLength
+		local x = (built - slid) % total - total / 2 -- centred on the trains
+		-- (the far stretches, out in the haze, only need a move every few frames)
+		if math.abs(x) > s.FarFrom and (frame + index) % 3 ~= 0 then
+			continue
+		end
+		local place = ScrollLine.warp(x, slid)
+		moveTo(group, built, place)
 		local track = tracks[index]
 		if track then
-			move(track, Vector3.new(shift, 0, drift.Z))
+			moveTo(track, built, place * CFrame.new(0, 0, drift.Z))
 		end
-	end
-	if railB then
-		move(railB, gapShift)
 	end
 	local parts = MoveState.parts()
 	if trainB then
@@ -193,11 +203,10 @@ local function step()
 			inUse[pool] = true
 			-- (each piece is built round a multiple of ParkStep along the line)
 			local built = math.round(pool.group.base[1].Position.X / s.ParkStep) * s.ParkStep
-			local offset =
-				Vector3.new(obstacle.x - built, 0, if obstacle.kind == "SignB" then drift.Z else 0)
-			move(pool.group, offset)
+			local side = if string.sub(obstacle.kind, -1) == "B" then drift.Z else 0
+			moveTo(pool.group, built, ScrollLine.warp(obstacle.x, slid) * CFrame.new(0, 0, side))
 			pool.shown = true
-			if obstacle.x > 110 and obstacle.x < 110 + s.Speed * s.WarnTime then
+			if obstacle.x > s.TrainFront and obstacle.x < s.TrainFront + s.Speed * s.WarnTime then
 				soon = true
 			end
 			if parts and os.clock() - lastHit > s.HitCooldown and hitCheck(parts, pool) then

@@ -15,6 +15,29 @@ function ScrollLine.distance(t: number): number
 	return t * Config.ScrollWorld.Speed
 end
 
+-- The track's sideways bend at point `u` on the endless path (a slow left-and-right wind).
+local function curve(u: number): number
+	local s = Config.ScrollWorld
+	return s.BendK * (math.sin(u / s.BendWaveA) + 0.5 * math.sin(u / s.BendWaveB + 1.3))
+end
+
+-- How far sideways the track is at `x` along it (0 beside the trains, curving away beyond them).
+local function lateral(x: number, slid: number): number
+	local d = math.abs(x) - Config.ScrollWorld.BendFrom
+	if d <= 0 then
+		return 0
+	end
+	return curve(slid + x) * d * d
+end
+
+-- Where a piece of the world at `x` along the track sits and how it's turned: straight past the
+-- trains, and bending away ahead of and behind them, so the line winds out of sight both ways.
+function ScrollLine.warp(x: number, slid: number): CFrame
+	local z = lateral(x, slid)
+	local slope = (lateral(x + 4, slid) - lateral(x - 4, slid)) / 8
+	return CFrame.new(x, 0, z) * CFrame.Angles(0, -math.atan(slope), 0)
+end
+
 -- Train B's offset from where it's built (built at the middle gap, no drift).
 function ScrollLine.trainB(t: number): Vector3
 	local s = Config.ScrollWorld
@@ -60,7 +83,11 @@ function ScrollLine.obstacles(t: number): { Obstacle }
 			local kind = kindOf(slot)
 			local pool = (used[kind] or 0) + 1
 			used[kind] = pool
-			table.insert(out, { kind = kind, pool = pool, x = s.StartX - s.Speed * age })
+			local x = s.StartX - s.Speed * age
+			table.insert(out, { kind = kind, pool = pool, x = x })
+			if kind == "Tunnel" then -- each train has its own bore
+				table.insert(out, { kind = "TunnelB", pool = pool, x = x })
+			end
 		end
 	end
 	return out

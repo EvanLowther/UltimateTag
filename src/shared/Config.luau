@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.70.0",
+	Version = "0.71.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1077,28 +1077,35 @@ local Config = {
 	-- Canyon Express (shared/ScrollLine, client/ScrollWorld, server/ScrollWorld): the world slides
 	-- past while the trains stand still.
 	ScrollWorld = {
-		Speed = 62, -- studs/s the world slides past
-		ChunkLength = 200, -- the length of one `Scroll<n>` folder (the generator's CHUNK)
-		DriftX = 30, -- Train B slides this far forward and back
+		Speed = 130, -- studs/s the world slides past
+		ChunkLength = 240, -- the length of one `Scroll<n>` folder (the generator's CHUNK)
+		DriftX = 60, -- Train B slides this far forward and back
 		DriftRate = 0.21,
 		GapSwing = 9, -- the gap is built at its middle (13) and swings this much either way
 		GapRate = 0.33,
-		Every = 6.5, -- seconds between obstacles (give or take Jitter)
-		Jitter = 2.4,
-		StartX = 640, -- obstacles appear this far up the line
-		EndX = -330, -- and are gone by here
-		ParkStep = 300, -- obstacle pieces are built at multiples of this along X (away from the map)
+		-- The winding: beyond BendFrom from the middle of the trains the track curves away.
+		BendFrom = 520,
+		FarFrom = 1400, -- chunks further out than this are only moved every third frame
+		BendK = 0.00017, -- how sharply
+		BendWaveA = 1100, -- studs of track per radian of the slow left-and-right wind
+		BendWaveB = 430,
+		Every = 8, -- seconds between obstacles (give or take Jitter)
+		Jitter = 3,
+		StartX = 2300, -- obstacles appear this far up the line (round the bend)
+		EndX = -1400, -- and are gone by here
+		ParkStep = 2000, -- obstacle pieces are built at multiples of this along X (away from the map)
 		Kinds = {
 			{ Kind = "Gantry", Weight = 0.46 },
 			{ Kind = "SignA", Weight = 0.2 },
 			{ Kind = "SignB", Weight = 0.2 },
 			{ Kind = "Tunnel", Weight = 0.14 },
 		},
-		HitReach = 1.2, -- studs along the track (it moves about 1 a frame)
+		TrainFront = 410, -- the front of the trains along X
+		HitReach = 3.2, -- studs along the track (it moves about 2 a frame)
 		HitPush = 78, -- thrown back this fast
 		HitPop = 16,
 		HitCooldown = 0.7,
-		WarnTime = 3.5, -- the train lamps flash this long before an obstacle reaches them
+		WarnTime = 3.5, -- the train lamps flash this long before an obstacle reaches the front
 		WarnOn = Color3.fromRGB(242, 162, 58),
 		WarnOff = Color3.fromRGB(96, 92, 80),
 	},
@@ -1338,6 +1345,32 @@ local Config = {
 		Presets = {
 			-- Inside buildings (the School): the outdoor sun settings and bloom wash an enclosed,
 			-- lamp-lit space out to white, so turn exposure, bloom and ambient down.
+			-- Canyon Express: a warm dusk, the low sun on the rock, not dark.
+			Dusk = {
+				Lighting = {
+					ClockTime = 17.7,
+					Brightness = 1.9,
+					Ambient = Color3.fromRGB(138, 112, 104),
+					OutdoorAmbient = Color3.fromRGB(176, 140, 126),
+					ExposureCompensation = 0.05,
+					EnvironmentDiffuseScale = 0.45,
+					EnvironmentSpecularScale = 0.25,
+				},
+				Atmosphere = {
+					Density = 0.36,
+					Haze = 1.7,
+					Glare = 0.25,
+					Color = Color3.fromRGB(255, 200, 158),
+					Decay = Color3.fromRGB(214, 138, 118),
+				},
+				Bloom = { Intensity = 0.1, Size = 16, Threshold = 2 },
+				ColorCorrection = {
+					Saturation = 0.12,
+					Contrast = 0.06,
+					Brightness = 0,
+					TintColor = Color3.fromRGB(255, 236, 218),
+				},
+			},
 			-- The Arctic Icebreaker: overcast, cold and a bit dim, with snow haze.
 			Arctic = {
 				Lighting = {

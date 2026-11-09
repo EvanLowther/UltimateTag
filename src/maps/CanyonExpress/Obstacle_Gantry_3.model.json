@@ -7,9 +7,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4.8,
-     1.5,
-     4.8
+     16,
+     4,
+     16
     ],
     "Color": [
      0.502,
@@ -22,9 +22,1675 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       -0.25,
-       -28.0
+       10000.0,
+       2.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostLeg17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     82.4,
+     1.6
+    ],
+    "Color": [
+     0.329,
+     0.345,
+     0.369
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.0,
+       45.2,
+       -98.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostLeg18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     82.4,
+     1.6
+    ],
+    "Color": [
+     0.329,
+     0.345,
+     0.369
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.0,
+       45.2,
+       -90.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostLeg19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     82.4,
+     1.6
+    ],
+    "Color": [
+     0.329,
+     0.345,
+     0.369
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10004.0,
+       45.2,
+       -98.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostLeg20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     82.4,
+     1.6
+    ],
+    "Color": [
+     0.329,
+     0.345,
+     0.369
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10004.0,
+       45.2,
+       -90.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice141",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.57,
+     0.56,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.027,
+       7.974,
+       -98.011
+      ],
+      "orientation": [
+       [
+        -0.016,
+        -0.707,
+        0.707
+       ],
+       [
+        0.016,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0.023,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice142",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.55,
+     0.557,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.9,
+       8.012,
+       -90.085
+      ],
+      "orientation": [
+       [
+        0.005,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.005,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.007,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       12.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice143",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.567,
+     0.561,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.982,
+       16.044,
+       -97.944
+      ],
+      "orientation": [
+       [
+        0.006,
+        0.707,
+        -0.707
+       ],
+       [
+        0.006,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        -0.008,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice144",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.549,
+     0.505,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.039,
+       16.001,
+       -89.922
+      ],
+      "orientation": [
+       [
+        -0.007,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.007,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.01,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand42",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       20.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice145",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.537,
+     0.523,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.02,
+       23.958,
+       -98.062
+      ],
+      "orientation": [
+       [
+        0.019,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.019,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.027,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice146",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.557,
+     0.523,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.018,
+       23.997,
+       -89.969
+      ],
+      "orientation": [
+       [
+        0.009,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.009,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.013,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand43",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       28.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice147",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.567,
+     0.523,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.021,
+       31.974,
+       -98.072
+      ],
+      "orientation": [
+       [
+        0.021,
+        0.707,
+        -0.707
+       ],
+       [
+        0.021,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        -0.029,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice148",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.556,
+     0.511,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.086,
+       31.971,
+       -89.898
+      ],
+      "orientation": [
+       [
+        -0.026,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.026,
+        0.707,
+        0.707
+       ],
+       [
+        0.999,
+        0.036,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand44",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       36.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice149",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.567,
+     0.5,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.897,
+       39.97,
+       -98.005
+      ],
+      "orientation": [
+       [
+        0.005,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.005,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.007,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice150",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.539,
+     0.544,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.027,
+       40.014,
+       -90.028
+      ],
+      "orientation": [
+       [
+        0.007,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.007,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.009,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand45",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       44.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice151",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.523,
+     0.513,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.929,
+       47.967,
+       -98.043
+      ],
+      "orientation": [
+       [
+        -0.01,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.01,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.014,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice152",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.504,
+     0.535,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.98,
+       48.038,
+       -89.96
+      ],
+      "orientation": [
+       [
+        0.025,
+        0.707,
+        -0.707
+       ],
+       [
+        0.025,
+        0.707,
+        0.707
+       ],
+       [
+        0.999,
+        -0.036,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand46",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       52.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice153",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.566,
+     0.508,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.092,
+       56.022,
+       -97.972
+      ],
+      "orientation": [
+       [
+        -0.02,
+        -0.707,
+        0.707
+       ],
+       [
+        0.02,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0.028,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice154",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.513,
+     0.559,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.913,
+       55.958,
+       -90.108
+      ],
+      "orientation": [
+       [
+        0.026,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.026,
+        0.707,
+        0.707
+       ],
+       [
+        -0.999,
+        -0.037,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand47",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       60.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice155",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.507,
+     0.525,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.931,
+       63.985,
+       -97.989
+      ],
+      "orientation": [
+       [
+        -0.019,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.019,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.026,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice156",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.504,
+     0.513,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.997,
+       64.009,
+       -89.956
+      ],
+      "orientation": [
+       [
+        -0.016,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.016,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.023,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand48",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       68.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice157",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.569,
+     0.51,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.11,
+       72.007,
+       -98.046
+      ],
+      "orientation": [
+       [
+        0.015,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.015,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.021,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice158",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.548,
+     0.52,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.92,
+       72.018,
+       -89.918
+      ],
+      "orientation": [
+       [
+        0.007,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.007,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.01,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand49",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       76.0,
+       -94.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice159",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.522,
+     0.516,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.098,
+       79.953,
+       -97.982
+      ],
+      "orientation": [
+       [
+        -0.01,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.01,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.015,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice160",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.551,
+     0.53,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.074,
+       79.976,
+       -90.101
+      ],
+      "orientation": [
+       [
+        -0.027,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.027,
+        0.707,
+        0.707
+       ],
+       [
+        0.999,
+        0.038,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand50",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       84.0,
+       -94.0
       ],
       "orientation": [
        [
@@ -56,9 +1722,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     4.8,
-     1.5,
-     4.8
+     16,
+     4,
+     16
     ],
     "Color": [
      0.502,
@@ -71,9 +1737,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       -0.25,
-       50.0
+       10000.0,
+       2.0,
+       126.0
       ],
       "orientation": [
        [
@@ -100,14 +1766,14 @@
    }
   },
   {
-   "name": "Post5",
+   "name": "PostLeg21",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     3.5,
-     25.3,
-     3.5
+     1.6,
+     82.4,
+     1.6
     ],
     "Color": [
      0.329,
@@ -120,9 +1786,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       13.15,
-       -28.0
+       9996.0,
+       45.2,
+       122.0
       ],
       "orientation": [
        [
@@ -149,14 +1815,14 @@
    }
   },
   {
-   "name": "Post6",
+   "name": "PostLeg22",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     3.5,
-     25.3,
-     3.5
+     1.6,
+     82.4,
+     1.6
     ],
     "Color": [
      0.329,
@@ -169,9 +1835,1577 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       13.15,
-       50.0
+       9996.0,
+       45.2,
+       130.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostLeg23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     82.4,
+     1.6
+    ],
+    "Color": [
+     0.329,
+     0.345,
+     0.369
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10004.0,
+       45.2,
+       122.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostLeg24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.6,
+     82.4,
+     1.6
+    ],
+    "Color": [
+     0.329,
+     0.345,
+     0.369
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10004.0,
+       45.2,
+       130.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice161",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.546,
+     0.545,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.998,
+       8.024,
+       121.929
+      ],
+      "orientation": [
+       [
+        -0.017,
+        -0.707,
+        0.707
+       ],
+       [
+        0.017,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0.024,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice162",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.522,
+     0.554,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.017,
+       7.984,
+       130.095
+      ],
+      "orientation": [
+       [
+        0.01,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.01,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.014,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand51",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       12.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice163",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.503,
+     0.53,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.092,
+       16.031,
+       122.07
+      ],
+      "orientation": [
+       [
+        -0.008,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.008,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.012,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice164",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.561,
+     0.543,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.905,
+       16.014,
+       130.056
+      ],
+      "orientation": [
+       [
+        -0.016,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.016,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.023,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand52",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       20.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice165",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.502,
+     0.528,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.105,
+       23.958,
+       122.089
+      ],
+      "orientation": [
+       [
+        0.016,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.016,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.022,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice166",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.548,
+     0.555,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.957,
+       24.046,
+       130.103
+      ],
+      "orientation": [
+       [
+        0.014,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.014,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.02,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand53",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       28.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice167",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.53,
+     0.543,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.943,
+       31.971,
+       121.972
+      ],
+      "orientation": [
+       [
+        0.017,
+        0.707,
+        -0.707
+       ],
+       [
+        0.017,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        -0.024,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice168",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.526,
+     0.549,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.083,
+       32.004,
+       130.093
+      ],
+      "orientation": [
+       [
+        -0.013,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.013,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.019,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand54",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       36.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice169",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.565,
+     0.531,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.954,
+       39.979,
+       121.981
+      ],
+      "orientation": [
+       [
+        -0.005,
+        -0.707,
+        0.707
+       ],
+       [
+        0.005,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0.008,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice170",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.558,
+     0.569,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.959,
+       40.027,
+       129.899
+      ],
+      "orientation": [
+       [
+        -0.025,
+        -0.707,
+        0.707
+       ],
+       [
+        0.025,
+        0.707,
+        0.707
+       ],
+       [
+        -0.999,
+        0.036,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand55",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       44.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice171",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.535,
+     0.517,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.971,
+       47.973,
+       121.967
+      ],
+      "orientation": [
+       [
+        -0.023,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.023,
+        0.707,
+        0.707
+       ],
+       [
+        0.999,
+        0.033,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice172",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.507,
+     0.519,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.979,
+       48.01,
+       129.903
+      ],
+      "orientation": [
+       [
+        -0.018,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.018,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.026,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand56",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       52.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice173",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.505,
+     0.539,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.966,
+       56.023,
+       121.908
+      ],
+      "orientation": [
+       [
+        -0.017,
+        -0.707,
+        0.707
+       ],
+       [
+        0.017,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        0.024,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice174",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.519,
+     0.535,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.964,
+       56.045,
+       130.025
+      ],
+      "orientation": [
+       [
+        -0.023,
+        -0.707,
+        0.707
+       ],
+       [
+        0.023,
+        0.707,
+        0.707
+       ],
+       [
+        -0.999,
+        0.032,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand57",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       60.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice175",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.57,
+     0.516,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.928,
+       63.969,
+       121.935
+      ],
+      "orientation": [
+       [
+        -0.017,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.017,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        0.025,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice176",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.549,
+     0.547,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.924,
+       64.046,
+       130.071
+      ],
+      "orientation": [
+       [
+        0.006,
+        0.707,
+        -0.707
+       ],
+       [
+        0.006,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        -0.008,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand58",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       68.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice177",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.506,
+     0.542,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       71.964,
+       121.945
+      ],
+      "orientation": [
+       [
+        0.014,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.014,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.02,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice178",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.503,
+     0.52,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.899,
+       71.961,
+       130.039
+      ],
+      "orientation": [
+       [
+        0.017,
+        -0.707,
+        0.707
+       ],
+       [
+        -0.017,
+        0.707,
+        0.707
+       ],
+       [
+        -1.0,
+        -0.024,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand59",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       76.0,
+       126.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice179",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.534,
+     0.561,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9999.892,
+       79.962,
+       121.925
+      ],
+      "orientation": [
+       [
+        0.016,
+        0.707,
+        -0.707
+       ],
+       [
+        0.016,
+        0.707,
+        0.707
+       ],
+       [
+        1.0,
+        -0.022,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice180",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.516,
+     0.508,
+     11.314
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.049,
+       79.978,
+       130.073
+      ],
+      "orientation": [
+       [
+        -0.022,
+        0.707,
+        -0.707
+       ],
+       [
+        -0.022,
+        0.707,
+        0.707
+       ],
+       [
+        0.999,
+        0.032,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "PostBand60",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     9.2,
+     0.6,
+     9.2
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       84.0,
+       126.0
       ],
       "orientation": [
        [
@@ -203,9 +3437,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     3.0,
-     1.6,
-     78
+     8,
+     4.0,
+     220
     ],
     "Color": [
      0.361,
@@ -218,9 +3452,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       19.2,
-       11.0
+       10000.0,
+       62.4,
+       16.0
       ],
       "orientation": [
        [
@@ -255,9 +3489,9 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     3.0,
-     1.0,
-     78
+     8,
+     2.0,
+     220
     ],
     "Color": [
      0.337,
@@ -270,9 +3504,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       24.7,
-       11.0
+       10000.0,
+       81.4,
+       16.0
       ],
       "orientation": [
        [
@@ -299,14 +3533,14 @@
    }
   },
   {
-   "name": "TrussPost11",
+   "name": "Lattice181",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
-     4.2,
-     1.0
+     0.801,
+     0.853,
+     21.26
     ],
     "Color": [
      0.282,
@@ -319,9 +3553,1479 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       22.1,
-       -15.0
+       9996.361,
+       72.449,
+       -80.933
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.014,
+        0.0
+       ],
+       [
+        -0.009,
+        0.658,
+        0.753
+       ],
+       [
+        0.01,
+        -0.753,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice182",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.845,
+     0.842,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.701,
+       72.403,
+       -81.024
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.034,
+        0.0
+       ],
+       [
+        0.022,
+        0.658,
+        0.753
+       ],
+       [
+        -0.025,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice183",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.807,
+     0.816,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.48,
+       72.422,
+       -66.911
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.018,
+        0.0
+       ],
+       [
+        0.012,
+        0.658,
+        -0.753
+       ],
+       [
+        0.013,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice184",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.822,
+     0.808,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.683,
+       72.417,
+       -67.086
+      ],
+      "orientation": [
+       [
+        0.999,
+        0.033,
+        0.0
+       ],
+       [
+        -0.022,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.025,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice185",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.801,
+     0.805,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.452,
+       72.362,
+       -52.927
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.012,
+        0.0
+       ],
+       [
+        0.008,
+        0.658,
+        0.753
+       ],
+       [
+        -0.009,
+        -0.753,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice186",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.82,
+     0.825,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.533,
+       72.409,
+       -53.088
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.016,
+        0.0
+       ],
+       [
+        -0.01,
+        0.658,
+        0.753
+       ],
+       [
+        0.012,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice187",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.865,
+     0.833,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.294,
+       72.359,
+       -39.03
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.032,
+        0.0
+       ],
+       [
+        0.021,
+        0.658,
+        -0.753
+       ],
+       [
+        0.024,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice188",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.811,
+     0.821,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.526,
+       72.409,
+       -39.037
+      ],
+      "orientation": [
+       [
+        0.999,
+        0.038,
+        0.0
+       ],
+       [
+        -0.025,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.029,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice189",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.859,
+     0.839,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.325,
+       72.365,
+       -25.077
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.016,
+        0.0
+       ],
+       [
+        -0.011,
+        0.658,
+        0.753
+       ],
+       [
+        0.012,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice190",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.802,
+     0.858,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.561,
+       72.419,
+       -24.937
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.023,
+        0.0
+       ],
+       [
+        0.015,
+        0.658,
+        0.753
+       ],
+       [
+        -0.017,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice191",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.801,
+     0.809,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.331,
+       72.43,
+       -10.912
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.024,
+        0.0
+       ],
+       [
+        -0.016,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.018,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice192",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.826,
+     0.866,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.492,
+       72.373,
+       -11.109
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.025,
+        0.0
+       ],
+       [
+        0.017,
+        0.658,
+        -0.753
+       ],
+       [
+        0.019,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice193",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.81,
+     0.836,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.439,
+       72.387,
+       2.986
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.026,
+        0.0
+       ],
+       [
+        -0.017,
+        0.658,
+        0.753
+       ],
+       [
+        0.02,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice194",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.815,
+     0.806,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.656,
+       72.363,
+       2.894
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.035,
+        0.0
+       ],
+       [
+        0.023,
+        0.658,
+        0.753
+       ],
+       [
+        -0.026,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice195",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.865,
+     0.834,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.342,
+       72.402,
+       17.107
+      ],
+      "orientation": [
+       [
+        0.999,
+        0.034,
+        0.0
+       ],
+       [
+        -0.022,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.025,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice196",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.803,
+     0.865,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.689,
+       72.445,
+       17.039
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.027,
+        0.0
+       ],
+       [
+        -0.018,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.02,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice197",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.851,
+     0.809,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.407,
+       72.377,
+       30.959
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.036,
+        0.0
+       ],
+       [
+        0.024,
+        0.658,
+        0.753
+       ],
+       [
+        -0.027,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice198",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.865,
+     0.803,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.553,
+       72.417,
+       31.041
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.019,
+        0.0
+       ],
+       [
+        0.012,
+        0.658,
+        0.753
+       ],
+       [
+        -0.014,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice199",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.854,
+     0.859,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.353,
+       72.355,
+       44.912
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.036,
+        0.0
+       ],
+       [
+        0.024,
+        0.658,
+        -0.753
+       ],
+       [
+        0.027,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice200",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.833,
+     0.859,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.517,
+       72.388,
+       45.057
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.023,
+        0.0
+       ],
+       [
+        0.015,
+        0.658,
+        -0.753
+       ],
+       [
+        0.018,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice201",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.854,
+     0.814,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.355,
+       72.383,
+       58.947
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.017,
+        0.0
+       ],
+       [
+        0.011,
+        0.658,
+        0.753
+       ],
+       [
+        -0.012,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice202",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.83,
+     0.861,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.701,
+       72.37,
+       59.078
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.011,
+        0.0
+       ],
+       [
+        0.008,
+        0.658,
+        0.753
+       ],
+       [
+        -0.009,
+        -0.753,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice203",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.818,
+     0.863,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.36,
+       72.392,
+       73.072
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.029,
+        0.0
+       ],
+       [
+        0.019,
+        0.658,
+        -0.753
+       ],
+       [
+        0.022,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice204",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.866,
+     0.811,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.563,
+       72.387,
+       72.988
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.017,
+        0.0
+       ],
+       [
+        -0.011,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.012,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice205",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.828,
+     0.859,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.302,
+       72.431,
+       86.894
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.036,
+        0.0
+       ],
+       [
+        0.024,
+        0.658,
+        0.753
+       ],
+       [
+        -0.027,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice206",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.804,
+     0.816,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.663,
+       72.444,
+       87.067
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.037,
+        0.0
+       ],
+       [
+        0.025,
+        0.658,
+        0.753
+       ],
+       [
+        -0.028,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice207",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.808,
+     0.841,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.38,
+       72.385,
+       101.05
+      ],
+      "orientation": [
+       [
+        0.999,
+        0.034,
+        0.0
+       ],
+       [
+        -0.023,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.026,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice208",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.855,
+     0.849,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.605,
+       72.379,
+       101.047
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.024,
+        0.0
+       ],
+       [
+        -0.016,
+        0.658,
+        -0.753
+       ],
+       [
+        -0.018,
+        0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice209",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.811,
+     0.822,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.475,
+       72.43,
+       115.007
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.02,
+        0.0
+       ],
+       [
+        -0.013,
+        0.658,
+        0.753
+       ],
+       [
+        0.015,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Lattice210",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.823,
+     0.844,
+     21.26
+    ],
+    "Color": [
+     0.282,
+     0.298,
+     0.322
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10003.603,
+       72.449,
+       114.978
+      ],
+      "orientation": [
+       [
+        1.0,
+        -0.021,
+        0.0
+       ],
+       [
+        0.014,
+        0.658,
+        0.753
+       ],
+       [
+        -0.016,
+        -0.752,
+        0.659
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignalHead15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.8,
+     18.0,
+     10.0
+    ],
+    "Color": [
+     0.11,
+     0.118,
+     0.125
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10000.0,
+       91.5,
+       -24.0
       ],
       "orientation": [
        [
@@ -348,19 +5052,69 @@
    }
   },
   {
-   "name": "TrussPost12",
+   "name": "SignalLamp33",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
-     4.2,
-     1.0
+     0.38,
+     4,
+     4
     ],
     "Color": [
-     0.282,
-     0.298,
-     0.322
+     0.675,
+     0.204,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.39,
+       96.9,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignalHood33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.58,
+     0.6,
+     5.6
+    ],
+    "Color": [
+     0.078,
+     0.086,
+     0.094
     ],
     "Material": "Metal",
     "TopSurface": "Smooth",
@@ -368,9 +5122,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       22.1,
-       -2.0
+       9994.79,
+       99.6,
+       -24.0
       ],
       "orientation": [
        [
@@ -397,19 +5151,69 @@
    }
   },
   {
-   "name": "TrussPost13",
+   "name": "SignalLamp34",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
-     4.2,
-     1.0
+     0.38,
+     4,
+     4
     ],
     "Color": [
-     0.282,
-     0.298,
-     0.322
+     0.847,
+     0.643,
+     0.22
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.39,
+       91.5,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignalHood34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.58,
+     0.6,
+     5.6
+    ],
+    "Color": [
+     0.078,
+     0.086,
+     0.094
     ],
     "Material": "Metal",
     "TopSurface": "Smooth",
@@ -417,9 +5221,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       22.1,
-       11.0
+       9994.79,
+       94.2,
+       -24.0
       ],
       "orientation": [
        [
@@ -446,19 +5250,69 @@
    }
   },
   {
-   "name": "TrussPost14",
+   "name": "SignalLamp35",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
-     4.2,
-     1.0
+     0.38,
+     4,
+     4
     ],
     "Color": [
-     0.282,
-     0.298,
-     0.322
+     0.259,
+     0.588,
+     0.29
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.39,
+       86.1,
+       -24.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignalHood35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.58,
+     0.6,
+     5.6
+    ],
+    "Color": [
+     0.078,
+     0.086,
+     0.094
     ],
     "Material": "Metal",
     "TopSurface": "Smooth",
@@ -466,9 +5320,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       22.1,
-       24.0
+       9994.79,
+       88.8,
+       -24.0
       ],
       "orientation": [
        [
@@ -495,19 +5349,19 @@
    }
   },
   {
-   "name": "TrussPost15",
+   "name": "SignalHead16",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
-     4.2,
-     1.0
+     6.8,
+     18.0,
+     10.0
     ],
     "Color": [
-     0.282,
-     0.298,
-     0.322
+     0.11,
+     0.118,
+     0.125
     ],
     "Material": "Metal",
     "TopSurface": "Smooth",
@@ -515,8 +5369,8 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       22.1,
+       10000.0,
+       91.5,
        37.0
       ],
       "orientation": [
@@ -544,19 +5398,69 @@
    }
   },
   {
-   "name": "SignalHead13",
+   "name": "SignalLamp36",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.6,
-     4.1,
-     2.4
+     0.38,
+     4,
+     4
     ],
     "Color": [
-     0.11,
-     0.118,
-     0.125
+     0.675,
+     0.204,
+     0.165
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9996.39,
+       96.9,
+       37.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignalHood36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.58,
+     0.6,
+     5.6
+    ],
+    "Color": [
+     0.078,
+     0.086,
+     0.094
     ],
     "Material": "Metal",
     "TopSurface": "Smooth",
@@ -564,9 +5468,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       27.35,
-       -6.0
+       9994.79,
+       99.6,
+       37.0
       ],
       "orientation": [
        [
@@ -593,19 +5497,19 @@
    }
   },
   {
-   "name": "SignalLamp25",
+   "name": "SignalLamp37",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.14,
-     1.2,
-     1.2
+     0.38,
+     4,
+     4
     ],
     "Color": [
-     0.675,
-     0.204,
-     0.165
+     0.847,
+     0.643,
+     0.22
     ],
     "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
@@ -613,15 +5517,15 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.87,
-       28.3,
-       -6
+       9996.39,
+       91.5,
+       37.0
       ],
       "orientation": [
        [
-        1.0,
+        1,
         0,
-        0.0
+        0
        ],
        [
         0,
@@ -629,9 +5533,9 @@
         0
        ],
        [
-        -0.0,
         0,
-        1.0
+        0,
+        1
        ]
       ]
      }
@@ -643,69 +5547,19 @@
    }
   },
   {
-   "name": "SignalLamp26",
+   "name": "SignalHood37",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.14,
-     1.2,
-     1.2
+     3.58,
+     0.6,
+     5.6
     ],
     "Color": [
-     0.259,
-     0.588,
-     0.29
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       2100.87,
-       26.7,
-       -6
-      ],
-      "orientation": [
-       [
-        1.0,
-        0,
-        0.0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.0,
-        0,
-        1.0
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "SignalHead14",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.6,
-     4.1,
-     2.4
-    ],
-    "Color": [
-     0.11,
-     0.118,
-     0.125
+     0.078,
+     0.086,
+     0.094
     ],
     "Material": "Metal",
     "TopSurface": "Smooth",
@@ -713,9 +5567,9 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.0,
-       27.35,
-       19.0
+       9994.79,
+       94.2,
+       37.0
       ],
       "orientation": [
        [
@@ -742,64 +5596,14 @@
    }
   },
   {
-   "name": "SignalLamp27",
+   "name": "SignalLamp38",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.14,
-     1.2,
-     1.2
-    ],
-    "Color": [
-     0.675,
-     0.204,
-     0.165
-    ],
-    "Material": "SmoothPlastic",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       2100.87,
-       28.3,
-       19
-      ],
-      "orientation": [
-       [
-        1.0,
-        0,
-        0.0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        -0.0,
-        0,
-        1.0
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "SignalLamp28",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.14,
-     1.2,
-     1.2
+     0.38,
+     4,
+     4
     ],
     "Color": [
      0.259,
@@ -812,15 +5616,15 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       2100.87,
-       26.7,
-       19
+       9996.39,
+       86.1,
+       37.0
       ],
       "orientation": [
        [
-        1.0,
+        1,
         0,
-        0.0
+        0
        ],
        [
         0,
@@ -828,14 +5632,63 @@
         0
        ],
        [
-        -0.0,
         0,
-        1.0
+        0,
+        1
        ]
       ]
      }
     },
     "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignalHood38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.58,
+     0.6,
+     5.6
+    ],
+    "Color": [
+     0.078,
+     0.086,
+     0.094
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9994.79,
+       88.8,
+       37.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
     "CanCollide": false,
     "CanQuery": false,
     "CanTouch": false
