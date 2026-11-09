@@ -1,5 +1,8 @@
 {
  "className": "Model",
+ "properties": {
+  "ModelStreamingMode": "Persistent"
+ },
  "children": [
   {
    "name": "Ground18",
@@ -6087,8 +6090,5 @@
     "CanTouch": false
    }
   }
- ],
- "properties": {
-  "ModelStreamingMode": "Persistent"
- }
+ ]
 }

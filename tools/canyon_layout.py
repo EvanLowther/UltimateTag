@@ -18,9 +18,7 @@ Each chunk or obstacle is moved whole round its own middle, and bends with the t
 behind the trains (ScrollLine.warp), so the line winds out of sight. Signs and signals face -X, the
 way the trains come from. Parts with ObstacleHit knock you back.
 """
-import json
 import math
-import os
 import sys
 
 sys.path.insert(0, "tools")
@@ -690,25 +688,12 @@ def build():
     return m
 
 
-def persistent(group):
-    path = os.path.join(OUT, f"{group}.model.json")
-    node = json.load(open(path))
-    node["className"] = "Model"
-    node["properties"] = {"ModelStreamingMode": "Persistent"}
-    with open(path, "w") as f:
-        json.dump(node, f, indent=1)
-        f.write("\n")
-
-
 if __name__ == "__main__":
     layout = build()
     issues = mapcheck.check_map(layout, ATTRIBUTES)
     print(f"{layout.count()} parts in {len(layout.groups)} groups, {len(layout.spawns)} spawns")
     for line in issues:
         print("PROBLEM:", line)
-    layout.write(OUT, ATTRIBUTES)
-    for group in layout.groups:
-        if group.startswith(("Scroll", "TrackB", "Obstacle_")) or group == "TrainB":
-            persistent(group)
+    layout.write(OUT, ATTRIBUTES, models=[g for g in layout.groups if g.startswith(("Scroll", "TrackB", "Obstacle_")) or g == "TrainB"])
     print(f"wrote {OUT}/ (Rojo syncs it into ServerStorage.Maps)")
     raise SystemExit(1 if issues else 0)

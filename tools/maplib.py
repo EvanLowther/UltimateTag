@@ -326,21 +326,23 @@ class Map:
     def count(self):
         return sum(len(v) for v in self.groups.values())
 
-    def write(self, out_dir, attributes):
-        """Writes the map as Rojo files (one folder per group, plus Spawns). The folder is
-        generated: it's replaced each run."""
-        if os.path.isdir(out_dir):
-            shutil.rmtree(out_dir)
-        os.makedirs(out_dir)
+    def write(self, out_dir, attributes, models=(), keep=()):
+        """Writes the map as Rojo files (one file per group, plus Spawns). Groups named in `models`
+        are written as Persistent models, for things that move on every screen. Only files whose
+        content changed are touched, each in one step and once, and only files nothing wants any
+        more are removed: Rojo watches this folder, and deleting and rewriting it all at once can
+        crash it partway, leaving Studio with half a map. `keep` names extra files a generator
+        writes itself."""
+        def text(data):
+            return json.dumps(data, indent=1) + "\n"
 
-        def dump(name, data):
-            with open(os.path.join(out_dir, name), "w") as f:
-                json.dump(data, f, indent=1)
-                f.write("\n")
-
-        dump("init.meta.json", {"className": "Model", "attributes": attributes})
+        files = {"init.meta.json": text({"className": "Model", "attributes": attributes})}
         for group, children in self.groups.items():
-            dump(f"{group}.model.json", {"className": "Folder", "children": children})
+            node = {"className": "Folder", "children": children}
+            if group in models:
+                node = {"className": "Model", "properties": {"ModelStreamingMode": "Persistent"},
+                        "children": children}
+            files[f"{group}.model.json"] = text(node)
         spawns = []
         for i, (x, y, z) in enumerate(self.spawns):
             spawns.append({"name": f"Spawn{i + 1}", "className": "Part", "properties": {
@@ -348,4 +350,22 @@ class Map:
                 "CastShadow": False, "Transparency": 1, "Size": [2, 1, 2],
                 "CFrame": {"CFrame": {"position": [r(x), r(y + 0.5), r(z)],
                                       "orientation": IDENTITY}}}})
-        dump("Spawns.model.json", {"className": "Folder", "children": spawns})
+        files["Spawns.model.json"] = text({"className": "Folder", "children": spawns})
+
+        os.makedirs(out_dir, exist_ok=True)
+        for name in os.listdir(out_dir):
+            path = os.path.join(out_dir, name)
+            if name not in files and name not in keep:
+                if os.path.isdir(path):
+                    shutil.rmtree(path)
+                else:
+                    os.remove(path)
+        for name, content in files.items():
+            path = os.path.join(out_dir, name)
+            if os.path.exists(path):
+                with open(path) as f:
+                    if f.read() == content:
+                        continue
+            with open(path + ".tmp", "w") as f:
+                f.write(content)
+            os.replace(path + ".tmp", path)

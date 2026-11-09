@@ -1,5 +1,8 @@
 {
  "className": "Model",
+ "properties": {
+  "ModelStreamingMode": "Persistent"
+ },
  "children": [
   {
    "name": "CarFloor",
@@ -24370,8 +24373,5 @@
     "TrainGangT": 0.875
    }
   }
- ],
- "properties": {
-  "ModelStreamingMode": "Persistent"
- }
+ ]
 }

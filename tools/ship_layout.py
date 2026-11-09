@@ -12,14 +12,11 @@ slide across two lanes on each big tip, and you can ride them. Over the side is 
 FallEliminates); the rails have a gap on each long side. The look matches the Space Station: smooth
 colours and a modest part count.
 """
-import json
 import math
-import os
 import sys
 
 sys.path.insert(0, "tools")
 import mapcheck  # noqa: E402
-from canyon_layout import corrugated  # noqa: E402
 from maplib import NO_HIT, Map, matmul, rot_x, rot_y, rot_z  # noqa: E402
 from mine_layout import beam, jitter, rng, rock_rows, simple_materials  # noqa: E402
 
@@ -34,6 +31,33 @@ COLORS = {"hull": (143, 47, 42), "hulld": (108, 36, 32), "deck": (232, 238, 244)
           "rail": (201, 210, 218), "orange": (201, 116, 47), "white": (233, 239, 244), "yellow": (222, 180, 42),
           "glass": (150, 186, 208), "floor": (150, 158, 166), "ice": (213, 227, 238)}
 MATERIALS = {"steel": "Metal", "rail": "Metal", "floor": "DiamondPlate"}
+
+
+def block(m, g, name, a0, a1, b0, b1, c0, c1, color, material="SmoothPlastic", solid=False, **props):
+    extra = {} if solid else dict(NO_HIT)
+    extra.update(props)
+    return m.block(g, name, a0, a1, b0, b1, c0, c1, color, Material=material, **extra)
+
+
+def corrugated(m, g, x0, x1, y0, y1, z0, z1, color):
+    """A shipping container: a solid box, ribbed sides, corner posts and end doors."""
+    block(m, g, "Container", x0, x1, y0, y1, z0, z1, color, "CorrodedMetal", solid=True)
+    pale = tuple(min(255, c + 16) for c in color)
+    dark = tuple(max(0, c - 34) for c in color)
+    rib = x0 + 1.1
+    while rib < x1 - 1.0:
+        for z, s in ((z0, -1), (z1, 1)):
+            block(m, g, "Rib", rib - 0.27, rib + 0.27, y0 + 0.5, y1 - 0.55, min(z, z + s * 0.14), max(z, z + s * 0.14), pale, "Metal")
+        rib += 2.7
+    for x, s in ((x0, -1), (x1, 1)):  # the end doors
+        zm = (z0 + z1) / 2
+        for a, b in ((z0 + 0.4, zm - 0.06), (zm + 0.06, z1 - 0.4)):
+            block(m, g, "DoorPanel", min(x, x + s * 0.08), max(x, x + s * 0.08), y0 + 0.5, y1 - 0.55, a, b, pale, "Metal")
+    for x in (x0, x1 - 0.5):
+        for z in (z0, z1 - 0.5):
+            block(m, g, "CornerPost", x - 0.19, x + 0.69, y0 - 0.07, y1 + 0.07, z - 0.19, z + 0.69, dark, "Metal")
+    for z, s in ((z0, -1), (z1, 1)):  # top and bottom rails
+        block(m, g, "ContRail", x0 + 0.72, x1 - 0.72, y1 - 0.5, y1 - 0.08, min(z, z + s * 0.11), max(z, z + s * 0.11), dark, "Metal")
 
 
 def detail(m, g, name, x0, x1, y0, y1, z0, z1, color, **props):
@@ -318,25 +342,12 @@ def build():
     return m
 
 
-def persistent(group):
-    path = os.path.join(OUT, f"{group}.model.json")
-    node = json.load(open(path))
-    node["className"] = "Model"
-    node["properties"] = {"ModelStreamingMode": "Persistent"}
-    with open(path, "w") as f:
-        json.dump(node, f, indent=1)
-        f.write("\n")
-
-
 if __name__ == "__main__":
     layout = build()
     issues = mapcheck.check_map(layout, ATTRIBUTES)
     print(f"{layout.count()} parts in {len(layout.groups)} groups, {len(layout.spawns)} spawns")
     for line in issues:
         print("PROBLEM:", line)
-    layout.write(OUT, ATTRIBUTES)
-    for group in layout.groups:
-        if group == "Sea" or group.startswith("Loose"):
-            persistent(group)
+    layout.write(OUT, ATTRIBUTES, models=[g for g in layout.groups if g == "Sea" or g.startswith("Loose")])
     print(f"wrote {OUT}/ (Rojo syncs it into ServerStorage.Maps)")
     raise SystemExit(1 if issues else 0)

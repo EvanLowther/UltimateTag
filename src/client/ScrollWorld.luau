@@ -33,13 +33,19 @@ local added: RBXScriptConnection? = nil
 local lastDrift = Vector3.zero
 local lastHit = -math.huge
 
+-- Where each part was built (remembered the first time it's seen: the map arrives in batches and
+-- is scanned again as it does, and by then the earlier parts have already been moved).
+local builtAt: { [BasePart]: CFrame } = {}
+
 local function collect(root: Instance): Group
 	local group: Group = { parts = {}, base = {}, frames = {} }
 	for _, item in root:GetDescendants() do
 		if item:IsA("BasePart") then
+			local built = builtAt[item] or item.CFrame
+			builtAt[item] = built
 			table.insert(group.parts, item)
-			table.insert(group.base, item.CFrame)
-			table.insert(group.frames, item.CFrame)
+			table.insert(group.base, built)
+			table.insert(group.frames, built)
 		end
 	end
 	return group
@@ -137,7 +143,10 @@ local function step()
 		end
 		map = current
 		table.clear(chunks)
+		table.clear(tracks)
 		table.clear(pools)
+		table.clear(builtAt)
+		chunkCount = 0
 		if map and map:GetAttribute("ScrollWorld") == true then
 			dirtyAt = os.clock()
 			added = map.DescendantAdded:Connect(function()
@@ -167,7 +176,7 @@ local function step()
 		local built = (index + 0.5) * s.ChunkLength
 		local x = (built - slid) % total - total / 2 -- centred on the trains
 		-- (the far stretches, out in the haze, only need a move every few frames)
-		if math.abs(x) > s.FarFrom and (frame + index) % 3 ~= 0 then
+		if math.abs(x) > s.FarFrom and frame % 3 ~= 0 then
 			continue
 		end
 		local place = ScrollLine.warp(x, slid)

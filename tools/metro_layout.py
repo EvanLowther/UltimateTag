@@ -370,15 +370,8 @@ if __name__ == "__main__":
     print(f"{layout.count()} parts in {len(layout.groups)} groups, {len(layout.spawns)} spawns")
     for line in issues:
         print("PROBLEM:", line)
-    layout.write(OUT, ATTRIBUTES)
     # The train is one streaming unit, so no client ever has only part of it.
-    path = os.path.join(OUT, "Train.model.json")
-    node = json.load(open(path))
-    node["className"] = "Model"
-    node["properties"] = {"ModelStreamingMode": "Persistent"}
-    with open(path, "w") as f:
-        json.dump(node, f, indent=1)
-        f.write("\n")
+    layout.write(OUT, ATTRIBUTES, models=("Train",), keep=("TrainLine.luau",))
     with open(os.path.join(OUT, "TrainLine.luau"), "w") as f:
         f.write(train_module(design["train"]))
     print(f"wrote {OUT}/ (Rojo syncs it into ServerStorage.Maps)")
