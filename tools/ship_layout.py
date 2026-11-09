@@ -249,6 +249,50 @@ def build_sea(m):
         m.part(g, "Floe", (w, h, depth), (x, h * 0.3, z), jitter((226, 238, 246), 8), matmul(rot_y(rng.uniform(0, 180)), rock_rows(9)), **NO_HIT)
 
 
+def build_extras(m):
+    """Small things that make it read as a working ship: hull ribs, deck seams, vents, bollards and
+    lifeboats on the superstructure."""
+    g = "ShipDetail"
+    for z in range(-66, 66, 6):
+        for x, s in ((-36, -1), (36, 1)):
+            a, b = sorted((x, x + s * 0.16))
+            detail(m, g, "HullRib", a, b, 5.3, 15.7, z - 0.25, z + 0.25, "hulld")
+    for z in (-66, -60, -6, 3, 10):
+        detail(m, g, "DeckSeam", -31.5, 31.5, D + 0.04, D + 0.06, z - 0.05, z + 0.05, (196, 204, 212))
+    for z in (20, 26, 34, 40):
+        detail(m, g, "DeckSeam", -31, -14, PAD + 0.04, PAD + 0.06, z - 0.05, z + 0.05, (196, 204, 212))
+        detail(m, g, "DeckSeam", 14, 31, PAD + 0.04, PAD + 0.06, z - 0.05, z + 0.05, (196, 204, 212))
+    # Mooring bollards along the deck edges, and mushroom vents, standing on the deck.
+    for z in range(-64, 12, 19):
+        for x in (-33.8, 33.8):
+            m.cylinder(g, "Bollard", 1.6, 1.0, (x, D + 0.8, z + 1.3), "steel", Material="Metal", **NO_HIT)
+            m.cylinder(g, "BollardCap", 0.3, 1.5, (x, D + 1.65, z + 1.3), "steel", Material="Metal", **NO_HIT)
+    for x, z in ((-29, -6), (29, -2), (-11, 12), (11, 12), (-27, 56 - 74), (27, -44)):
+        m.cylinder(g, "Vent", 2.4, 1.4, (x, D + 1.2, z), "white", **NO_HIT)
+        m.cylinder(g, "VentCap", 0.6, 2.6, (x, D + 2.7, z), "steel", Material="Metal", **NO_HIT)
+    # Lifeboats on davits against the superstructure's sides.
+    for s in (-1, 1):
+        x = s * 29.6
+        detail(m, g, "Lifeboat", x - 1.1, x + 1.1, 46.2, 48.6, 52, 64, (226, 118, 42))
+        detail(m, g, "LifeboatCap", x - 0.8, x + 0.8, 48.66, 49.4, 53, 63, (240, 226, 200))
+        for z in (54, 62):
+            a, b = sorted((s * 28, s * 29.9))
+            detail(m, g, "Davit", a, b, 49.7, 50.2, z - 0.2, z + 0.2, "steel", Material="Metal")
+            detail(m, g, "DavitLine", x - 0.05, x + 0.05, 49.2, 49.7, z - 0.05, z + 0.05, (50, 52, 56))
+    # Pipes and a door on the front of the superstructure.
+    detail(m, g, "BridgeDoor", -2, 2, PAD + 0.1, PAD + 7.5, 44.88, 44.96, "steel", Material="Metal")
+    for x in (-20, -12, 12, 20):
+        detail(m, g, "WallPipe", x - 0.2, x + 0.2, PAD + 0.1, 44.2, 44.76, 44.96, "steel", Material="Metal")
+    # Extra ice round the ship (the picture's broken field).
+    for k in range(110):
+        a, d = rng.uniform(0, math.tau), rng.uniform(62, 230)
+        x, z = math.cos(a) * d, math.sin(a) * d * 1.2
+        if abs(x) < 50 and z > -110:
+            continue
+        w, h, depth = rng.uniform(8, 26), rng.uniform(2, 6), rng.uniform(8, 22)
+        m.part("Sea", "Floe", (w, h, depth), (x, h * 0.3, z), jitter((232, 242, 248), 8), matmul(rot_y(rng.uniform(0, 180)), rock_rows(11)), **NO_HIT)
+
+
 def build_weather(m):
     snow = m.particles("Snow", 90, (4, 7), (12, 20), [(0, 0.28), (1, 0.28)], [(0, 0.05), (1, 0.45)], (255, 255, 255), direction="Bottom",
                        spread=(14, 14), accel=(6, 0, 0))
@@ -266,6 +310,7 @@ def build():
     crane(m, -28, 1)
     crane(m, 28, -1)
     build_sea(m)
+    build_extras(m)
     build_weather(m)
     for s in SPAWNS:
         m.spawn(s[0], s[1], s[2] if len(s) > 2 else D)
