@@ -4,11 +4,13 @@ canyon at dusk, from the owner's reference picture. Run from the repo root:
     python3 tools/canyon_layout.py
 It rewrites `src/maps/CanyonExpress/` (generated: don't edit those files by hand); Rojo syncs it.
 
-Axes: X along the track (the locomotives lead towards +X), Z across, Y up. Everything is 4x the
-character's scale (so you feel small): cars 128 long, 48 wide, decks at 20, roofs at 56. The jumps
-stay human: the gap between the trains runs 4..22 and couplings are 8.
+Axes: X along the track (the locomotives lead towards +X), Z across, Y up. Everything is 2.5x the
+character's scale (so you feel small): cars 80 long, 30 wide, decks at 12.5, roofs at 35. The jumps
+stay human: the gap between the trains runs 4..22 and couplings are 5.
+The numbers in this file are design units; `build` shrinks the finished map by SCALE, so set SCALE to
+resize it (and keep the Config.ScrollWorld distances in step). Ladders go in after, at true size.
 THE TRAINS DON'T MOVE: the world slides past them (shared/ScrollLine, client/ScrollWorld). Train A
-(z -48..0) never moves; Train B (z 13..61 as built) drifts along and in and out, carrying whoever is
+(z -30..0) never moves; Train B (z 13..43 as built) drifts along and in and out, carrying whoever is
 on it. Falling off is out (KillHeight, FallEliminates); the ground is really there under the trains.
 Moving folders (Persistent models): Scroll<n> (one CHUNK each, built end to end from x 0), TrackB<n>
 (Train B's rails, which follow its gap), TrainB, and Obstacle_<Kind>_<n>, which wait far along +X.
@@ -31,13 +33,14 @@ ATTRIBUTES = {"DisplayName": "Canyon Express", "MinPlayers": 4, "MaxPlayers": 8,
               "Lighting": "Dusk", "KillHeight": 4, "FallEliminates": True, "ScrollWorld": True,
               "OutOfBounds": "CabTop,CabTopTop,NoseTop,NoseTopTop,BigCargo,RoofVent"}
 
+SCALE = 0.625                              # 2.5x the character, from a design drawn at 4x
 CAR, COUPLE, W, DECK, ROOF = 128, 8, 48, 20, 56
 A_Z = (-W, 0)
-B_Z = (13, 13 + W)
+B_Z = (13 / SCALE, 13 / SCALE + W)         # the real gap at its middle is 13
 ZA, ZB = sum(A_Z) / 2, sum(B_Z) / 2       # the two track centres
-CLEAR = ROOF + 4.4                         # the underside of low beams
-CHUNK, CHUNKS = 240, 20                    # keep CHUNK equal to Config.ScrollWorld.ChunkLength
-PARK = 2000                                # Config.ScrollWorld.ParkStep
+CLEAR = ROOF + 4.4 / SCALE                 # low beams leave a real 4.4 over the roofs
+CHUNK, CHUNKS = 240, 20                    # CHUNK * SCALE = Config.ScrollWorld.ChunkLength
+PARK = 2000                                # PARK * SCALE = Config.ScrollWorld.ParkStep
 POOLS = {"Gantry": 5, "Tunnel": 3, "TunnelB": 3, "SignA": 3, "SignB": 3}
 RAIL_TOP, WHEEL = 3.0, 12.0
 SPAWNS = ((300, -24, ROOF), (150, -24, ROOF), (70, -14, DECK), (-60, -24, ROOF), (-190, -24, ROOF), (-330, -6, DECK),
@@ -357,12 +360,6 @@ def build_train(m, g, zs, kinds):
             flatbed(m, g, x0, x1, z0, z1, kind[1])
 
 
-def add_ladders(m, g, zs, spots):
-    zm = (zs[0] + zs[1]) / 2
-    for x, facing in spots:
-        m.ladder(g, x, zm, (facing, 0), DECK, ROOF, width=6, color=(62, 64, 70), name="CarLadder")
-
-
 def build_trains(m):
     magenta, yellow, blue, orange, green, teal = (205, 58, 142), (226, 206, 56), (58, 104, 168), (218, 128, 54), (92, 136, 80), (70, 124, 130)
     p1 = ((-40, -8, (180, 138, 85)), (28, 6, (92, 128, 78)))
@@ -371,16 +368,6 @@ def build_trains(m):
     kinds_b = (("locoB",), ("flat", p2), ("cont", orange, blue, "UTX", "TAG"), ("cont", yellow, green, "UTX", "UTX"), ("flat", p1), ("coach", (218, 206, 182), (196, 60, 46)))
     build_train(m, "TrainA", A_Z, kinds_a)
     build_train(m, "TrainB", B_Z, kinds_b)
-    def rear(i):
-        return car_x(i) - CAR / 2 + 4
-    def front(i):
-        return car_x(i) + CAR / 2 - 4
-    coach_front = lambda i: car_x(i) + CAR / 2 - 12
-    add_ladders(m, "TrainA", A_Z, ((rear(1), -1), (coach_front(3), 1), (rear(4), -1)))
-    add_ladders(m, "TrainB", B_Z, ((front(2), 1), (rear(3), -1), (coach_front(5), 1)))
-    x_rear = car_x(0) - CAR / 2 + 10
-    m.ladder("TrainA", x_rear, ZA, (-1, 0), DECK, ROOF, width=6, color=(62, 64, 70), name="CarLadder")
-    m.ladder("TrainB", x_rear, ZB, (-1, 0), DECK, ROOF, width=6, color=(62, 64, 70), name="CarLadder")
     # Sparks off Train B's wheels (the picture), real little trails on the rail.
     spark = m.particles("Sparks", 60, (0.25, 0.6), (40, 80), [(0, 1.0), (1, 0.2)], [(0, 0), (1, 1)], (255, 190, 90),
                         texture="rbxasset://textures/particles/sparkles_main.dds", direction="Left", spread=(22, 22), accel=(0, -160, 0), light=1)
@@ -434,7 +421,7 @@ def terraced_wall(m, g, x0, z, out, seed_top):
             yaw = matmul(rot_y(rng.uniform(-1.8, 1.8)), matmul(rot_x(rng.uniform(0.2, 0.6)), rot_z(rng.uniform(0.2, 0.6))))
             m.part(g, "Terrace", (w + 3, h, d), (x + w / 2, y + h / 2, zc), color, yaw, **NO_HIT)
             # A pale sand cap on the terrace, and a darker band low on its face.
-            m.part(g, "TerraceTop", (w + 1, 1.2, d - 6), (x + w / 2, y + h + 0.5, zc + out * 3), (226, 186, 134), yaw, **NO_HIT)
+            m.part(g, "TerraceTop", (w + 1, 1.2, d - 6), (x + w / 2, y + h + 0.62, zc + out * 3), (226, 186, 134), yaw, **NO_HIT)
             x += w
         y += h
         back += rng.uniform(24, 40)
@@ -564,7 +551,7 @@ def arch_stones(m, g, x, centre_z, y_c, radius, a0, a1, count, color, thick=12):
         step = math.radians(abs(a1 - a0) / count)
         z, y = centre_z + math.cos(a) * radius, y_c + math.sin(a) * radius
         stone = jitter(color, 7)
-        m.part(g, "ArchStone", (5 + k * 0.1, thick, radius * step + 0.3), (x, y, z), stone, rot_x(-math.degrees(a) + 90), **NO_HIT)
+        m.part(g, "ArchStone", (5 + k * 0.16, thick, radius * step + 0.3), (x, y, z), stone, rot_x(-math.degrees(a) + 90), **NO_HIT)
 
 
 def build_bore(m, g, base, zc, side):
@@ -586,7 +573,7 @@ def build_bore(m, g, base, zc, side):
         step = math.radians(90 / facets)
         z = outer + side * math.sin(a) * r
         y = centre_y + math.cos(a) * r
-        m.part(g, "TunnelFacet", (x1 - x0 + k * 0.12, 2, r * step + 0.4), (base, y, z), jitter((118, 92, 66), 4), rot_x(side * math.degrees(a)), **NO_HIT)
+        m.part(g, "TunnelFacet", (x1 - x0 + k * 0.2, 2, r * step + 0.4), (base, y, z), jitter((118, 92, 66), 4), rot_x(side * math.degrees(a)), **NO_HIT)
     wall_z = outer + side * r
     a, b = sorted((wall_z, wall_z + side * 3))
     block(m, g, "TunnelWall", x0, x1, 0, centre_y + 0.4, a, b, (112, 86, 62))
@@ -658,7 +645,36 @@ def build_obstacles(m):
             elif kind == "SignA":
                 build_sign(m, g, base, -78, -48, -24)
             else:
-                build_sign(m, g, base, 92, 37, 61)
+                build_sign(m, g, base, B_Z[1] + 31, ZB, B_Z[1])
+
+
+def shrink(m):
+    """Scales every part (and its lights' reach) by SCALE."""
+    def do(node):
+        props = node.get("properties", {})
+        if "CFrame" in props:  # (a part: particles and labels have a Size of their own)
+            props["Size"] = [round(v * SCALE, 4) for v in props["Size"]]
+            frame = props["CFrame"]["CFrame"]
+            frame["position"] = [round(v * SCALE, 4) for v in frame["position"]]
+        if "Range" in props:
+            props["Range"] = round(props["Range"] * SCALE, 2)
+        for child in node.get("children", ()):
+            do(child)
+    for group in m.groups.values():
+        for node in group:
+            do(node)
+
+
+def add_ladders(m):
+    """Ladders are real-sized (Roblox's climbing trusses come in 2-stud steps), so they go in after
+    the shrink, on the car ends that face a flatbed and each locomotive's rear."""
+    def end(i, side, inset):
+        return (car_x(i) + side * (CAR / 2 - inset)) * SCALE
+    spots = (("TrainA", ZA, ((end(1, -1, 4), -1), (end(3, 1, 12), 1), (end(4, -1, 4), -1), (end(0, -1, 10), -1))),
+             ("TrainB", ZB, ((end(2, 1, 4), 1), (end(3, -1, 4), -1), (end(5, 1, 12), 1), (end(0, -1, 10), -1))))
+    for g, zm, ladders in spots:
+        for x, facing in ladders:
+            m.ladder(g, x, zm * SCALE, (facing, 0), DECK * SCALE, ROOF * SCALE, width=4, color=(62, 64, 70), name="CarLadder")
 
 
 def build():
@@ -666,8 +682,10 @@ def build():
     build_trains(m)
     build_chunks(m)
     build_obstacles(m)
+    shrink(m)
+    add_ladders(m)
     for x, z, y in SPAWNS:
-        m.spawn(x, z, y)
+        m.spawn(x * SCALE, z * SCALE, y * SCALE)
     simple_materials(m)
     return m
 
