@@ -120,6 +120,10 @@ local function step(dt: number)
 		return
 	end
 	local s = Config.ShipRoll
+	-- Nobody near the ship (waiting in the lobby, say): no need to move any of it.
+	if workspace.CurrentCamera.CFrame.Position.Magnitude > s.CameraRange then
+		return
+	end
 	local t = workspace:GetServerTimeNow()
 	local roll, warn = ShipRoll.at(t)
 	if sea then

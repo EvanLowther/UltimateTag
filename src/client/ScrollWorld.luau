@@ -168,13 +168,18 @@ local function step()
 	end
 	frame += 1
 	local s = Config.ScrollWorld
+	-- Nobody near the map (waiting in the lobby, say): no need to move any of it.
+	if workspace.CurrentCamera.CFrame.Position.Magnitude > s.ActiveRange then
+		return
+	end
 	local t = workspace:GetServerTimeNow()
 	local slid = ScrollLine.distance(t)
 	local total = chunkCount * s.ChunkLength
 	local drift = ScrollLine.trainB(t)
 	for index, group in chunks do
-		local built = (index + 0.5) * s.ChunkLength
-		local x = (built - slid) % total - total / 2 -- centred on the trains
+		local middle = (index + 0.5) * s.ChunkLength
+		local built = s.BuiltAt + middle -- (chunks are built far away, clear of the lobby)
+		local x = (middle - slid) % total - total / 2 -- centred on the trains
 		-- (the far stretches, out in the haze, only need a move every few frames)
 		if math.abs(x) > s.FarFrom and frame % 3 ~= 0 then
 			continue

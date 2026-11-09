@@ -6,7 +6,10 @@
 --   InRotation  false keeps it out of games (TestGround, the movement test map)
 -- and a "Spawns" folder of invisible parts where players are placed.
 -- One map is loaded at a time, as Workspace.ActiveMap.
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerStorage = game:GetService("ServerStorage")
+
+local Config = require(ReplicatedStorage.Shared.Config)
 
 local MapService = {}
 
@@ -137,6 +140,17 @@ function MapService.load(name: string): Model
 	local map = template:Clone()
 	map.Name = ACTIVE
 	map:SetAttribute("MapName", name)
+	-- Small see-through-to-physics detail casts no shadows: nobody would notice them, and shadows
+	-- are one of the biggest costs on a player's screen.
+	local biggest = Config.Maps.DetailShadowSize
+	for _, item in map:GetDescendants() do
+		if item:IsA("BasePart") and not item.CanCollide and item.CastShadow then
+			local size = item.Size
+			if math.max(size.X, size.Y, size.Z) < biggest then
+				item.CastShadow = false
+			end
+		end
+	end
 	map.Parent = workspace
 	return map
 end

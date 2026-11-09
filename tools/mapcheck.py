@@ -919,11 +919,30 @@ def deaths(attributes):
             if name in attributes]
 
 
+# The lobby's footprint (x, z), with some room round it: no map may reach into it.
+LOBBY_ZONE = (1740, 2290, -220, 250)
+
+
+def lobby_clear(parts, attributes, limit=10):
+    """A map's parts must stay out of the lobby's footprint, solid or not: people wait there while
+    a round is on. (The lobby itself has no InRotation attribute.)"""
+    if "InRotation" not in attributes:
+        return []
+    x0, x1, z0, z1 = LOBBY_ZONE
+    problems = []
+    for p in parts:
+        if p.hi[0] > x0 and p.lo[0] < x1 and p.hi[2] > z0 and p.lo[2] < z1 and p.hi[1] > -60 and p.lo[1] < 200:
+            problems.append(f"lobby: {p.name} reaches into the lobby at ({p.pos[0]:.0f}, {p.pos[1]:.0f}, {p.pos[2]:.0f})")
+            if len(problems) >= limit:
+                break
+    return problems
+
+
 def check(parts, spawns, attributes, ignore_tops=(), routes=()):
     """All the checks. `parts` from parts_from_nodes (or load_folder); `routes` are extra ways
     across: ((x, y, z) from, (x, y, z) to, both ways?), as well as the map's ReachRoutes."""
     routes = tuple(routes) + tuple(parse_routes(attributes.get("ReachRoutes")))
-    problems = deaths(attributes) + sizes(parts) + flicker(parts) + windows(parts) + ladders(parts)
+    problems = deaths(attributes) + lobby_clear(parts, attributes) + sizes(parts) + flicker(parts) + windows(parts) + ladders(parts)
     # The map's OutOfBounds attribute names parts whose tops aren't play area (roofs, ceilings,
     # tall furniture), comma-separated.
     off = [n.strip() for n in str(attributes.get("OutOfBounds", "")).split(",") if n.strip()]

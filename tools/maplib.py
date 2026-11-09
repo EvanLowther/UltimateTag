@@ -224,14 +224,15 @@ class Map:
         return parts
 
     def ladder(self, group, x, z, facing, y0, y1, width=4, color=(70, 74, 82), name="Ladder",
-               gap=0.07):
+               gap=0.07, over=3):
         """A ladder you climb (Roblox characters climb TrussParts): from the floor at y0 up to the
         ledge at y1, flat against the face at (x, z). `facing` is the way that face looks (x, z):
         you climb it facing back. The rails and rungs sit `gap` off the face (more on a curved
         wall, whose flat pieces bow in). Invisible trusses (2 x 2, one per 2 studs of width, tops
         level with the ledge) do the climbing: their fronts are level with the rails and the rest
         is sunk into whatever is behind the face, so that must be solid and at least 2 deep for
-        the ladder's whole height (mapcheck finds a ladder that floats)."""
+        the ladder's whole height (mapcheck finds a ladder that floats). `over` is how far the
+        rails stand above the ledge."""
         length = math.hypot(*facing)
         fx, fz = facing[0] / length, facing[1] / length
         tx, tz = fz, -fx  # along the face
@@ -247,8 +248,8 @@ class Map:
             node["className"] = "TrussPart"
         rail_out = gap + LADDER_DEPTH / 2
         for side in (-1, 1):
-            self.part(group, name + "Rail", (LADDER_DEPTH, y1 - y0 + 3, LADDER_DEPTH),
-                      (x + fx * rail_out + tx * side * width / 2, (y0 + y1 + 3) / 2,
+            self.part(group, name + "Rail", (LADDER_DEPTH, y1 - y0 + over, LADDER_DEPTH),
+                      (x + fx * rail_out + tx * side * width / 2, (y0 + y1 + over) / 2,
                        z + fz * rail_out + tz * side * width / 2), color, rows, Material="Metal",
                       **NO_HIT)
         y = y0 + 1

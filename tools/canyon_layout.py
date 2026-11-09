@@ -4,13 +4,13 @@ canyon at dusk, from the owner's reference picture. Run from the repo root:
     python3 tools/canyon_layout.py
 It rewrites `src/maps/CanyonExpress/` (generated: don't edit those files by hand); Rojo syncs it.
 
-Axes: X along the track (the locomotives lead towards +X), Z across, Y up. Everything is 2.5x the
-character's scale (so you feel small): cars 80 long, 30 wide, decks at 12.5, roofs at 35. The jumps
-stay human: the gap between the trains runs 4..22 and couplings are 5.
+Axes: X along the track (the locomotives lead towards +X), Z across, Y up. Everything is 2x the
+character's scale (so you feel small): cars 64 long, 24 wide, decks at 10, roofs at 28. The jumps
+stay human: the gap between the trains runs 4..22 and couplings are 4.
 The numbers in this file are design units; `build` shrinks the finished map by SCALE, so set SCALE to
 resize it (and keep the Config.ScrollWorld distances in step). Ladders go in after, at true size.
 THE TRAINS DON'T MOVE: the world slides past them (shared/ScrollLine, client/ScrollWorld). Train A
-(z -30..0) never moves; Train B (z 13..43 as built) drifts along and in and out, carrying whoever is
+(z -24..0) never moves; Train B (z 13..37 as built) drifts along and in and out, carrying whoever is
 on it. Falling off is out (KillHeight, FallEliminates); the ground is really there under the trains.
 Moving folders (Persistent models): Scroll<n> (one CHUNK each, built end to end from x 0), TrackB<n>
 (Train B's rails, which follow its gap), TrainB, and Obstacle_<Kind>_<n>, which wait far along +X.
@@ -31,13 +31,14 @@ ATTRIBUTES = {"DisplayName": "Canyon Express", "MinPlayers": 4, "MaxPlayers": 8,
               "Lighting": "Dusk", "KillHeight": 4, "FallEliminates": True, "ScrollWorld": True,
               "OutOfBounds": "CabTop,CabTopTop,NoseTop,NoseTopTop,BigCargo,RoofVent"}
 
-SCALE = 0.625                              # 2.5x the character, from a design drawn at 4x
+SCALE = 0.5                                # 2x the character, from a design drawn at 4x
 CAR, COUPLE, W, DECK, ROOF = 128, 8, 48, 20, 56
 A_Z = (-W, 0)
 B_Z = (13 / SCALE, 13 / SCALE + W)         # the real gap at its middle is 13
 ZA, ZB = sum(A_Z) / 2, sum(B_Z) / 2       # the two track centres
 CLEAR = ROOF + 4.4 / SCALE                 # low beams leave a real 4.4 over the roofs
-CHUNK, CHUNKS = 240, 20                    # CHUNK * SCALE = Config.ScrollWorld.ChunkLength
+CHUNK, CHUNKS = 240, 16                    # CHUNK * SCALE = Config.ScrollWorld.ChunkLength
+BUILT_AT = -12000 / SCALE                  # chunks wait here (Config.ScrollWorld.BuiltAt), far from the lobby
 PARK = 2000                                # PARK * SCALE = Config.ScrollWorld.ParkStep
 POOLS = {"Gantry": 5, "Tunnel": 3, "TunnelB": 3, "SignA": 3, "SignB": 3}
 RAIL_TOP, WHEEL = 3.0, 12.0
@@ -83,7 +84,7 @@ def rounded(m, g, name, x0, x1, y0, y1, z0, z1, r, color, solid=True):
     block(m, g, name, x0, x1, y0, y1 - r, z0, z1, color, solid=solid)
     block(m, g, name + "Top", x0, x1, y1 - r, y1, z0 + r, z1 - r, color, solid=solid)
     for z in (z0 + r, z1 - r):
-        cyl_x(m, g, "EdgeRound", x0 + 0.08, x1 - 0.08, y1 - r, z, 2 * r - 0.12, color)
+        cyl_x(m, g, "EdgeRound", x0 + 0.14, x1 - 0.14, y1 - r, z, 2 * r - 0.2, color)
 
 
 def rail_guard(m, g, x0, x1, z, y0, height, color):
@@ -104,7 +105,6 @@ def bogies(m, g, x0, x1, z0, z1):
     for bx in (x0 + 26, x1 - 26):
         block(m, g, "TruckBeam", bx - 3, bx + 3, 10, 13, z0 + 4, z1 - 4, DARK, "Metal")
         for ax in (bx - 11, bx + 11):
-            cyl_z(m, g, "Axle", zm - 15, zm + 15, ax, w_y, 2.2, (66, 68, 72), "Metal")
             for z, s in ((zm - 12.4, -1), (zm + 12.4, 1)):
                 cyl_z(m, g, "Wheel", z - 1.3, z + 1.3, ax, w_y, WHEEL, (52, 54, 58), "Metal")
                 a, b = sorted((z + s * 1.3, z + s * 1.7))
@@ -112,7 +112,6 @@ def bogies(m, g, x0, x1, z0, z1):
         for s in (-1, 1):
             z = zm + s * 15.5
             block(m, g, "TruckFrame", bx - 17, bx + 17, 9.5, 11.5, z - 0.8, z + 0.8, (58, 60, 64), "Metal")
-            cyl_y(m, g, "Spring", 11.5, 13.8, bx, z, 4, (92, 94, 98), "Metal")
     # The frame the deck sits on, resting on the springs and truck beams.
     block(m, g, "CarFrame", x0 + 2, x1 - 2, 13, 16, z0 + 3, z1 - 3, (58, 60, 64), "Metal")
     # A coupling reaching towards the next car.
@@ -137,7 +136,7 @@ def container(m, g, x0, x1, z0, z1, color, text=None):
         for z, s in ((z0, -1), (z1, 1)):
             a, b = sorted((z, z + s * 0.5))
             block(m, g, "Rib", x - 0.9, x + 0.9, y0 + 2, y1 - 2.2, a, b, pale)
-        x += 3.6
+        x += 5.6
     for z, s in ((z0, -1), (z1, 1)):  # top and bottom rails along the sides
         a, b = sorted((z, z + s * 0.75))
         block(m, g, "ContRail", x0 + 2.4, x1 - 2.4, y1 - 2, y1 - 0.3, a, b, dark)
@@ -145,10 +144,10 @@ def container(m, g, x0, x1, z0, z1, color, text=None):
     for x, s in ((x0, -1), (x1, 1)):  # the end doors, with locking bars
         zm = (z0 + z1) / 2
         a, b = sorted((x, x + s * 0.35))
-        for za, zb in ((z0 + 2.2, zm - 5), (zm + 5, z1 - 2.2)):  # (a clear strip up the middle, for ladders)
+        for za, zb in ((z0 + 2.2, zm - 10), (zm + 10, z1 - 2.2)):  # (a clear strip up the middle, for ladders)
             block(m, g, "DoorPanel", a, b, y0 + 2, y1 - 2.2, za, zb, pale)
         a2, b2 = sorted((x, x + s * 0.8))
-        for z in (zm - 14, zm - 8, zm + 8, zm + 14):
+        for z in (zm - 18, zm - 13, zm + 13, zm + 18):
             block(m, g, "DoorBar", a2, b2, y0 + 1.6, y1 - 1.8, z - 0.35, z + 0.35, (160, 160, 162), "Metal")
     for x in (x0 - 0.6, x1 - 2):
         for z in (z0 - 0.9, z1 - 1.9):
@@ -221,9 +220,6 @@ def loco_common(m, g, x0, x1, z0, z1, body, upper, rail):
         x = hx0 + 3
         while x < hx1 - 7:
             block(m, g, "HoodDoor", x, x + 7, DECK + 17, ROOF - 7, a2, b2, tuple(max(0, c - 22) for c in body))
-            for k in range(5):
-                a3, b3 = sorted((z, z + s * 0.75))
-                block(m, g, "Louvre", x + 0.8, x + 6.2, DECK + 18.2 + k * 1.9, DECK + 19 + k * 1.9, a3, b3, DARK)
             x += 11
         block(m, g, "HoodName", hx0 + 18, hx0 + 42, DECK + 3, DECK + 9.5, a2, b2, body, Transparency=1, CastShadow=False,
               children=[m.surface_text("Front" if s < 0 else "Back", "ULTIMATE", (240, 236, 224), pps=14)])
@@ -232,8 +228,6 @@ def loco_common(m, g, x0, x1, z0, z1, body, upper, rail):
     while x < hx1 - 8:
         cyl_y(m, g, "FanRing", ROOF + 0.03, ROOF + 1.4, x, zm, 16, (92, 96, 104), "Metal")
         cyl_y(m, g, "FanGrille", ROOF + 1.45, ROOF + 1.7, x, zm, 13, (40, 42, 46), "Metal")
-        for k in range(4):
-            block(m, g, "FanBar", x - 6.6, x + 6.6, ROOF + 1.75, ROOF + 1.95, zm - 5.2 + k * 3.4, zm - 4.8 + k * 3.4, (70, 72, 78), "Metal")
         x += 28
     cyl_y(m, g, "RoofVent", ROOF, ROOF + 8, hx0 + 4, zm - 10, 3.4, (46, 48, 52), "Metal")
     cyl_y(m, g, "RoofVent", ROOF, ROOF + 8, hx0 + 4, zm + 10, 3.4, (46, 48, 52), "Metal")
@@ -265,7 +259,7 @@ def loco_common(m, g, x0, x1, z0, z1, body, upper, rail):
     block(m, g, "WarnLamp", cx1 - 7, cx1 - 2, ROOF + 8.03, ROOF + 9.4, zm - 2.5, zm + 2.5, (96, 92, 80), attributes={"WarnLamp": True})
     # Side walkways with handrails; steps down the side at each end.
     for z in (z0 + 1.2, z1 - 1.2):
-        rail_guard(m, g, x0 + 10, x1 - 46.5, z, DECK, 12, rail)
+        rail_guard(m, g, x0 + 10, x1 - 46.5, z, DECK, 7.4 / SCALE, rail)
     for z, s in ((z0, -1), (z1, 1)):
         for x in (x0 + 3, x1 - 44):
             for k in range(4):
@@ -463,7 +457,7 @@ def telegraph_pole(m, g, x, z):
 def build_chunks(m):
     for i in range(CHUNKS):
         g = f"Scroll{i}"
-        x0 = i * CHUNK
+        x0 = BUILT_AT + i * CHUNK
         # The ground, wall to wall, so the trains really run over something.
         block(m, g, "Ground", x0 - 8, x0 + CHUNK + 8, -6 - (i % 2) * 0.12, -(i % 2) * 0.12, WALL_N - HALF_G - (i % 2) * 0.12, WALL_S + HALF_G + (i % 2) * 0.12, (212, 172, 124))
         track_chunk(m, g, x0, ZA)
@@ -489,13 +483,13 @@ def build_chunks(m):
             wall_shelf(m, g, x0 + rng.uniform(40, CHUNK - 40), rng.uniform(40, 60), WALL_S, 1)
         if i % 3 == 2:
             wall_shelf(m, g, x0 + rng.uniform(40, CHUNK - 40), rng.uniform(40, 60), WALL_N, -1)
-    # The far horizon: big dusk mesas that never move, past the end of everything.
-    for k in range(40):
-        a = k / 40 * math.tau + rng.uniform(-0.05, 0.05)
-        d = rng.uniform(2800, 3400)
-        h, w = rng.uniform(260, 460), rng.uniform(260, 460)
-        m.part("FarMesas", "FarMesa", (w, h, w * 0.8), (math.cos(a) * d, h / 2 - 30, math.sin(a) * d), jitter(rng.choice(TERRACES), 6), rock_rows(2), **NO_HIT)
-    block(m, "FarMesas", "FarSand", -4000, 4000, -46, -40, -4000, 4000, (196, 156, 112))
+    # Great mesas that never move, closing the far ends of the canyon (well short of the lobby).
+    for side in (-1, 1):
+        for k in range(16):
+            z = -1600 + k * 213 + rng.uniform(-40, 40)
+            h, w = rng.uniform(300, 480), rng.uniform(260, 420)
+            m.part("FarMesas", "FarMesa", (w, h, w * 0.8), (side * (2300 + rng.uniform(0, 120)), h / 2 - 30, z), jitter(rng.choice(TERRACES), 6), rock_rows(2), CastShadow=False, **NO_HIT)
+    block(m, "FarMesas", "FarSand", -2700, 2700, -46, -40, -3000, 3000, (196, 156, 112), CastShadow=False)
 
 
 def post(m, g, x, z, y0, y1):
@@ -549,7 +543,7 @@ def arch_stones(m, g, x, centre_z, y_c, radius, a0, a1, count, color, thick=12):
         step = math.radians(abs(a1 - a0) / count)
         z, y = centre_z + math.cos(a) * radius, y_c + math.sin(a) * radius
         stone = jitter(color, 7)
-        m.part(g, "ArchStone", (5 + k * 0.16, thick, radius * step + 0.3), (x, y, z), stone, rot_x(-math.degrees(a) + 90), **NO_HIT)
+        m.part(g, "ArchStone", (5 + k * 0.24, thick, radius * step + 0.3), (x, y, z), stone, rot_x(-math.degrees(a) + 90.8), **NO_HIT)
 
 
 def build_bore(m, g, base, zc, side):
@@ -592,11 +586,11 @@ def build_bore(m, g, base, zc, side):
     while x < x1:
         lamp = block(m, g, "TunnelLamp", x - 1.4, x + 1.4, 42, 44.8, min(wall_z - side * 0.6, wall_z), max(wall_z - side * 0.6, wall_z), (252, 226, 170))
         lamp["children"] = [{"name": "Glow", "className": "PointLight", "properties": {"Brightness": 1.1, "Range": 44, "Color": m.rgb((255, 214, 150)), "Shadows": False}}]
-        x += 58
+        x += 96
     # Stone arches round both mouths, with a keystone at the shoulder.
     stone = (160, 138, 110)
     for sx in (-1, 1):
-        xf = base + sx * (half_len + 0.3)
+        xf = base + sx * (half_len + 1.6)
         a0, a1 = 0, 90
         if side > 0:
             arch_stones(m, g, xf, outer, centre_y, r + 6, a0, a1, 9, stone)
@@ -672,7 +666,8 @@ def add_ladders(m):
              ("TrainB", ZB, ((end(2, 1, 4), 1), (end(3, -1, 4), -1), (end(5, 1, 12), 1), (end(0, -1, 10), -1))))
     for g, zm, ladders in spots:
         for x, facing in ladders:
-            m.ladder(g, x, zm * SCALE, (facing, 0), DECK * SCALE, ROOF * SCALE, width=4, color=(62, 64, 70), name="CarLadder")
+            # (wide, and the rails stop level with what they're on)
+            m.ladder(g, x, zm * SCALE, (facing, 0), DECK * SCALE, ROOF * SCALE, width=8, color=(62, 64, 70), name="CarLadder", over=0)
 
 
 def build():
@@ -685,6 +680,11 @@ def build():
     for x, z, y in SPAWNS:
         m.spawn(x * SCALE, z * SCALE, y * SCALE)
     simple_materials(m)
+    # Parts that move every frame cast no shadows (redrawing them each frame is the map's biggest cost).
+    for g, nodes in m.groups.items():
+        if g.startswith(("Scroll", "TrackB", "Obstacle_")):
+            for node in nodes:
+                node["properties"]["CastShadow"] = False
     return m
 
 

@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.71.2",
+	Version = "0.72.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1074,34 +1074,40 @@ local Config = {
 		SlipCooldown = 1.5, -- seconds after getting up before you can slip again
 	},
 
+	Maps = {
+		DetailShadowSize = 18, -- non-solid parts smaller than this cast no shadow (for smoothness)
+	},
+
 	-- Canyon Express (shared/ScrollLine, client/ScrollWorld, server/ScrollWorld): the world slides
 	-- past while the trains stand still.
 	ScrollWorld = {
-		Speed = 90, -- studs/s the world slides past
-		ChunkLength = 150, -- the length of one `Scroll<n>` folder (the generator's CHUNK)
-		DriftX = 38, -- Train B slides this far forward and back
+		Speed = 72, -- studs/s the world slides past
+		BuiltAt = -12000, -- where the chunks are built, far from the lobby, until a screen moves them
+		ActiveRange = 1300, -- with the camera further from the map than this, nothing moves
+		ChunkLength = 120, -- the length of one `Scroll<n>` folder (the generator's CHUNK)
+		DriftX = 30, -- Train B slides this far forward and back
 		DriftRate = 0.21,
 		GapSwing = 9, -- the gap is built at its middle (13) and swings this much either way
 		GapRate = 0.33,
 		-- The winding: beyond BendFrom from the middle of the trains the track curves away.
-		BendFrom = 340,
-		FarFrom = 900, -- chunks further out than this are only moved every third frame
-		BendK = 0.00027, -- how sharply
-		BendWaveA = 690, -- studs of track per radian of the slow left-and-right wind
-		BendWaveB = 270,
+		BendFrom = 260,
+		FarFrom = 650, -- chunks further out than this are only moved every third frame
+		BendK = 0.00034, -- how sharply
+		BendWaveA = 550, -- studs of track per radian of the slow left-and-right wind
+		BendWaveB = 215,
 		Every = 8, -- seconds between obstacles (give or take Jitter)
 		Jitter = 3,
-		StartX = 1450, -- obstacles appear this far up the line (round the bend)
-		EndX = -880, -- and are gone by here
-		ParkStep = 1250, -- obstacle pieces are built at multiples of this along X (away from the map)
+		StartX = 900, -- obstacles appear this far up the line (round the bend)
+		EndX = -680, -- and are gone by here
+		ParkStep = 1000, -- obstacle pieces are built at multiples of this along X (away from the map)
 		Kinds = {
 			{ Kind = "Gantry", Weight = 0.46 },
 			{ Kind = "SignA", Weight = 0.2 },
 			{ Kind = "SignB", Weight = 0.2 },
 			{ Kind = "Tunnel", Weight = 0.14 },
 		},
-		TrainFront = 256, -- the front of the trains along X
-		HitReach = 2.4, -- studs along the track (it moves about 1.5 a frame)
+		TrainFront = 205, -- the front of the trains along X
+		HitReach = 2, -- studs along the track (it moves about 1.2 a frame)
 		HitPush = 78, -- thrown back this fast
 		HitPop = 16,
 		HitCooldown = 0.7,
