@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.68.0",
+	Version = "0.69.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1072,6 +1072,35 @@ local Config = {
 		SlipCarry = 0.85, -- the skid starts at this fraction of your speed
 		SlipSkidTime = 0.9, -- seconds the skid takes to slow to a stop
 		SlipCooldown = 1.5, -- seconds after getting up before you can slip again
+	},
+
+	-- Canyon Express (shared/ScrollLine, client/ScrollWorld, server/ScrollWorld): the world slides
+	-- past while the trains stand still.
+	ScrollWorld = {
+		Speed = 62, -- studs/s the world slides past
+		ChunkLength = 200, -- the length of one `Scroll<n>` folder (the generator's CHUNK)
+		DriftX = 30, -- Train B slides this far forward and back
+		DriftRate = 0.21,
+		GapSwing = 9, -- the gap is built at its middle (13) and swings this much either way
+		GapRate = 0.33,
+		Every = 6.5, -- seconds between obstacles (give or take Jitter)
+		Jitter = 2.4,
+		StartX = 640, -- obstacles appear this far up the line
+		EndX = -330, -- and are gone by here
+		ParkStep = 300, -- obstacle pieces are built at multiples of this along X (away from the map)
+		Kinds = {
+			{ Kind = "Gantry", Weight = 0.46 },
+			{ Kind = "SignA", Weight = 0.2 },
+			{ Kind = "SignB", Weight = 0.2 },
+			{ Kind = "Tunnel", Weight = 0.14 },
+		},
+		HitReach = 1.2, -- studs along the track (it moves about 1 a frame)
+		HitPush = 78, -- thrown back this fast
+		HitPop = 16,
+		HitCooldown = 0.7,
+		WarnTime = 3.5, -- the train lamps flash this long before an obstacle reaches them
+		WarnOn = Color3.fromRGB(242, 162, 58),
+		WarnOff = Color3.fromRGB(96, 92, 80),
 	},
 
 	-- Ziplines (the Desert Mine; client/Ziplines): press E at either end to grab the line.

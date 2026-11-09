@@ -16,7 +16,7 @@
      0.282,
      0.235
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -316,7 +316,7 @@
      0.839,
      0.729
     ],
-    "Material": "Limestone",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -352,95 +352,45 @@
    }
   },
   {
-   "name": "Stain2",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.06,
-     10,
-     10
-    ],
-    "Color": [
-     0.776,
-     0.62,
-     0.408
-    ],
-    "Material": "Sand",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -18,
-       0.14,
-       -40
-      ],
-      "orientation": [
-       [
-        0.0,
-        -1.0,
-        0
-       ],
-       [
-        1.0,
-        0.0,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
    "name": "VentRock",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.053,
-     1.893,
-     1.34
+     2.165,
+     2.169,
+     1.914
     ],
     "Color": [
-     0.494,
-     0.408,
-     0.322
+     0.435,
+     0.349,
+     0.263
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -13.574,
-       0.682,
-       -39.882
+       -13.734,
+       0.781,
+       -40.348
       ],
       "orientation": [
        [
-        0.867,
-        0.364,
-        -0.342
+        0.902,
+        -0.358,
+        0.242
        ],
        [
-        -0.255,
-        0.911,
-        0.323
+        0.264,
+        0.9,
+        0.346
        ],
        [
-        0.429,
-        -0.193,
-        0.882
+        -0.342,
+        -0.248,
+        0.907
        ]
       ]
      }
@@ -456,40 +406,40 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     2.036,
-     1.436,
-     1.2
+     1.405,
+     0.924,
+     1.324
     ],
     "Color": [
-     0.498,
-     0.412,
-     0.325
+     0.502,
+     0.416,
+     0.329
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -13.883,
-       0.517,
-       -37.836
+       -14.602,
+       0.333,
+       -36.561
       ],
       "orientation": [
        [
-        0.896,
-        0.402,
-        0.189
+        0.969,
+        -0.239,
+        0.063
        ],
        [
-        -0.315,
-        0.875,
-        -0.367
+        0.245,
+        0.904,
+        -0.349
        ],
        [
-        -0.312,
-        0.269,
-        0.911
+        0.027,
+        0.354,
+        0.935
        ]
       ]
      }
@@ -505,40 +455,40 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     1.006,
-     1.45,
-     1.198
+     1.718,
+     0.941,
+     1.405
     ],
     "Color": [
-     0.533,
-     0.447,
-     0.361
+     0.424,
+     0.337,
+     0.251
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -15.678,
-       0.522,
-       -36.723
+       -19.007,
+       0.339,
+       -35.914
       ],
       "orientation": [
        [
-        0.904,
-        0.255,
-        0.343
+        0.916,
+        0.161,
+        0.367
        ],
        [
-        -0.172,
-        0.952,
-        -0.254
+        -0.146,
+        0.987,
+        -0.071
        ],
        [
-        -0.392,
-        0.171,
-        0.904
+        -0.374,
+        0.011,
+        0.927
        ]
       ]
      }
@@ -554,40 +504,40 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     1.407,
-     0.978,
-     1.993
+     1.886,
+     1.873,
+     1.958
     ],
     "Color": [
-     0.51,
-     0.424,
-     0.337
+     0.475,
+     0.388,
+     0.302
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -17.654,
-       0.352,
-       -36.045
+       -22.0,
+       0.674,
+       -38.145
       ],
       "orientation": [
        [
-        0.984,
-        0.177,
-        -0.026
+        0.915,
+        0.358,
+        -0.184
        ],
        [
-        -0.179,
-        0.958,
-        -0.222
+        -0.342,
+        0.933,
+        0.114
        ],
        [
-        -0.014,
-        0.223,
-        0.975
+        0.213,
+        -0.042,
+        0.976
        ]
       ]
      }
@@ -603,40 +553,40 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     1.796,
-     1.296,
-     1.626
+     2.11,
+     2.093,
+     1.526
     ],
     "Color": [
-     0.51,
-     0.424,
-     0.337
+     0.471,
+     0.384,
+     0.298
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -19.635,
-       0.467,
-       -35.704
+       -22.2,
+       0.753,
+       -41.912
       ],
       "orientation": [
        [
-        0.949,
-        0.026,
-        0.315
+        0.894,
+        0.346,
+        0.284
        ],
        [
-        -0.005,
-        0.998,
-        -0.068
+        -0.272,
+        0.924,
+        -0.268
        ],
        [
-        -0.316,
-        0.063,
-        0.947
+        -0.355,
+        0.162,
+        0.921
        ]
       ]
      }
@@ -652,40 +602,40 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     1.225,
-     1.657,
-     1.971
+     1.198,
+     2.147,
+     1.303
     ],
     "Color": [
-     0.522,
-     0.435,
-     0.349
+     0.455,
+     0.369,
+     0.282
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -21.358,
-       0.597,
-       -36.958
+       -19.138,
+       0.773,
+       -44.234
       ],
       "orientation": [
        [
-        0.964,
-        0.124,
-        0.234
+        0.954,
+        0.289,
+        -0.073
        ],
        [
-        -0.023,
-        0.92,
-        -0.392
+        -0.246,
+        0.903,
+        0.353
        ],
        [
-        -0.264,
-        0.373,
-        0.89
+        0.168,
+        -0.319,
+        0.933
        ]
       ]
      }
@@ -701,334 +651,40 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     1.401,
-     1.562,
-     1.529
+     2.295,
+     1.537,
+     1.911
     ],
     "Color": [
-     0.463,
-     0.376,
-     0.29
+     0.451,
+     0.365,
+     0.278
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -22.83,
-       0.562,
-       -38.836
+       -15.727,
+       0.553,
+       -43.514
       ],
       "orientation": [
        [
-        0.967,
-        -0.002,
-        0.253
+        0.942,
+        -0.012,
+        -0.335
        ],
        [
-        -0.013,
-        0.998,
-        0.058
+        0.072,
+        0.983,
+        0.168
        ],
        [
-        -0.253,
-        -0.059,
-        0.966
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock8",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.853,
-     1.67,
-     2.05
-    ],
-    "Color": [
-     0.529,
-     0.443,
-     0.357
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -21.785,
-       0.601,
-       -41.103
-      ],
-      "orientation": [
-       [
-        0.943,
-        0.263,
-        -0.206
-       ],
-       [
-        -0.293,
-        0.947,
-        -0.129
-       ],
-       [
-        0.161,
-        0.182,
-        0.97
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock9",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2.073,
-     1.676,
-     1.745
-    ],
-    "Color": [
-     0.467,
-     0.38,
-     0.294
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -21.674,
-       0.603,
-       -42.924
-      ],
-      "orientation": [
-       [
-        0.911,
-        0.293,
-        0.289
-       ],
-       [
-        -0.236,
-        0.948,
-        -0.215
-       ],
-       [
-        -0.337,
-        0.128,
-        0.933
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock10",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.302,
-     1.066,
-     1.633
-    ],
-    "Color": [
-     0.455,
-     0.369,
-     0.282
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -19.548,
-       0.384,
-       -44.646
-      ],
-      "orientation": [
-       [
-        0.908,
-        0.334,
-        0.251
-       ],
-       [
-        -0.259,
-        0.922,
-        -0.289
-       ],
-       [
-        -0.328,
-        0.197,
-        0.924
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock11",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.82,
-     1.795,
-     1.184
-    ],
-    "Color": [
-     0.525,
-     0.439,
-     0.353
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -17.933,
-       0.646,
-       -44.154
-      ],
-      "orientation": [
-       [
-        0.879,
-        0.439,
-        -0.188
-       ],
-       [
-        -0.378,
-        0.88,
-        0.287
-       ],
-       [
-        0.292,
-        -0.181,
-        0.939
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock12",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.812,
-     2.096,
-     1.378
-    ],
-    "Color": [
-     0.482,
-     0.396,
-     0.31
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -15.299,
-       0.755,
-       -43.421
-      ],
-      "orientation": [
-       [
-        0.952,
-        -0.191,
-        0.241
-       ],
-       [
-        0.257,
-        0.923,
-        -0.285
-       ],
-       [
-        -0.168,
-        0.333,
-        0.928
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock13",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.152,
-     1.586,
-     1.273
-    ],
-    "Color": [
-     0.529,
-     0.443,
-     0.357
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -14.293,
-       0.571,
-       -41.566
-      ],
-      "orientation": [
-       [
-        0.939,
-        0.297,
-        -0.175
-       ],
-       [
-        -0.334,
-        0.91,
-        -0.245
-       ],
-       [
-        0.087,
-        0.289,
-        0.953
+        0.327,
+        -0.182,
+        0.927
        ]
       ]
      }
@@ -1053,7 +709,7 @@
      0.282,
      0.235
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1339,7 +995,7 @@
    }
   },
   {
-   "name": "Stain3",
+   "name": "Stain2",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -1353,7 +1009,7 @@
      0.839,
      0.729
     ],
-    "Material": "Limestone",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -1389,94 +1045,44 @@
    }
   },
   {
-   "name": "Stain4",
+   "name": "VentRock8",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.06,
-     10,
-     10
+     1.07,
+     1.338,
+     1.899
     ],
     "Color": [
-     0.776,
-     0.62,
-     0.408
+     0.471,
+     0.384,
+     0.298
     ],
-    "Material": "Sand",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       18,
-       0.14,
-       39
+       22.196,
+       0.482,
+       39.34
       ],
       "orientation": [
        [
-        0.0,
-        -1.0,
-        0
+        0.995,
+        0.072,
+        0.063
        ],
        [
-        1.0,
-        0.0,
-        0
+        -0.084,
+        0.973,
+        0.216
        ],
        [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock14",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.711,
-     1.829,
-     1.244
-    ],
-    "Color": [
-     0.431,
-     0.345,
-     0.259
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.887,
-       0.659,
-       38.543
-      ],
-      "orientation": [
-       [
-        0.981,
-        0.192,
-        0.006
-       ],
-       [
-        -0.186,
-        0.956,
-        -0.226
-       ],
-       [
-        -0.049,
-        0.221,
+        -0.046,
+        -0.221,
         0.974
        ]
       ]
@@ -1488,94 +1094,45 @@
    }
   },
   {
-   "name": "VentRock15",
+   "name": "VentRock9",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.338,
-     1.926,
-     1.52
-    ],
-    "Color": [
-     0.455,
-     0.369,
-     0.282
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       22.26,
-       0.694,
-       41.43
-      ],
-      "orientation": [
-       [
-        0.916,
-        0.39,
-        -0.092
-       ],
-       [
-        -0.399,
-        0.909,
-        -0.118
-       ],
-       [
-        0.037,
-        0.145,
-        0.989
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock16",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.63,
-     1.154,
-     1.794
+     2.105,
+     1.436,
+     1.728
     ],
     "Color": [
      0.424,
      0.337,
      0.251
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       20.286,
-       0.415,
-       42.248
+       20.569,
+       0.517,
+       42.467
       ],
       "orientation": [
        [
-        0.985,
-        0.075,
-        0.157
+        0.981,
+        -0.096,
+        0.167
        ],
        [
-        -0.13,
-        0.919,
-        0.372
+        0.128,
+        0.973,
+        -0.19
        ],
        [
-        -0.116,
-        -0.387,
-        0.915
+        -0.145,
+        0.208,
+        0.967
        ]
       ]
      }
@@ -1586,44 +1143,142 @@
    }
   },
   {
-   "name": "VentRock17",
+   "name": "VentRock10",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.657,
-     1.397,
-     1.271
+     1.154,
+     2.119,
+     1.187
     ],
     "Color": [
      0.502,
      0.416,
      0.329
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       18.383,
-       0.503,
-       43.725
+       17.022,
+       0.763,
+       42.879
       ],
       "orientation": [
        [
-        0.995,
-        0.097,
-        0.027
+        0.958,
+        0.286,
+        0.017
        ],
        [
-        -0.1,
-        0.963,
-        0.249
+        -0.285,
+        0.958,
+        -0.042
        ],
        [
-        -0.002,
-        -0.251,
+        -0.028,
+        0.035,
+        0.999
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "VentRock11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.151,
+     1.809,
+     1.221
+    ],
+    "Color": [
+     0.424,
+     0.337,
+     0.251
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.805,
+       0.651,
+       41.469
+      ],
+      "orientation": [
+       [
+        0.974,
+        -0.04,
+        0.222
+       ],
+       [
+        0.123,
+        0.92,
+        -0.372
+       ],
+       [
+        -0.189,
+        0.389,
+        0.901
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "VentRock12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.665,
+     1.768,
+     1.523
+    ],
+    "Color": [
+     0.518,
+     0.431,
+     0.345
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.833,
+       0.637,
+       36.465
+      ],
+      "orientation": [
+       [
+        0.95,
+        -0.217,
+        0.225
+       ],
+       [
+        0.198,
+        0.974,
+        0.107
+       ],
+       [
+        -0.243,
+        -0.057,
         0.968
        ]
       ]
@@ -1635,94 +1290,45 @@
    }
   },
   {
-   "name": "VentRock18",
+   "name": "VentRock13",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.121,
-     1.501,
-     1.35
-    ],
-    "Color": [
-     0.529,
-     0.443,
-     0.357
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       16.154,
-       0.54,
-       43.48
-      ],
-      "orientation": [
-       [
-        0.984,
-        -0.167,
-        0.062
-       ],
-       [
-        0.178,
-        0.904,
-        -0.389
-       ],
-       [
-        0.009,
-        0.393,
-        0.919
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock19",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.673,
-     2.074,
-     2.018
+     1.012,
+     1.311,
+     1.222
     ],
     "Color": [
      0.502,
      0.416,
      0.329
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       15.144,
-       0.747,
-       41.802
+       16.683,
+       0.472,
+       34.921
       ],
       "orientation": [
        [
-        0.958,
-        -0.199,
-        -0.205
+        0.943,
+        -0.034,
+        0.332
        ],
        [
-        0.235,
-        0.958,
-        0.166
+        0.118,
+        0.964,
+        -0.237
        ],
        [
-        0.164,
-        -0.207,
-        0.965
+        -0.312,
+        0.262,
+        0.913
        ]
       ]
      }
@@ -1733,339 +1339,45 @@
    }
   },
   {
-   "name": "VentRock20",
+   "name": "VentRock14",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.034,
-     1.112,
-     1.742
+     2.214,
+     1.289,
+     1.729
     ],
     "Color": [
-     0.514,
-     0.427,
-     0.341
+     0.522,
+     0.435,
+     0.349
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       14.201,
-       0.4,
-       40.402
-      ],
-      "orientation": [
-       [
-        0.921,
-        -0.39,
-        0.023
-       ],
-       [
-        0.389,
-        0.914,
-        -0.117
-       ],
-       [
-        0.025,
-        0.117,
-        0.993
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock21",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.888,
-     0.924,
-     2.009
-    ],
-    "Color": [
-     0.514,
-     0.427,
-     0.341
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       13.33,
-       0.333,
-       37.256
-      ],
-      "orientation": [
-       [
-        0.944,
-        0.309,
-        0.116
-       ],
-       [
-        -0.33,
-        0.874,
-        0.356
-       ],
-       [
-        0.009,
-        -0.374,
-        0.927
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock22",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.107,
-     1.836,
-     1.596
-    ],
-    "Color": [
-     0.443,
-     0.357,
-     0.271
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       14.836,
-       0.661,
-       36.617
+       20.507,
+       0.464,
+       35.751
       ],
       "orientation": [
        [
         0.934,
-        -0.305,
-        0.185
+        0.246,
+        0.259
        ],
        [
-        0.235,
-        0.917,
-        0.323
+        -0.168,
+        0.943,
+        -0.287
        ],
        [
-        -0.268,
-        -0.258,
-        0.928
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock23",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.55,
-     1.526,
-     2.094
-    ],
-    "Color": [
-     0.455,
-     0.369,
-     0.282
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       16.059,
-       0.549,
-       34.465
-      ],
-      "orientation": [
-       [
-        0.924,
-        -0.224,
-        0.311
-       ],
-       [
-        0.184,
-        0.971,
-        0.151
-       ],
-       [
-        -0.336,
-        -0.082,
-        0.938
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock24",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.175,
-     1.504,
-     1.717
-    ],
-    "Color": [
-     0.471,
-     0.384,
-     0.298
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       18.182,
-       0.541,
-       35.04
-      ],
-      "orientation": [
-       [
-        0.877,
-        -0.347,
-        -0.334
-       ],
-       [
-        0.242,
-        0.917,
-        -0.316
-       ],
-       [
-        0.416,
-        0.197,
-        0.888
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock25",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.565,
-     0.965,
-     1.713
-    ],
-    "Color": [
-     0.439,
-     0.353,
-     0.267
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       20.477,
-       0.347,
-       35.967
-      ],
-      "orientation": [
-       [
-        0.958,
-        -0.097,
-        0.268
-       ],
-       [
-        0.08,
-        0.994,
-        0.073
-       ],
-       [
-        -0.274,
-        -0.048,
-        0.961
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock26",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.474,
-     1.722,
-     1.146
-    ],
-    "Color": [
-     0.467,
-     0.38,
-     0.294
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       22.384,
-       0.62,
-       36.975
-      ],
-      "orientation": [
-       [
-        0.914,
-        0.405,
-        0.003
-       ],
-       [
-        -0.392,
-        0.886,
-        -0.246
-       ],
-       [
-        -0.102,
+        -0.315,
         0.224,
-        0.969
+        0.922
        ]
       ]
      }
@@ -2090,7 +1402,7 @@
      0.282,
      0.235
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2376,7 +1688,7 @@
    }
   },
   {
-   "name": "Stain5",
+   "name": "Stain3",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -2390,7 +1702,7 @@
      0.839,
      0.729
     ],
-    "Material": "Limestone",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2426,95 +1738,45 @@
    }
   },
   {
-   "name": "Stain6",
+   "name": "VentRock15",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.06,
-     10,
-     10
+     1.238,
+     1.403,
+     1.273
     ],
     "Color": [
-     0.776,
-     0.62,
-     0.408
+     0.486,
+     0.4,
+     0.314
     ],
-    "Material": "Sand",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -14,
-       0.14,
-       42
+       -9.689,
+       0.505,
+       41.834
       ],
       "orientation": [
        [
-        0.0,
-        -1.0,
-        0
+        0.961,
+        -0.195,
+        0.196
        ],
        [
-        1.0,
-        0.0,
-        0
+        0.229,
+        0.958,
+        -0.172
        ],
        [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock27",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.207,
-     2.049,
-     1.429
-    ],
-    "Color": [
-     0.447,
-     0.361,
-     0.275
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -10.283,
-       0.738,
-       41.959
-      ],
-      "orientation": [
-       [
-        0.913,
-        -0.223,
-        -0.342
-       ],
-       [
-        0.326,
-        0.903,
-        0.28
-       ],
-       [
-        0.246,
-        -0.367,
-        0.897
+        -0.154,
+        0.21,
+        0.965
        ]
       ]
      }
@@ -2525,94 +1787,45 @@
    }
   },
   {
-   "name": "VentRock28",
+   "name": "VentRock16",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.082,
-     2.23,
-     1.261
+     1.2,
+     1.583,
+     1.109
     ],
     "Color": [
-     0.439,
-     0.353,
-     0.267
+     0.522,
+     0.435,
+     0.349
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -9.628,
-       0.803,
-       44.074
-      ],
-      "orientation": [
-       [
-        0.946,
-        0.206,
-        0.25
-       ],
-       [
-        -0.201,
-        0.978,
-        -0.047
-       ],
-       [
-        -0.254,
-        -0.006,
-        0.967
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock29",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.552,
-     1.443,
-     2.006
-    ],
-    "Color": [
-     0.525,
-     0.439,
-     0.353
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -11.679,
-       0.519,
-       45.766
+       -11.288,
+       0.57,
+       45.434
       ],
       "orientation": [
        [
         0.977,
-        -0.173,
-        -0.125
+        0.212,
+        -0.032
        ],
        [
-        0.193,
-        0.965,
-        0.179
+        -0.211,
+        0.921,
+        -0.327
        ],
        [
-        0.09,
-        -0.199,
-        0.976
+        -0.04,
+        0.326,
+        0.945
        ]
       ]
      }
@@ -2623,45 +1836,45 @@
    }
   },
   {
-   "name": "VentRock30",
+   "name": "VentRock17",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.364,
-     1.545,
-     1.353
+     1.015,
+     1.109,
+     1.243
     ],
     "Color": [
-     0.518,
-     0.431,
-     0.345
+     0.51,
+     0.424,
+     0.337
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -13.856,
-       0.556,
-       45.803
+       -15.212,
+       0.399,
+       45.557
       ],
       "orientation": [
        [
-        0.963,
-        -0.064,
-        -0.264
+        0.928,
+        -0.247,
+        -0.28
        ],
        [
-        0.078,
-        0.996,
-        0.044
+        0.31,
+        0.928,
+        0.209
        ],
        [
-        0.26,
-        -0.063,
-        0.964
+        0.208,
+        -0.281,
+        0.937
        ]
       ]
      }
@@ -2672,45 +1885,45 @@
    }
   },
   {
-   "name": "VentRock31",
+   "name": "VentRock18",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.798,
-     1.073,
-     1.621
+     1.833,
+     2.021,
+     1.18
     ],
     "Color": [
-     0.514,
-     0.427,
-     0.341
+     0.494,
+     0.408,
+     0.322
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -15.389,
-       0.386,
-       46.469
+       -17.513,
+       0.727,
+       44.075
       ],
       "orientation": [
        [
-        0.973,
-        0.109,
-        0.203
+        0.914,
+        -0.332,
+        -0.235
        ],
        [
-        -0.172,
-        0.93,
-        0.324
+        0.379,
+        0.905,
+        0.193
        ],
        [
-        -0.153,
-        -0.351,
-        0.924
+        0.149,
+        -0.266,
+        0.953
        ]
       ]
      }
@@ -2721,339 +1934,45 @@
    }
   },
   {
-   "name": "VentRock32",
+   "name": "VentRock19",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.064,
-     1.919,
-     1.853
-    ],
-    "Color": [
-     0.506,
-     0.42,
-     0.333
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -16.991,
-       0.691,
-       44.34
-      ],
-      "orientation": [
-       [
-        0.909,
-        0.37,
-        -0.195
-       ],
-       [
-        -0.392,
-        0.915,
-        -0.093
-       ],
-       [
-        0.144,
-        0.16,
-        0.977
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock33",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.786,
-     2.272,
-     1.543
-    ],
-    "Color": [
-     0.498,
-     0.412,
-     0.325
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -18.43,
-       0.818,
-       42.551
-      ],
-      "orientation": [
-       [
-        0.933,
-        -0.103,
-        0.344
-       ],
-       [
-        0.177,
-        0.966,
-        -0.189
-       ],
-       [
-        -0.313,
-        0.238,
-        0.92
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock34",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.068,
-     1.446,
-     1.995
-    ],
-    "Color": [
-     0.475,
-     0.388,
-     0.302
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -18.327,
-       0.52,
-       41.234
-      ],
-      "orientation": [
-       [
-        0.979,
-        -0.079,
-        0.187
-       ],
-       [
-        0.131,
-        0.949,
-        -0.286
-       ],
-       [
-        -0.154,
-        0.305,
-        0.94
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock35",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.991,
-     1.666,
-     1.78
-    ],
-    "Color": [
-     0.467,
-     0.38,
-     0.294
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -17.805,
-       0.6,
-       39.039
-      ],
-      "orientation": [
-       [
-        0.86,
-        -0.369,
-        -0.354
-       ],
-       [
-        0.406,
-        0.913,
-        0.034
-       ],
-       [
-        0.311,
-        -0.173,
-        0.935
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock36",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.963,
-     1.815,
-     1.855
-    ],
-    "Color": [
-     0.451,
-     0.365,
-     0.278
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -15.974,
-       0.653,
-       37.476
-      ],
-      "orientation": [
-       [
-        0.988,
-        0.076,
-        0.133
-       ],
-       [
-        -0.054,
-        0.985,
-        -0.161
-       ],
-       [
-        -0.143,
-        0.152,
-        0.978
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock37",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2.062,
-     2.207,
-     1.479
-    ],
-    "Color": [
-     0.439,
-     0.353,
-     0.267
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -13.943,
-       0.794,
-       38.144
-      ],
-      "orientation": [
-       [
-        0.872,
-        -0.321,
-        0.369
-       ],
-       [
-        0.189,
-        0.917,
-        0.351
-       ],
-       [
-        -0.451,
-        -0.236,
-        0.861
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock38",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.27,
-     1.695,
-     1.377
+     1.952,
+     1.347,
+     1.519
     ],
     "Color": [
      0.471,
      0.384,
      0.298
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -11.59,
-       0.61,
-       37.734
+       -18.554,
+       0.485,
+       40.026
       ],
       "orientation": [
        [
-        0.984,
-        0.054,
-        0.173
+        0.905,
+        -0.128,
+        -0.405
        ],
        [
-        -0.039,
-        0.995,
-        -0.088
+        0.104,
+        0.991,
+        -0.082
        ],
        [
-        -0.177,
-        0.08,
-        0.981
+        0.412,
+        0.032,
+        0.911
        ]
       ]
      }
@@ -3064,45 +1983,94 @@
    }
   },
   {
-   "name": "VentRock39",
+   "name": "VentRock20",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.585,
-     2.198,
-     1.327
+     2.118,
+     2.068,
+     1.498
     ],
     "Color": [
-     0.467,
-     0.38,
-     0.294
+     0.486,
+     0.4,
+     0.314
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -9.744,
-       0.791,
-       39.728
+       -15.393,
+       0.744,
+       38.058
       ],
       "orientation": [
        [
-        0.926,
-        -0.308,
-        -0.218
+        0.998,
+        0.037,
+        0.046
        ],
        [
-        0.28,
-        0.948,
-        -0.15
+        -0.036,
+        0.999,
+        -0.035
        ],
        [
-        0.253,
-        0.078,
-        0.964
+        -0.047,
+        0.033,
+        0.998
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "VentRock21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.262,
+     0.926,
+     1.382
+    ],
+    "Color": [
+     0.502,
+     0.416,
+     0.329
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -11.845,
+       0.333,
+       38.908
+      ],
+      "orientation": [
+       [
+        0.969,
+        0.205,
+        0.14
+       ],
+       [
+        -0.225,
+        0.964,
+        0.144
+       ],
+       [
+        -0.106,
+        -0.171,
+        0.98
        ]
       ]
      }
@@ -3127,7 +2095,7 @@
      0.282,
      0.235
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -3413,7 +2381,7 @@
    }
   },
   {
-   "name": "Stain7",
+   "name": "Stain4",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -3427,7 +2395,7 @@
      0.839,
      0.729
     ],
-    "Material": "Limestone",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -3463,95 +2431,45 @@
    }
   },
   {
-   "name": "Stain8",
+   "name": "VentRock22",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.06,
-     10,
-     10
+     2.036,
+     1.532,
+     2.065
     ],
     "Color": [
-     0.776,
-     0.62,
-     0.408
+     0.502,
+     0.416,
+     0.329
     ],
-    "Material": "Sand",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -45,
-       24.14,
-       -40
+       -40.391,
+       24.552,
+       -40.24
       ],
       "orientation": [
        [
-        0.0,
-        -1.0,
-        0
+        0.991,
+        0.128,
+        0.044
        ],
        [
-        1.0,
-        0.0,
-        0
+        -0.133,
+        0.981,
+        0.144
        ],
        [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock40",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.544,
-     1.785,
-     1.475
-    ],
-    "Color": [
-     0.455,
-     0.369,
-     0.282
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -40.534,
-       24.643,
-       -39.647
-      ],
-      "orientation": [
-       [
-        0.951,
-        0.026,
-        0.309
-       ],
-       [
-        0.087,
-        0.934,
-        -0.346
-       ],
-       [
-        -0.298,
-        0.356,
-        0.886
+        -0.025,
+        -0.149,
+        0.989
        ]
       ]
      }
@@ -3562,241 +2480,45 @@
    }
   },
   {
-   "name": "VentRock41",
+   "name": "VentRock23",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.264,
-     1.214,
-     1.313
-    ],
-    "Color": [
-     0.494,
-     0.408,
-     0.322
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -40.689,
-       24.437,
-       -37.665
-      ],
-      "orientation": [
-       [
-        0.894,
-        0.315,
-        -0.318
-       ],
-       [
-        -0.376,
-        0.915,
-        -0.149
-       ],
-       [
-        0.244,
-        0.253,
-        0.936
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock42",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.633,
-     2.007,
-     1.403
-    ],
-    "Color": [
-     0.435,
-     0.349,
-     0.263
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -42.542,
-       24.722,
-       -36.931
-      ],
-      "orientation": [
-       [
-        0.965,
-        0.037,
-        0.259
-       ],
-       [
-        -0.052,
-        0.997,
-        0.051
-       ],
-       [
-        -0.256,
-        -0.063,
-        0.965
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock43",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2.197,
-     1.665,
-     1.625
-    ],
-    "Color": [
-     0.431,
-     0.345,
-     0.259
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -44.155,
-       24.599,
-       -36.317
-      ],
-      "orientation": [
-       [
-        0.94,
-        0.197,
-        -0.278
-       ],
-       [
-        -0.089,
-        0.929,
-        0.359
-       ],
-       [
-        0.329,
-        -0.313,
-        0.891
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock44",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.762,
      1.57,
-     1.723
+     2.259,
+     2.051
     ],
     "Color": [
-     0.514,
-     0.427,
-     0.341
+     0.463,
+     0.376,
+     0.29
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -46.425,
-       24.565,
-       -35.746
-      ],
-      "orientation": [
-       [
-        0.938,
-        0.328,
-        -0.111
-       ],
-       [
-        -0.326,
-        0.945,
-        0.035
-       ],
-       [
-        0.116,
-        0.003,
-        0.993
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock45",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.072,
-     1.478,
-     1.189
-    ],
-    "Color": [
-     0.439,
-     0.353,
-     0.267
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -48.506,
-       24.532,
-       -37.033
+       -42.032,
+       24.813,
+       -36.073
       ],
       "orientation": [
        [
         0.927,
-        0.324,
-        -0.189
+        -0.089,
+        0.365
        ],
        [
-        -0.309,
-        0.945,
-        0.102
+        0.013,
+        0.978,
+        0.207
        ],
        [
-        0.212,
-        -0.036,
-        0.977
+        -0.376,
+        -0.187,
+        0.908
        ]
       ]
      }
@@ -3807,45 +2529,94 @@
    }
   },
   {
-   "name": "VentRock46",
+   "name": "VentRock24",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.034,
-     1.353,
-     1.372
+     1.102,
+     1.421,
+     1.826
     ],
     "Color": [
-     0.439,
-     0.353,
-     0.267
+     0.478,
+     0.392,
+     0.306
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -48.983,
-       24.487,
+       -45.814,
+       24.512,
+       -35.862
+      ],
+      "orientation": [
+       [
+        0.933,
+        -0.205,
+        -0.297
+       ],
+       [
+        0.181,
+        0.978,
+        -0.108
+       ],
+       [
+        0.312,
+        0.047,
+        0.949
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "VentRock25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.858,
+     1.407,
+     1.185
+    ],
+    "Color": [
+     0.451,
+     0.365,
+     0.278
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -49.192,
+       24.506,
        -38.542
       ],
       "orientation": [
        [
-        0.978,
-        0.048,
-        0.202
+        0.925,
+        -0.267,
+        0.271
        ],
        [
-        -0.024,
-        0.992,
-        -0.121
+        0.149,
+        0.91,
+        0.386
        ],
        [
-        -0.207,
-        0.114,
-        0.972
+        -0.35,
+        -0.316,
+        0.882
        ]
       ]
      }
@@ -3856,241 +2627,45 @@
    }
   },
   {
-   "name": "VentRock47",
+   "name": "VentRock26",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.215,
-     1.754,
-     1.299
+     1.487,
+     1.494,
+     1.394
     ],
     "Color": [
-     0.51,
-     0.424,
-     0.337
+     0.486,
+     0.4,
+     0.314
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -48.723,
-       24.631,
-       -40.678
+       -49.461,
+       24.538,
+       -41.541
       ],
       "orientation": [
        [
-        0.983,
-        -0.099,
-        -0.156
-       ],
-       [
-        0.132,
-        0.967,
-        0.219
-       ],
-       [
-        0.129,
-        -0.236,
-        0.963
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock48",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.952,
-     1.999,
-     1.492
-    ],
-    "Color": [
-     0.482,
-     0.396,
-     0.31
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -48.436,
-       24.72,
-       -43.173
-      ],
-      "orientation": [
-       [
-        0.952,
-        0.088,
-        -0.293
-       ],
-       [
-        -0.089,
-        0.996,
-        0.01
-       ],
-       [
-        0.293,
-        0.016,
-        0.956
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock49",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2.035,
-     1.701,
-     1.592
-    ],
-    "Color": [
-     0.514,
-     0.427,
-     0.341
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -46.934,
-       24.612,
-       -44.363
-      ],
-      "orientation": [
-       [
-        0.911,
-        -0.293,
-        0.289
-       ],
-       [
-        0.242,
-        0.95,
-        0.199
-       ],
-       [
-        -0.333,
-        -0.112,
-        0.936
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock50",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.048,
-     1.845,
-     1.112
-    ],
-    "Color": [
-     0.435,
-     0.349,
-     0.263
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -44.679,
-       24.664,
-       -44.085
-      ],
-      "orientation": [
-       [
-        0.944,
-        -0.18,
-        -0.278
-       ],
-       [
-        0.204,
-        0.977,
-        0.062
-       ],
-       [
-        0.261,
-        -0.115,
-        0.958
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock51",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.196,
-     2.011,
-     1.501
-    ],
-    "Color": [
-     0.506,
-     0.42,
-     0.333
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       -42.956,
-       24.724,
-       -43.81
-      ],
-      "orientation": [
-       [
-        0.977,
-        -0.213,
-        0.013
-       ],
-       [
-        0.208,
         0.965,
-        0.158
+        0.254,
+        -0.069
        ],
        [
-        -0.047,
-        -0.151,
-        0.987
+        -0.209,
+        0.898,
+        0.388
+       ],
+       [
+        0.16,
+        -0.36,
+        0.919
        ]
       ]
      }
@@ -4101,45 +2676,94 @@
    }
   },
   {
-   "name": "VentRock52",
+   "name": "VentRock27",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.238,
-     1.581,
-     1.373
+     1.635,
+     1.747,
+     1.829
     ],
     "Color": [
-     0.49,
-     0.404,
-     0.318
+     0.467,
+     0.38,
+     0.294
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       -40.895,
-       24.569,
-       -41.899
+       -45.641,
+       24.629,
+       -43.986
       ],
       "orientation": [
        [
-        0.995,
-        -0.01,
-        -0.1
+        0.927,
+        -0.373,
+        0.03
        ],
        [
-        -0.007,
-        0.985,
-        -0.173
+        0.363,
+        0.876,
+        -0.317
        ],
        [
-        0.1,
-        0.173,
-        0.98
+        0.092,
+        0.305,
+        0.948
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "VentRock28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.185,
+     2.082,
+     2.048
+    ],
+    "Color": [
+     0.486,
+     0.4,
+     0.314
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -42.345,
+       24.749,
+       -43.302
+      ],
+      "orientation": [
+       [
+        0.926,
+        -0.294,
+        0.236
+       ],
+       [
+        0.361,
+        0.871,
+        -0.333
+       ],
+       [
+        -0.108,
+        0.394,
+        0.913
        ]
       ]
      }
@@ -4164,7 +2788,7 @@
      0.282,
      0.235
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4450,7 +3074,7 @@
    }
   },
   {
-   "name": "Stain9",
+   "name": "Stain5",
    "className": "Part",
    "properties": {
     "Anchored": true,
@@ -4464,7 +3088,7 @@
      0.839,
      0.729
     ],
-    "Material": "Limestone",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4500,438 +3124,45 @@
    }
   },
   {
-   "name": "Stain10",
+   "name": "VentRock29",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.06,
-     10,
-     10
-    ],
-    "Color": [
-     0.776,
-     0.62,
-     0.408
-    ],
-    "Material": "Sand",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       45,
-       24.14,
-       -18
-      ],
-      "orientation": [
-       [
-        0.0,
-        -1.0,
-        0
-       ],
-       [
-        1.0,
-        0.0,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "Shape": "Cylinder",
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock53",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.299,
-     1.075,
-     1.667
-    ],
-    "Color": [
-     0.49,
-     0.404,
-     0.318
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       49.744,
-       24.387,
-       -18.15
-      ],
-      "orientation": [
-       [
-        0.967,
-        0.219,
-        -0.129
-       ],
-       [
-        -0.177,
-        0.944,
-        0.278
-       ],
-       [
-        0.183,
-        -0.246,
-        0.952
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock54",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.904,
-     0.981,
-     1.942
-    ],
-    "Color": [
-     0.424,
-     0.337,
-     0.251
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       49.24,
-       24.353,
-       -16.051
-      ],
-      "orientation": [
-       [
-        0.915,
-        -0.046,
-        -0.402
-       ],
-       [
-        0.081,
-        0.994,
-        0.072
-       ],
-       [
-        0.396,
-        -0.099,
-        0.913
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock55",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.777,
-     1.292,
-     1.302
-    ],
-    "Color": [
-     0.455,
-     0.369,
-     0.282
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       47.173,
-       24.465,
-       -14.935
-      ],
-      "orientation": [
-       [
-        0.976,
-        -0.002,
-        -0.219
-       ],
-       [
-        -0.054,
-        0.967,
-        -0.248
-       ],
-       [
-        0.212,
-        0.254,
-        0.944
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock56",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.718,
-     1.249,
-     2.044
-    ],
-    "Color": [
-     0.471,
-     0.384,
-     0.298
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       45.93,
-       24.45,
-       -14.077
-      ],
-      "orientation": [
-       [
-        0.917,
-        0.206,
-        -0.34
-       ],
-       [
-        -0.166,
-        0.976,
-        0.142
-       ],
-       [
-        0.362,
-        -0.074,
-        0.929
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock57",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.983,
-     2.184,
-     1.472
-    ],
-    "Color": [
-     0.443,
-     0.357,
-     0.271
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       43.649,
-       24.786,
-       -13.261
-      ],
-      "orientation": [
-       [
-        0.958,
-        0.178,
-        0.224
-       ],
-       [
-        -0.207,
-        0.972,
-        0.111
-       ],
-       [
-        -0.198,
-        -0.152,
-        0.968
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock58",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     2.169,
-     1.335,
-     1.358
-    ],
-    "Color": [
-     0.451,
-     0.365,
-     0.278
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       41.956,
-       24.481,
-       -15.826
-      ],
-      "orientation": [
-       [
-        0.927,
-        0.174,
-        -0.333
-       ],
-       [
-        -0.224,
-        0.968,
-        -0.116
-       ],
-       [
-        0.302,
-        0.181,
-        0.936
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock59",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.208,
-     1.967,
-     2.004
-    ],
-    "Color": [
-     0.514,
-     0.427,
-     0.341
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       41.453,
-       24.708,
-       -16.936
-      ],
-      "orientation": [
-       [
-        0.941,
-        0.169,
-        0.293
-       ],
-       [
-        -0.267,
-        0.902,
-        0.338
-       ],
-       [
-        -0.207,
-        -0.397,
-        0.894
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock60",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.448,
-     2.046,
-     1.851
+     1.86,
+     1.044,
+     2.069
     ],
     "Color": [
      0.518,
      0.431,
      0.345
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       41.101,
-       24.736,
-       -18.795
+       49.131,
+       24.376,
+       -18.465
       ],
       "orientation": [
        [
-        0.934,
-        -0.049,
-        -0.353
+        0.997,
+        0.054,
+        0.056
        ],
        [
-        -0.005,
-        0.989,
-        -0.15
+        -0.031,
+        0.936,
+        -0.35
        ],
        [
-        0.356,
-        0.142,
-        0.924
+        -0.071,
+        0.347,
+        0.935
        ]
       ]
      }
@@ -4942,44 +3173,44 @@
    }
   },
   {
-   "name": "VentRock61",
+   "name": "VentRock30",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.064,
-     1.707,
-     1.341
+     2.292,
+     1.987,
+     1.42
     ],
     "Color": [
-     0.486,
-     0.4,
-     0.314
+     0.518,
+     0.431,
+     0.345
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       42.244,
-       24.614,
-       -20.872
+       47.81,
+       24.715,
+       -14.334
       ],
       "orientation": [
        [
-        0.925,
-        0.379,
-        0.003
+        0.978,
+        0.09,
+        -0.188
        ],
        [
-        -0.356,
-        0.871,
-        -0.338
+        -0.142,
+        0.949,
+        -0.283
        ],
        [
-        -0.131,
-        0.312,
+        0.153,
+        0.303,
         0.941
        ]
       ]
@@ -4991,45 +3222,143 @@
    }
   },
   {
-   "name": "VentRock62",
+   "name": "VentRock31",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.614,
-     1.535,
-     1.828
+     2.117,
+     2.183,
+     1.626
     ],
     "Color": [
-     0.525,
-     0.439,
-     0.353
+     0.447,
+     0.361,
+     0.275
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       43.352,
-       24.553,
-       -22.64
+       43.397,
+       24.786,
+       -13.45
       ],
       "orientation": [
        [
-        0.958,
-        0.043,
-        -0.285
+        1.0,
+        -0.004,
+        0.025
        ],
        [
-        -0.157,
-        0.907,
-        -0.39
+        0.006,
+        0.994,
+        -0.11
        ],
        [
+        -0.025,
+        0.11,
+        0.994
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "VentRock32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.313,
+     0.971,
+     1.139
+    ],
+    "Color": [
+     0.502,
+     0.416,
+     0.329
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       41.533,
+       24.35,
+       -16.452
+      ],
+      "orientation": [
+       [
+        0.979,
+        0.133,
+        -0.157
+       ],
+       [
+        -0.184,
+        0.906,
+        -0.382
+       ],
+       [
+        0.092,
+        0.402,
+        0.911
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "VentRock33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.054,
+     1.964,
+     1.983
+    ],
+    "Color": [
+     0.467,
+     0.38,
+     0.294
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       40.914,
+       24.707,
+       -20.153
+      ],
+      "orientation": [
+       [
+        0.939,
         0.242,
-        0.418,
-        0.876
+        0.244
+       ],
+       [
+        -0.307,
+        0.908,
+        0.283
+       ],
+       [
+        -0.154,
+        -0.341,
+        0.927
        ]
       ]
      }
@@ -5040,45 +3369,45 @@
    }
   },
   {
-   "name": "VentRock63",
+   "name": "VentRock34",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.42,
-     1.091,
-     1.635
+     1.118,
+     1.593,
+     1.702
     ],
     "Color": [
-     0.506,
-     0.42,
-     0.333
+     0.451,
+     0.365,
+     0.278
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       45.433,
-       24.393,
-       -22.247
+       43.552,
+       24.574,
+       -22.62
       ],
       "orientation": [
        [
-        0.923,
-        -0.381,
-        0.056
+        0.862,
+        -0.445,
+        0.243
        ],
        [
-        0.381,
-        0.882,
-        -0.279
+        0.373,
+        0.881,
+        0.291
        ],
        [
-        0.057,
-        0.279,
-        0.959
+        -0.343,
+        -0.16,
+        0.926
        ]
       ]
      }
@@ -5089,94 +3418,45 @@
    }
   },
   {
-   "name": "VentRock64",
+   "name": "VentRock35",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     2.244,
-     2.098,
-     2.003
+     2.238,
+     2.014,
+     1.189
     ],
     "Color": [
-     0.471,
-     0.384,
-     0.298
+     0.49,
+     0.404,
+     0.318
     ],
-    "Material": "Slate",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       47.818,
-       24.755,
-       -21.559
+       47.967,
+       24.725,
+       -21.118
       ],
       "orientation": [
        [
-        0.882,
-        0.291,
-        0.371
+        0.916,
+        -0.3,
+        0.266
        ],
        [
-        -0.391,
-        0.891,
-        0.23
+        0.266,
+        0.951,
+        0.156
        ],
        [
-        -0.263,
-        -0.347,
-        0.9
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "VentRock65",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.533,
-     1.515,
-     2.088
-    ],
-    "Color": [
-     0.525,
-     0.439,
-     0.353
-    ],
-    "Material": "Slate",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       49.229,
-       24.545,
-       -20.066
-      ],
-      "orientation": [
-       [
-        0.958,
-        0.264,
-        -0.112
-       ],
-       [
-        -0.227,
-        0.937,
-        0.267
-       ],
-       [
-        0.175,
-        -0.23,
-        0.957
+        -0.299,
+        -0.072,
+        0.951
        ]
       ]
      }

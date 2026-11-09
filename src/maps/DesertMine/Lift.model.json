@@ -12,11 +12,11 @@
      0.9
     ],
     "Color": [
-     0.518,
-     0.353,
-     0.204
+     0.573,
+     0.392,
+     0.235
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -62,7 +62,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -108,7 +108,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -154,7 +154,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -186,191 +186,44 @@
    }
   },
   {
-   "name": "Timber206",
+   "name": "Timber71",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.434,
-     0.437,
-     14.12
-    ],
-    "Color": [
-     0.557,
-     0.376,
-     0.22
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.932,
-       4.17,
-       3.442
-      ],
-      "orientation": [
-       [
-        -0.009,
-        -0.538,
-        0.843
-       ],
-       [
-        0.014,
-        0.843,
-        0.538
-       ],
-       [
-        -1.0,
-        0.016,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber207",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.458,
-     0.464,
-     14.12
-    ],
-    "Color": [
-     0.569,
-     0.388,
-     0.231
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.878,
-       4.236,
-       3.338
-      ],
-      "orientation": [
-       [
-        0.007,
-        0.538,
-        -0.843
-       ],
-       [
-        0.011,
-        0.843,
-        0.538
-       ],
-       [
-        1.0,
-        -0.013,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber208",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.563,
-     0.545,
-     11.9
-    ],
-    "Color": [
-     0.408,
-     0.275,
-     0.157
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.941,
-       7.954,
-       3.498
-      ],
-      "orientation": [
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        -0.013,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        -0.013,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber209",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.438,
+     0.46,
      0.447,
-     14.12
+     19.621
     ],
     "Color": [
-     0.502,
-     0.337,
-     0.188
+     0.42,
+     0.286,
+     0.169
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.84,
-       12.208,
-       3.388
+       21.86,
+       8.246,
+       3.369
       ],
       "orientation": [
        [
-        -0.016,
-        -0.538,
-        0.843
+        0.019,
+        -0.795,
+        0.607
        ],
        [
-        0.026,
-        0.842,
-        0.538
+        -0.014,
+        0.606,
+        0.795
        ],
        [
         -1.0,
-        0.03,
+        -0.024,
         0.0
        ]
       ]
@@ -382,44 +235,44 @@
    }
   },
   {
-   "name": "Timber210",
+   "name": "Timber72",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.425,
-     0.487,
-     14.12
+     0.549,
+     0.535,
+     11.9
     ],
     "Color": [
      0.514,
      0.349,
      0.2
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.775,
-       12.191,
-       3.478
+       21.955,
+       16.018,
+       3.421
       ],
       "orientation": [
        [
-        0.005,
-        0.538,
-        -0.843
+        0.0,
+        0.0,
+        1.0
        ],
        [
-        0.008,
-        0.843,
-        0.538
-       ],
-       [
+        -0.011,
         1.0,
-        -0.01,
+        0.0
+       ],
+       [
+        -1.0,
+        -0.011,
         0.0
        ]
       ]
@@ -431,29 +284,78 @@
    }
   },
   {
-   "name": "Timber211",
+   "name": "Timber73",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.54,
-     0.507,
-     11.9
+     0.444,
+     0.467,
+     19.621
     ],
     "Color": [
-     0.553,
-     0.373,
-     0.216
+     0.412,
+     0.278,
+     0.161
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.891,
-       16.02,
-       3.394
+       21.938,
+       24.177,
+       3.489
+      ],
+      "orientation": [
+       [
+        -0.021,
+        -0.795,
+        0.607
+       ],
+       [
+        0.016,
+        0.606,
+        0.795
+       ],
+       [
+        -1.0,
+        0.027,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber74",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.554,
+     0.568,
+     11.9
+    ],
+    "Color": [
+     0.478,
+     0.329,
+     0.196
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.866,
+       31.952,
+       3.36
       ],
       "orientation": [
        [
@@ -462,62 +364,13 @@
         1.0
        ],
        [
-        0.036,
-        0.999,
-        0.0
-       ],
-       [
-        -0.999,
-        0.036,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber212",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.455,
-     0.442,
-     14.12
-    ],
-    "Color": [
-     0.435,
-     0.302,
-     0.184
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.87,
-       20.206,
-       3.509
-      ],
-      "orientation": [
-       [
         0.016,
-        -0.538,
-        0.843
-       ],
-       [
-        -0.025,
-        0.842,
-        0.538
+        1.0,
+        0.0
        ],
        [
         -1.0,
-        -0.029,
+        0.016,
         0.0
        ]
       ]
@@ -529,142 +382,191 @@
    }
   },
   {
-   "name": "Timber213",
+   "name": "Timber75",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.424,
-     0.425,
-     14.12
+     0.46,
+     0.474,
+     19.621
     ],
     "Color": [
-     0.573,
-     0.392,
-     0.235
+     0.431,
+     0.298,
+     0.18
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.87,
-       20.236,
-       3.428
+       21.916,
+       40.156,
+       3.433
       ],
       "orientation": [
        [
+        0.007,
+        -0.795,
+        0.607
+       ],
+       [
+        -0.005,
+        0.606,
+        0.795
+       ],
+       [
+        -1.0,
         -0.008,
-        0.538,
-        -0.843
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber76",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.518,
+     0.506,
+     11.9
+    ],
+    "Color": [
+     0.412,
+     0.278,
+     0.161
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.871,
+       47.986,
+       3.341
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        -0.017,
+        1.0,
+        0.0
+       ],
+       [
+        -1.0,
+        -0.017,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber77",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.444,
+     0.475,
+     19.621
+    ],
+    "Color": [
+     0.518,
+     0.353,
+     0.204
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.955,
+       8.183,
+       16.69
+      ],
+      "orientation": [
+       [
+        -0.006,
+        -0.795,
+        0.607
+       ],
+       [
+        0.004,
+        0.606,
+        0.795
+       ],
+       [
+        -1.0,
+        0.007,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber78",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.501,
+     0.541,
+     11.9
+    ],
+    "Color": [
+     0.498,
+     0.333,
+     0.184
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.868,
+       15.955,
+       16.514
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
        ],
        [
         -0.012,
-        0.843,
-        0.538
-       ],
-       [
         1.0,
-        0.015,
         0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber214",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.558,
-     0.564,
-     11.9
-    ],
-    "Color": [
-     0.471,
-     0.322,
-     0.188
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.926,
-       24.013,
-       3.437
-      ],
-      "orientation": [
-       [
-        0.0,
-        -0.0,
-        1.0
-       ],
-       [
-        0.038,
-        0.999,
-        0.0
-       ],
-       [
-        -0.999,
-        0.038,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber215",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.421,
-     0.468,
-     14.12
-    ],
-    "Color": [
-     0.529,
-     0.365,
-     0.216
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.809,
-       28.155,
-       3.317
-      ],
-      "orientation": [
-       [
-        -0.005,
-        -0.538,
-        0.843
-       ],
-       [
-        0.008,
-        0.843,
-        0.538
        ],
        [
         -1.0,
-        0.009,
+        -0.012,
         0.0
        ]
       ]
@@ -676,93 +578,44 @@
    }
   },
   {
-   "name": "Timber216",
+   "name": "Timber79",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.434,
-     0.45,
-     14.12
+     0.489,
+     0.475,
+     19.621
     ],
     "Color": [
-     0.408,
-     0.275,
-     0.157
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.948,
-       28.215,
-       3.352
-      ],
-      "orientation": [
-       [
-        -0.009,
-        0.538,
-        -0.843
-       ],
-       [
-        -0.014,
-        0.843,
-        0.538
-       ],
-       [
-        1.0,
-        0.016,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber217",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.522,
      0.537,
-     11.9
-    ],
-    "Color": [
-     0.561,
-     0.38,
+     0.373,
      0.224
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.741,
-       31.996,
-       3.39
+       21.945,
+       24.194,
+       16.548
       ],
       "orientation": [
        [
-        0.0,
-        0.0,
-        1.0
+        -0.01,
+        -0.795,
+        0.607
        ],
        [
-        -0.017,
-        1.0,
-        0.0
+        0.007,
+        0.606,
+        0.795
        ],
        [
         -1.0,
-        -0.017,
+        0.012,
         0.0
        ]
       ]
@@ -774,111 +627,13 @@
    }
   },
   {
-   "name": "Timber218",
+   "name": "Timber80",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.474,
-     0.477,
-     14.12
-    ],
-    "Color": [
-     0.553,
-     0.373,
-     0.216
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.821,
-       36.206,
-       3.453
-      ],
-      "orientation": [
-       [
-        -0.009,
-        -0.538,
-        0.843
-       ],
-       [
-        0.013,
-        0.843,
-        0.538
-       ],
-       [
-        -1.0,
-        0.016,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber219",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.438,
-     0.467,
-     14.12
-    ],
-    "Color": [
-     0.443,
-     0.294,
-     0.161
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.824,
-       36.158,
-       3.448
-      ],
-      "orientation": [
-       [
-        -0.013,
-        0.538,
-        -0.843
-       ],
-       [
-        -0.02,
-        0.843,
-        0.538
-       ],
-       [
-        1.0,
-        0.024,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber220",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.507,
-     0.542,
+     0.529,
+     0.554,
      11.9
     ],
     "Color": [
@@ -886,15 +641,15 @@
      0.31,
      0.192
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.861,
-       40.021,
-       3.307
+       21.856,
+       31.974,
+       16.537
       ],
       "orientation": [
        [
@@ -903,13 +658,13 @@
         1.0
        ],
        [
-        0.028,
+        0.027,
         1.0,
         0.0
        ],
        [
         -1.0,
-        0.028,
+        0.027,
         0.0
        ]
       ]
@@ -921,240 +676,44 @@
    }
   },
   {
-   "name": "Timber221",
+   "name": "Timber81",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.437,
-     0.486,
-     14.12
+     0.45,
+     0.458,
+     19.621
     ],
     "Color": [
-     0.561,
-     0.38,
-     0.224
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.868,
-       44.178,
-       3.3
-      ],
-      "orientation": [
-       [
-        -0.005,
-        -0.538,
-        0.843
-       ],
-       [
-        0.008,
-        0.843,
-        0.538
-       ],
-       [
-        -1.0,
-        0.009,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber222",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.433,
-     0.466,
-     14.12
-    ],
-    "Color": [
-     0.51,
-     0.345,
-     0.196
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.884,
-       44.227,
-       3.403
-      ],
-      "orientation": [
-       [
-        0.004,
-        0.538,
-        -0.843
-       ],
-       [
-        0.006,
-        0.843,
-        0.538
-       ],
-       [
-        1.0,
-        -0.008,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber223",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.537,
-     0.533,
-     11.9
-    ],
-    "Color": [
-     0.584,
-     0.404,
-     0.247
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.764,
-       48.02,
-       3.42
-      ],
-      "orientation": [
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        -0.035,
-        0.999,
-        0.0
-       ],
-       [
-        -0.999,
-        -0.035,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber224",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.459,
-     0.444,
-     14.12
-    ],
-    "Color": [
-     0.439,
-     0.306,
-     0.188
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.851,
-       4.172,
-       16.681
-      ],
-      "orientation": [
-       [
-        -0.019,
-        -0.538,
-        0.843
-       ],
-       [
-        0.03,
-        0.842,
-        0.538
-       ],
-       [
-        -0.999,
-        0.035,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber225",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
      0.443,
-     0.436,
-     14.12
+     0.294,
+     0.161
     ],
-    "Color": [
-     0.537,
-     0.373,
-     0.224
-    ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.957,
-       4.162,
-       16.659
+       21.829,
+       40.156,
+       16.502
       ],
       "orientation": [
        [
-        0.017,
-        0.538,
-        -0.843
+        0.015,
+        -0.795,
+        0.607
        ],
        [
-        0.026,
-        0.842,
-        0.538
+        -0.012,
+        0.606,
+        0.795
        ],
        [
-        1.0,
-        -0.031,
+        -1.0,
+        -0.019,
         0.0
        ]
       ]
@@ -1166,240 +725,44 @@
    }
   },
   {
-   "name": "Timber226",
+   "name": "Timber82",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.548,
      0.531,
+     0.538,
      11.9
-    ],
-    "Color": [
-     0.553,
-     0.373,
-     0.216
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.929,
-       8.031,
-       16.62
-      ],
-      "orientation": [
-       [
-        0.0,
-        -0.0,
-        1.0
-       ],
-       [
-        0.025,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        0.025,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber227",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.465,
-     0.489,
-     14.12
-    ],
-    "Color": [
-     0.514,
-     0.349,
-     0.2
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.842,
-       12.245,
-       16.563
-      ],
-      "orientation": [
-       [
-        0.004,
-        -0.538,
-        0.843
-       ],
-       [
-        -0.007,
-        0.843,
-        0.538
-       ],
-       [
-        -1.0,
-        -0.008,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber228",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.474,
-     0.456,
-     14.12
-    ],
-    "Color": [
-     0.408,
-     0.275,
-     0.157
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.94,
-       12.224,
-       16.686
-      ],
-      "orientation": [
-       [
-        -0.017,
-        0.538,
-        -0.843
-       ],
-       [
-        -0.026,
-        0.842,
-        0.538
-       ],
-       [
-        1.0,
-        0.031,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber229",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.532,
-     0.516,
-     11.9
-    ],
-    "Color": [
-     0.439,
-     0.306,
-     0.188
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.952,
-       16.027,
-       16.632
-      ],
-      "orientation": [
-       [
-        0.0,
-        -0.0,
-        1.0
-       ],
-       [
-        0.038,
-        0.999,
-        0.0
-       ],
-       [
-        -0.999,
-        0.038,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber230",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.448,
-     0.468,
-     14.12
     ],
     "Color": [
      0.573,
      0.392,
      0.235
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.889,
-       20.217,
-       16.503
+       21.953,
+       47.952,
+       16.695
       ],
       "orientation": [
        [
-        -0.01,
-        -0.538,
-        0.843
+        0.0,
+        0.0,
+        1.0
        ],
        [
-        0.015,
-        0.843,
-        0.538
+        -0.011,
+        1.0,
+        0.0
        ],
        [
         -1.0,
-        0.018,
+        -0.011,
         0.0
        ]
       ]
@@ -1411,78 +774,78 @@
    }
   },
   {
-   "name": "Timber231",
+   "name": "Timber83",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.447,
-     0.453,
-     14.12
-    ],
-    "Color": [
-     0.404,
-     0.271,
-     0.153
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.741,
-       20.175,
-       16.527
-      ],
-      "orientation": [
-       [
-        -0.005,
-        0.538,
-        -0.843
-       ],
-       [
-        -0.007,
-        0.843,
-        0.538
-       ],
-       [
-        1.0,
-        0.009,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber232",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.548,
-     0.502,
+     0.966,
+     0.91,
      11.9
     ],
     "Color": [
-     0.557,
-     0.376,
-     0.22
+     0.439,
+     0.306,
+     0.188
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.911,
-       23.95,
-       16.496
+       21.791,
+       56.011,
+       3.429
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        -0.009,
+        1.0,
+        0.0
+       ],
+       [
+        -1.0,
+        -0.009,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber84",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.945,
+     0.962,
+     11.9
+    ],
+    "Color": [
+     0.475,
+     0.325,
+     0.192
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       21.846,
+       55.962,
+       16.528
       ],
       "orientation": [
        [
@@ -1491,62 +854,13 @@
         1.0
        ],
        [
-        0.016,
-        1.0,
+        0.036,
+        0.999,
         0.0
-       ],
-       [
-        -1.0,
-        0.016,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber233",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.457,
-     0.429,
-     14.12
-    ],
-    "Color": [
-     0.447,
-     0.298,
-     0.165
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.823,
-       28.154,
-       16.539
-      ],
-      "orientation": [
-       [
-        0.02,
-        -0.538,
-        0.843
-       ],
-       [
-        -0.032,
-        0.842,
-        0.538
        ],
        [
         -0.999,
-        -0.038,
+        0.036,
         0.0
        ]
       ]
@@ -1558,578 +872,88 @@
    }
   },
   {
-   "name": "Timber234",
+   "name": "Timber85",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.479,
-     0.458,
-     14.12
+     0.908,
+     0.949,
+     13.2
     ],
     "Color": [
      0.435,
      0.302,
      0.184
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       21.924,
-       28.201,
-       16.664
+       15.827,
+       55.954,
+       9.963
       ],
       "orientation": [
-       [
-        -0.011,
-        0.538,
-        -0.843
-       ],
-       [
-        -0.017,
-        0.843,
-        0.538
-       ],
        [
         1.0,
-        0.02,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber235",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.514,
-     0.565,
-     11.9
-    ],
-    "Color": [
-     0.592,
-     0.412,
-     0.255
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.771,
-       32.024,
-       16.539
-      ],
-      "orientation": [
-       [
-        0.0,
-        -0.0,
-        1.0
-       ],
-       [
-        0.017,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        0.017,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber236",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.444,
-     0.426,
-     14.12
-    ],
-    "Color": [
-     0.447,
-     0.298,
-     0.165
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.914,
-       36.199,
-       16.506
-      ],
-      "orientation": [
-       [
-        0.012,
-        -0.538,
-        0.843
-       ],
-       [
-        -0.018,
-        0.843,
-        0.538
-       ],
-       [
-        -1.0,
-        -0.022,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber237",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.489,
-     0.421,
-     14.12
-    ],
-    "Color": [
-     0.561,
-     0.38,
-     0.224
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.751,
-       36.212,
-       16.609
-      ],
-      "orientation": [
-       [
-        0.005,
-        0.538,
-        -0.843
-       ],
-       [
-        0.008,
-        0.843,
-        0.538
-       ],
-       [
-        1.0,
-        -0.009,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber238",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.558,
-     0.521,
-     11.9
-    ],
-    "Color": [
-     0.573,
-     0.392,
-     0.235
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.889,
-       40.009,
-       16.608
-      ],
-      "orientation": [
-       [
-        0.0,
-        -0.0,
-        1.0
-       ],
-       [
-        0.031,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
         0.031,
         0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber239",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.459,
-     0.476,
-     14.12
-    ],
-    "Color": [
-     0.455,
-     0.306,
-     0.173
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.742,
-       44.166,
-       16.517
-      ],
-      "orientation": [
-       [
-        -0.009,
-        -0.538,
-        0.843
        ],
        [
-        0.014,
-        0.843,
-        0.538
-       ],
-       [
-        -1.0,
-        0.017,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber240",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.421,
-     0.486,
-     14.12
-    ],
-    "Color": [
-     0.592,
-     0.412,
-     0.255
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.91,
-       44.177,
-       16.696
-      ],
-      "orientation": [
-       [
-        -0.014,
-        0.538,
-        -0.843
-       ],
-       [
-        -0.022,
-        0.843,
-        0.538
-       ],
-       [
+        -0.031,
         1.0,
-        0.026,
         0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber241",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.565,
-     0.556,
-     11.9
-    ],
-    "Color": [
-     0.451,
-     0.302,
-     0.169
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.804,
-       48.011,
-       16.515
-      ],
-      "orientation": [
+       ],
        [
         0.0,
-        -0.0,
+        0.0,
         1.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber86",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.95,
+     0.918,
+     13.2
+    ],
+    "Color": [
+     0.471,
+     0.322,
+     0.188
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.693,
+       56.028,
+       10.076
+      ],
+      "orientation": [
+       [
+        0.999,
+        -0.032,
+        0.0
        ],
        [
         0.032,
         0.999,
-        0.0
-       ],
-       [
-        -0.999,
-        0.032,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber242",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.956,
-     0.961,
-     11.9
-    ],
-    "Color": [
-     0.427,
-     0.294,
-     0.176
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.83,
-       56.007,
-       3.358
-      ],
-      "orientation": [
-       [
-        0.0,
-        -0.0,
-        1.0
-       ],
-       [
-        0.015,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        0.015,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber243",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.962,
-     0.961,
-     11.9
-    ],
-    "Color": [
-     0.467,
-     0.318,
-     0.184
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       21.849,
-       55.955,
-       16.648
-      ],
-      "orientation": [
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        -0.01,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        -0.01,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber244",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.926,
-     0.91,
-     13.2
-    ],
-    "Color": [
-     0.553,
-     0.373,
-     0.216
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       15.98,
-       56.034,
-       10.078
-      ],
-      "orientation": [
-       [
-        1.0,
-        -0.023,
-        0.0
-       ],
-       [
-        0.023,
-        1.0,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber245",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.935,
-     0.931,
-     13.2
-    ],
-    "Color": [
-     0.51,
-     0.345,
-     0.196
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       27.804,
-       55.988,
-       10.022
-      ],
-      "orientation": [
-       [
-        1.0,
-        -0.029,
-        0.0
-       ],
-       [
-        0.029,
-        1.0,
         0.0
        ],
        [
@@ -2201,8 +1025,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     0.211,
-     0.187,
+     0.167,
+     0.215,
      46.85
     ],
     "Color": [
@@ -2216,13 +1040,13 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       22.039,
-       32.955,
-       5.002
+       22.058,
+       32.946,
+       5.102
       ],
       "orientation": [
        [
-        0.031,
+        -0.028,
         1.0,
         0.0
        ],
@@ -2233,7 +1057,7 @@
        ],
        [
         -1.0,
-        0.031,
+        -0.028,
         0.0
        ]
       ]
@@ -2250,8 +1074,8 @@
    "properties": {
     "Anchored": true,
     "Size": [
-     0.187,
-     0.196,
+     0.175,
+     0.206,
      46.85
     ],
     "Color": [
@@ -2265,13 +1089,13 @@
     "CFrame": {
      "CFrame": {
       "position": [
-       22.038,
-       33.01,
-       15.026
+       21.934,
+       33.023,
+       14.964
       ],
       "orientation": [
        [
-        0.035,
+        -0.037,
         0.999,
         0.0
        ],
@@ -2282,7 +1106,7 @@
        ],
        [
         -0.999,
-        0.035,
+        -0.037,
         0.0
        ]
       ]
@@ -2308,7 +1132,7 @@
      0.408,
      0.243
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2360,7 +1184,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2414,7 +1238,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2468,7 +1292,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2522,7 +1346,7 @@
      0.392,
      0.235
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2576,7 +1400,7 @@
      0.314,
      0.18
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2630,7 +1454,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2684,7 +1508,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2738,7 +1562,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2792,7 +1616,7 @@
      0.392,
      0.235
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -2846,7 +1670,7 @@
      0.314,
      0.18
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -3062,7 +1886,7 @@
      0.408,
      0.243
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -3096,27 +1920,27 @@
    }
   },
   {
-   "name": "Plank93",
+   "name": "Plank47",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     8.058
+     7.922
     ],
     "Color": [
-     0.475,
-     0.325,
-     0.192
+     0.451,
+     0.302,
+     0.169
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       28.4,
+       29.0,
        47.92,
        10
       ],
@@ -3145,27 +1969,27 @@
    }
   },
   {
-   "name": "Plank94",
+   "name": "Plank48",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     8.0
+     8.093
     ],
     "Color": [
-     0.486,
-     0.322,
-     0.173
+     0.529,
+     0.365,
+     0.216
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       29.58,
+       31.35,
        47.92,
        10
       ],
@@ -3194,27 +2018,27 @@
    }
   },
   {
-   "name": "Plank95",
+   "name": "Plank49",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     8.102
+     8.066
     ],
     "Color": [
-     0.482,
-     0.333,
-     0.2
+     0.443,
+     0.294,
+     0.161
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       30.76,
+       33.7,
        47.92,
        10
       ],
@@ -3243,615 +2067,27 @@
    }
   },
   {
-   "name": "Plank96",
+   "name": "Plank50",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     8.186
-    ],
-    "Color": [
-     0.435,
-     0.286,
-     0.153
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       31.94,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank97",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.884
-    ],
-    "Color": [
-     0.573,
-     0.392,
-     0.235
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       33.12,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank98",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.846
-    ],
-    "Color": [
-     0.408,
-     0.275,
-     0.157
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       34.3,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank99",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.057
-    ],
-    "Color": [
-     0.447,
-     0.298,
-     0.165
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       35.48,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank100",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.186
-    ],
-    "Color": [
-     0.58,
-     0.4,
-     0.243
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       36.66,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank101",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.978
-    ],
-    "Color": [
-     0.541,
-     0.361,
-     0.204
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       37.84,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank102",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.89
-    ],
-    "Color": [
-     0.514,
-     0.349,
-     0.2
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       39.02,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank103",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.915
-    ],
-    "Color": [
-     0.506,
-     0.341,
-     0.192
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       40.2,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank104",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.103
-    ],
-    "Color": [
-     0.4,
-     0.267,
-     0.149
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       41.38,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank105",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.197
-    ],
-    "Color": [
-     0.408,
-     0.275,
-     0.157
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       42.56,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank106",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.14
-    ],
-    "Color": [
-     0.561,
-     0.38,
-     0.224
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       43.74,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank107",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.095
-    ],
-    "Color": [
-     0.58,
-     0.4,
-     0.243
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       44.92,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank108",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.127
+     7.92
     ],
     "Color": [
      0.533,
      0.369,
      0.22
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       46.1,
+       36.05,
        47.92,
        10
       ],
@@ -3880,370 +2116,125 @@
    }
   },
   {
-   "name": "Plank109",
+   "name": "Plank51",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     7.828
-    ],
-    "Color": [
-     0.518,
-     0.353,
-     0.204
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       47.28,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank110",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.171
-    ],
-    "Color": [
-     0.549,
-     0.384,
-     0.235
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       48.46,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank111",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.858
-    ],
-    "Color": [
-     0.506,
-     0.341,
-     0.192
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       49.64,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank112",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.134
-    ],
-    "Color": [
-     0.494,
-     0.329,
-     0.18
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       50.82,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank113",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.018
-    ],
-    "Color": [
-     0.463,
-     0.314,
-     0.18
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       52.0,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank114",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     8.079
-    ],
-    "Color": [
-     0.506,
-     0.341,
-     0.192
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       53.18,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank115",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.986
-    ],
-    "Color": [
-     0.431,
-     0.282,
-     0.149
-    ],
-    "Material": "WoodPlanks",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       54.36,
-       47.92,
-       10
-      ],
-      "orientation": [
-       [
-        1,
-        0,
-        0
-       ],
-       [
-        0,
-        1,
-        0
-       ],
-       [
-        0,
-        0,
-        1
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Plank116",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     1.0,
-     0.3,
-     7.885
+     8.048
     ],
     "Color": [
      0.537,
-     0.373,
+     0.357,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.4,
+       47.92,
+       10
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Plank52",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.1,
+     0.3,
+     8.081
+    ],
+    "Color": [
+     0.439,
+     0.306,
+     0.188
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       40.75,
+       47.92,
+       10
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Plank53",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.1,
+     0.3,
+     8.167
+    ],
+    "Color": [
+     0.561,
+     0.38,
      0.224
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       55.54,
+       43.1,
        47.92,
        10
       ],
@@ -4272,27 +2263,27 @@
    }
   },
   {
-   "name": "Plank117",
+   "name": "Plank54",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     8.152
+     7.897
     ],
     "Color": [
-     0.553,
-     0.373,
-     0.216
+     0.608,
+     0.427,
+     0.271
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       56.72,
+       45.45,
        47.92,
        10
       ],
@@ -4321,27 +2312,27 @@
    }
   },
   {
-   "name": "Plank118",
+   "name": "Plank55",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     7.973
+     7.958
     ],
     "Color": [
-     0.576,
-     0.396,
-     0.239
+     0.49,
+     0.341,
+     0.208
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       57.9,
+       47.8,
        47.92,
        10
       ],
@@ -4370,27 +2361,223 @@
    }
   },
   {
-   "name": "Plank119",
+   "name": "Plank56",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     1.0,
+     2.1,
      0.3,
-     7.822
+     8.012
+    ],
+    "Color": [
+     0.4,
+     0.267,
+     0.149
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       50.15,
+       47.92,
+       10
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Plank57",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.1,
+     0.3,
+     8.054
+    ],
+    "Color": [
+     0.522,
+     0.357,
+     0.208
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       52.5,
+       47.92,
+       10
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Plank58",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.1,
+     0.3,
+     7.866
+    ],
+    "Color": [
+     0.569,
+     0.388,
+     0.231
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       54.85,
+       47.92,
+       10
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Plank59",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.1,
+     0.3,
+     7.898
     ],
     "Color": [
      0.427,
      0.278,
      0.145
     ],
-    "Material": "WoodPlanks",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       59.08,
+       57.2,
+       47.92,
+       10
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Plank60",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.1,
+     0.3,
+     8.186
+    ],
+    "Color": [
+     0.412,
+     0.278,
+     0.161
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       59.55,
        47.92,
        10
       ],
@@ -4433,7 +2620,7 @@
      0.353,
      0.204
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4475,11 +2662,11 @@
      0.8
     ],
     "Color": [
-     0.573,
-     0.392,
-     0.235
+     0.463,
+     0.314,
+     0.18
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4511,104 +2698,6 @@
    }
   },
   {
-   "name": "Timber246",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.367,
-     0.369,
-     21.257
-    ],
-    "Color": [
-     0.58,
-     0.4,
-     0.243
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       35.978,
-       35.972,
-       9.906
-      ],
-      "orientation": [
-       [
-        0.999,
-        -0.034,
-        0.0
-       ],
-       [
-        0.012,
-        0.339,
-        0.941
-       ],
-       [
-        -0.032,
-        -0.94,
-        0.339
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber247",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.364,
-     0.359,
-     21.257
-    ],
-    "Color": [
-     0.482,
-     0.333,
-     0.2
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       35.897,
-       35.995,
-       9.906
-      ],
-      "orientation": [
-       [
-        -1.0,
-        -0.027,
-        0.0
-       ],
-       [
-        -0.009,
-        0.339,
-        0.941
-       ],
-       [
-        -0.026,
-        0.941,
-        -0.339
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
    "name": "WalkPost3",
    "className": "Part",
    "properties": {
@@ -4619,11 +2708,11 @@
      0.8
     ],
     "Color": [
-     0.518,
-     0.353,
-     0.204
+     0.463,
+     0.314,
+     0.18
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4669,7 +2758,7 @@
      0.314,
      0.18
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4701,104 +2790,6 @@
    }
   },
   {
-   "name": "Timber248",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.361,
-     0.369,
-     21.257
-    ],
-    "Color": [
-     0.557,
-     0.376,
-     0.22
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       45.107,
-       36.044,
-       9.941
-      ],
-      "orientation": [
-       [
-        1.0,
-        -0.009,
-        0.0
-       ],
-       [
-        0.003,
-        0.339,
-        0.941
-       ],
-       [
-        -0.008,
-        -0.941,
-        0.339
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber249",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.394,
-     0.386,
-     21.257
-    ],
-    "Color": [
-     0.514,
-     0.349,
-     0.2
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       44.904,
-       35.964,
-       10.094
-      ],
-      "orientation": [
-       [
-        -1.0,
-        0.025,
-        0.0
-       ],
-       [
-        0.009,
-        0.339,
-        0.941
-       ],
-       [
-        0.024,
-        0.941,
-        -0.339
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
    "name": "WalkPost5",
    "className": "Part",
    "properties": {
@@ -4809,11 +2800,11 @@
      0.8
     ],
     "Color": [
-     0.463,
-     0.314,
-     0.18
+     0.573,
+     0.392,
+     0.235
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4855,11 +2846,11 @@
      0.8
     ],
     "Color": [
-     0.463,
-     0.314,
-     0.18
+     0.424,
+     0.29,
+     0.173
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
@@ -4891,45 +2882,45 @@
    }
   },
   {
-   "name": "Timber250",
+   "name": "Timber87",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.35,
-     0.358,
-     21.257
+     0.361,
+     0.37,
+     32.1
     ],
     "Color": [
-     0.404,
-     0.271,
-     0.153
+     0.498,
+     0.333,
+     0.184
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       54.06,
-       35.962,
-       9.99
+       43.92,
+       51.26,
+       6.125
       ],
       "orientation": [
        [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        -0.019,
         1.0,
-        -0.012,
         0.0
        ],
        [
-        0.004,
-        0.339,
-        0.941
-       ],
-       [
-        -0.012,
-        -0.941,
-        0.339
+        -1.0,
+        -0.019,
+        0.0
        ]
       ]
      }
@@ -4940,131 +2931,33 @@
    }
   },
   {
-   "name": "Timber251",
+   "name": "Timber88",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.368,
-     0.37,
-     21.257
+     0.329,
+     0.33,
+     3.7
     ],
     "Color": [
      0.561,
      0.38,
      0.224
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       53.91,
-       35.953,
-       10.064
+       29.913,
+       49.461,
+       6.181
       ],
       "orientation": [
        [
-        -1.0,
-        0.009,
-        0.0
-       ],
-       [
-        0.003,
-        0.339,
-        0.941
-       ],
-       [
-        0.009,
-        0.941,
-        -0.339
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber252",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.363,
-     0.301,
-     32.1
-    ],
-    "Color": [
-     0.482,
-     0.333,
-     0.2
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       44.02,
-       51.261,
-       6.214
-      ],
-      "orientation": [
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        -0.018,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        -0.018,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber253",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.282,
-     0.319,
-     3.7
-    ],
-    "Color": [
-     0.533,
-     0.369,
-     0.22
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       29.928,
-       49.424,
-       6.156
-      ],
-      "orientation": [
-       [
-        0.029,
+        -0.019,
         1.0,
         0.0
        ],
@@ -5075,7 +2968,7 @@
        ],
        [
         1.0,
-        -0.029,
+        0.019,
         0.0
        ]
       ]
@@ -5087,33 +2980,33 @@
    }
   },
   {
-   "name": "Timber254",
+   "name": "Timber89",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.301,
-     0.315,
+     0.344,
+     0.346,
      3.7
     ],
     "Color": [
-     0.416,
-     0.282,
-     0.165
+     0.502,
+     0.337,
+     0.188
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       36.104,
-       49.412,
-       6.172
+       43.991,
+       49.438,
+       6.27
       ],
       "orientation": [
        [
-        0.029,
+        0.008,
         1.0,
         0.0
        ],
@@ -5124,7 +3017,7 @@
        ],
        [
         1.0,
-        -0.029,
+        -0.008,
         0.0
        ]
       ]
@@ -5136,127 +3029,29 @@
    }
   },
   {
-   "name": "Timber255",
+   "name": "Timber90",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.281,
-     0.299,
+     0.29,
+     0.337,
      3.7
     ],
     "Color": [
-     0.592,
-     0.412,
-     0.255
+     0.537,
+     0.373,
+     0.224
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       41.936,
-       49.443,
-       6.283
-      ],
-      "orientation": [
-       [
-        0.029,
-        1.0,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        1.0,
-        -0.029,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber256",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.289,
-     0.349,
-     3.7
-    ],
-    "Color": [
-     0.443,
-     0.294,
-     0.161
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       48.059,
-       49.491,
-       6.18
-      ],
-      "orientation": [
-       [
-        0.037,
-        0.999,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        0.999,
-        -0.037,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber257",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.321,
-     0.324,
-     3.7
-    ],
-    "Color": [
-     0.588,
-     0.408,
-     0.251
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       53.901,
-       49.437,
-       6.191
+       58.026,
+       49.46,
+       6.23
       ],
       "orientation": [
        [
@@ -5283,29 +3078,274 @@
    }
   },
   {
-   "name": "Timber258",
+   "name": "Timber91",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.351,
-     0.347,
+     0.348,
+     0.365,
      32.1
     ],
     "Color": [
-     0.514,
-     0.349,
-     0.2
+     0.435,
+     0.302,
+     0.184
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       43.945,
-       51.291,
-       13.725
+       43.973,
+       51.343,
+       13.824
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        -0.011,
+        1.0,
+        0.0
+       ],
+       [
+        -1.0,
+        -0.011,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber92",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.284,
+     0.291,
+     3.7
+    ],
+    "Color": [
+     0.502,
+     0.337,
+     0.188
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       29.969,
+       49.473,
+       13.76
+      ],
+      "orientation": [
+       [
+        -0.037,
+        0.999,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.999,
+        0.037,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber93",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.294,
+     0.311,
+     3.7
+    ],
+    "Color": [
+     0.455,
+     0.306,
+     0.173
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       43.99,
+       49.455,
+       13.891
+      ],
+      "orientation": [
+       [
+        0.027,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        1.0,
+        -0.027,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber94",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.326,
+     0.342,
+     3.7
+    ],
+    "Color": [
+     0.482,
+     0.333,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       58.006,
+       49.442,
+       13.819
+      ],
+      "orientation": [
+       [
+        -0.032,
+        0.999,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.999,
+        0.032,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber95",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.611,
+     0.582,
+     18.0
+    ],
+    "Color": [
+     0.51,
+     0.345,
+     0.196
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       44.957,
+       46.98,
+       6.499
+      ],
+      "orientation": [
+       [
+        0.0,
+        -0.0,
+        1.0
+       ],
+       [
+        0.031,
+        1.0,
+        0.0
+       ],
+       [
+        -1.0,
+        0.031,
+        0.0
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Timber96",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.585,
+     0.552,
+     8.2
+    ],
+    "Color": [
+     0.451,
+     0.302,
+     0.169
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       31.949,
+       46.967,
+       6.386
       ],
       "orientation": [
        [
@@ -5332,323 +3372,29 @@
    }
   },
   {
-   "name": "Timber259",
+   "name": "Timber97",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.295,
-     0.343,
-     3.7
-    ],
-    "Color": [
-     0.557,
-     0.376,
-     0.22
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       29.994,
-       49.409,
-       13.732
-      ],
-      "orientation": [
-       [
-        0.03,
-        1.0,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        1.0,
-        -0.03,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber260",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.342,
-     0.305,
-     3.7
-    ],
-    "Color": [
-     0.416,
-     0.282,
-     0.165
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       35.946,
-       49.499,
-       13.717
-      ],
-      "orientation": [
-       [
-        -0.021,
-        1.0,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        1.0,
-        0.021,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber261",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.317,
-     0.34,
-     3.7
-    ],
-    "Color": [
-     0.51,
-     0.345,
-     0.196
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       42.053,
-       49.46,
-       13.691
-      ],
-      "orientation": [
-       [
-        0.014,
-        1.0,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        1.0,
-        -0.014,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber262",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.298,
-     0.346,
-     3.7
-    ],
-    "Color": [
-     0.467,
-     0.318,
-     0.184
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       48.024,
-       49.409,
-       13.721
-      ],
-      "orientation": [
-       [
-        -0.033,
-        0.999,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        0.999,
-        0.033,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber263",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.329,
-     0.305,
-     3.7
-    ],
-    "Color": [
-     0.42,
-     0.286,
-     0.169
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       53.948,
-       49.46,
-       13.759
-      ],
-      "orientation": [
-       [
-        0.028,
-        1.0,
-        0.0
-       ],
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        1.0,
-        -0.028,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber264",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.591,
-     0.552,
+     0.609,
+     0.583,
      18.0
-    ],
-    "Color": [
-     0.533,
-     0.369,
-     0.22
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       45.067,
-       46.971,
-       6.45
-      ],
-      "orientation": [
-       [
-        0.0,
-        -0.0,
-        1.0
-       ],
-       [
-        0.014,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        0.014,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber265",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.57,
-     0.599,
-     8.2
     ],
     "Color": [
      0.424,
      0.29,
      0.173
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       32.001,
-       47.033,
-       6.342
+       45.03,
+       47.012,
+       13.555
       ],
       "orientation": [
        [
@@ -5657,13 +3403,13 @@
         1.0
        ],
        [
-        0.019,
+        0.02,
         1.0,
         0.0
        ],
        [
         -1.0,
-        0.019,
+        0.02,
         0.0
        ]
       ]
@@ -5675,78 +3421,29 @@
    }
   },
   {
-   "name": "Timber266",
+   "name": "Timber98",
    "className": "Part",
    "properties": {
     "Anchored": true,
     "Size": [
-     0.611,
-     0.592,
-     18.0
+     0.589,
+     0.57,
+     8.2
     ],
     "Color": [
      0.431,
      0.298,
      0.18
     ],
-    "Material": "Wood",
+    "Material": "SmoothPlastic",
     "TopSurface": "Smooth",
     "BottomSurface": "Smooth",
     "CFrame": {
      "CFrame": {
       "position": [
-       44.936,
-       46.952,
-       13.709
-      ],
-      "orientation": [
-       [
-        0.0,
-        0.0,
-        1.0
-       ],
-       [
-        -0.025,
-        1.0,
-        0.0
-       ],
-       [
-        -1.0,
-        -0.025,
-        0.0
-       ]
-      ]
-     }
-    },
-    "CanCollide": false,
-    "CanQuery": false,
-    "CanTouch": false
-   }
-  },
-  {
-   "name": "Timber267",
-   "className": "Part",
-   "properties": {
-    "Anchored": true,
-    "Size": [
-     0.588,
-     0.608,
-     8.2
-    ],
-    "Color": [
-     0.525,
-     0.361,
-     0.212
-    ],
-    "Material": "Wood",
-    "TopSurface": "Smooth",
-    "BottomSurface": "Smooth",
-    "CFrame": {
-     "CFrame": {
-      "position": [
-       31.931,
-       47.012,
-       13.525
+       31.971,
+       46.979,
+       13.615
       ],
       "orientation": [
        [

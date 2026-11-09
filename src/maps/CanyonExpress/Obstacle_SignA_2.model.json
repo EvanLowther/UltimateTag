@@ -1,0 +1,403 @@
+{
+ "className": "Model",
+ "children": [
+  {
+   "name": "PostFoot10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.6,
+     1.5,
+     3.6
+    ],
+    "Color": [
+     0.502,
+     0.486,
+     0.455
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.0,
+       -0.25,
+       -20.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Post10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     3.5,
+     25.5,
+     3.5
+    ],
+    "Color": [
+     0.329,
+     0.345,
+     0.369
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.0,
+       13.25,
+       -20.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignBoard2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.0,
+     8,
+     14.4
+    ],
+    "Color": [
+     0.871,
+     0.698,
+     0.227
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.0,
+       19.0,
+       -12.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ObstacleHit": true
+   }
+  },
+  {
+   "name": "SignStripe5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     7.0,
+     2.0
+    ],
+    "Color": [
+     0.125,
+     0.125,
+     0.133
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.56,
+       19.0,
+       -18.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignStripe6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     7.0,
+     2.0
+    ],
+    "Color": [
+     0.125,
+     0.125,
+     0.133
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.56,
+       19.0,
+       -14.4
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignStripe7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     7.0,
+     2.0
+    ],
+    "Color": [
+     0.125,
+     0.125,
+     0.133
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.56,
+       19.0,
+       -10.3
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignStripe8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.08,
+     7.0,
+     1.5
+    ],
+    "Color": [
+     0.125,
+     0.125,
+     0.133
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.56,
+       19.0,
+       -6.45
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "SignArm2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.96,
+     14.4
+    ],
+    "Color": [
+     0.275,
+     0.29,
+     0.314
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       3600.0,
+       23.52,
+       -12.8
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ],
+ "properties": {
+  "ModelStreamingMode": "Persistent"
+ }
+}

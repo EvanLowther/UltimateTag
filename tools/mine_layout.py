@@ -8,10 +8,12 @@ Axes: X east, Z south, Y up. Three levels:
   PIT FLOOR (0): x -28..28, z -70..70, a safe floor with stepped stone ruins and two wall-run walls.
   LEDGES (24): x -60..-28 and 28..60, joined by two rope bridges over the pit.
   RIM (48): a full ring round the top.
+Look: the Space Station's clean, simple style (see `simple_materials`): smooth plastic, plain colour
+bands, a modest part count, no textured stone.
 Gadgets: three two-way ziplines (press E at either end; client/Ziplines), a lift running 0, 24, 48
 and back by itself (LiftStops; client/MapAmbience), five timed geysers that throw you up one level
 (shared/Geysers). Also wooden stairs and one ladder. Solid shapes are simple; the rock faces, timber
-and clutter over them are NO_HIT, and every prop stands on a surface or is tied to something.
+and props over them are NO_HIT, and every prop stands on a surface or is tied to something.
 """
 import math
 import random
@@ -102,22 +104,22 @@ def rock_rows(amount):
                   matmul(rot_x(rng.uniform(-amount, amount)), rot_z(rng.uniform(-amount, amount))))
 
 
-def clad(m, axis, fixed, out, a0, a1, y0, y1, proud=(0.2, 0.9), lean=3.5, group="RockFaces"):
+def clad(m, axis, fixed, out, a0, a1, y0, y1, proud=(0.2, 0.7), lean=1.2, group="RockFaces"):
     """Layered rock on a vertical face: bands of chunky slabs, each tilted a little. `axis` is the
     way the face runs ("x" or "z"), `fixed` the face's other coordinate, `out` the side it faces."""
     y, layer = y0, rng.randint(0, 6)
     while y < y1 - 0.6:
-        h = min(rng.uniform(3.0, 6.2), y1 - y)
+        h = min(rng.uniform(6.5, 10.5), y1 - y)
         band = STRATA[layer % len(STRATA)]
         a = a0
         while a < a1 - 0.6:
-            w = min(rng.uniform(6, 15), a1 - a)
+            w = min(rng.uniform(26, 50), a1 - a)
             depth, thick = rng.uniform(*proud), 2.4
             centre, normal = a + w / 2, fixed + out * (depth - thick / 2)
             size = (w + 0.5, h + rng.uniform(0.1, 0.7), thick)
             pos = (centre, y + h / 2, normal) if axis == "x" else (normal, y + h / 2, centre)
             rows = rock_rows(lean) if axis == "x" else matmul(rot_y(90), rock_rows(lean))
-            m.part(group, "RockFace", size, pos, jitter(band, 8), rows, Material="Sandstone", **NO_HIT)
+            m.part(group, "RockFace", size, pos, jitter(band, 4), rows, Material="SmoothPlastic", **NO_HIT)
             a += w
         y += h
         layer += 1
@@ -151,7 +153,7 @@ def build_rock_faces(m):
             clad(m, "x", s * PZ, -s, a0, a1, LEDGE, TOP - 0.25)
         clad(m, "x", s * PZ, -s, -PX, PX, LEDGE, TOP - 0.25)
     # Big fallen slabs and boulders against the foot of the walls (on the floor, sunk in a little).
-    for _ in range(46):
+    for _ in range(12):
         s, level = rng.choice((-1, 1)), rng.random() < 0.55
         y, x = (0, PX - 1.2) if level else (LEDGE, LX - 1.2)
         z = rng.uniform(-PZ + 3, PZ - 3)
@@ -167,33 +169,20 @@ def build_cliffs(m):
     """The canyon behind the rim: big stepped mesas of tilted rock, out of reach."""
     def mesa(x, z, big):
         y, w, d = -2.0, big * rng.uniform(1.0, 1.4), big * rng.uniform(0.8, 1.2)
-        tiers = rng.randint(3, 5)
-        for i in range(tiers):
-            h = rng.uniform(22, 40)
-            color = jitter(STRATA[(i * 2 + rng.randint(0, 2)) % len(STRATA)], 8)
-            ox, oz = rng.uniform(-4, 4), rng.uniform(-4, 4)
-            m.part("Cliffs", "Mesa", (w, h + 4, d), (x + ox, y + h / 2, z + oz), color, rock_rows(3),
-                   Material="Sandstone", **NO_HIT)
-            for _ in range(5):  # facets stuck on the tier's side
-                a = rng.uniform(0, math.tau)
-                fx, fz = x + ox + math.cos(a) * w * 0.42, z + oz + math.sin(a) * d * 0.42
-                size = (rng.uniform(14, 26), rng.uniform(10, 22), rng.uniform(10, 22))
-                m.part("Cliffs", "Facet", size, (fx, y + rng.uniform(0.3, 0.7) * h, fz),
-                       jitter(rng.choice(STRATA), 10), rock_rows(16), Material="Sandstone", **NO_HIT)
+        for i in range(rng.randint(2, 3)):
+            h = rng.uniform(30, 46)
+            color = jitter(STRATA[(i * 2 + rng.randint(0, 2)) % len(STRATA)], 5)
+            m.part("Cliffs", "Mesa", (w, h + 4, d), (x + rng.uniform(-4, 4), y + h / 2, z + rng.uniform(-4, 4)), color,
+                   rock_rows(2), Material="SmoothPlastic", **NO_HIT)
             y += h
             w, d = w * rng.uniform(0.66, 0.84), d * rng.uniform(0.66, 0.84)
 
-    span = 340
-    for x in range(-span, span + 1, 56):
-        mesa(x + rng.uniform(-10, 10), -RZ - 36 - rng.uniform(0, 30), 62)
-        mesa(x + rng.uniform(-10, 10), RZ + 36 + rng.uniform(0, 30), 62)
-        mesa(x + rng.uniform(-14, 14), -RZ - 118 - rng.uniform(0, 40), 88)
-        mesa(x + rng.uniform(-14, 14), RZ + 118 + rng.uniform(0, 40), 88)
-    for z in range(-180, 181, 56):
-        mesa(-RX - 36 - rng.uniform(0, 30), z + rng.uniform(-10, 10), 62)
-        mesa(RX + 36 + rng.uniform(0, 30), z + rng.uniform(-10, 10), 62)
-        mesa(-RX - 118 - rng.uniform(0, 40), z + rng.uniform(-14, 14), 88)
-        mesa(RX + 118 + rng.uniform(0, 40), z + rng.uniform(-14, 14), 88)
+    for x in range(-300, 301, 86):
+        mesa(x + rng.uniform(-10, 10), -RZ - 44 - rng.uniform(0, 26), 76)
+        mesa(x + rng.uniform(-10, 10), RZ + 44 + rng.uniform(0, 26), 76)
+    for z in range(-180, 181, 86):
+        mesa(-RX - 44 - rng.uniform(0, 26), z + rng.uniform(-10, 10), 76)
+        mesa(RX + 44 + rng.uniform(0, 26), z + rng.uniform(-10, 10), 76)
     m.block("Cliffs", "FarSand", -700, 700, -6, -2.5, -700, 700, (214, 176, 122), Material="Sand",
             **NO_HIT)
 
@@ -212,24 +201,18 @@ def stairs(m, x0, x1, z_from, z_to, y0, y1, open_x):
     for x in (x0 + 0.5, x1 - 0.5):
         (z0, ya), (z1, yb) = at(0), at(steps)
         beam(m, "Stairs", "Stringer", (x, ya - 0.85, z0), (x, yb - 0.85, z1), 0.6, 1.0, WOOD[1])
-    for i in range(3, steps, 4):
+    for i in range(5, steps, 8):
         z, y = at(i)
         for x in (x0 + 0.5, x1 - 0.5):
             timber(m, "Stairs", (x, y0, z), (x, y - 0.9, z), 0.6)
-        if i + 4 < steps:
-            z2, y2 = at(i + 4)
-            timber(m, "Stairs", (x0 + 0.5, y0 + 0.6, z), (x0 + 0.5, y2 - 1.2, z2), 0.32)
-            timber(m, "Stairs", (x1 - 0.5, y0 + 0.6, z), (x1 - 0.5, y2 - 1.2, z2), 0.32)
-            timber(m, "Stairs", (x0 + 0.5, y - 1.3, z), (x1 - 0.5, y - 1.3, z), 0.4)
     # The handrail along the open side.
     last = None
-    for i in range(0, steps + 1, 4):
+    for i in range(0, steps + 1, 8):
         z, y = at(i)
         top = (open_x, y + 3.3, z)
         timber(m, "Stairs", (open_x, y - 0.8, z), top, 0.34)
         if last:
             timber(m, "Stairs", last, top, 0.26)
-            timber(m, "Stairs", (last[0], last[1] - 1.5, last[2]), (top[0], top[1] - 1.5, top[2]), 0.18)
         last = top
 
 
@@ -242,8 +225,6 @@ def build_stairs(m):
     m.ladder("Stairs", -43, -PZ, (0, 1), LEDGE, TOP, width=4, color=(112, 78, 46), name="MineLadder")
     for x in (-46.2, -39.8):
         timber(m, "Stairs", (x, LEDGE, -PZ + 0.7), (x, TOP + 1.2, -PZ + 0.7), 0.5)
-    for y in range(LEDGE + 4, TOP, 7):
-        timber(m, "Stairs", (-46.2, y, -PZ + 0.72), (-39.8, y + 3, -PZ + 0.72), 0.3)
 
 
 def rope_bridge(m, z):
@@ -251,28 +232,28 @@ def rope_bridge(m, z):
     half = PX
     m.block("Bridges", "BridgeDeck", -half, half, LEDGE - 0.6, LEDGE - 0.02, z - w, z + w, "plank",
             Transparency=1, CastShadow=False)
-    x = -half + 0.55
+    x = -half + 1.15
     while x < half - 0.4:
-        depth = 1.02
+        depth = 2.1
         m.part("Bridges", "Plank", (depth, 0.3, 2 * w + rng.uniform(-0.5, 0.5)),
                (x, LEDGE - 0.08 + rng.uniform(-0.03, 0.03), z + rng.uniform(-0.25, 0.25)),
                jitter(rng.choice(WOOD), 10), rot_y(rng.uniform(-1.6, 1.6)), Material="WoodPlanks", **NO_HIT)
-        x += 1.2
+        x += 2.4
     for side in (-1, 1):
         zs = z + side * (w - 0.3)
         # Two under-ropes carry the planks; top ropes sag from post to post.
         beam(m, "Bridges", "Rope", (-half - 1.5, LEDGE - 0.35, zs), (half + 1.5, LEDGE - 0.35, zs), 0.26, 0.26,
              (92, 72, 48), "Fabric")
         prev = None
-        for i in range(25):
-            t = i / 24
+        for i in range(9):
+            t = i / 8
             xr = -half + 2 * half * t
             y = LEDGE + 4.4 - 1.7 * 4 * t * (1 - t)
             p = (xr, y, zs)
             if prev:
                 beam(m, "Bridges", "Rope", prev, p, 0.2, 0.2, (96, 76, 52), "Fabric")
-            if 0 < i < 24 and i % 2 == 0:
-                beam(m, "Bridges", "Rope", p, (xr, LEDGE - 0.3, zs), 0.1, 0.1, (110, 90, 60), "Fabric")
+            if 0 < i < 8:
+                beam(m, "Bridges", "Rope", p, (xr, LEDGE - 0.55, zs), 0.1, 0.1, (110, 90, 60), "Fabric")
             prev = p
         for sx in (-1, 1):
             post_x = sx * (half + 1.8)
@@ -285,37 +266,12 @@ def rope_bridge(m, z):
             timber(m, "Bridges", (stake[0], LEDGE, zs), stake, 0.42)
 
 
-def cut_stone(m, group, x0, x1, y0, y1, z0, z1, color):
-    """Rows of cut stone blocks over a solid block's four sides."""
-    course, row = 1.45, 0
-    y = y0
-    while y < y1 - 0.2:
-        h = min(course, y1 - y)
-        shift = 0.0 if row % 2 == 0 else 0.9
-        for axis, a0, a1, fixed, out in (("x", x0, x1, z0, -1), ("x", x0, x1, z1, 1),
-                                         ("z", z0, z1, x0, -1), ("z", z0, z1, x1, 1)):
-            a = a0 - shift
-            while a < a1 - 0.2:
-                w = rng.uniform(1.6, 2.6)
-                aa, bb = max(a, a0), min(a + w, a1)
-                proud = rng.uniform(0.06, 0.22)
-                centre = (aa + bb) / 2
-                n = fixed + out * (proud - 0.3)
-                size = ((bb - aa) - 0.09, h - 0.09, 0.6)
-                pos = (centre, y + h / 2, n) if axis == "x" else (n, y + h / 2, centre)
-                rows = rot_y(rng.uniform(-0.8, 0.8)) if axis == "x" else matmul(rot_y(90), rot_y(rng.uniform(-0.8, 0.8)))
-                m.part(group, "Stone", size, pos, jitter(color, 12), rows, Material="Sandstone", **NO_HIT)
-                a += w
-        y += h
-        row += 1
-
-
 def ruin(m, x0, x1, z0, z1, tiers, base=0):
     y = base
     for t in range(tiers):
         color = (220, 186, 138)
         m.block("Ruins", "Ruin", x0, x1, y, y + 4, z0, z1, color, Material="Sandstone")
-        cut_stone(m, "Ruins", x0, x1, y, y + 3.9, z0, z1, color)
+        m.block("Ruins", "RuinCap", x0 - 0.18, x1 + 0.18, y + 3.3, y + 3.75, z0 - 0.18, z1 + 0.18, (202, 166, 118), **NO_HIT)
         y += 4
         if t < tiers - 1:
             # The next tier sits back on one side, leaving steps to climb.
@@ -323,7 +279,7 @@ def ruin(m, x0, x1, z0, z1, tiers, base=0):
             z0 += 2.0
             x1 -= rng.choice((0, 1.2))
     # Loose blocks fallen round the foot.
-    for _ in range(7):
+    for _ in range(2):
         a = rng.uniform(0, math.tau)
         cx, cz = (x0 + x1) / 2 + math.cos(a) * (x1 - x0) * 0.9, (z0 + z1) / 2 + math.sin(a) * (z1 - z0) * 0.9
         size = rng.uniform(0.9, 1.9)
@@ -340,7 +296,8 @@ def build_ruins(m):
     ruin(m, 6, 20, 48, 60, 2)
     for x0 in (-2, 11):
         m.block("Ruins", "RuinWall", x0, x0 + 3, 0, 16, -30, 2, (214, 178, 130), Material="Sandstone")
-        cut_stone(m, "Ruins", x0, x0 + 3, 0, 15.9, -30, 2, (214, 178, 130))
+        for y in (5, 10.5):
+            m.block("Ruins", "RuinCap", x0 - 0.15, x0 + 3.15, y, y + 0.5, -30.15, 2.15, (198, 162, 116), **NO_HIT)
 
 
 def build_lift(m):
@@ -354,10 +311,9 @@ def build_lift(m):
     for z in (z0 - 0.6, z1 + 0.6):
         y = 0
         while y < top - 8:
-            timber(m, "Lift", (px0, y + 0.4, z), (px1, y + 8, z), 0.42)
-            timber(m, "Lift", (px1, y + 0.4, z), (px0, y + 8, z), 0.42)
-            timber(m, "Lift", (px0, y + 8, z), (px1, y + 8, z), 0.5)
-            y += 8
+            timber(m, "Lift", (px0, y + 0.4, z), (px1, y + 16, z), 0.42)
+            timber(m, "Lift", (px0, y + 16, z), (px1, y + 16, z), 0.5)
+            y += 16
     # The head: beams across the top and a winding drum, with cables down to the car.
     for z in (z0 - 0.6, z1 + 0.6):
         timber(m, "Lift", (px0, top, z), (px1, top, z), 0.9)
@@ -385,19 +341,17 @@ def build_lift(m):
     # The walkway from the tower's top across to the rim, on posts down to the ledge.
     x_a = LIFT_X1 + 0.4
     m.block("Lift", "WalkwayDeck", x_a, LX, TOP - 0.6, TOP - 0.02, 6, 14, "plank", Transparency=1, CastShadow=False)
-    x = x_a + 0.5
+    x = x_a + 1.1
     while x < LX - 0.2:
-        m.part("Lift", "Plank", (1.0, 0.3, 8 + rng.uniform(-0.2, 0.2)), (x, TOP - 0.08, 10), jitter(rng.choice(WOOD), 9),
+        m.part("Lift", "Plank", (2.1, 0.3, 8 + rng.uniform(-0.2, 0.2)), (x, TOP - 0.08, 10), jitter(rng.choice(WOOD), 9),
                Material="WoodPlanks", **NO_HIT)
-        x += 1.18
+        x += 2.35
     for x in (36, 45, 54):
         for z in (6.4, 13.6):
             m.block("Lift", "WalkPost", x - 0.4, x + 0.4, LEDGE, TOP - 0.6, z - 0.4, z + 0.4, rng.choice(WOOD), Material="Wood")
-        timber(m, "Lift", (x, LEDGE + 2, 6.4), (x, TOP - 2, 13.6), 0.34)
-        timber(m, "Lift", (x, LEDGE + 2, 13.6), (x, TOP - 2, 6.4), 0.34)
     for z in (6.2, 13.8):
         timber(m, "Lift", (x_a, TOP + 3.3, z), (LX, TOP + 3.3, z), 0.3)
-        for x in range(30, 60, 6):
+        for x in range(30, 60, 14):
             timber(m, "Lift", (x, TOP - 0.4, z), (x, TOP + 3.3, z), 0.28)
     for z in (6.4, 13.6):
         timber(m, "Lift", (36, TOP - 1, z), (54, TOP - 1, z), 0.55)
@@ -407,8 +361,8 @@ def build_lift(m):
 def build_ziplines(m):
     for index, (a, b, sag) in enumerate(LINES):
         prev = None
-        for i in range(37):
-            t = i / 36
+        for i in range(15):
+            t = i / 14
             p = (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t - sag * 4 * t * (1 - t),
                  a[2] + (b[2] - a[2]) * t)
             if prev:
@@ -431,9 +385,7 @@ def gantry(m, index, here, there, sag):
     for s in (-1, 1):
         timber(m, "Ziplines", at(-1.2, s * width, ground), at(0, s * width, y + 1.2), 1.0)
         timber(m, "Ziplines", at(-4.5, s * width, ground), at(0, s * width, y - 1.5), 0.6)
-        timber(m, "Ziplines", at(-1, s * width, ground + 3.5), at(-1, 0, y - 2.5), 0.34)
     timber(m, "Ziplines", at(0, -width - 0.6, y + 0.9), at(0, width + 0.6, y + 0.9), 0.9)
-    timber(m, "Ziplines", at(-0.7, -width, ground + 5), at(-0.7, width, ground + 5), 0.5)
     # The wheel the cable runs over, and its bracket.
     wheel_rows = rot_y(math.degrees(math.atan2(-fz, fx)) + 90)
     m.cylinder("Ziplines", "Wheel", 0.5, 2.4, (x, y + 0.12, z), (72, 68, 62), matmul(wheel_rows, rot_y(90)),
@@ -443,7 +395,7 @@ def gantry(m, index, here, there, sag):
     stake = at(-9, 0, ground + 0.8)
     beam(m, "Ziplines", "Cable", here, stake, 0.2, 0.2, (40, 38, 36), "Metal")
     timber(m, "Ziplines", (stake[0], ground, stake[2]), stake, 0.6)
-    for k in range(5):
+    for k in range(2):
         size = rng.uniform(1.0, 1.9)
         m.part("Ziplines", "StakeRock", (size * 1.3, size, size),
                (stake[0] + rng.uniform(-1.4, 1.4), ground + size * 0.34, stake[2] + rng.uniform(-1.4, 1.4)),
@@ -474,9 +426,8 @@ def build_geysers(m):
         # The vent's throat, mineral stains and the ring of broken rock round it.
         m.cylinder("Geysers", "VentThroat", 0.12, 3.2, (x, y + 0.46, z), (30, 26, 22), **NO_HIT)
         m.cylinder("Geysers", "Stain", 0.06, 13, (x, y + 0.05, z), (228, 214, 186), Material="Limestone", **NO_HIT)
-        m.cylinder("Geysers", "Stain", 0.06, 10, (x, y + 0.14, z), (198, 158, 104), Material="Sand", **NO_HIT)
-        for k in range(13):
-            a = k / 13 * math.tau + rng.uniform(-0.12, 0.12)
+        for k in range(7):
+            a = k / 7 * math.tau + rng.uniform(-0.12, 0.12)
             rad = rng.uniform(3.7, 5)
             w, h = rng.uniform(1.0, 2.3), rng.uniform(0.9, 2.3)
             m.part("Geysers", "VentRock", (w, h, rng.uniform(1.1, 2.1)),
@@ -486,7 +437,7 @@ def build_geysers(m):
 
 def shrub(m, x, y, z):
     r = rng.uniform(1.1, 2.0)
-    for _ in range(rng.randint(4, 7)):
+    for _ in range(rng.randint(2, 3)):
         rr = r * rng.uniform(0.55, 1.0)
         p = (x + rng.uniform(-r, r) * 0.8, y + rr * 0.55, z + rng.uniform(-r, r) * 0.8)
         m.part("Clutter", "Shrub", (rr * 2, rr * 1.3, rr * 2), p, jitter((122, 132, 74), 16), Shape="Ball", Material="Grass", **NO_HIT)
@@ -515,26 +466,16 @@ def scatter(m, count, x0, x1, z0, z1, y, level):
         if not clear(x, z, level):
             continue
         kind = rng.random()
-        if kind < 0.16:
+        if kind < 0.45:
             shrub(m, x, y, z)
-        elif kind < 0.6:
-            size = rng.uniform(0.35, 1.3)
-            m.part("Clutter", "Pebble", (size * 1.4, size, size * 1.1), (x, y + size * 0.3, z), jitter(rng.choice(STRATA), 12),
-                   rock_rows(30), Material="Sandstone", **NO_HIT)
         else:
-            # A sand drift or darker patch, each tilted a hair so none share a plane.
-            w, d = rng.uniform(5, 14), rng.uniform(3, 9)
-            tilt = matmul(rot_x(rng.uniform(0.15, 0.5)), rot_z(rng.uniform(0.15, 0.5)))
-            m.part("Clutter", "SandPatch", (w, 0.1, d), (x, y + 0.06, z), jitter((214, 176, 122), 14),
-                   matmul(rot_y(rng.uniform(0, 180)), tilt), Material="Sand", **NO_HIT)
+            size = rng.uniform(0.8, 1.9)
+            m.part("Clutter", "Pebble", (size * 1.4, size, size * 1.1), (x, y + size * 0.3, z), jitter(rng.choice(STRATA), 6),
+                   rock_rows(24), Material="SmoothPlastic", **NO_HIT)
 
 
 def crate(m, x, y, z, s):
     m.block("Props", "Crate", x - s, x + s, y, y + 2 * s, z - s, z + s, jitter((150, 108, 66), 10), Material="WoodPlanks")
-    trim = (104, 72, 42)
-    for ox, oz in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
-        m.block("Props", "CrateEdge", x + ox * s * 1.02 - 0.16, x + ox * s * 1.02 + 0.16, y + 0.03, y + 2 * s + 0.08,
-                z + oz * s * 1.02 - 0.16, z + oz * s * 1.02 + 0.16, trim, Material="Wood", **NO_HIT)
 
 
 def barrel(m, x, y, z):
@@ -592,8 +533,6 @@ def build_props(m):
     # A site hut on the south rim, with an awning and tools.
     h0, h1, z0, z1 = 22, 40, 78, 92
     m.block("Props", "Hut", h0, h1, TOP, TOP + 9, z0, z1, (156, 112, 70), Material="WoodPlanks")
-    for x in range(h0, h1 + 1, 3):
-        timber(m, "Props", (x, TOP, z0 - 0.15), (x, TOP + 9, z0 - 0.15), 0.32)
     m.block("Props", "ShedRoof", h0 - 1.2, h1 + 1.2, TOP + 9, TOP + 9.6, z0 - 1.2, z1 + 1.2, (94, 92, 88), Material="CorrodedMetal")
     m.block("Props", "HutDoor", 29, 33, TOP + 0.02, TOP + 7, z0 - 0.08, z0 - 0.02, (88, 60, 36), Material="Wood", **NO_HIT)
     for x in (-1, 12):
@@ -611,7 +550,7 @@ def build_props(m):
     m.block("Props", "Bucket", x - 1.2, x + 1.2, LEDGE, LEDGE + 2.0, z + 6.7, z + 9.1, (88, 84, 78), Material="CorrodedMetal", **NO_HIT)
     # Timber shoring against the walls: props and braces standing on the ledges and the floor.
     for s in (-1, 1):
-        for z in range(-60, 61, 24):
+        for z in range(-48, 49, 48):
             if abs(z) < 3:
                 continue
             for x, y0, y1 in ((s * (PX - 0.8), 0, LEDGE - 2), (s * (LX - 0.8), LEDGE, TOP - 2)):
@@ -624,7 +563,19 @@ def build_props(m):
                 timber(m, "Props", (x, y0, z - 4), (x, y1, z - 4), 0.8)
                 timber(m, "Props", (x, y0, z + 4), (x, y1, z + 4), 0.8)
                 timber(m, "Props", (x, y1, z - 4.8), (x, y1, z + 4.8), 0.9)
-                timber(m, "Props", (x, y0 + 1, z - 4), (x, y1 - 1, z + 4), 0.4)
+
+
+def simple_materials(m):
+    """The owner's look (matching the Space Station): smooth colours, only real metal and glass
+    keep their material."""
+    for group in m.groups.values():
+        stack = list(group)
+        while stack:
+            node = stack.pop()
+            props = node.get("properties", {})
+            if "Material" in props and props["Material"] not in ("Metal", "Glass", "DiamondPlate"):
+                props["Material"] = "SmoothPlastic"
+            stack.extend(node.get("children", ()))
 
 
 def build():
@@ -639,14 +590,15 @@ def build():
     build_lift(m)
     build_ziplines(m)
     build_geysers(m)
-    scatter(m, 150, -27, 27, -69, 69, 0, 0)
-    scatter(m, 90, -59, -29, -69, 69, LEDGE, 1)
-    scatter(m, 90, 29, 59, -69, 69, LEDGE, 1)
+    scatter(m, 20, -27, 27, -69, 69, 0, 0)
+    scatter(m, 12, -59, -29, -69, 69, LEDGE, 1)
+    scatter(m, 12, 29, 59, -69, 69, LEDGE, 1)
     for x0, x1, z0, z1 in ((-89, -61, -99, 99), (61, 89, -99, 99), (-59, 59, -99, -72), (-59, 59, 72, 99)):
-        scatter(m, 90, x0, x1, z0, z1, TOP, 2)
+        scatter(m, 10, x0, x1, z0, z1, TOP, 2)
     build_props(m)
     for spawn in SPAWNS:
         m.spawn(spawn[0], spawn[1], spawn[2] if len(spawn) > 2 else 0)
+    simple_materials(m)
     return m
 
 

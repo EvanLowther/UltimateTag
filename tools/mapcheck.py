@@ -906,7 +906,7 @@ def parse_routes(text):
 
 # The only maps that may kill anyone (docs/polish/gameplay-rules.md): the Rooftop District by
 # falling off, the Metro by its train (and the tunnel floor past the platform ends).
-MAY_KILL = ("Rooftop District", "The Metro")  # their DisplayName attributes
+MAY_KILL = ("Rooftop District", "The Metro", "Canyon Express", "Arctic Icebreaker")  # their DisplayName attributes
 KILL_ATTRIBUTES = ("KillHeight", "FallEliminates")
 
 
