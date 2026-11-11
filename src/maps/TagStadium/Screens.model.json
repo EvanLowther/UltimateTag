@@ -1,0 +1,941 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Screen",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -60.0,
+       1.5,
+       -60.5
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 11.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -59.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       1.5,
+       -60.5
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 83.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -107.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       60.0,
+       1.5,
+       -60.5
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 131.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -179.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -60.0,
+       1.5,
+       60.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 443.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -491.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       1.5,
+       60.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 395.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -419.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     48,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       60.0,
+       1.5,
+       60.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 323.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -371.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       95.5,
+       1.5,
+       -37.0
+      ],
+      "orientation": [
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1,
+        0,
+        0
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 199.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -229.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       95.5,
+       1.5,
+       37.0
+      ],
+      "orientation": [
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1,
+        0,
+        0
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 273.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -303.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     3,
+     2.4
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       98.6,
+       1.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -1,
+        0,
+        0
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 239.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -263.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -95.5,
+       1.5,
+       -37.0
+      ],
+      "orientation": [
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 585.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -615.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     3,
+     1.0
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -95.5,
+       1.5,
+       37.0
+      ],
+      "orientation": [
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 511.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -541.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Screen12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24,
+     3,
+     2.4
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -98.6,
+       1.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        0,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ]
+      ]
+     }
+    }
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": 551.5
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 48,
+      "StudsPerTileV": 3,
+      "Texture": "",
+      "Transparency": 0
+     },
+     "attributes": {
+      "Image": "stadium_led",
+      "LedStart": -575.5
+     }
+    }
+   ]
+  }
+ ]
+}

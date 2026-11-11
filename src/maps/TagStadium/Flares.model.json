@@ -1,0 +1,6278 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "Flare",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.3653,
+       49.7,
+       -165.45
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 1
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        37.61747808695747,
+        43.887057768117046
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -56.5908,
+       10.8,
+       96.65
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 2
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        12.170360557545063,
+        14.198753983802575
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -91.3566,
+       14.2,
+       102.8247
+      ],
+      "orientation": [
+       [
+        0.993956,
+        0,
+        -0.109779
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.109779,
+        0,
+        0.993956
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 3
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        14.751952190963715,
+        17.21061088945767
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       144.3326,
+       41.7,
+       -137.5491
+      ],
+      "orientation": [
+       [
+        -0.905822,
+        0,
+        0.423659
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.423659,
+        0,
+        -0.905822
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 4
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        43.88705776811705,
+        51.20156739613656
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -159.5611,
+       33.7,
+       113.0623
+      ],
+      "orientation": [
+       [
+        0.817811,
+        0,
+        -0.575487
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.575487,
+        0,
+        0.817811
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 5
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        41.67426493947249,
+        48.61997576271791
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       117.5909,
+       41.7,
+       147.1236
+      ],
+      "orientation": [
+       [
+        0.968874,
+        0,
+        0.247553
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.247553,
+        0,
+        0.968874
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 1
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        35.773484063087004,
+        41.73573140693484
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.3011,
+       39.7,
+       -148.45
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 2
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        31.34789840579789,
+        36.57254814009754
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.7291,
+       37.7,
+       -145.05
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 3
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        30.241501991475612,
+        35.28175232338822
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       134.2826,
+       10.8,
+       -79.9664
+      ],
+      "orientation": [
+       [
+        -0.827381,
+        0,
+        0.561641
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.561641,
+        0,
+        -0.827381
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 4
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        26.18471513896059,
+        30.548834328787358
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -103.4388,
+       39.7,
+       -146.5879
+      ],
+      "orientation": [
+       [
+        -0.987457,
+        0,
+        -0.157891
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.157891,
+        0,
+        -0.987457
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 5
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        30.979099601023798,
+        36.1422828678611
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       9.1255,
+       49.7,
+       165.45
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 1
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        37.61747808695747,
+        43.887057768117046
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       156.8453,
+       51.7,
+       150.35
+      ],
+      "orientation": [
+       [
+        0.890435,
+        0,
+        0.45511
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.45511,
+        0,
+        0.890435
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 2
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        47.94384462063208,
+        55.93448539073742
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.223,
+       45.7,
+       -158.65
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 3
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        35.03588645353882,
+        40.87520086246196
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -163.3482,
+       49.7,
+       -142.9223
+      ],
+      "orientation": [
+       [
+        -0.86384,
+        0,
+        -0.503767
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.503767,
+        0,
+        -0.86384
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 4
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        47.94384462063208,
+        55.93448539073742
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -119.8843,
+       12.5,
+       91.7565
+      ],
+      "orientation": [
+       [
+        0.917106,
+        0,
+        -0.398643
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.398643,
+        0,
+        0.917106
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 5
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        23.97192231031604,
+        27.96724269536871
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       6.5178,
+       45.7,
+       -158.65
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 1
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        35.03588645353882,
+        40.87520086246196
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -129.1316,
+       19.3,
+       -102.4813
+      ],
+      "orientation": [
+       [
+        -0.901727,
+        0,
+        -0.432306
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.432306,
+        0,
+        -0.901727
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 2
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        29.87270318670152,
+        34.85148705115178
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -87.0224,
+       37.7,
+       144.8799
+      ],
+      "orientation": [
+       [
+        0.998827,
+        0,
+        -0.048414
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.048414,
+        0,
+        0.998827
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 3
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        29.87270318670152,
+        34.85148705115178
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       159.6758,
+       26.1,
+       -99.2186
+      ],
+      "orientation": [
+       [
+        -0.779714,
+        0,
+        0.626136
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.626136,
+        0,
+        -0.779714
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 4
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        38.35507569650566,
+        44.74758831258994
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       157.1716,
+       33.7,
+       -114.7066
+      ],
+      "orientation": [
+       [
+        -0.829704,
+        0,
+        0.558203
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.558203,
+        0,
+        -0.829704
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 5
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        41.30546613469839,
+        48.18971049048146
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       102.3808,
+       7.4,
+       87.018
+      ],
+      "orientation": [
+       [
+        0.96848,
+        0,
+        0.24909
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.24909,
+        0,
+        0.96848
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 1
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        12.90795816709325,
+        15.059284528275459
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       59.7319,
+       26.1,
+       127.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 2
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        23.60312350554194,
+        27.536977423132264
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -174.3254,
+       45.7,
+       -127.5639
+      ],
+      "orientation": [
+       [
+        -0.804059,
+        0,
+        -0.59455
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.59455,
+        0,
+        -0.804059
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 3
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        47.94384462063208,
+        55.93448539073742
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       50.3133,
+       37.7,
+       -145.05
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 4
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        30.241501991475612,
+        35.28175232338822
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       127.3277,
+       15.9,
+       -95.7967
+      ],
+      "orientation": [
+       [
+        -0.896553,
+        0,
+        0.442936
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.442936,
+        0,
+        -0.896553
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 5
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        27.659910358056965,
+        32.269895417733125
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -13.9307,
+       14.2,
+       -103.45
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 1
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        14.751952190963715,
+        17.21061088945767
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       54.4166,
+       17.6,
+       -110.25
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 2
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        17.333543824382364,
+        20.222467795112756
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -132.3913,
+       12.5,
+       -85.2359
+      ],
+      "orientation": [
+       [
+        -0.851933,
+        0,
+        -0.523651
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.523651,
+        0,
+        -0.851933
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 3
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        26.922312748508777,
+        31.40936487326024
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare29",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -16.5444,
+       26.1,
+       127.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 4
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        23.60312350554194,
+        27.536977423132264
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare30",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       86.8257,
+       37.7,
+       144.8893
+      ],
+      "orientation": [
+       [
+        0.998892,
+        0,
+        0.047058
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.047058,
+        0,
+        0.998892
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 5
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        29.87270318670152,
+        34.85148705115178
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare31",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       74.1242,
+       35.7,
+       -141.65
+      ],
+      "orientation": [
+       [
+        -1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        -1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 1
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        28.76630677237924,
+        33.56069123444245
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare32",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -152.0921,
+       39.7,
+       -129.7696
+      ],
+      "orientation": [
+       [
+        -0.874163,
+        0,
+        -0.485632
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0.485632,
+        0,
+        -0.874163
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 2
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        43.88705776811705,
+        51.20156739613656
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare33",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.5215,
+       35.7,
+       141.65
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 3
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        28.76630677237924,
+        33.56069123444245
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.8471,
+           0.1373,
+           0.1647
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare34",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       75.5949,
+       21.0,
+       117.05
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 4
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        19.915135457801014,
+        23.23432470076785
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           1.0,
+           0.8235,
+           0.2471
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare35",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.1843,
+     0.4353,
+     0.8784
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       197.022,
+       21.0,
+       -2.5614
+      ],
+      "orientation": [
+       [
+        -0.021883,
+        0,
+        0.999761
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.999761,
+        0,
+        -0.021883
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 6
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        37.61747808695747,
+        43.887057768117046
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare36",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.949,
+     0.9647,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       172.1335,
+       14.2,
+       47.046
+      ],
+      "orientation": [
+       [
+        0.45477,
+        0,
+        0.890609
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.890609,
+        0,
+        0.45477
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 6
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        31.716697210571986,
+        37.002813412333985
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.949,
+           0.9647,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.949,
+           0.9647,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare37",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.1843,
+     0.4353,
+     0.8784
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       181.5829,
+       14.2,
+       -19.5658
+      ],
+      "orientation": [
+       [
+        -0.189133,
+        0,
+        0.981951
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.981951,
+        0,
+        -0.189133
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 6
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        32.454294820120175,
+        37.863343956806865
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare38",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.949,
+     0.9647,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       175.2833,
+       10.8,
+       16.1962
+      ],
+      "orientation": [
+       [
+        0.167576,
+        0,
+        0.985859
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.985859,
+        0,
+        0.167576
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 6
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        29.87270318670152,
+        34.85148705115178
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.949,
+           0.9647,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.949,
+           0.9647,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare39",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.1843,
+     0.4353,
+     0.8784
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       234.2445,
+       43.7,
+       -17.6408
+      ],
+      "orientation": [
+       [
+        -0.113628,
+        0,
+        0.993523
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.993523,
+        0,
+        -0.113628
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 6
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        47.94384462063208,
+        55.93448539073742
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare40",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.949,
+     0.9647,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       195.5739,
+       21.0,
+       -18.5304
+      ],
+      "orientation": [
+       [
+        -0.158312,
+        0,
+        0.987389
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.987389,
+        0,
+        -0.158312
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 6
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        37.248679282183375,
+        43.456792495880606
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.949,
+           0.9647,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.949,
+           0.9647,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "Flare41",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.4,
+     1.4,
+     0.4
+    ],
+    "Color": [
+     0.1843,
+     0.4353,
+     0.8784
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       216.1549,
+       35.7,
+       -39.0714
+      ],
+      "orientation": [
+       [
+        -0.275831,
+        0,
+        0.961206
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        -0.961206,
+        0,
+        -0.275831
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "FlareGroup": 6
+   },
+   "children": [
+    {
+     "name": "Smoke",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 7,
+      "Lifetime": {
+       "NumberRange": [
+        5.0,
+        6.0
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        46.46864940153569,
+        54.21342430179165
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 3,
+          "envelope": 0
+         },
+         {
+          "time": 0.4,
+          "value": 10,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 17,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.7,
+          "value": 0.55,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.1843,
+           0.4353,
+           0.8784
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        14,
+        8
+       ]
+      },
+      "Acceleration": [
+       0,
+       1.6,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.35,
+      "Enabled": false
+     }
+    }
+   ]
+  }
+ ]
+}

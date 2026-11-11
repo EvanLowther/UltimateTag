@@ -1,0 +1,2663 @@
+{
+ "className": "Model",
+ "properties": {
+  "ModelStreamingMode": "Persistent"
+ },
+ "children": [
+  {
+   "name": "ChunkDisc",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6,
+     24,
+     24
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       -3.0,
+       0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "ChunkSlot": 1,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5
+   }
+  },
+  {
+   "name": "ChunkTurf",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.06,
+     23.98,
+     23.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       0.03,
+       0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 1,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5
+   }
+  },
+  {
+   "name": "ChunkPaint",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     0.07,
+     23.4
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       0.095,
+       0.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 1,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5
+   }
+  },
+  {
+   "name": "ChunkPaint2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.11,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0,
+       0.125,
+       0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 1,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5
+   }
+  },
+  {
+   "name": "ChunkRamp",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26,
+     1.2,
+     14
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.0,
+       -0.6,
+       33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 10,
+    "ChunkLength": 26,
+    "ChunkHinge": {
+     "Vector3": [
+      -41,
+      0,
+      33.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkTurf2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.98,
+     0.06,
+     13.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -28.0,
+       0.03,
+       33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 10,
+    "ChunkLength": 26,
+    "ChunkHinge": {
+     "Vector3": [
+      -41,
+      0,
+      33.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkPiston",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10.6,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -19.68,
+       -6.5,
+       33.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Piston",
+    "ChunkHeight": 10,
+    "ChunkLength": 26,
+    "PistonAt": 0.82,
+    "ChunkHinge": {
+     "Vector3": [
+      -41,
+      0,
+      33.0
+     ]
+    },
+    "ChunkDir": 1
+   }
+  },
+  {
+   "name": "ChunkDeck",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     1.2,
+     14
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       -0.6,
+       33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 10
+   }
+  },
+  {
+   "name": "ChunkTurf3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.98,
+     0.06,
+     13.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       0.03,
+       33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 10
+   }
+  },
+  {
+   "name": "ChunkPiston2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10.0,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12,
+       -6.2,
+       29
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 10
+   }
+  },
+  {
+   "name": "ChunkPiston3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10.0,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12,
+       -6.2,
+       29
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 10
+   }
+  },
+  {
+   "name": "ChunkPiston4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10.0,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -12,
+       -6.2,
+       37
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 10
+   }
+  },
+  {
+   "name": "ChunkPiston5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10.0,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12,
+       -6.2,
+       37
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 10
+   }
+  },
+  {
+   "name": "ChunkPaint3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.5,
+     0.07,
+     13.4
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       0.095,
+       33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 10
+   }
+  },
+  {
+   "name": "ChunkRamp2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     26,
+     1.2,
+     14
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.0,
+       -0.6,
+       33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 10,
+    "ChunkLength": 26,
+    "ChunkHinge": {
+     "Vector3": [
+      41,
+      0,
+      33.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      -1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkTurf4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     25.98,
+     0.06,
+     13.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       28.0,
+       0.03,
+       33.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 10,
+    "ChunkLength": 26,
+    "ChunkHinge": {
+     "Vector3": [
+      41,
+      0,
+      33.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      -1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkPiston6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10.6,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       19.68,
+       -6.5,
+       33.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 2,
+    "ChunkMode": "Piston",
+    "ChunkHeight": 10,
+    "ChunkLength": 26,
+    "PistonAt": 0.82,
+    "ChunkHinge": {
+     "Vector3": [
+      41,
+      0,
+      33.0
+     ]
+    },
+    "ChunkDir": -1
+   }
+  },
+  {
+   "name": "ChunkBlock",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     20,
+     9,
+     20
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -44.0,
+       -4.5,
+       -34.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 3,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 8
+   }
+  },
+  {
+   "name": "ChunkTurf5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     19.98,
+     0.06,
+     19.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -44.0,
+       0.03,
+       -34.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 3,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 8
+   }
+  },
+  {
+   "name": "ChunkRamp3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     22,
+     1.2,
+     20
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.0,
+       -0.6,
+       -34.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 3,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 8,
+    "ChunkLength": 22,
+    "ChunkHinge": {
+     "Vector3": [
+      -12,
+      0,
+      -34.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      -1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkTurf6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     21.98,
+     0.06,
+     19.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -23.0,
+       0.03,
+       -34.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 3,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 8,
+    "ChunkLength": 22,
+    "ChunkHinge": {
+     "Vector3": [
+      -12,
+      0,
+      -34.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      -1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkPiston7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8.96,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.04,
+       -5.68,
+       -34.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 3,
+    "ChunkMode": "Piston",
+    "ChunkHeight": 8,
+    "ChunkLength": 22,
+    "PistonAt": 0.82,
+    "ChunkHinge": {
+     "Vector3": [
+      -12,
+      0,
+      -34.0
+     ]
+    },
+    "ChunkDir": -1
+   }
+  },
+  {
+   "name": "ChunkBlock2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     5,
+     20
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.0,
+       -2.5,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 4,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 4
+   }
+  },
+  {
+   "name": "ChunkTurf7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.98,
+     0.06,
+     19.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       38.0,
+       0.03,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 4,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 4
+   }
+  },
+  {
+   "name": "ChunkBlock3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     9,
+     20
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       46.0,
+       -4.5,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 4,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 8
+   }
+  },
+  {
+   "name": "ChunkTurf8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.98,
+     0.06,
+     19.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       46.0,
+       0.03,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 4,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 8
+   }
+  },
+  {
+   "name": "ChunkBlock4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     8,
+     13,
+     20
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       54.0,
+       -6.5,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 4,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 12
+   }
+  },
+  {
+   "name": "ChunkTurf9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.98,
+     0.06,
+     19.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       54.0,
+       0.03,
+       -36.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 4,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 12
+   }
+  },
+  {
+   "name": "ChunkDeck2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     22,
+     1.2,
+     22
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.0,
+       -0.6,
+       -1.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 5,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5.2
+   }
+  },
+  {
+   "name": "ChunkTurf10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     21.98,
+     0.06,
+     21.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       33.0,
+       0.03,
+       -1.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 5,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5.2
+   }
+  },
+  {
+   "name": "ChunkPiston8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25,
+       -3.8,
+       -9
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 5,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5.2
+   }
+  },
+  {
+   "name": "ChunkPiston9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       41,
+       -3.8,
+       -9
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 5,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5.2
+   }
+  },
+  {
+   "name": "ChunkPiston10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25,
+       -3.8,
+       7
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 5,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5.2
+   }
+  },
+  {
+   "name": "ChunkPiston11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.2,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       41,
+       -3.8,
+       7
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 5,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5.2
+   }
+  },
+  {
+   "name": "ChunkRamp4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     30,
+     1.2,
+     18
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -37.0,
+       -0.6,
+       11.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 6,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 10,
+    "ChunkLength": 30,
+    "ChunkHinge": {
+     "Vector3": [
+      -52,
+      0,
+      11.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkTurf11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     29.98,
+     0.06,
+     17.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -37.0,
+       0.03,
+       11.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 6,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 10,
+    "ChunkLength": 30,
+    "ChunkHinge": {
+     "Vector3": [
+      -52,
+      0,
+      11.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkPiston12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     10.6,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.4,
+       -6.5,
+       11.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 6,
+    "ChunkMode": "Piston",
+    "ChunkHeight": 10,
+    "ChunkLength": 30,
+    "PistonAt": 0.82,
+    "ChunkHinge": {
+     "Vector3": [
+      -52,
+      0,
+      11.0
+     ]
+    },
+    "ChunkDir": 1
+   }
+  },
+  {
+   "name": "ChunkBlock5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     5,
+     14
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       51.0,
+       -2.5,
+       27.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 7,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 4
+   }
+  },
+  {
+   "name": "ChunkTurf12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     13.98,
+     0.06,
+     13.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       51.0,
+       0.03,
+       27.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 7,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 4
+   }
+  },
+  {
+   "name": "ChunkBlock6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     8,
+     14
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       71.0,
+       -4.0,
+       45.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 7,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 7
+   }
+  },
+  {
+   "name": "ChunkTurf13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     13.98,
+     0.06,
+     13.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       71.0,
+       0.03,
+       45.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 7,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 7
+   }
+  },
+  {
+   "name": "ChunkRamp5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     1.2,
+     12
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -70.0,
+       -0.6,
+       48.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 8,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 6,
+    "ChunkLength": 14,
+    "ChunkHinge": {
+     "Vector3": [
+      -77,
+      0,
+      48.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkTurf14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     13.98,
+     0.06,
+     11.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -70.0,
+       0.03,
+       48.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 8,
+    "ChunkMode": "Tilt",
+    "ChunkHeight": 6,
+    "ChunkLength": 14,
+    "ChunkHinge": {
+     "Vector3": [
+      -77,
+      0,
+      48.0
+     ]
+    },
+    "ChunkAxis": {
+     "Vector3": [
+      0,
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "name": "ChunkPiston13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.32,
+     1.4,
+     1.4
+    ],
+    "Color": [
+     0.6392,
+     0.6745,
+     0.7176
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -65.52,
+       -4.86,
+       48.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 8,
+    "ChunkMode": "Piston",
+    "ChunkHeight": 6,
+    "ChunkLength": 14,
+    "PistonAt": 0.82,
+    "ChunkHinge": {
+     "Vector3": [
+      -77,
+      0,
+      48.0
+     ]
+    },
+    "ChunkDir": 1
+   }
+  },
+  {
+   "name": "ChunkBlock7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     14,
+     6,
+     12
+    ],
+    "Color": [
+     0.3569,
+     0.3961,
+     0.451
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -46.0,
+       -3.0,
+       48.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   },
+   "attributes": {
+    "ChunkSlot": 8,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5
+   }
+  },
+  {
+   "name": "ChunkTurf15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     13.98,
+     0.06,
+     11.98
+    ],
+    "Color": [
+     0.3647,
+     0.7333,
+     0.2902
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -46.0,
+       0.03,
+       48.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "ChunkSlot": 8,
+    "ChunkMode": "Rise",
+    "ChunkHeight": 5
+   }
+  }
+ ]
+}

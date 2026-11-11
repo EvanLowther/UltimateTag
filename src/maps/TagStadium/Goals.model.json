@@ -1,0 +1,2585 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "GoalPost",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.38,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -90,
+       3.81,
+       -12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBackPost",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -96.5,
+       3.75,
+       -12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBar",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalPost2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.38,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -90,
+       3.81,
+       12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBackPost2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -96.5,
+       3.75,
+       12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBar2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.5,
+       12.0
+      ],
+      "orientation": [
+       [
+        -1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "Crossbar",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.9,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -90.0,
+       7.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBar3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.6,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -96.5,
+       7.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalNet",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     7.3,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -96.5,
+       3.65,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Right",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Left",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalTop",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.05,
+     0.2,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.475,
+       7.4,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Top",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Bottom",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalNet2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     7.3,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -96.5,
+       3.65,
+       6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Right",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Left",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalTop2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.05,
+     0.2,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.475,
+       7.4,
+       6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Top",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Bottom",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalNet3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     7.3,
+     0.1
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       3.65,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalNet4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     7.3,
+     0.1
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       3.65,
+       12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalSlat",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       -10.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       -7.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       -4.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       -1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       4.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       7.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -93.25,
+       7.55,
+       10.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalPost3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.38,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       90,
+       3.81,
+       -12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBackPost3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       96.5,
+       3.75,
+       -12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBar4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.5,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalPost4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.38,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       90,
+       3.81,
+       12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBackPost4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     7.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       96.5,
+       3.75,
+       12
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBar5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.5,
+       12.0
+      ],
+      "orientation": [
+       [
+        1.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "Crossbar2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.9,
+     0.9,
+     0.9
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       90.0,
+       7.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalBar6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     24.6,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.7882,
+     0.8157,
+     0.8471
+    ],
+    "Material": "Metal",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       96.5,
+       7.5,
+       0.0
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        1.0,
+        -0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   }
+  },
+  {
+   "name": "GoalNet5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     7.3,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       96.5,
+       3.65,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Right",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Left",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalTop3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.05,
+     0.2,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.475,
+       7.4,
+       -6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Top",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Bottom",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalNet6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.1,
+     7.3,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       96.5,
+       3.65,
+       6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Right",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Left",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalTop4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.05,
+     0.2,
+     12
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.475,
+       7.4,
+       6.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Top",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Bottom",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalNet7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     7.3,
+     0.1
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       3.65,
+       -12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       1.0,
+       0.824,
+       0.247
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalNet8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     6.5,
+     7.3,
+     0.1
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       3.65,
+       12.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 1
+   },
+   "children": [
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Front",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    },
+    {
+     "name": "Picture",
+     "className": "Texture",
+     "properties": {
+      "Face": "Back",
+      "StudsPerTileU": 1.1,
+      "StudsPerTileV": 1.1,
+      "Texture": "",
+      "Transparency": 0,
+      "Color3": [
+       0.847,
+       0.137,
+       0.165
+      ]
+     },
+     "attributes": {
+      "Image": "stadium_net"
+     }
+    }
+   ]
+  },
+  {
+   "name": "GoalSlat9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       -10.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       -7.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       -4.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       -1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       1.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       4.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       7.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "GoalSlat16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     5.3,
+     0.1,
+     0.32
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       93.25,
+       7.55,
+       10.5
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

@@ -2,7 +2,7 @@
 -- Every tunable number and name lives here. Change values here, not in the scripts.
 local Config = {
 	GameName = "Ultimate Tag",
-	Version = "0.72.0",
+	Version = "0.73.0",
 
 	Game = {
 		-- How the server runs. "Elimination": lobby -> rounds on maps -> last player wins.
@@ -1147,6 +1147,47 @@ local Config = {
 		WarnOn = Color3.fromRGB(242, 162, 58),
 		WarnOff = Color3.fromRGB(106, 111, 115),
 	},
+	-- Tag Stadium (tools/stadium_layout.py; shared/PitchChunks, client/StadiumWorld,
+	-- server/StadiumWorld): the lifting pitch chunks, the LED screens, the crowd, the flares and the
+	-- loose balls.
+	Stadium = {
+		Cycle = 8, -- seconds: a new random set of pitch chunks goes up every cycle
+		Slots = 8, -- chunk spots on the pitch
+		Up = 4, -- chunks up at a time
+		Warn = 1.5, -- seconds a chunk's edge flashes before it moves
+		Move = 2, -- seconds a chunk takes to rise or sink
+		WarnOn = Color3.fromRGB(255, 214, 10),
+		WarnOff = Color3.fromRGB(26, 31, 40),
+		PushOut = 2, -- studs past its edge a sinking chunk puts anyone under it
+		LedFlow = 6, -- studs a second the LED screens scroll, the way their arrows point
+		ActiveRange = 700, -- nothing moves while your camera is further than this from the map
+		CrowdRate = 30, -- crowd updates a second (fans, flags, pictures, screens)
+		FanJump = { 0.5, 1.4 }, -- how high a fan jumps (each fan somewhere in this range)
+		FanBeat = { 7, 11 }, -- how fast they jump (radians a second)
+		WaveSpeed = 0.07, -- the Mexican wave: laps of the bowl a second
+		WaveWidth = 0.03, -- how much of the way round it is wide
+		WaveHeight = 1.8, -- studs it lifts the fans
+		CrowdBob = 0.35, -- studs the crowd pictures bob
+		WaverSwing = 0.75, -- radians a fan's flag swings either side
+		WaverBeat = { 2.2, 3.4 },
+		RoofFlagSway = 0.16, -- radians the roof flags turn in the wind
+		ChoreoFlip = 8, -- seconds each card picture stays up
+		ChoreoSweep = 1.4, -- seconds a flip takes to sweep across the curve
+		FlarePeriod = 20, -- each group of flares burns for FlareBurn seconds out of every FlarePeriod
+		FlareBurn = 10,
+		FlareGroups = 6, -- groups 1-5 home, 6 the away end
+		BallKickMin = 40, -- studs a second: running into a ball kicks it at least this fast
+		BallKickMax = 110,
+		BallKickScale = 1.4, -- times your running speed
+		BallKickUp = 18,
+		BallKickCooldown = 0.25,
+		BallHitSpeed = 45, -- a ball closing on you this fast knocks you back
+		BallHitPush = 55,
+		BallHitCooldown = 0.8,
+		BallOutX = 96, -- a ball past these (off the pitch) for BallOutTime seconds goes back to its spot
+		BallOutZ = 64,
+		BallOutTime = 6,
+	},
 
 	-- Ziplines (the Desert Mine; client/Ziplines): press E at either end to grab the line.
 	Ziplines = {
@@ -1237,6 +1278,10 @@ local Config = {
 			amb_metro = { Id = 123040840279039, Volume = 0.2 }, -- (its vents hiss the same: halved)
 			amb_station = { Id = 0, Volume = 0.3 }, -- (the Space Station's: not uploaded yet)
 			amb_trench = { Id = 0, Volume = 0.6 },
+			amb_stadium = { Id = 0, Volume = 0.35 }, -- (Tag Stadium's crowd: not made yet)
+			amb_sprinkler = { Id = 0, Volume = 0.4 },
+			flare_hiss = { Id = 0, Volume = 0.35 },
+			chunk_move = { Id = 0, Volume = 0.5 },
 			door_close = { Id = 0, Volume = 0.5 },
 			door_open = { Id = 0, Volume = 0.55 },
 			music_station = { Id = 0, Volume = 0.18 },
@@ -1315,6 +1360,7 @@ local Config = {
 			Clocktower = "amb_clocktower",
 			Metro = "amb_metro",
 			SpaceStation = "amb_station",
+			TagStadium = "amb_stadium",
 		} :: { [string]: string },
 		-- A map's own music, played with its ambience in place of the round music (by MapName).
 		-- Until a map's sounds are uploaded (Id 0) it falls back to the round music.

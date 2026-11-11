@@ -1,0 +1,665 @@
+{
+ "className": "Model",
+ "properties": {
+  "ModelStreamingMode": "Persistent"
+ },
+ "children": [
+  {
+   "name": "Ball2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4,
+     4,
+     4
+    ],
+    "Color": [
+     0.9686,
+     0.9686,
+     0.9686
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12,
+       2.05,
+       20
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Ball"
+   },
+   "attributes": {
+    "Ball": 2,
+    "BallHome": {
+     "Vector3": [
+      12,
+      2.05,
+      20
+     ]
+    }
+   }
+  },
+  {
+   "name": "Patch13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.0,
+       3.0647,
+       21.6418
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        0.525731,
+        0.850651,
+        0.0
+       ],
+       [
+        0.850651,
+        -0.525731,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.0147,
+       3.6918,
+       20.0
+      ],
+      "orientation": [
+       [
+        0.525731,
+        -0.850651,
+        0.0
+       ],
+       [
+        0.850651,
+        0.525731,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.6418,
+       2.05,
+       21.0147
+      ],
+      "orientation": [
+       [
+        0.850651,
+        0.0,
+        -0.525731
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.525731,
+        -0.0,
+        0.850651
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.0,
+       1.0353,
+       21.6418
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        -1.0
+       ],
+       [
+        -0.525731,
+        0.850651,
+        0.0
+       ],
+       [
+        0.850651,
+        0.525731,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.9853,
+       3.6918,
+       20.0
+      ],
+      "orientation": [
+       [
+        -0.525731,
+        0.850651,
+        0.0
+       ],
+       [
+        0.850651,
+        0.525731,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.6418,
+       2.05,
+       18.9853
+      ],
+      "orientation": [
+       [
+        0.850651,
+        0.0,
+        0.525731
+       ],
+       [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       [
+        -0.525731,
+        0.0,
+        0.850651
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.0,
+       3.0647,
+       18.3582
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        0.525731,
+        0.850651,
+        -0.0
+       ],
+       [
+        -0.850651,
+        0.525731,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       13.0147,
+       0.4082,
+       20.0
+      ],
+      "orientation": [
+       [
+        0.525731,
+        0.850651,
+        -0.0
+       ],
+       [
+        -0.850651,
+        0.525731,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.3582,
+       2.05,
+       21.0147
+      ],
+      "orientation": [
+       [
+        -0.850651,
+        0.0,
+        -0.525731
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.525731,
+        0.0,
+        -0.850651
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       12.0,
+       1.0353,
+       18.3582
+      ],
+      "orientation": [
+       [
+        0.0,
+        0.0,
+        1.0
+       ],
+       [
+        -0.525731,
+        0.850651,
+        -0.0
+       ],
+       [
+        -0.850651,
+        -0.525731,
+        0.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.9853,
+       0.4082,
+       20.0
+      ],
+      "orientation": [
+       [
+        -0.525731,
+        -0.850651,
+        -0.0
+       ],
+       [
+        -0.850651,
+        0.525731,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Patch24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.16,
+     1.35,
+     1.35
+    ],
+    "Color": [
+     0.0863,
+     0.0863,
+     0.0941
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       10.3582,
+       2.05,
+       18.9853
+      ],
+      "orientation": [
+       [
+        -0.850651,
+        0.0,
+        0.525731
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        -0.525731,
+        0.0,
+        -0.850651
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}

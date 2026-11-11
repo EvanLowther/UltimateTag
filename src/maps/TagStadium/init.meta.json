@@ -1,0 +1,12 @@
+{
+ "className": "Model",
+ "attributes": {
+  "DisplayName": "Tag Stadium",
+  "MinPlayers": 6,
+  "MaxPlayers": 12,
+  "InRotation": true,
+  "Stadium": true,
+  "OutOfBounds": "Ball,DeskTop,SprinklerHead",
+  "ReachRoutes": "98.6,3,0>93.5,7.5,0;-98.6,3,0>-93.5,7.5,0"
+ }
+}

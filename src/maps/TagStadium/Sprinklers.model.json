@@ -1,0 +1,1049 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "SprinklerPad",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     10,
+     10
+    ],
+    "Color": [
+     0.4314,
+     0.4667,
+     0.5137
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84,
+       0.15,
+       -52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      108.834,
+      110,
+      67.373
+     ]
+    }
+   }
+  },
+  {
+   "name": "SprinklerHead",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.55,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84,
+       1.025,
+       -52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_sprinkler",
+    "SoundNear": 12,
+    "SoundRange": 70
+   }
+  },
+  {
+   "name": "SprinklerMist",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84,
+       1.8,
+       -52
+      ],
+      "orientation": [
+       [
+        -0.526355,
+        -0.670018,
+        -0.523475
+       ],
+       [
+        0,
+        0.615661,
+        -0.788011
+       ],
+       [
+        0.850265,
+        -0.414773,
+        -0.324056
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Mist",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 60,
+      "Lifetime": {
+       "NumberRange": [
+        1.2,
+        1.7
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        20,
+        34
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.5,
+          "value": 3.5,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 6,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.45,
+          "envelope": 0
+         },
+         {
+          "time": 0.6,
+          "value": 0.75,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        28,
+        10
+       ]
+      },
+      "Acceleration": [
+       0,
+       -30,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "SprinklerPad2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     10,
+     10
+    ],
+    "Color": [
+     0.4314,
+     0.4667,
+     0.5137
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       0.15,
+       -52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      -108.834,
+      110,
+      67.373
+     ]
+    }
+   }
+  },
+  {
+   "name": "SprinklerHead2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.55,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       1.025,
+       -52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_sprinkler",
+    "SoundNear": 12,
+    "SoundRange": 70
+   }
+  },
+  {
+   "name": "SprinklerMist2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       1.8,
+       -52
+      ],
+      "orientation": [
+       [
+        -0.526355,
+        0.670018,
+        0.523475
+       ],
+       [
+        0,
+        0.615661,
+        -0.788011
+       ],
+       [
+        -0.850265,
+        -0.414773,
+        -0.324056
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Mist",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 60,
+      "Lifetime": {
+       "NumberRange": [
+        1.2,
+        1.7
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        20,
+        34
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.5,
+          "value": 3.5,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 6,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.45,
+          "envelope": 0
+         },
+         {
+          "time": 0.6,
+          "value": 0.75,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        28,
+        10
+       ]
+      },
+      "Acceleration": [
+       0,
+       -30,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "SprinklerPad3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     10,
+     10
+    ],
+    "Color": [
+     0.4314,
+     0.4667,
+     0.5137
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       0.15,
+       52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      -108.834,
+      110,
+      -67.373
+     ]
+    }
+   }
+  },
+  {
+   "name": "SprinklerHead3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.55,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       1.025,
+       52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_sprinkler",
+    "SoundNear": 12,
+    "SoundRange": 70
+   }
+  },
+  {
+   "name": "SprinklerMist3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       84,
+       1.8,
+       52
+      ],
+      "orientation": [
+       [
+        0.526355,
+        0.670018,
+        0.523475
+       ],
+       [
+        0,
+        0.615661,
+        -0.788011
+       ],
+       [
+        -0.850265,
+        0.414773,
+        0.324056
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Mist",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 60,
+      "Lifetime": {
+       "NumberRange": [
+        1.2,
+        1.7
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        20,
+        34
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.5,
+          "value": 3.5,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 6,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.45,
+          "envelope": 0
+         },
+         {
+          "time": 0.6,
+          "value": 0.75,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        28,
+        10
+       ]
+      },
+      "Acceleration": [
+       0,
+       -30,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  },
+  {
+   "name": "SprinklerPad4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.2,
+     10,
+     10
+    ],
+    "Color": [
+     0.4314,
+     0.4667,
+     0.5137
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84,
+       0.15,
+       52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder"
+   },
+   "attributes": {
+    "LaunchVelocity": {
+     "Vector3": [
+      108.834,
+      110,
+      -67.373
+     ]
+    }
+   }
+  },
+  {
+   "name": "SprinklerHead4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.55,
+     1.3,
+     1.3
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84,
+       1.025,
+       52
+      ],
+      "orientation": [
+       [
+        0.0,
+        -1.0,
+        0
+       ],
+       [
+        1.0,
+        0.0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Shape": "Cylinder",
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "attributes": {
+    "SoundLoop": "amb_sprinkler",
+    "SoundNear": 12,
+    "SoundRange": 70
+   }
+  },
+  {
+   "name": "SprinklerMist4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.6,
+     0.6,
+     0.6
+    ],
+    "Color": [
+     0.949,
+     0.549,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -84,
+       1.8,
+       52
+      ],
+      "orientation": [
+       [
+        0.526355,
+        -0.670018,
+        -0.523475
+       ],
+       [
+        0,
+        0.615661,
+        -0.788011
+       ],
+       [
+        0.850265,
+        0.414773,
+        0.324056
+       ]
+      ]
+     }
+    },
+    "Transparency": 1,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   },
+   "children": [
+    {
+     "name": "Mist",
+     "className": "ParticleEmitter",
+     "properties": {
+      "Rate": 60,
+      "Lifetime": {
+       "NumberRange": [
+        1.2,
+        1.7
+       ]
+      },
+      "Speed": {
+       "NumberRange": [
+        20,
+        34
+       ]
+      },
+      "Size": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 1.2,
+          "envelope": 0
+         },
+         {
+          "time": 0.5,
+          "value": 3.5,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 6,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Transparency": {
+       "NumberSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "value": 0.45,
+          "envelope": 0
+         },
+         {
+          "time": 0.6,
+          "value": 0.75,
+          "envelope": 0
+         },
+         {
+          "time": 1,
+          "value": 1,
+          "envelope": 0
+         }
+        ]
+       }
+      },
+      "Color": {
+       "ColorSequence": {
+        "keypoints": [
+         {
+          "time": 0,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         },
+         {
+          "time": 1,
+          "color": [
+           0.9569,
+           0.9843,
+           1.0
+          ]
+         }
+        ]
+       }
+      },
+      "Texture": "rbxasset://textures/particles/smoke_main.dds",
+      "EmissionDirection": "Front",
+      "SpreadAngle": {
+       "Vector2": [
+        28,
+        10
+       ]
+      },
+      "Acceleration": [
+       0,
+       -30,
+       0
+      ],
+      "LightEmission": 0,
+      "Drag": 0.5
+     }
+    }
+   ]
+  }
+ ]
+}

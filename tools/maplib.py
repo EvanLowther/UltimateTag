@@ -62,7 +62,7 @@ def facing_out(degrees):
 
 
 def r(v):
-    return round(v, 3)
+    return round(v, 4)  # 4 places: long thin wedges rounded to 3 overlap their neighbours a hair
 
 
 def number_sequence(points):
@@ -95,7 +95,7 @@ class Map:
             "Anchored": True, "Size": [r(v) for v in size], "Color": self.rgb(color),
             "Material": material, "TopSurface": "Smooth", "BottomSurface": "Smooth",
             "CFrame": {"CFrame": {"position": [r(v) for v in pos],
-                                  "orientation": [[r(v) for v in row] for row in rows]}},
+                                  "orientation": [[round(v, 6) for v in row] for row in rows]}},
         }
         properties.update(props)
         node = {"name": self._name(name), "className": "Part", "properties": properties}

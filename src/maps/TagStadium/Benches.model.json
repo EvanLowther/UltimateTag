@@ -1,0 +1,3673 @@
+{
+ "className": "Folder",
+ "children": [
+  {
+   "name": "BenchBase",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.8,
+     0.15,
+     7.6
+    ],
+    "Color": [
+     0.5569,
+     0.5922,
+     0.6392
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24.0,
+       0.075,
+       -67.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Canopy",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       0.7132,
+       -63.6443
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.987688,
+        0.156434
+       ],
+       [
+        0,
+        -0.156434,
+        0.987688
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       1.7844,
+       -63.9924
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.891007,
+        0.45399
+       ],
+       [
+        0,
+        -0.45399,
+        0.891007
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       2.6956,
+       -64.6544
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.707107,
+        0.707107
+       ],
+       [
+        0,
+        -0.707107,
+        0.707107
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       3.3576,
+       -65.5656
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.45399,
+        0.891007
+       ],
+       [
+        0,
+        -0.891007,
+        0.45399
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       3.7057,
+       -66.6368
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.156434,
+        0.987688
+       ],
+       [
+        0,
+        -0.987688,
+        0.156434
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       3.7057,
+       -67.7632
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.156434,
+        0.987688
+       ],
+       [
+        0,
+        -0.987688,
+        -0.156434
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       3.3576,
+       -68.8344
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.45399,
+        0.891007
+       ],
+       [
+        0,
+        -0.891007,
+        -0.45399
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       2.6956,
+       -69.7456
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.707107,
+        0.707107
+       ],
+       [
+        0,
+        -0.707107,
+        -0.707107
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       1.7844,
+       -70.4076
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.891007,
+        0.45399
+       ],
+       [
+        0,
+        -0.45399,
+        -0.891007
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -24,
+       0.7132,
+       -70.7557
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.987688,
+        0.156434
+       ],
+       [
+        0,
+        -0.156434,
+        -0.987688
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.2,
+       0.6916,
+       -70.1143
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.2,
+       1.4287,
+       -69.1429
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.2,
+       1.746,
+       -68.1714
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.4671,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.2,
+       1.8835,
+       -67.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.2,
+       1.746,
+       -66.2286
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.2,
+       1.4287,
+       -65.2571
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -32.2,
+       0.6916,
+       -64.2857
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.8,
+       0.6916,
+       -70.1143
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.8,
+       1.4287,
+       -69.1429
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.8,
+       1.746,
+       -68.1714
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.4671,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.8,
+       1.8835,
+       -67.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.8,
+       1.746,
+       -66.2286
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.8,
+       1.4287,
+       -65.2571
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -15.8,
+       0.6916,
+       -64.2857
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "BenchSeat",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.5,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -30.5,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat3",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.9,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat4",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -27.9,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat5",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.3,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat6",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -25.3,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat7",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.7,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat8",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -22.7,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat9",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.1,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat10",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     0.8471,
+     0.1373,
+     0.1647
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -20.1,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.5,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     0.8235,
+     0.2471
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       -17.5,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchBase2",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.8,
+     0.15,
+     7.6
+    ],
+    "Color": [
+     0.5569,
+     0.5922,
+     0.6392
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24.0,
+       0.075,
+       -67.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "Canopy11",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       0.7132,
+       -63.6443
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.987688,
+        0.156434
+       ],
+       [
+        0,
+        -0.156434,
+        0.987688
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy12",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       1.7844,
+       -63.9924
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.891007,
+        0.45399
+       ],
+       [
+        0,
+        -0.45399,
+        0.891007
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       2.6956,
+       -64.6544
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.707107,
+        0.707107
+       ],
+       [
+        0,
+        -0.707107,
+        0.707107
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       3.3576,
+       -65.5656
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.45399,
+        0.891007
+       ],
+       [
+        0,
+        -0.891007,
+        0.45399
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       3.7057,
+       -66.6368
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0.156434,
+        0.987688
+       ],
+       [
+        0,
+        -0.987688,
+        0.156434
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       3.7057,
+       -67.7632
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.156434,
+        0.987688
+       ],
+       [
+        0,
+        -0.987688,
+        -0.156434
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       3.3576,
+       -68.8344
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.45399,
+        0.891007
+       ],
+       [
+        0,
+        -0.891007,
+        -0.45399
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       2.6956,
+       -69.7456
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.707107,
+        0.707107
+       ],
+       [
+        0,
+        -0.707107,
+        -0.707107
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       1.7844,
+       -70.4076
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.891007,
+        0.45399
+       ],
+       [
+        0,
+        -0.45399,
+        -0.891007
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "Canopy20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     16.6,
+     1.1904,
+     0.12
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       24,
+       0.7132,
+       -70.7557
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        -0.987688,
+        0.156434
+       ],
+       [
+        0,
+        -0.156434,
+        -0.987688
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.8,
+       0.6916,
+       -70.1143
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.8,
+       1.4287,
+       -69.1429
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.8,
+       1.746,
+       -68.1714
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.4671,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.8,
+       1.8835,
+       -67.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.8,
+       1.746,
+       -66.2286
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.8,
+       1.4287,
+       -65.2571
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       15.8,
+       0.6916,
+       -64.2857
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.2,
+       0.6916,
+       -70.1143
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.2,
+       1.4287,
+       -69.1429
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.2,
+       1.746,
+       -68.1714
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd25",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.4671,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.2,
+       1.8835,
+       -67.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd26",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     3.1919,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.2,
+       1.746,
+       -66.2286
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd27",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     2.5575,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.2,
+       1.4287,
+       -65.2571
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "CanopyEnd28",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     0.12,
+     1.0832,
+     0.9714
+    ],
+    "Color": [
+     0.749,
+     0.8902,
+     0.9608
+    ],
+    "Material": "Glass",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       32.2,
+       0.6916,
+       -64.2857
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "Transparency": 0.55
+   }
+  },
+  {
+   "name": "BenchSeat13",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     0.1412,
+     0.2784,
+     0.6118
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.5,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat14",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     0.1412,
+     0.2784,
+     0.6118
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       17.5,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat15",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.1,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat16",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       20.1,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat17",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     0.1412,
+     0.2784,
+     0.6118
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.7,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat18",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     0.1412,
+     0.2784,
+     0.6118
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       22.7,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat19",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.3,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat20",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       25.3,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat21",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     0.1412,
+     0.2784,
+     0.6118
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.9,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat22",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     0.1412,
+     0.2784,
+     0.6118
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       27.9,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat23",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     1.25,
+     1.2
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30.5,
+       0.775,
+       -68.0
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "BenchSeat24",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     2.0,
+     2.75,
+     0.4
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       30.5,
+       1.525,
+       -69.1
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "Desk",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.8,
+     2.4,
+     1.6
+    ],
+    "Color": [
+     0.102,
+     0.1216,
+     0.1569
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       1.2,
+       -65.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "DeskTop",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     4.4,
+     0.2,
+     1.6
+    ],
+    "Color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       2.5,
+       -65.2
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  },
+  {
+   "name": "DeskBoard",
+   "className": "Part",
+   "properties": {
+    "Anchored": true,
+    "Size": [
+     1.8,
+     1.2,
+     0.3
+    ],
+    "Color": [
+     0.1098,
+     0.1412,
+     0.2
+    ],
+    "Material": "SmoothPlastic",
+    "TopSurface": "Smooth",
+    "BottomSurface": "Smooth",
+    "CFrame": {
+     "CFrame": {
+      "position": [
+       0.0,
+       3.2,
+       -65.25
+      ],
+      "orientation": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ]
+      ]
+     }
+    },
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false
+   }
+  }
+ ]
+}
